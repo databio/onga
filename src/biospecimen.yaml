@@ -1,0 +1,24 @@
+id: https://w3id.org/onga/biospecimen
+name: biospecimen
+title: ONGA Biospecimen Classification Vocabulary
+description: >-
+  Controlled vocabulary for classifying biological specimens used in genomic
+  experiments. Covers tissue types, cell types, developmental stages, and
+  experimental conditions.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://w3id.org/onga/
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+
+# TODO: Define biospecimen classification vocabulary.
+# Planned enums:
+#   - TissueType: major tissue and organ types
+#   - CellType: cell type classifications (cross-reference Cell Ontology)
+#   - DevelopmentalStage: embryonic, fetal, postnatal stages
+#   - ExperimentalCondition: treatment, disease state, genotype

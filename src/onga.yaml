@@ -1,0 +1,32 @@
+id: https://w3id.org/onga
+name: onga
+title: ONGA - Ontology for Genomic Annotations
+description: >-
+  ONGA is a controlled vocabulary for describing the content, purpose, and
+  classification of genomic data files. It provides hierarchical vocabularies
+  organized into thematic modules: file content/output types, biospecimen
+  classification, and track geometry.
+license: https://creativecommons.org/licenses/by/4.0/
+version: 0.1.0
+created_by: Nathan Sheffield
+creation_date: "2026-05-20"
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://w3id.org/onga/
+  edam: http://edamontology.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dct: http://purl.org/dc/terms/
+  owl: http://www.w3.org/2002/07/owl#
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+  - file_content
+  - biospecimen
+  - track_geometry

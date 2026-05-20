@@ -1,0 +1,24 @@
+id: https://w3id.org/onga/track_geometry
+name: track_geometry
+title: ONGA Track Geometry Vocabulary
+description: >-
+  Controlled vocabulary for describing the geometric or structural properties
+  of genomic tracks and features (strand orientation, resolution, coordinate
+  systems).
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://w3id.org/onga/
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+
+# TODO: Define track geometry vocabulary.
+# Planned enums:
+#   - StrandOrientation: plus, minus, unstranded, bidirectional
+#   - Resolution: base-pair, binned (specify bin size), variable
+#   - CoordinateSystem: 0-based half-open (BED), 1-based (VCF), etc.
+#   - FileFormat: bigWig, bigBed, BAM, VCF, etc. (consider deferring to EDAM format branch)
