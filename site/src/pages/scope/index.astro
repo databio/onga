@@ -1,0 +1,90 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import delegations from '../../data/delegations.json';
+---
+
+<Layout title="Scope Boundary" description="Axes ONGA deliberately delegates out of content scope to external ontologies">
+  <div class="mb-8">
+    <p class="text-[11px] uppercase tracking-wide text-rose-400 font-semibold">Design principle #5</p>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Delegated axes / Scope boundary</h1>
+    <p class="text-gray-600 mt-2 max-w-3xl">
+      ONGA describes <strong>what a genomic file's content is</strong>. Some qualifiers
+      that appear baked into ENCODE
+      <code class="bg-gray-100 px-1 rounded">output_type</code> terms are
+      <strong>not content properties</strong> — they describe the biological sample or
+      the assay/method that produced the file. ONGA deliberately keeps these
+      <strong>out of scope</strong> and <strong>delegates</strong> them to external
+      ontologies and modules, rather than absorbing them into its content vocabularies.
+      Unlike lossless faceting <em>inside</em> ONGA (a compound content term = base +
+      ONGA facets), these are <strong>scope ejections</strong>: the qualifier names a
+      property that belongs to another ontology.
+    </p>
+  </div>
+
+  <!-- Delegated axes summary -->
+  <section class="grid sm:grid-cols-3 gap-4 mb-8">
+    <div class="bg-white rounded-lg p-5 shadow-sm border-l-4 border-rose-400">
+      <h3 class="font-semibold text-gray-900">Anatomy / tissue</h3>
+      <p class="text-sm text-gray-500 mt-1">
+        Delegated to <a href="https://uberon.github.io/" class="text-rose-600 underline hover:text-rose-800">UBERON</a>
+        (biospecimen <code class="bg-gray-100 px-1 rounded">organism_part</code>).
+      </p>
+    </div>
+    <div class="bg-white rounded-lg p-5 shadow-sm border-l-4 border-rose-400">
+      <h3 class="font-semibold text-gray-900">Sample sex</h3>
+      <p class="text-sm text-gray-500 mt-1">
+        Delegated to <a href="http://obofoundry.org/ontology/pato.html" class="text-rose-600 underline hover:text-rose-800">PATO</a>
+        — distinct from
+        <a href="/reference-build-sex" class="text-indigo-600 underline hover:text-indigo-800">reference build sex</a>.
+      </p>
+    </div>
+    <div class="bg-white rounded-lg p-5 shadow-sm border-l-4 border-rose-400">
+      <h3 class="font-semibold text-gray-900">Assay / method</h3>
+      <p class="text-sm text-gray-500 mt-1">
+        Assay and method names are out of ONGA's content scope and delegated to
+        external assay ontologies.
+      </p>
+    </div>
+  </section>
+
+  <!-- Current anatomy delegations from scope_delegations.tsv -->
+  <section>
+    <div class="mb-4">
+      <h2 class="text-2xl font-bold text-gray-900">Current delegations</h2>
+      <p class="text-gray-500 text-sm">
+        {delegations.length} compound content terms ejected to external ontologies.
+        Each removed term is recoverable as content base + delegated axis:value.
+      </p>
+    </div>
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-50 text-gray-500 text-left text-xs uppercase tracking-wide">
+          <tr>
+            <th class="px-4 py-3 font-semibold">Removed term</th>
+            <th class="px-4 py-3 font-semibold">Content base</th>
+            <th class="px-4 py-3 font-semibold">Delegated axis</th>
+            <th class="px-4 py-3 font-semibold">Value</th>
+            <th class="px-4 py-3 font-semibold">External term</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {delegations.map((d: any) => (
+            <tr>
+              <td class="px-4 py-3 font-mono text-gray-900">{d.encodeTerm}</td>
+              <td class="px-4 py-3 font-mono text-gray-600">{d.contentBase}</td>
+              <td class="px-4 py-3 font-mono text-gray-600">{d.delegatedAxis}</td>
+              <td class="px-4 py-3 text-gray-600">{d.delegatedValue}</td>
+              <td class="px-4 py-3">
+                {d.externalUrl ? (
+                  <a href={d.externalUrl} class="font-mono text-rose-600 underline hover:text-rose-800">{d.externalCurie}</a>
+                ) : (
+                  <span class="font-mono text-gray-600">{d.externalCurie}</span>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Layout>

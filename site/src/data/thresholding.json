@@ -1,0 +1,38 @@
+[
+  {
+    "id": "idr",
+    "name": "idr",
+    "slug": "idr",
+    "description": "Retained by an Irreproducible Discovery Rate (IDR) threshold (reproducible signal across replicates).",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "thresholding",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "mapping_quality",
+    "name": "mapping_quality",
+    "slug": "mapping_quality",
+    "description": "Retained by a minimum mapping-quality threshold (high-confidence read mappings only).",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "thresholding",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "significance",
+    "name": "significance",
+    "slug": "significance",
+    "description": "Retained by a generic statistical-significance threshold (e.g. p-value / FDR) where the method is unspecified.",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "thresholding",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  }
+]

@@ -179,22 +179,6 @@ enums:
         see_also:
         - TF binding
         - histone modifications
-      observed bias profile:
-        description: Empirically measured sequencing bias profile from experimental data.
-        in_subset:
-        - signal_track
-      observed signal profile:
-        description: Experimentally measured signal profile from sequencing data.
-        in_subset:
-        - signal_track
-      predicted bias profile:
-        description: Computationally predicted sequencing bias profile based on sequence composition.
-        in_subset:
-        - signal_track
-      predicted signal profile:
-        description: Signal profile computationally predicted by a model from sequence or chromatin features.
-        in_subset:
-        - signal_track
       signal:
         description: Quantitative signal track showing per-base or per-bin values across the genome, typically in bigWig
           format.
@@ -250,16 +234,6 @@ enums:
         meaning: edam:data_3002
         in_subset:
         - peak_set
-      IDR thresholded peaks:
-        description: Peaks passing an Irreproducible Discovery Rate (IDR) threshold, indicating reproducible signal 
-          across replicates.
-        meaning: edam:data_3002
-        in_subset:
-        - peak_set
-        see_also:
-        - TF binding sites
-        - open chromatin regions
-        - histone modifications
       optimal IDR thresholded peaks:
         description: Peaks using the optimal IDR cutoff balancing sensitivity and reproducibility.
         meaning: edam:data_3002
@@ -389,10 +363,6 @@ enums:
         - compartments
       haplotype-specific contact matrix:
         description: Contact matrix computed separately for a specific parental haplotype.
-        in_subset:
-        - contact_matrix
-      mapping quality thresholded contact matrix:
-        description: Contact matrix filtered to high-confidence mappings.
         in_subset:
         - contact_matrix
       pairs:
@@ -689,16 +659,6 @@ enums:
         description: Reference set of annotated genomic elements.
         in_subset:
         - reference
-      female genome index:
-        description: Alignment index built from a female reference genome.
-        meaning: edam:data_3210
-        in_subset:
-        - reference
-      female genome reference:
-        description: Reference genome sequence derived from a female individual (includes both X chromosomes).
-        meaning: edam:data_2977
-        in_subset:
-        - reference
       genome index:
         description: Precomputed index enabling rapid sequence alignment to a reference genome.
         meaning: edam:data_3210
@@ -706,16 +666,6 @@ enums:
         - reference
       genome reference:
         description: Reference genome sequence assembly used for alignment and annotation.
-        meaning: edam:data_2977
-        in_subset:
-        - reference
-      male genome index:
-        description: Alignment index built from a male reference genome.
-        meaning: edam:data_3210
-        in_subset:
-        - reference
-      male genome reference:
-        description: Reference genome sequence derived from a male individual (includes X and Y chromosomes).
         meaning: edam:data_2977
         in_subset:
         - reference
@@ -912,10 +862,6 @@ enums:
         description: Signal of read end positions.
         in_subset:
         - signal_track
-      observed control profile:
-        description: Observed control signal profile.
-        in_subset:
-        - signal_track
       modified peptide quantification:
         description: Quantification of post-translationally modified peptides.
         in_subset:
@@ -929,6 +875,18 @@ enums:
         description: Matrix of signal values across features and samples.
         in_subset:
         - count_matrix
+      signal profile:
+        description: Signal profile across genomic positions.
+        in_subset:
+        - signal_track
+      bias profile:
+        description: Sequencing bias profile across genomic positions.
+        in_subset:
+        - signal_track
+      control profile:
+        description: Control signal profile.
+        in_subset:
+        - signal_track
   FeatureType:
     description: "Biological feature types - the biological entity or concept the data \nrepresents. Describes WHAT biological
       phenomenon the features capture.\nExamples: enhancers, TF binding sites, methylation states, chromatin loops."
@@ -1007,64 +965,12 @@ enums:
         - dna_methylation
         see_also:
         - methylated reads
-      minus strand methylation state at CpG:
-        description: DNA methylation status at CpG positions on the minus strand.
-        in_subset:
-        - dna_methylation
-      plus strand methylation state at CpG:
-        description: DNA methylation status at CpG positions on the plus strand.
-        in_subset:
-        - dna_methylation
       smoothed methylation state at CpG:
         description: CpG methylation values smoothed across neighboring sites to reduce noise.
         in_subset:
         - dna_methylation
 
       # ─── rna_modification ─────────────────────────────────────────────────
-      minus strand inosine methylation state:
-        description: Inosine (A-to-I editing) modification on the minus strand.
-        in_subset:
-        - rna_modification
-      minus strand m5C methylation state:
-        description: 5-methylcytosine (m5C) RNA modification on the minus strand.
-        in_subset:
-        - rna_modification
-      minus strand m6A methylation state:
-        description: N6-methyladenosine (m6A) modification on minus strand transcripts. m6A is the most abundant 
-          internal mRNA modification.
-        in_subset:
-        - rna_modification
-      minus strand Nm methylation state:
-        description: 2′-O-methylation (Nm) modification on the minus strand.
-        in_subset:
-        - rna_modification
-      minus strand pseudouridine methylation state:
-        description: Pseudouridine (Ψ) modification on the minus strand. Pseudouridine is the most abundant RNA 
-          modification.
-        in_subset:
-        - rna_modification
-      plus strand inosine methylation state:
-        description: Inosine (A-to-I editing) modification on the plus strand.
-        in_subset:
-        - rna_modification
-      plus strand m5C methylation state:
-        description: 5-methylcytosine (m5C) RNA modification on the plus strand.
-        in_subset:
-        - rna_modification
-      plus strand m6A methylation state:
-        description: N6-methyladenosine (m6A) modification on plus strand transcripts.
-        in_subset:
-        - rna_modification
-      plus strand Nm methylation state:
-        description: 2′-O-methylation (Nm) modification on the plus strand.
-        in_subset:
-        - rna_modification
-      plus strand pseudouridine methylation state:
-        description: Pseudouridine (Ψ) modification on the plus strand.
-        in_subset:
-        - rna_modification
-
-      # ─── regulatory_element ───────────────────────────────────────────────
       candidate Cis-Regulatory Elements:
         description: Computationally predicted cis-regulatory elements (CREs) including enhancers, promoters, and 
           insulators from chromatin accessibility and histone data.
@@ -1084,12 +990,6 @@ enums:
         meaning: edam:data_3125
         in_subset:
         - regulatory_element
-      enhancer-gene links:
-        description: >-
-          Moved to element_gene_linkage. Links between enhancers and their
-          putative target genes.
-        in_subset:
-        - regulatory_element
       enhancer validation:
         description: Experimental validation data for predicted enhancers.
         in_subset:
@@ -1098,36 +998,12 @@ enums:
         description: Reference set of annotated enhancer elements.
         in_subset:
         - regulatory_element
-      minus strand transcription start sites:
-        description: Transcription start sites on the minus strand.
-        in_subset:
-        - regulatory_element
-      plus strand transcription start sites:
-        description: Transcription start sites on the plus strand.
-        in_subset:
-        - regulatory_element
       polyA sites:
         description: Polyadenylation signal sites where pre-mRNA is cleaved and polyadenylated.
         in_subset:
         - regulatory_element
       predicted enhancers:
         description: Computationally predicted enhancer elements.
-        in_subset:
-        - regulatory_element
-      predicted forebrain enhancers:
-        description: Enhancer elements predicted to be active in forebrain tissue.
-        in_subset:
-        - regulatory_element
-      predicted heart enhancers:
-        description: Enhancer elements predicted to be active in heart tissue.
-        in_subset:
-        - regulatory_element
-      predicted transcription start sites:
-        description: Computationally predicted TSS based on sequence or chromatin features.
-        in_subset:
-        - regulatory_element
-      predicted whole brain enhancers:
-        description: Enhancer elements predicted to be active across whole brain.
         in_subset:
         - regulatory_element
       promoters reference:
@@ -1160,17 +1036,11 @@ enums:
         in_subset:
         - element_gene_linkage
       element gene links:
-        description: Associations linking regulatory elements to target genes.
+        description: Associations linking regulatory elements (commonly enhancers) to their putative target genes.
         in_subset:
         - element_gene_linkage
-      thresholded element gene links:
-        description: Element-gene links filtered by a significance threshold.
-        in_subset:
-        - element_gene_linkage
-      thresholded links:
-        description: Generic significance-thresholded regulatory links.
-        in_subset:
-        - element_gene_linkage
+        aliases:
+        - enhancer-gene links
       topic gene weights:
         description: Gene weights derived from topic modeling of regulatory data.
         in_subset:
@@ -1209,16 +1079,6 @@ enums:
       eQTLs:
         description: 'Expression quantitative trait loci: variants statistically associated with gene expression levels.'
         meaning: edam:data_1860
-        in_subset:
-        - variant
-      filtered indels:
-        description: Insertion/deletion variants after quality filtering.
-        meaning: edam:data_0918
-        in_subset:
-        - variant
-      filtered SNPs:
-        description: Single nucleotide polymorphisms after quality filtering.
-        meaning: edam:data_0918
         in_subset:
         - variant
       maternal variant calls:
@@ -1280,10 +1140,6 @@ enums:
         - sequence_motif
 
       # ─── annotation ───────────────────────────────────────────────────────
-      filtered transcribed fragments:
-        description: Transcribed genomic fragments after quality filtering.
-        in_subset:
-        - annotation
       functional conservation mapping:
         description: Mapping of functionally conserved regions across species.
         in_subset:
@@ -1378,3 +1234,38 @@ enums:
         - haplotype
 
       # ─── technical ────────────────────────────────────────────────────────
+      Nm methylation state:
+        description: 2′-O-methylation (Nm) modification.
+        in_subset:
+        - rna_modification
+      SNPs:
+        description: Single nucleotide polymorphisms.
+        meaning: edam:data_0918
+        in_subset:
+        - variant
+      indels:
+        description: Insertion/deletion variants.
+        meaning: edam:data_0918
+        in_subset:
+        - variant
+      inosine methylation state:
+        description: Inosine (A-to-I editing) modification.
+        in_subset:
+        - rna_modification
+      m5C methylation state:
+        description: 5-methylcytosine (m5C) RNA modification.
+        in_subset:
+        - rna_modification
+      m6A methylation state:
+        description: N6-methyladenosine (m6A) modification on transcripts. m6A is the most abundant internal mRNA 
+          modification.
+        in_subset:
+        - rna_modification
+      pseudouridine methylation state:
+        description: Pseudouridine (Ψ) modification. Pseudouridine is the most abundant RNA modification.
+        in_subset:
+        - rna_modification
+      links:
+        description: Generic regulatory links associating genomic elements with target features.
+        in_subset:
+        - element_gene_linkage

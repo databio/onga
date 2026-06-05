@@ -8,7 +8,7 @@
       "range": "DataType",
       "required": false,
       "vocabHref": "/data-types",
-      "vocabCount": 174
+      "vocabCount": 166
     },
     {
       "id": "feature_type",
@@ -18,7 +18,7 @@
       "range": "FeatureType",
       "required": false,
       "vocabHref": "/feature-types",
-      "vocabCount": 92
+      "vocabCount": 76
     },
     {
       "id": "strand",

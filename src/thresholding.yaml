@@ -1,0 +1,54 @@
+id: https://databio.org/onga/thresholding
+name: thresholding
+title: ONGA Thresholding Vocabulary
+description: >-
+  Controlled vocabulary recording that a retention cut (a thresholding
+  operation) was applied to produce a file, and the basis of that cut.
+  `Thresholding` is a Layer-1 ONGA facet vocabulary (a closed value set) and a
+  provenance facet — it records that some statistical or quality threshold was
+  used to retain a subset of features/elements, and what that threshold was
+  based on, not what the retained data means. It factors the thresholding
+  qualifier out of compound ENCODE `output_type` / DataType terms (e.g. "IDR
+  thresholded peaks", "mapping quality thresholded contact matrix") so that the
+  retention cut becomes an orthogonal facet asserted via the `thresholding` slot
+  of the `TrackProvenance` descriptor schema, rather than being baked into the
+  interpretation value. An absent value means no threshold was applied or the
+  thresholding is unspecified. This axis cross-cuts output kinds — it applies to
+  peaks, contact matrices, and regulatory (element–gene) links alike.
+
+
+  Aligned with FGA-WG issue #2 (data interpretation): the thresholding axis is
+  one of the orthogonal facets a compound interpretation term collapses, here
+  homed on the provenance schema as a processing operation.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+
+enums:
+  Thresholding:
+    description: >-
+      The retention cut applied to produce a file and the basis of that cut,
+      factored out of the compound ENCODE output_type / DataType terms. A
+      provenance facet recording that a threshold was applied. Absent means no
+      threshold / unspecified. Cross-cuts peaks, contact matrices, and
+      regulatory links.
+    permissible_values:
+      idr:
+        description: >-
+          Retained by an Irreproducible Discovery Rate (IDR) threshold
+          (reproducible signal across replicates).
+      mapping_quality:
+        description: >-
+          Retained by a minimum mapping-quality threshold (high-confidence read
+          mappings only).
+      significance:
+        description: >-
+          Retained by a generic statistical-significance threshold (e.g.
+          p-value / FDR) where the method is unspecified.

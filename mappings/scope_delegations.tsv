@@ -1,0 +1,30 @@
+# scope_delegations.tsv
+# Scope-boundary record (operation #15). Unlike facet_decomposition.tsv — which
+# records LOSSLESS faceting INSIDE ONGA (a compound content term = base + ONGA
+# facets) — this file records SCOPE EJECTIONS: compound content terms whose
+# qualifier names a property that is OUT of ONGA's content scope and is
+# DELEGATED to an external ontology / module.
+#
+# Anatomy/tissue (forebrain, heart, brain) is a biospecimen property, not a
+# property of what a file's content IS. The 3 `predicted <tissue> enhancers`
+# FeatureType terms collapse onto the already-existing content base
+# `predicted enhancers`; the tissue is ejected to UBERON and aligns with the
+# future `organism_part` slot of the biospecimen module (FAIRtracks
+# sample.sample_type.organism_part, UBERON range).
+#
+# This file is the lossless scope-boundary record: the removed compound term is
+# recoverable as content_base + delegated_axis:delegated_value(external_curie).
+# The website will later render redirects / delegation notes from it.
+#
+# Columns:
+#   encode_term     the removed compound content term
+#   content_enum    which ONGA content enum it was removed from
+#   content_base    the atomic content base it collapses onto (must exist)
+#   delegated_axis  the out-of-scope axis name (aligns to a biospecimen slot)
+#   delegated_value the human-readable value of that axis
+#   external_curie  the external ontology term the value is delegated to
+#   note            short rationale
+encode_term	content_enum	content_base	delegated_axis	delegated_value	external_curie	note
+predicted forebrain enhancers	FeatureType	predicted enhancers	organism_part	forebrain	UBERON:0001890	tissue is a biospecimen property, not content; see biospecimen organism_part
+predicted heart enhancers	FeatureType	predicted enhancers	organism_part	heart	UBERON:0000948	tissue is a biospecimen property, not content; see biospecimen organism_part
+predicted whole brain enhancers	FeatureType	predicted enhancers	organism_part	brain	UBERON:0000955	tissue is a biospecimen property, not content; see biospecimen organism_part

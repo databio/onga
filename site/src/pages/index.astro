@@ -98,6 +98,33 @@ import vocabulary from '../data/vocabulary.json';
               Scaling normalization (raw vs. depth- vs. percentage-normalized), factored out of compound DataType terms.
             </p>
           </a>
+          <a href="/thresholding" class="block bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow border-l-4 border-indigo-400">
+            <div class="flex items-baseline justify-between">
+              <h3 class="text-lg font-semibold text-gray-900">Thresholding</h3>
+              <span class="text-indigo-600 text-sm font-medium">{vocabulary.stats.thresholdingTerms} terms</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">
+              Retention cut applied (IDR / mapping-quality / significance), factored out of compound DataType terms.
+            </p>
+          </a>
+          <a href="/derivation" class="block bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow border-l-4 border-indigo-400">
+            <div class="flex items-baseline justify-between">
+              <h3 class="text-lg font-semibold text-gray-900">Derivation</h3>
+              <span class="text-indigo-600 text-sm font-medium">{vocabulary.stats.derivationTerms} terms</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">
+              Epistemic origin (observed vs. predicted), factored out of compound DataType / FeatureType terms.
+            </p>
+          </a>
+          <a href="/reference-build-sex" class="block bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow border-l-4 border-indigo-400">
+            <div class="flex items-baseline justify-between">
+              <h3 class="text-lg font-semibold text-gray-900">ReferenceBuildSex</h3>
+              <span class="text-indigo-600 text-sm font-medium">{vocabulary.stats.referenceBuildSexTerms} terms</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">
+              Sex of the reference assembly build (male / female), factored out of compound DataType terms.
+            </p>
+          </a>
         </div>
       </div>
     </section>
@@ -155,6 +182,18 @@ import vocabulary from '../data/vocabulary.json';
             Gaps, lengths, strands, values, edges (Gundersen et al. 2011).
           </p>
         </a>
+
+        <a href="/reference-genome" class="block bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow border-l-4 border-amber-500">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Reference Genome</h3>
+          <p class="text-amber-600 font-medium mb-4">{vocabulary.stats.referenceGenomeProps} properties</p>
+          <p class="text-gray-600 mb-4">
+            <strong>The reference assembly it is defined against</strong> — every annotation is relative to a reference build.
+          </p>
+          <p class="text-sm text-gray-500">
+            An <code class="bg-gray-100 px-1 rounded">assembly</code> identifier plus a
+            <span class="text-indigo-600">build_sex</span> facet slot — the sex of the build, not the sample.
+          </p>
+        </a>
       </div>
     </section>
 
@@ -162,16 +201,21 @@ import vocabulary from '../data/vocabulary.json';
     <section class="bg-gray-50 rounded-lg p-6">
       <h3 class="font-semibold text-gray-900 mb-3">How they relate</h3>
       <p class="text-gray-600 text-sm">
-        The three core <strong>vocabularies</strong> are closed value sets. The four <strong>schemas</strong> are sets of
+        The three core <strong>vocabularies</strong> are closed value sets, complemented by seven small
+        <strong>facet vocabularies</strong>. The five <strong>schemas</strong> are sets of
         properties you assert about a track, with slots whose values come from those vocabularies or from primitives.
         <strong>Track Format</strong> describes <em>how a track is encoded</em> (file format, BED columns).
         <strong>Track Interpretation</strong> describes <em>what it is / means</em>, split into an algorithmic
         <code class="bg-gray-100 px-1 rounded">output_type</code> (drawing on DataType) and a biological
         <code class="bg-gray-100 px-1 rounded">feature_type</code> (drawing on FeatureType).
         <strong>Track Provenance</strong> describes <em>what was done to it</em> — the processing/derivation operations
-        applied (read selection, QC filtering, scaling normalization; extensible to derivation and bias-correction).
+        applied (read selection, QC filtering, scaling normalization, thresholding, and observed-vs-predicted derivation).
         <strong>Track Geometry</strong> describes its <em>structural shape</em> (point vs interval vs signal vs graph) —
         measured from the bytes, orthogonal to the others.
+        <strong>Reference Genome</strong> describes the <em>reference assembly</em> a track is defined against
+        (its identifier and build sex).
+        Properties that describe the <em>sample</em> or <em>assay</em> rather than the file's content —
+        anatomy, sample sex, method — are deliberately kept <a href="/scope" class="text-rose-600 underline hover:text-rose-800">out of scope and delegated</a> to external ontologies.
       </p>
     </section>
 
@@ -208,10 +252,15 @@ import vocabulary from '../data/vocabulary.json';
       <a href="/read-multiplicity" class="text-indigo-600 hover:text-indigo-800 underline">ReadMultiplicity</a>
       <a href="/filter-status" class="text-indigo-600 hover:text-indigo-800 underline">FilterStatus</a>
       <a href="/normalization" class="text-indigo-600 hover:text-indigo-800 underline">Normalization</a>
+      <a href="/thresholding" class="text-indigo-600 hover:text-indigo-800 underline">Thresholding</a>
+      <a href="/derivation" class="text-indigo-600 hover:text-indigo-800 underline">Derivation</a>
+      <a href="/reference-build-sex" class="text-indigo-600 hover:text-indigo-800 underline">ReferenceBuildSex</a>
       <a href="/track-format" class="text-amber-600 hover:text-amber-800 underline">Track Format</a>
       <a href="/track-interpretation" class="text-amber-600 hover:text-amber-800 underline">Track Interpretation</a>
       <a href="/track-provenance" class="text-amber-600 hover:text-amber-800 underline">Track Provenance</a>
       <a href="/track-geometry" class="text-amber-600 hover:text-amber-800 underline">Track Geometry</a>
+      <a href="/reference-genome" class="text-amber-600 hover:text-amber-800 underline">Reference Genome</a>
+      <a href="/scope" class="text-rose-600 hover:text-rose-800 underline">Scope Boundary</a>
       <a href="/mappings" class="text-gray-600 hover:text-gray-800 underline">EDAM Mappings</a>
       <a href="/about" class="text-gray-600 hover:text-gray-800 underline">About ONGA</a>
     </section>

@@ -1,0 +1,51 @@
+id: https://databio.org/onga/reference_build_sex
+name: reference_build_sex
+title: ONGA Reference Build Sex Vocabulary
+description: >-
+  Controlled vocabulary recording the sex of the reference genome BUILD a track
+  is defined against — i.e. which sex chromosomes the reference assembly
+  contains (a male assembly carries X and Y; a female assembly carries X only).
+  `ReferenceBuildSex` is a Layer-1 ONGA facet vocabulary (a closed value set)
+  and a property of the REFERENCE assembly, NOT of the biological sample. It
+  factors the male/female qualifier out of compound ENCODE `output_type` /
+  DataType terms (e.g. "male genome reference", "female genome index") so that
+  reference-build sex becomes an orthogonal facet asserted via the `build_sex`
+  slot of the `ReferenceGenome` descriptor schema, rather than being baked into
+  the content value. An absent value means the build sex is unspecified — a
+  sex-neutral / combined assembly.
+
+
+  IMPORTANT: this records the sex of the reference genome BUILD, NOT the
+  biological sample's sex. Sample sex is a biospecimen property and is delegated
+  to PATO (FAIRtracks has no sex field, so it cannot be imported from the
+  FGA-WG).
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+  PATO: http://purl.obolibrary.org/obo/PATO_
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+
+enums:
+  ReferenceBuildSex:
+    description: >-
+      The sex of the reference genome build used (which sex chromosomes the
+      assembly contains), factored out of compound ENCODE output_type / DataType
+      terms. A property of the reference assembly, NOT of the biological sample.
+      Absent means unspecified / sex-neutral combined assembly.
+    permissible_values:
+      male:
+        description: >-
+          Reference assembly derived from a male individual (includes X and Y
+          chromosomes).
+        meaning: PATO:0000384
+      female:
+        description: >-
+          Reference assembly derived from a female individual (X chromosomes
+          only).
+        meaning: PATO:0000383

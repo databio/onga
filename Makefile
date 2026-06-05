@@ -19,7 +19,7 @@ gen-docs:
 	gen-doc -d docs $(MAIN_SCHEMA)
 
 validate:
-	linkml-validate --schema $(MAIN_SCHEMA) --target-class OutputType
+	linkml-lint $(MAIN_SCHEMA)
 
 embeddings-build:
 	cd embeddings && python scripts/build_embeddings.py

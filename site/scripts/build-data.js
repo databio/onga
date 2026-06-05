@@ -3,12 +3,14 @@
  * Build JSON data files from ONGA LinkML schema for Astro site.
  *
  * ONGA has two layers:
- *   Layer 1 — Vocabularies (closed value sets): DataType (algorithmic),
- *     FeatureType (biological), and Format (track file formats).
+ *   Layer 1 — Vocabularies (closed value sets): 3 core (DataType, FeatureType,
+ *     Format) + 7 facet (StrandOrientation, ReadMultiplicity, FilterStatus,
+ *     Normalization, Thresholding, Derivation, ReferenceBuildSex) = 10 total.
  *   Layer 2 — Track descriptor schemas (classes of slots): TrackFormat (#1,
  *     encoding), TrackInterpretation (#2, meaning), TrackProvenance (what was
  *     done to the data — processing/derivation operations), TrackGeometry (#3,
- *     shape).
+ *     shape), ReferenceGenome (#4, the reference assembly a track is defined
+ *     against) = 5 total.
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
@@ -296,6 +298,8 @@ function processProvenance(schema, vocabCounts) {
     ReadMultiplicity: { href: '/read-multiplicity', count: vocabCounts.readMultiplicity },
     FilterStatus: { href: '/filter-status', count: vocabCounts.filterStatus },
     Normalization: { href: '/normalization', count: vocabCounts.normalization },
+    Thresholding: { href: '/thresholding', count: vocabCounts.thresholding },
+    Derivation: { href: '/derivation', count: vocabCounts.derivation },
   };
 
   for (const name of cls.slots || []) {
@@ -318,6 +322,76 @@ function processProvenance(schema, vocabCounts) {
   return { properties };
 }
 
+// Process the ReferenceGenome class (5th schema): its slots, each carrying the
+// vocabulary range it draws on and that vocabulary's term count. Mirrors
+// processProvenance; the build_sex slot links to the ReferenceBuildSex facet.
+function processReferenceGenome(schema, vocabCounts) {
+  const properties = [];
+
+  if (!schema?.classes?.ReferenceGenome) return { properties };
+
+  const cls = schema.classes.ReferenceGenome;
+  const slotDefs = schema.slots || {};
+
+  const vocabLinks = {
+    ReferenceBuildSex: { href: '/reference-build-sex', count: vocabCounts.referenceBuildSex },
+  };
+
+  for (const name of cls.slots || []) {
+    const def = slotDefs[name] || {};
+    const slug = slugify(name);
+    const range = def.range || schema.default_range || 'string';
+    const link = vocabLinks[range] || null;
+    properties.push({
+      id: slug,
+      slug,
+      name,
+      description: def.description || '',
+      range,
+      required: def.required === true,
+      vocabHref: link?.href || null,
+      vocabCount: link?.count ?? null,
+    });
+  }
+
+  return { properties };
+}
+
+// Read the scope-boundary delegations (mappings/scope_delegations.tsv): sample/
+// assay axes ONGA deliberately delegates OUT of content scope to external
+// ontologies (UBERON/PATO). Emitted as delegations.json for the scope feature.
+function readDelegations() {
+  const path = join(mappingsDir, 'scope_delegations.tsv');
+  if (!existsSync(path)) {
+    console.warn('Warning: scope_delegations.tsv not found, scope feature will be empty');
+    return [];
+  }
+  const lines = readFileSync(path, 'utf-8')
+    .split(/\r?\n/)
+    .filter(l => l.trim() && !l.startsWith('#'));
+  if (lines.length < 2) return [];
+  const header = lines[0].split('\t').map(h => h.trim());
+  const idx = name => header.indexOf(name);
+  return lines.slice(1).map(line => {
+    const c = line.split('\t').map(v => v.trim());
+    const curie = c[idx('external_curie')] || '';
+    const [prefix, local] = curie.split(':');
+    let externalUrl = null;
+    if (prefix === 'UBERON' && local) externalUrl = `http://purl.obolibrary.org/obo/UBERON_${local}`;
+    else if (prefix === 'PATO' && local) externalUrl = `http://purl.obolibrary.org/obo/PATO_${local}`;
+    return {
+      encodeTerm: c[idx('encode_term')],
+      contentEnum: c[idx('content_enum')],
+      contentBase: c[idx('content_base')],
+      delegatedAxis: c[idx('delegated_axis')],
+      delegatedValue: c[idx('delegated_value')],
+      externalCurie: curie,
+      externalUrl,
+      note: c[idx('note')] || '',
+    };
+  });
+}
+
 function build() {
   console.log('Building ONGA site data...');
 
@@ -328,11 +402,16 @@ function build() {
   const readMultiplicitySchema = readYaml('read_multiplicity.yaml');
   const filterStatusSchema = readYaml('filter_status.yaml');
   const normalizationSchema = readYaml('normalization.yaml');
+  const thresholdingSchema = readYaml('thresholding.yaml');
+  const derivationSchema = readYaml('derivation.yaml');
+  const referenceBuildSexSchema = readYaml('reference_build_sex.yaml');
   const trackFormat = readYaml('track_format.yaml');
   const trackInterpretation = readYaml('track_interpretation.yaml');
   const trackProvenance = readYaml('track_provenance.yaml');
   const trackGeometry = readYaml('track_geometry.yaml');
+  const referenceGenome = readYaml('reference_genome.yaml');
   const edamMappings = readMappings();
+  const delegations = readDelegations();
 
   // Process the vocabularies (DataType, FeatureType, Format) — all LinkML enums.
   const dataTypeEnum = fileContent?.enums?.DataType;
@@ -348,6 +427,9 @@ function build() {
   const readMultiplicities = processEnum(readMultiplicitySchema?.enums?.ReadMultiplicity, 'read_multiplicity', edamMappings);
   const filterStatuses = processEnum(filterStatusSchema?.enums?.FilterStatus, 'filter_status', edamMappings);
   const normalizations = processEnum(normalizationSchema?.enums?.Normalization, 'normalization', edamMappings);
+  const thresholdings = processEnum(thresholdingSchema?.enums?.Thresholding, 'thresholding', edamMappings);
+  const derivations = processEnum(derivationSchema?.enums?.Derivation, 'derivation', edamMappings);
+  const referenceBuildSexes = processEnum(referenceBuildSexSchema?.enums?.ReferenceBuildSex, 'reference_build_sex', edamMappings);
   const geometry = processGeometry(trackGeometry);
   // TrackFormat is a schema; its file_format slot links to the Format vocabulary.
   const format = processFormat(trackFormat, {
@@ -358,11 +440,17 @@ function build() {
     featureType: featureTypes.terms.length,
     strandOrientation: strandOrientations.terms.length,
   });
-  // TrackProvenance: read_multiplicity + filter_status slots link to their facet vocabularies.
+  // TrackProvenance: facet slots link to their facet vocabularies.
   const provenance = processProvenance(trackProvenance, {
     readMultiplicity: readMultiplicities.terms.length,
     filterStatus: filterStatuses.terms.length,
     normalization: normalizations.terms.length,
+    thresholding: thresholdings.terms.length,
+    derivation: derivations.terms.length,
+  });
+  // ReferenceGenome (5th schema): build_sex slot links to the ReferenceBuildSex facet.
+  const referenceGenomeSchema = processReferenceGenome(referenceGenome, {
+    referenceBuildSex: referenceBuildSexes.terms.length,
   });
 
   // Group geometry properties for the by-group view.
@@ -422,22 +510,27 @@ function build() {
       readMultiplicityTerms: readMultiplicities.terms.length,
       filterStatusTerms: filterStatuses.terms.length,
       normalizationTerms: normalizations.terms.length,
+      thresholdingTerms: thresholdings.terms.length,
+      derivationTerms: derivations.terms.length,
+      referenceBuildSexTerms: referenceBuildSexes.terms.length,
       geometryTerms: geometry.properties.length,
       totalCategories: categories.length,
       totalMappings: mappings.length,
       coveragePercent: Math.round((mappings.length / allTerms.length) * 100),
       // Two-layer summary for the home page. There are 3 core vocabularies
-      // (DataType, FeatureType, Format) plus 4 facet vocabularies
-      // (StrandOrientation, ReadMultiplicity, FilterStatus, Normalization), so 7
-      // vocabularies total.
-      vocabularyCount: 7,
+      // (DataType, FeatureType, Format) plus 7 facet vocabularies
+      // (StrandOrientation, ReadMultiplicity, FilterStatus, Normalization,
+      // Thresholding, Derivation, ReferenceBuildSex), so 10 vocabularies total.
+      vocabularyCount: 10,
       coreVocabCount: 3,
-      facetVocabCount: 4,
-      schemaCount: 4,
+      facetVocabCount: 7,
+      schemaCount: 5,
       formatProps: format.properties.length,
       interpretationProps: interpretation.properties.length,
       provenanceProps: provenance.properties.length,
       geometryProps: geometry.properties.length,
+      referenceGenomeProps: referenceGenomeSchema.properties.length,
+      delegationCount: delegations.length,
     }
   };
 
@@ -460,6 +553,9 @@ function build() {
   writeFileSync(join(dataDir, 'read-multiplicity.json'), JSON.stringify(readMultiplicities.terms, null, 2));
   writeFileSync(join(dataDir, 'filter-status.json'), JSON.stringify(filterStatuses.terms, null, 2));
   writeFileSync(join(dataDir, 'normalization.json'), JSON.stringify(normalizations.terms, null, 2));
+  writeFileSync(join(dataDir, 'thresholding.json'), JSON.stringify(thresholdings.terms, null, 2));
+  writeFileSync(join(dataDir, 'derivation.json'), JSON.stringify(derivations.terms, null, 2));
+  writeFileSync(join(dataDir, 'reference-build-sex.json'), JSON.stringify(referenceBuildSexes.terms, null, 2));
 
   // Track geometry vocabulary (class with slots, plus the DataTypes enum)
   writeFileSync(join(dataDir, 'track-geometry.json'), JSON.stringify({
@@ -478,20 +574,28 @@ function build() {
     properties: interpretation.properties,
   }, null, 2));
 
-  // Track provenance schema (read_multiplicity + filter_status slots, each linked to its facet vocabulary)
+  // Track provenance schema (facet slots, each linked to its facet vocabulary)
   writeFileSync(join(dataDir, 'track-provenance.json'), JSON.stringify({
     properties: provenance.properties,
   }, null, 2));
+
+  // Reference genome schema (5th schema; build_sex slot linked to the ReferenceBuildSex facet)
+  writeFileSync(join(dataDir, 'reference-genome.json'), JSON.stringify({
+    properties: referenceGenomeSchema.properties,
+  }, null, 2));
+
+  // Scope-boundary delegations (axes ONGA delegates OUT to external ontologies)
+  writeFileSync(join(dataDir, 'delegations.json'), JSON.stringify(delegations, null, 2));
 
   // Combined for backwards compat
   writeFileSync(join(dataDir, 'terms.json'), JSON.stringify(allTerms, null, 2));
   writeFileSync(join(dataDir, 'mappings.json'), JSON.stringify(mappings, null, 2));
 
-  console.log('Built 7 vocabularies (3 core + 4 facet) + 4 schemas:');
+  console.log('Built 10 vocabularies (3 core + 7 facet) + 5 schemas:');
   console.log(`  Core vocabularies: ${dataTypes.terms.length} DataType, ${featureTypes.terms.length} FeatureType, ${formats.terms.length} Format`);
-  console.log(`  Facet vocabularies: ${strandOrientations.terms.length} StrandOrientation, ${readMultiplicities.terms.length} ReadMultiplicity, ${filterStatuses.terms.length} FilterStatus, ${normalizations.terms.length} Normalization`);
-  console.log(`  Schemas: TrackFormat (${format.properties.length} props), TrackInterpretation (${interpretation.properties.length} props), TrackProvenance (${provenance.properties.length} props), TrackGeometry (${geometry.properties.length} props)`);
-  console.log(`Categories: ${categories.length}, Mappings: ${mappings.length}`);
+  console.log(`  Facet vocabularies: ${strandOrientations.terms.length} StrandOrientation, ${readMultiplicities.terms.length} ReadMultiplicity, ${filterStatuses.terms.length} FilterStatus, ${normalizations.terms.length} Normalization, ${thresholdings.terms.length} Thresholding, ${derivations.terms.length} Derivation, ${referenceBuildSexes.terms.length} ReferenceBuildSex`);
+  console.log(`  Schemas: TrackFormat (${format.properties.length} props), TrackInterpretation (${interpretation.properties.length} props), TrackProvenance (${provenance.properties.length} props), TrackGeometry (${geometry.properties.length} props), ReferenceGenome (${referenceGenomeSchema.properties.length} props)`);
+  console.log(`Categories: ${categories.length}, Mappings: ${mappings.length}, Scope delegations: ${delegations.length}`);
 
   // Build develop data from embeddings reports
   mkdirSync(developDir, { recursive: true });

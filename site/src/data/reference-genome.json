@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "id": "assembly",
+      "slug": "assembly",
+      "name": "assembly",
+      "description": "The reference assembly identifier the track is defined against (e.g. GRCh38, mm10). A free identifier for now.",
+      "range": "string",
+      "required": false,
+      "vocabHref": null,
+      "vocabCount": null
+    },
+    {
+      "id": "build_sex",
+      "slug": "build_sex",
+      "name": "build_sex",
+      "description": "The sex of the reference genome build (which sex chromosomes the assembly contains). Factored out of compound DataType terms like \"male genome reference\" / \"female genome index\". A property of the reference assembly, NOT of the biological sample. Absent means unspecified / sex-neutral combined assembly.",
+      "range": "ReferenceBuildSex",
+      "required": false,
+      "vocabHref": "/reference-build-sex",
+      "vocabCount": 2
+    }
+  ]
+}

@@ -247,54 +247,6 @@
     "encodeSource": true
   },
   {
-    "id": "observed_bias_profile",
-    "name": "observed bias profile",
-    "slug": "observed_bias_profile",
-    "description": "Empirically measured sequencing bias profile from experimental data.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "observed_signal_profile",
-    "name": "observed signal profile",
-    "slug": "observed_signal_profile",
-    "description": "Experimentally measured signal profile from sequencing data.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "predicted_bias_profile",
-    "name": "predicted bias profile",
-    "slug": "predicted_bias_profile",
-    "description": "Computationally predicted sequencing bias profile based on sequence composition.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "predicted_signal_profile",
-    "name": "predicted signal profile",
-    "slug": "predicted_signal_profile",
-    "description": "Signal profile computationally predicted by a model from sequence or chromatin features.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "signal",
     "name": "signal",
     "slug": "signal",
@@ -440,27 +392,6 @@
       "comment": "From LinkML schema"
     },
     "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "idr_thresholded_peaks",
-    "name": "IDR thresholded peaks",
-    "slug": "idr_thresholded_peaks",
-    "description": "Peaks passing an Irreproducible Discovery Rate (IDR) threshold, indicating reproducible signal across replicates.",
-    "category": "peak_set",
-    "categorySlug": "peak_set",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_3002",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
-    "seeAlso": [
-      "TF binding sites",
-      "open chromatin regions",
-      "histone modifications"
-    ],
     "encodeSource": true
   },
   {
@@ -820,18 +751,6 @@
     "name": "haplotype-specific contact matrix",
     "slug": "haplotype_specific_contact_matrix",
     "description": "Contact matrix computed separately for a specific parental haplotype.",
-    "category": "contact_matrix",
-    "categorySlug": "contact_matrix",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "mapping_quality_thresholded_contact_matrix",
-    "name": "mapping quality thresholded contact matrix",
-    "slug": "mapping_quality_thresholded_contact_matrix",
-    "description": "Contact matrix filtered to high-confidence mappings.",
     "category": "contact_matrix",
     "categorySlug": "contact_matrix",
     "vocabType": "data",
@@ -1727,40 +1646,6 @@
     "encodeSource": true
   },
   {
-    "id": "female_genome_index",
-    "name": "female genome index",
-    "slug": "female_genome_index",
-    "description": "Alignment index built from a female reference genome.",
-    "category": "reference",
-    "categorySlug": "reference",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_3210",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "female_genome_reference",
-    "name": "female genome reference",
-    "slug": "female_genome_reference",
-    "description": "Reference genome sequence derived from a female individual (includes both X chromosomes).",
-    "category": "reference",
-    "categorySlug": "reference",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_2977",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "genome_index",
     "name": "genome index",
     "slug": "genome_index",
@@ -1782,40 +1667,6 @@
     "name": "genome reference",
     "slug": "genome_reference",
     "description": "Reference genome sequence assembly used for alignment and annotation.",
-    "category": "reference",
-    "categorySlug": "reference",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_2977",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "male_genome_index",
-    "name": "male genome index",
-    "slug": "male_genome_index",
-    "description": "Alignment index built from a male reference genome.",
-    "category": "reference",
-    "categorySlug": "reference",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_3210",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "male_genome_reference",
-    "name": "male genome reference",
-    "slug": "male_genome_reference",
-    "description": "Reference genome sequence derived from a male individual (includes X and Y chromosomes).",
     "category": "reference",
     "categorySlug": "reference",
     "vocabType": "data",
@@ -2406,18 +2257,6 @@
     "encodeSource": true
   },
   {
-    "id": "observed_control_profile",
-    "name": "observed control profile",
-    "slug": "observed_control_profile",
-    "description": "Observed control signal profile.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "modified_peptide_quantification",
     "name": "modified peptide quantification",
     "slug": "modified_peptide_quantification",
@@ -2453,6 +2292,42 @@
     "description": "Matrix of signal values across features and samples.",
     "category": "count_matrix",
     "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "signal_profile",
+    "name": "signal profile",
+    "slug": "signal_profile",
+    "description": "Signal profile across genomic positions.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "bias_profile",
+    "name": "bias profile",
+    "slug": "bias_profile",
+    "description": "Sequencing bias profile across genomic positions.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "control_profile",
+    "name": "control profile",
+    "slug": "control_profile",
+    "description": "Control signal profile.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
     "vocabType": "data",
     "edamMapping": null,
     "seeAlso": [],
@@ -2645,156 +2520,12 @@
     "encodeSource": true
   },
   {
-    "id": "minus_strand_methylation_state_at_cpg",
-    "name": "minus strand methylation state at CpG",
-    "slug": "minus_strand_methylation_state_at_cpg",
-    "description": "DNA methylation status at CpG positions on the minus strand.",
-    "category": "dna_methylation",
-    "categorySlug": "dna_methylation",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "plus_strand_methylation_state_at_cpg",
-    "name": "plus strand methylation state at CpG",
-    "slug": "plus_strand_methylation_state_at_cpg",
-    "description": "DNA methylation status at CpG positions on the plus strand.",
-    "category": "dna_methylation",
-    "categorySlug": "dna_methylation",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "smoothed_methylation_state_at_cpg",
     "name": "smoothed methylation state at CpG",
     "slug": "smoothed_methylation_state_at_cpg",
     "description": "CpG methylation values smoothed across neighboring sites to reduce noise.",
     "category": "dna_methylation",
     "categorySlug": "dna_methylation",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "minus_strand_inosine_methylation_state",
-    "name": "minus strand inosine methylation state",
-    "slug": "minus_strand_inosine_methylation_state",
-    "description": "Inosine (A-to-I editing) modification on the minus strand.",
-    "category": "rna_modification",
-    "categorySlug": "rna_modification",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "minus_strand_m5c_methylation_state",
-    "name": "minus strand m5C methylation state",
-    "slug": "minus_strand_m5c_methylation_state",
-    "description": "5-methylcytosine (m5C) RNA modification on the minus strand.",
-    "category": "rna_modification",
-    "categorySlug": "rna_modification",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "minus_strand_m6a_methylation_state",
-    "name": "minus strand m6A methylation state",
-    "slug": "minus_strand_m6a_methylation_state",
-    "description": "N6-methyladenosine (m6A) modification on minus strand transcripts. m6A is the most abundant internal mRNA modification.",
-    "category": "rna_modification",
-    "categorySlug": "rna_modification",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "minus_strand_nm_methylation_state",
-    "name": "minus strand Nm methylation state",
-    "slug": "minus_strand_nm_methylation_state",
-    "description": "2′-O-methylation (Nm) modification on the minus strand.",
-    "category": "rna_modification",
-    "categorySlug": "rna_modification",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "minus_strand_pseudouridine_methylation_state",
-    "name": "minus strand pseudouridine methylation state",
-    "slug": "minus_strand_pseudouridine_methylation_state",
-    "description": "Pseudouridine (Ψ) modification on the minus strand. Pseudouridine is the most abundant RNA modification.",
-    "category": "rna_modification",
-    "categorySlug": "rna_modification",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "plus_strand_inosine_methylation_state",
-    "name": "plus strand inosine methylation state",
-    "slug": "plus_strand_inosine_methylation_state",
-    "description": "Inosine (A-to-I editing) modification on the plus strand.",
-    "category": "rna_modification",
-    "categorySlug": "rna_modification",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "plus_strand_m5c_methylation_state",
-    "name": "plus strand m5C methylation state",
-    "slug": "plus_strand_m5c_methylation_state",
-    "description": "5-methylcytosine (m5C) RNA modification on the plus strand.",
-    "category": "rna_modification",
-    "categorySlug": "rna_modification",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "plus_strand_m6a_methylation_state",
-    "name": "plus strand m6A methylation state",
-    "slug": "plus_strand_m6a_methylation_state",
-    "description": "N6-methyladenosine (m6A) modification on plus strand transcripts.",
-    "category": "rna_modification",
-    "categorySlug": "rna_modification",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "plus_strand_nm_methylation_state",
-    "name": "plus strand Nm methylation state",
-    "slug": "plus_strand_nm_methylation_state",
-    "description": "2′-O-methylation (Nm) modification on the plus strand.",
-    "category": "rna_modification",
-    "categorySlug": "rna_modification",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "plus_strand_pseudouridine_methylation_state",
-    "name": "plus strand pseudouridine methylation state",
-    "slug": "plus_strand_pseudouridine_methylation_state",
-    "description": "Pseudouridine (Ψ) modification on the plus strand.",
-    "category": "rna_modification",
-    "categorySlug": "rna_modification",
     "vocabType": "feature",
     "edamMapping": null,
     "seeAlso": [],
@@ -2864,18 +2595,6 @@
     "encodeSource": true
   },
   {
-    "id": "enhancer_gene_links",
-    "name": "enhancer-gene links",
-    "slug": "enhancer_gene_links",
-    "description": "Moved to element_gene_linkage. Links between enhancers and their putative target genes.",
-    "category": "regulatory_element",
-    "categorySlug": "regulatory_element",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "enhancer_validation",
     "name": "enhancer validation",
     "slug": "enhancer_validation",
@@ -2900,30 +2619,6 @@
     "encodeSource": true
   },
   {
-    "id": "minus_strand_transcription_start_sites",
-    "name": "minus strand transcription start sites",
-    "slug": "minus_strand_transcription_start_sites",
-    "description": "Transcription start sites on the minus strand.",
-    "category": "regulatory_element",
-    "categorySlug": "regulatory_element",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "plus_strand_transcription_start_sites",
-    "name": "plus strand transcription start sites",
-    "slug": "plus_strand_transcription_start_sites",
-    "description": "Transcription start sites on the plus strand.",
-    "category": "regulatory_element",
-    "categorySlug": "regulatory_element",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "polya_sites",
     "name": "polyA sites",
     "slug": "polya_sites",
@@ -2940,54 +2635,6 @@
     "name": "predicted enhancers",
     "slug": "predicted_enhancers",
     "description": "Computationally predicted enhancer elements.",
-    "category": "regulatory_element",
-    "categorySlug": "regulatory_element",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "predicted_forebrain_enhancers",
-    "name": "predicted forebrain enhancers",
-    "slug": "predicted_forebrain_enhancers",
-    "description": "Enhancer elements predicted to be active in forebrain tissue.",
-    "category": "regulatory_element",
-    "categorySlug": "regulatory_element",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "predicted_heart_enhancers",
-    "name": "predicted heart enhancers",
-    "slug": "predicted_heart_enhancers",
-    "description": "Enhancer elements predicted to be active in heart tissue.",
-    "category": "regulatory_element",
-    "categorySlug": "regulatory_element",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "predicted_transcription_start_sites",
-    "name": "predicted transcription start sites",
-    "slug": "predicted_transcription_start_sites",
-    "description": "Computationally predicted TSS based on sequence or chromatin features.",
-    "category": "regulatory_element",
-    "categorySlug": "regulatory_element",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "predicted_whole_brain_enhancers",
-    "name": "predicted whole brain enhancers",
-    "slug": "predicted_whole_brain_enhancers",
-    "description": "Enhancer elements predicted to be active across whole brain.",
     "category": "regulatory_element",
     "categorySlug": "regulatory_element",
     "vocabType": "feature",
@@ -3084,31 +2731,7 @@
     "id": "element_gene_links",
     "name": "element gene links",
     "slug": "element_gene_links",
-    "description": "Associations linking regulatory elements to target genes.",
-    "category": "element_gene_linkage",
-    "categorySlug": "element_gene_linkage",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "thresholded_element_gene_links",
-    "name": "thresholded element gene links",
-    "slug": "thresholded_element_gene_links",
-    "description": "Element-gene links filtered by a significance threshold.",
-    "category": "element_gene_linkage",
-    "categorySlug": "element_gene_linkage",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "thresholded_links",
-    "name": "thresholded links",
-    "slug": "thresholded_links",
-    "description": "Generic significance-thresholded regulatory links.",
+    "description": "Associations linking regulatory elements (commonly enhancers) to their putative target genes.",
     "category": "element_gene_linkage",
     "categorySlug": "element_gene_linkage",
     "vocabType": "feature",
@@ -3226,40 +2849,6 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_1860",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "filtered_indels",
-    "name": "filtered indels",
-    "slug": "filtered_indels",
-    "description": "Insertion/deletion variants after quality filtering.",
-    "category": "variant",
-    "categorySlug": "variant",
-    "vocabType": "feature",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_0918",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "filtered_snps",
-    "name": "filtered SNPs",
-    "slug": "filtered_snps",
-    "description": "Single nucleotide polymorphisms after quality filtering.",
-    "category": "variant",
-    "categorySlug": "variant",
-    "vocabType": "feature",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_0918",
       "edamLabel": "",
       "comment": "From LinkML schema"
     },
@@ -3445,18 +3034,6 @@
       "edamLabel": "",
       "comment": "From LinkML schema"
     },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "filtered_transcribed_fragments",
-    "name": "filtered transcribed fragments",
-    "slug": "filtered_transcribed_fragments",
-    "description": "Transcribed genomic fragments after quality filtering.",
-    "category": "annotation",
-    "categorySlug": "annotation",
-    "vocabType": "feature",
-    "edamMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -3724,6 +3301,112 @@
     "description": "Sequence data with haplotype phase information resolved.",
     "category": "haplotype",
     "categorySlug": "haplotype",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "nm_methylation_state",
+    "name": "Nm methylation state",
+    "slug": "nm_methylation_state",
+    "description": "2′-O-methylation (Nm) modification.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "snps",
+    "name": "SNPs",
+    "slug": "snps",
+    "description": "Single nucleotide polymorphisms.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "indels",
+    "name": "indels",
+    "slug": "indels",
+    "description": "Insertion/deletion variants.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "inosine_methylation_state",
+    "name": "inosine methylation state",
+    "slug": "inosine_methylation_state",
+    "description": "Inosine (A-to-I editing) modification.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "m5c_methylation_state",
+    "name": "m5C methylation state",
+    "slug": "m5c_methylation_state",
+    "description": "5-methylcytosine (m5C) RNA modification.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "m6a_methylation_state",
+    "name": "m6A methylation state",
+    "slug": "m6a_methylation_state",
+    "description": "N6-methyladenosine (m6A) modification on transcripts. m6A is the most abundant internal mRNA modification.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "pseudouridine_methylation_state",
+    "name": "pseudouridine methylation state",
+    "slug": "pseudouridine_methylation_state",
+    "description": "Pseudouridine (Ψ) modification. Pseudouridine is the most abundant RNA modification.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "links",
+    "name": "links",
+    "slug": "links",
+    "description": "Generic regulatory links associating genomic elements with target features.",
+    "category": "element_gene_linkage",
+    "categorySlug": "element_gene_linkage",
     "vocabType": "feature",
     "edamMapping": null,
     "seeAlso": [],

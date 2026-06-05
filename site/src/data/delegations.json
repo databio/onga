@@ -1,0 +1,32 @@
+[
+  {
+    "encodeTerm": "predicted forebrain enhancers",
+    "contentEnum": "FeatureType",
+    "contentBase": "predicted enhancers",
+    "delegatedAxis": "organism_part",
+    "delegatedValue": "forebrain",
+    "externalCurie": "UBERON:0001890",
+    "externalUrl": "http://purl.obolibrary.org/obo/UBERON_0001890",
+    "note": "tissue is a biospecimen property, not content; see biospecimen organism_part"
+  },
+  {
+    "encodeTerm": "predicted heart enhancers",
+    "contentEnum": "FeatureType",
+    "contentBase": "predicted enhancers",
+    "delegatedAxis": "organism_part",
+    "delegatedValue": "heart",
+    "externalCurie": "UBERON:0000948",
+    "externalUrl": "http://purl.obolibrary.org/obo/UBERON_0000948",
+    "note": "tissue is a biospecimen property, not content; see biospecimen organism_part"
+  },
+  {
+    "encodeTerm": "predicted whole brain enhancers",
+    "contentEnum": "FeatureType",
+    "contentBase": "predicted enhancers",
+    "delegatedAxis": "organism_part",
+    "delegatedValue": "brain",
+    "externalCurie": "UBERON:0000955",
+    "externalUrl": "http://purl.obolibrary.org/obo/UBERON_0000955",
+    "note": "tissue is a biospecimen property, not content; see biospecimen organism_part"
+  }
+]

@@ -8,9 +8,10 @@ description: >-
   four track-descriptor schemas — classes of slots whose ranges draw on the
   vocabularies: TrackFormat (how a track is encoded, FGA #1),
   TrackInterpretation (what it represents, FGA #2), TrackProvenance (what was
-  done to the data — processing/derivation operations), and TrackGeometry (its
-  structural shape, FGA #3). A separate biospecimen module covers the sample
-  axis.
+  done to the data — processing/derivation operations), TrackGeometry (its
+  structural shape, FGA #3), and ReferenceGenome (the reference assembly it is
+  defined against, including the reference-build sex). A separate biospecimen
+  module covers the sample axis.
 license: https://creativecommons.org/licenses/by/4.0/
 version: 0.1.0
 created_by: Nathan Sheffield
@@ -38,8 +39,12 @@ imports:
   - read_multiplicity
   - filter_status
   - normalization
+  - thresholding
+  - derivation
+  - reference_build_sex
   - biospecimen
   - track_format
   - track_interpretation
   - track_provenance
   - track_geometry
+  - reference_genome

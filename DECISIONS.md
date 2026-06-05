@@ -114,6 +114,12 @@ for file content types. We took these verbatim as the initial term set.
    fragments` bases were not minted. Net is +2 distinct bases, not +4: with no
    `filtered indels`/`SNPs` compound source there is nothing to decompose onto
    them, so the count is 184, not the plan's projected 183.)
+   **Correction (operation #12):** the claim that these three terms were "not
+   present in the enum" was WRONG — this #9 filter pass only scanned **DataType**.
+   `filtered indels` / `filtered SNPs` / `filtered transcribed fragments` are in
+   **FeatureType**, and were decomposed onto `filter_status:filtered` in
+   operation #12 below. The DataType count and the +2-bases tally for this #9 step
+   are unaffected (those FeatureType terms were always out of #9's scope).
 
 10. **Introduced TrackProvenance schema** — Added a 4th descriptor schema,
     `TrackProvenance` (`src/track_provenance.yaml`), separating *what was done to
@@ -166,6 +172,225 @@ for file content types. We took these verbatim as the initial term set.
     (observed/predicted/control) remain deferred there. Developmental software —
     clean removals, no back-compat.
 
+12. **Extended strand + filter_status facets to FeatureType** — The `strand`
+    (StrandOrientation) and `filter_status` (FilterStatus) facets, previously
+    applied only to compound **DataType** strings (operations #6/#7 and #9), were
+    extended to the **FeatureType** enum, where the same orthogonal qualifiers
+    were still baked into compound term strings. No new vocabularies or slots were
+    created — only FeatureType compound terms decomposed and recorded losslessly.
+    **Strand (14 terms):** decomposed `{plus,minus} strand methylation state at
+    CpG`, `{plus,minus} strand transcription start sites`, and the ten
+    `{plus,minus} strand {inosine,m5C,m6A,Nm,pseudouridine} methylation state`
+    RNA-modification terms as `feature_type base + strand:{plus|minus}`. Bases
+    `methylation state at CpG` and `transcription start sites` already existed; the
+    **5** RNA-modification bases (`inosine methylation state`, `m5C methylation
+    state`, `m6A methylation state`, `Nm methylation state`, `pseudouridine
+    methylation state`) were minted (`rna_modification` subset, descriptions
+    generalized from the strand-specific siblings). `smoothed methylation state at
+    CpG` was left untouched — smoothing is a separate axis and that term will share
+    the `methylation state at CpG` base later. **Filter (3 terms):** decomposed
+    `filtered indels`, `filtered SNPs`, `filtered transcribed fragments` as
+    `feature_type base + filter_status:filtered`; `transcribed fragments` already
+    existed, and `indels` / `SNPs` were minted (`variant` subset, `meaning:
+    edam:data_0918`, descriptions generalized). This **corrects operation #9's
+    record**, which wrongly claimed those three terms were "not present in the
+    enum" (the #9 pass only scanned DataType). **TSV column added:** a new
+    `feature_type` column (immediately after `output_type`) now holds the atomic
+    base for FeatureType decompositions; it is empty for the existing DataType
+    rows, which keep their base in `output_type`. The round-trip is preserved in
+    `mappings/facet_decomposition.tsv` (17 new rows): strand-row compound =
+    `feature_type + strand`, filter-row compound = `feature_type + filter_status`.
+    FeatureType **92 → 82** (−17 compound, +7 minted bases). DataType unchanged
+    (174). Applied via `scripts/apply_feature_strand_filter.py` (ruamel
+    round-trip). Developmental software — clean removals, no back-compat.
+
+13. **Faceted out the thresholding cut** — Factored the retention-cut /
+    thresholding qualifier baked into compound DataType strings into a new facet
+    vocabulary **Thresholding** (`idr` / `mapping_quality` / `significance`,
+    `src/thresholding.yaml`, absent = no threshold / unspecified) and a
+    `thresholding` slot on **`TrackProvenance`** — a provenance facet, since
+    thresholding is a processing OPERATION (a retention cut), not content
+    (content-vs-provenance test, design principle #4). The vocab carries no
+    `meaning:` CURIEs, following the processing-facet convention of
+    ReadMultiplicity / FilterStatus / Normalization. **Decomposed 4 compound
+    terms** (verified present in the live enums) — 2 in **DataType** and 2 in
+    **FeatureType**:
+    - DataType: `IDR thresholded peaks` → `peaks` + `thresholding:idr`, and
+      `mapping quality thresholded contact matrix` → `contact matrix` +
+      `thresholding:mapping_quality`. Both bases already existed.
+    - FeatureType (`element_gene_linkage` subset): `thresholded element gene
+      links` → `element gene links` + `thresholding:significance` (base
+      existed), and `thresholded links` → `links` + `thresholding:significance`
+      (base **minted** — generic regulatory-links base, description "Generic
+      regulatory links associating genomic elements with target features.", no
+      `meaning:` CURIE, following its sibling `element gene links`).
+    **Minted: 1 FeatureType base (`links`).** The round-trip `compound term =
+    output_type/feature_type + thresholding` is preserved in
+    `mappings/facet_decomposition.tsv` (a new `thresholding` column was inserted
+    immediately before `base_exists`, empty-backfilled for all prior rows; 4 new
+    rows appended — 2 DataType, 2 FeatureType). DataType **174 → 172**;
+    FeatureType **82 → 81** (−2 compound, +1 minted base).
+    **Scope — cut only, deliberately narrow.** The reproducibility /
+    selection-mode axis (`conservative/optimal/representative/pseudoreplicated
+    IDR thresholded peaks`, `replicated peaks`, `pseudoreplicated peaks`,
+    `representative/consensus DNase hypersensitivity sites`) was deliberately
+    **NOT** faceted: no `ReproducibilitySelection` vocabulary was created and
+    those 11+ terms stay atomic. Rationale: the selection-mode axis is borderline
+    cross-cutting (it is concentrated in peak/DHS reproducibility outputs rather
+    than spanning many output kinds the way idr/mapping-quality thresholds do),
+    so the faceting payoff is low and it is deferred pending broader evidence.
+    Those terms (plus `peaks and background as input for IDR`, `IDR ranked
+    peaks`, `ranked gRNAs`) are guarded as PROTECTED in
+    `scripts/apply_thresholding_decomposition.py` and confirmed intact after the
+    run (11/11).
+    **Correction (FeatureType terms were real, not hallucinated).** A first pass
+    of this operation wrongly concluded that `thresholded element gene links` and
+    `thresholded links` did not exist and refused to decompose them. That check
+    scanned only the **DataType** enum; both terms are in fact live members of the
+    **FeatureType** enum (`element_gene_linkage` subset), as is the base `element
+    gene links`. They were re-verified against live `src/file_content.yaml` and
+    decomposed onto `thresholding:significance` in this same operation (see the
+    FeatureType bullet above), minting the generic `links` base. The
+    `significance` permissible value in `src/thresholding.yaml` is therefore now
+    in use. The DataType decomposition was applied via
+    `scripts/apply_thresholding_decomposition.py`; the FeatureType decomposition
+    via `scripts/apply_thresholding_featuretype.py` (both ruamel round-trip).
+    Developmental software — clean removals, no back-compat.
+
+14. **Faceted out derivation (observed vs. predicted)** — Factored the
+    measured-vs-model qualifier baked into compound DataType / FeatureType
+    strings into a new facet vocabulary **Derivation** (`observed` / `predicted`,
+    `src/derivation.yaml`, absent = unspecified, NOT a default of observed) and a
+    `derivation` slot on **`TrackProvenance`** — a provenance facet, since
+    derivation records the epistemic ORIGIN of the values (how they were
+    obtained: empirically measured vs. model-generated), a processing/derivation
+    operation, not content (content-vs-provenance test, design principle #4). The
+    vocab carries no `meaning:` CURIEs, following the processing-facet convention
+    of ReadMultiplicity / FilterStatus / Normalization / Thresholding.
+    **Decomposed 6 compound terms** (verified present in the live enums) — 5 in
+    **DataType**, 1 in **FeatureType**:
+    - DataType: `observed signal profile` / `predicted signal profile` →
+      `signal profile` + `derivation:{observed|predicted}`; `observed bias
+      profile` / `predicted bias profile` → `bias profile` +
+      `derivation:{observed|predicted}`; `observed control profile` → `control
+      profile` + `derivation:observed`.
+    - FeatureType: `predicted transcription start sites` → `transcription start
+      sites` (base ALREADY EXISTED) + `derivation:predicted`.
+    **Minted 3 DataType bases** (all `signal_track` subset, descriptions
+    generalized from the observed/predicted siblings with derivation language
+    stripped): `signal profile` ("Signal profile across genomic positions."),
+    `bias profile` ("Sequencing bias profile across genomic positions."), and
+    `control profile` ("Control signal profile."). DataType **172 → 170** (−5
+    compound, +3 minted bases); FeatureType **81 → 80** (−1 compound, no mint).
+    **`control` is deliberately EXCLUDED from the vocabulary.** In the source
+    terms "control" denotes unrelated things — an experimental role (control vs.
+    treatment) or a normalization reference (control-normalized) — not the
+    measured-vs-model axis. So Derivation is a clean two-value enum
+    `{observed, predicted}`, and control-role terms (`control normalized signal`,
+    `fold change over control`, `negative/positive control regions`) stay atomic
+    and are NOT decomposed onto this facet. (`observed control profile` IS
+    decomposed — there the "control" lives in the minted `control profile` base
+    and "observed" is the derivation; that base is itself a control-role term.)
+    **CHAINED TSV RECONCILIATION.** Removing the four `observed/predicted
+    signal/bias profile` compound bases from the enum dangled nine existing TSV
+    rows that used them as their `output_type` base. Each was re-pointed to the
+    new stripped base (`signal profile` / `bias profile` / `control profile`) with
+    its `derivation` column set accordingly, preserving its other facet columns —
+    so e.g. `normalized observed signal profile` becomes `signal profile` +
+    `normalization:depth_normalized` + `derivation:observed`, and `observed signal
+    profile (plus strand)` becomes `signal profile` + `strand:plus` +
+    `derivation:observed`: genuine multi-axis compounds. Re-pointed rows (9):
+    `observed control profile (minus/plus strand)`, `observed signal profile
+    (minus/plus strand)`, `predicted signal profile (minus/plus strand)`,
+    `normalized observed signal profile`, `normalized predicted signal profile`,
+    `normalized predicted bias profile`. The round-trip `compound term =
+    output_type/feature_type + derivation (+ other facets)` is preserved in
+    `mappings/facet_decomposition.tsv` (a new `derivation` column was inserted
+    immediately before `base_exists`, empty-backfilled for all prior rows; 6 new
+    plain-form rows appended — 5 DataType, 1 FeatureType). Round-trip closure was
+    re-verified transitively: every one of the 80 TSV rows' bases resolves in the
+    live enums (the `normalized … profile` rows chain through the re-pointed
+    rows down to the minted bases). Applied via
+    `scripts/apply_derivation_decomposition.py` (ruamel round-trip).
+    **Deferred / out of scope (left atomic, guarded PROTECTED, confirmed intact
+    after the run):** bias-correction (`bias-corrected predicted signal profile`),
+    the entire `selected regions for predicted …` family (signal profile, bias
+    profile, bias-corrected predicted signal profile, predicted signal and
+    sequence contribution scores), the enhancer family (`predicted enhancers`,
+    `predicted forebrain/heart/whole brain enhancers` — handled by a separate
+    scope-ejection agent), assay-fused predicted signals (`DNN-MPRA predicted
+    signal`, `HMM predicted chromatin state`), and `predicted 3D structural
+    ensembles` (base doesn't exist). These carry `predicted` but are entangled
+    with other unfactored axes (bias-correction, selection, assay fusion, scope),
+    so faceting them is deferred. Developmental software — clean removals, no
+    back-compat.
+
+15. **Introduced ReferenceGenome schema + ReferenceBuildSex vocab; faceted out
+    reference-build sex; ejected sample anatomy to UBERON.** Two distinct moves
+    that both removed anatomy/sex-leaking content terms, but along different
+    boundaries — one a lossless ONGA facet, the other a scope ejection.
+    - **ReferenceGenome — a NEW 5th descriptor schema.** Added
+      `src/reference_genome.yaml`, a class `ReferenceGenome` parallel to
+      TrackFormat / TrackInterpretation / TrackProvenance / TrackGeometry, for
+      the reference assembly a track is defined against (FGA-issue adjacent:
+      every genomic annotation is relative to a reference). Slots (minimal):
+      `assembly` (string identifier, e.g. GRCh38/mm10) and `build_sex` (range
+      `ReferenceBuildSex`). **Class-naming choice:** the four existing schemas use
+      a `Track*` prefix, but this one describes the REFERENCE, not the track, so
+      it is named `ReferenceGenome` (NOT `TrackReference`); the others were not
+      renamed. Imports `reference_build_sex`; both `reference_genome` and
+      `reference_build_sex` added to `src/onga.yaml` imports.
+    - **ReferenceBuildSex — a NEW Layer-1 facet vocabulary.** Added
+      `src/reference_build_sex.yaml`, enum `ReferenceBuildSex` with `male`
+      (`PATO:0000384`, assembly with X and Y) / `female` (`PATO:0000383`,
+      assembly with X only); absent = unspecified / sex-neutral combined
+      assembly. This records the sex of the reference BUILD (which sex
+      chromosomes the assembly contains), NOT the sample's sex.
+    - **Sex faceting (DataType, lossless facet).** Removed the 4 compound
+      DataType terms `male/female genome reference` and `male/female genome
+      index` (verified live in DataType), decomposing each onto its
+      already-existing atomic base (`genome reference` / `genome index`,
+      verified — NO mint) + `build_sex:{male|female}`. A new
+      `reference_build_sex` column was inserted immediately before `base_exists`
+      in `mappings/facet_decomposition.tsv` (empty-backfilled for all prior
+      rows); 4 new rows appended. DataType **170 → 166** (−4, no mint).
+    - **Anatomy ejection (FeatureType, scope delegation — NOT a facet).** Removed
+      the 3 compound FeatureType terms `predicted forebrain enhancers`,
+      `predicted heart enhancers`, `predicted whole brain enhancers` (verified
+      live in FeatureType), collapsing each onto the already-existing content
+      base `predicted enhancers` (verified — NO mint; it retains its baked
+      `predicted`, the enhancer-family derivation being deferred). The tissue
+      (forebrain / heart / brain) is a BIOSPECIMEN property, genuinely out of
+      ONGA's content scope, so it is **delegated to UBERON**
+      (`UBERON:0001890` / `UBERON:0000948` / `UBERON:0000955`) and recorded in a
+      NEW boundary map `mappings/scope_delegations.tsv` (header
+      `encode_term, content_enum, content_base, delegated_axis, delegated_value,
+      external_curie, note`), aligned to the future `organism_part` slot of the
+      biospecimen module (FAIRtracks `sample.sample_type.organism_part`, UBERON
+      range). This is a SCOPE EJECTION, NOT a facet — it lives in
+      `scope_delegations.tsv`, not `facet_decomposition.tsv`. FeatureType
+      **80 → 77** (−3, no mint).
+    Applied via `scripts/apply_reference_sex_and_anatomy.py` (ruamel
+    round-trip, no mints). Round-trip closure re-verified: the 7 compounds are
+    gone, the 3 bases (`genome reference`, `genome index`, `predicted enhancers`)
+    intact, all 84 facet-map rows resolve in the live enums (sex rows resolve
+    directly), and the 3 scope-delegation content bases resolve. Developmental
+    software — clean removals, no back-compat.
+
+16. **Merged synonym `enhancer-gene links` → `element gene links`.** The two
+    were near-duplicate original ENCODE seed terms naming the same concept
+    (enhancers are the common case of "regulatory elements"); `enhancer-gene
+    links` (regulatory_element subset) carried a leftover "Moved to
+    element_gene_linkage" editorial note shipped as its definition — evidence of
+    an abandoned consolidation. Merged onto the canonical `element gene links`
+    (element_gene_linkage subset — already the base the `thresholding` facet
+    points to): added `aliases: [enhancer-gene links]` to the canonical term,
+    enriched its description ("regulatory elements (commonly enhancers)"), and
+    removed the standalone term. The ENCODE round-trip is preserved — a synonym
+    row (`enhancer-gene links → element gene links`, no facets, base_exists=yes)
+    is recorded in `mappings/facet_decomposition.tsv`. FeatureType **77 → 76**
+    (−1, no mint). Applied via `scripts/apply_gene_links_merge.py`.
+
 ## Design principles
 
 Rules established in design discussion that govern the faceting operations above:
@@ -197,12 +422,89 @@ Rules established in design discussion that govern the faceting operations above
    the test that disambiguated the "murky" axes: they name operations, not
    content, so they are provenance, not interpretation.
 
+5. **Sample and assay properties are out of scope for the content
+   vocabularies.** DataType / FeatureType describe *what a file's content is*;
+   properties of the biological sample or of the assay/method that produced it
+   are a different axis and do not belong baked into content terms.
+   - **Sample anatomy / tissue → biospecimen module / UBERON.** `forebrain`,
+     `heart`, `brain` (in the `predicted <tissue> enhancers` terms) are
+     biospecimen properties. They are EJECTED from the content enums and
+     delegated to UBERON via `mappings/scope_delegations.tsv`, aligned to the
+     future `organism_part` biospecimen slot (FAIRtracks
+     `sample.sample_type.organism_part`).
+   - **Sample sex → PATO (biospecimen), not the content enums.** The sex of the
+     biological sample is a biospecimen property delegated to PATO. Note
+     (verified upstream): FAIRtracks has NO sex field, so sample sex cannot be
+     imported from the FGA-WG; it is outsourced to PATO.
+   - **Assay / method names → a future axis.** Assay-fused content terms (e.g.
+     `DNN-MPRA predicted signal`, `HMM predicted chromatin state`) carry a
+     method/assay name that is left for a future axis, not baked into content.
+   - **CRUCIAL DISTINCTION — reference-build sex is NOT sample sex.** The sex in
+     the *ejected* `male/female genome reference|index` terms is a property of
+     the REFERENCE ASSEMBLY (which sex chromosomes it contains), not of the
+     sample. It is therefore a genuine ONGA content-adjacent axis and is handled
+     by a proper, lossless FACET on the NEW `ReferenceGenome` descriptor schema
+     (`build_sex` → `ReferenceBuildSex`, PATO `male`/`female`), recorded in
+     `facet_decomposition.tsv` — distinct from sample sex (delegated to PATO via
+     biospecimen) and from sample anatomy (delegated to UBERON via
+     `scope_delegations.tsv`). One leaks the *reference*, the other leaks the
+     *sample*; only the latter is a scope ejection.
+
+6. **A facet earns its place by cross-cutting orthogonality, not by
+   vocabulary size.** The test for whether an axis is worth faceting is
+   whether it **slices across MANY distinct base types**: if one orthogonal
+   axis recurs across `N` independent bases with `k` values each, faceting
+   collapses an `N×k` cartesian explosion of compound terms into `N` bases +
+   `k` facet values (`N+k`). That payoff is what justifies a facet —
+   *regardless of how small the facet vocabulary is*. A 2-value axis is an
+   excellent facet when it cross-cuts broadly: `FilterStatus`
+   (`filtered`/`unfiltered`) has only 2 values yet spans reads, alignments,
+   peaks, variants, quantifications, and count matrices, so it earns its
+   slot. Conversely, an axis with a large vocabulary that is concentrated in a
+   single base family does NOT earn a facet and stays atomic.
+
+   **This SUPERSEDES the earlier vocabulary-size heuristic** ("a facet isn't
+   worth it if its vocabulary is smaller than the number of terms it
+   decomposes"), which was WRONG: it would have rejected `FilterStatus` and
+   other strong cross-cutting binary facets. Vocabulary size is irrelevant;
+   cross-cutting breadth is the criterion. (This is why the reproducibility /
+   selection-mode axis in operation #13 was deferred — not because its
+   vocabulary was large, but because it is concentrated in the peak/DHS
+   reproducibility family and does not cross-cut.)
+
+### Atomic by principle (deliberately un-faceted)
+
+Axes and terms left atomic *by decision* under principle #6 (they fail the
+cross-cutting test, or are an identity rather than a base carrying a
+qualifier). This backlog is **closed by decision**, not open. Each term below
+was verified live in `src/file_content.yaml` (enum noted per row).
+
+| Axis / terms | Enum | Reason kept atomic |
+|---|---|---|
+| **Reproducibility-selection** — `conservative/optimal/representative/pseudoreplicated IDR thresholded peaks`, `replicated peaks`, `pseudoreplicated peaks`, `representative DNase hypersensitivity sites`, `consensus DNase hypersensitivity sites` | DataType | Deferred this session; only cross-cuts ~2 base families (peaks, DHS), below the payoff bar. |
+| **IDR input / ranking** — `peaks and background as input for IDR`, `IDR ranked peaks`, `ranked gRNAs` | DataType | A role/input and a scoring output, not a threshold cut (ranked ≠ thresholded). |
+| **Bias-correction** — `bias-corrected predicted signal profile` | DataType | Only touches the signal/bias-profile family (~1–2 bases); doesn't cross-cut; deferred for a future `bias_correction` facet. See note below. |
+| **Redaction** — `redacted alignments`, `redacted transcriptome alignments` | DataType | 2 terms, single (alignment) base family; kept atomic. |
+| **Smoothing** — `wavelet-smoothed signal`, `summed densities signal` (DataType); `smoothed methylation state at CpG` (FeatureType) | DataType, FeatureType | A transform, not scaling; deferred. |
+| **Selected-regions wrapper** — `selected regions for predicted signal profile` + its 5 siblings (`… for bias-corrected predicted signal profile`, `… for predicted bias profile`, `… for count sequence contribution scores`, `… for predicted signal and sequence contribution scores`, `… for profile sequence contribution scores`) | DataType | A role/geometry wrapper, not an orthogonal content axis; deferred. |
+| **Assay/method-fused predicted** — `DNN-MPRA predicted signal`, `HMM predicted chromatin state` | DataType | The model/assay name is part of identity, not an orthogonal facet; kept atomic (the assay-name axis is itself deferred — see principle #5). |
+
+**Bias-correction note.** After operation #14, `bias profile` is now an atomic
+base, and the standalone `observed bias profile` / `predicted bias profile`
+terms named in earlier planning **no longer exist** — they were decomposed onto
+`bias profile` + `derivation:{observed|predicted}` (so there is also no
+`observed/predicted bias profile` term to keep atomic). What remains deferred is
+the compound `bias-corrected predicted signal profile`, held for a future
+`bias_correction` facet.
+
 ## Current state
 
-- **DataType:** 174 terms (58 with EDAM `meaning:`)
-- **FeatureType:** 92 terms (21 with EDAM `meaning:`)
+- **DataType:** 166 terms (53 with EDAM `meaning:`)
+- **FeatureType:** 76 terms (21 with EDAM `meaning:`)
 - **Categories:** 22 subsets
-- **Total:** 266 terms, 84 EDAM-mapped
+- **Total:** 242 terms, 74 EDAM-mapped
+- **Descriptor schemas:** 5 — TrackFormat, TrackInterpretation, TrackProvenance,
+  TrackGeometry, ReferenceGenome (Layer 2)
 
 ## Tooling note
 

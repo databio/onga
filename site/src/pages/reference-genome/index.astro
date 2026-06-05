@@ -1,0 +1,85 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import referenceGenome from '../../data/reference-genome.json';
+
+const properties = referenceGenome.properties;
+// Color the slots to match their facet vocabularies (indigo, like the other facets).
+// Use full static class strings so Tailwind v4 can detect them at build time.
+const STYLES: Record<string, { card: string; badge: string; link: string }> = {
+  ReferenceBuildSex: {
+    card: 'border-indigo-400',
+    badge: 'bg-indigo-100 text-indigo-800',
+    link: 'text-indigo-600 hover:text-indigo-800',
+  },
+  default: {
+    card: 'border-gray-400',
+    badge: 'bg-gray-100 text-gray-800',
+    link: 'text-gray-600 hover:text-gray-800',
+  },
+};
+const styleFor = (range: string) => STYLES[range] || STYLES.default;
+---
+
+<Layout title="Reference Genome" description="The reference assembly a genomic track is defined against">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Reference Genome</h1>
+    <p class="text-amber-600 font-medium">{properties.length} properties</p>
+    <p class="text-gray-600 mt-2">
+      The <strong>reference assembly</strong> a track is defined against. Every
+      genomic annotation is expressed relative to a reference assembly, and
+      properties of that assembly — its
+      <code class="bg-gray-100 px-1 rounded">assembly</code> identifier and the
+      <code class="bg-gray-100 px-1 rounded">build_sex</code> of the build — are a
+      distinct axis from what the track's content <em>is</em>
+      (<a href="/track-interpretation" class="text-amber-600 underline hover:text-amber-800">Interpretation</a>),
+      how it was processed
+      (<a href="/track-provenance" class="text-amber-600 underline hover:text-amber-800">Provenance</a>),
+      how it is encoded
+      (<a href="/track-format" class="text-amber-600 underline hover:text-amber-800">Format</a>),
+      or its structural shape
+      (<a href="/track-geometry" class="text-amber-600 underline hover:text-amber-800">Geometry</a>).
+      This is the 5th ONGA descriptor schema. The build sex carried here is factored
+      out of compound DataType terms like "male genome reference": the male/female
+      there qualifies the <em>reference assembly</em> used, not the biological sample.
+    </p>
+  </div>
+
+  <!-- Schema properties -->
+  <section class="space-y-6">
+    {properties.map((prop: any) => {
+      const s = styleFor(prop.range);
+      return (
+        <div class:list={['bg-white rounded-lg p-6 shadow-sm border-l-4', s.card]}>
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 class="font-mono text-lg font-semibold text-gray-900">{prop.name}</h2>
+              <p class="text-sm text-gray-600 mt-2 max-w-2xl">{prop.description}</p>
+            </div>
+            <div class="flex flex-col items-end gap-2 shrink-0 ml-4">
+              {prop.required && (
+                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">required</span>
+              )}
+              <span class:list={['text-xs px-2 py-1 rounded font-mono', s.badge]}>{prop.range}</span>
+            </div>
+          </div>
+          {prop.vocabHref && (
+            <p class="text-sm mt-4">
+              <a href={prop.vocabHref} class:list={['underline font-medium', s.link]}>
+                Draws from the {prop.vocabCount}-term {prop.range} vocabulary →
+              </a>
+            </p>
+          )}
+        </div>
+      );
+    })}
+  </section>
+
+  <!-- Scope note -->
+  <p class="text-xs text-gray-400 mt-8 max-w-2xl">
+    <code class="bg-gray-100 px-1 rounded">build_sex</code> records the sex of the
+    reference <em>build</em> (which sex chromosomes the assembly contains), NOT the
+    biological sample's sex. Sample sex is a biospecimen property
+    <a href="/scope" class="underline hover:text-gray-600">delegated out of ONGA's
+    content scope</a> to PATO.
+  </p>
+</Layout>

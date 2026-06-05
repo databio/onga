@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import terms from '../../data/thresholding.json';
+---
+
+<Layout title="Thresholding" description="Facet vocabulary of retention cuts — factored out of compound DataType terms">
+  <div class="mb-8">
+    <p class="text-[11px] uppercase tracking-wide text-indigo-400 font-semibold">Facet vocabulary</p>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Thresholding</h1>
+    <p class="text-indigo-600 font-medium">{terms.length} terms</p>
+    <p class="text-gray-600 mt-2">
+      Controlled vocabulary recording that a <strong>retention cut</strong> (a
+      thresholding operation) was applied to produce a file, and the basis of that
+      cut. A small <strong>facet</strong> vocabulary that factors the thresholding
+      qualifier out of compound ENCODE
+      <code class="bg-gray-100 px-1 rounded">output_type</code> / DataType terms
+      (e.g. "IDR thresholded peaks", "mapping quality thresholded contact matrix").
+      A <strong>provenance</strong> facet: it records that some statistical or
+      quality threshold was used to retain a subset of features, and what that
+      threshold was based on, not what the retained data means. An absent value
+      means no threshold was applied or the thresholding is unspecified. This axis
+      cross-cuts output kinds — it applies to peaks, contact matrices, and
+      regulatory (element–gene) links alike. Surfaced via the
+      <a href="/track-provenance" class="text-amber-600 underline hover:text-amber-800">Track Provenance</a>
+      schema's <code class="bg-gray-100 px-1 rounded">thresholding</code> slot.
+      Aligned with FGA-WG issue #2 (data interpretation).
+    </p>
+  </div>
+
+  <!-- Terms -->
+  <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
+    {terms.map((term: any) => (
+      <div class="block p-4">
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="font-medium text-gray-900 font-mono text-sm">{term.name}</h3>
+            <p class="text-sm text-gray-500 mt-1">{term.description}</p>
+          </div>
+          {term.edamMapping && (
+            <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded shrink-0 ml-4 font-mono">
+              {term.edamMapping.edamId}
+            </span>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</Layout>

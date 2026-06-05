@@ -1,0 +1,36 @@
+[
+  {
+    "id": "male",
+    "name": "male",
+    "slug": "male",
+    "description": "Reference assembly derived from a male individual (includes X and Y chromosomes).",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "reference_build_sex",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "PATO:0000384",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "female",
+    "name": "female",
+    "slug": "female",
+    "description": "Reference assembly derived from a female individual (X chromosomes only).",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "reference_build_sex",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "PATO:0000383",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  }
+]

@@ -250,54 +250,6 @@
       "encodeSource": true
     },
     {
-      "id": "observed_bias_profile",
-      "name": "observed bias profile",
-      "slug": "observed_bias_profile",
-      "description": "Empirically measured sequencing bias profile from experimental data.",
-      "category": "signal_track",
-      "categorySlug": "signal_track",
-      "vocabType": "data",
-      "edamMapping": null,
-      "seeAlso": [],
-      "encodeSource": true
-    },
-    {
-      "id": "observed_signal_profile",
-      "name": "observed signal profile",
-      "slug": "observed_signal_profile",
-      "description": "Experimentally measured signal profile from sequencing data.",
-      "category": "signal_track",
-      "categorySlug": "signal_track",
-      "vocabType": "data",
-      "edamMapping": null,
-      "seeAlso": [],
-      "encodeSource": true
-    },
-    {
-      "id": "predicted_bias_profile",
-      "name": "predicted bias profile",
-      "slug": "predicted_bias_profile",
-      "description": "Computationally predicted sequencing bias profile based on sequence composition.",
-      "category": "signal_track",
-      "categorySlug": "signal_track",
-      "vocabType": "data",
-      "edamMapping": null,
-      "seeAlso": [],
-      "encodeSource": true
-    },
-    {
-      "id": "predicted_signal_profile",
-      "name": "predicted signal profile",
-      "slug": "predicted_signal_profile",
-      "description": "Signal profile computationally predicted by a model from sequence or chromatin features.",
-      "category": "signal_track",
-      "categorySlug": "signal_track",
-      "vocabType": "data",
-      "edamMapping": null,
-      "seeAlso": [],
-      "encodeSource": true
-    },
-    {
       "id": "signal",
       "name": "signal",
       "slug": "signal",
@@ -367,10 +319,34 @@
       "encodeSource": true
     },
     {
-      "id": "observed_control_profile",
-      "name": "observed control profile",
-      "slug": "observed_control_profile",
-      "description": "Observed control signal profile.",
+      "id": "signal_profile",
+      "name": "signal profile",
+      "slug": "signal_profile",
+      "description": "Signal profile across genomic positions.",
+      "category": "signal_track",
+      "categorySlug": "signal_track",
+      "vocabType": "data",
+      "edamMapping": null,
+      "seeAlso": [],
+      "encodeSource": true
+    },
+    {
+      "id": "bias_profile",
+      "name": "bias profile",
+      "slug": "bias_profile",
+      "description": "Sequencing bias profile across genomic positions.",
+      "category": "signal_track",
+      "categorySlug": "signal_track",
+      "vocabType": "data",
+      "edamMapping": null,
+      "seeAlso": [],
+      "encodeSource": true
+    },
+    {
+      "id": "control_profile",
+      "name": "control profile",
+      "slug": "control_profile",
+      "description": "Control signal profile.",
       "category": "signal_track",
       "categorySlug": "signal_track",
       "vocabType": "data",
@@ -469,27 +445,6 @@
         "comment": "From LinkML schema"
       },
       "seeAlso": [],
-      "encodeSource": true
-    },
-    {
-      "id": "idr_thresholded_peaks",
-      "name": "IDR thresholded peaks",
-      "slug": "idr_thresholded_peaks",
-      "description": "Peaks passing an Irreproducible Discovery Rate (IDR) threshold, indicating reproducible signal across replicates.",
-      "category": "peak_set",
-      "categorySlug": "peak_set",
-      "vocabType": "data",
-      "edamMapping": {
-        "predicate": "exactMatch",
-        "edamId": "edam:data_3002",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
-      },
-      "seeAlso": [
-        "TF binding sites",
-        "open chromatin regions",
-        "histone modifications"
-      ],
       "encodeSource": true
     },
     {
@@ -853,18 +808,6 @@
       "name": "haplotype-specific contact matrix",
       "slug": "haplotype_specific_contact_matrix",
       "description": "Contact matrix computed separately for a specific parental haplotype.",
-      "category": "contact_matrix",
-      "categorySlug": "contact_matrix",
-      "vocabType": "data",
-      "edamMapping": null,
-      "seeAlso": [],
-      "encodeSource": true
-    },
-    {
-      "id": "mapping_quality_thresholded_contact_matrix",
-      "name": "mapping quality thresholded contact matrix",
-      "slug": "mapping_quality_thresholded_contact_matrix",
-      "description": "Contact matrix filtered to high-confidence mappings.",
       "category": "contact_matrix",
       "categorySlug": "contact_matrix",
       "vocabType": "data",
@@ -1815,40 +1758,6 @@
       "encodeSource": true
     },
     {
-      "id": "female_genome_index",
-      "name": "female genome index",
-      "slug": "female_genome_index",
-      "description": "Alignment index built from a female reference genome.",
-      "category": "reference",
-      "categorySlug": "reference",
-      "vocabType": "data",
-      "edamMapping": {
-        "predicate": "exactMatch",
-        "edamId": "edam:data_3210",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
-      },
-      "seeAlso": [],
-      "encodeSource": true
-    },
-    {
-      "id": "female_genome_reference",
-      "name": "female genome reference",
-      "slug": "female_genome_reference",
-      "description": "Reference genome sequence derived from a female individual (includes both X chromosomes).",
-      "category": "reference",
-      "categorySlug": "reference",
-      "vocabType": "data",
-      "edamMapping": {
-        "predicate": "exactMatch",
-        "edamId": "edam:data_2977",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
-      },
-      "seeAlso": [],
-      "encodeSource": true
-    },
-    {
       "id": "genome_index",
       "name": "genome index",
       "slug": "genome_index",
@@ -1870,40 +1779,6 @@
       "name": "genome reference",
       "slug": "genome_reference",
       "description": "Reference genome sequence assembly used for alignment and annotation.",
-      "category": "reference",
-      "categorySlug": "reference",
-      "vocabType": "data",
-      "edamMapping": {
-        "predicate": "exactMatch",
-        "edamId": "edam:data_2977",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
-      },
-      "seeAlso": [],
-      "encodeSource": true
-    },
-    {
-      "id": "male_genome_index",
-      "name": "male genome index",
-      "slug": "male_genome_index",
-      "description": "Alignment index built from a male reference genome.",
-      "category": "reference",
-      "categorySlug": "reference",
-      "vocabType": "data",
-      "edamMapping": {
-        "predicate": "exactMatch",
-        "edamId": "edam:data_3210",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
-      },
-      "seeAlso": [],
-      "encodeSource": true
-    },
-    {
-      "id": "male_genome_reference",
-      "name": "male genome reference",
-      "slug": "male_genome_reference",
-      "description": "Reference genome sequence derived from a male individual (includes X and Y chromosomes).",
       "category": "reference",
       "categorySlug": "reference",
       "vocabType": "data",

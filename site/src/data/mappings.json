@@ -130,16 +130,6 @@
     "comment": "From LinkML schema"
   },
   {
-    "termId": "idr_thresholded_peaks",
-    "termName": "IDR thresholded peaks",
-    "category": "peak_set",
-    "vocabType": "data",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
     "termId": "optimal_idr_thresholded_peaks",
     "termName": "optimal IDR thresholded peaks",
     "category": "peak_set",
@@ -520,26 +510,6 @@
     "comment": "From LinkML schema"
   },
   {
-    "termId": "female_genome_index",
-    "termName": "female genome index",
-    "category": "reference",
-    "vocabType": "data",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_3210",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
-    "termId": "female_genome_reference",
-    "termName": "female genome reference",
-    "category": "reference",
-    "vocabType": "data",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_2977",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
     "termId": "genome_index",
     "termName": "genome index",
     "category": "reference",
@@ -552,26 +522,6 @@
   {
     "termId": "genome_reference",
     "termName": "genome reference",
-    "category": "reference",
-    "vocabType": "data",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_2977",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
-    "termId": "male_genome_index",
-    "termName": "male genome index",
-    "category": "reference",
-    "vocabType": "data",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_3210",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
-    "termId": "male_genome_reference",
-    "termName": "male genome reference",
     "category": "reference",
     "vocabType": "data",
     "predicate": "exactMatch",
@@ -760,26 +710,6 @@
     "comment": "From LinkML schema"
   },
   {
-    "termId": "filtered_indels",
-    "termName": "filtered indels",
-    "category": "variant",
-    "vocabType": "feature",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
-    "termId": "filtered_snps",
-    "termName": "filtered SNPs",
-    "category": "variant",
-    "vocabType": "feature",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
     "termId": "maternal_variant_calls",
     "termName": "maternal variant calls",
     "category": "variant",
@@ -926,6 +856,26 @@
     "vocabType": "feature",
     "predicate": "exactMatch",
     "edamId": "edam:data_0925",
+    "edamLabel": "",
+    "comment": "From LinkML schema"
+  },
+  {
+    "termId": "snps",
+    "termName": "SNPs",
+    "category": "variant",
+    "vocabType": "feature",
+    "predicate": "exactMatch",
+    "edamId": "edam:data_0918",
+    "edamLabel": "",
+    "comment": "From LinkML schema"
+  },
+  {
+    "termId": "indels",
+    "termName": "indels",
+    "category": "variant",
+    "vocabType": "feature",
+    "predicate": "exactMatch",
+    "edamId": "edam:data_0918",
     "edamLabel": "",
     "comment": "From LinkML schema"
   }

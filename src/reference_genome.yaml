@@ -1,0 +1,58 @@
+id: https://databio.org/onga/reference_genome
+name: reference_genome
+title: ONGA Reference Genome Schema
+description: >-
+  Descriptor schema for the reference genome a track is defined against. Every
+  genomic annotation is expressed relative to a reference assembly (FGA-issue
+  adjacent), and properties of that assembly — its identifier and the sex of the
+  build — are a distinct axis from what the track's content IS
+  (TrackInterpretation), how it was processed (TrackProvenance), how it is
+  encoded (TrackFormat), or its structural shape (TrackGeometry).
+
+  `ReferenceGenome` is the 5th ONGA descriptor schema. It carries the
+  reference-build sex factored out of compound DataType terms (e.g. "male genome
+  reference"): the male/female there qualifies the REFERENCE assembly used
+  (which chromosomes it contains), not the biological sample.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+  - reference_build_sex
+
+classes:
+  ReferenceGenome:
+    description: >-
+      ONGA descriptor schema for the reference genome a track is defined against
+      (FGA-issue-adjacent: every genomic annotation is relative to a reference
+      assembly). Carries the reference assembly identifier and the sex of the
+      reference build (factored out of compound terms like "male genome
+      reference"). The build sex is a property of the reference assembly, NOT of
+      the biological sample.
+    slots:
+      - assembly
+      - build_sex
+
+slots:
+  assembly:
+    description: >-
+      The reference assembly identifier the track is defined against (e.g.
+      GRCh38, mm10). A free identifier for now.
+    range: string
+    examples:
+      - value: GRCh38
+  build_sex:
+    description: >-
+      The sex of the reference genome build (which sex chromosomes the assembly
+      contains). Factored out of compound DataType terms like "male genome
+      reference" / "female genome index". A property of the reference assembly,
+      NOT of the biological sample. Absent means unspecified / sex-neutral
+      combined assembly.
+    range: ReferenceBuildSex
+    examples:
+      - value: male

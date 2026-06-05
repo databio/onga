@@ -21,6 +21,16 @@ const STYLES: Record<string, { card: string; badge: string; link: string }> = {
     badge: 'bg-indigo-100 text-indigo-800',
     link: 'text-indigo-600 hover:text-indigo-800',
   },
+  Thresholding: {
+    card: 'border-indigo-400',
+    badge: 'bg-indigo-100 text-indigo-800',
+    link: 'text-indigo-600 hover:text-indigo-800',
+  },
+  Derivation: {
+    card: 'border-indigo-400',
+    badge: 'bg-indigo-100 text-indigo-800',
+    link: 'text-indigo-600 hover:text-indigo-800',
+  },
   default: {
     card: 'border-gray-400',
     badge: 'bg-gray-100 text-gray-800',
@@ -44,8 +54,12 @@ const styleFor = (range: string) => STYLES[range] || STYLES.default;
       applied: which read subset the data was computed from
       (<code class="bg-gray-100 px-1 rounded">read_multiplicity</code>), what
       QC filtering was applied (<code class="bg-gray-100 px-1 rounded">filter_status</code>),
-      and what scaling normalization was applied
-      (<code class="bg-gray-100 px-1 rounded">normalization</code>).
+      what scaling normalization was applied
+      (<code class="bg-gray-100 px-1 rounded">normalization</code>), what retention
+      cut / thresholding was applied
+      (<code class="bg-gray-100 px-1 rounded">thresholding</code>), and the
+      epistemic origin of the values — observed vs. predicted
+      (<code class="bg-gray-100 px-1 rounded">derivation</code>).
     </p>
   </div>
 
@@ -83,13 +97,14 @@ const styleFor = (range: string) => STYLES[range] || STYLES.default;
   <p class="text-xs text-gray-400 mt-8 max-w-2xl">
     <code class="bg-gray-100 px-1 rounded">read_multiplicity</code> and
     <code class="bg-gray-100 px-1 rounded">filter_status</code> were relocated
-    here from Track Interpretation, and
-    <code class="bg-gray-100 px-1 rounded">normalization</code> was faceted out
-    of the compound signal terms: all describe a processing operation, not
-    content. Track Provenance is the planned home for further processing facets —
-    <strong>derivation</strong> (observed vs. predicted vs. control) and
-    <strong>bias-correction</strong> — when those are faceted out of the compound
-    DataType terms. Those axes remain baked into the
+    here from Track Interpretation, while
+    <code class="bg-gray-100 px-1 rounded">normalization</code>,
+    <code class="bg-gray-100 px-1 rounded">thresholding</code>, and
+    <code class="bg-gray-100 px-1 rounded">derivation</code> (observed vs. predicted)
+    were faceted out of the compound DataType / FeatureType terms: all describe a
+    processing operation, not content. Track Provenance remains the planned home for
+    further processing facets — <strong>bias-correction</strong> — when those are
+    faceted out of the compound DataType terms. That axis remains baked into the
     <code class="bg-gray-100 px-1 rounded">output_type</code> base for now.
   </p>
 </Layout>
