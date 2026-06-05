@@ -1,0 +1,3028 @@
+[
+  {
+    "id": "alignments",
+    "name": "alignments",
+    "slug": "alignments",
+    "description": "Sequencing reads mapped to positions in a reference genome, typically in BAM/CRAM format with mapping quality scores and alignment coordinates.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0863",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [
+      "sequencing reads"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "alignments_with_modifications",
+    "name": "alignments with modifications",
+    "slug": "alignments_with_modifications",
+    "description": "Aligned reads preserving base modification information (e.g., methylation from bisulfite-seq or direct detection) encoded in BAM auxiliary fields.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:data_0863",
+      "edamLabel": "Sequence alignment",
+      "comment": "EDAM lacks modification-aware alignment concept"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "diploid_personal_genome_alignments",
+    "name": "diploid personal genome alignments",
+    "slug": "diploid_personal_genome_alignments",
+    "description": "Reads aligned to a diploid personal genome reference including both parental haplotypes, enabling allele-specific analysis.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:data_0863",
+      "edamLabel": "Sequence alignment",
+      "comment": "EDAM lacks diploid/personal alignment concept"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "filtered_reads",
+    "name": "filtered reads",
+    "slug": "filtered_reads",
+    "description": "Sequencing reads passing quality control filters such as minimum quality score, adapter removal, or duplicate marking.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:data_0863",
+      "edamLabel": "Sequence alignment",
+      "comment": "EDAM lacks filtered reads concept"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "gene_alignments",
+    "name": "gene alignments",
+    "slug": "gene_alignments",
+    "description": "Reads or sequences aligned at the gene level.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "haplotype_specific_alignments",
+    "name": "haplotype-specific alignments",
+    "slug": "haplotype_specific_alignments",
+    "description": "Reads confidently assigned and aligned to a specific parental haplotype based on phased variant information.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:data_0863",
+      "edamLabel": "Sequence alignment",
+      "comment": "EDAM lacks haplotype-aware alignment concept"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "preprocessed_alignments",
+    "name": "preprocessed alignments",
+    "slug": "preprocessed_alignments",
+    "description": "Alignments after preprocessing: duplicate marking, base quality score recalibration, or indel realignment.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:data_0863",
+      "edamLabel": "Sequence alignment",
+      "comment": "EDAM lacks preprocessing stage qualifier"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "reads",
+    "name": "reads",
+    "slug": "reads",
+    "description": "Raw or minimally processed sequencing reads in FASTQ format, including quality scores and read identifiers.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0924",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "redacted_alignments",
+    "name": "redacted alignments",
+    "slug": "redacted_alignments",
+    "description": "Alignments with sensitive genomic positions masked or removed for privacy protection in controlled-access data sharing.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "redacted_transcriptome_alignments",
+    "name": "redacted transcriptome alignments",
+    "slug": "redacted_transcriptome_alignments",
+    "description": "Transcriptome-level alignments with sensitive positions redacted.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "redacted_unfiltered_alignments",
+    "name": "redacted unfiltered alignments",
+    "slug": "redacted_unfiltered_alignments",
+    "description": "Unfiltered alignments with sensitive positions redacted.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "rejected_reads",
+    "name": "rejected reads",
+    "slug": "rejected_reads",
+    "description": "Reads that failed quality control filters and were excluded from downstream analysis.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "spike_in_alignments",
+    "name": "spike-in alignments",
+    "slug": "spike_in_alignments",
+    "description": "Reads aligned to exogenous spike-in control sequences (e.g., ERCC) for normalization and quality assessment.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "transcriptome_alignments",
+    "name": "transcriptome alignments",
+    "slug": "transcriptome_alignments",
+    "description": "Reads aligned to a transcriptome reference (cDNA sequences) rather than the genome.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:data_0863",
+      "edamLabel": "Sequence alignment",
+      "comment": "EDAM lacks transcriptome-specific alignment"
+    },
+    "seeAlso": [
+      "gene expression",
+      "splicing"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "unfiltered_alignments",
+    "name": "unfiltered alignments",
+    "slug": "unfiltered_alignments",
+    "description": "Raw alignments before quality filtering, duplicate removal, or other post-processing.",
+    "category": "alignment",
+    "categorySlug": "alignment",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:data_0863",
+      "edamLabel": "Sequence alignment",
+      "comment": "EDAM lacks filtering-status qualifier"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "base_overlap_signal",
+    "name": "base overlap signal",
+    "slug": "base_overlap_signal",
+    "description": "Signal computed from base-level read overlap counts at each genomic position.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "bias_corrected_predicted_signal_profile",
+    "name": "bias-corrected predicted signal profile",
+    "slug": "bias_corrected_predicted_signal_profile",
+    "description": "Model-predicted signal after correction for sequence-composition bias.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "control_normalized_signal",
+    "name": "control normalized signal",
+    "slug": "control_normalized_signal",
+    "description": "Signal normalized against a matched control experiment to remove background and technical artifacts.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "enrichment",
+    "name": "enrichment",
+    "slug": "enrichment",
+    "description": "Quantitative enrichment score over background, measuring signal above expected noise level.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "fold_change_over_control",
+    "name": "fold change over control",
+    "slug": "fold_change_over_control",
+    "description": "Signal expressed as the ratio of experimental signal to input/control, highlighting enrichment over background.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [
+      "TF binding",
+      "histone modifications"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "minus_strand_end_position_signal",
+    "name": "minus strand end position signal",
+    "slug": "minus_strand_end_position_signal",
+    "description": "Signal of read end positions on the minus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "minus_strand_normalized_end_position_signal",
+    "name": "minus strand normalized end position signal",
+    "slug": "minus_strand_normalized_end_position_signal",
+    "description": "Normalized signal of read end positions on the minus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "minus_strand_signal",
+    "name": "minus strand signal",
+    "slug": "minus_strand_signal",
+    "description": "Signal values computed from reads mapping to the minus (reverse/Crick) DNA strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "minus_strand_signal_of_all_reads",
+    "name": "minus strand signal of all reads",
+    "slug": "minus_strand_signal_of_all_reads",
+    "description": "Minus strand signal from all aligned reads regardless of mapping quality.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "minus_strand_signal_of_unique_reads",
+    "name": "minus strand signal of unique reads",
+    "slug": "minus_strand_signal_of_unique_reads",
+    "description": "Minus strand signal from uniquely mapping reads only (MAPQ >= threshold).",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "normalized_bias_corrected_predicted_signal_profile",
+    "name": "normalized bias-corrected predicted signal profile",
+    "slug": "normalized_bias_corrected_predicted_signal_profile",
+    "description": "Normalized predicted signal profile with bias correction.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "normalized_observed_signal_profile",
+    "name": "normalized observed signal profile",
+    "slug": "normalized_observed_signal_profile",
+    "description": "Observed signal profile normalized for sequencing depth or library size.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "normalized_observed_signal_profile_minus_strand",
+    "name": "normalized observed signal profile (minus strand)",
+    "slug": "normalized_observed_signal_profile_minus_strand",
+    "description": "Normalized observed signal profile on the minus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "normalized_observed_signal_profile_plus_strand",
+    "name": "normalized observed signal profile (plus strand)",
+    "slug": "normalized_observed_signal_profile_plus_strand",
+    "description": "Normalized observed signal profile on the plus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "normalized_predicted_bias_profile",
+    "name": "normalized predicted bias profile",
+    "slug": "normalized_predicted_bias_profile",
+    "description": "Normalized predicted sequencing bias profile.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "normalized_predicted_signal_profile",
+    "name": "normalized predicted signal profile",
+    "slug": "normalized_predicted_signal_profile",
+    "description": "Predicted signal profile normalized for sequencing depth or library size.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "normalized_predicted_signal_profile_minus_strand",
+    "name": "normalized predicted signal profile (minus strand)",
+    "slug": "normalized_predicted_signal_profile_minus_strand",
+    "description": "Normalized predicted signal profile on the minus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "normalized_predicted_signal_profile_plus_strand",
+    "name": "normalized predicted signal profile (plus strand)",
+    "slug": "normalized_predicted_signal_profile_plus_strand",
+    "description": "Normalized predicted signal profile on the plus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "normalized_signal_of_all_reads",
+    "name": "normalized signal of all reads",
+    "slug": "normalized_signal_of_all_reads",
+    "description": "Depth-normalized signal including all reads.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "observed_bias_profile",
+    "name": "observed bias profile",
+    "slug": "observed_bias_profile",
+    "description": "Empirically measured sequencing bias profile from experimental data.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "observed_control_profile_minus_strand",
+    "name": "observed control profile (minus strand)",
+    "slug": "observed_control_profile_minus_strand",
+    "description": "Observed control signal profile on the minus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "observed_control_profile_plus_strand",
+    "name": "observed control profile (plus strand)",
+    "slug": "observed_control_profile_plus_strand",
+    "description": "Observed control signal profile on the plus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "observed_signal_profile",
+    "name": "observed signal profile",
+    "slug": "observed_signal_profile",
+    "description": "Experimentally measured signal profile from sequencing data.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "observed_signal_profile_minus_strand",
+    "name": "observed signal profile (minus strand)",
+    "slug": "observed_signal_profile_minus_strand",
+    "description": "Observed signal profile on the minus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "observed_signal_profile_plus_strand",
+    "name": "observed signal profile (plus strand)",
+    "slug": "observed_signal_profile_plus_strand",
+    "description": "Observed signal profile on the plus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "percentage_normalized_signal",
+    "name": "percentage normalized signal",
+    "slug": "percentage_normalized_signal",
+    "description": "Signal expressed as a percentage of total signal, useful for comparing relative enrichment.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "plus_strand_end_position_signal",
+    "name": "plus strand end position signal",
+    "slug": "plus_strand_end_position_signal",
+    "description": "Signal of read end positions on the plus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "plus_strand_normalized_end_position_signal",
+    "name": "plus strand normalized end position signal",
+    "slug": "plus_strand_normalized_end_position_signal",
+    "description": "Normalized signal of read end positions on the plus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "plus_strand_signal",
+    "name": "plus strand signal",
+    "slug": "plus_strand_signal",
+    "description": "Signal values computed from reads mapping to the plus (forward/Watson) DNA strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "plus_strand_signal_of_all_reads",
+    "name": "plus strand signal of all reads",
+    "slug": "plus_strand_signal_of_all_reads",
+    "description": "Plus strand signal from all aligned reads regardless of mapping quality.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "plus_strand_signal_of_unique_reads",
+    "name": "plus strand signal of unique reads",
+    "slug": "plus_strand_signal_of_unique_reads",
+    "description": "Plus strand signal from uniquely mapping reads only (MAPQ >= threshold).",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "predicted_bias_profile",
+    "name": "predicted bias profile",
+    "slug": "predicted_bias_profile",
+    "description": "Computationally predicted sequencing bias profile based on sequence composition.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "predicted_signal_profile",
+    "name": "predicted signal profile",
+    "slug": "predicted_signal_profile",
+    "description": "Signal profile computationally predicted by a model from sequence or chromatin features.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "predicted_signal_profile_minus_strand",
+    "name": "predicted signal profile (minus strand)",
+    "slug": "predicted_signal_profile_minus_strand",
+    "description": "Computationally predicted signal profile on the minus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "predicted_signal_profile_plus_strand",
+    "name": "predicted signal profile (plus strand)",
+    "slug": "predicted_signal_profile_plus_strand",
+    "description": "Computationally predicted signal profile on the plus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "raw_minus_strand_signal",
+    "name": "raw minus strand signal",
+    "slug": "raw_minus_strand_signal",
+    "description": "Unprocessed signal on the minus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "raw_normalized_signal",
+    "name": "raw normalized signal",
+    "slug": "raw_normalized_signal",
+    "description": "Raw signal after library-size normalization.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "raw_plus_strand_signal",
+    "name": "raw plus strand signal",
+    "slug": "raw_plus_strand_signal",
+    "description": "Unprocessed signal on the plus strand.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "raw_signal",
+    "name": "raw signal",
+    "slug": "raw_signal",
+    "description": "Unprocessed signal track before normalization or bias correction.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "read_depth_normalized_signal",
+    "name": "read-depth normalized signal",
+    "slug": "read_depth_normalized_signal",
+    "description": "Signal normalized by total sequencing depth to enable cross-sample comparisons.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "signal",
+    "name": "signal",
+    "slug": "signal",
+    "description": "Quantitative signal track showing per-base or per-bin values across the genome, typically in bigWig format.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [
+      "gene expression",
+      "chromatin accessibility",
+      "TF binding"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "signal_of_all_reads",
+    "name": "signal of all reads",
+    "slug": "signal_of_all_reads",
+    "description": "Signal computed from all aligned reads regardless of mapping quality or uniqueness.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "signal_of_unique_reads",
+    "name": "signal of unique reads",
+    "slug": "signal_of_unique_reads",
+    "description": "Signal computed only from uniquely mapping reads (typically MAPQ >= 30), excluding multi-mappers.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "signal_p_value",
+    "name": "signal p-value",
+    "slug": "signal_p_value",
+    "description": "Statistical significance track showing -log10(p-value) of enrichment at each position.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0951",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "summed_densities_signal",
+    "name": "summed densities signal",
+    "slug": "summed_densities_signal",
+    "description": "Signal computed as the sum of per-base read densities across the region.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "wavelet_smoothed_signal",
+    "name": "wavelet-smoothed signal",
+    "slug": "wavelet_smoothed_signal",
+    "description": "Signal smoothed using wavelet transform to reduce noise while preserving peak structure.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "bidirectional_peaks",
+    "name": "bidirectional peaks",
+    "slug": "bidirectional_peaks",
+    "description": "Peaks from bidirectional transcription signal, characteristic of active enhancers and promoters.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [
+      "enhancers",
+      "promoters"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "conservative_idr_thresholded_peaks",
+    "name": "conservative IDR thresholded peaks",
+    "slug": "conservative_idr_thresholded_peaks",
+    "description": "Peaks using a conservative (stricter) IDR cutoff, yielding high-confidence but smaller peak set.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [
+      "TF binding sites",
+      "open chromatin regions"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "distal_peaks",
+    "name": "distal peaks",
+    "slug": "distal_peaks",
+    "description": "Peaks located distal (>2-3kb) from transcription start sites, often representing enhancers.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "divergent_peaks",
+    "name": "divergent peaks",
+    "slug": "divergent_peaks",
+    "description": "Peaks from divergent transcription where initiation occurs in both directions from a central point.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "filtered_peaks",
+    "name": "filtered peaks",
+    "slug": "filtered_peaks",
+    "description": "Peak calls after quality filtering, typically removing peaks in blacklist regions or with low signal.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [
+      "TF binding sites",
+      "open chromatin regions",
+      "histone modifications"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "idr_ranked_peaks",
+    "name": "IDR ranked peaks",
+    "slug": "idr_ranked_peaks",
+    "description": "Peaks ranked by IDR score, with lower IDR indicating higher reproducibility across replicates.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "idr_thresholded_peaks",
+    "name": "IDR thresholded peaks",
+    "slug": "idr_thresholded_peaks",
+    "description": "Peaks passing an Irreproducible Discovery Rate (IDR) threshold, indicating reproducible signal across replicates.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [
+      "TF binding sites",
+      "open chromatin regions",
+      "histone modifications"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "optimal_idr_thresholded_peaks",
+    "name": "optimal IDR thresholded peaks",
+    "slug": "optimal_idr_thresholded_peaks",
+    "description": "Peaks using the optimal IDR cutoff balancing sensitivity and reproducibility.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [
+      "TF binding sites",
+      "open chromatin regions"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "peaks",
+    "name": "peaks",
+    "slug": "peaks",
+    "description": "Discrete genomic regions of statistically significant enrichment from peak calling. The fundamental unit of ChIP-seq and ATAC-seq analysis.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [
+      "TF binding sites",
+      "open chromatin regions",
+      "histone modifications",
+      "enhancers"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "peaks_and_background_as_input_for_idr",
+    "name": "peaks and background as input for IDR",
+    "slug": "peaks_and_background_as_input_for_idr",
+    "description": "Combined peak and background signal data formatted as input for IDR analysis.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "proximal_peaks",
+    "name": "proximal peaks",
+    "slug": "proximal_peaks",
+    "description": "Peaks located proximal (<2-3kb) to transcription start sites, often representing promoters.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "pseudoreplicated_idr_thresholded_peaks",
+    "name": "pseudoreplicated IDR thresholded peaks",
+    "slug": "pseudoreplicated_idr_thresholded_peaks",
+    "description": "IDR-thresholded peaks from pseudoreplicates (subsampled reads) when true replicates unavailable.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "pseudoreplicated_peaks",
+    "name": "pseudoreplicated peaks",
+    "slug": "pseudoreplicated_peaks",
+    "description": "Peak calls from pseudoreplicates created by subsampling reads from a single experiment.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "replicated_peaks",
+    "name": "replicated peaks",
+    "slug": "replicated_peaks",
+    "description": "Peaks reproducibly called across biological or technical replicates.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [
+      "TF binding sites",
+      "open chromatin regions",
+      "histone modifications"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "representative_dnase_hypersensitivity_sites",
+    "name": "representative DNase hypersensitivity sites",
+    "slug": "representative_dnase_hypersensitivity_sites",
+    "description": "A curated representative set of DNase hypersensitivity sites for reference.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "representative_idr_thresholded_peaks",
+    "name": "representative IDR thresholded peaks",
+    "slug": "representative_idr_thresholded_peaks",
+    "description": "A representative set of IDR-thresholded peaks selected for downstream analysis.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "unidirectional_peaks",
+    "name": "unidirectional peaks",
+    "slug": "unidirectional_peaks",
+    "description": "Peaks from unidirectional transcription signal, typically associated with gene bodies.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "valleys",
+    "name": "valleys",
+    "slug": "valleys",
+    "description": "Local minima in signal tracks used in footprint detection or nucleosome positioning analysis.",
+    "category": "peak_set",
+    "categorySlug": "peak_set",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "consensus_dnase_hypersensitivity_sites",
+    "name": "consensus DNase hypersensitivity sites",
+    "slug": "consensus_dnase_hypersensitivity_sites",
+    "description": "DNase I hypersensitivity sites consistently identified across multiple samples or cell types.",
+    "category": "chromatin_accessibility",
+    "categorySlug": "chromatin_accessibility",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "dhs_peaks",
+    "name": "DHS peaks",
+    "slug": "dhs_peaks",
+    "description": "Peak calls from DNase I hypersensitivity sequencing (DNase-seq), indicating open chromatin regions.",
+    "category": "chromatin_accessibility",
+    "categorySlug": "chromatin_accessibility",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [
+      "open chromatin regions",
+      "footprints"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "dhs_regions_reference",
+    "name": "DHS regions reference",
+    "slug": "dhs_regions_reference",
+    "description": "Reference set of DNase I hypersensitivity regions.",
+    "category": "chromatin_accessibility",
+    "categorySlug": "chromatin_accessibility",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "fdr_cut_rate",
+    "name": "FDR cut rate",
+    "slug": "fdr_cut_rate",
+    "description": "False discovery rate-controlled cut rate signal from DNase-seq analysis.",
+    "category": "chromatin_accessibility",
+    "categorySlug": "chromatin_accessibility",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "haplotype_specific_nuclease_cleavage_corrected_frequency",
+    "name": "haplotype-specific nuclease cleavage corrected frequency",
+    "slug": "haplotype_specific_nuclease_cleavage_corrected_frequency",
+    "description": "Bias-corrected nuclease cleavage frequency for a specific haplotype.",
+    "category": "chromatin_accessibility",
+    "categorySlug": "chromatin_accessibility",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "haplotype_specific_nuclease_cleavage_frequency",
+    "name": "haplotype-specific nuclease cleavage frequency",
+    "slug": "haplotype_specific_nuclease_cleavage_frequency",
+    "description": "Nuclease cleavage frequency measured for a specific haplotype.",
+    "category": "chromatin_accessibility",
+    "categorySlug": "chromatin_accessibility",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "hotspots",
+    "name": "hotspots",
+    "slug": "hotspots",
+    "description": "Broad regions of elevated DNase cleavage activity representing domains of chromatin accessibility.",
+    "category": "chromatin_accessibility",
+    "categorySlug": "chromatin_accessibility",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [
+      "open chromatin regions"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "hotspots1_reference",
+    "name": "hotspots1 reference",
+    "slug": "hotspots1_reference",
+    "description": "Reference hotspot calls at lenient threshold (hotspot1 algorithm).",
+    "category": "chromatin_accessibility",
+    "categorySlug": "chromatin_accessibility",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "hotspots2_reference",
+    "name": "hotspots2 reference",
+    "slug": "hotspots2_reference",
+    "description": "Reference hotspot calls at stringent threshold (hotspot2 algorithm).",
+    "category": "chromatin_accessibility",
+    "categorySlug": "chromatin_accessibility",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "nuclease_cleavage_frequency",
+    "name": "nuclease cleavage frequency",
+    "slug": "nuclease_cleavage_frequency",
+    "description": "Per-base frequency of DNase I or Tn5 transposase cleavage across the genome.",
+    "category": "chromatin_accessibility",
+    "categorySlug": "chromatin_accessibility",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "allele_specific_contact_matrix",
+    "name": "allele-specific contact matrix",
+    "slug": "allele_specific_contact_matrix",
+    "description": "Chromatin contact matrix resolved to individual alleles using phased variants.",
+    "category": "contact_matrix",
+    "categorySlug": "contact_matrix",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "contact_matrix",
+    "name": "contact matrix",
+    "slug": "contact_matrix",
+    "description": "Genome-wide matrix of chromatin interaction frequencies from Hi-C or similar chromosome conformation capture experiments.",
+    "category": "contact_matrix",
+    "categorySlug": "contact_matrix",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:topic_3940",
+      "edamLabel": "Chromosome conformation capture",
+      "comment": "EDAM has topic; lacks contact matrix data type"
+    },
+    "seeAlso": [
+      "chromatin loops",
+      "TADs",
+      "compartments"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "haplotype_specific_contact_matrix",
+    "name": "haplotype-specific contact matrix",
+    "slug": "haplotype_specific_contact_matrix",
+    "description": "Contact matrix computed separately for a specific parental haplotype.",
+    "category": "contact_matrix",
+    "categorySlug": "contact_matrix",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "mapping_quality_thresholded_contact_matrix",
+    "name": "mapping quality thresholded contact matrix",
+    "slug": "mapping_quality_thresholded_contact_matrix",
+    "description": "Contact matrix filtered to high-confidence mappings.",
+    "category": "contact_matrix",
+    "categorySlug": "contact_matrix",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "pairs",
+    "name": "pairs",
+    "slug": "pairs",
+    "description": "Raw read pair data from Hi-C or proximity ligation before matrix construction.",
+    "category": "contact_matrix",
+    "categorySlug": "contact_matrix",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "variants_contact_matrix",
+    "name": "variants contact matrix",
+    "slug": "variants_contact_matrix",
+    "description": "Contact matrix incorporating variant information.",
+    "category": "contact_matrix",
+    "categorySlug": "contact_matrix",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "enhancer_prediction_model",
+    "name": "enhancer prediction model",
+    "slug": "enhancer_prediction_model",
+    "description": "Model predicting enhancer activity from sequence or chromatin features.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "regulatory_elements_prediction_model",
+    "name": "regulatory elements prediction model",
+    "slug": "regulatory_elements_prediction_model",
+    "description": "Computational model for predicting regulatory element activity and location.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "element_barcode_mapping",
+    "name": "element barcode mapping",
+    "slug": "element_barcode_mapping",
+    "description": "Mapping of element barcodes used in CRISPR screen experiments.",
+    "category": "crispr_screen",
+    "categorySlug": "crispr_screen",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "grnas",
+    "name": "gRNAs",
+    "slug": "grnas",
+    "description": "Guide RNA sequences used in CRISPR screens.",
+    "category": "crispr_screen",
+    "categorySlug": "crispr_screen",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "guide_locations",
+    "name": "guide locations",
+    "slug": "guide_locations",
+    "description": "Genomic locations targeted by guide RNAs.",
+    "category": "crispr_screen",
+    "categorySlug": "crispr_screen",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "guide_quantifications",
+    "name": "guide quantifications",
+    "slug": "guide_quantifications",
+    "description": "Abundance quantifications of guide RNAs from screen data.",
+    "category": "crispr_screen",
+    "categorySlug": "crispr_screen",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "non_targeting_grnas",
+    "name": "non-targeting gRNAs",
+    "slug": "non_targeting_grnas",
+    "description": "Guide RNAs designed as non-targeting negative controls.",
+    "category": "crispr_screen",
+    "categorySlug": "crispr_screen",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "perturbation_signal",
+    "name": "perturbation signal",
+    "slug": "perturbation_signal",
+    "description": "Phenotypic signal associated with CRISPR perturbations.",
+    "category": "crispr_screen",
+    "categorySlug": "crispr_screen",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "ranked_grnas",
+    "name": "ranked gRNAs",
+    "slug": "ranked_grnas",
+    "description": "Guide RNAs ranked by screen performance or activity.",
+    "category": "crispr_screen",
+    "categorySlug": "crispr_screen",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "reporter_code_counts",
+    "name": "reporter code counts",
+    "slug": "reporter_code_counts",
+    "description": "Count data from reporter codes in CRISPR screen readouts.",
+    "category": "crispr_screen",
+    "categorySlug": "crispr_screen",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "safe_targeting_grnas",
+    "name": "safe-targeting gRNAs",
+    "slug": "safe_targeting_grnas",
+    "description": "Guide RNAs targeting genomic safe-harbor loci as controls.",
+    "category": "crispr_screen",
+    "categorySlug": "crispr_screen",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sparse_grna_count_matrix",
+    "name": "sparse gRNA count matrix",
+    "slug": "sparse_grna_count_matrix",
+    "description": "Sparse count matrix of guide RNA abundances across cells.",
+    "category": "crispr_screen",
+    "categorySlug": "crispr_screen",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3917",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "depth_normalized_signals_matrix",
+    "name": "depth normalized signals matrix",
+    "slug": "depth_normalized_signals_matrix",
+    "description": "Matrix of read-depth normalized signals across features and samples.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "fold_over_change_matrix",
+    "name": "fold over change matrix",
+    "slug": "fold_over_change_matrix",
+    "description": "Matrix of fold-change values relative to control across features.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sparse_gene_count_matrix",
+    "name": "sparse gene count matrix",
+    "slug": "sparse_gene_count_matrix",
+    "description": "Sparse matrix of gene-level read counts across cells or samples, standard for single-cell RNA-seq.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3917",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sparse_gene_count_matrix_of_all_reads",
+    "name": "sparse gene count matrix of all reads",
+    "slug": "sparse_gene_count_matrix_of_all_reads",
+    "description": "Sparse gene count matrix including all reads regardless of mapping quality.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3917",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sparse_gene_count_matrix_of_unique_reads",
+    "name": "sparse gene count matrix of unique reads",
+    "slug": "sparse_gene_count_matrix_of_unique_reads",
+    "description": "Sparse gene count matrix from uniquely mapping reads only.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3917",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sparse_peak_count_matrix",
+    "name": "sparse peak count matrix",
+    "slug": "sparse_peak_count_matrix",
+    "description": "Sparse matrix of peak accessibility counts across cells, used in single-cell ATAC-seq.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3917",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sparse_transcript_count_matrix",
+    "name": "sparse transcript count matrix",
+    "slug": "sparse_transcript_count_matrix",
+    "description": "Sparse matrix of transcript-level counts across cells or samples.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3917",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "tf_peaks_matrix",
+    "name": "TF peaks matrix",
+    "slug": "tf_peaks_matrix",
+    "description": "Matrix of transcription factor peak counts across samples.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "unfiltered_sparse_gene_count_matrix_of_all_reads",
+    "name": "unfiltered sparse gene count matrix of all reads",
+    "slug": "unfiltered_sparse_gene_count_matrix_of_all_reads",
+    "description": "Unfiltered sparse gene count matrix from all reads.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3917",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "unfiltered_sparse_gene_count_matrix_of_unique_reads",
+    "name": "unfiltered sparse gene count matrix of unique reads",
+    "slug": "unfiltered_sparse_gene_count_matrix_of_unique_reads",
+    "description": "Unfiltered sparse gene count matrix from uniquely mapping reads.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3917",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "unfiltered_sparse_splice_junction_count_matrix_of_unique_reads",
+    "name": "unfiltered sparse splice junction count matrix of unique reads",
+    "slug": "unfiltered_sparse_splice_junction_count_matrix_of_unique_reads",
+    "description": "Unfiltered sparse count matrix of splice junctions from unique reads.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3917",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "z_scores_matrix",
+    "name": "z scores matrix",
+    "slug": "z_scores_matrix",
+    "description": "Matrix of z-score normalized values across features and samples.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "differential_expression_quantifications",
+    "name": "differential expression quantifications",
+    "slug": "differential_expression_quantifications",
+    "description": "Statistical results from differential expression analysis comparing conditions.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "differential_splicing_quantifications",
+    "name": "differential splicing quantifications",
+    "slug": "differential_splicing_quantifications",
+    "description": "Statistical results from differential splicing analysis comparing conditions.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "element_quantifications",
+    "name": "element quantifications",
+    "slug": "element_quantifications",
+    "description": "Quantification values for regulatory elements.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "exon_quantifications",
+    "name": "exon quantifications",
+    "slug": "exon_quantifications",
+    "description": "Read counts or expression values quantified at individual exons.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [
+      "exon usage",
+      "splicing"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "filtered_modified_peptide_quantification",
+    "name": "filtered modified peptide quantification",
+    "slug": "filtered_modified_peptide_quantification",
+    "description": "Filtered quantification of post-translationally modified peptides.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "filtered_peptide_quantification",
+    "name": "filtered peptide quantification",
+    "slug": "filtered_peptide_quantification",
+    "description": "Filtered quantification of peptides from proteomics data.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "gene_quantifications",
+    "name": "gene quantifications",
+    "slug": "gene_quantifications",
+    "description": "Expression quantifications at gene level as read counts, TPM, or FPKM values.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [
+      "gene expression"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "gene_stabilities",
+    "name": "gene stabilities",
+    "slug": "gene_stabilities",
+    "description": "Measurements of mRNA or gene expression stability over time.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "genic_features_quantifications",
+    "name": "genic features quantifications",
+    "slug": "genic_features_quantifications",
+    "description": "Quantifications across various genic features (exons, introns, UTRs).",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "genic_regions_quantifications",
+    "name": "genic regions quantifications",
+    "slug": "genic_regions_quantifications",
+    "description": "Read count quantifications over defined genic regions.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "merged_transcription_segment_quantifications",
+    "name": "merged transcription segment quantifications",
+    "slug": "merged_transcription_segment_quantifications",
+    "description": "Quantifications from merged transcription segments.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "microrna_quantifications",
+    "name": "microRNA quantifications",
+    "slug": "microrna_quantifications",
+    "description": "Expression quantifications of microRNAs (miRNAs).",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "mrna_stabilities",
+    "name": "mRNA stabilities",
+    "slug": "mrna_stabilities",
+    "description": "Measurements of mRNA half-life or decay rates.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "novel_peptides",
+    "name": "novel peptides",
+    "slug": "novel_peptides",
+    "description": "Peptides identified that are absent from reference databases.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0945",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "peptide_quantifications",
+    "name": "peptide quantifications",
+    "slug": "peptide_quantifications",
+    "description": "Abundance measurements of peptides from mass spectrometry proteomics.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0945",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "protein_expression_quantifications",
+    "name": "protein expression quantifications",
+    "slug": "protein_expression_quantifications",
+    "description": "Abundance measurements of proteins from proteomics data.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_2603",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "scaled_rna_stability",
+    "name": "scaled RNA stability",
+    "slug": "scaled_rna_stability",
+    "description": "RNA stability measurements scaled across samples.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "transcript_quantifications",
+    "name": "transcript quantifications",
+    "slug": "transcript_quantifications",
+    "description": "Expression quantifications at transcript isoform level.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [
+      "transcript expression",
+      "splicing"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "transcribed_region_quantifications",
+    "name": "transcribed region quantifications",
+    "slug": "transcribed_region_quantifications",
+    "description": "Quantifications over transcribed genomic regions.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "transcription_segment_quantifications",
+    "name": "transcription segment quantifications",
+    "slug": "transcription_segment_quantifications",
+    "description": "Quantifications over discrete transcription segments.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "unfiltered_modified_peptide_quantification",
+    "name": "unfiltered modified peptide quantification",
+    "slug": "unfiltered_modified_peptide_quantification",
+    "description": "Unfiltered quantification of post-translationally modified peptides.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "unfiltered_peptide_quantification",
+    "name": "unfiltered peptide quantification",
+    "slug": "unfiltered_peptide_quantification",
+    "description": "Unfiltered quantification of peptides from proteomics data.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "uv_enriched_segment_quantifications",
+    "name": "UV enriched segment quantifications",
+    "slug": "uv_enriched_segment_quantifications",
+    "description": "Quantifications from UV-crosslinking enriched RNA segments.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0928",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "bias_models",
+    "name": "bias models",
+    "slug": "bias_models",
+    "description": "Trained models capturing sequencing bias patterns based on sequence composition.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "counts_sequence_contribution_scores",
+    "name": "counts sequence contribution scores",
+    "slug": "counts_sequence_contribution_scores",
+    "description": "Per-nucleotide importance scores explaining sequence contribution to predicted counts (e.g., DeepLIFT, integrated gradients).",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "dnn_mpra_contribution_scores",
+    "name": "DNN-MPRA contribution scores",
+    "slug": "dnn_mpra_contribution_scores",
+    "description": "Nucleotide contribution scores from a deep neural network trained on MPRA data.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "dnn_mpra_predicted_signal",
+    "name": "DNN-MPRA predicted signal",
+    "slug": "dnn_mpra_predicted_signal",
+    "description": "Regulatory activity signal predicted by a DNN trained on MPRA data.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "model_performance_metrics",
+    "name": "model performance metrics",
+    "slug": "model_performance_metrics",
+    "description": "Evaluation metrics (AUC, correlation, etc.) assessing predictive model performance.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "models",
+    "name": "models",
+    "slug": "models",
+    "description": "Trained computational or machine learning models saved for prediction or interpretation.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "motif_model",
+    "name": "motif model",
+    "slug": "motif_model",
+    "description": "Sequence motif model (e.g., convolutional filter weights) from deep learning or motif discovery.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0859",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "profile_sequence_contribution_scores",
+    "name": "profile sequence contribution scores",
+    "slug": "profile_sequence_contribution_scores",
+    "description": "Per-nucleotide importance scores explaining sequence contribution to predicted signal profiles.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "promoter_prediction_model",
+    "name": "promoter prediction model",
+    "slug": "promoter_prediction_model",
+    "description": "Computational model trained to predict promoter activity from sequence.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "selected_regions_for_bias_corrected_predicted_signal_profile",
+    "name": "selected regions for bias-corrected predicted signal profile",
+    "slug": "selected_regions_for_bias_corrected_predicted_signal_profile",
+    "description": "Genomic regions selected for bias-corrected signal profile interpretation.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "selected_regions_for_count_sequence_contribution_scores",
+    "name": "selected regions for count sequence contribution scores",
+    "slug": "selected_regions_for_count_sequence_contribution_scores",
+    "description": "Genomic regions selected for count contribution score analysis.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "selected_regions_for_predicted_bias_profile",
+    "name": "selected regions for predicted bias profile",
+    "slug": "selected_regions_for_predicted_bias_profile",
+    "description": "Genomic regions selected for predicted bias profile interpretation.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "selected_regions_for_predicted_signal_and_sequence_contribution_scores",
+    "name": "selected regions for predicted signal and sequence contribution scores",
+    "slug": "selected_regions_for_predicted_signal_and_sequence_contribution_scores",
+    "description": "Genomic regions selected for combined signal and contribution score analysis.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "selected_regions_for_predicted_signal_profile",
+    "name": "selected regions for predicted signal profile",
+    "slug": "selected_regions_for_predicted_signal_profile",
+    "description": "Genomic regions selected for predicted signal profile interpretation.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "selected_regions_for_predicted_signal_profile_minus_strand",
+    "name": "selected regions for predicted signal profile (minus strand)",
+    "slug": "selected_regions_for_predicted_signal_profile_minus_strand",
+    "description": "Minus strand genomic regions selected for predicted signal interpretation.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "selected_regions_for_predicted_signal_profile_plus_strand",
+    "name": "selected regions for predicted signal profile (plus strand)",
+    "slug": "selected_regions_for_predicted_signal_profile_plus_strand",
+    "description": "Plus strand genomic regions selected for predicted signal interpretation.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "selected_regions_for_profile_sequence_contribution_scores",
+    "name": "selected regions for profile sequence contribution scores",
+    "slug": "selected_regions_for_profile_sequence_contribution_scores",
+    "description": "Genomic regions selected for profile contribution score analysis.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "tf_binding_prediction_model",
+    "name": "TF binding prediction model",
+    "slug": "tf_binding_prediction_model",
+    "description": "Deep learning model predicting transcription factor binding from DNA sequence.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "training_and_test_regions",
+    "name": "training and test regions",
+    "slug": "training_and_test_regions",
+    "description": "Genomic regions designated for model training and held-out evaluation.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "training_set",
+    "name": "training set",
+    "slug": "training_set",
+    "description": "Data used to train a computational or machine learning model.",
+    "category": "deep_learning",
+    "categorySlug": "deep_learning",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "fine_mapped_variants",
+    "name": "fine-mapped variants",
+    "slug": "fine_mapped_variants",
+    "description": "Variants identified as likely causal through statistical fine-mapping within associated loci.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "variant_functional_prediction",
+    "name": "variant functional prediction",
+    "slug": "variant_functional_prediction",
+    "description": "Computational predictions of variant functional impact.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "chromosome_sizes",
+    "name": "chromosome sizes",
+    "slug": "chromosome_sizes",
+    "description": "File listing chromosome/contig names and lengths, required by many genomics tools.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0919",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "chromosomes_reference",
+    "name": "chromosomes reference",
+    "slug": "chromosomes_reference",
+    "description": "Reference sequences for individual chromosomes.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_2977",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "elements_reference",
+    "name": "elements reference",
+    "slug": "elements_reference",
+    "description": "Reference set of annotated genomic elements.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "female_genome_index",
+    "name": "female genome index",
+    "slug": "female_genome_index",
+    "description": "Alignment index built from a female reference genome.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3210",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "female_genome_reference",
+    "name": "female genome reference",
+    "slug": "female_genome_reference",
+    "description": "Reference genome sequence derived from a female individual (includes both X chromosomes).",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_2977",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "genome_index",
+    "name": "genome index",
+    "slug": "genome_index",
+    "description": "Precomputed index enabling rapid sequence alignment to a reference genome.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3210",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "genome_reference",
+    "name": "genome reference",
+    "slug": "genome_reference",
+    "description": "Reference genome sequence assembly used for alignment and annotation.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_2977",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "male_genome_index",
+    "name": "male genome index",
+    "slug": "male_genome_index",
+    "description": "Alignment index built from a male reference genome.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3210",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "male_genome_reference",
+    "name": "male genome reference",
+    "slug": "male_genome_reference",
+    "description": "Reference genome sequence derived from a male individual (includes X and Y chromosomes).",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_2977",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "mirna_reference",
+    "name": "miRNA reference",
+    "slug": "mirna_reference",
+    "description": "Reference sequences and annotations for microRNAs.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "mitochondrial_genome_index",
+    "name": "mitochondrial genome index",
+    "slug": "mitochondrial_genome_index",
+    "description": "Alignment index for the mitochondrial genome.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3210",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "mitochondrial_genome_reference",
+    "name": "mitochondrial genome reference",
+    "slug": "mitochondrial_genome_reference",
+    "description": "Reference sequence for the mitochondrial genome.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_2977",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "motif_clusters_reference",
+    "name": "motif clusters reference",
+    "slug": "motif_clusters_reference",
+    "description": "Reference set of clustered sequence motifs.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_1353",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "phastcons_score_reference",
+    "name": "phastcons score reference",
+    "slug": "phastcons_score_reference",
+    "description": "Reference phastCons conservation scores across the genome.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "reference",
+    "name": "reference",
+    "slug": "reference",
+    "description": "Generic reference data file.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "repeats_reference",
+    "name": "repeats reference",
+    "slug": "repeats_reference",
+    "description": "Reference annotations of repetitive elements.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "rrna_reference",
+    "name": "rRNA reference",
+    "slug": "rrna_reference",
+    "description": "Reference sequences for ribosomal RNA.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "snrna_reference",
+    "name": "snRNA reference",
+    "slug": "snrna_reference",
+    "description": "Reference sequences for small nuclear RNA.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "transcriptome_index",
+    "name": "transcriptome index",
+    "slug": "transcriptome_index",
+    "description": "Index for rapid alignment to transcriptome reference sequences.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3210",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "transcriptome_reference",
+    "name": "transcriptome reference",
+    "slug": "transcriptome_reference",
+    "description": "Reference transcript sequences for a species, used for RNA-seq alignment.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_2977",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "trna_reference",
+    "name": "tRNA reference",
+    "slug": "trna_reference",
+    "description": "Reference sequences for transfer RNA.",
+    "category": "reference",
+    "categorySlug": "reference",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "hmm_predicted_chromatin_state",
+    "name": "HMM predicted chromatin state",
+    "slug": "hmm_predicted_chromatin_state",
+    "description": "Chromatin state annotations (e.g., ChromHMM) predicted by hidden Markov model from histone marks.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "read_annotations",
+    "name": "read annotations",
+    "slug": "read_annotations",
+    "description": "Per-read annotations of alignment features or classifications.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "semi_automated_genome_annotation",
+    "name": "semi-automated genome annotation",
+    "slug": "semi_automated_genome_annotation",
+    "description": "Genome annotation produced by a combination of automated and manual methods.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sequence_alignability",
+    "name": "sequence alignability",
+    "slug": "sequence_alignability",
+    "description": "Track indicating mappability of sequences to the reference genome.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sequence_uniqueness",
+    "name": "sequence uniqueness",
+    "slug": "sequence_uniqueness",
+    "description": "Track indicating uniqueness of k-mer sequences across the genome.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "archr_project",
+    "name": "archr project",
+    "slug": "archr_project",
+    "description": "ArchR software project file with processed single-cell ATAC-seq data and analyses.",
+    "category": "single_cell",
+    "categorySlug": "single_cell",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "cell_coordinates",
+    "name": "cell coordinates",
+    "slug": "cell_coordinates",
+    "description": "Low-dimensional coordinates (UMAP, t-SNE, PCA) for single-cell visualization.",
+    "category": "single_cell",
+    "categorySlug": "single_cell",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "cell_topic_participation",
+    "name": "cell topic participation",
+    "slug": "cell_topic_participation",
+    "description": "Cell-level participation scores in latent topics from topic modeling.",
+    "category": "single_cell",
+    "categorySlug": "single_cell",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "clusters",
+    "name": "clusters",
+    "slug": "clusters",
+    "description": "Cell cluster assignments from unsupervised clustering of single-cell data.",
+    "category": "single_cell",
+    "categorySlug": "single_cell",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "capture_targets",
+    "name": "capture targets",
+    "slug": "capture_targets",
+    "description": "Genomic regions targeted for enrichment in capture-based sequencing (exome, panels).",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "exclusion_list_regions",
+    "name": "exclusion list regions",
+    "slug": "exclusion_list_regions",
+    "description": "Genomic blacklist regions excluded due to mapping artifacts or technical issues.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "filtered_regions",
+    "name": "filtered regions",
+    "slug": "filtered_regions",
+    "description": "Genomic regions removed from analysis after filtering.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "fragments",
+    "name": "fragments",
+    "slug": "fragments",
+    "description": "DNA or RNA fragment data prior to alignment.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "idat_green_channel",
+    "name": "idat green channel",
+    "slug": "idat_green_channel",
+    "description": "Green channel intensity data from Illumina IDAT microarray files.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "idat_red_channel",
+    "name": "idat red channel",
+    "slug": "idat_red_channel",
+    "description": "Red channel intensity data from Illumina IDAT microarray files.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "inclusion_list",
+    "name": "inclusion list",
+    "slug": "inclusion_list",
+    "description": "Allowlist of genomic regions or barcodes included in analysis.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "index_reads",
+    "name": "index reads",
+    "slug": "index_reads",
+    "description": "Index read sequences for sample demultiplexing.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "intensity_values",
+    "name": "intensity values",
+    "slug": "intensity_values",
+    "description": "Raw intensity measurements from microarray or imaging experiments.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "kmer_weights",
+    "name": "kmer weights",
+    "slug": "kmer_weights",
+    "description": "Frequency or weight values for k-mer sequences.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "library_fraction",
+    "name": "library fraction",
+    "slug": "library_fraction",
+    "description": "Proportion of sequencing library represented by a sample or subset.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "mitochondrial_exclusion_list_regions",
+    "name": "mitochondrial exclusion list regions",
+    "slug": "mitochondrial_exclusion_list_regions",
+    "description": "Mitochondrial regions excluded from nuclear genome analysis.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "nanopore_signal",
+    "name": "nanopore signal",
+    "slug": "nanopore_signal",
+    "description": "Raw ionic current signal from nanopore sequencing.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "negative_control_regions",
+    "name": "negative control regions",
+    "slug": "negative_control_regions",
+    "description": "Genomic regions used as negative controls in experiments.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "positive_control_regions",
+    "name": "positive control regions",
+    "slug": "positive_control_regions",
+    "description": "Genomic regions used as positive controls in experiments.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "primer_sequence",
+    "name": "primer sequence",
+    "slug": "primer_sequence",
+    "description": "Oligonucleotide primer sequences used in PCR or sequencing.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "r2c2_subreads",
+    "name": "R2C2 subreads",
+    "slug": "r2c2_subreads",
+    "description": "Rolling circle amplification sub-reads from R2C2 long-read sequencing.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "raw_data",
+    "name": "raw data",
+    "slug": "raw_data",
+    "description": "Unprocessed experimental data in original format before computational processing.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "raw_imaging_signal",
+    "name": "raw imaging signal",
+    "slug": "raw_imaging_signal",
+    "description": "Unprocessed signal from imaging-based experiments.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sequence_adapters",
+    "name": "sequence adapters",
+    "slug": "sequence_adapters",
+    "description": "Adapter sequences ligated to library fragments for sequencing platform compatibility.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sequence_barcodes",
+    "name": "sequence barcodes",
+    "slug": "sequence_barcodes",
+    "description": "Short DNA sequences labeling samples (multiplexing) or individual cells (single-cell).",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "spike_ins",
+    "name": "spike-ins",
+    "slug": "spike_ins",
+    "description": "Exogenous sequences of known concentration added for normalization (e.g., ERCC RNA spike-ins).",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "subreads",
+    "name": "subreads",
+    "slug": "subreads",
+    "description": "Sub-read data from long-read sequencing platforms (PacBio).",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "validation",
+    "name": "validation",
+    "slug": "validation",
+    "description": "Data generated for experimental validation purposes.",
+    "category": "technical",
+    "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  }
+]

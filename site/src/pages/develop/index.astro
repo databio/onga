@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import summary from '../../data/develop/summary.json';
+---
+
+<Layout title="Develop" side="develop" description="ONGA curation and QA dashboard">
+  <div class="space-y-12">
+    <section class="text-center py-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-4">Develop</h1>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Curation dashboard for developing the ONGA vocabulary. Review embeddings analysis,
+        make cleanup decisions, then export a changeset to apply back to the schema.
+      </p>
+    </section>
+
+    <section class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <a href="/develop/merge-candidates" class="block bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4 border-orange-500">
+        <div class="text-3xl font-bold text-orange-600">{summary.mergeCandidates}</div>
+        <div class="text-sm text-gray-500 mt-1">Merge Candidates</div>
+        <p class="text-xs text-gray-400 mt-2">Highly similar term pairs that may be duplicates</p>
+      </a>
+      <a href="/develop/gaps" class="block bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4 border-red-500">
+        <div class="text-3xl font-bold text-red-600">{summary.gapTerms}</div>
+        <div class="text-sm text-gray-500 mt-1">Gap Terms</div>
+        <p class="text-xs text-gray-400 mt-2">Terms with no close match in external ontologies</p>
+      </a>
+      <a href="/develop/mapping-suggestions" class="block bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4 border-blue-500">
+        <div class="text-3xl font-bold text-blue-600">{summary.mappingSuggestions}</div>
+        <div class="text-sm text-gray-500 mt-1">Mapping Suggestions</div>
+        <p class="text-xs text-gray-400 mt-2">Terms with suggested EDAM/OBI/GO mappings</p>
+      </a>
+      <a href="/develop/quality-issues" class="block bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4 border-yellow-500">
+        <div class="text-3xl font-bold text-yellow-600">{summary.qualityIssues}</div>
+        <div class="text-sm text-gray-500 mt-1">Quality Issues</div>
+        <p class="text-xs text-gray-400 mt-2">Structural and categorization problems</p>
+      </a>
+    </section>
+
+    <section class="bg-white rounded-lg p-8 shadow-sm">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Curate &rarr; Export &rarr; Apply</h2>
+      <div class="grid md:grid-cols-3 gap-6 text-sm text-gray-600">
+        <div>
+          <div class="text-lg font-bold text-gray-400 mb-2">1. Curate</div>
+          <p>Review each tool's findings and make per-item decisions (merge, keep, delete, adopt mapping). Decisions are stored in your browser's localStorage.</p>
+        </div>
+        <div>
+          <div class="text-lg font-bold text-gray-400 mb-2">2. Export</div>
+          <p>Visit the <a href="/develop/changeset" class="text-blue-600 hover:underline">Changeset</a> page to review all decisions and download a <code>changeset.json</code> file.</p>
+        </div>
+        <div>
+          <div class="text-lg font-bold text-gray-400 mb-2">3. Apply</div>
+          <p>Run <code>make apply CHANGESET=changeset.json</code> to rewrite <code>file_content.yaml</code>, then rebuild the site.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

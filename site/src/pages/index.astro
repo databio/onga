@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import vocabulary from '../data/vocabulary.json';
+---
+
+<Layout title="Home" description={vocabulary.description}>
+  <div class="space-y-12">
+    <!-- Hero -->
+    <section class="text-center py-12">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">ONGA</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Ontology for Genomic Annotations
+      </p>
+      <p class="mt-4 text-gray-500 max-w-2xl mx-auto text-sm">
+        Two complementary vocabularies for describing genomic data files
+      </p>
+    </section>
+
+    <!-- Two Vocabularies -->
+    <section class="grid md:grid-cols-2 gap-8">
+      <a href="/data-types" class="block bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow border-l-4 border-blue-500">
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">DataType</h2>
+        <p class="text-blue-600 font-medium mb-4">{vocabulary.stats.dataTypeTerms} terms</p>
+        <p class="text-gray-600 mb-4">
+          <strong>Computational output types</strong> — the data structure or processing result a file contains.
+        </p>
+        <p class="text-sm text-gray-500">
+          Describes <em>HOW</em> data was produced: peaks, signal tracks, alignments, count matrices.
+        </p>
+      </a>
+
+      <a href="/feature-types" class="block bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow border-l-4 border-green-500">
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">FeatureType</h2>
+        <p class="text-green-600 font-medium mb-4">{vocabulary.stats.featureTypeTerms} terms</p>
+        <p class="text-gray-600 mb-4">
+          <strong>Biological feature types</strong> — the biological entity or concept the data represents.
+        </p>
+        <p class="text-sm text-gray-500">
+          Describes <em>WHAT</em> biology it captures: enhancers, TF binding sites, methylation states.
+        </p>
+      </a>
+    </section>
+
+    <!-- Relationship explanation -->
+    <section class="bg-gray-50 rounded-lg p-6">
+      <h3 class="font-semibold text-gray-900 mb-3">How they relate</h3>
+      <p class="text-gray-600 text-sm">
+        A file's <strong>DataType</strong> describes its computational origin (e.g., "peaks" from a peak caller).
+        A file's <strong>FeatureType</strong> describes what biological phenomenon it captures (e.g., "TF binding sites").
+        The same DataType can represent different FeatureTypes depending on the experiment —
+        "peaks" from ChIP-seq might represent TF binding sites, while "peaks" from ATAC-seq represent open chromatin.
+      </p>
+    </section>
+
+    <!-- Stats -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-lg p-6 text-center shadow-sm">
+        <div class="text-3xl font-bold text-gray-700">{vocabulary.stats.totalTerms}</div>
+        <div class="text-sm text-gray-500 mt-1">Total Terms</div>
+      </div>
+      <div class="bg-white rounded-lg p-6 text-center shadow-sm">
+        <div class="text-3xl font-bold text-blue-600">{vocabulary.stats.dataTypeTerms}</div>
+        <div class="text-sm text-gray-500 mt-1">DataTypes</div>
+      </div>
+      <div class="bg-white rounded-lg p-6 text-center shadow-sm">
+        <div class="text-3xl font-bold text-green-600">{vocabulary.stats.featureTypeTerms}</div>
+        <div class="text-sm text-gray-500 mt-1">FeatureTypes</div>
+      </div>
+      <div class="bg-white rounded-lg p-6 text-center shadow-sm">
+        <div class="text-3xl font-bold text-gray-700">{vocabulary.stats.totalMappings}</div>
+        <div class="text-sm text-gray-500 mt-1">EDAM Mappings</div>
+      </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="flex flex-wrap gap-4 justify-center text-sm">
+      <a href="/data-types" class="text-blue-600 hover:text-blue-800 underline">Browse DataTypes</a>
+      <a href="/feature-types" class="text-green-600 hover:text-green-800 underline">Browse FeatureTypes</a>
+      <a href="/mappings" class="text-gray-600 hover:text-gray-800 underline">EDAM Mappings</a>
+      <a href="/about" class="text-gray-600 hover:text-gray-800 underline">About ONGA</a>
+    </section>
+  </div>
+</Layout>

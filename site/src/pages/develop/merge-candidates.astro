@@ -1,0 +1,138 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import data from '../../data/develop/merge-candidates.json';
+
+const pairs = (data as any).pairs || [];
+const subsets = [...new Set(pairs.flatMap((p: any) => [p.term1_subset, p.term2_subset]))].sort();
+---
+
+<Layout title="Merge Candidates" side="develop" description="Highly similar ONGA term pairs">
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">Merge Candidates</h1>
+  <p class="text-gray-600 mb-6">
+    {pairs.length} pairs of terms with high embedding similarity that may be duplicates or near-duplicates.
+  </p>
+
+  <div class="flex gap-4 mb-6">
+    <select id="subset-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
+      <option value="">All subsets</option>
+      {subsets.map((s: string) => <option value={s}>{s.replace(/_/g, ' ')}</option>)}
+    </select>
+    <label class="flex items-center gap-2 text-sm text-gray-600">
+      <input type="checkbox" id="cross-category" />
+      Cross-category only
+    </label>
+    <label class="flex items-center gap-2 text-sm text-gray-600">
+      <input type="checkbox" id="hide-decided" />
+      Hide decided
+    </label>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-gray-50 text-left">
+        <tr>
+          <th class="px-4 py-3 font-medium text-gray-700">Term 1</th>
+          <th class="px-4 py-3 font-medium text-gray-700">Term 2</th>
+          <th class="px-4 py-3 font-medium text-gray-700">Similarity</th>
+          <th class="px-4 py-3 font-medium text-gray-700">Subset</th>
+          <th class="px-4 py-3 font-medium text-gray-700">Decision</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100" id="pairs-table">
+        {pairs.map((p: any, i: number) => (
+          <tr class="pair-row hover:bg-gray-50"
+              data-idx={i}
+              data-subset1={p.term1_subset}
+              data-subset2={p.term2_subset}
+              data-cross={p.crosses_categories}>
+            <td class="px-4 py-3">
+              <div class="font-medium text-gray-900">{p.term1}</div>
+              <div class="text-xs text-gray-500">{p.term1_category} / {p.term1_subset?.replace(/_/g, ' ')}</div>
+            </td>
+            <td class="px-4 py-3">
+              <div class="font-medium text-gray-900">{p.term2}</div>
+              <div class="text-xs text-gray-500">{p.term2_category} / {p.term2_subset?.replace(/_/g, ' ')}</div>
+            </td>
+            <td class="px-4 py-3">
+              <span class:list={[
+                'font-mono text-xs px-2 py-1 rounded',
+                p.similarity >= 0.95 ? 'bg-red-100 text-red-800' :
+                p.similarity >= 0.90 ? 'bg-orange-100 text-orange-800' :
+                'bg-yellow-100 text-yellow-800'
+              ]}>
+                {p.similarity.toFixed(4)}
+              </span>
+            </td>
+            <td class="px-4 py-3 text-xs text-gray-500">
+              {p.term1_subset === p.term2_subset ? p.term1_subset?.replace(/_/g, ' ') : `${p.term1_subset} / ${p.term2_subset}`}
+            </td>
+            <td class="px-4 py-3">
+              <select class="decision-select text-xs border border-gray-300 rounded px-2 py-1" data-idx={i}>
+                <option value="">-- decide --</option>
+                <option value="merge_1_into_2">Merge &rarr; {p.term2}</option>
+                <option value="merge_2_into_1">Merge &rarr; {p.term1}</option>
+                <option value="keep_separate">Keep separate</option>
+                <option value="defer">Defer</option>
+              </select>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <script define:vars={{ pairs }}>
+    const STORAGE_KEY = 'onga-merge-decisions';
+
+    function loadDecisions() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+      catch { return {}; }
+    }
+
+    function saveDecisions(decisions) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(decisions));
+    }
+
+    const decisions = loadDecisions();
+    const selects = document.querySelectorAll('.decision-select');
+    selects.forEach(sel => {
+      const idx = sel.dataset.idx;
+      if (decisions[idx]) sel.value = decisions[idx];
+      sel.addEventListener('change', () => {
+        const d = loadDecisions();
+        if (sel.value) d[idx] = sel.value;
+        else delete d[idx];
+        saveDecisions(d);
+        applyFilters();
+      });
+    });
+
+    const subsetFilter = document.getElementById('subset-filter');
+    const crossCheck = document.getElementById('cross-category');
+    const hideDecided = document.getElementById('hide-decided');
+    const rows = document.querySelectorAll('.pair-row');
+
+    function applyFilters() {
+      const subset = subsetFilter.value;
+      const crossOnly = crossCheck.checked;
+      const hideDone = hideDecided.checked;
+      const d = loadDecisions();
+
+      rows.forEach(row => {
+        const s1 = row.dataset.subset1;
+        const s2 = row.dataset.subset2;
+        const cross = row.dataset.cross === 'true';
+        const idx = row.dataset.idx;
+        let show = true;
+        if (subset && s1 !== subset && s2 !== subset) show = false;
+        if (crossOnly && !cross) show = false;
+        if (hideDone && d[idx]) show = false;
+        row.classList.toggle('hidden', !show);
+      });
+    }
+
+    subsetFilter?.addEventListener('change', applyFilters);
+    crossCheck?.addEventListener('change', applyFilters);
+    hideDecided?.addEventListener('change', applyFilters);
+  </script>
+</Layout>

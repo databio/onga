@@ -1,9 +1,9 @@
 # SSSOM Mapping file: ONGA OutputType → EDAM
 # curie_map:
-#   onga: https://w3id.org/onga/
+#   onga: https://databio.org/onga/
 #   edam: http://edamontology.org/
 #   skos: http://www.w3.org/2004/02/skos/core#
-# mapping_set_id: https://w3id.org/onga/mappings/edam
+# mapping_set_id: https://databio.org/onga/mappings/edam
 # mapping_set_description: Mappings from ONGA OutputType terms to EDAM data and topic terms
 # creator_id: https://orcid.org/0000-0001-5884-4247
 # license: https://creativecommons.org/licenses/by/4.0/

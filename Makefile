@@ -2,7 +2,7 @@ SCHEMA_DIR = src
 SCHEMA_NAME = onga
 MAIN_SCHEMA = $(SCHEMA_DIR)/$(SCHEMA_NAME).yaml
 
-.PHONY: all gen-owl gen-jsonld gen-python gen-docs validate clean
+.PHONY: all gen-owl gen-jsonld gen-python gen-docs validate clean embeddings-build embeddings-compare apply
 
 all: gen-owl gen-jsonld
 
@@ -20,6 +20,15 @@ gen-docs:
 
 validate:
 	linkml-validate --schema $(MAIN_SCHEMA) --target-class OutputType
+
+embeddings-build:
+	cd embeddings && python scripts/build_embeddings.py
+
+embeddings-compare:
+	cd embeddings && python scripts/run_comparison.py
+
+apply:
+	python scripts/apply_changeset.py $(CHANGESET)
 
 clean:
 	rm -f project/owl/*.ttl project/*.jsonld project/*.py

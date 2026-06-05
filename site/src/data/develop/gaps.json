@@ -1,0 +1,239 @@
+{
+  "generated_at": "2026-06-04T20:50:42.659596",
+  "total_onga_terms": 310,
+  "gap_terms_count": 23,
+  "gap_percentage": 7.4,
+  "by_subset": {
+    "contact_matrix": {
+      "count": 1,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "name": "genome subcompartments",
+          "category": "FeatureType",
+          "definition": "Fine-grained chromatin compartments (A1, A2, B1, B2, B3, B4) within major A/B compartments.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "crispr_screen": {
+      "count": 1,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "name": "perturbation signal",
+          "category": "DataType",
+          "definition": "Phenotypic signal associated with CRISPR perturbations.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "deep_learning": {
+      "count": 8,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "name": "DNN-MPRA contribution scores",
+          "category": "DataType",
+          "definition": "Nucleotide contribution scores from a deep neural network trained on MPRA data.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "name": "selected regions for bias-corrected predicted signal profile",
+          "category": "DataType",
+          "definition": "Genomic regions selected for bias-corrected signal profile interpretation.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "name": "selected regions for predicted bias profile",
+          "category": "DataType",
+          "definition": "Genomic regions selected for predicted bias profile interpretation.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "name": "selected regions for predicted signal and sequence contribution scores",
+          "category": "DataType",
+          "definition": "Genomic regions selected for combined signal and contribution score analysis.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "name": "selected regions for predicted signal profile (minus strand)",
+          "category": "DataType",
+          "definition": "Minus strand genomic regions selected for predicted signal interpretation.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "name": "selected regions for predicted signal profile (plus strand)",
+          "category": "DataType",
+          "definition": "Plus strand genomic regions selected for predicted signal interpretation.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "name": "selected regions for profile sequence contribution scores",
+          "category": "DataType",
+          "definition": "Genomic regions selected for profile contribution score analysis.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "name": "training and test regions",
+          "category": "DataType",
+          "definition": "Genomic regions designated for model training and held-out evaluation.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "element_gene_linkage": {
+      "count": 3,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "name": "element gene interactions signal",
+          "category": "FeatureType",
+          "definition": "Signal strength of element-gene interaction associations.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "name": "thresholded element gene links",
+          "category": "FeatureType",
+          "definition": "Element-gene links filtered by a significance threshold.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "name": "thresholded links",
+          "category": "FeatureType",
+          "definition": "Generic significance-thresholded regulatory links.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "peak_set": {
+      "count": 1,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "name": "IDR ranked peaks",
+          "category": "DataType",
+          "definition": "Peaks ranked by IDR score, with lower IDR indicating higher reproducibility across replicates.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "quantification": {
+      "count": 1,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "name": "genic features quantifications",
+          "category": "DataType",
+          "definition": "Quantifications across various genic features (exons, introns, UTRs).",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "reference": {
+      "count": 1,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "name": "phastcons score reference",
+          "category": "DataType",
+          "definition": "Reference phastCons conservation scores across the genome.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "signal_track": {
+      "count": 2,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "name": "observed bias profile",
+          "category": "DataType",
+          "definition": "Empirically measured sequencing bias profile from experimental data.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "name": "observed signal profile",
+          "category": "DataType",
+          "definition": "Experimentally measured signal profile from sequencing data.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "single_cell": {
+      "count": 1,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "name": "cell topic participation",
+          "category": "DataType",
+          "definition": "Cell-level participation scores in latent topics from topic modeling.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "technical": {
+      "count": 4,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "name": "exclusion list regions",
+          "category": "DataType",
+          "definition": "Genomic blacklist regions excluded due to mapping artifacts or technical issues.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "name": "nanopore signal",
+          "category": "DataType",
+          "definition": "Raw ionic current signal from nanopore sequencing.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "name": "negative control regions",
+          "category": "DataType",
+          "definition": "Genomic regions used as negative controls in experiments.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "name": "positive control regions",
+          "category": "DataType",
+          "definition": "Genomic regions used as positive controls in experiments.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "onga",
+  "title": "ONGA - Ontology for Genomic Annotations",
+  "description": "ONGA (Ontology for Genomic Annotations) provides controlled vocabularies \nfor describing genomic data files. It defines two complementary vocabularies:\n\n- DataType: Computational output types (HOW data was produced)\n- FeatureType: Biological feature types (WHAT biology it represents)\n\nA file's DataType describes its computational origin (e.g., \"peaks\" from a peak caller).\nA file's FeatureType describes what biological phenomenon it captures (e.g., \"TF binding sites\").\nThe same DataType can represent different FeatureTypes depending on the experiment.",
+  "version": "0.1.0",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "createdBy": "Nathan Sheffield",
+  "creationDate": "2026-05-20",
+  "prefix": "https://databio.org/onga/",
+  "stats": {
+    "totalTerms": 310,
+    "dataTypeTerms": 218,
+    "featureTypeTerms": 92,
+    "totalCategories": 22,
+    "totalMappings": 100,
+    "coveragePercent": 32
+  }
+}

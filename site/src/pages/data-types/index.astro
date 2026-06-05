@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import dataTypes from '../../data/data-types.json';
+import dataTypesByCategory from '../../data/data-types-by-category.json';
+
+const categories = Object.keys(dataTypesByCategory).sort();
+---
+
+<Layout title="DataTypes" description="Computational output types - HOW data was produced">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">DataType</h1>
+    <p class="text-blue-600 font-medium">{dataTypes.length} terms</p>
+    <p class="text-gray-600 mt-2">
+      Computational output types — the data structure or processing result a file contains.
+      Describes <em>HOW</em> data was produced or represented.
+    </p>
+  </div>
+
+  <!-- Search -->
+  <div class="bg-white rounded-lg p-4 shadow-sm mb-8">
+    <input
+      type="search"
+      id="search"
+      placeholder="Filter DataTypes..."
+      class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
+    />
+  </div>
+
+  <!-- By Category -->
+  <div class="space-y-8">
+    {categories.map(category => (
+      <section id={category}>
+        <h2 class="text-xl font-semibold text-gray-900 mb-4 capitalize">
+          {category.replace(/_/g, ' ')}
+          <span class="text-sm font-normal text-gray-500 ml-2">
+            ({dataTypesByCategory[category].length})
+          </span>
+        </h2>
+        <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
+          {dataTypesByCategory[category].map((term: any) => (
+            <a
+              href={`/data-types/${term.slug}`}
+              class="term-item block p-4 hover:bg-gray-50"
+              data-name={term.name.toLowerCase()}
+              data-description={term.description.toLowerCase()}
+            >
+              <div class="flex items-start justify-between">
+                <div>
+                  <h3 class="font-medium text-gray-900">{term.name}</h3>
+                  <p class="text-sm text-gray-500 mt-1">{term.description}</p>
+                  {term.seeAlso?.length > 0 && (
+                    <p class="text-xs text-green-600 mt-2">
+                      → {term.seeAlso.join(', ')}
+                    </p>
+                  )}
+                </div>
+                {term.edamMapping && (
+                  <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded shrink-0 ml-4">
+                    EDAM
+                  </span>
+                )}
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('search') as HTMLInputElement;
+    const items = document.querySelectorAll('.term-item') as NodeListOf<HTMLElement>;
+
+    searchInput?.addEventListener('input', (e) => {
+      const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+      items.forEach(item => {
+        const name = item.dataset.name || '';
+        const desc = item.dataset.description || '';
+        const matches = !query || name.includes(query) || desc.includes(query);
+        item.classList.toggle('hidden', !matches);
+      });
+    });
+  </script>
+</Layout>

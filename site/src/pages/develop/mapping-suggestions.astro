@@ -1,0 +1,164 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import data from '../../data/develop/mapping-suggestions.json';
+
+const report = data as any;
+const terms = (report.terms || []).filter((t: any) => t.suggested_mappings?.length > 0);
+const unmapped = terms.filter((t: any) => !t.existing_edam_mapping);
+const mapped = terms.filter((t: any) => t.existing_edam_mapping);
+---
+
+<Layout title="Mapping Suggestions" side="develop" description="Suggested ontology mappings for ONGA terms">
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">Mapping Suggestions</h1>
+  <p class="text-gray-600 mb-6">
+    {terms.length} terms have suggested mappings from EDAM, OBI, or GO.
+    {unmapped.length} are currently unmapped; {mapped.length} already have an EDAM mapping.
+  </p>
+
+  <div class="flex gap-4 mb-6">
+    <select id="mapping-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
+      <option value="">All terms ({terms.length})</option>
+      <option value="unmapped">Unmapped only ({unmapped.length})</option>
+      <option value="mapped">Already mapped ({mapped.length})</option>
+    </select>
+    <input type="search" id="search" placeholder="Search terms..." class="px-3 py-2 border border-gray-300 rounded text-sm" />
+    <label class="flex items-center gap-2 text-sm text-gray-600">
+      <input type="checkbox" id="hide-decided" />
+      Hide decided
+    </label>
+  </div>
+
+  <div class="space-y-4" id="terms-list">
+    {terms.map((term: any) => {
+      const termId = `map-${term.onga_term.replace(/\s+/g, '_')}`;
+      return (
+        <div class="mapping-term bg-white rounded-lg shadow-sm p-4"
+             data-term-id={termId}
+             data-mapped={term.existing_edam_mapping ? 'mapped' : 'unmapped'}
+             data-name={term.onga_term.toLowerCase()}>
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <div class="font-medium text-gray-900">{term.onga_term}</div>
+              <div class="text-xs text-gray-500">{term.onga_category} / {term.onga_subset?.replace(/_/g, ' ')}</div>
+              <p class="text-sm text-gray-600 mt-1">{term.onga_definition || 'No definition'}</p>
+              {term.existing_edam_mapping && (
+                <div class="text-xs text-green-600 mt-1">
+                  Current mapping: {term.existing_edam_mapping}
+                </div>
+              )}
+            </div>
+          </div>
+          {term.suggested_mappings?.length > 0 && (
+            <div class="border-t border-gray-100 pt-3">
+              <table class="w-full text-xs">
+                <thead>
+                  <tr class="text-left text-gray-500">
+                    <th class="pb-1">Ontology</th>
+                    <th class="pb-1">Term</th>
+                    <th class="pb-1">Similarity</th>
+                    <th class="pb-1">Decision</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {term.suggested_mappings.map((m: any, j: number) => {
+                    const sugId = `${termId}--${m.ontology}-${m.term_id?.replace(/[^a-zA-Z0-9]/g, '_')}`;
+                    return (
+                      <tr class="mapping-suggestion border-t border-gray-50" data-sug-id={sugId}>
+                        <td class="py-1.5 text-gray-500 uppercase">{m.ontology}</td>
+                        <td class="py-1.5">
+                          <span class="text-gray-900">{m.term_name}</span>
+                          <span class="text-gray-400 ml-1">({m.term_id})</span>
+                        </td>
+                        <td class="py-1.5">
+                          <span class:list={[
+                            'font-mono px-1.5 py-0.5 rounded',
+                            m.similarity >= 0.7 ? 'bg-green-100 text-green-800' :
+                            m.similarity >= 0.5 ? 'bg-yellow-100 text-yellow-800' :
+                            'bg-gray-100 text-gray-600'
+                          ]}>
+                            {m.similarity.toFixed(3)}
+                          </span>
+                        </td>
+                        <td class="py-1.5">
+                          <select class="mapping-decision border border-gray-300 rounded px-1 py-0.5" data-sug-id={sugId} data-term={term.onga_term} data-category={term.onga_category} data-ontology-id={m.term_id}>
+                            <option value="">--</option>
+                            <option value="adopt">Adopt</option>
+                            <option value="reject">Reject</option>
+                          </select>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      );
+    })}
+  </div>
+
+  {terms.length === 0 && (
+    <div class="bg-white rounded-lg p-8 shadow-sm text-center text-gray-500">
+      No mapping suggestions available. Run <code>make embeddings-compare</code> to generate reports.
+    </div>
+  )}
+
+  <script>
+    const STORAGE_KEY = 'onga-mapping-decisions';
+
+    function loadDecisions() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+      catch { return {}; }
+    }
+
+    function saveDecisions(d) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+    }
+
+    const decisions = loadDecisions();
+    document.querySelectorAll('.mapping-decision').forEach(sel => {
+      const id = sel.dataset.sugId;
+      if (decisions[id]) sel.value = decisions[id];
+      sel.addEventListener('change', () => {
+        const d = loadDecisions();
+        if (sel.value) d[id] = sel.value;
+        else delete d[id];
+        saveDecisions(d);
+      });
+    });
+
+    const mappingFilter = document.getElementById('mapping-filter');
+    const searchInput = document.getElementById('search');
+    const hideDecided = document.getElementById('hide-decided');
+    const termCards = document.querySelectorAll('.mapping-term');
+
+    function applyFilters() {
+      const filter = mappingFilter.value;
+      const query = searchInput.value.toLowerCase().trim();
+      const hideDone = hideDecided.checked;
+      const d = loadDecisions();
+
+      termCards.forEach(card => {
+        const mapped = card.dataset.mapped;
+        const name = card.dataset.name;
+        const termId = card.dataset.termId;
+        let show = true;
+
+        if (filter === 'unmapped' && mapped !== 'unmapped') show = false;
+        if (filter === 'mapped' && mapped !== 'mapped') show = false;
+        if (query && !name.includes(query)) show = false;
+        if (hideDone) {
+          const hasUndecided = card.querySelectorAll('.mapping-decision').length > 0 &&
+            [...card.querySelectorAll('.mapping-decision')].some(s => !d[s.dataset.sugId]);
+          if (!hasUndecided) show = false;
+        }
+        card.classList.toggle('hidden', !show);
+      });
+    }
+
+    mappingFilter?.addEventListener('change', applyFilters);
+    searchInput?.addEventListener('input', applyFilters);
+    hideDecided?.addEventListener('change', applyFilters);
+  </script>
+</Layout>

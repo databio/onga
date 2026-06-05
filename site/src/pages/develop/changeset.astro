@@ -1,0 +1,185 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import mergeData from '../../data/develop/merge-candidates.json';
+import gapData from '../../data/develop/gaps.json';
+import mappingData from '../../data/develop/mapping-suggestions.json';
+---
+
+<Layout title="Changeset" side="develop" description="Review and export decisions as a changeset">
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">Changeset</h1>
+  <p class="text-gray-600 mb-6">
+    Review all decisions made across the develop tools and export as a <code>changeset.json</code> file.
+  </p>
+
+  <div class="flex gap-4 mb-6">
+    <button id="export-btn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-medium">
+      Export changeset.json
+    </button>
+    <button id="clear-btn" class="px-4 py-2 bg-red-50 text-red-600 border border-red-200 rounded hover:bg-red-100 text-sm">
+      Clear all decisions
+    </button>
+  </div>
+
+  <div id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+  </div>
+
+  <div id="changeset-table" class="bg-white rounded-lg shadow-sm overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-gray-50 text-left">
+        <tr>
+          <th class="px-4 py-3 font-medium text-gray-700">Operation</th>
+          <th class="px-4 py-3 font-medium text-gray-700">Term</th>
+          <th class="px-4 py-3 font-medium text-gray-700">Details</th>
+          <th class="px-4 py-3 font-medium text-gray-700">Source</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100" id="ops-body">
+      </tbody>
+    </table>
+  </div>
+
+  <div id="empty-state" class="hidden bg-white rounded-lg p-8 shadow-sm text-center text-gray-500">
+    No decisions made yet. Visit the other develop tools to make decisions.
+  </div>
+
+  <script define:vars={{
+    mergePairs: (mergeData as any).pairs || [],
+    gapSubsets: (gapData as any).by_subset || {},
+    mappingTerms: (mappingData as any).terms || []
+  }}>
+    const KEYS = {
+      merge: 'onga-merge-decisions',
+      gap: 'onga-gap-decisions',
+      mapping: 'onga-mapping-decisions',
+      quality: 'onga-quality-decisions',
+    };
+
+    function load(key) {
+      try { return JSON.parse(localStorage.getItem(key) || '{}'); }
+      catch { return {}; }
+    }
+
+    function buildChangeset() {
+      const ops = [];
+
+      const mergeDecisions = load(KEYS.merge);
+      for (const [idx, decision] of Object.entries(mergeDecisions)) {
+        const pair = mergePairs[parseInt(idx)];
+        if (!pair) continue;
+        if (decision === 'merge_1_into_2') {
+          ops.push({ op: 'merge', from: pair.term1, into: pair.term2, category: pair.term2_category, source: 'merge-candidates' });
+        } else if (decision === 'merge_2_into_1') {
+          ops.push({ op: 'merge', from: pair.term2, into: pair.term1, category: pair.term1_category, source: 'merge-candidates' });
+        }
+      }
+
+      const gapDecisions = load(KEYS.gap);
+      for (const [id, decision] of Object.entries(gapDecisions)) {
+        const parts = id.replace('gap-', '').split('-');
+        const subset = parts[0];
+        const termName = parts.slice(1).join(' ').replace(/_/g, ' ');
+        if (decision === 'delete') {
+          const subsetTerms = gapSubsets[subset]?.terms || [];
+          const term = subsetTerms.find(t => t.name.replace(/\s+/g, '_') === parts.slice(1).join('_'));
+          ops.push({ op: 'delete', term: term?.name || termName, category: term?.category || 'DataType', source: 'gaps' });
+        }
+      }
+
+      const mapDecisions = load(KEYS.mapping);
+      for (const [id, decision] of Object.entries(mapDecisions)) {
+        if (decision !== 'adopt') continue;
+        const sel = document.querySelector(`[data-sug-id="${id}"]`);
+        if (!sel) {
+          const parts = id.split('--');
+          const termPart = parts[0].replace('map-', '').replace(/_/g, ' ');
+          const ontologyId = parts[1] || '';
+          ops.push({ op: 'adopt_mapping', term: termPart, category: '', meaning: ontologyId.replace(/_/g, ':'), source: 'mapping-suggestions' });
+          continue;
+        }
+        ops.push({
+          op: 'adopt_mapping',
+          term: sel.dataset.term,
+          category: sel.dataset.category,
+          meaning: sel.dataset.ontologyId,
+          source: 'mapping-suggestions',
+        });
+      }
+
+      return ops;
+    }
+
+    function render() {
+      const ops = buildChangeset();
+      const body = document.getElementById('ops-body');
+      const empty = document.getElementById('empty-state');
+      const table = document.getElementById('changeset-table');
+      const stats = document.getElementById('stats');
+
+      if (ops.length === 0) {
+        table.classList.add('hidden');
+        empty.classList.remove('hidden');
+        stats.innerHTML = '';
+        return;
+      }
+
+      table.classList.remove('hidden');
+      empty.classList.add('hidden');
+
+      const counts = {};
+      ops.forEach(o => { counts[o.op] = (counts[o.op] || 0) + 1; });
+
+      stats.innerHTML = Object.entries(counts).map(([op, count]) => `
+        <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+          <div class="text-2xl font-bold text-gray-700">${count}</div>
+          <div class="text-xs text-gray-500 mt-1">${op}</div>
+        </div>
+      `).join('');
+
+      const opColors = {
+        merge: 'bg-orange-100 text-orange-800',
+        delete: 'bg-red-100 text-red-800',
+        adopt_mapping: 'bg-blue-100 text-blue-800',
+        edit_description: 'bg-green-100 text-green-800',
+        add_see_also: 'bg-purple-100 text-purple-800',
+        recategorize: 'bg-yellow-100 text-yellow-800',
+      };
+
+      body.innerHTML = ops.map(o => `
+        <tr class="hover:bg-gray-50">
+          <td class="px-4 py-3">
+            <span class="text-xs font-medium px-2 py-1 rounded ${opColors[o.op] || 'bg-gray-100 text-gray-800'}">
+              ${o.op}
+            </span>
+          </td>
+          <td class="px-4 py-3 font-medium text-gray-900">${o.term || o.from || ''}</td>
+          <td class="px-4 py-3 text-xs text-gray-600">
+            ${o.op === 'merge' ? `→ ${o.into}` : ''}
+            ${o.op === 'adopt_mapping' ? `meaning: ${o.meaning}` : ''}
+            ${o.op === 'delete' ? o.category : ''}
+          </td>
+          <td class="px-4 py-3 text-xs text-gray-400">${o.source}</td>
+        </tr>
+      `).join('');
+    }
+
+    render();
+
+    document.getElementById('export-btn').addEventListener('click', () => {
+      const ops = buildChangeset();
+      const changeset = { version: 1, operations: ops };
+      const blob = new Blob([JSON.stringify(changeset, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'changeset.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('clear-btn').addEventListener('click', () => {
+      if (!confirm('Clear ALL decisions across all develop tools?')) return;
+      Object.values(KEYS).forEach(k => localStorage.removeItem(k));
+      render();
+    });
+  </script>
+</Layout>

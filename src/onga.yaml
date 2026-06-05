@@ -1,4 +1,4 @@
-id: https://w3id.org/onga
+id: https://databio.org/onga
 name: onga
 title: ONGA - Ontology for Genomic Annotations
 description: >-
@@ -13,7 +13,7 @@ creation_date: "2026-05-20"
 
 prefixes:
   linkml: https://w3id.org/linkml/
-  onga: https://w3id.org/onga/
+  onga: https://databio.org/onga/
   edam: http://edamontology.org/
   skos: http://www.w3.org/2004/02/skos/core#
   dct: http://purl.org/dc/terms/

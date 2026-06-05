@@ -1,0 +1,4 @@
+embeddings/data/ontologies/
+embeddings/data/embeddings/
+embeddings/onga_embeddings.egg-info/
+__pycache__/

@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import data from '../../data/develop/quality-issues.json';
+
+const issues = (data as any).issues || [];
+---
+
+<Layout title="Quality Issues" side="develop" description="Structural and categorization issues in ONGA">
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">Quality Issues</h1>
+  <p class="text-gray-600 mb-6">
+    Structural problems, misclassifications, and cleanup opportunities identified through manual review.
+  </p>
+
+  {issues.length > 0 ? (
+    <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
+      {issues.map((issue: any) => {
+        const issueId = `qi-${issue.id || issue.title?.replace(/\s+/g, '_')}`;
+        return (
+          <div class="qi-row p-4 hover:bg-gray-50 flex items-start justify-between" data-issue-id={issueId}>
+            <div class="flex-1">
+              <div class="font-medium text-gray-900">{issue.title}</div>
+              <p class="text-sm text-gray-600 mt-1">{issue.description}</p>
+              {issue.terms && (
+                <div class="text-xs text-gray-400 mt-2">
+                  Affected terms: {issue.terms.join(', ')}
+                </div>
+              )}
+            </div>
+            <select class="qi-decision text-xs border border-gray-300 rounded px-2 py-1 ml-4 shrink-0" data-issue-id={issueId}>
+              <option value="">-- decide --</option>
+              <option value="fix">Fix</option>
+              <option value="wontfix">Won't fix</option>
+              <option value="defer">Defer</option>
+            </select>
+          </div>
+        );
+      })}
+    </div>
+  ) : (
+    <div class="bg-white rounded-lg p-8 shadow-sm text-center text-gray-500">
+      <p>No quality issues defined yet.</p>
+      <p class="text-xs mt-2">
+        Add issues to <code>site/src/data/develop/quality-issues.json</code> to populate this page.
+      </p>
+    </div>
+  )}
+
+  <script>
+    const STORAGE_KEY = 'onga-quality-decisions';
+
+    function loadDecisions() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+      catch { return {}; }
+    }
+
+    function saveDecisions(d) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+    }
+
+    const decisions = loadDecisions();
+    document.querySelectorAll('.qi-decision').forEach(sel => {
+      const id = sel.dataset.issueId;
+      if (decisions[id]) sel.value = decisions[id];
+      sel.addEventListener('change', () => {
+        const d = loadDecisions();
+        if (sel.value) d[id] = sel.value;
+        else delete d[id];
+        saveDecisions(d);
+      });
+    });
+  </script>
+</Layout>

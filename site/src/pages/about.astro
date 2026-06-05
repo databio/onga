@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import vocabulary from '../data/vocabulary.json';
+---
+
+<Layout title="About" description="About the ONGA ontology">
+  <article class="prose prose-gray max-w-none">
+    <h1>About ONGA</h1>
+
+    <p class="lead text-xl text-gray-600">
+      {vocabulary.description}
+    </p>
+
+    <h2>The Problem</h2>
+    <p>
+      When you have a genomic data file (like a BED file), what does it actually contain?
+      Is it peaks from ChIP-seq? ATAC-seq? IDR-filtered peaks? Methylation states? Signal tracks?
+    </p>
+    <p>
+      The ENCODE consortium developed approximately 310 internal terms for describing file
+      contents ("output types"), but these terms aren't formalized as an ontology, lack definitions,
+      and aren't easily usable outside ENCODE.
+    </p>
+    <p>
+      Existing ontologies like <a href="https://edamontology.org/">EDAM</a> cover broad
+      bioinformatics concepts but lack the granularity needed for real-world genomic file annotation.
+    </p>
+
+    <h2>The Solution</h2>
+    <p>
+      ONGA formalizes this vocabulary with:
+    </p>
+    <ul>
+      <li><strong>Hierarchical organization</strong> — {vocabulary.stats.totalCategories} categories organizing {vocabulary.stats.totalTerms} specific terms</li>
+      <li><strong>Proper definitions</strong> — Each term has a description explaining its meaning</li>
+      <li><strong>Ontology mappings</strong> — {vocabulary.stats.totalMappings} terms mapped to EDAM, Sequence Ontology, and OBI where applicable</li>
+      <li><strong>Clear provenance</strong> — Terms track their source (ENCODE, UCSC, etc.)</li>
+      <li><strong>Extension mechanism</strong> — New terms can be proposed and reviewed</li>
+    </ul>
+
+    <h2>Scope</h2>
+    <h3>In Scope</h3>
+    <ul>
+      <li><strong>File content types</strong> — Peaks, signals, quantifications, matrices, references</li>
+      <li><strong>Biospecimen classifications</strong> — Cell line, primary cell, tissue, organoid (planned)</li>
+      <li><strong>Track geometry types</strong> — Points, segments, valued points, step functions (planned)</li>
+    </ul>
+
+    <h3>Out of Scope (use existing ontologies)</h3>
+    <ul>
+      <li><strong>File formats</strong> → <a href="https://edamontology.org/">EDAM</a> format branch</li>
+      <li><strong>Assay types</strong> → OBI/EFO (ChIP-seq, ATAC-seq, etc.)</li>
+      <li><strong>Organisms</strong> → NCBITaxon</li>
+      <li><strong>Cell types</strong> → Cell Ontology (CL)</li>
+      <li><strong>Anatomical terms</strong> → UBERON</li>
+      <li><strong>Sequence features</strong> → Sequence Ontology (SO)</li>
+    </ul>
+
+    <h2>Technical Details</h2>
+    <dl class="grid grid-cols-2 gap-4 not-prose text-sm bg-gray-50 rounded-lg p-6">
+      <div>
+        <dt class="text-gray-500">Version</dt>
+        <dd class="font-medium">{vocabulary.version}</dd>
+      </div>
+      <div>
+        <dt class="text-gray-500">License</dt>
+        <dd class="font-medium">
+          <a href={vocabulary.license} class="text-blue-600 hover:underline">CC BY 4.0</a>
+        </dd>
+      </div>
+      <div>
+        <dt class="text-gray-500">Namespace</dt>
+        <dd class="font-mono text-xs">{vocabulary.prefix}</dd>
+      </div>
+      <div>
+        <dt class="text-gray-500">Format</dt>
+        <dd class="font-medium">LinkML</dd>
+      </div>
+      <div>
+        <dt class="text-gray-500">Created by</dt>
+        <dd class="font-medium">{vocabulary.createdBy}</dd>
+      </div>
+      <div>
+        <dt class="text-gray-500">Created</dt>
+        <dd class="font-medium">{vocabulary.creationDate}</dd>
+      </div>
+    </dl>
+
+    <h2>Links</h2>
+    <ul>
+      <li><a href="https://github.com/databio/onga">GitHub repository</a></li>
+      <li><a href="https://www.encodeproject.org/">ENCODE Project</a> — Source of output_type vocabulary</li>
+      <li><a href="https://edamontology.org/">EDAM Ontology</a> — Target for upstream contribution</li>
+      <li><a href="https://linkml.io/">LinkML</a> — Schema language used</li>
+      <li><a href="https://mapping-commons.github.io/sssom/">SSSOM</a> — Mapping standard used</li>
+    </ul>
+
+    <h2>Contact</h2>
+    <p>
+      For questions, suggestions, or to propose new terms, please
+      <a href="https://github.com/databio/onga/issues">open an issue</a> on GitHub.
+    </p>
+  </article>
+</Layout>

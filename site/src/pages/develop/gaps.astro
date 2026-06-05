@@ -1,0 +1,125 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import data from '../../data/develop/gaps.json';
+
+const gapData = data as any;
+const subsets = Object.keys(gapData.by_subset || {}).sort();
+const allTerms = subsets.flatMap(s =>
+  (gapData.by_subset[s]?.terms || []).map((t: any) => ({ ...t, subset: s }))
+);
+---
+
+<Layout title="Gap Terms" side="develop" description="Terms with no close match in external ontologies">
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">Gap Terms</h1>
+  <p class="text-gray-600 mb-6">
+    {gapData.gap_terms_count} terms (out of {gapData.total_onga_terms}) have no close match
+    in EDAM, OBI, or GO. These are either genuinely novel to ONGA or may need rework.
+  </p>
+
+  <div class="flex gap-4 mb-6">
+    <select id="subset-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
+      <option value="">All subsets ({allTerms.length})</option>
+      {subsets.map(s => (
+        <option value={s}>{s.replace(/_/g, ' ')} ({gapData.by_subset[s]?.count || 0})</option>
+      ))}
+    </select>
+    <label class="flex items-center gap-2 text-sm text-gray-600">
+      <input type="checkbox" id="hide-decided" />
+      Hide decided
+    </label>
+  </div>
+
+  <div class="space-y-6">
+    {subsets.map(subset => (
+      <section class="subset-section" data-subset={subset}>
+        <h2 class="text-lg font-semibold text-gray-900 mb-3 capitalize">
+          {subset.replace(/_/g, ' ')}
+          <span class="text-sm font-normal text-gray-500 ml-2">
+            ({gapData.by_subset[subset]?.count || 0})
+          </span>
+        </h2>
+        <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
+          {(gapData.by_subset[subset]?.terms || []).map((term: any) => {
+            const termId = `gap-${subset}-${term.name.replace(/\s+/g, '_')}`;
+            return (
+              <div class="gap-row p-4 hover:bg-gray-50 flex items-start justify-between" data-subset={subset} data-term-id={termId}>
+                <div class="flex-1">
+                  <div class="font-medium text-gray-900">{term.name}</div>
+                  <div class="text-xs text-gray-500 mt-1">{term.category}</div>
+                  <p class="text-sm text-gray-600 mt-1">{term.definition || 'No definition'}</p>
+                  <div class="text-xs text-gray-400 mt-1">
+                    Best match similarity: <span class="font-mono">{(term.max_similarity || 0).toFixed(3)}</span>
+                    {term.best_match && <span> ({term.best_match})</span>}
+                  </div>
+                </div>
+                <select class="gap-decision text-xs border border-gray-300 rounded px-2 py-1 ml-4 shrink-0" data-term-id={termId}>
+                  <option value="">-- decide --</option>
+                  <option value="novel_keep">Novel, keep</option>
+                  <option value="needs_work">Needs rework</option>
+                  <option value="delete">Delete</option>
+                </select>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    ))}
+  </div>
+
+  {allTerms.length === 0 && (
+    <div class="bg-white rounded-lg p-8 shadow-sm text-center text-gray-500">
+      No gap analysis data available. Run <code>make embeddings-compare</code> to generate reports.
+    </div>
+  )}
+
+  <script>
+    const STORAGE_KEY = 'onga-gap-decisions';
+
+    function loadDecisions() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+      catch { return {}; }
+    }
+
+    function saveDecisions(d) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+    }
+
+    const decisions = loadDecisions();
+    const selects = document.querySelectorAll('.gap-decision');
+    selects.forEach(sel => {
+      const id = sel.dataset.termId;
+      if (decisions[id]) sel.value = decisions[id];
+      sel.addEventListener('change', () => {
+        const d = loadDecisions();
+        if (sel.value) d[id] = sel.value;
+        else delete d[id];
+        saveDecisions(d);
+        applyFilters();
+      });
+    });
+
+    const subsetFilter = document.getElementById('subset-filter');
+    const hideDecided = document.getElementById('hide-decided');
+    const sections = document.querySelectorAll('.subset-section');
+    const rows = document.querySelectorAll('.gap-row');
+
+    function applyFilters() {
+      const subset = subsetFilter.value;
+      const hideDone = hideDecided.checked;
+      const d = loadDecisions();
+
+      sections.forEach(sec => {
+        sec.classList.toggle('hidden', subset && sec.dataset.subset !== subset);
+      });
+      rows.forEach(row => {
+        const id = row.dataset.termId;
+        const subsetMatch = !subset || row.dataset.subset === subset;
+        const decidedHidden = hideDone && d[id];
+        row.classList.toggle('hidden', !subsetMatch || decidedHidden);
+      });
+    }
+
+    subsetFilter?.addEventListener('change', applyFilters);
+    hideDecided?.addEventListener('change', applyFilters);
+  </script>
+</Layout>

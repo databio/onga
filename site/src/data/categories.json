@@ -1,0 +1,134 @@
+[
+  {
+    "id": "alignment",
+    "slug": "alignment",
+    "name": "alignment",
+    "description": "Aligned sequence reads or assembled sequences mapped to a reference."
+  },
+  {
+    "id": "signal_track",
+    "slug": "signal_track",
+    "name": "signal track",
+    "description": "Quantitative signal values across genomic coordinates including coverage, fold change, and p-values."
+  },
+  {
+    "id": "peak_set",
+    "slug": "peak_set",
+    "name": "peak set",
+    "description": "Discrete regions of enrichment identified by peak calling algorithms."
+  },
+  {
+    "id": "chromatin_accessibility",
+    "slug": "chromatin_accessibility",
+    "name": "chromatin accessibility",
+    "description": "Open chromatin regions and nuclease cleavage data from DNase-seq or ATAC-seq."
+  },
+  {
+    "id": "contact_matrix",
+    "slug": "contact_matrix",
+    "name": "contact matrix",
+    "description": "Pairwise interaction frequency data from chromosome conformation capture experiments."
+  },
+  {
+    "id": "dna_methylation",
+    "slug": "dna_methylation",
+    "name": "dna methylation",
+    "description": "Methylation state measurements at specific sequence contexts (CpG, CHG, CHH)."
+  },
+  {
+    "id": "rna_modification",
+    "slug": "rna_modification",
+    "name": "rna modification",
+    "description": "Epitranscriptomic modification states including m6A, m5C, inosine, pseudouridine, and Nm."
+  },
+  {
+    "id": "regulatory_element",
+    "slug": "regulatory_element",
+    "name": "regulatory element",
+    "description": "Predicted or validated cis-regulatory elements including enhancers, promoters, and CREs."
+  },
+  {
+    "id": "element_gene_linkage",
+    "slug": "element_gene_linkage",
+    "name": "element gene linkage",
+    "description": "Statistical or predicted associations between regulatory elements and target genes."
+  },
+  {
+    "id": "crispr_screen",
+    "slug": "crispr_screen",
+    "name": "crispr screen",
+    "description": "Guide RNA libraries, perturbation signals, and quantifications from CRISPR screens."
+  },
+  {
+    "id": "count_matrix",
+    "slug": "count_matrix",
+    "name": "count matrix",
+    "description": "Sparse or dense count matrices from single-cell or bulk sequencing experiments."
+  },
+  {
+    "id": "quantification",
+    "slug": "quantification",
+    "name": "quantification",
+    "description": "Gene, transcript, exon, or protein expression measurements."
+  },
+  {
+    "id": "deep_learning",
+    "slug": "deep_learning",
+    "name": "deep learning",
+    "description": "Contribution scores, predicted signals, and outputs from trained genomic deep learning models."
+  },
+  {
+    "id": "replication_timing",
+    "slug": "replication_timing",
+    "name": "replication timing",
+    "description": "Replication timing profiles and relative replication signals."
+  },
+  {
+    "id": "variant",
+    "slug": "variant",
+    "name": "variant",
+    "description": "SNPs, indels, structural variants, and QTL associations."
+  },
+  {
+    "id": "reference",
+    "slug": "reference",
+    "name": "reference",
+    "description": "Genome assemblies, indices, and reference sequences."
+  },
+  {
+    "id": "sequence_motif",
+    "slug": "sequence_motif",
+    "name": "sequence motif",
+    "description": "Position weight matrices, motif instances, and sequence signatures."
+  },
+  {
+    "id": "annotation",
+    "slug": "annotation",
+    "name": "annotation",
+    "description": "Genome annotations, transcript models, and feature tracks."
+  },
+  {
+    "id": "single_cell",
+    "slug": "single_cell",
+    "name": "single cell",
+    "description": "Cell-level coordinates, annotations, and clustering results from single-cell experiments."
+  },
+  {
+    "id": "structure",
+    "slug": "structure",
+    "name": "structure",
+    "description": "Three-dimensional structural data and predicted ensembles."
+  },
+  {
+    "id": "haplotype",
+    "slug": "haplotype",
+    "name": "haplotype",
+    "description": "Haplotype assignments and phased mapping data."
+  },
+  {
+    "id": "technical",
+    "slug": "technical",
+    "name": "technical",
+    "description": "Raw instrument output, adapters, barcodes, and technical artifacts."
+  }
+]

@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import mappings from '../data/mappings.json';
+import vocabulary from '../data/vocabulary.json';
+
+const sortedMappings = [...(mappings as any[])].sort((a, b) => a.termName.localeCompare(b.termName));
+
+const predicateCounts = sortedMappings.reduce((acc, m) => {
+  acc[m.predicate] = (acc[m.predicate] || 0) + 1;
+  return acc;
+}, {} as Record<string, number>);
+
+function edamUrl(edamId: string): string {
+  const id = edamId.replace('edam:', '');
+  return `http://edamontology.org/${id}`;
+}
+
+const predicateColors: Record<string, string> = {
+  exactMatch: 'bg-green-100 text-green-800',
+  closeMatch: 'bg-blue-100 text-blue-800',
+  broadMatch: 'bg-yellow-100 text-yellow-800',
+  narrowMatch: 'bg-purple-100 text-purple-800',
+  relatedMatch: 'bg-gray-100 text-gray-800'
+};
+---
+
+<Layout title="EDAM Mappings" description="Mappings from ONGA terms to EDAM ontology">
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">EDAM Mappings</h1>
+  <p class="text-gray-600 mb-6">
+    {mappings.length} of {vocabulary.stats.totalTerms} ONGA terms ({vocabulary.stats.coveragePercent}%)
+    are mapped to the <a href="https://edamontology.org/" target="_blank" rel="noopener" class="text-blue-600 hover:underline">EDAM ontology</a>.
+  </p>
+
+  <!-- Summary -->
+  <div class="bg-white rounded-lg p-6 shadow-sm mb-8">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Mapping Types</h2>
+    <div class="flex flex-wrap gap-4">
+      {Object.entries(predicateCounts).sort((a, b) => b[1] - a[1]).map(([predicate, count]) => (
+        <div class="flex items-center gap-2">
+          <span class={`text-xs font-medium px-2 py-1 rounded ${predicateColors[predicate] || predicateColors.relatedMatch}`}>
+            {predicate}
+          </span>
+          <span class="text-sm text-gray-600">{count}</span>
+        </div>
+      ))}
+    </div>
+    <p class="text-xs text-gray-500 mt-4">
+      Mappings follow <a href="https://mapping-commons.github.io/sssom/" target="_blank" rel="noopener" class="underline">SSSOM</a> standard using SKOS predicates.
+    </p>
+  </div>
+
+  <!-- Filter -->
+  <div class="mb-4">
+    <select id="predicate-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
+      <option value="">All mapping types</option>
+      {Object.keys(predicateCounts).map(p => (
+        <option value={p}>{p} ({predicateCounts[p]})</option>
+      ))}
+    </select>
+  </div>
+
+  <!-- Table -->
+  <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-gray-50 text-left">
+        <tr>
+          <th class="px-4 py-3 font-medium text-gray-700">ONGA Term</th>
+          <th class="px-4 py-3 font-medium text-gray-700">Predicate</th>
+          <th class="px-4 py-3 font-medium text-gray-700">EDAM Term</th>
+          <th class="px-4 py-3 font-medium text-gray-700 hidden md:table-cell">Comment</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100" id="mappings-table">
+        {sortedMappings.map((m: any) => (
+          <tr class="mapping-row hover:bg-gray-50" data-predicate={m.predicate}>
+            <td class="px-4 py-3">
+              <a href={`/terms/${m.termId}`} class="text-blue-600 hover:underline">
+                {m.termName}
+              </a>
+              <div class="text-xs text-gray-500">{m.category}</div>
+            </td>
+            <td class="px-4 py-3">
+              <span class={`text-xs font-medium px-2 py-1 rounded ${predicateColors[m.predicate] || predicateColors.relatedMatch}`}>
+                {m.predicate}
+              </span>
+            </td>
+            <td class="px-4 py-3">
+              <a href={edamUrl(m.edamId)} target="_blank" rel="noopener" class="text-blue-600 hover:underline">
+                {m.edamId}
+              </a>
+              {m.edamLabel && (
+                <div class="text-xs text-gray-500">{m.edamLabel}</div>
+              )}
+            </td>
+            <td class="px-4 py-3 text-gray-500 text-xs hidden md:table-cell max-w-xs truncate" title={m.comment}>
+              {m.comment}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const filter = document.getElementById('predicate-filter') as HTMLSelectElement;
+    const rows = document.querySelectorAll('.mapping-row') as NodeListOf<HTMLElement>;
+
+    filter?.addEventListener('change', () => {
+      const predicate = filter.value;
+      rows.forEach(row => {
+        if (!predicate || row.dataset.predicate === predicate) {
+          row.classList.remove('hidden');
+        } else {
+          row.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+</Layout>

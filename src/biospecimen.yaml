@@ -1,4 +1,4 @@
-id: https://w3id.org/onga/biospecimen
+id: https://databio.org/onga/biospecimen
 name: biospecimen
 title: ONGA Biospecimen Classification Vocabulary
 description: >-
@@ -8,7 +8,7 @@ description: >-
 
 prefixes:
   linkml: https://w3id.org/linkml/
-  onga: https://w3id.org/onga/
+  onga: https://databio.org/onga/
 
 default_prefix: onga
 default_range: string

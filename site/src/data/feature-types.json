@@ -1,0 +1,1273 @@
+[
+  {
+    "id": "footprints",
+    "name": "footprints",
+    "slug": "footprints",
+    "description": "Short protected regions within open chromatin indicating transcription factor occupancy, identified as local signal minima within peaks.",
+    "category": "chromatin_accessibility",
+    "categorySlug": "chromatin_accessibility",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [
+      "DHS peaks",
+      "nuclease cleavage frequency"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "open_chromatin_regions",
+    "name": "open chromatin regions",
+    "slug": "open_chromatin_regions",
+    "description": "Genomic regions of accessible chromatin from ATAC-seq, DNase-seq, or similar assays.",
+    "category": "chromatin_accessibility",
+    "categorySlug": "chromatin_accessibility",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [
+      "peaks",
+      "DHS peaks",
+      "hotspots"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "chromatin_stripes",
+    "name": "chromatin stripes",
+    "slug": "chromatin_stripes",
+    "description": "Elongated features in contact matrices extending from loop anchors, indicating active loop extrusion.",
+    "category": "contact_matrix",
+    "categorySlug": "contact_matrix",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "contact_domains",
+    "name": "contact domains",
+    "slug": "contact_domains",
+    "description": "Topologically associating domains (TADs) from contact matrix analysis, representing self-interacting chromatin regions.",
+    "category": "contact_matrix",
+    "categorySlug": "contact_matrix",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [
+      "contact matrix"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "genome_compartments",
+    "name": "genome compartments",
+    "slug": "genome_compartments",
+    "description": "Large-scale A (active) and B (inactive) chromatin compartments from PCA of Hi-C contact matrices.",
+    "category": "contact_matrix",
+    "categorySlug": "contact_matrix",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [
+      "contact matrix"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "genome_subcompartments",
+    "name": "genome subcompartments",
+    "slug": "genome_subcompartments",
+    "description": "Fine-grained chromatin compartments (A1, A2, B1, B2, B3, B4) within major A/B compartments.",
+    "category": "contact_matrix",
+    "categorySlug": "contact_matrix",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "loops",
+    "name": "loops",
+    "slug": "loops",
+    "description": "Chromatin loop interactions (point-to-point contacts) from contact matrices, often connecting enhancers to promoters.",
+    "category": "contact_matrix",
+    "categorySlug": "contact_matrix",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [
+      "contact matrix"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "nested_contact_domains",
+    "name": "nested contact domains",
+    "slug": "nested_contact_domains",
+    "description": "Hierarchically nested topological domains showing multi-scale chromatin organization.",
+    "category": "contact_matrix",
+    "categorySlug": "contact_matrix",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "cpg_sites_coverage",
+    "name": "CpG sites coverage",
+    "slug": "cpg_sites_coverage",
+    "description": "Sequencing read coverage at CpG positions, indicating measurement confidence.",
+    "category": "dna_methylation",
+    "categorySlug": "dna_methylation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "methylated_reads",
+    "name": "methylated reads",
+    "slug": "methylated_reads",
+    "description": "Reads containing DNA methylation marks from bisulfite or direct detection methods.",
+    "category": "dna_methylation",
+    "categorySlug": "dna_methylation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "methylation_state_at_chg",
+    "name": "methylation state at CHG",
+    "slug": "methylation_state_at_chg",
+    "description": "DNA methylation status at CHG sequence context (H = A, C, or T), common in plant genomes.",
+    "category": "dna_methylation",
+    "categorySlug": "dna_methylation",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:topic_3295",
+      "edamLabel": "Epigenetics",
+      "comment": "EDAM has topic; lacks CHG methylation data type"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "methylation_state_at_chh",
+    "name": "methylation state at CHH",
+    "slug": "methylation_state_at_chh",
+    "description": "DNA methylation status at CHH sequence context, representing asymmetric non-CpG methylation.",
+    "category": "dna_methylation",
+    "categorySlug": "dna_methylation",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:topic_3295",
+      "edamLabel": "Epigenetics",
+      "comment": "EDAM has topic; lacks CHH methylation data type"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "methylation_state_at_cpg",
+    "name": "methylation state at CpG",
+    "slug": "methylation_state_at_cpg",
+    "description": "DNA methylation status (methylated/unmethylated fraction) at CpG dinucleotides, the primary context for mammalian methylation.",
+    "category": "dna_methylation",
+    "categorySlug": "dna_methylation",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:topic_3295",
+      "edamLabel": "Epigenetics",
+      "comment": "EDAM has topic; lacks CpG methylation data type"
+    },
+    "seeAlso": [
+      "methylated reads"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "minus_strand_methylation_state_at_cpg",
+    "name": "minus strand methylation state at CpG",
+    "slug": "minus_strand_methylation_state_at_cpg",
+    "description": "DNA methylation status at CpG positions on the minus strand.",
+    "category": "dna_methylation",
+    "categorySlug": "dna_methylation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "plus_strand_methylation_state_at_cpg",
+    "name": "plus strand methylation state at CpG",
+    "slug": "plus_strand_methylation_state_at_cpg",
+    "description": "DNA methylation status at CpG positions on the plus strand.",
+    "category": "dna_methylation",
+    "categorySlug": "dna_methylation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "smoothed_methylation_state_at_cpg",
+    "name": "smoothed methylation state at CpG",
+    "slug": "smoothed_methylation_state_at_cpg",
+    "description": "CpG methylation values smoothed across neighboring sites to reduce noise.",
+    "category": "dna_methylation",
+    "categorySlug": "dna_methylation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "minus_strand_inosine_methylation_state",
+    "name": "minus strand inosine methylation state",
+    "slug": "minus_strand_inosine_methylation_state",
+    "description": "Inosine (A-to-I editing) modification on the minus strand.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "minus_strand_m5c_methylation_state",
+    "name": "minus strand m5C methylation state",
+    "slug": "minus_strand_m5c_methylation_state",
+    "description": "5-methylcytosine (m5C) RNA modification on the minus strand.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "minus_strand_m6a_methylation_state",
+    "name": "minus strand m6A methylation state",
+    "slug": "minus_strand_m6a_methylation_state",
+    "description": "N6-methyladenosine (m6A) modification on minus strand transcripts. m6A is the most abundant internal mRNA modification.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "minus_strand_nm_methylation_state",
+    "name": "minus strand Nm methylation state",
+    "slug": "minus_strand_nm_methylation_state",
+    "description": "2′-O-methylation (Nm) modification on the minus strand.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "minus_strand_pseudouridine_methylation_state",
+    "name": "minus strand pseudouridine methylation state",
+    "slug": "minus_strand_pseudouridine_methylation_state",
+    "description": "Pseudouridine (Ψ) modification on the minus strand. Pseudouridine is the most abundant RNA modification.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "plus_strand_inosine_methylation_state",
+    "name": "plus strand inosine methylation state",
+    "slug": "plus_strand_inosine_methylation_state",
+    "description": "Inosine (A-to-I editing) modification on the plus strand.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "plus_strand_m5c_methylation_state",
+    "name": "plus strand m5C methylation state",
+    "slug": "plus_strand_m5c_methylation_state",
+    "description": "5-methylcytosine (m5C) RNA modification on the plus strand.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "plus_strand_m6a_methylation_state",
+    "name": "plus strand m6A methylation state",
+    "slug": "plus_strand_m6a_methylation_state",
+    "description": "N6-methyladenosine (m6A) modification on plus strand transcripts.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "plus_strand_nm_methylation_state",
+    "name": "plus strand Nm methylation state",
+    "slug": "plus_strand_nm_methylation_state",
+    "description": "2′-O-methylation (Nm) modification on the plus strand.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "plus_strand_pseudouridine_methylation_state",
+    "name": "plus strand pseudouridine methylation state",
+    "slug": "plus_strand_pseudouridine_methylation_state",
+    "description": "Pseudouridine (Ψ) modification on the plus strand.",
+    "category": "rna_modification",
+    "categorySlug": "rna_modification",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "candidate_cis_regulatory_elements",
+    "name": "candidate Cis-Regulatory Elements",
+    "slug": "candidate_cis_regulatory_elements",
+    "description": "Computationally predicted cis-regulatory elements (CREs) including enhancers, promoters, and insulators from chromatin accessibility and histone data.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "candidate_enhancers",
+    "name": "candidate enhancers",
+    "slug": "candidate_enhancers",
+    "description": "Computationally predicted enhancer elements based on chromatin signatures (H3K4me1, H3K27ac, accessibility).",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "Annotation track",
+      "comment": "EDAM lacks enhancer data type"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "candidate_promoters",
+    "name": "candidate promoters",
+    "slug": "candidate_promoters",
+    "description": "Computationally predicted promoter elements based on chromatin signatures and TSS proximity.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "Annotation track",
+      "comment": "EDAM lacks promoter data type"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "curated_binding_sites",
+    "name": "curated binding sites",
+    "slug": "curated_binding_sites",
+    "description": "Manually curated and validated transcription factor binding sites.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3125",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "enhancer_gene_links",
+    "name": "enhancer-gene links",
+    "slug": "enhancer_gene_links",
+    "description": "Moved to element_gene_linkage. Links between enhancers and their putative target genes.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "enhancer_validation",
+    "name": "enhancer validation",
+    "slug": "enhancer_validation",
+    "description": "Experimental validation data for predicted enhancers.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "enhancers_reference",
+    "name": "enhancers reference",
+    "slug": "enhancers_reference",
+    "description": "Reference set of annotated enhancer elements.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "minus_strand_transcription_start_sites",
+    "name": "minus strand transcription start sites",
+    "slug": "minus_strand_transcription_start_sites",
+    "description": "Transcription start sites on the minus strand.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "plus_strand_transcription_start_sites",
+    "name": "plus strand transcription start sites",
+    "slug": "plus_strand_transcription_start_sites",
+    "description": "Transcription start sites on the plus strand.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "polya_sites",
+    "name": "polyA sites",
+    "slug": "polya_sites",
+    "description": "Polyadenylation signal sites where pre-mRNA is cleaved and polyadenylated.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "predicted_enhancers",
+    "name": "predicted enhancers",
+    "slug": "predicted_enhancers",
+    "description": "Computationally predicted enhancer elements.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "predicted_forebrain_enhancers",
+    "name": "predicted forebrain enhancers",
+    "slug": "predicted_forebrain_enhancers",
+    "description": "Enhancer elements predicted to be active in forebrain tissue.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "predicted_heart_enhancers",
+    "name": "predicted heart enhancers",
+    "slug": "predicted_heart_enhancers",
+    "description": "Enhancer elements predicted to be active in heart tissue.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "predicted_transcription_start_sites",
+    "name": "predicted transcription start sites",
+    "slug": "predicted_transcription_start_sites",
+    "description": "Computationally predicted TSS based on sequence or chromatin features.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "predicted_whole_brain_enhancers",
+    "name": "predicted whole brain enhancers",
+    "slug": "predicted_whole_brain_enhancers",
+    "description": "Enhancer elements predicted to be active across whole brain.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "promoters_reference",
+    "name": "promoters reference",
+    "slug": "promoters_reference",
+    "description": "Reference set of annotated promoter elements.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "regulatory_elements",
+    "name": "regulatory elements",
+    "slug": "regulatory_elements",
+    "description": "General annotation of regulatory elements: enhancers, promoters, silencers, and insulators.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "Annotation track",
+      "comment": "EDAM lacks regulatory element data type"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "transcription_start_sites",
+    "name": "transcription start sites",
+    "slug": "transcription_start_sites",
+    "description": "Experimentally determined transcription start sites (TSS) from CAGE, PRO-seq, or similar assays.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "Annotation track",
+      "comment": "EDAM lacks TSS data type"
+    },
+    "seeAlso": [
+      "peaks",
+      "bidirectional peaks"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "tss_reference",
+    "name": "TSS reference",
+    "slug": "tss_reference",
+    "description": "Reference set of transcription start sites.",
+    "category": "regulatory_element",
+    "categorySlug": "regulatory_element",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "element_gene_interactions_p_value",
+    "name": "element gene interactions p-value",
+    "slug": "element_gene_interactions_p_value",
+    "description": "Statistical significance of element-gene interaction associations.",
+    "category": "element_gene_linkage",
+    "categorySlug": "element_gene_linkage",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "element_gene_interactions_signal",
+    "name": "element gene interactions signal",
+    "slug": "element_gene_interactions_signal",
+    "description": "Signal strength of element-gene interaction associations.",
+    "category": "element_gene_linkage",
+    "categorySlug": "element_gene_linkage",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "element_gene_links",
+    "name": "element gene links",
+    "slug": "element_gene_links",
+    "description": "Associations linking regulatory elements to target genes.",
+    "category": "element_gene_linkage",
+    "categorySlug": "element_gene_linkage",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "thresholded_element_gene_links",
+    "name": "thresholded element gene links",
+    "slug": "thresholded_element_gene_links",
+    "description": "Element-gene links filtered by a significance threshold.",
+    "category": "element_gene_linkage",
+    "categorySlug": "element_gene_linkage",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "thresholded_links",
+    "name": "thresholded links",
+    "slug": "thresholded_links",
+    "description": "Generic significance-thresholded regulatory links.",
+    "category": "element_gene_linkage",
+    "categorySlug": "element_gene_linkage",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "topic_gene_weights",
+    "name": "topic gene weights",
+    "slug": "topic_gene_weights",
+    "description": "Gene weights derived from topic modeling of regulatory data.",
+    "category": "element_gene_linkage",
+    "categorySlug": "element_gene_linkage",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "relative_replication_signal",
+    "name": "relative replication signal",
+    "slug": "relative_replication_signal",
+    "description": "Replication timing signal expressed relative to a reference.",
+    "category": "replication_timing",
+    "categorySlug": "replication_timing",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "replication_timing_profile",
+    "name": "replication timing profile",
+    "slug": "replication_timing_profile",
+    "description": "Genome-wide profile of DNA replication timing.",
+    "category": "replication_timing",
+    "categorySlug": "replication_timing",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "allele_specific_variants",
+    "name": "allele-specific variants",
+    "slug": "allele_specific_variants",
+    "description": "Variants showing allele-specific behavior in expression or chromatin accessibility.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "copy_number_variation",
+    "name": "copy number variation",
+    "slug": "copy_number_variation",
+    "description": "Genomic regions with altered copy numbers (deletions, duplications) relative to reference.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "curated_snvs",
+    "name": "curated SNVs",
+    "slug": "curated_snvs",
+    "description": "Manually curated and validated single nucleotide variants.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "dsqtls",
+    "name": "dsQTLs",
+    "slug": "dsqtls",
+    "description": "DNase I sensitivity quantitative trait loci: variants associated with chromatin accessibility.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_1860",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "eqtls",
+    "name": "eQTLs",
+    "slug": "eqtls",
+    "description": "Expression quantitative trait loci: variants statistically associated with gene expression levels.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_1860",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "filtered_indels",
+    "name": "filtered indels",
+    "slug": "filtered_indels",
+    "description": "Insertion/deletion variants after quality filtering.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "filtered_snps",
+    "name": "filtered SNPs",
+    "slug": "filtered_snps",
+    "description": "Single nucleotide polymorphisms after quality filtering.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "maternal_variant_calls",
+    "name": "maternal variant calls",
+    "slug": "maternal_variant_calls",
+    "description": "Variants called specifically from the maternal haplotype.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "paternal_variant_calls",
+    "name": "paternal variant calls",
+    "slug": "paternal_variant_calls",
+    "description": "Variants called specifically from the paternal haplotype.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "phased_variant_calls",
+    "name": "phased variant calls",
+    "slug": "phased_variant_calls",
+    "description": "Variants with haplotype phase resolved, indicating which alleles co-occur on the same chromosome.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "reference_variants",
+    "name": "reference variants",
+    "slug": "reference_variants",
+    "description": "Variants relative to a reference genome.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "variant_calls",
+    "name": "variant calls",
+    "slug": "variant_calls",
+    "description": "Called genomic variants (SNPs, indels, structural variants) in VCF format.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "variant_effect_quantifications",
+    "name": "variant effect quantifications",
+    "slug": "variant_effect_quantifications",
+    "description": "Quantitative measurements of variant functional effects.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0918",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "variant_reference",
+    "name": "variant reference",
+    "slug": "variant_reference",
+    "description": "Reference database or set of known genomic variants.",
+    "category": "variant",
+    "categorySlug": "variant",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "pwms",
+    "name": "PWMs",
+    "slug": "pwms",
+    "description": "Position weight matrices representing sequence motif models, encoding nucleotide preferences at each position.",
+    "category": "sequence_motif",
+    "categorySlug": "sequence_motif",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_1362",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sequence_motifs",
+    "name": "sequence motifs",
+    "slug": "sequence_motifs",
+    "description": "Sequence patterns enriched in genomic regions of interest.",
+    "category": "sequence_motif",
+    "categorySlug": "sequence_motif",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_1353",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sequence_motifs_instances",
+    "name": "sequence motifs instances",
+    "slug": "sequence_motifs_instances",
+    "description": "Genomic locations where specific sequence motifs occur.",
+    "category": "sequence_motif",
+    "categorySlug": "sequence_motif",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_1353",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sequence_motifs_report",
+    "name": "sequence motifs report",
+    "slug": "sequence_motifs_report",
+    "description": "Summary report of motif discovery or enrichment analysis.",
+    "category": "sequence_motif",
+    "categorySlug": "sequence_motif",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_2762",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "filtered_transcribed_fragments",
+    "name": "filtered transcribed fragments",
+    "slug": "filtered_transcribed_fragments",
+    "description": "Transcribed genomic fragments after quality filtering.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "functional_conservation_mapping",
+    "name": "functional conservation mapping",
+    "slug": "functional_conservation_mapping",
+    "description": "Mapping of functionally conserved regions across species.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "functional_conservation_quantifications",
+    "name": "functional conservation quantifications",
+    "slug": "functional_conservation_quantifications",
+    "description": "Quantification of functional conservation scores.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "mirna_annotations",
+    "name": "miRNA annotations",
+    "slug": "mirna_annotations",
+    "description": "Annotation tracks for microRNA genes and precursors.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "repeat_elements_annotation",
+    "name": "repeat elements annotation",
+    "slug": "repeat_elements_annotation",
+    "description": "Annotation of repetitive element locations and classes.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "restriction_enzyme_site_locations",
+    "name": "restriction enzyme site locations",
+    "slug": "restriction_enzyme_site_locations",
+    "description": "Genomic positions of restriction enzyme recognition sites.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3125",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "rna_binding_protein_associated_mrnas",
+    "name": "RNA-binding protein associated mRNAs",
+    "slug": "rna_binding_protein_associated_mrnas",
+    "description": "mRNAs co-immunoprecipitated with RNA-binding proteins.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "splice_junctions",
+    "name": "splice junctions",
+    "slug": "splice_junctions",
+    "description": "Splice site junctions identified from RNA-seq alignments.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:topic_3320",
+      "edamLabel": "RNA splicing",
+      "comment": "EDAM has topic only; no splice junction data type"
+    },
+    "seeAlso": [
+      "transcriptome alignments"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "transcribed_fragments",
+    "name": "transcribed fragments",
+    "slug": "transcribed_fragments",
+    "description": "Genomic regions identified as transcribed from RNA-seq data.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "transcriptome_annotations",
+    "name": "transcriptome annotations",
+    "slug": "transcriptome_annotations",
+    "description": "Comprehensive gene and transcript annotations for a genome.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "transposable_element_tf_ancestral_origin_percent_by_motif",
+    "name": "transposable element TF ancestral origin percent by motif",
+    "slug": "transposable_element_tf_ancestral_origin_percent_by_motif",
+    "description": "Percentage of TF motif instances with transposable element ancestral origin.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "transposable_element_tf_ancestral_origin_percent_by_subfamily",
+    "name": "transposable element TF ancestral origin percent by subfamily",
+    "slug": "transposable_element_tf_ancestral_origin_percent_by_subfamily",
+    "description": "Percentage of TF binding sites by TE subfamily ancestral origin.",
+    "category": "annotation",
+    "categorySlug": "annotation",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "cell_type_annotations",
+    "name": "cell type annotations",
+    "slug": "cell_type_annotations",
+    "description": "Cell type labels assigned to individual cells based on marker genes or reference mapping.",
+    "category": "single_cell",
+    "categorySlug": "single_cell",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [
+      "clusters"
+    ],
+    "encodeSource": true
+  },
+  {
+    "id": "cell_type_data",
+    "name": "cell type data",
+    "slug": "cell_type_data",
+    "description": "Data associated with cell type identity in single-cell experiments.",
+    "category": "single_cell",
+    "categorySlug": "single_cell",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "3d_structure",
+    "name": "3D structure",
+    "slug": "3d_structure",
+    "description": "Three-dimensional structural model of a genomic region or chromatin domain.",
+    "category": "structure",
+    "categorySlug": "structure",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0883",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "contigs",
+    "name": "contigs",
+    "slug": "contigs",
+    "description": "Assembled sequence contigs from genome assembly.",
+    "category": "structure",
+    "categorySlug": "structure",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0925",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "personalized_genome_assembly",
+    "name": "personalized genome assembly",
+    "slug": "personalized_genome_assembly",
+    "description": "Genome assembly incorporating an individual's sequence variation.",
+    "category": "structure",
+    "categorySlug": "structure",
+    "vocabType": "feature",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_0925",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "predicted_3d_structural_ensembles",
+    "name": "predicted 3D structural ensembles",
+    "slug": "predicted_3d_structural_ensembles",
+    "description": "Computationally predicted ensembles of 3D genomic structures.",
+    "category": "structure",
+    "categorySlug": "structure",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "maternal_haplotype_mapping",
+    "name": "maternal haplotype mapping",
+    "slug": "maternal_haplotype_mapping",
+    "description": "Sequence reads or contigs assigned to the maternal haplotype.",
+    "category": "haplotype",
+    "categorySlug": "haplotype",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "paternal_haplotype_mapping",
+    "name": "paternal haplotype mapping",
+    "slug": "paternal_haplotype_mapping",
+    "description": "Sequence reads or contigs assigned to the paternal haplotype.",
+    "category": "haplotype",
+    "categorySlug": "haplotype",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "phased_mapping",
+    "name": "phased mapping",
+    "slug": "phased_mapping",
+    "description": "Sequence data with haplotype phase information resolved.",
+    "category": "haplotype",
+    "categorySlug": "haplotype",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  }
+]

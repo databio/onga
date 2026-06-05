@@ -1,15 +1,26 @@
-id: https://w3id.org/onga/file_content
+id: https://databio.org/onga/file_content
 name: file_content
 title: ONGA File Content Vocabulary
 description: >-
-  Controlled vocabulary for describing the content and purpose of genomic
-  data files. Derived from ENCODE output_type vocabulary (~310 terms) organized
-  into ~22 thematic categories. Provides skos:broader mappings to EDAM where
-  available.
+  ONGA (Ontology for Genomic Annotations) provides controlled vocabularies 
+
+  for describing genomic data files. It defines two complementary vocabularies:
+
+
+  - DataType: Computational output types (HOW data was produced)
+
+  - FeatureType: Biological feature types (WHAT biology it represents)
+
+
+  A file's DataType describes its computational origin (e.g., "peaks" from a peak caller).
+
+  A file's FeatureType describes what biological phenomenon it captures (e.g., "TF binding sites").
+
+  The same DataType can represent different FeatureTypes depending on the experiment.
 
 prefixes:
   linkml: https://w3id.org/linkml/
-  onga: https://w3id.org/onga/
+  onga: https://databio.org/onga/
   edam: http://edamontology.org/
   skos: http://www.w3.org/2004/02/skos/core#
 
@@ -17,7 +28,7 @@ default_prefix: onga
 default_range: string
 
 imports:
-  - linkml:types
+- linkml:types
 
 subsets:
   alignment:
@@ -31,7 +42,8 @@ subsets:
   chromatin_accessibility:
     description: Open chromatin regions and nuclease cleavage data from DNase-seq or ATAC-seq.
   contact_matrix:
-    description: Pairwise interaction frequency data from chromosome conformation capture experiments.
+    description: Pairwise interaction frequency data from chromosome conformation capture 
+      experiments.
   dna_methylation:
     description: Methylation state measurements at specific sequence contexts (CpG, CHG, CHH).
   rna_modification:
@@ -67,7 +79,8 @@ subsets:
   annotation:
     description: Genome annotations, transcript models, and feature tracks.
   single_cell:
-    description: Cell-level coordinates, annotations, and clustering results from single-cell experiments.
+    description: Cell-level coordinates, annotations, and clustering results from single-cell 
+      experiments.
   structure:
     description: Three-dimensional structural data and predicted ensembles.
   haplotype:
@@ -77,1448 +90,1546 @@ subsets:
 
 enums:
 
-  OutputTypeCategory:
-    description: >-
-      The 22 high-level categories organizing ONGA output types. Each category
-      corresponds to a thematic grouping of related file content descriptors.
+  DataType:
+    description: "Computational output types - the data structure or processing result \na file contains.
+      Describes HOW data was produced or represented.\nExamples: peaks (output of peak caller), signal
+      track, alignments, count matrix."
     permissible_values:
-      alignment:
-        description: Aligned sequence reads or assembled sequences mapped to a reference.
-        meaning: edam:data_0863
-      signal_track:
-        description: >-
-          Quantitative signal values across genomic coordinates including
-          coverage, fold change, and p-values.
-      peak_set:
-        description: Discrete regions of enrichment identified by peak calling algorithms.
-        meaning: edam:data_3002
-      chromatin_accessibility:
-        description: Open chromatin regions and nuclease cleavage data from DNase-seq or ATAC-seq.
-      contact_matrix:
-        description: Pairwise interaction frequency data from chromosome conformation capture experiments.
-      dna_methylation:
-        description: Methylation state measurements at specific sequence contexts (CpG, CHG, CHH).
-      rna_modification:
-        description: >-
-          Epitranscriptomic modification states including m6A, m5C, inosine,
-          pseudouridine, and Nm.
-      regulatory_element:
-        description: >-
-          Predicted or validated cis-regulatory elements including enhancers,
-          promoters, and CREs.
-      element_gene_linkage:
-        description: >-
-          Statistical or predicted associations between regulatory elements and
-          target genes.
-      crispr_screen:
-        description: Guide RNA libraries, perturbation signals, and quantifications from CRISPR screens.
-      count_matrix:
-        description: Sparse or dense count matrices from single-cell or bulk sequencing experiments.
-        meaning: edam:data_3917
-      quantification:
-        description: Gene, transcript, exon, or protein expression measurements.
-        meaning: edam:data_0928
-      deep_learning:
-        description: >-
-          Contribution scores, predicted signals, and outputs from trained
-          genomic deep learning models.
-      replication_timing:
-        description: Replication timing profiles and relative replication signals.
-      variant:
-        description: SNPs, indels, structural variants, and QTL associations.
-        meaning: edam:data_0918
-      reference:
-        description: Genome assemblies, indices, and reference sequences.
-        meaning: edam:data_2977
-      sequence_motif:
-        description: Position weight matrices, motif instances, and sequence signatures.
-        meaning: edam:data_1353
-      annotation:
-        description: Genome annotations, transcript models, and feature tracks.
-        meaning: edam:data_3002
-      single_cell:
-        description: Cell-level coordinates, annotations, and clustering results from single-cell experiments.
-      structure:
-        description: Three-dimensional structural data and predicted ensembles.
-        meaning: edam:data_0883
-      haplotype:
-        description: Haplotype assignments and phased mapping data.
-      technical:
-        description: Raw instrument output, adapters, barcodes, and technical artifacts.
-
-  OutputType:
-    description: >-
-      Controlled vocabulary for the content and purpose of genomic output
-      files. Derived from ENCODE output_type vocabulary (~310 terms) with
-      hierarchical organization via subsets.
-    permissible_values:
-
-      # ─── alignment ────────────────────────────────────────────────────────
       alignments:
-        description: Aligned sequencing reads mapped to a reference genome.
+        description: Sequencing reads mapped to positions in a reference genome, typically in 
+          BAM/CRAM format with mapping quality scores and alignment coordinates.
         meaning: edam:data_0863
         in_subset:
-          - alignment
+        - alignment
+        see_also:
+        - sequencing reads
       alignments with modifications:
-        description: Aligned reads retaining base modification information.
+        description: Aligned reads preserving base modification information (e.g., methylation from 
+          bisulfite-seq or direct detection) encoded in BAM auxiliary fields.
         in_subset:
-          - alignment
+        - alignment
       diploid personal genome alignments:
-        description: Reads aligned to a diploid personal genome reference.
+        description: Reads aligned to a diploid personal genome reference including both parental 
+          haplotypes, enabling allele-specific analysis.
         in_subset:
-          - alignment
+        - alignment
       filtered reads:
-        description: Sequencing reads that passed quality or alignment filters.
+        description: Sequencing reads passing quality control filters such as minimum quality score,
+          adapter removal, or duplicate marking.
         in_subset:
-          - alignment
+        - alignment
       gene alignments:
         description: Reads or sequences aligned at the gene level.
         in_subset:
-          - alignment
+        - alignment
       haplotype-specific alignments:
-        description: Reads assigned and aligned to a specific haplotype.
+        description: Reads confidently assigned and aligned to a specific parental haplotype based 
+          on phased variant information.
         in_subset:
-          - alignment
+        - alignment
       preprocessed alignments:
-        description: Alignments that have undergone preprocessing steps.
+        description: 'Alignments after preprocessing: duplicate marking, base quality score recalibration,
+          or indel realignment.'
         in_subset:
-          - alignment
+        - alignment
       reads:
-        description: Raw or minimally processed sequencing reads.
+        description: Raw or minimally processed sequencing reads in FASTQ format, including quality 
+          scores and read identifiers.
         meaning: edam:data_0924
         in_subset:
-          - alignment
+        - alignment
       redacted alignments:
-        description: Alignments with sensitive positions redacted.
+        description: Alignments with sensitive genomic positions masked or removed for privacy 
+          protection in controlled-access data sharing.
         in_subset:
-          - alignment
+        - alignment
       redacted transcriptome alignments:
         description: Transcriptome-level alignments with sensitive positions redacted.
         in_subset:
-          - alignment
+        - alignment
       redacted unfiltered alignments:
         description: Unfiltered alignments with sensitive positions redacted.
         in_subset:
-          - alignment
+        - alignment
       rejected reads:
-        description: Reads that failed quality or alignment filters.
+        description: Reads that failed quality control filters and were excluded from downstream 
+          analysis.
         in_subset:
-          - alignment
+        - alignment
       spike-in alignments:
-        description: Alignments to spike-in control sequences.
+        description: Reads aligned to exogenous spike-in control sequences (e.g., ERCC) for 
+          normalization and quality assessment.
         in_subset:
-          - alignment
+        - alignment
       transcriptome alignments:
-        description: Reads aligned to a transcriptome reference.
+        description: Reads aligned to a transcriptome reference (cDNA sequences) rather than the 
+          genome.
         in_subset:
-          - alignment
+        - alignment
+        see_also:
+        - gene expression
+        - splicing
       unfiltered alignments:
-        description: Alignments before any filtering steps.
+        description: Raw alignments before quality filtering, duplicate removal, or other 
+          post-processing.
         in_subset:
-          - alignment
+        - alignment
 
       # ─── signal_track ─────────────────────────────────────────────────────
       base overlap signal:
-        description: Signal computed from base-level read overlap counts.
+        description: Signal computed from base-level read overlap counts at each genomic position.
         in_subset:
-          - signal_track
+        - signal_track
       bias-corrected predicted signal profile:
-        description: Predicted signal profile with bias correction applied.
+        description: Model-predicted signal after correction for sequence-composition bias.
         in_subset:
-          - signal_track
+        - signal_track
       control normalized signal:
-        description: Signal normalized to a control experiment.
+        description: Signal normalized against a matched control experiment to remove background and
+          technical artifacts.
         in_subset:
-          - signal_track
+        - signal_track
       enrichment:
-        description: Enrichment score over background signal.
+        description: Quantitative enrichment score over background, measuring signal above expected 
+          noise level.
         in_subset:
-          - signal_track
+        - signal_track
       fold change over control:
-        description: Signal expressed as fold change relative to a control.
+        description: Signal expressed as the ratio of experimental signal to input/control, 
+          highlighting enrichment over background.
         in_subset:
-          - signal_track
+        - signal_track
+        see_also:
+        - TF binding
+        - histone modifications
       minus strand end position signal:
         description: Signal of read end positions on the minus strand.
         in_subset:
-          - signal_track
+        - signal_track
       minus strand normalized end position signal:
         description: Normalized signal of read end positions on the minus strand.
         in_subset:
-          - signal_track
+        - signal_track
       minus strand signal:
-        description: Signal values on the minus strand.
+        description: Signal values computed from reads mapping to the minus (reverse/Crick) DNA 
+          strand.
         in_subset:
-          - signal_track
+        - signal_track
       minus strand signal of all reads:
-        description: Minus strand signal including all reads.
+        description: Minus strand signal from all aligned reads regardless of mapping quality.
         in_subset:
-          - signal_track
+        - signal_track
       minus strand signal of unique reads:
-        description: Minus strand signal from uniquely mapping reads only.
+        description: Minus strand signal from uniquely mapping reads only (MAPQ >= threshold).
         in_subset:
-          - signal_track
+        - signal_track
       normalized bias-corrected predicted signal profile:
         description: Normalized predicted signal profile with bias correction.
         in_subset:
-          - signal_track
+        - signal_track
       normalized observed signal profile:
-        description: Normalized signal profile from observed data.
+        description: Observed signal profile normalized for sequencing depth or library size.
         in_subset:
-          - signal_track
+        - signal_track
       normalized observed signal profile (minus strand):
         description: Normalized observed signal profile on the minus strand.
         in_subset:
-          - signal_track
+        - signal_track
       normalized observed signal profile (plus strand):
         description: Normalized observed signal profile on the plus strand.
         in_subset:
-          - signal_track
+        - signal_track
       normalized predicted bias profile:
         description: Normalized predicted sequencing bias profile.
         in_subset:
-          - signal_track
+        - signal_track
       normalized predicted signal profile:
-        description: Normalized predicted signal profile.
+        description: Predicted signal profile normalized for sequencing depth or library size.
         in_subset:
-          - signal_track
+        - signal_track
       normalized predicted signal profile (minus strand):
         description: Normalized predicted signal profile on the minus strand.
         in_subset:
-          - signal_track
+        - signal_track
       normalized predicted signal profile (plus strand):
         description: Normalized predicted signal profile on the plus strand.
         in_subset:
-          - signal_track
+        - signal_track
       normalized signal of all reads:
         description: Depth-normalized signal including all reads.
         in_subset:
-          - signal_track
+        - signal_track
       observed bias profile:
-        description: Measured sequencing bias profile.
+        description: Empirically measured sequencing bias profile from experimental data.
         in_subset:
-          - signal_track
+        - signal_track
       observed control profile (minus strand):
         description: Observed control signal profile on the minus strand.
         in_subset:
-          - signal_track
+        - signal_track
       observed control profile (plus strand):
         description: Observed control signal profile on the plus strand.
         in_subset:
-          - signal_track
+        - signal_track
       observed signal profile:
-        description: Signal profile from observed experimental data.
+        description: Experimentally measured signal profile from sequencing data.
         in_subset:
-          - signal_track
+        - signal_track
       observed signal profile (minus strand):
         description: Observed signal profile on the minus strand.
         in_subset:
-          - signal_track
+        - signal_track
       observed signal profile (plus strand):
         description: Observed signal profile on the plus strand.
         in_subset:
-          - signal_track
+        - signal_track
       percentage normalized signal:
-        description: Signal expressed as a percentage of total signal.
+        description: Signal expressed as a percentage of total signal, useful for comparing relative
+          enrichment.
         in_subset:
-          - signal_track
+        - signal_track
       plus strand end position signal:
         description: Signal of read end positions on the plus strand.
         in_subset:
-          - signal_track
+        - signal_track
       plus strand normalized end position signal:
         description: Normalized signal of read end positions on the plus strand.
         in_subset:
-          - signal_track
+        - signal_track
       plus strand signal:
-        description: Signal values on the plus strand.
+        description: Signal values computed from reads mapping to the plus (forward/Watson) DNA 
+          strand.
         in_subset:
-          - signal_track
+        - signal_track
       plus strand signal of all reads:
-        description: Plus strand signal including all reads.
+        description: Plus strand signal from all aligned reads regardless of mapping quality.
         in_subset:
-          - signal_track
+        - signal_track
       plus strand signal of unique reads:
-        description: Plus strand signal from uniquely mapping reads only.
+        description: Plus strand signal from uniquely mapping reads only (MAPQ >= threshold).
         in_subset:
-          - signal_track
+        - signal_track
       predicted bias profile:
-        description: Computationally predicted sequencing bias profile.
+        description: Computationally predicted sequencing bias profile based on sequence 
+          composition.
         in_subset:
-          - signal_track
+        - signal_track
       predicted signal profile:
-        description: Computationally predicted signal profile.
+        description: Signal profile computationally predicted by a model from sequence or chromatin 
+          features.
         in_subset:
-          - signal_track
+        - signal_track
       predicted signal profile (minus strand):
         description: Computationally predicted signal profile on the minus strand.
         in_subset:
-          - signal_track
+        - signal_track
       predicted signal profile (plus strand):
         description: Computationally predicted signal profile on the plus strand.
         in_subset:
-          - signal_track
+        - signal_track
       raw minus strand signal:
         description: Unprocessed signal on the minus strand.
         in_subset:
-          - signal_track
+        - signal_track
       raw normalized signal:
         description: Raw signal after library-size normalization.
         in_subset:
-          - signal_track
+        - signal_track
       raw plus strand signal:
         description: Unprocessed signal on the plus strand.
         in_subset:
-          - signal_track
+        - signal_track
       raw signal:
-        description: Unprocessed signal track.
+        description: Unprocessed signal track before normalization or bias correction.
         in_subset:
-          - signal_track
+        - signal_track
       read-depth normalized signal:
-        description: Signal normalized by sequencing depth.
+        description: Signal normalized by total sequencing depth to enable cross-sample comparisons.
         in_subset:
-          - signal_track
+        - signal_track
       signal:
-        description: Generic genomic signal track.
+        description: Quantitative signal track showing per-base or per-bin values across the genome,
+          typically in bigWig format.
         in_subset:
-          - signal_track
+        - signal_track
+        see_also:
+        - gene expression
+        - chromatin accessibility
+        - TF binding
       signal of all reads:
-        description: Signal computed from all aligned reads.
+        description: Signal computed from all aligned reads regardless of mapping quality or 
+          uniqueness.
         in_subset:
-          - signal_track
+        - signal_track
       signal of unique reads:
-        description: Signal computed from uniquely aligned reads only.
+        description: Signal computed only from uniquely mapping reads (typically MAPQ >= 30), 
+          excluding multi-mappers.
         in_subset:
-          - signal_track
+        - signal_track
       signal p-value:
-        description: Statistical p-value signal track.
+        description: Statistical significance track showing -log10(p-value) of enrichment at each 
+          position.
         meaning: edam:data_0951
         in_subset:
-          - signal_track
+        - signal_track
       summed densities signal:
-        description: Signal computed as the sum of per-base read densities.
+        description: Signal computed as the sum of per-base read densities across the region.
         in_subset:
-          - signal_track
+        - signal_track
       wavelet-smoothed signal:
-        description: Signal smoothed using a wavelet transform.
+        description: Signal smoothed using wavelet transform to reduce noise while preserving peak 
+          structure.
         in_subset:
-          - signal_track
+        - signal_track
 
       # ─── peak_set ─────────────────────────────────────────────────────────
       bidirectional peaks:
-        description: Peaks called from bidirectional transcription signal.
+        description: Peaks from bidirectional transcription signal, characteristic of active 
+          enhancers and promoters.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
+        see_also:
+        - enhancers
+        - promoters
       conservative IDR thresholded peaks:
-        description: Peaks thresholded using the conservative IDR cutoff.
+        description: Peaks using a conservative (stricter) IDR cutoff, yielding high-confidence but 
+          smaller peak set.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
+        see_also:
+        - TF binding sites
+        - open chromatin regions
       distal peaks:
-        description: Peaks located distal to annotated transcription start sites.
+        description: Peaks located distal (>2-3kb) from transcription start sites, often 
+          representing enhancers.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
       divergent peaks:
-        description: Peaks associated with divergent transcription.
+        description: Peaks from divergent transcription where initiation occurs in both directions 
+          from a central point.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
       filtered peaks:
-        description: Peak calls after quality or blacklist filtering.
+        description: Peak calls after quality filtering, typically removing peaks in blacklist 
+          regions or with low signal.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
+        see_also:
+        - TF binding sites
+        - open chromatin regions
+        - histone modifications
       IDR ranked peaks:
-        description: Peaks ranked by Irreproducibility Discovery Rate score.
+        description: Peaks ranked by IDR score, with lower IDR indicating higher reproducibility 
+          across replicates.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
       IDR thresholded peaks:
-        description: Peaks passing an IDR significance threshold.
+        description: Peaks passing an Irreproducible Discovery Rate (IDR) threshold, indicating 
+          reproducible signal across replicates.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
+        see_also:
+        - TF binding sites
+        - open chromatin regions
+        - histone modifications
       optimal IDR thresholded peaks:
-        description: Peaks thresholded using the optimal IDR cutoff.
+        description: Peaks using the optimal IDR cutoff balancing sensitivity and reproducibility.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
+        see_also:
+        - TF binding sites
+        - open chromatin regions
       peaks:
-        description: Discrete genomic regions of enrichment from peak calling.
+        description: Discrete genomic regions of statistically significant enrichment from peak 
+          calling. The fundamental unit of ChIP-seq and ATAC-seq analysis.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
+        see_also:
+        - TF binding sites
+        - open chromatin regions
+        - histone modifications
+        - enhancers
       peaks and background as input for IDR:
-        description: Combined peak and background signal prepared as IDR input.
+        description: Combined peak and background signal data formatted as input for IDR analysis.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
       proximal peaks:
-        description: Peaks located proximal to annotated transcription start sites.
+        description: Peaks located proximal (<2-3kb) to transcription start sites, often 
+          representing promoters.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
       pseudoreplicated IDR thresholded peaks:
-        description: IDR-thresholded peaks derived from pseudoreplicated data.
+        description: IDR-thresholded peaks from pseudoreplicates (subsampled reads) when true 
+          replicates unavailable.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
       pseudoreplicated peaks:
-        description: Peak calls derived from pseudoreplicated samples.
+        description: Peak calls from pseudoreplicates created by subsampling reads from a single 
+          experiment.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
       replicated peaks:
-        description: Peaks reproducible across biological replicates.
+        description: Peaks reproducibly called across biological or technical replicates.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
+        see_also:
+        - TF binding sites
+        - open chromatin regions
+        - histone modifications
       representative DNase hypersensitivity sites:
-        description: A curated representative set of DNase hypersensitivity sites.
+        description: A curated representative set of DNase hypersensitivity sites for reference.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
       representative IDR thresholded peaks:
-        description: A representative set of IDR-thresholded peaks.
+        description: A representative set of IDR-thresholded peaks selected for downstream analysis.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
       unidirectional peaks:
-        description: Peaks called from unidirectional transcription signal.
+        description: Peaks from unidirectional transcription signal, typically associated with gene 
+          bodies.
         meaning: edam:data_3002
         in_subset:
-          - peak_set
+        - peak_set
       valleys:
-        description: Local minima in signal tracks, used for footprint or nucleosome analysis.
+        description: Local minima in signal tracks used in footprint detection or nucleosome 
+          positioning analysis.
         in_subset:
-          - peak_set
+        - peak_set
 
       # ─── chromatin_accessibility ──────────────────────────────────────────
       consensus DNase hypersensitivity sites:
-        description: Consensus DNase I hypersensitivity sites across samples.
+        description: DNase I hypersensitivity sites consistently identified across multiple samples 
+          or cell types.
         in_subset:
-          - chromatin_accessibility
+        - chromatin_accessibility
       DHS peaks:
-        description: Peak calls from DNase I hypersensitivity sequencing.
+        description: Peak calls from DNase I hypersensitivity sequencing (DNase-seq), indicating 
+          open chromatin regions.
         in_subset:
-          - chromatin_accessibility
+        - chromatin_accessibility
+        see_also:
+        - open chromatin regions
+        - footprints
       DHS regions reference:
         description: Reference set of DNase I hypersensitivity regions.
         in_subset:
-          - chromatin_accessibility
+        - chromatin_accessibility
       FDR cut rate:
-        description: False discovery rate cut rate signal from DNase-seq.
+        description: False discovery rate-controlled cut rate signal from DNase-seq analysis.
         in_subset:
-          - chromatin_accessibility
-      footprints:
-        description: Regions of protected DNA within open chromatin, indicating TF binding.
-        in_subset:
-          - chromatin_accessibility
+        - chromatin_accessibility
       haplotype-specific nuclease cleavage corrected frequency:
         description: Bias-corrected nuclease cleavage frequency for a specific haplotype.
         in_subset:
-          - chromatin_accessibility
+        - chromatin_accessibility
       haplotype-specific nuclease cleavage frequency:
         description: Nuclease cleavage frequency measured for a specific haplotype.
         in_subset:
-          - chromatin_accessibility
+        - chromatin_accessibility
       hotspots:
-        description: Broad regions of elevated DNase cleavage activity.
+        description: Broad regions of elevated DNase cleavage activity representing domains of 
+          chromatin accessibility.
         in_subset:
-          - chromatin_accessibility
+        - chromatin_accessibility
+        see_also:
+        - open chromatin regions
       hotspots1 reference:
         description: Reference hotspot calls at lenient threshold (hotspot1 algorithm).
         in_subset:
-          - chromatin_accessibility
+        - chromatin_accessibility
       hotspots2 reference:
         description: Reference hotspot calls at stringent threshold (hotspot2 algorithm).
         in_subset:
-          - chromatin_accessibility
+        - chromatin_accessibility
       nuclease cleavage frequency:
-        description: Per-base frequency of nuclease cleavage across the genome.
+        description: Per-base frequency of DNase I or Tn5 transposase cleavage across the genome.
         in_subset:
-          - chromatin_accessibility
-      open chromatin regions:
-        description: Genomic regions of accessible, open chromatin.
-        in_subset:
-          - chromatin_accessibility
-
-      # ─── contact_matrix ───────────────────────────────────────────────────
+        - chromatin_accessibility
       allele-specific contact matrix:
-        description: Chromatin contact matrix resolved to individual alleles.
+        description: Chromatin contact matrix resolved to individual alleles using phased variants.
         in_subset:
-          - contact_matrix
-      chromatin stripes:
-        description: Elongated features in contact matrices indicating loop extrusion.
-        in_subset:
-          - contact_matrix
-      contact domains:
-        description: Topologically associating domains (TADs) from contact matrix analysis.
-        in_subset:
-          - contact_matrix
+        - contact_matrix
       contact matrix:
-        description: Genome-wide pairwise chromatin interaction frequency matrix.
+        description: Genome-wide matrix of chromatin interaction frequencies from Hi-C or similar 
+          chromosome conformation capture experiments.
         in_subset:
-          - contact_matrix
-      genome compartments:
-        description: A/B compartments from principal component analysis of contact matrices.
-        in_subset:
-          - contact_matrix
-      genome subcompartments:
-        description: Fine-grained chromatin compartments within A/B compartments.
-        in_subset:
-          - contact_matrix
+        - contact_matrix
+        see_also:
+        - chromatin loops
+        - TADs
+        - compartments
       haplotype-specific contact matrix:
-        description: Chromatin contact matrix resolved to a specific haplotype.
+        description: Contact matrix computed separately for a specific parental haplotype.
         in_subset:
-          - contact_matrix
-      loops:
-        description: Chromatin loop interactions identified from contact matrix data.
-        in_subset:
-          - contact_matrix
+        - contact_matrix
       mapping quality thresholded contact matrix:
         description: Contact matrix filtered to high-confidence mappings.
         in_subset:
-          - contact_matrix
-      nested contact domains:
-        description: Hierarchically nested topological domains within contact matrices.
-        in_subset:
-          - contact_matrix
+        - contact_matrix
       pairs:
-        description: Raw read pair data from Hi-C or proximity ligation experiments.
+        description: Raw read pair data from Hi-C or proximity ligation before matrix construction.
         in_subset:
-          - contact_matrix
+        - contact_matrix
       variants contact matrix:
         description: Contact matrix incorporating variant information.
         in_subset:
-          - contact_matrix
+        - contact_matrix
 
       # ─── dna_methylation ──────────────────────────────────────────────────
-      CpG sites coverage:
-        description: Read coverage at CpG dinucleotide positions.
-        in_subset:
-          - dna_methylation
-      methylated reads:
-        description: Reads identified as carrying DNA methylation marks.
-        in_subset:
-          - dna_methylation
-      methylation state at CHG:
-        description: DNA methylation status at CHG sequence context positions.
-        in_subset:
-          - dna_methylation
-      methylation state at CHH:
-        description: DNA methylation status at CHH sequence context positions.
-        in_subset:
-          - dna_methylation
-      methylation state at CpG:
-        description: DNA methylation status at CpG dinucleotide positions.
-        in_subset:
-          - dna_methylation
-      minus strand methylation state at CpG:
-        description: DNA methylation status at CpG positions on the minus strand.
-        in_subset:
-          - dna_methylation
-      plus strand methylation state at CpG:
-        description: DNA methylation status at CpG positions on the plus strand.
-        in_subset:
-          - dna_methylation
-      smoothed methylation state at CpG:
-        description: CpG methylation state after spatial smoothing.
-        in_subset:
-          - dna_methylation
-
-      # ─── rna_modification ─────────────────────────────────────────────────
-      minus strand inosine methylation state:
-        description: Inosine modification state on the minus strand.
-        in_subset:
-          - rna_modification
-      minus strand m5C methylation state:
-        description: 5-methylcytosine (m5C) modification state on the minus strand.
-        in_subset:
-          - rna_modification
-      minus strand m6A methylation state:
-        description: N6-methyladenosine (m6A) modification state on the minus strand.
-        in_subset:
-          - rna_modification
-      minus strand Nm methylation state:
-        description: 2′-O-methylation (Nm) modification state on the minus strand.
-        in_subset:
-          - rna_modification
-      minus strand pseudouridine methylation state:
-        description: Pseudouridine modification state on the minus strand.
-        in_subset:
-          - rna_modification
-      plus strand inosine methylation state:
-        description: Inosine modification state on the plus strand.
-        in_subset:
-          - rna_modification
-      plus strand m5C methylation state:
-        description: 5-methylcytosine (m5C) modification state on the plus strand.
-        in_subset:
-          - rna_modification
-      plus strand m6A methylation state:
-        description: N6-methyladenosine (m6A) modification state on the plus strand.
-        in_subset:
-          - rna_modification
-      plus strand Nm methylation state:
-        description: 2′-O-methylation (Nm) modification state on the plus strand.
-        in_subset:
-          - rna_modification
-      plus strand pseudouridine methylation state:
-        description: Pseudouridine modification state on the plus strand.
-        in_subset:
-          - rna_modification
-
-      # ─── regulatory_element ───────────────────────────────────────────────
-      candidate Cis-Regulatory Elements:
-        description: Computationally predicted cis-regulatory elements.
-        in_subset:
-          - regulatory_element
-      candidate enhancers:
-        description: Computationally predicted enhancer elements.
-        in_subset:
-          - regulatory_element
-      candidate promoters:
-        description: Computationally predicted promoter elements.
-        in_subset:
-          - regulatory_element
-      curated binding sites:
-        description: Manually curated transcription factor binding sites.
-        meaning: edam:data_3125
-        in_subset:
-          - regulatory_element
-      enhancer-gene links:
-        description: >-
-          Moved to element_gene_linkage. Links between enhancers and their
-          putative target genes.
-        in_subset:
-          - regulatory_element
       enhancer prediction model:
-        description: Computational model for predicting enhancer activity.
+        description: Model predicting enhancer activity from sequence or chromatin features.
         in_subset:
-          - regulatory_element
-      enhancer validation:
-        description: Experimental validation data for predicted enhancers.
-        in_subset:
-          - regulatory_element
-      enhancers reference:
-        description: Reference set of annotated enhancer elements.
-        in_subset:
-          - regulatory_element
-      minus strand transcription start sites:
-        description: Transcription start sites on the minus strand.
-        in_subset:
-          - regulatory_element
-      plus strand transcription start sites:
-        description: Transcription start sites on the plus strand.
-        in_subset:
-          - regulatory_element
-      polyA sites:
-        description: Polyadenylation signal sites across the genome.
-        in_subset:
-          - regulatory_element
-      predicted enhancers:
-        description: Computationally predicted enhancer elements.
-        in_subset:
-          - regulatory_element
-      predicted forebrain enhancers:
-        description: Enhancer elements predicted to be active in forebrain tissue.
-        in_subset:
-          - regulatory_element
-      predicted heart enhancers:
-        description: Enhancer elements predicted to be active in heart tissue.
-        in_subset:
-          - regulatory_element
-      predicted transcription start sites:
-        description: Computationally predicted transcription start sites.
-        in_subset:
-          - regulatory_element
-      predicted whole brain enhancers:
-        description: Enhancer elements predicted to be active across whole brain.
-        in_subset:
-          - regulatory_element
-      promoters reference:
-        description: Reference set of annotated promoter elements.
-        in_subset:
-          - regulatory_element
-      regulatory elements:
-        description: General regulatory elements annotation.
-        in_subset:
-          - regulatory_element
+        - regulatory_element
       regulatory elements prediction model:
-        description: Computational model for predicting regulatory element activity.
+        description: Computational model for predicting regulatory element activity and location.
         in_subset:
-          - regulatory_element
-      transcription start sites:
-        description: Experimentally determined transcription start sites.
-        in_subset:
-          - regulatory_element
-      TSS reference:
-        description: Reference set of transcription start sites.
-        in_subset:
-          - regulatory_element
-
-      # ─── element_gene_linkage ─────────────────────────────────────────────
-      element gene interactions p-value:
-        description: Statistical significance of element-gene interaction associations.
-        in_subset:
-          - element_gene_linkage
-      element gene interactions signal:
-        description: Signal strength of element-gene interaction associations.
-        in_subset:
-          - element_gene_linkage
-      element gene links:
-        description: Associations linking regulatory elements to target genes.
-        in_subset:
-          - element_gene_linkage
-      thresholded element gene links:
-        description: Element-gene links filtered by a significance threshold.
-        in_subset:
-          - element_gene_linkage
-      thresholded links:
-        description: Generic significance-thresholded regulatory links.
-        in_subset:
-          - element_gene_linkage
-      topic gene weights:
-        description: Gene weights derived from topic modeling of regulatory data.
-        in_subset:
-          - element_gene_linkage
-
-      # ─── crispr_screen ────────────────────────────────────────────────────
+        - regulatory_element
       element barcode mapping:
         description: Mapping of element barcodes used in CRISPR screen experiments.
         in_subset:
-          - crispr_screen
+        - crispr_screen
       gRNAs:
         description: Guide RNA sequences used in CRISPR screens.
         in_subset:
-          - crispr_screen
+        - crispr_screen
       guide locations:
         description: Genomic locations targeted by guide RNAs.
         in_subset:
-          - crispr_screen
+        - crispr_screen
       guide quantifications:
         description: Abundance quantifications of guide RNAs from screen data.
         in_subset:
-          - crispr_screen
+        - crispr_screen
       non-targeting gRNAs:
         description: Guide RNAs designed as non-targeting negative controls.
         in_subset:
-          - crispr_screen
+        - crispr_screen
       perturbation signal:
         description: Phenotypic signal associated with CRISPR perturbations.
         in_subset:
-          - crispr_screen
+        - crispr_screen
       ranked gRNAs:
         description: Guide RNAs ranked by screen performance or activity.
         in_subset:
-          - crispr_screen
+        - crispr_screen
       reporter code counts:
         description: Count data from reporter codes in CRISPR screen readouts.
         in_subset:
-          - crispr_screen
+        - crispr_screen
       safe-targeting gRNAs:
         description: Guide RNAs targeting genomic safe-harbor loci as controls.
         in_subset:
-          - crispr_screen
+        - crispr_screen
       sparse gRNA count matrix:
         description: Sparse count matrix of guide RNA abundances across cells.
         meaning: edam:data_3917
         in_subset:
-          - crispr_screen
+        - crispr_screen
 
       # ─── count_matrix ─────────────────────────────────────────────────────
       depth normalized signals matrix:
         description: Matrix of read-depth normalized signals across features and samples.
         in_subset:
-          - count_matrix
+        - count_matrix
       fold over change matrix:
-        description: Matrix of fold-change values relative to control.
+        description: Matrix of fold-change values relative to control across features.
         in_subset:
-          - count_matrix
+        - count_matrix
       sparse gene count matrix:
-        description: Sparse matrix of gene read counts across cells or samples.
+        description: Sparse matrix of gene-level read counts across cells or samples, standard for 
+          single-cell RNA-seq.
         meaning: edam:data_3917
         in_subset:
-          - count_matrix
+        - count_matrix
       sparse gene count matrix of all reads:
-        description: Sparse gene count matrix including all reads.
+        description: Sparse gene count matrix including all reads regardless of mapping quality.
         meaning: edam:data_3917
         in_subset:
-          - count_matrix
+        - count_matrix
       sparse gene count matrix of unique reads:
         description: Sparse gene count matrix from uniquely mapping reads only.
         meaning: edam:data_3917
         in_subset:
-          - count_matrix
+        - count_matrix
       sparse peak count matrix:
-        description: Sparse matrix of peak accessibility counts across cells.
+        description: Sparse matrix of peak accessibility counts across cells, used in single-cell 
+          ATAC-seq.
         meaning: edam:data_3917
         in_subset:
-          - count_matrix
+        - count_matrix
       sparse transcript count matrix:
-        description: Sparse matrix of transcript read counts across cells.
+        description: Sparse matrix of transcript-level counts across cells or samples.
         meaning: edam:data_3917
         in_subset:
-          - count_matrix
+        - count_matrix
       TF peaks matrix:
         description: Matrix of transcription factor peak counts across samples.
         in_subset:
-          - count_matrix
+        - count_matrix
       unfiltered sparse gene count matrix of all reads:
         description: Unfiltered sparse gene count matrix from all reads.
         meaning: edam:data_3917
         in_subset:
-          - count_matrix
+        - count_matrix
       unfiltered sparse gene count matrix of unique reads:
         description: Unfiltered sparse gene count matrix from uniquely mapping reads.
         meaning: edam:data_3917
         in_subset:
-          - count_matrix
+        - count_matrix
       unfiltered sparse splice junction count matrix of unique reads:
         description: Unfiltered sparse count matrix of splice junctions from unique reads.
         meaning: edam:data_3917
         in_subset:
-          - count_matrix
+        - count_matrix
       z scores matrix:
         description: Matrix of z-score normalized values across features and samples.
         in_subset:
-          - count_matrix
+        - count_matrix
 
       # ─── quantification ───────────────────────────────────────────────────
       differential expression quantifications:
-        description: Quantifications from differential gene expression analysis.
+        description: Statistical results from differential expression analysis comparing conditions.
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
       differential splicing quantifications:
-        description: Quantifications from differential splicing analysis.
+        description: Statistical results from differential splicing analysis comparing conditions.
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
       element quantifications:
         description: Quantification values for regulatory elements.
         in_subset:
-          - quantification
+        - quantification
       exon quantifications:
-        description: Read count or expression quantifications at the exon level.
+        description: Read counts or expression values quantified at individual exons.
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
+        see_also:
+        - exon usage
+        - splicing
       filtered modified peptide quantification:
         description: Filtered quantification of post-translationally modified peptides.
         in_subset:
-          - quantification
+        - quantification
       filtered peptide quantification:
         description: Filtered quantification of peptides from proteomics data.
         in_subset:
-          - quantification
+        - quantification
       gene quantifications:
-        description: Read count or expression quantifications at the gene level.
+        description: Expression quantifications at gene level as read counts, TPM, or FPKM values.
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
+        see_also:
+        - gene expression
       gene stabilities:
-        description: Measurements of mRNA or gene expression stability.
+        description: Measurements of mRNA or gene expression stability over time.
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
       genic features quantifications:
         description: Quantifications across various genic features (exons, introns, UTRs).
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
       genic regions quantifications:
         description: Read count quantifications over defined genic regions.
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
       merged transcription segment quantifications:
         description: Quantifications from merged transcription segments.
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
       microRNA quantifications:
-        description: Expression quantifications of microRNAs.
+        description: Expression quantifications of microRNAs (miRNAs).
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
       mRNA stabilities:
-        description: Measurements of mRNA half-life or stability.
+        description: Measurements of mRNA half-life or decay rates.
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
       novel peptides:
         description: Peptides identified that are absent from reference databases.
         meaning: edam:data_0945
         in_subset:
-          - quantification
+        - quantification
       peptide quantifications:
-        description: Abundance quantifications of peptides from proteomics data.
+        description: Abundance measurements of peptides from mass spectrometry proteomics.
         meaning: edam:data_0945
         in_subset:
-          - quantification
+        - quantification
       protein expression quantifications:
-        description: Abundance quantifications of proteins from proteomics data.
+        description: Abundance measurements of proteins from proteomics data.
         meaning: edam:data_2603
         in_subset:
-          - quantification
+        - quantification
       scaled RNA stability:
         description: RNA stability measurements scaled across samples.
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
       transcript quantifications:
-        description: Read count or expression quantifications at the transcript level.
+        description: Expression quantifications at transcript isoform level.
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
+        see_also:
+        - transcript expression
+        - splicing
       transcribed region quantifications:
         description: Quantifications over transcribed genomic regions.
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
       transcription segment quantifications:
         description: Quantifications over discrete transcription segments.
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
       unfiltered modified peptide quantification:
         description: Unfiltered quantification of post-translationally modified peptides.
         in_subset:
-          - quantification
+        - quantification
       unfiltered peptide quantification:
         description: Unfiltered quantification of peptides from proteomics data.
         in_subset:
-          - quantification
+        - quantification
       UV enriched segment quantifications:
         description: Quantifications from UV-crosslinking enriched RNA segments.
         meaning: edam:data_0928
         in_subset:
-          - quantification
+        - quantification
 
       # ─── deep_learning ────────────────────────────────────────────────────
       bias models:
-        description: Trained models capturing sequencing bias patterns.
+        description: Trained models capturing sequencing bias patterns based on sequence 
+          composition.
         in_subset:
-          - deep_learning
+        - deep_learning
       counts sequence contribution scores:
-        description: Contribution scores for predicting read count output from sequence.
+        description: Per-nucleotide importance scores explaining sequence contribution to predicted 
+          counts (e.g., DeepLIFT, integrated gradients).
         in_subset:
-          - deep_learning
+        - deep_learning
       DNN-MPRA contribution scores:
-        description: Contribution scores from a deep neural network trained on MPRA data.
+        description: Nucleotide contribution scores from a deep neural network trained on MPRA data.
         in_subset:
-          - deep_learning
+        - deep_learning
       DNN-MPRA predicted signal:
-        description: Signal predicted by a deep neural network trained on MPRA data.
+        description: Regulatory activity signal predicted by a DNN trained on MPRA data.
         in_subset:
-          - deep_learning
+        - deep_learning
       model performance metrics:
-        description: Evaluation metrics assessing predictive model performance.
+        description: Evaluation metrics (AUC, correlation, etc.) assessing predictive model 
+          performance.
         in_subset:
-          - deep_learning
+        - deep_learning
       models:
-        description: Trained computational or machine learning models.
+        description: Trained computational or machine learning models saved for prediction or 
+          interpretation.
         in_subset:
-          - deep_learning
+        - deep_learning
       motif model:
-        description: Sequence motif model learned by a computational or deep learning method.
+        description: Sequence motif model (e.g., convolutional filter weights) from deep learning or
+          motif discovery.
         meaning: edam:data_0859
         in_subset:
-          - deep_learning
+        - deep_learning
       profile sequence contribution scores:
-        description: Contribution scores for predicting signal profile output from sequence.
+        description: Per-nucleotide importance scores explaining sequence contribution to predicted 
+          signal profiles.
         in_subset:
-          - deep_learning
+        - deep_learning
       promoter prediction model:
-        description: Computational model for predicting promoter activity from sequence.
+        description: Computational model trained to predict promoter activity from sequence.
         in_subset:
-          - deep_learning
+        - deep_learning
       selected regions for bias-corrected predicted signal profile:
         description: Genomic regions selected for bias-corrected signal profile interpretation.
         in_subset:
-          - deep_learning
+        - deep_learning
       selected regions for count sequence contribution scores:
         description: Genomic regions selected for count contribution score analysis.
         in_subset:
-          - deep_learning
+        - deep_learning
       selected regions for predicted bias profile:
         description: Genomic regions selected for predicted bias profile interpretation.
         in_subset:
-          - deep_learning
+        - deep_learning
       selected regions for predicted signal and sequence contribution scores:
         description: Genomic regions selected for combined signal and contribution score analysis.
         in_subset:
-          - deep_learning
+        - deep_learning
       selected regions for predicted signal profile:
         description: Genomic regions selected for predicted signal profile interpretation.
         in_subset:
-          - deep_learning
+        - deep_learning
       selected regions for predicted signal profile (minus strand):
         description: Minus strand genomic regions selected for predicted signal interpretation.
         in_subset:
-          - deep_learning
+        - deep_learning
       selected regions for predicted signal profile (plus strand):
         description: Plus strand genomic regions selected for predicted signal interpretation.
         in_subset:
-          - deep_learning
+        - deep_learning
       selected regions for profile sequence contribution scores:
         description: Genomic regions selected for profile contribution score analysis.
         in_subset:
-          - deep_learning
+        - deep_learning
       TF binding prediction model:
-        description: Computational model for predicting transcription factor binding from sequence.
+        description: Deep learning model predicting transcription factor binding from DNA sequence.
         in_subset:
-          - deep_learning
+        - deep_learning
       training and test regions:
-        description: Genomic regions used for model training and evaluation.
+        description: Genomic regions designated for model training and held-out evaluation.
         in_subset:
-          - deep_learning
+        - deep_learning
       training set:
         description: Data used to train a computational or machine learning model.
         in_subset:
-          - deep_learning
+        - deep_learning
 
       # ─── replication_timing ───────────────────────────────────────────────
-      relative replication signal:
-        description: Replication timing signal expressed relative to a reference.
-        in_subset:
-          - replication_timing
-      replication timing profile:
-        description: Genome-wide profile of DNA replication timing.
-        in_subset:
-          - replication_timing
-
-      # ─── variant ──────────────────────────────────────────────────────────
-      allele-specific variants:
-        description: Variants identified in an allele-specific manner.
-        meaning: edam:data_0918
-        in_subset:
-          - variant
-      copy number variation:
-        description: Genomic regions with altered copy numbers relative to reference.
-        in_subset:
-          - variant
-      curated SNVs:
-        description: Manually curated single nucleotide variants.
-        meaning: edam:data_0918
-        in_subset:
-          - variant
-      dsQTLs:
-        description: DNase I sensitivity quantitative trait loci.
-        meaning: edam:data_1860
-        in_subset:
-          - variant
-      eQTLs:
-        description: Expression quantitative trait loci linking variants to gene expression.
-        meaning: edam:data_1860
-        in_subset:
-          - variant
-      filtered indels:
-        description: Insertion/deletion variants after quality filtering.
-        meaning: edam:data_0918
-        in_subset:
-          - variant
-      filtered SNPs:
-        description: Single nucleotide polymorphisms after quality filtering.
-        meaning: edam:data_0918
-        in_subset:
-          - variant
       fine-mapped variants:
-        description: Variants refined by statistical fine-mapping methods.
+        description: Variants identified as likely causal through statistical fine-mapping within 
+          associated loci.
         meaning: edam:data_0918
         in_subset:
-          - variant
-      maternal variant calls:
-        description: Variants called specifically from the maternal haplotype.
-        meaning: edam:data_0918
-        in_subset:
-          - variant
-      paternal variant calls:
-        description: Variants called specifically from the paternal haplotype.
-        meaning: edam:data_0918
-        in_subset:
-          - variant
-      phased variant calls:
-        description: Variants with haplotype phase information resolved.
-        meaning: edam:data_0918
-        in_subset:
-          - variant
-      reference variants:
-        description: Variants relative to a reference genome.
-        meaning: edam:data_0918
-        in_subset:
-          - variant
-      variant calls:
-        description: Called genomic variants (SNPs, indels, SVs).
-        meaning: edam:data_0918
-        in_subset:
-          - variant
-      variant effect quantifications:
-        description: Quantitative measurements of variant functional effects.
-        meaning: edam:data_0918
-        in_subset:
-          - variant
+        - variant
       variant functional prediction:
         description: Computational predictions of variant functional impact.
         meaning: edam:data_0918
         in_subset:
-          - variant
-      variant reference:
-        description: Reference database or set of known genomic variants.
-        in_subset:
-          - variant
-
-      # ─── reference ────────────────────────────────────────────────────────
+        - variant
       chromosome sizes:
-        description: File listing chromosome names and their sizes.
+        description: File listing chromosome/contig names and lengths, required by many genomics 
+          tools.
         meaning: edam:data_0919
         in_subset:
-          - reference
+        - reference
       chromosomes reference:
         description: Reference sequences for individual chromosomes.
         meaning: edam:data_2977
         in_subset:
-          - reference
+        - reference
       elements reference:
         description: Reference set of annotated genomic elements.
         in_subset:
-          - reference
+        - reference
       female genome index:
-        description: Genome index built from a female reference genome.
+        description: Alignment index built from a female reference genome.
         meaning: edam:data_3210
         in_subset:
-          - reference
+        - reference
       female genome reference:
-        description: Reference genome sequence for a female individual.
+        description: Reference genome sequence derived from a female individual (includes both X 
+          chromosomes).
         meaning: edam:data_2977
         in_subset:
-          - reference
+        - reference
       genome index:
-        description: Index structure for rapid alignment to a reference genome.
+        description: Precomputed index enabling rapid sequence alignment to a reference genome.
         meaning: edam:data_3210
         in_subset:
-          - reference
+        - reference
       genome reference:
-        description: Reference genome sequence assembly.
+        description: Reference genome sequence assembly used for alignment and annotation.
         meaning: edam:data_2977
         in_subset:
-          - reference
+        - reference
       male genome index:
-        description: Genome index built from a male reference genome.
+        description: Alignment index built from a male reference genome.
         meaning: edam:data_3210
         in_subset:
-          - reference
+        - reference
       male genome reference:
-        description: Reference genome sequence for a male individual.
+        description: Reference genome sequence derived from a male individual (includes X and Y 
+          chromosomes).
         meaning: edam:data_2977
         in_subset:
-          - reference
+        - reference
       miRNA reference:
         description: Reference sequences and annotations for microRNAs.
         in_subset:
-          - reference
+        - reference
       mitochondrial genome index:
-        description: Index built from the mitochondrial genome sequence.
+        description: Alignment index for the mitochondrial genome.
         meaning: edam:data_3210
         in_subset:
-          - reference
+        - reference
       mitochondrial genome reference:
         description: Reference sequence for the mitochondrial genome.
         meaning: edam:data_2977
         in_subset:
-          - reference
+        - reference
       motif clusters reference:
         description: Reference set of clustered sequence motifs.
         meaning: edam:data_1353
         in_subset:
-          - reference
+        - reference
       phastcons score reference:
         description: Reference phastCons conservation scores across the genome.
         in_subset:
-          - reference
+        - reference
       reference:
         description: Generic reference data file.
         in_subset:
-          - reference
+        - reference
       repeats reference:
         description: Reference annotations of repetitive elements.
         in_subset:
-          - reference
+        - reference
       rRNA reference:
         description: Reference sequences for ribosomal RNA.
         in_subset:
-          - reference
+        - reference
       snRNA reference:
         description: Reference sequences for small nuclear RNA.
         in_subset:
-          - reference
+        - reference
       transcriptome index:
-        description: Index structure for rapid alignment to a transcriptome reference.
+        description: Index for rapid alignment to transcriptome reference sequences.
         meaning: edam:data_3210
         in_subset:
-          - reference
+        - reference
       transcriptome reference:
-        description: Reference transcript sequences for a species.
+        description: Reference transcript sequences for a species, used for RNA-seq alignment.
         meaning: edam:data_2977
         in_subset:
-          - reference
+        - reference
       tRNA reference:
         description: Reference sequences for transfer RNA.
         in_subset:
-          - reference
+        - reference
 
       # ─── sequence_motif ───────────────────────────────────────────────────
+      HMM predicted chromatin state:
+        description: Chromatin state annotations (e.g., ChromHMM) predicted by hidden Markov model 
+          from histone marks.
+        in_subset:
+        - annotation
+      read annotations:
+        description: Per-read annotations of alignment features or classifications.
+        in_subset:
+        - annotation
+      semi-automated genome annotation:
+        description: Genome annotation produced by a combination of automated and manual methods.
+        in_subset:
+        - annotation
+      sequence alignability:
+        description: Track indicating mappability of sequences to the reference genome.
+        in_subset:
+        - annotation
+      sequence uniqueness:
+        description: Track indicating uniqueness of k-mer sequences across the genome.
+        in_subset:
+        - annotation
+      archr project:
+        description: ArchR software project file with processed single-cell ATAC-seq data and 
+          analyses.
+        in_subset:
+        - single_cell
+      cell coordinates:
+        description: Low-dimensional coordinates (UMAP, t-SNE, PCA) for single-cell visualization.
+        in_subset:
+        - single_cell
+      cell topic participation:
+        description: Cell-level participation scores in latent topics from topic modeling.
+        in_subset:
+        - single_cell
+      clusters:
+        description: Cell cluster assignments from unsupervised clustering of single-cell data.
+        in_subset:
+        - single_cell
+
+      # ─── structure ────────────────────────────────────────────────────────
+      capture targets:
+        description: Genomic regions targeted for enrichment in capture-based sequencing (exome, 
+          panels).
+        in_subset:
+        - technical
+      exclusion list regions:
+        description: Genomic blacklist regions excluded due to mapping artifacts or technical 
+          issues.
+        in_subset:
+        - technical
+      filtered regions:
+        description: Genomic regions removed from analysis after filtering.
+        in_subset:
+        - technical
+      fragments:
+        description: DNA or RNA fragment data prior to alignment.
+        in_subset:
+        - technical
+      idat green channel:
+        description: Green channel intensity data from Illumina IDAT microarray files.
+        in_subset:
+        - technical
+      idat red channel:
+        description: Red channel intensity data from Illumina IDAT microarray files.
+        in_subset:
+        - technical
+      inclusion list:
+        description: Allowlist of genomic regions or barcodes included in analysis.
+        in_subset:
+        - technical
+      index reads:
+        description: Index read sequences for sample demultiplexing.
+        in_subset:
+        - technical
+      intensity values:
+        description: Raw intensity measurements from microarray or imaging experiments.
+        in_subset:
+        - technical
+      kmer weights:
+        description: Frequency or weight values for k-mer sequences.
+        in_subset:
+        - technical
+      library fraction:
+        description: Proportion of sequencing library represented by a sample or subset.
+        in_subset:
+        - technical
+      mitochondrial exclusion list regions:
+        description: Mitochondrial regions excluded from nuclear genome analysis.
+        in_subset:
+        - technical
+      nanopore signal:
+        description: Raw ionic current signal from nanopore sequencing.
+        in_subset:
+        - technical
+      negative control regions:
+        description: Genomic regions used as negative controls in experiments.
+        in_subset:
+        - technical
+      positive control regions:
+        description: Genomic regions used as positive controls in experiments.
+        in_subset:
+        - technical
+      primer sequence:
+        description: Oligonucleotide primer sequences used in PCR or sequencing.
+        in_subset:
+        - technical
+      R2C2 subreads:
+        description: Rolling circle amplification sub-reads from R2C2 long-read sequencing.
+        in_subset:
+        - technical
+      raw data:
+        description: Unprocessed experimental data in original format before computational 
+          processing.
+        in_subset:
+        - technical
+      raw imaging signal:
+        description: Unprocessed signal from imaging-based experiments.
+        in_subset:
+        - technical
+      sequence adapters:
+        description: Adapter sequences ligated to library fragments for sequencing platform 
+          compatibility.
+        in_subset:
+        - technical
+      sequence barcodes:
+        description: Short DNA sequences labeling samples (multiplexing) or individual cells 
+          (single-cell).
+        in_subset:
+        - technical
+      spike-ins:
+        description: Exogenous sequences of known concentration added for normalization (e.g., ERCC 
+          RNA spike-ins).
+        in_subset:
+        - technical
+      subreads:
+        description: Sub-read data from long-read sequencing platforms (PacBio).
+        in_subset:
+        - technical
+      validation:
+        description: Data generated for experimental validation purposes.
+        in_subset:
+        - technical
+  FeatureType:
+    description: "Biological feature types - the biological entity or concept the data \nrepresents. Describes
+      WHAT biological phenomenon the features capture.\nExamples: enhancers, TF binding sites, methylation
+      states, chromatin loops."
+    permissible_values:
+      footprints:
+        description: Short protected regions within open chromatin indicating transcription factor 
+          occupancy, identified as local signal minima within peaks.
+        in_subset:
+        - chromatin_accessibility
+        see_also:
+        - DHS peaks
+        - nuclease cleavage frequency
+      open chromatin regions:
+        description: Genomic regions of accessible chromatin from ATAC-seq, DNase-seq, or similar 
+          assays.
+        in_subset:
+        - chromatin_accessibility
+
+      # ─── contact_matrix ───────────────────────────────────────────────────
+        see_also:
+        - peaks
+        - DHS peaks
+        - hotspots
+      chromatin stripes:
+        description: Elongated features in contact matrices extending from loop anchors, indicating 
+          active loop extrusion.
+        in_subset:
+        - contact_matrix
+      contact domains:
+        description: Topologically associating domains (TADs) from contact matrix analysis, 
+          representing self-interacting chromatin regions.
+        in_subset:
+        - contact_matrix
+        see_also:
+        - contact matrix
+      genome compartments:
+        description: Large-scale A (active) and B (inactive) chromatin compartments from PCA of Hi-C
+          contact matrices.
+        in_subset:
+        - contact_matrix
+        see_also:
+        - contact matrix
+      genome subcompartments:
+        description: Fine-grained chromatin compartments (A1, A2, B1, B2, B3, B4) within major A/B 
+          compartments.
+        in_subset:
+        - contact_matrix
+      loops:
+        description: Chromatin loop interactions (point-to-point contacts) from contact matrices, 
+          often connecting enhancers to promoters.
+        in_subset:
+        - contact_matrix
+        see_also:
+        - contact matrix
+      nested contact domains:
+        description: Hierarchically nested topological domains showing multi-scale chromatin 
+          organization.
+        in_subset:
+        - contact_matrix
+      CpG sites coverage:
+        description: Sequencing read coverage at CpG positions, indicating measurement confidence.
+        in_subset:
+        - dna_methylation
+      methylated reads:
+        description: Reads containing DNA methylation marks from bisulfite or direct detection 
+          methods.
+        in_subset:
+        - dna_methylation
+      methylation state at CHG:
+        description: DNA methylation status at CHG sequence context (H = A, C, or T), common in 
+          plant genomes.
+        in_subset:
+        - dna_methylation
+      methylation state at CHH:
+        description: DNA methylation status at CHH sequence context, representing asymmetric non-CpG
+          methylation.
+        in_subset:
+        - dna_methylation
+      methylation state at CpG:
+        description: DNA methylation status (methylated/unmethylated fraction) at CpG dinucleotides,
+          the primary context for mammalian methylation.
+        in_subset:
+        - dna_methylation
+        see_also:
+        - methylated reads
+      minus strand methylation state at CpG:
+        description: DNA methylation status at CpG positions on the minus strand.
+        in_subset:
+        - dna_methylation
+      plus strand methylation state at CpG:
+        description: DNA methylation status at CpG positions on the plus strand.
+        in_subset:
+        - dna_methylation
+      smoothed methylation state at CpG:
+        description: CpG methylation values smoothed across neighboring sites to reduce noise.
+        in_subset:
+        - dna_methylation
+
+      # ─── rna_modification ─────────────────────────────────────────────────
+      minus strand inosine methylation state:
+        description: Inosine (A-to-I editing) modification on the minus strand.
+        in_subset:
+        - rna_modification
+      minus strand m5C methylation state:
+        description: 5-methylcytosine (m5C) RNA modification on the minus strand.
+        in_subset:
+        - rna_modification
+      minus strand m6A methylation state:
+        description: N6-methyladenosine (m6A) modification on minus strand transcripts. m6A is the 
+          most abundant internal mRNA modification.
+        in_subset:
+        - rna_modification
+      minus strand Nm methylation state:
+        description: 2′-O-methylation (Nm) modification on the minus strand.
+        in_subset:
+        - rna_modification
+      minus strand pseudouridine methylation state:
+        description: Pseudouridine (Ψ) modification on the minus strand. Pseudouridine is the most 
+          abundant RNA modification.
+        in_subset:
+        - rna_modification
+      plus strand inosine methylation state:
+        description: Inosine (A-to-I editing) modification on the plus strand.
+        in_subset:
+        - rna_modification
+      plus strand m5C methylation state:
+        description: 5-methylcytosine (m5C) RNA modification on the plus strand.
+        in_subset:
+        - rna_modification
+      plus strand m6A methylation state:
+        description: N6-methyladenosine (m6A) modification on plus strand transcripts.
+        in_subset:
+        - rna_modification
+      plus strand Nm methylation state:
+        description: 2′-O-methylation (Nm) modification on the plus strand.
+        in_subset:
+        - rna_modification
+      plus strand pseudouridine methylation state:
+        description: Pseudouridine (Ψ) modification on the plus strand.
+        in_subset:
+        - rna_modification
+
+      # ─── regulatory_element ───────────────────────────────────────────────
+      candidate Cis-Regulatory Elements:
+        description: Computationally predicted cis-regulatory elements (CREs) including enhancers, 
+          promoters, and insulators from chromatin accessibility and histone data.
+        in_subset:
+        - regulatory_element
+      candidate enhancers:
+        description: Computationally predicted enhancer elements based on chromatin signatures 
+          (H3K4me1, H3K27ac, accessibility).
+        in_subset:
+        - regulatory_element
+      candidate promoters:
+        description: Computationally predicted promoter elements based on chromatin signatures and 
+          TSS proximity.
+        in_subset:
+        - regulatory_element
+      curated binding sites:
+        description: Manually curated and validated transcription factor binding sites.
+        meaning: edam:data_3125
+        in_subset:
+        - regulatory_element
+      enhancer-gene links:
+        description: >-
+          Moved to element_gene_linkage. Links between enhancers and their
+          putative target genes.
+        in_subset:
+        - regulatory_element
+      enhancer validation:
+        description: Experimental validation data for predicted enhancers.
+        in_subset:
+        - regulatory_element
+      enhancers reference:
+        description: Reference set of annotated enhancer elements.
+        in_subset:
+        - regulatory_element
+      minus strand transcription start sites:
+        description: Transcription start sites on the minus strand.
+        in_subset:
+        - regulatory_element
+      plus strand transcription start sites:
+        description: Transcription start sites on the plus strand.
+        in_subset:
+        - regulatory_element
+      polyA sites:
+        description: Polyadenylation signal sites where pre-mRNA is cleaved and polyadenylated.
+        in_subset:
+        - regulatory_element
+      predicted enhancers:
+        description: Computationally predicted enhancer elements.
+        in_subset:
+        - regulatory_element
+      predicted forebrain enhancers:
+        description: Enhancer elements predicted to be active in forebrain tissue.
+        in_subset:
+        - regulatory_element
+      predicted heart enhancers:
+        description: Enhancer elements predicted to be active in heart tissue.
+        in_subset:
+        - regulatory_element
+      predicted transcription start sites:
+        description: Computationally predicted TSS based on sequence or chromatin features.
+        in_subset:
+        - regulatory_element
+      predicted whole brain enhancers:
+        description: Enhancer elements predicted to be active across whole brain.
+        in_subset:
+        - regulatory_element
+      promoters reference:
+        description: Reference set of annotated promoter elements.
+        in_subset:
+        - regulatory_element
+      regulatory elements:
+        description: 'General annotation of regulatory elements: enhancers, promoters, silencers, and
+          insulators.'
+        in_subset:
+        - regulatory_element
+      transcription start sites:
+        description: Experimentally determined transcription start sites (TSS) from CAGE, PRO-seq, 
+          or similar assays.
+        in_subset:
+        - regulatory_element
+        see_also:
+        - peaks
+        - bidirectional peaks
+      TSS reference:
+        description: Reference set of transcription start sites.
+        in_subset:
+        - regulatory_element
+
+      # ─── element_gene_linkage ─────────────────────────────────────────────
+      element gene interactions p-value:
+        description: Statistical significance of element-gene interaction associations.
+        in_subset:
+        - element_gene_linkage
+      element gene interactions signal:
+        description: Signal strength of element-gene interaction associations.
+        in_subset:
+        - element_gene_linkage
+      element gene links:
+        description: Associations linking regulatory elements to target genes.
+        in_subset:
+        - element_gene_linkage
+      thresholded element gene links:
+        description: Element-gene links filtered by a significance threshold.
+        in_subset:
+        - element_gene_linkage
+      thresholded links:
+        description: Generic significance-thresholded regulatory links.
+        in_subset:
+        - element_gene_linkage
+      topic gene weights:
+        description: Gene weights derived from topic modeling of regulatory data.
+        in_subset:
+        - element_gene_linkage
+
+      # ─── crispr_screen ────────────────────────────────────────────────────
+      relative replication signal:
+        description: Replication timing signal expressed relative to a reference.
+        in_subset:
+        - replication_timing
+      replication timing profile:
+        description: Genome-wide profile of DNA replication timing.
+        in_subset:
+        - replication_timing
+
+      # ─── variant ──────────────────────────────────────────────────────────
+      allele-specific variants:
+        description: Variants showing allele-specific behavior in expression or chromatin 
+          accessibility.
+        meaning: edam:data_0918
+        in_subset:
+        - variant
+      copy number variation:
+        description: Genomic regions with altered copy numbers (deletions, duplications) relative to
+          reference.
+        in_subset:
+        - variant
+      curated SNVs:
+        description: Manually curated and validated single nucleotide variants.
+        meaning: edam:data_0918
+        in_subset:
+        - variant
+      dsQTLs:
+        description: 'DNase I sensitivity quantitative trait loci: variants associated with chromatin
+          accessibility.'
+        meaning: edam:data_1860
+        in_subset:
+        - variant
+      eQTLs:
+        description: 'Expression quantitative trait loci: variants statistically associated with gene
+          expression levels.'
+        meaning: edam:data_1860
+        in_subset:
+        - variant
+      filtered indels:
+        description: Insertion/deletion variants after quality filtering.
+        meaning: edam:data_0918
+        in_subset:
+        - variant
+      filtered SNPs:
+        description: Single nucleotide polymorphisms after quality filtering.
+        meaning: edam:data_0918
+        in_subset:
+        - variant
+      maternal variant calls:
+        description: Variants called specifically from the maternal haplotype.
+        meaning: edam:data_0918
+        in_subset:
+        - variant
+      paternal variant calls:
+        description: Variants called specifically from the paternal haplotype.
+        meaning: edam:data_0918
+        in_subset:
+        - variant
+      phased variant calls:
+        description: Variants with haplotype phase resolved, indicating which alleles co-occur on 
+          the same chromosome.
+        meaning: edam:data_0918
+        in_subset:
+        - variant
+      reference variants:
+        description: Variants relative to a reference genome.
+        meaning: edam:data_0918
+        in_subset:
+        - variant
+      variant calls:
+        description: Called genomic variants (SNPs, indels, structural variants) in VCF format.
+        meaning: edam:data_0918
+        in_subset:
+        - variant
+      variant effect quantifications:
+        description: Quantitative measurements of variant functional effects.
+        meaning: edam:data_0918
+        in_subset:
+        - variant
+      variant reference:
+        description: Reference database or set of known genomic variants.
+        in_subset:
+        - variant
+
+      # ─── reference ────────────────────────────────────────────────────────
       PWMs:
-        description: Position weight matrices representing sequence motif models.
+        description: Position weight matrices representing sequence motif models, encoding 
+          nucleotide preferences at each position.
         meaning: edam:data_1362
         in_subset:
-          - sequence_motif
+        - sequence_motif
       sequence motifs:
         description: Sequence patterns enriched in genomic regions of interest.
         meaning: edam:data_1353
         in_subset:
-          - sequence_motif
+        - sequence_motif
       sequence motifs instances:
         description: Genomic locations where specific sequence motifs occur.
         meaning: edam:data_1353
         in_subset:
-          - sequence_motif
+        - sequence_motif
       sequence motifs report:
         description: Summary report of motif discovery or enrichment analysis.
         meaning: edam:data_2762
         in_subset:
-          - sequence_motif
+        - sequence_motif
 
       # ─── annotation ───────────────────────────────────────────────────────
       filtered transcribed fragments:
         description: Transcribed genomic fragments after quality filtering.
         in_subset:
-          - annotation
+        - annotation
       functional conservation mapping:
         description: Mapping of functionally conserved regions across species.
         in_subset:
-          - annotation
+        - annotation
       functional conservation quantifications:
         description: Quantification of functional conservation scores.
         in_subset:
-          - annotation
-      HMM predicted chromatin state:
-        description: Chromatin state annotations predicted by a hidden Markov model.
-        in_subset:
-          - annotation
+        - annotation
       miRNA annotations:
         description: Annotation tracks for microRNA genes and precursors.
         in_subset:
-          - annotation
-      read annotations:
-        description: Per-read annotations of alignment features or classifications.
-        in_subset:
-          - annotation
+        - annotation
       repeat elements annotation:
         description: Annotation of repetitive element locations and classes.
         in_subset:
-          - annotation
+        - annotation
       restriction enzyme site locations:
         description: Genomic positions of restriction enzyme recognition sites.
         meaning: edam:data_3125
         in_subset:
-          - annotation
+        - annotation
       RNA-binding protein associated mRNAs:
         description: mRNAs co-immunoprecipitated with RNA-binding proteins.
         in_subset:
-          - annotation
-      semi-automated genome annotation:
-        description: Genome annotation produced by a combination of automated and manual methods.
-        in_subset:
-          - annotation
-      sequence alignability:
-        description: Track indicating mappability of sequences to the reference genome.
-        in_subset:
-          - annotation
-      sequence uniqueness:
-        description: Track indicating uniqueness of k-mer sequences across the genome.
-        in_subset:
-          - annotation
+        - annotation
       splice junctions:
         description: Splice site junctions identified from RNA-seq alignments.
         in_subset:
-          - annotation
+        - annotation
+        see_also:
+        - transcriptome alignments
       transcribed fragments:
         description: Genomic regions identified as transcribed from RNA-seq data.
         in_subset:
-          - annotation
+        - annotation
       transcriptome annotations:
         description: Comprehensive gene and transcript annotations for a genome.
         in_subset:
-          - annotation
+        - annotation
       transposable element TF ancestral origin percent by motif:
         description: Percentage of TF motif instances with transposable element ancestral origin.
         in_subset:
-          - annotation
+        - annotation
       transposable element TF ancestral origin percent by subfamily:
         description: Percentage of TF binding sites by TE subfamily ancestral origin.
         in_subset:
-          - annotation
+        - annotation
 
       # ─── single_cell ──────────────────────────────────────────────────────
-      archr project:
-        description: ArchR software project file for single-cell chromatin accessibility analysis.
-        in_subset:
-          - single_cell
-      cell coordinates:
-        description: Dimensionality-reduced coordinates for single-cell visualization.
-        in_subset:
-          - single_cell
-      cell topic participation:
-        description: Cell-level participation scores in latent topics from topic modeling.
-        in_subset:
-          - single_cell
       cell type annotations:
-        description: Assigned cell type labels for individual cells.
+        description: Cell type labels assigned to individual cells based on marker genes or 
+          reference mapping.
         in_subset:
-          - single_cell
+        - single_cell
+        see_also:
+        - clusters
       cell type data:
         description: Data associated with cell type identity in single-cell experiments.
         in_subset:
-          - single_cell
-      clusters:
-        description: Cell cluster assignments from single-cell clustering analysis.
-        in_subset:
-          - single_cell
-
-      # ─── structure ────────────────────────────────────────────────────────
+        - single_cell
       3D structure:
-        description: Three-dimensional structural model of a genomic region or molecule.
+        description: Three-dimensional structural model of a genomic region or chromatin domain.
         meaning: edam:data_0883
         in_subset:
-          - structure
+        - structure
       contigs:
         description: Assembled sequence contigs from genome assembly.
         meaning: edam:data_0925
         in_subset:
-          - structure
+        - structure
       personalized genome assembly:
-        description: Genome assembly tailored to an individual's sequence variation.
+        description: Genome assembly incorporating an individual's sequence variation.
         meaning: edam:data_0925
         in_subset:
-          - structure
+        - structure
       predicted 3D structural ensembles:
         description: Computationally predicted ensembles of 3D genomic structures.
         in_subset:
-          - structure
+        - structure
 
       # ─── haplotype ────────────────────────────────────────────────────────
       maternal haplotype mapping:
         description: Sequence reads or contigs assigned to the maternal haplotype.
         in_subset:
-          - haplotype
+        - haplotype
       paternal haplotype mapping:
         description: Sequence reads or contigs assigned to the paternal haplotype.
         in_subset:
-          - haplotype
+        - haplotype
       phased mapping:
         description: Sequence data with haplotype phase information resolved.
         in_subset:
-          - haplotype
+        - haplotype
 
       # ─── technical ────────────────────────────────────────────────────────
-      capture targets:
-        description: Target regions for capture-based sequencing enrichment.
-        in_subset:
-          - technical
-      exclusion list regions:
-        description: Genomic regions excluded from analysis due to artefacts or ambiguity.
-        in_subset:
-          - technical
-      filtered regions:
-        description: Genomic regions removed from analysis after filtering.
-        in_subset:
-          - technical
-      fragments:
-        description: DNA or RNA fragment data prior to alignment.
-        in_subset:
-          - technical
-      idat green channel:
-        description: Green channel intensity data from Illumina IDAT microarray files.
-        in_subset:
-          - technical
-      idat red channel:
-        description: Red channel intensity data from Illumina IDAT microarray files.
-        in_subset:
-          - technical
-      inclusion list:
-        description: Allowlist of genomic regions or barcodes included in analysis.
-        in_subset:
-          - technical
-      index reads:
-        description: Index read sequences used for sample demultiplexing.
-        in_subset:
-          - technical
-      intensity values:
-        description: Raw intensity measurements from microarray or imaging experiments.
-        in_subset:
-          - technical
-      kmer weights:
-        description: Frequency or weight values for k-mer sequences.
-        in_subset:
-          - technical
-      library fraction:
-        description: Proportion of sequencing library represented by a sample.
-        in_subset:
-          - technical
-      mitochondrial exclusion list regions:
-        description: Mitochondrial genomic regions excluded from nuclear analysis.
-        in_subset:
-          - technical
-      nanopore signal:
-        description: Raw ionic current signal from nanopore sequencing.
-        in_subset:
-          - technical
-      negative control regions:
-        description: Genomic regions used as negative controls in experiments.
-        in_subset:
-          - technical
-      positive control regions:
-        description: Genomic regions used as positive controls in experiments.
-        in_subset:
-          - technical
-      primer sequence:
-        description: Oligonucleotide primer sequences used in PCR or sequencing.
-        in_subset:
-          - technical
-      R2C2 subreads:
-        description: Rolling circle amplification sub-reads from R2C2 sequencing.
-        in_subset:
-          - technical
-      raw data:
-        description: Unprocessed raw experimental data.
-        in_subset:
-          - technical
-      raw imaging signal:
-        description: Unprocessed signal from imaging-based experiments.
-        in_subset:
-          - technical
-      sequence adapters:
-        description: Adapter sequences ligated to library fragments.
-        in_subset:
-          - technical
-      sequence barcodes:
-        description: Barcode sequences used for sample multiplexing or cell identification.
-        in_subset:
-          - technical
-      spike-ins:
-        description: Known exogenous sequences added to samples for normalization.
-        in_subset:
-          - technical
-      subreads:
-        description: Sub-read data generated from long-read sequencing platforms.
-        in_subset:
-          - technical
-      validation:
-        description: Data generated for experimental validation purposes.
-        in_subset:
-          - technical
