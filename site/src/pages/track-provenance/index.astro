@@ -1,0 +1,95 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import provenance from '../../data/track-provenance.json';
+
+const properties = provenance.properties;
+// Color the slots to match their facet vocabularies (indigo, like the other facets).
+// Use full static class strings so Tailwind v4 can detect them at build time.
+const STYLES: Record<string, { card: string; badge: string; link: string }> = {
+  ReadMultiplicity: {
+    card: 'border-indigo-400',
+    badge: 'bg-indigo-100 text-indigo-800',
+    link: 'text-indigo-600 hover:text-indigo-800',
+  },
+  FilterStatus: {
+    card: 'border-indigo-400',
+    badge: 'bg-indigo-100 text-indigo-800',
+    link: 'text-indigo-600 hover:text-indigo-800',
+  },
+  Normalization: {
+    card: 'border-indigo-400',
+    badge: 'bg-indigo-100 text-indigo-800',
+    link: 'text-indigo-600 hover:text-indigo-800',
+  },
+  default: {
+    card: 'border-gray-400',
+    badge: 'bg-gray-100 text-gray-800',
+    link: 'text-gray-600 hover:text-gray-800',
+  },
+};
+const styleFor = (range: string) => STYLES[range] || STYLES.default;
+---
+
+<Layout title="Track Provenance" description="What was done to a genomic track — the processing/derivation operations applied">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Track Provenance</h1>
+    <p class="text-amber-600 font-medium">{properties.length} properties</p>
+    <p class="text-gray-600 mt-2">
+      The processing/derivation operations applied to the data to produce the
+      file — <strong>what was done to it</strong>, as opposed to
+      <a href="/track-interpretation" class="text-amber-600 underline hover:text-amber-800">Track Interpretation</a>,
+      which records <strong>what the data is</strong>. Where
+      <code class="bg-gray-100 px-1 rounded">output_type</code> names a result
+      <em>kind</em> (a noun — "peaks"), these slots name <em>operations</em>
+      applied: which read subset the data was computed from
+      (<code class="bg-gray-100 px-1 rounded">read_multiplicity</code>), what
+      QC filtering was applied (<code class="bg-gray-100 px-1 rounded">filter_status</code>),
+      and what scaling normalization was applied
+      (<code class="bg-gray-100 px-1 rounded">normalization</code>).
+    </p>
+  </div>
+
+  <!-- Schema properties -->
+  <section class="space-y-6">
+    {properties.map((prop: any) => {
+      const s = styleFor(prop.range);
+      return (
+        <div class:list={['bg-white rounded-lg p-6 shadow-sm border-l-4', s.card]}>
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 class="font-mono text-lg font-semibold text-gray-900">{prop.name}</h2>
+              <p class="text-sm text-gray-600 mt-2 max-w-2xl">{prop.description}</p>
+            </div>
+            <div class="flex flex-col items-end gap-2 shrink-0 ml-4">
+              {prop.required && (
+                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">required</span>
+              )}
+              <span class:list={['text-xs px-2 py-1 rounded font-mono', s.badge]}>{prop.range}</span>
+            </div>
+          </div>
+          {prop.vocabHref && (
+            <p class="text-sm mt-4">
+              <a href={prop.vocabHref} class:list={['underline font-medium', s.link]}>
+                Draws from the {prop.vocabCount}-term {prop.range} vocabulary →
+              </a>
+            </p>
+          )}
+        </div>
+      );
+    })}
+  </section>
+
+  <!-- Future facets note -->
+  <p class="text-xs text-gray-400 mt-8 max-w-2xl">
+    <code class="bg-gray-100 px-1 rounded">read_multiplicity</code> and
+    <code class="bg-gray-100 px-1 rounded">filter_status</code> were relocated
+    here from Track Interpretation, and
+    <code class="bg-gray-100 px-1 rounded">normalization</code> was faceted out
+    of the compound signal terms: all describe a processing operation, not
+    content. Track Provenance is the planned home for further processing facets —
+    <strong>derivation</strong> (observed vs. predicted vs. control) and
+    <strong>bias-correction</strong> — when those are faceted out of the compound
+    DataType terms. Those axes remain baked into the
+    <code class="bg-gray-100 px-1 rounded">output_type</code> base for now.
+  </p>
+</Layout>

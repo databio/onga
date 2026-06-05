@@ -1,0 +1,26 @@
+[
+  {
+    "id": "filtered",
+    "name": "filtered",
+    "slug": "filtered",
+    "description": "Data retained after quality-control filtering (e.g. minimum mapping quality, blacklist/exclusion-list removal, deduplication).",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "filter_status",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "unfiltered",
+    "name": "unfiltered",
+    "slug": "unfiltered",
+    "description": "Raw data before quality-control filtering.",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "filter_status",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  }
+]

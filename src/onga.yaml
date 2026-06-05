@@ -2,10 +2,15 @@ id: https://databio.org/onga
 name: onga
 title: ONGA - Ontology for Genomic Annotations
 description: >-
-  ONGA is a controlled vocabulary for describing the content, purpose, and
-  classification of genomic data files. It provides hierarchical vocabularies
-  organized into thematic modules: file content/output types, biospecimen
-  classification, and track geometry.
+  ONGA describes the content, purpose, and classification of genomic data
+  files using two layers. Layer 1 is a set of closed value vocabularies
+  (DataType, FeatureType, Format, and value primitives). Layer 2 is a set of
+  four track-descriptor schemas — classes of slots whose ranges draw on the
+  vocabularies: TrackFormat (how a track is encoded, FGA #1),
+  TrackInterpretation (what it represents, FGA #2), TrackProvenance (what was
+  done to the data — processing/derivation operations), and TrackGeometry (its
+  structural shape, FGA #3). A separate biospecimen module covers the sample
+  axis.
 license: https://creativecommons.org/licenses/by/4.0/
 version: 0.1.0
 created_by: Nathan Sheffield
@@ -28,5 +33,13 @@ default_range: string
 imports:
   - linkml:types
   - file_content
+  - format
+  - strand_orientation
+  - read_multiplicity
+  - filter_status
+  - normalization
   - biospecimen
+  - track_format
+  - track_interpretation
+  - track_provenance
   - track_geometry

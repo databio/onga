@@ -1,0 +1,72 @@
+id: https://databio.org/onga/track_provenance
+name: track_provenance
+title: ONGA Track Provenance Schema
+description: >-
+  Descriptor schema for the processing/derivation provenance of a genomic
+  annotation file — the operations applied to the data to produce it (read
+  selection, QC filtering; extensible to normalization, derivation, and
+  bias-correction). Where `TrackInterpretation` records *what the data is /
+  means*, `TrackProvenance` records *what was done to it*. The murky axes that
+  resisted placement in interpretation (read selection, filtering,
+  normalization, observed/predicted, bias-correction) were murky because they
+  describe processing provenance, not content: `output_type` names a result
+  KIND (a noun), while these name OPERATIONS applied.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+  - read_multiplicity
+  - filter_status
+  - normalization
+
+classes:
+  TrackProvenance:
+    description: >-
+      The processing/derivation operations applied to the data to produce the
+      file: which read subset it was computed from (read_multiplicity), what
+      QC filtering operation was applied (filter_status), and what scaling
+      normalization was applied (normalization). This schema is the planned home
+      for further processing facets as they are decided.
+    slots:
+      - read_multiplicity
+      - filter_status
+      - normalization
+      # Planned future provenance slots (deferred — do not add yet):
+      #   - derivation         (observed vs. predicted vs. control)
+      #   - bias_correction    (bias-correction applied)
+
+slots:
+  read_multiplicity:
+    description: >-
+      The read mapping-multiplicity subset the data was computed from (all
+      mapped reads vs uniquely-mapping reads only) — the read-selection
+      operation applied. Factored out of compound DataType terms (e.g. "signal
+      of all reads"). Absent means unspecified.
+    range: ReadMultiplicity
+    examples:
+      - value: 'unique reads'
+  filter_status:
+    description: >-
+      The quality-control filtering operation applied (filtered vs unfiltered).
+      Factored out of compound DataType terms (e.g. "filtered peaks",
+      "unfiltered alignments"). Absent means unspecified.
+    range: FilterStatus
+    examples:
+      - value: filtered
+  normalization:
+    description: >-
+      The scaling normalization applied to a signal (raw vs depth-normalized vs
+      percentage-normalized) — the scaling operation applied. Factored out of
+      compound DataType terms (e.g. "raw signal", "normalized signal",
+      "percentage normalized signal"). Does not cover statistic transforms
+      (p-value, fold-change, z-score, enrichment) or smoothing, which are distinct
+      output_types. Absent means unspecified (not raw).
+    range: Normalization
+    examples:
+      - value: depth_normalized

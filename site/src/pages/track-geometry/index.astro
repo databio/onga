@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import geometry from '../../data/track-geometry.json';
+import geometryByGroup from '../../data/track-geometry-by-group.json';
+
+const properties = geometry.properties;
+const valueTypes = geometry.valueTypes;
+// Order groups so "feature properties" comes before "edge properties".
+const groupOrder = ['feature properties', 'edge properties'];
+const groups = Object.keys(geometryByGroup).sort(
+  (a, b) => groupOrder.indexOf(a) - groupOrder.indexOf(b)
+);
+---
+
+<Layout title="Track Geometry" description="Structural properties of a genomic track — the shape of its features">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Track Geometry</h1>
+    <p class="text-amber-600 font-medium">{properties.length} properties</p>
+    <p class="text-gray-600 mt-2">
+      Geometric or structural properties of the sequence features in a genomic
+      annotation file when considered as a one-dimensional genome browser track.
+      Describes the <em>structural shape</em> of a track (point vs interval vs
+      signal vs graph), following the track type delineations of Gundersen et
+      al. 2011.
+    </p>
+  </div>
+
+  <!-- Search -->
+  <div class="bg-white rounded-lg p-4 shadow-sm mb-8">
+    <input
+      type="search"
+      id="search"
+      placeholder="Filter geometry properties..."
+      class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-amber-500"
+    />
+  </div>
+
+  <!-- By Group -->
+  <div class="space-y-8">
+    {groups.map(group => (
+      <section id={group.replace(/ /g, '_')}>
+        <h2 class="text-xl font-semibold text-gray-900 mb-4 capitalize">
+          {group}
+          <span class="text-sm font-normal text-gray-500 ml-2">
+            ({(geometryByGroup as any)[group].length})
+          </span>
+        </h2>
+        <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
+          {(geometryByGroup as any)[group].map((prop: any) => (
+            <div
+              class="term-item block p-4"
+              data-name={prop.name.toLowerCase()}
+              data-description={prop.description.toLowerCase()}
+            >
+              <div class="flex items-start justify-between">
+                <div>
+                  <h3 class="font-medium text-gray-900 font-mono text-sm">{prop.name}</h3>
+                  <p class="text-sm text-gray-500 mt-1">{prop.description}</p>
+                  {prop.rule && (
+                    <p class="text-xs text-amber-700 mt-2">⚑ {prop.rule}</p>
+                  )}
+                </div>
+                <div class="flex flex-wrap gap-2 shrink-0 ml-4 justify-end">
+                  {prop.required && (
+                    <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">required</span>
+                  )}
+                  <span class:list={[
+                    'text-xs px-2 py-1 rounded',
+                    prop.range === 'boolean'
+                      ? 'bg-amber-100 text-amber-800'
+                      : 'bg-purple-100 text-purple-800'
+                  ]}>
+                    {prop.range === 'boolean' ? 'boolean' : 'value-type'}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <!-- DataTypes value types -->
+  <section class="mt-12">
+    <h2 class="text-xl font-semibold text-gray-900 mb-2">Value types</h2>
+    <p class="text-gray-600 text-sm mb-4">
+      The <code class="bg-gray-100 px-1 rounded">value_type</code> and
+      <code class="bg-gray-100 px-1 rounded">edge_weight_type</code> properties
+      take one of these data types (the <code class="bg-gray-100 px-1 rounded">DataTypes</code> enum).
+    </p>
+    <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
+      {valueTypes.map((vt: any) => (
+        <div class="p-4">
+          <h3 class="font-medium text-gray-900 font-mono text-sm">{vt.name}</h3>
+          <p class="text-sm text-gray-500 mt-1">{vt.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script>
+    const searchInput = document.getElementById('search') as HTMLInputElement;
+    const items = document.querySelectorAll('.term-item') as NodeListOf<HTMLElement>;
+
+    searchInput?.addEventListener('input', (e) => {
+      const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+      items.forEach(item => {
+        const name = item.dataset.name || '';
+        const desc = item.dataset.description || '';
+        const matches = !query || name.includes(query) || desc.includes(query);
+        item.classList.toggle('hidden', !matches);
+      });
+    });
+  </script>
+</Layout>

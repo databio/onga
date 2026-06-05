@@ -1,0 +1,193 @@
+{
+  "uncategorized": [
+    {
+      "id": "bed",
+      "name": "BED",
+      "slug": "bed",
+      "description": "Browser Extensible Data: tab-delimited intervals with 3 required and up to 9 optional standard columns.",
+      "category": "uncategorized",
+      "categorySlug": "uncategorized",
+      "vocabType": "format",
+      "edamMapping": {
+        "predicate": "exactMatch",
+        "edamId": "edam:format_3003",
+        "edamLabel": "",
+        "comment": "From LinkML schema"
+      },
+      "seeAlso": [],
+      "encodeSource": true
+    },
+    {
+      "id": "bigbed",
+      "name": "bigBed",
+      "slug": "bigbed",
+      "description": "Indexed binary form of BED for efficient random access over large datasets.",
+      "category": "uncategorized",
+      "categorySlug": "uncategorized",
+      "vocabType": "format",
+      "edamMapping": {
+        "predicate": "exactMatch",
+        "edamId": "edam:format_3004",
+        "edamLabel": "",
+        "comment": "From LinkML schema"
+      },
+      "seeAlso": [],
+      "encodeSource": true
+    },
+    {
+      "id": "bigwig",
+      "name": "bigWig",
+      "slug": "bigwig",
+      "description": "Indexed binary form of WIG for dense continuous signal across the genome.",
+      "category": "uncategorized",
+      "categorySlug": "uncategorized",
+      "vocabType": "format",
+      "edamMapping": {
+        "predicate": "exactMatch",
+        "edamId": "edam:format_3006",
+        "edamLabel": "",
+        "comment": "From LinkML schema"
+      },
+      "seeAlso": [],
+      "encodeSource": true
+    },
+    {
+      "id": "wig",
+      "name": "WIG",
+      "slug": "wig",
+      "description": "Wiggle: continuous-valued signal data across genomic coordinates.",
+      "category": "uncategorized",
+      "categorySlug": "uncategorized",
+      "vocabType": "format",
+      "edamMapping": {
+        "predicate": "exactMatch",
+        "edamId": "edam:format_3005",
+        "edamLabel": "",
+        "comment": "From LinkML schema"
+      },
+      "seeAlso": [],
+      "encodeSource": true
+    },
+    {
+      "id": "bedgraph",
+      "name": "bedGraph",
+      "slug": "bedgraph",
+      "description": "BED-like format carrying a continuous value per interval (4-column signal).",
+      "category": "uncategorized",
+      "categorySlug": "uncategorized",
+      "vocabType": "format",
+      "edamMapping": {
+        "predicate": "exactMatch",
+        "edamId": "edam:format_3583",
+        "edamLabel": "",
+        "comment": "From LinkML schema"
+      },
+      "seeAlso": [],
+      "encodeSource": true
+    },
+    {
+      "id": "narrowpeak",
+      "name": "narrowPeak",
+      "slug": "narrowpeak",
+      "description": "ENCODE BED6+4 format for called peaks with a single narrow point of enrichment.",
+      "category": "uncategorized",
+      "categorySlug": "uncategorized",
+      "vocabType": "format",
+      "edamMapping": null,
+      "seeAlso": [],
+      "encodeSource": true
+    },
+    {
+      "id": "broadpeak",
+      "name": "broadPeak",
+      "slug": "broadpeak",
+      "description": "ENCODE BED6+3 format for called peaks spanning broad regions of enrichment.",
+      "category": "uncategorized",
+      "categorySlug": "uncategorized",
+      "vocabType": "format",
+      "edamMapping": null,
+      "seeAlso": [],
+      "encodeSource": true
+    },
+    {
+      "id": "gappedpeak",
+      "name": "gappedPeak",
+      "slug": "gappedpeak",
+      "description": "ENCODE BED12+3 format for called peaks with internal gapped (block) structure.",
+      "category": "uncategorized",
+      "categorySlug": "uncategorized",
+      "vocabType": "format",
+      "edamMapping": null,
+      "seeAlso": [],
+      "encodeSource": true
+    },
+    {
+      "id": "gff3",
+      "name": "GFF3",
+      "slug": "gff3",
+      "description": "Generic Feature Format version 3: hierarchical, attribute-rich feature annotations.",
+      "category": "uncategorized",
+      "categorySlug": "uncategorized",
+      "vocabType": "format",
+      "edamMapping": {
+        "predicate": "exactMatch",
+        "edamId": "edam:format_1939",
+        "edamLabel": "",
+        "comment": "From LinkML schema"
+      },
+      "seeAlso": [],
+      "encodeSource": true
+    },
+    {
+      "id": "gtf",
+      "name": "GTF",
+      "slug": "gtf",
+      "description": "Gene Transfer Format: a GFF2-derived format for gene model annotations.",
+      "category": "uncategorized",
+      "categorySlug": "uncategorized",
+      "vocabType": "format",
+      "edamMapping": {
+        "predicate": "exactMatch",
+        "edamId": "edam:format_2306",
+        "edamLabel": "",
+        "comment": "From LinkML schema"
+      },
+      "seeAlso": [],
+      "encodeSource": true
+    },
+    {
+      "id": "vcf",
+      "name": "VCF",
+      "slug": "vcf",
+      "description": "Variant Call Format: sequence variants relative to a reference.",
+      "category": "uncategorized",
+      "categorySlug": "uncategorized",
+      "vocabType": "format",
+      "edamMapping": {
+        "predicate": "exactMatch",
+        "edamId": "edam:format_3016",
+        "edamLabel": "",
+        "comment": "From LinkML schema"
+      },
+      "seeAlso": [],
+      "encodeSource": true
+    },
+    {
+      "id": "bam",
+      "name": "BAM",
+      "slug": "bam",
+      "description": "Binary Alignment Map: compressed binary form of SAM aligned reads.",
+      "category": "uncategorized",
+      "categorySlug": "uncategorized",
+      "vocabType": "format",
+      "edamMapping": {
+        "predicate": "exactMatch",
+        "edamId": "edam:format_2572",
+        "edamLabel": "",
+        "comment": "From LinkML schema"
+      },
+      "seeAlso": [],
+      "encodeSource": true
+    }
+  ]
+}

@@ -1,0 +1,1867 @@
+{
+  "generated": true,
+  "totalFiles": 1620076,
+  "zeroUsage": 63,
+  "terms": [
+    {
+      "term": "footprints",
+      "inEncode": true,
+      "fileCount": 548648,
+      "datasetCount": 2035
+    },
+    {
+      "term": "reads",
+      "inEncode": true,
+      "fileCount": 162022,
+      "datasetCount": 27000
+    },
+    {
+      "term": "signal p-value",
+      "inEncode": true,
+      "fileCount": 99650,
+      "datasetCount": 9380
+    },
+    {
+      "term": "alignments",
+      "inEncode": true,
+      "fileCount": 94651,
+      "datasetCount": 22503
+    },
+    {
+      "term": "peaks",
+      "inEncode": true,
+      "fileCount": 87838,
+      "datasetCount": 8823
+    },
+    {
+      "term": "fold change over control",
+      "inEncode": true,
+      "fileCount": 51017,
+      "datasetCount": 9380
+    },
+    {
+      "term": "unfiltered alignments",
+      "inEncode": true,
+      "fileCount": 45564,
+      "datasetCount": 13981
+    },
+    {
+      "term": "peaks and background as input for IDR",
+      "inEncode": true,
+      "fileCount": 35272,
+      "datasetCount": 2990
+    },
+    {
+      "term": "pseudoreplicated peaks",
+      "inEncode": true,
+      "fileCount": 30774,
+      "datasetCount": 5368
+    },
+    {
+      "term": "IDR thresholded peaks",
+      "inEncode": true,
+      "fileCount": 29326,
+      "datasetCount": 4528
+    },
+    {
+      "term": "gene quantifications",
+      "inEncode": true,
+      "fileCount": 19170,
+      "datasetCount": 3893
+    },
+    {
+      "term": "IDR ranked peaks",
+      "inEncode": true,
+      "fileCount": 18491,
+      "datasetCount": 4528
+    },
+    {
+      "term": "plus strand signal of all reads",
+      "inEncode": true,
+      "fileCount": 18228,
+      "datasetCount": 3299
+    },
+    {
+      "term": "minus strand signal of all reads",
+      "inEncode": true,
+      "fileCount": 18227,
+      "datasetCount": 3299
+    },
+    {
+      "term": "transcript quantifications",
+      "inEncode": true,
+      "fileCount": 18201,
+      "datasetCount": 3383
+    },
+    {
+      "term": "hotspots",
+      "inEncode": true,
+      "fileCount": 17728,
+      "datasetCount": 3706
+    },
+    {
+      "term": "read-depth normalized signal",
+      "inEncode": true,
+      "fileCount": 17642,
+      "datasetCount": 5602
+    },
+    {
+      "term": "minus strand signal of unique reads",
+      "inEncode": true,
+      "fileCount": 17502,
+      "datasetCount": 4143
+    },
+    {
+      "term": "plus strand signal of unique reads",
+      "inEncode": true,
+      "fileCount": 17500,
+      "datasetCount": 4143
+    },
+    {
+      "term": "signal of unique reads",
+      "inEncode": true,
+      "fileCount": 15554,
+      "datasetCount": 3294
+    },
+    {
+      "term": "conservative IDR thresholded peaks",
+      "inEncode": true,
+      "fileCount": 15209,
+      "datasetCount": 3769
+    },
+    {
+      "term": "optimal IDR thresholded peaks",
+      "inEncode": true,
+      "fileCount": 15005,
+      "datasetCount": 3063
+    },
+    {
+      "term": "replicated peaks",
+      "inEncode": true,
+      "fileCount": 13336,
+      "datasetCount": 2483
+    },
+    {
+      "term": "candidate Cis-Regulatory Elements",
+      "inEncode": true,
+      "fileCount": 12452,
+      "datasetCount": 0
+    },
+    {
+      "term": "transcriptome alignments",
+      "inEncode": true,
+      "fileCount": 12161,
+      "datasetCount": 2879
+    },
+    {
+      "term": "thresholded links",
+      "inEncode": true,
+      "fileCount": 10592,
+      "datasetCount": 0
+    },
+    {
+      "term": "elements reference",
+      "inEncode": true,
+      "fileCount": 9964,
+      "datasetCount": 0
+    },
+    {
+      "term": "FDR cut rate",
+      "inEncode": true,
+      "fileCount": 8556,
+      "datasetCount": 1897
+    },
+    {
+      "term": "kmer weights",
+      "inEncode": true,
+      "fileCount": 7491,
+      "datasetCount": 0
+    },
+    {
+      "term": "control normalized signal",
+      "inEncode": true,
+      "fileCount": 6021,
+      "datasetCount": 1009
+    },
+    {
+      "term": "semi-automated genome annotation",
+      "inEncode": true,
+      "fileCount": 5508,
+      "datasetCount": 0
+    },
+    {
+      "term": "element gene links",
+      "inEncode": true,
+      "fileCount": 5302,
+      "datasetCount": 0
+    },
+    {
+      "term": "thresholded element gene links",
+      "inEncode": true,
+      "fileCount": 5298,
+      "datasetCount": 0
+    },
+    {
+      "term": "counts sequence contribution scores",
+      "inEncode": true,
+      "fileCount": 4676,
+      "datasetCount": 0
+    },
+    {
+      "term": "profile sequence contribution scores",
+      "inEncode": true,
+      "fileCount": 4676,
+      "datasetCount": 0
+    },
+    {
+      "term": "selected regions for predicted signal and sequence contribution scores",
+      "inEncode": true,
+      "fileCount": 4670,
+      "datasetCount": 0
+    },
+    {
+      "term": "signal of all reads",
+      "inEncode": true,
+      "fileCount": 4571,
+      "datasetCount": 817
+    },
+    {
+      "term": "sequence motifs instances",
+      "inEncode": true,
+      "fileCount": 4383,
+      "datasetCount": 0
+    },
+    {
+      "term": "TF binding prediction model",
+      "inEncode": true,
+      "fileCount": 2879,
+      "datasetCount": 0
+    },
+    {
+      "term": "index reads",
+      "inEncode": true,
+      "fileCount": 2870,
+      "datasetCount": 510
+    },
+    {
+      "term": "transcription start sites",
+      "inEncode": true,
+      "fileCount": 2737,
+      "datasetCount": 260
+    },
+    {
+      "term": "redacted alignments",
+      "inEncode": true,
+      "fileCount": 2675,
+      "datasetCount": 832
+    },
+    {
+      "term": "PWMs",
+      "inEncode": true,
+      "fileCount": 2578,
+      "datasetCount": 0
+    },
+    {
+      "term": "models",
+      "inEncode": true,
+      "fileCount": 2382,
+      "datasetCount": 0
+    },
+    {
+      "term": "training and test regions",
+      "inEncode": true,
+      "fileCount": 2379,
+      "datasetCount": 0
+    },
+    {
+      "term": "differential expression quantifications",
+      "inEncode": true,
+      "fileCount": 2360,
+      "datasetCount": 472
+    },
+    {
+      "term": "predicted signal profile",
+      "inEncode": true,
+      "fileCount": 2341,
+      "datasetCount": 0
+    },
+    {
+      "term": "sequence motifs",
+      "inEncode": true,
+      "fileCount": 2338,
+      "datasetCount": 0
+    },
+    {
+      "term": "observed signal profile (minus strand)",
+      "inEncode": true,
+      "fileCount": 2329,
+      "datasetCount": 0
+    },
+    {
+      "term": "observed signal profile (plus strand)",
+      "inEncode": true,
+      "fileCount": 2329,
+      "datasetCount": 0
+    },
+    {
+      "term": "sequence motifs report",
+      "inEncode": true,
+      "fileCount": 2329,
+      "datasetCount": 0
+    },
+    {
+      "term": "model performance metrics",
+      "inEncode": true,
+      "fileCount": 2323,
+      "datasetCount": 0
+    },
+    {
+      "term": "normalized observed signal profile (minus strand)",
+      "inEncode": true,
+      "fileCount": 2323,
+      "datasetCount": 0
+    },
+    {
+      "term": "normalized observed signal profile (plus strand)",
+      "inEncode": true,
+      "fileCount": 2323,
+      "datasetCount": 0
+    },
+    {
+      "term": "normalized predicted signal profile (minus strand)",
+      "inEncode": true,
+      "fileCount": 2323,
+      "datasetCount": 0
+    },
+    {
+      "term": "normalized predicted signal profile (plus strand)",
+      "inEncode": true,
+      "fileCount": 2323,
+      "datasetCount": 0
+    },
+    {
+      "term": "predicted signal profile (minus strand)",
+      "inEncode": true,
+      "fileCount": 2323,
+      "datasetCount": 0
+    },
+    {
+      "term": "predicted signal profile (plus strand)",
+      "inEncode": true,
+      "fileCount": 2323,
+      "datasetCount": 0
+    },
+    {
+      "term": "enhancer prediction model",
+      "inEncode": true,
+      "fileCount": 2306,
+      "datasetCount": 0
+    },
+    {
+      "term": "promoter prediction model",
+      "inEncode": true,
+      "fileCount": 2306,
+      "datasetCount": 0
+    },
+    {
+      "term": "signal",
+      "inEncode": true,
+      "fileCount": 2248,
+      "datasetCount": 1711
+    },
+    {
+      "term": "guide quantifications",
+      "inEncode": true,
+      "fileCount": 2246,
+      "datasetCount": 0
+    },
+    {
+      "term": "mapping quality thresholded contact matrix",
+      "inEncode": true,
+      "fileCount": 2242,
+      "datasetCount": 482
+    },
+    {
+      "term": "methylation state at CpG",
+      "inEncode": true,
+      "fileCount": 2145,
+      "datasetCount": 411
+    },
+    {
+      "term": "unfiltered sparse gene count matrix of all reads",
+      "inEncode": true,
+      "fileCount": 1820,
+      "datasetCount": 409
+    },
+    {
+      "term": "unfiltered sparse gene count matrix of unique reads",
+      "inEncode": true,
+      "fileCount": 1820,
+      "datasetCount": 409
+    },
+    {
+      "term": "redacted unfiltered alignments",
+      "inEncode": true,
+      "fileCount": 1702,
+      "datasetCount": 769
+    },
+    {
+      "term": "unfiltered sparse splice junction count matrix of unique reads",
+      "inEncode": true,
+      "fileCount": 1618,
+      "datasetCount": 409
+    },
+    {
+      "term": "methylation state at CHG",
+      "inEncode": true,
+      "fileCount": 1612,
+      "datasetCount": 212
+    },
+    {
+      "term": "methylation state at CHH",
+      "inEncode": true,
+      "fileCount": 1612,
+      "datasetCount": 212
+    },
+    {
+      "term": "raw signal",
+      "inEncode": true,
+      "fileCount": 1507,
+      "datasetCount": 774
+    },
+    {
+      "term": "loops",
+      "inEncode": true,
+      "fileCount": 1436,
+      "datasetCount": 456
+    },
+    {
+      "term": "differential splicing quantifications",
+      "inEncode": true,
+      "fileCount": 1416,
+      "datasetCount": 472
+    },
+    {
+      "term": "pseudoreplicated IDR thresholded peaks",
+      "inEncode": true,
+      "fileCount": 1402,
+      "datasetCount": 305
+    },
+    {
+      "term": "genome compartments",
+      "inEncode": true,
+      "fileCount": 1305,
+      "datasetCount": 273
+    },
+    {
+      "term": "microRNA quantifications",
+      "inEncode": true,
+      "fileCount": 1269,
+      "datasetCount": 461
+    },
+    {
+      "term": "haplotype-specific nuclease cleavage frequency",
+      "inEncode": true,
+      "fileCount": 1084,
+      "datasetCount": 233
+    },
+    {
+      "term": "contact matrix",
+      "inEncode": true,
+      "fileCount": 1059,
+      "datasetCount": 475
+    },
+    {
+      "term": "observed control profile (minus strand)",
+      "inEncode": true,
+      "fileCount": 1049,
+      "datasetCount": 0
+    },
+    {
+      "term": "observed control profile (plus strand)",
+      "inEncode": true,
+      "fileCount": 1049,
+      "datasetCount": 0
+    },
+    {
+      "term": "haplotype-specific contact matrix",
+      "inEncode": true,
+      "fileCount": 1046,
+      "datasetCount": 233
+    },
+    {
+      "term": "genome subcompartments",
+      "inEncode": true,
+      "fileCount": 1037,
+      "datasetCount": 271
+    },
+    {
+      "term": "element quantifications",
+      "inEncode": true,
+      "fileCount": 936,
+      "datasetCount": 0
+    },
+    {
+      "term": "exon quantifications",
+      "inEncode": true,
+      "fileCount": 901,
+      "datasetCount": 323
+    },
+    {
+      "term": "candidate enhancers",
+      "inEncode": true,
+      "fileCount": 891,
+      "datasetCount": 0
+    },
+    {
+      "term": "filtered reads",
+      "inEncode": true,
+      "fileCount": 766,
+      "datasetCount": 367
+    },
+    {
+      "term": "contact domains",
+      "inEncode": true,
+      "fileCount": 739,
+      "datasetCount": 275
+    },
+    {
+      "term": "enrichment",
+      "inEncode": true,
+      "fileCount": 696,
+      "datasetCount": 170
+    },
+    {
+      "term": "nuclease cleavage frequency",
+      "inEncode": true,
+      "fileCount": 639,
+      "datasetCount": 293
+    },
+    {
+      "term": "merged transcription segment quantifications",
+      "inEncode": true,
+      "fileCount": 582,
+      "datasetCount": 97
+    },
+    {
+      "term": "transcription segment quantifications",
+      "inEncode": true,
+      "fileCount": 582,
+      "datasetCount": 97
+    },
+    {
+      "term": "candidate promoters",
+      "inEncode": true,
+      "fileCount": 570,
+      "datasetCount": 0
+    },
+    {
+      "term": "CpG sites coverage",
+      "inEncode": true,
+      "fileCount": 528,
+      "datasetCount": 211
+    },
+    {
+      "term": "minus strand methylation state at CpG",
+      "inEncode": true,
+      "fileCount": 528,
+      "datasetCount": 211
+    },
+    {
+      "term": "plus strand methylation state at CpG",
+      "inEncode": true,
+      "fileCount": 528,
+      "datasetCount": 211
+    },
+    {
+      "term": "minus strand signal",
+      "inEncode": true,
+      "fileCount": 515,
+      "datasetCount": 263
+    },
+    {
+      "term": "plus strand signal",
+      "inEncode": true,
+      "fileCount": 515,
+      "datasetCount": 263
+    },
+    {
+      "term": "rejected reads",
+      "inEncode": true,
+      "fileCount": 431,
+      "datasetCount": 1
+    },
+    {
+      "term": "contigs",
+      "inEncode": true,
+      "fileCount": 422,
+      "datasetCount": 211
+    },
+    {
+      "term": "fragments",
+      "inEncode": true,
+      "fileCount": 402,
+      "datasetCount": 367
+    },
+    {
+      "term": "splice junctions",
+      "inEncode": true,
+      "fileCount": 369,
+      "datasetCount": 150
+    },
+    {
+      "term": "transcriptome annotations",
+      "inEncode": true,
+      "fileCount": 341,
+      "datasetCount": 177
+    },
+    {
+      "term": "library fraction",
+      "inEncode": true,
+      "fileCount": 301,
+      "datasetCount": 78
+    },
+    {
+      "term": "pairs",
+      "inEncode": true,
+      "fileCount": 285,
+      "datasetCount": 273
+    },
+    {
+      "term": "idat green channel",
+      "inEncode": true,
+      "fileCount": 279,
+      "datasetCount": 274
+    },
+    {
+      "term": "idat red channel",
+      "inEncode": true,
+      "fileCount": 275,
+      "datasetCount": 270
+    },
+    {
+      "term": "chromatin stripes",
+      "inEncode": true,
+      "fileCount": 258,
+      "datasetCount": 258
+    },
+    {
+      "term": "bidirectional peaks",
+      "inEncode": true,
+      "fileCount": 255,
+      "datasetCount": 231
+    },
+    {
+      "term": "unidirectional peaks",
+      "inEncode": true,
+      "fileCount": 243,
+      "datasetCount": 225
+    },
+    {
+      "term": "filtered peaks",
+      "inEncode": true,
+      "fileCount": 237,
+      "datasetCount": 10
+    },
+    {
+      "term": "reporter code counts",
+      "inEncode": true,
+      "fileCount": 227,
+      "datasetCount": 115
+    },
+    {
+      "term": "divergent peaks",
+      "inEncode": true,
+      "fileCount": 216,
+      "datasetCount": 216
+    },
+    {
+      "term": "subreads",
+      "inEncode": true,
+      "fileCount": 204,
+      "datasetCount": 104
+    },
+    {
+      "term": "DHS peaks",
+      "inEncode": true,
+      "fileCount": 198,
+      "datasetCount": 93
+    },
+    {
+      "term": "base overlap signal",
+      "inEncode": true,
+      "fileCount": 194,
+      "datasetCount": 186
+    },
+    {
+      "term": "preprocessed alignments",
+      "inEncode": true,
+      "fileCount": 194,
+      "datasetCount": 97
+    },
+    {
+      "term": "sparse gene count matrix of all reads",
+      "inEncode": true,
+      "fileCount": 188,
+      "datasetCount": 188
+    },
+    {
+      "term": "sparse gene count matrix of unique reads",
+      "inEncode": true,
+      "fileCount": 188,
+      "datasetCount": 188
+    },
+    {
+      "term": "copy number variation",
+      "inEncode": true,
+      "fileCount": 179,
+      "datasetCount": 64
+    },
+    {
+      "term": "genic features quantifications",
+      "inEncode": true,
+      "fileCount": 162,
+      "datasetCount": 81
+    },
+    {
+      "term": "TSS reference",
+      "inEncode": true,
+      "fileCount": 161,
+      "datasetCount": 0
+    },
+    {
+      "term": "predicted transcription start sites",
+      "inEncode": true,
+      "fileCount": 160,
+      "datasetCount": 77
+    },
+    {
+      "term": "haplotype-specific nuclease cleavage corrected frequency",
+      "inEncode": true,
+      "fileCount": 154,
+      "datasetCount": 96
+    },
+    {
+      "term": "wavelet-smoothed signal",
+      "inEncode": true,
+      "fileCount": 142,
+      "datasetCount": 63
+    },
+    {
+      "term": "intensity values",
+      "inEncode": true,
+      "fileCount": 127,
+      "datasetCount": 67
+    },
+    {
+      "term": "fine-mapped variants",
+      "inEncode": true,
+      "fileCount": 119,
+      "datasetCount": 0
+    },
+    {
+      "term": "cell type data",
+      "inEncode": true,
+      "fileCount": 114,
+      "datasetCount": 0
+    },
+    {
+      "term": "perturbation signal",
+      "inEncode": true,
+      "fileCount": 110,
+      "datasetCount": 0
+    },
+    {
+      "term": "phased variant calls",
+      "inEncode": true,
+      "fileCount": 107,
+      "datasetCount": 20
+    },
+    {
+      "term": "transcribed region quantifications",
+      "inEncode": true,
+      "fileCount": 98,
+      "datasetCount": 49
+    },
+    {
+      "term": "predicted heart enhancers",
+      "inEncode": true,
+      "fileCount": 97,
+      "datasetCount": 0
+    },
+    {
+      "term": "UV enriched segment quantifications",
+      "inEncode": true,
+      "fileCount": 96,
+      "datasetCount": 16
+    },
+    {
+      "term": "percentage normalized signal",
+      "inEncode": true,
+      "fileCount": 96,
+      "datasetCount": 90
+    },
+    {
+      "term": "spike-in alignments",
+      "inEncode": true,
+      "fileCount": 94,
+      "datasetCount": 0
+    },
+    {
+      "term": "predicted forebrain enhancers",
+      "inEncode": true,
+      "fileCount": 93,
+      "datasetCount": 0
+    },
+    {
+      "term": "RNA-binding protein associated mRNAs",
+      "inEncode": true,
+      "fileCount": 92,
+      "datasetCount": 34
+    },
+    {
+      "term": "normalized signal of all reads",
+      "inEncode": true,
+      "fileCount": 70,
+      "datasetCount": 30
+    },
+    {
+      "term": "replication timing profile",
+      "inEncode": true,
+      "fileCount": 70,
+      "datasetCount": 36
+    },
+    {
+      "term": "clusters",
+      "inEncode": true,
+      "fileCount": 68,
+      "datasetCount": 30
+    },
+    {
+      "term": "fold over change matrix",
+      "inEncode": true,
+      "fileCount": 68,
+      "datasetCount": 0
+    },
+    {
+      "term": "eQTLs",
+      "inEncode": true,
+      "fileCount": 65,
+      "datasetCount": 0
+    },
+    {
+      "term": "nanopore signal",
+      "inEncode": true,
+      "fileCount": 63,
+      "datasetCount": 24
+    },
+    {
+      "term": "transcribed fragments",
+      "inEncode": true,
+      "fileCount": 62,
+      "datasetCount": 24
+    },
+    {
+      "term": "genome reference",
+      "inEncode": true,
+      "fileCount": 57,
+      "datasetCount": 0
+    },
+    {
+      "term": "HMM predicted chromatin state",
+      "inEncode": true,
+      "fileCount": 56,
+      "datasetCount": 0
+    },
+    {
+      "term": "predicted 3D structural ensembles",
+      "inEncode": true,
+      "fileCount": 56,
+      "datasetCount": 0
+    },
+    {
+      "term": "variant effect quantifications",
+      "inEncode": true,
+      "fileCount": 54,
+      "datasetCount": 0
+    },
+    {
+      "term": "genome index",
+      "inEncode": true,
+      "fileCount": 53,
+      "datasetCount": 0
+    },
+    {
+      "term": "filtered transcribed fragments",
+      "inEncode": true,
+      "fileCount": 52,
+      "datasetCount": 24
+    },
+    {
+      "term": "functional conservation quantifications",
+      "inEncode": true,
+      "fileCount": 48,
+      "datasetCount": 0
+    },
+    {
+      "term": "sequence barcodes",
+      "inEncode": true,
+      "fileCount": 46,
+      "datasetCount": 12
+    },
+    {
+      "term": "guide locations",
+      "inEncode": true,
+      "fileCount": 45,
+      "datasetCount": 0
+    },
+    {
+      "term": "allele-specific variants",
+      "inEncode": true,
+      "fileCount": 43,
+      "datasetCount": 0
+    },
+    {
+      "term": "observed signal profile",
+      "inEncode": true,
+      "fileCount": 43,
+      "datasetCount": 0
+    },
+    {
+      "term": "variants contact matrix",
+      "inEncode": true,
+      "fileCount": 43,
+      "datasetCount": 0
+    },
+    {
+      "term": "element barcode mapping",
+      "inEncode": true,
+      "fileCount": 42,
+      "datasetCount": 0
+    },
+    {
+      "term": "redacted transcriptome alignments",
+      "inEncode": true,
+      "fileCount": 41,
+      "datasetCount": 41
+    },
+    {
+      "term": "smoothed methylation state at CpG",
+      "inEncode": true,
+      "fileCount": 40,
+      "datasetCount": 0
+    },
+    {
+      "term": "polyA sites",
+      "inEncode": true,
+      "fileCount": 38,
+      "datasetCount": 7
+    },
+    {
+      "term": "sparse gene count matrix",
+      "inEncode": true,
+      "fileCount": 38,
+      "datasetCount": 21
+    },
+    {
+      "term": "curated binding sites",
+      "inEncode": true,
+      "fileCount": 36,
+      "datasetCount": 0
+    },
+    {
+      "term": "gene alignments",
+      "inEncode": true,
+      "fileCount": 36,
+      "datasetCount": 8
+    },
+    {
+      "term": "validation",
+      "inEncode": true,
+      "fileCount": 35,
+      "datasetCount": 35
+    },
+    {
+      "term": "valleys",
+      "inEncode": true,
+      "fileCount": 32,
+      "datasetCount": 0
+    },
+    {
+      "term": "R2C2 subreads",
+      "inEncode": true,
+      "fileCount": 30,
+      "datasetCount": 10
+    },
+    {
+      "term": "filtered peptide quantification",
+      "inEncode": true,
+      "fileCount": 28,
+      "datasetCount": 14
+    },
+    {
+      "term": "unfiltered peptide quantification",
+      "inEncode": true,
+      "fileCount": 28,
+      "datasetCount": 14
+    },
+    {
+      "term": "dsQTLs",
+      "inEncode": true,
+      "fileCount": 27,
+      "datasetCount": 0
+    },
+    {
+      "term": "alignments with modifications",
+      "inEncode": true,
+      "fileCount": 25,
+      "datasetCount": 5
+    },
+    {
+      "term": "variant calls",
+      "inEncode": true,
+      "fileCount": 25,
+      "datasetCount": 19
+    },
+    {
+      "term": "nested contact domains",
+      "inEncode": true,
+      "fileCount": 24,
+      "datasetCount": 11
+    },
+    {
+      "term": "exclusion list regions",
+      "inEncode": true,
+      "fileCount": 22,
+      "datasetCount": 0
+    },
+    {
+      "term": "enhancer validation",
+      "inEncode": true,
+      "fileCount": 21,
+      "datasetCount": 0
+    },
+    {
+      "term": "element gene interactions signal",
+      "inEncode": true,
+      "fileCount": 20,
+      "datasetCount": 0
+    },
+    {
+      "term": "filtered regions",
+      "inEncode": true,
+      "fileCount": 20,
+      "datasetCount": 10
+    },
+    {
+      "term": "open chromatin regions",
+      "inEncode": true,
+      "fileCount": 20,
+      "datasetCount": 10
+    },
+    {
+      "term": "sequence alignability",
+      "inEncode": true,
+      "fileCount": 20,
+      "datasetCount": 0
+    },
+    {
+      "term": "archr project",
+      "inEncode": true,
+      "fileCount": 18,
+      "datasetCount": 8
+    },
+    {
+      "term": "bias-corrected predicted signal profile",
+      "inEncode": true,
+      "fileCount": 18,
+      "datasetCount": 0
+    },
+    {
+      "term": "chromosome sizes",
+      "inEncode": true,
+      "fileCount": 16,
+      "datasetCount": 0
+    },
+    {
+      "term": "male genome index",
+      "inEncode": true,
+      "fileCount": 16,
+      "datasetCount": 0
+    },
+    {
+      "term": "summed densities signal",
+      "inEncode": true,
+      "fileCount": 16,
+      "datasetCount": 0
+    },
+    {
+      "term": "z scores matrix",
+      "inEncode": true,
+      "fileCount": 16,
+      "datasetCount": 0
+    },
+    {
+      "term": "female genome index",
+      "inEncode": true,
+      "fileCount": 14,
+      "datasetCount": 0
+    },
+    {
+      "term": "minus strand inosine methylation state",
+      "inEncode": true,
+      "fileCount": 14,
+      "datasetCount": 5
+    },
+    {
+      "term": "minus strand m5C methylation state",
+      "inEncode": true,
+      "fileCount": 14,
+      "datasetCount": 5
+    },
+    {
+      "term": "minus strand m6A methylation state",
+      "inEncode": true,
+      "fileCount": 14,
+      "datasetCount": 5
+    },
+    {
+      "term": "minus strand pseudouridine methylation state",
+      "inEncode": true,
+      "fileCount": 14,
+      "datasetCount": 5
+    },
+    {
+      "term": "plus strand inosine methylation state",
+      "inEncode": true,
+      "fileCount": 14,
+      "datasetCount": 5
+    },
+    {
+      "term": "plus strand m5C methylation state",
+      "inEncode": true,
+      "fileCount": 14,
+      "datasetCount": 5
+    },
+    {
+      "term": "plus strand m6A methylation state",
+      "inEncode": true,
+      "fileCount": 14,
+      "datasetCount": 5
+    },
+    {
+      "term": "plus strand pseudouridine methylation state",
+      "inEncode": true,
+      "fileCount": 14,
+      "datasetCount": 5
+    },
+    {
+      "term": "filtered modified peptide quantification",
+      "inEncode": true,
+      "fileCount": 12,
+      "datasetCount": 6
+    },
+    {
+      "term": "hotspots1 reference",
+      "inEncode": true,
+      "fileCount": 12,
+      "datasetCount": 0
+    },
+    {
+      "term": "hotspots2 reference",
+      "inEncode": true,
+      "fileCount": 12,
+      "datasetCount": 0
+    },
+    {
+      "term": "representative DNase hypersensitivity sites",
+      "inEncode": true,
+      "fileCount": 12,
+      "datasetCount": 0
+    },
+    {
+      "term": "unfiltered modified peptide quantification",
+      "inEncode": true,
+      "fileCount": 12,
+      "datasetCount": 6
+    },
+    {
+      "term": "gRNAs",
+      "inEncode": true,
+      "fileCount": 11,
+      "datasetCount": 0
+    },
+    {
+      "term": "minus strand Nm methylation state",
+      "inEncode": true,
+      "fileCount": 11,
+      "datasetCount": 5
+    },
+    {
+      "term": "plus strand Nm methylation state",
+      "inEncode": true,
+      "fileCount": 11,
+      "datasetCount": 5
+    },
+    {
+      "term": "transcriptome reference",
+      "inEncode": true,
+      "fileCount": 11,
+      "datasetCount": 0
+    },
+    {
+      "term": "bias models",
+      "inEncode": true,
+      "fileCount": 9,
+      "datasetCount": 0
+    },
+    {
+      "term": "spike-ins",
+      "inEncode": true,
+      "fileCount": 9,
+      "datasetCount": 0
+    },
+    {
+      "term": "distal peaks",
+      "inEncode": true,
+      "fileCount": 8,
+      "datasetCount": 0
+    },
+    {
+      "term": "proximal peaks",
+      "inEncode": true,
+      "fileCount": 8,
+      "datasetCount": 0
+    },
+    {
+      "term": "sequence adapters",
+      "inEncode": true,
+      "fileCount": 8,
+      "datasetCount": 0
+    },
+    {
+      "term": "sparse peak count matrix",
+      "inEncode": true,
+      "fileCount": 8,
+      "datasetCount": 3
+    },
+    {
+      "term": "methylated reads",
+      "inEncode": true,
+      "fileCount": 7,
+      "datasetCount": 5
+    },
+    {
+      "term": "predicted enhancers",
+      "inEncode": true,
+      "fileCount": 7,
+      "datasetCount": 0
+    },
+    {
+      "term": "ranked gRNAs",
+      "inEncode": true,
+      "fileCount": 7,
+      "datasetCount": 0
+    },
+    {
+      "term": "read annotations",
+      "inEncode": true,
+      "fileCount": 7,
+      "datasetCount": 3
+    },
+    {
+      "term": "regulatory elements",
+      "inEncode": true,
+      "fileCount": 7,
+      "datasetCount": 0
+    },
+    {
+      "term": "relative replication signal",
+      "inEncode": true,
+      "fileCount": 7,
+      "datasetCount": 0
+    },
+    {
+      "term": "filtered indels",
+      "inEncode": true,
+      "fileCount": 6,
+      "datasetCount": 5
+    },
+    {
+      "term": "personalized genome assembly",
+      "inEncode": true,
+      "fileCount": 6,
+      "datasetCount": 0
+    },
+    {
+      "term": "safe-targeting gRNAs",
+      "inEncode": true,
+      "fileCount": 6,
+      "datasetCount": 0
+    },
+    {
+      "term": "cell coordinates",
+      "inEncode": true,
+      "fileCount": 5,
+      "datasetCount": 5
+    },
+    {
+      "term": "filtered SNPs",
+      "inEncode": true,
+      "fileCount": 5,
+      "datasetCount": 5
+    },
+    {
+      "term": "functional conservation mapping",
+      "inEncode": true,
+      "fileCount": 5,
+      "datasetCount": 0
+    },
+    {
+      "term": "male genome reference",
+      "inEncode": true,
+      "fileCount": 5,
+      "datasetCount": 0
+    },
+    {
+      "term": "minus strand end position signal",
+      "inEncode": true,
+      "fileCount": 5,
+      "datasetCount": 0
+    },
+    {
+      "term": "minus strand normalized end position signal",
+      "inEncode": true,
+      "fileCount": 5,
+      "datasetCount": 0
+    },
+    {
+      "term": "plus strand end position signal",
+      "inEncode": true,
+      "fileCount": 5,
+      "datasetCount": 0
+    },
+    {
+      "term": "plus strand normalized end position signal",
+      "inEncode": true,
+      "fileCount": 5,
+      "datasetCount": 0
+    },
+    {
+      "term": "predicted whole brain enhancers",
+      "inEncode": true,
+      "fileCount": 5,
+      "datasetCount": 0
+    },
+    {
+      "term": "raw imaging signal",
+      "inEncode": true,
+      "fileCount": 5,
+      "datasetCount": 5
+    },
+    {
+      "term": "sparse transcript count matrix",
+      "inEncode": true,
+      "fileCount": 5,
+      "datasetCount": 3
+    },
+    {
+      "term": "depth normalized signals matrix",
+      "inEncode": true,
+      "fileCount": 4,
+      "datasetCount": 0
+    },
+    {
+      "term": "mitochondrial genome index",
+      "inEncode": true,
+      "fileCount": 4,
+      "datasetCount": 0
+    },
+    {
+      "term": "restriction enzyme site locations",
+      "inEncode": true,
+      "fileCount": 4,
+      "datasetCount": 0
+    },
+    {
+      "term": "TF peaks matrix",
+      "inEncode": true,
+      "fileCount": 3,
+      "datasetCount": 0
+    },
+    {
+      "term": "curated SNVs",
+      "inEncode": true,
+      "fileCount": 3,
+      "datasetCount": 0
+    },
+    {
+      "term": "inclusion list",
+      "inEncode": true,
+      "fileCount": 3,
+      "datasetCount": 0
+    },
+    {
+      "term": "rRNA reference",
+      "inEncode": true,
+      "fileCount": 3,
+      "datasetCount": 0
+    },
+    {
+      "term": "reference variants",
+      "inEncode": true,
+      "fileCount": 3,
+      "datasetCount": 0
+    },
+    {
+      "term": "transcriptome index",
+      "inEncode": true,
+      "fileCount": 3,
+      "datasetCount": 0
+    },
+    {
+      "term": "chromosomes reference",
+      "inEncode": true,
+      "fileCount": 2,
+      "datasetCount": 0
+    },
+    {
+      "term": "enhancers reference",
+      "inEncode": true,
+      "fileCount": 2,
+      "datasetCount": 0
+    },
+    {
+      "term": "female genome reference",
+      "inEncode": true,
+      "fileCount": 2,
+      "datasetCount": 0
+    },
+    {
+      "term": "mitochondrial genome reference",
+      "inEncode": true,
+      "fileCount": 2,
+      "datasetCount": 0
+    },
+    {
+      "term": "primer sequence",
+      "inEncode": true,
+      "fileCount": 2,
+      "datasetCount": 0
+    },
+    {
+      "term": "promoters reference",
+      "inEncode": true,
+      "fileCount": 2,
+      "datasetCount": 0
+    },
+    {
+      "term": "sequence uniqueness",
+      "inEncode": true,
+      "fileCount": 2,
+      "datasetCount": 0
+    },
+    {
+      "term": "DHS regions reference",
+      "inEncode": true,
+      "fileCount": 1,
+      "datasetCount": 0
+    },
+    {
+      "term": "cell type annotations",
+      "inEncode": true,
+      "fileCount": 1,
+      "datasetCount": 0
+    },
+    {
+      "term": "non-targeting gRNAs",
+      "inEncode": true,
+      "fileCount": 1,
+      "datasetCount": 0
+    },
+    {
+      "term": "sparse gRNA count matrix",
+      "inEncode": true,
+      "fileCount": 1,
+      "datasetCount": 0
+    },
+    {
+      "term": "3D structure",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "DNN-MPRA contribution scores",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "DNN-MPRA predicted signal",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "allele-specific contact matrix",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "capture targets",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "cell topic participation",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "consensus DNase hypersensitivity sites",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "diploid personal genome alignments",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "element gene interactions p-value",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "enhancer-gene links",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "gene stabilities",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "genic regions quantifications",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "haplotype-specific alignments",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "mRNA stabilities",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "maternal haplotype mapping",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "maternal variant calls",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "miRNA annotations",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "miRNA reference",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "minus strand transcription start sites",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "mitochondrial exclusion list regions",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "motif clusters reference",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "motif model",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "negative control regions",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "normalized bias-corrected predicted signal profile",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "normalized observed signal profile",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "normalized predicted bias profile",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "normalized predicted signal profile",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "novel peptides",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "observed bias profile",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "paternal haplotype mapping",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "paternal variant calls",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "peptide quantifications",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "phased mapping",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "phastcons score reference",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "plus strand transcription start sites",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "positive control regions",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "predicted bias profile",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "protein expression quantifications",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "raw data",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "raw minus strand signal",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "raw normalized signal",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "raw plus strand signal",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "reference",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "regulatory elements prediction model",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "repeat elements annotation",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "repeats reference",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "representative IDR thresholded peaks",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "scaled RNA stability",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "selected regions for bias-corrected predicted signal profile",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "selected regions for count sequence contribution scores",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "selected regions for predicted bias profile",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "selected regions for predicted signal profile",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "selected regions for predicted signal profile (minus strand)",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "selected regions for predicted signal profile (plus strand)",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "selected regions for profile sequence contribution scores",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "snRNA reference",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "tRNA reference",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "topic gene weights",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "training set",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "transposable element TF ancestral origin percent by motif",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "transposable element TF ancestral origin percent by subfamily",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "variant functional prediction",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    },
+    {
+      "term": "variant reference",
+      "inEncode": false,
+      "fileCount": 0,
+      "datasetCount": 0
+    }
+  ]
+}

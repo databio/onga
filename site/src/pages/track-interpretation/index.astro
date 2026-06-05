@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import interpretation from '../../data/track-interpretation.json';
+
+const properties = interpretation.properties;
+// Color the two halves to match their vocabularies (DataType=blue, FeatureType=green).
+// Use full static class strings so Tailwind v4 can detect them at build time.
+const STYLES: Record<string, { card: string; badge: string; link: string }> = {
+  DataType: {
+    card: 'border-blue-500',
+    badge: 'bg-blue-100 text-blue-800',
+    link: 'text-blue-600 hover:text-blue-800',
+  },
+  FeatureType: {
+    card: 'border-green-500',
+    badge: 'bg-green-100 text-green-800',
+    link: 'text-green-600 hover:text-green-800',
+  },
+  StrandOrientation: {
+    card: 'border-indigo-400',
+    badge: 'bg-indigo-100 text-indigo-800',
+    link: 'text-indigo-600 hover:text-indigo-800',
+  },
+  default: {
+    card: 'border-gray-400',
+    badge: 'bg-gray-100 text-gray-800',
+    link: 'text-gray-600 hover:text-gray-800',
+  },
+};
+const styleFor = (range: string) => STYLES[range] || STYLES.default;
+---
+
+<Layout title="Track Interpretation" description="What a genomic track represents — its algorithmic and biological meaning">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Track Interpretation</h1>
+    <p class="text-amber-600 font-medium">{properties.length} properties</p>
+    <p class="text-gray-600 mt-2">
+      What the data in a genomic annotation file <em>represents</em>. Interpretation
+      has two distinct halves — an <strong>algorithmic</strong> concept (the
+      process/output, e.g. "peaks") and a <strong>biological</strong> concept
+      (the entity, e.g. "TF binding site"). These draw on the
+      <a href="/data-types" class="text-blue-600 underline hover:text-blue-800">DataType</a> and
+      <a href="/feature-types" class="text-green-600 underline hover:text-green-800">FeatureType</a>
+      vocabularies respectively. Corresponds to FGA-WG issue #2 (data interpretation).
+      This schema records <strong>what the data is</strong>; for
+      <strong>what was done to it</strong> (read selection, QC filtering),
+      see <a href="/track-provenance" class="text-amber-600 underline hover:text-amber-800">Track Provenance</a>.
+    </p>
+  </div>
+
+  <!-- Schema properties -->
+  <section class="space-y-6">
+    {properties.map((prop: any) => {
+      const s = styleFor(prop.range);
+      return (
+        <div class:list={['bg-white rounded-lg p-6 shadow-sm border-l-4', s.card]}>
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 class="font-mono text-lg font-semibold text-gray-900">{prop.name}</h2>
+              <p class="text-sm text-gray-600 mt-2 max-w-2xl">{prop.description}</p>
+            </div>
+            <div class="flex flex-col items-end gap-2 shrink-0 ml-4">
+              {prop.required && (
+                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">required</span>
+              )}
+              <span class:list={['text-xs px-2 py-1 rounded font-mono', s.badge]}>{prop.range}</span>
+            </div>
+          </div>
+          {prop.vocabHref && (
+            <p class="text-sm mt-4">
+              <a href={prop.vocabHref} class:list={['underline font-medium', s.link]}>
+                Draws from the {prop.vocabCount}-term {prop.range} vocabulary →
+              </a>
+            </p>
+          )}
+        </div>
+      );
+    })}
+  </section>
+
+  <!-- Facets note -->
+  <p class="text-xs text-gray-400 mt-8 max-w-2xl">
+    The <code class="bg-gray-100 px-1 rounded">strand</code> slot is a
+    <strong>facet</strong>, factored out of compound DataType terms
+    (e.g. "minus strand signal" → output_type: signal, strand: minus); the
+    ENCODE round-trip is preserved in <code class="bg-gray-100 px-1 rounded">mappings/facet_decomposition.tsv</code>.
+    Strand is intrinsic content, so it stays here. The processing facets
+    <code class="bg-gray-100 px-1 rounded">read_multiplicity</code> and
+    <code class="bg-gray-100 px-1 rounded">filter_status</code> describe <em>what
+    was done to the data</em> and now live on
+    <a href="/track-provenance" class="text-amber-600 underline hover:text-amber-800">Track Provenance</a>.
+  </p>
+</Layout>

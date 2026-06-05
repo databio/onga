@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import format from '../../data/track-format.json';
+
+const properties = format.properties;
+---
+
+<Layout title="Track Format" description="How a genomic track is encoded — its file format and column conventions">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Track Format</h1>
+    <p class="text-amber-600 font-medium">{properties.length} properties</p>
+    <p class="text-gray-600 mt-2">
+      How a genomic annotation file is <em>encoded</em>: its primary file format
+      and, for BED-family formats, the number of standard and extra columns.
+      Corresponds to FGA-WG issue #1 (data formats), which distinguishes a
+      format (e.g. <code class="bg-gray-100 px-1 rounded">narrowPeak</code>) from
+      a column standard (e.g. <code class="bg-gray-100 px-1 rounded">BED6+3</code>).
+      The <code class="bg-gray-100 px-1 rounded">file_format</code> slot draws on the
+      <a href="/formats" class="text-teal-600 underline hover:text-teal-800">Format</a> vocabulary.
+    </p>
+  </div>
+
+  <!-- Schema properties -->
+  <section>
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Properties</h2>
+    <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
+      {properties.map((prop: any) => (
+        <div class="p-4">
+          <div class="flex items-start justify-between">
+            <div>
+              <h3 class="font-medium text-gray-900 font-mono text-sm">{prop.name}</h3>
+              <p class="text-sm text-gray-500 mt-1">{prop.description}</p>
+              {prop.rule && (
+                <p class="text-xs text-amber-700 mt-2">⚑ {prop.rule}</p>
+              )}
+              {prop.vocabHref && (
+                <p class="text-sm mt-2">
+                  <a href={prop.vocabHref} class="text-teal-600 underline font-medium hover:text-teal-800">
+                    Draws from the {prop.vocabCount}-term {prop.range} vocabulary →
+                  </a>
+                </p>
+              )}
+            </div>
+            <div class="flex flex-wrap gap-2 shrink-0 ml-4 justify-end">
+              {prop.required && (
+                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">required</span>
+              )}
+              <span class="text-xs px-2 py-1 rounded bg-purple-100 text-purple-800">{prop.range}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>

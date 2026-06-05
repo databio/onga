@@ -1,0 +1,55 @@
+id: https://databio.org/onga/normalization
+name: normalization
+title: ONGA Normalization Vocabulary
+description: >-
+  Controlled vocabulary distinguishing the scaling normalization applied to a
+  signal: unprocessed (raw), normalized by sequencing depth / library size, or
+  expressed as a percentage of total signal. `Normalization` is a Layer-1 ONGA
+  facet vocabulary (a closed value set) and a provenance facet — it records the
+  scaling operation applied to produce the values, not what the values mean. It
+  factors the scaling qualifier out of compound ENCODE `output_type` / DataType
+  terms (e.g. "raw signal", "normalized signal", "percentage normalized signal")
+  so that scaling becomes an orthogonal facet asserted via the `normalization`
+  slot of the `TrackProvenance` descriptor schema, rather than being baked into
+  the interpretation value. An absent value means the normalization is
+  unspecified (NOT raw): the generic `signal` term carries no normalization
+  value.
+
+
+  This vocabulary covers only the scaling axis. It does NOT cover statistic
+  transforms (p-value, fold-change, z-score, enrichment), which change what the
+  values mean and remain distinct `output_type` (DataType) terms, nor smoothing
+  (wavelet, summed-densities), which stays an output_type.
+
+
+  Aligned with FGA-WG issue #2 (data interpretation): the scaling-normalization
+  axis is one of the orthogonal facets a compound interpretation term collapses,
+  here homed on the provenance schema as a processing operation.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+
+enums:
+  Normalization:
+    description: >-
+      The scaling normalization applied to a signal, factored out of the compound
+      ENCODE output_type / DataType terms. A provenance facet recording the
+      scaling operation applied to produce the values. Absent means unspecified
+      (not raw). Does not cover statistic transforms (p-value, fold-change,
+      z-score, enrichment) or smoothing, which are distinct output_types.
+    permissible_values:
+      raw:
+        description: 'Unprocessed signal before any normalization.'
+      depth_normalized:
+        description: >-
+          Normalized by sequencing depth / library size — the generic
+          "normalized" case.
+      percentage_normalized:
+        description: 'Expressed as a percentage of total signal.'

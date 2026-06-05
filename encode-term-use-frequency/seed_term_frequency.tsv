@@ -1,0 +1,311 @@
+term	in_encode	file_count	dataset_count
+3D structure	no	0	0
+CpG sites coverage	yes	528	211
+DHS peaks	yes	198	93
+DHS regions reference	yes	1	0
+DNN-MPRA contribution scores	no	0	0
+DNN-MPRA predicted signal	no	0	0
+FDR cut rate	yes	8556	1897
+HMM predicted chromatin state	yes	56	0
+IDR ranked peaks	yes	18491	4528
+IDR thresholded peaks	yes	29326	4528
+PWMs	yes	2578	0
+R2C2 subreads	yes	30	10
+RNA-binding protein associated mRNAs	yes	92	34
+TF binding prediction model	yes	2879	0
+TF peaks matrix	yes	3	0
+TSS reference	yes	161	0
+UV enriched segment quantifications	yes	96	16
+alignments	yes	94651	22503
+alignments with modifications	yes	25	5
+allele-specific contact matrix	no	0	0
+allele-specific variants	yes	43	0
+archr project	yes	18	8
+base overlap signal	yes	194	186
+bias models	yes	9	0
+bias-corrected predicted signal profile	yes	18	0
+bidirectional peaks	yes	255	231
+candidate Cis-Regulatory Elements	yes	12452	0
+candidate enhancers	yes	891	0
+candidate promoters	yes	570	0
+capture targets	no	0	0
+cell coordinates	yes	5	5
+cell topic participation	no	0	0
+cell type annotations	yes	1	0
+cell type data	yes	114	0
+chromatin stripes	yes	258	258
+chromosome sizes	yes	16	0
+chromosomes reference	yes	2	0
+clusters	yes	68	30
+consensus DNase hypersensitivity sites	no	0	0
+conservative IDR thresholded peaks	yes	15209	3769
+contact domains	yes	739	275
+contact matrix	yes	1059	475
+contigs	yes	422	211
+control normalized signal	yes	6021	1009
+copy number variation	yes	179	64
+counts sequence contribution scores	yes	4676	0
+curated SNVs	yes	3	0
+curated binding sites	yes	36	0
+depth normalized signals matrix	yes	4	0
+differential expression quantifications	yes	2360	472
+differential splicing quantifications	yes	1416	472
+diploid personal genome alignments	no	0	0
+distal peaks	yes	8	0
+divergent peaks	yes	216	216
+dsQTLs	yes	27	0
+eQTLs	yes	65	0
+element barcode mapping	yes	42	0
+element gene interactions p-value	no	0	0
+element gene interactions signal	yes	20	0
+element gene links	yes	5302	0
+element quantifications	yes	936	0
+elements reference	yes	9964	0
+enhancer prediction model	yes	2306	0
+enhancer validation	yes	21	0
+enhancer-gene links	no	0	0
+enhancers reference	yes	2	0
+enrichment	yes	696	170
+exclusion list regions	yes	22	0
+exon quantifications	yes	901	323
+female genome index	yes	14	0
+female genome reference	yes	2	0
+filtered SNPs	yes	5	5
+filtered indels	yes	6	5
+filtered modified peptide quantification	yes	12	6
+filtered peaks	yes	237	10
+filtered peptide quantification	yes	28	14
+filtered reads	yes	766	367
+filtered regions	yes	20	10
+filtered transcribed fragments	yes	52	24
+fine-mapped variants	yes	119	0
+fold change over control	yes	51017	9380
+fold over change matrix	yes	68	0
+footprints	yes	548648	2035
+fragments	yes	402	367
+functional conservation mapping	yes	5	0
+functional conservation quantifications	yes	48	0
+gRNAs	yes	11	0
+gene alignments	yes	36	8
+gene quantifications	yes	19170	3893
+gene stabilities	no	0	0
+genic features quantifications	yes	162	81
+genic regions quantifications	no	0	0
+genome compartments	yes	1305	273
+genome index	yes	53	0
+genome reference	yes	57	0
+genome subcompartments	yes	1037	271
+guide locations	yes	45	0
+guide quantifications	yes	2246	0
+haplotype-specific alignments	no	0	0
+haplotype-specific contact matrix	yes	1046	233
+haplotype-specific nuclease cleavage corrected frequency	yes	154	96
+haplotype-specific nuclease cleavage frequency	yes	1084	233
+hotspots	yes	17728	3706
+hotspots1 reference	yes	12	0
+hotspots2 reference	yes	12	0
+idat green channel	yes	279	274
+idat red channel	yes	275	270
+inclusion list	yes	3	0
+index reads	yes	2870	510
+intensity values	yes	127	67
+kmer weights	yes	7491	0
+library fraction	yes	301	78
+loops	yes	1436	456
+mRNA stabilities	no	0	0
+male genome index	yes	16	0
+male genome reference	yes	5	0
+mapping quality thresholded contact matrix	yes	2242	482
+maternal haplotype mapping	no	0	0
+maternal variant calls	no	0	0
+merged transcription segment quantifications	yes	582	97
+methylated reads	yes	7	5
+methylation state at CHG	yes	1612	212
+methylation state at CHH	yes	1612	212
+methylation state at CpG	yes	2145	411
+miRNA annotations	no	0	0
+miRNA reference	no	0	0
+microRNA quantifications	yes	1269	461
+minus strand Nm methylation state	yes	11	5
+minus strand end position signal	yes	5	0
+minus strand inosine methylation state	yes	14	5
+minus strand m5C methylation state	yes	14	5
+minus strand m6A methylation state	yes	14	5
+minus strand methylation state at CpG	yes	528	211
+minus strand normalized end position signal	yes	5	0
+minus strand pseudouridine methylation state	yes	14	5
+minus strand signal	yes	515	263
+minus strand signal of all reads	yes	18227	3299
+minus strand signal of unique reads	yes	17502	4143
+minus strand transcription start sites	no	0	0
+mitochondrial exclusion list regions	no	0	0
+mitochondrial genome index	yes	4	0
+mitochondrial genome reference	yes	2	0
+model performance metrics	yes	2323	0
+models	yes	2382	0
+motif clusters reference	no	0	0
+motif model	no	0	0
+nanopore signal	yes	63	24
+negative control regions	no	0	0
+nested contact domains	yes	24	11
+non-targeting gRNAs	yes	1	0
+normalized bias-corrected predicted signal profile	no	0	0
+normalized observed signal profile	no	0	0
+normalized observed signal profile (minus strand)	yes	2323	0
+normalized observed signal profile (plus strand)	yes	2323	0
+normalized predicted bias profile	no	0	0
+normalized predicted signal profile	no	0	0
+normalized predicted signal profile (minus strand)	yes	2323	0
+normalized predicted signal profile (plus strand)	yes	2323	0
+normalized signal of all reads	yes	70	30
+novel peptides	no	0	0
+nuclease cleavage frequency	yes	639	293
+observed bias profile	no	0	0
+observed control profile (minus strand)	yes	1049	0
+observed control profile (plus strand)	yes	1049	0
+observed signal profile	yes	43	0
+observed signal profile (minus strand)	yes	2329	0
+observed signal profile (plus strand)	yes	2329	0
+open chromatin regions	yes	20	10
+optimal IDR thresholded peaks	yes	15005	3063
+pairs	yes	285	273
+paternal haplotype mapping	no	0	0
+paternal variant calls	no	0	0
+peaks	yes	87838	8823
+peaks and background as input for IDR	yes	35272	2990
+peptide quantifications	no	0	0
+percentage normalized signal	yes	96	90
+personalized genome assembly	yes	6	0
+perturbation signal	yes	110	0
+phased mapping	no	0	0
+phased variant calls	yes	107	20
+phastcons score reference	no	0	0
+plus strand Nm methylation state	yes	11	5
+plus strand end position signal	yes	5	0
+plus strand inosine methylation state	yes	14	5
+plus strand m5C methylation state	yes	14	5
+plus strand m6A methylation state	yes	14	5
+plus strand methylation state at CpG	yes	528	211
+plus strand normalized end position signal	yes	5	0
+plus strand pseudouridine methylation state	yes	14	5
+plus strand signal	yes	515	263
+plus strand signal of all reads	yes	18228	3299
+plus strand signal of unique reads	yes	17500	4143
+plus strand transcription start sites	no	0	0
+polyA sites	yes	38	7
+positive control regions	no	0	0
+predicted 3D structural ensembles	yes	56	0
+predicted bias profile	no	0	0
+predicted enhancers	yes	7	0
+predicted forebrain enhancers	yes	93	0
+predicted heart enhancers	yes	97	0
+predicted signal profile	yes	2341	0
+predicted signal profile (minus strand)	yes	2323	0
+predicted signal profile (plus strand)	yes	2323	0
+predicted transcription start sites	yes	160	77
+predicted whole brain enhancers	yes	5	0
+preprocessed alignments	yes	194	97
+primer sequence	yes	2	0
+profile sequence contribution scores	yes	4676	0
+promoter prediction model	yes	2306	0
+promoters reference	yes	2	0
+protein expression quantifications	no	0	0
+proximal peaks	yes	8	0
+pseudoreplicated IDR thresholded peaks	yes	1402	305
+pseudoreplicated peaks	yes	30774	5368
+rRNA reference	yes	3	0
+ranked gRNAs	yes	7	0
+raw data	no	0	0
+raw imaging signal	yes	5	5
+raw minus strand signal	no	0	0
+raw normalized signal	no	0	0
+raw plus strand signal	no	0	0
+raw signal	yes	1507	774
+read annotations	yes	7	3
+read-depth normalized signal	yes	17642	5602
+reads	yes	162022	27000
+redacted alignments	yes	2675	832
+redacted transcriptome alignments	yes	41	41
+redacted unfiltered alignments	yes	1702	769
+reference	no	0	0
+reference variants	yes	3	0
+regulatory elements	yes	7	0
+regulatory elements prediction model	no	0	0
+rejected reads	yes	431	1
+relative replication signal	yes	7	0
+repeat elements annotation	no	0	0
+repeats reference	no	0	0
+replicated peaks	yes	13336	2483
+replication timing profile	yes	70	36
+reporter code counts	yes	227	115
+representative DNase hypersensitivity sites	yes	12	0
+representative IDR thresholded peaks	no	0	0
+restriction enzyme site locations	yes	4	0
+safe-targeting gRNAs	yes	6	0
+scaled RNA stability	no	0	0
+selected regions for bias-corrected predicted signal profile	no	0	0
+selected regions for count sequence contribution scores	no	0	0
+selected regions for predicted bias profile	no	0	0
+selected regions for predicted signal and sequence contribution scores	yes	4670	0
+selected regions for predicted signal profile	no	0	0
+selected regions for predicted signal profile (minus strand)	no	0	0
+selected regions for predicted signal profile (plus strand)	no	0	0
+selected regions for profile sequence contribution scores	no	0	0
+semi-automated genome annotation	yes	5508	0
+sequence adapters	yes	8	0
+sequence alignability	yes	20	0
+sequence barcodes	yes	46	12
+sequence motifs	yes	2338	0
+sequence motifs instances	yes	4383	0
+sequence motifs report	yes	2329	0
+sequence uniqueness	yes	2	0
+signal	yes	2248	1711
+signal of all reads	yes	4571	817
+signal of unique reads	yes	15554	3294
+signal p-value	yes	99650	9380
+smoothed methylation state at CpG	yes	40	0
+snRNA reference	no	0	0
+sparse gRNA count matrix	yes	1	0
+sparse gene count matrix	yes	38	21
+sparse gene count matrix of all reads	yes	188	188
+sparse gene count matrix of unique reads	yes	188	188
+sparse peak count matrix	yes	8	3
+sparse transcript count matrix	yes	5	3
+spike-in alignments	yes	94	0
+spike-ins	yes	9	0
+splice junctions	yes	369	150
+subreads	yes	204	104
+summed densities signal	yes	16	0
+tRNA reference	no	0	0
+thresholded element gene links	yes	5298	0
+thresholded links	yes	10592	0
+topic gene weights	no	0	0
+training and test regions	yes	2379	0
+training set	no	0	0
+transcribed fragments	yes	62	24
+transcribed region quantifications	yes	98	49
+transcript quantifications	yes	18201	3383
+transcription segment quantifications	yes	582	97
+transcription start sites	yes	2737	260
+transcriptome alignments	yes	12161	2879
+transcriptome annotations	yes	341	177
+transcriptome index	yes	3	0
+transcriptome reference	yes	11	0
+transposable element TF ancestral origin percent by motif	no	0	0
+transposable element TF ancestral origin percent by subfamily	no	0	0
+unfiltered alignments	yes	45564	13981
+unfiltered modified peptide quantification	yes	12	6
+unfiltered peptide quantification	yes	28	14
+unfiltered sparse gene count matrix of all reads	yes	1820	409
+unfiltered sparse gene count matrix of unique reads	yes	1820	409
+unfiltered sparse splice junction count matrix of unique reads	yes	1618	409
+unidirectional peaks	yes	243	225
+validation	yes	35	35
+valleys	yes	32	0
+variant calls	yes	25	19
+variant effect quantifications	yes	54	0
+variant functional prediction	no	0	0
+variant reference	no	0	0
+variants contact matrix	yes	43	0
+wavelet-smoothed signal	yes	142	63
+z scores matrix	yes	16	0

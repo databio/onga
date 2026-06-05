@@ -1,0 +1,44 @@
+id: https://databio.org/onga/filter_status
+name: filter_status
+title: ONGA Filter Status Vocabulary
+description: >-
+  Controlled vocabulary distinguishing the quality-control filtering status of
+  the data a file represents: data retained after QC filtering versus raw data
+  before filtering. `FilterStatus` is a Layer-1 ONGA facet vocabulary (a closed
+  value set). Unlike read-multiplicity, the filtering axis is NOT read-specific:
+  it applies across output types (reads, alignments, peaks, variants,
+  quantifications, count matrices). It factors the filtered/unfiltered qualifier
+  out of compound ENCODE `output_type` / DataType terms (e.g. "filtered peaks",
+  "unfiltered alignments", "unfiltered sparse gene count matrix") so that QC
+  filtering becomes an orthogonal facet asserted via the `filter_status` slot of
+  the `TrackInterpretation` descriptor schema, rather than being baked into the
+  interpretation value.
+
+
+  Aligned with FGA-WG issue #2 (data interpretation): the filtering-status axis
+  is one of the orthogonal facets a compound interpretation term collapses.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+
+enums:
+  FilterStatus:
+    description: >-
+      The quality-control filtering status of the data a file represents,
+      factored out of the compound ENCODE output_type / DataType terms. Applies
+      across output types (reads, alignments, peaks, variants, quantifications,
+      count matrices).
+    permissible_values:
+      filtered:
+        description: >-
+          Data retained after quality-control filtering (e.g. minimum mapping
+          quality, blacklist/exclusion-list removal, deduplication).
+      unfiltered:
+        description: 'Raw data before quality-control filtering.'

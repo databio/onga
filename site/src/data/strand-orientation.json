@@ -1,0 +1,60 @@
+[
+  {
+    "id": "plus",
+    "name": "plus",
+    "slug": "plus",
+    "description": "Features on the forward/plus (+) strand.",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "strand",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "so:0001030",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "minus",
+    "name": "minus",
+    "slug": "minus",
+    "description": "Features on the reverse/minus (−) strand.",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "strand",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "so:0001031",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "unstranded",
+    "name": "unstranded",
+    "slug": "unstranded",
+    "description": "No strand distinction / not applicable. This is the default when the strand slot is absent.",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "strand",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "bidirectional",
+    "name": "bidirectional",
+    "slug": "bidirectional",
+    "description": "Features spanning or representing both strands.",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "strand",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  }
+]

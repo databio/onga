@@ -1,0 +1,323 @@
+# Original ENCODE Terms (Seed List)
+
+The unmodified seed list for ONGA: all 310 ENCODE `output_type` terms,
+exactly as imported. This is the **baseline** referenced by `DECISIONS.md` — the
+fixed starting point against which every cleanup operation is recorded. Do not
+edit this file; it is a historical snapshot. The living vocabulary is
+`src/file_content.yaml`.
+
+Source: ENCODE file schema (<https://www.encodeproject.org/profiles/file/>),
+captured 2026-01-29.
+
+---
+
+- 3D structure
+- CpG sites coverage
+- DHS peaks
+- DHS regions reference
+- DNN-MPRA contribution scores
+- DNN-MPRA predicted signal
+- FDR cut rate
+- HMM predicted chromatin state
+- IDR ranked peaks
+- IDR thresholded peaks
+- PWMs
+- R2C2 subreads
+- RNA-binding protein associated mRNAs
+- TF binding prediction model
+- TF peaks matrix
+- TSS reference
+- UV enriched segment quantifications
+- alignments
+- alignments with modifications
+- allele-specific contact matrix
+- allele-specific variants
+- archr project
+- base overlap signal
+- bias models
+- bias-corrected predicted signal profile
+- bidirectional peaks
+- candidate Cis-Regulatory Elements
+- candidate enhancers
+- candidate promoters
+- capture targets
+- cell coordinates
+- cell topic participation
+- cell type annotations
+- cell type data
+- chromatin stripes
+- chromosome sizes
+- chromosomes reference
+- clusters
+- consensus DNase hypersensitivity sites
+- conservative IDR thresholded peaks
+- contact domains
+- contact matrix
+- contigs
+- control normalized signal
+- copy number variation
+- counts sequence contribution scores
+- curated SNVs
+- curated binding sites
+- depth normalized signals matrix
+- differential expression quantifications
+- differential splicing quantifications
+- diploid personal genome alignments
+- distal peaks
+- divergent peaks
+- dsQTLs
+- eQTLs
+- element barcode mapping
+- element gene interactions p-value
+- element gene interactions signal
+- element gene links
+- element quantifications
+- elements reference
+- enhancer prediction model
+- enhancer validation
+- enhancer-gene links
+- enhancers reference
+- enrichment
+- exclusion list regions
+- exon quantifications
+- female genome index
+- female genome reference
+- filtered SNPs
+- filtered indels
+- filtered modified peptide quantification
+- filtered peaks
+- filtered peptide quantification
+- filtered reads
+- filtered regions
+- filtered transcribed fragments
+- fine-mapped variants
+- fold change over control
+- fold over change matrix
+- footprints
+- fragments
+- functional conservation mapping
+- functional conservation quantifications
+- gRNAs
+- gene alignments
+- gene quantifications
+- gene stabilities
+- genic features quantifications
+- genic regions quantifications
+- genome compartments
+- genome index
+- genome reference
+- genome subcompartments
+- guide locations
+- guide quantifications
+- haplotype-specific alignments
+- haplotype-specific contact matrix
+- haplotype-specific nuclease cleavage corrected frequency
+- haplotype-specific nuclease cleavage frequency
+- hotspots
+- hotspots1 reference
+- hotspots2 reference
+- idat green channel
+- idat red channel
+- inclusion list
+- index reads
+- intensity values
+- kmer weights
+- library fraction
+- loops
+- mRNA stabilities
+- male genome index
+- male genome reference
+- mapping quality thresholded contact matrix
+- maternal haplotype mapping
+- maternal variant calls
+- merged transcription segment quantifications
+- methylated reads
+- methylation state at CHG
+- methylation state at CHH
+- methylation state at CpG
+- miRNA annotations
+- miRNA reference
+- microRNA quantifications
+- minus strand Nm methylation state
+- minus strand end position signal
+- minus strand inosine methylation state
+- minus strand m5C methylation state
+- minus strand m6A methylation state
+- minus strand methylation state at CpG
+- minus strand normalized end position signal
+- minus strand pseudouridine methylation state
+- minus strand signal
+- minus strand signal of all reads
+- minus strand signal of unique reads
+- minus strand transcription start sites
+- mitochondrial exclusion list regions
+- mitochondrial genome index
+- mitochondrial genome reference
+- model performance metrics
+- models
+- motif clusters reference
+- motif model
+- nanopore signal
+- negative control regions
+- nested contact domains
+- non-targeting gRNAs
+- normalized bias-corrected predicted signal profile
+- normalized observed signal profile
+- normalized observed signal profile (minus strand)
+- normalized observed signal profile (plus strand)
+- normalized predicted bias profile
+- normalized predicted signal profile
+- normalized predicted signal profile (minus strand)
+- normalized predicted signal profile (plus strand)
+- normalized signal of all reads
+- novel peptides
+- nuclease cleavage frequency
+- observed bias profile
+- observed control profile (minus strand)
+- observed control profile (plus strand)
+- observed signal profile
+- observed signal profile (minus strand)
+- observed signal profile (plus strand)
+- open chromatin regions
+- optimal IDR thresholded peaks
+- pairs
+- paternal haplotype mapping
+- paternal variant calls
+- peaks
+- peaks and background as input for IDR
+- peptide quantifications
+- percentage normalized signal
+- personalized genome assembly
+- perturbation signal
+- phased mapping
+- phased variant calls
+- phastcons score reference
+- plus strand Nm methylation state
+- plus strand end position signal
+- plus strand inosine methylation state
+- plus strand m5C methylation state
+- plus strand m6A methylation state
+- plus strand methylation state at CpG
+- plus strand normalized end position signal
+- plus strand pseudouridine methylation state
+- plus strand signal
+- plus strand signal of all reads
+- plus strand signal of unique reads
+- plus strand transcription start sites
+- polyA sites
+- positive control regions
+- predicted 3D structural ensembles
+- predicted bias profile
+- predicted enhancers
+- predicted forebrain enhancers
+- predicted heart enhancers
+- predicted signal profile
+- predicted signal profile (minus strand)
+- predicted signal profile (plus strand)
+- predicted transcription start sites
+- predicted whole brain enhancers
+- preprocessed alignments
+- primer sequence
+- profile sequence contribution scores
+- promoter prediction model
+- promoters reference
+- protein expression quantifications
+- proximal peaks
+- pseudoreplicated IDR thresholded peaks
+- pseudoreplicated peaks
+- rRNA reference
+- ranked gRNAs
+- raw data
+- raw imaging signal
+- raw minus strand signal
+- raw normalized signal
+- raw plus strand signal
+- raw signal
+- read annotations
+- read-depth normalized signal
+- reads
+- redacted alignments
+- redacted transcriptome alignments
+- redacted unfiltered alignments
+- reference
+- reference variants
+- regulatory elements
+- regulatory elements prediction model
+- rejected reads
+- relative replication signal
+- repeat elements annotation
+- repeats reference
+- replicated peaks
+- replication timing profile
+- reporter code counts
+- representative DNase hypersensitivity sites
+- representative IDR thresholded peaks
+- restriction enzyme site locations
+- safe-targeting gRNAs
+- scaled RNA stability
+- selected regions for bias-corrected predicted signal profile
+- selected regions for count sequence contribution scores
+- selected regions for predicted bias profile
+- selected regions for predicted signal and sequence contribution scores
+- selected regions for predicted signal profile
+- selected regions for predicted signal profile (minus strand)
+- selected regions for predicted signal profile (plus strand)
+- selected regions for profile sequence contribution scores
+- semi-automated genome annotation
+- sequence adapters
+- sequence alignability
+- sequence barcodes
+- sequence motifs
+- sequence motifs instances
+- sequence motifs report
+- sequence uniqueness
+- signal
+- signal of all reads
+- signal of unique reads
+- signal p-value
+- smoothed methylation state at CpG
+- snRNA reference
+- sparse gRNA count matrix
+- sparse gene count matrix
+- sparse gene count matrix of all reads
+- sparse gene count matrix of unique reads
+- sparse peak count matrix
+- sparse transcript count matrix
+- spike-in alignments
+- spike-ins
+- splice junctions
+- subreads
+- summed densities signal
+- tRNA reference
+- thresholded element gene links
+- thresholded links
+- topic gene weights
+- training and test regions
+- training set
+- transcribed fragments
+- transcribed region quantifications
+- transcript quantifications
+- transcription segment quantifications
+- transcription start sites
+- transcriptome alignments
+- transcriptome annotations
+- transcriptome index
+- transcriptome reference
+- transposable element TF ancestral origin percent by motif
+- transposable element TF ancestral origin percent by subfamily
+- unfiltered alignments
+- unfiltered modified peptide quantification
+- unfiltered peptide quantification
+- unfiltered sparse gene count matrix of all reads
+- unfiltered sparse gene count matrix of unique reads
+- unfiltered sparse splice junction count matrix of unique reads
+- unidirectional peaks
+- validation
+- valleys
+- variant calls
+- variant effect quantifications
+- variant functional prediction
+- variant reference
+- variants contact matrix
+- wavelet-smoothed signal
+- z scores matrix

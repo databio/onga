@@ -1,0 +1,138 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import data from '../../data/develop/frequency.json';
+
+const freq = data as any;
+const terms = (freq.terms || []) as Array<{ term: string; inEncode: boolean; fileCount: number; datasetCount: number }>;
+const maxFile = terms.reduce((m, t) => Math.max(m, t.fileCount), 1);
+const maxDataset = terms.reduce((m, t) => Math.max(m, t.datasetCount), 1);
+---
+
+<Layout title="ENCODE Usage Frequency" side="develop" description="How often each seed term is used across ENCODE files">
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">ENCODE Usage Frequency</h1>
+  <p class="text-gray-600 mb-1">
+    How often each of the {terms.length} ENCODE <code>output_type</code> seed terms is used across
+    <span class="font-medium">{freq.totalFiles.toLocaleString()}</span> ENCODE files.
+    <span class="text-red-600 font-medium">{freq.zeroUsage}</span> terms have zero usage — candidates for review.
+  </p>
+  <p class="text-xs text-gray-400 mb-6">
+    Source: counts from the
+    <a href="https://www.encodeproject.org/search/?type=File&format=json&limit=0"
+      class="underline hover:text-gray-600" target="_blank" rel="noopener">ENCODE faceted search API</a>;
+    permitted <code>output_type</code> values from the live
+    <a href="https://www.encodeproject.org/profiles/file.json"
+      class="underline hover:text-gray-600" target="_blank" rel="noopener">ENCODE file schema</a>.
+    Regenerate via <code>encode-term-use-frequency/fetch_frequencies.py</code>.
+  </p>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-6 text-sm text-amber-900">
+    <span class="font-semibold">Note:</span> this page reflects the original
+    <span class="font-medium">ENCODE seed universe</span> ({terms.length} <code>output_type</code> terms),
+    <em>not</em> ONGA's current vocabulary. ONGA has since faceted compound terms
+    (e.g. <code>minus strand signal</code> → <code>signal</code> + <code>strand: minus</code>),
+    so the live DataType vocabulary is smaller. This is intentional: usage frequency is measured against
+    ENCODE's terms as ENCODE defines them, which is what makes the round-trip mapping meaningful.
+  </div>
+
+  <div class="flex flex-wrap items-center gap-4 mb-4 sticky top-0 bg-gray-50 py-3 z-10 border-b border-gray-200">
+    <input id="q" type="search" placeholder="Filter terms…" autocomplete="off"
+      class="px-3 py-2 border border-gray-300 rounded text-sm min-w-[220px]" />
+    <label class="flex items-center gap-2 text-sm text-gray-600">
+      bar shows
+      <select id="metric" class="px-2 py-1 border border-gray-300 rounded text-sm">
+        <option value="dataset">datasets (experiments)</option>
+        <option value="file">files</option>
+      </select>
+    </label>
+    <label class="flex items-center gap-2 text-sm text-gray-600">
+      <input type="checkbox" id="logscale" checked /> log scale
+    </label>
+    <label class="flex items-center gap-2 text-sm text-gray-600">
+      <input type="checkbox" id="zeroonly" /> zero-usage only
+    </label>
+    <label class="flex items-center gap-2 text-sm text-gray-600">
+      sort
+      <select id="sort" class="px-2 py-1 border border-gray-300 rounded text-sm">
+        <option value="metric_desc">selected metric ↓</option>
+        <option value="metric_asc">selected metric ↑</option>
+        <option value="alpha">A–Z</option>
+      </select>
+    </label>
+    <span id="stats" class="ml-auto text-sm text-gray-500"></span>
+  </div>
+
+  <div class="flex gap-4 text-xs text-gray-500 mb-2">
+    <span><span class="inline-block w-3 h-3 rounded-sm align-middle mr-1" style="background:#2563eb"></span>used in ENCODE</span>
+    <span><span class="inline-block w-3 h-3 rounded-sm align-middle mr-1" style="background:#dc2626"></span>zero usage</span>
+  </div>
+
+  <div class="grid items-center gap-3 px-3 pb-1 text-xs font-semibold text-gray-500 uppercase tracking-wide"
+    style="grid-template-columns:300px 1fr 90px 90px">
+    <div>Term</div>
+    <div></div>
+    <div id="hdr-file" class="text-right">Files</div>
+    <div id="hdr-dataset" class="text-right">Datasets</div>
+  </div>
+
+  <div id="chart" class="bg-white rounded-lg shadow-sm p-3"></div>
+
+  {terms.length === 0 && (
+    <div class="bg-white rounded-lg p-8 shadow-sm text-center text-gray-500">
+      No frequency data. Run <code>python encode-term-use-frequency/fetch_frequencies.py</code>, then rebuild.
+    </div>
+  )}
+
+  <script define:vars={{ terms, maxFile, maxDataset }}>
+    const chart = document.getElementById('chart');
+    const q = document.getElementById('q');
+    const metricEl = document.getElementById('metric');
+    const logEl = document.getElementById('logscale');
+    const zeroEl = document.getElementById('zeroonly');
+    const sortEl = document.getElementById('sort');
+    const stats = document.getElementById('stats');
+    const hdrFile = document.getElementById('hdr-file');
+    const hdrDataset = document.getElementById('hdr-dataset');
+
+    const val = (d, m) => (m === 'file' ? d.fileCount : d.datasetCount);
+    const maxOf = m => (m === 'file' ? maxFile : maxDataset);
+
+    function width(n, m) {
+      if (n <= 0) return 0;
+      const mx = maxOf(m);
+      if (logEl.checked) return 100 * Math.log10(n + 1) / Math.log10(mx + 1);
+      return 100 * n / mx;
+    }
+    const fmt = n => n.toLocaleString();
+
+    function render() {
+      const m = metricEl.value;
+      const term = q.value.trim().toLowerCase();
+      let rows = terms.filter(d => !term || d.term.toLowerCase().includes(term));
+      if (zeroEl.checked) rows = rows.filter(d => val(d, m) === 0);
+      const s = sortEl.value;
+      rows = rows.slice().sort((a, b) => {
+        if (s === 'metric_asc') return val(a, m) - val(b, m);
+        if (s === 'alpha') return a.term.localeCompare(b.term);
+        return val(b, m) - val(a, m);
+      });
+      // emphasize the active metric column header
+      hdrFile.classList.toggle('text-gray-900', m === 'file');
+      hdrDataset.classList.toggle('text-gray-900', m === 'dataset');
+      chart.innerHTML = rows.map(d => {
+        const v = val(d, m);
+        const z = v === 0;
+        const act = 'text-gray-800 font-medium';
+        const dim = 'text-gray-400';
+        return `<div class="grid items-center gap-3 py-0.5 border-b border-gray-50" style="grid-template-columns:300px 1fr 90px 90px">
+          <div class="truncate text-sm ${z ? 'text-red-600' : 'text-gray-800'}" title="${d.term}">${d.term}</div>
+          <div class="bg-gray-100 rounded h-4"><div class="h-full rounded" style="width:${width(v, m).toFixed(2)}%;background:${z ? '#dc2626' : '#2563eb'};${z ? 'opacity:.55;' : ''}min-width:1px"></div></div>
+          <div class="text-right text-xs tabular-nums ${m === 'file' ? act : dim}">${fmt(d.fileCount)}</div>
+          <div class="text-right text-xs tabular-nums ${m === 'dataset' ? act : dim}">${fmt(d.datasetCount)}</div>
+        </div>`;
+      }).join('');
+      stats.textContent = `${rows.length} shown`;
+    }
+    [q, metricEl, logEl, zeroEl, sortEl].forEach(el => el.addEventListener('input', render));
+    render();
+  </script>
+</Layout>

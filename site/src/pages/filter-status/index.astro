@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import terms from '../../data/filter-status.json';
+---
+
+<Layout title="Filter Status" description="Facet vocabulary of QC filtering status — factored out of compound DataType terms">
+  <div class="mb-8">
+    <p class="text-[11px] uppercase tracking-wide text-indigo-400 font-semibold">Facet vocabulary</p>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">FilterStatus</h1>
+    <p class="text-indigo-600 font-medium">{terms.length} terms</p>
+    <p class="text-gray-600 mt-2">
+      Controlled vocabulary distinguishing the quality-control filtering status
+      of the data a file represents (filtered vs unfiltered). A small
+      <strong>facet</strong> vocabulary that factors the filtered/unfiltered
+      qualifier out of compound ENCODE
+      <code class="bg-gray-100 px-1 rounded">output_type</code> / DataType terms
+      (e.g. "filtered peaks", "unfiltered alignments"). Unlike read-multiplicity,
+      this axis is not read-specific — it applies across output types (reads,
+      alignments, peaks, variants, quantifications, count matrices). Surfaced via
+      the
+      <a href="/track-interpretation" class="text-amber-600 underline hover:text-amber-800">Track Interpretation</a>
+      schema's <code class="bg-gray-100 px-1 rounded">filter_status</code> slot.
+      Aligned with FGA-WG issue #2 (data interpretation).
+    </p>
+  </div>
+
+  <!-- Terms -->
+  <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
+    {terms.map((term: any) => (
+      <div class="block p-4">
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="font-medium text-gray-900 font-mono text-sm">{term.name}</h3>
+            <p class="text-sm text-gray-500 mt-1">{term.description}</p>
+          </div>
+          {term.edamMapping && (
+            <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded shrink-0 ml-4 font-mono">
+              {term.edamMapping.edamId}
+            </span>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</Layout>

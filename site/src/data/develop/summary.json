@@ -3,5 +3,6 @@
   "gapTerms": 23,
   "mappingSuggestions": 287,
   "qualityIssues": 0,
-  "totalTerms": 310
+  "zeroUsageTerms": 63,
+  "totalTerms": 266
 }

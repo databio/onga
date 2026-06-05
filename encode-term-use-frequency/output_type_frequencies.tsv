@@ -1,0 +1,311 @@
+output_type	file_count
+footprints	548648
+reads	162022
+signal p-value	99650
+alignments	94651
+peaks	87838
+fold change over control	51017
+unfiltered alignments	45564
+peaks and background as input for IDR	35272
+pseudoreplicated peaks	30774
+IDR thresholded peaks	29326
+gene quantifications	19170
+IDR ranked peaks	18491
+plus strand signal of all reads	18228
+minus strand signal of all reads	18227
+transcript quantifications	18201
+hotspots	17728
+read-depth normalized signal	17642
+minus strand signal of unique reads	17502
+plus strand signal of unique reads	17500
+signal of unique reads	15554
+conservative IDR thresholded peaks	15209
+optimal IDR thresholded peaks	15005
+replicated peaks	13336
+candidate Cis-Regulatory Elements	12452
+transcriptome alignments	12161
+thresholded links	10592
+elements reference	9964
+FDR cut rate	8556
+kmer weights	7491
+control normalized signal	6021
+semi-automated genome annotation	5508
+element gene links	5302
+thresholded element gene links	5298
+counts sequence contribution scores	4676
+profile sequence contribution scores	4676
+selected regions for predicted signal and sequence contribution scores	4670
+signal of all reads	4571
+sequence motifs instances	4383
+TF binding prediction model	2879
+index reads	2870
+transcription start sites	2737
+redacted alignments	2675
+PWMs	2578
+models	2382
+training and test regions	2379
+differential expression quantifications	2360
+predicted signal profile	2341
+sequence motifs	2338
+observed signal profile (minus strand)	2329
+observed signal profile (plus strand)	2329
+sequence motifs report	2329
+model performance metrics	2323
+normalized observed signal profile (minus strand)	2323
+normalized observed signal profile (plus strand)	2323
+normalized predicted signal profile (minus strand)	2323
+normalized predicted signal profile (plus strand)	2323
+predicted signal profile (minus strand)	2323
+predicted signal profile (plus strand)	2323
+enhancer prediction model	2306
+promoter prediction model	2306
+signal	2248
+guide quantifications	2246
+mapping quality thresholded contact matrix	2242
+methylation state at CpG	2145
+unfiltered sparse gene count matrix of all reads	1820
+unfiltered sparse gene count matrix of unique reads	1820
+redacted unfiltered alignments	1702
+unfiltered sparse splice junction count matrix of unique reads	1618
+methylation state at CHG	1612
+methylation state at CHH	1612
+raw signal	1507
+loops	1436
+differential splicing quantifications	1416
+pseudoreplicated IDR thresholded peaks	1402
+genome compartments	1305
+microRNA quantifications	1269
+haplotype-specific nuclease cleavage frequency	1084
+contact matrix	1059
+observed control profile (minus strand)	1049
+observed control profile (plus strand)	1049
+haplotype-specific contact matrix	1046
+genome subcompartments	1037
+element quantifications	936
+exon quantifications	901
+candidate enhancers	891
+filtered reads	766
+contact domains	739
+enrichment	696
+nuclease cleavage frequency	639
+merged transcription segment quantifications	582
+transcription segment quantifications	582
+candidate promoters	570
+CpG sites coverage	528
+minus strand methylation state at CpG	528
+plus strand methylation state at CpG	528
+minus strand signal	515
+plus strand signal	515
+rejected reads	431
+contigs	422
+fragments	402
+splice junctions	369
+transcriptome annotations	341
+library fraction	301
+pairs	285
+idat green channel	279
+idat red channel	275
+chromatin stripes	258
+bidirectional peaks	255
+unidirectional peaks	243
+filtered peaks	237
+reporter code counts	227
+divergent peaks	216
+subreads	204
+DHS peaks	198
+base overlap signal	194
+preprocessed alignments	194
+sparse gene count matrix of all reads	188
+sparse gene count matrix of unique reads	188
+copy number variation	179
+genic features quantifications	162
+TSS reference	161
+predicted transcription start sites	160
+haplotype-specific nuclease cleavage corrected frequency	154
+wavelet-smoothed signal	142
+intensity values	127
+fine-mapped variants	119
+cell type data	114
+perturbation signal	110
+phased variant calls	107
+transcribed region quantifications	98
+predicted heart enhancers	97
+UV enriched segment quantifications	96
+percentage normalized signal	96
+spike-in alignments	94
+predicted forebrain enhancers	93
+RNA-binding protein associated mRNAs	92
+normalized signal of all reads	70
+replication timing profile	70
+clusters	68
+fold over change matrix	68
+eQTLs	65
+nanopore signal	63
+transcribed fragments	62
+genome reference	57
+HMM predicted chromatin state	56
+predicted 3D structural ensembles	56
+variant effect quantifications	54
+genome index	53
+filtered transcribed fragments	52
+functional conservation quantifications	48
+sequence barcodes	46
+guide locations	45
+allele-specific variants	43
+observed signal profile	43
+variants contact matrix	43
+element barcode mapping	42
+redacted transcriptome alignments	41
+smoothed methylation state at CpG	40
+polyA sites	38
+sparse gene count matrix	38
+curated binding sites	36
+gene alignments	36
+validation	35
+valleys	32
+R2C2 subreads	30
+filtered peptide quantification	28
+unfiltered peptide quantification	28
+dsQTLs	27
+alignments with modifications	25
+variant calls	25
+nested contact domains	24
+exclusion list regions	22
+enhancer validation	21
+element gene interactions signal	20
+filtered regions	20
+open chromatin regions	20
+sequence alignability	20
+archr project	18
+bias-corrected predicted signal profile	18
+chromosome sizes	16
+male genome index	16
+summed densities signal	16
+z scores matrix	16
+female genome index	14
+minus strand inosine methylation state	14
+minus strand m5C methylation state	14
+minus strand m6A methylation state	14
+minus strand pseudouridine methylation state	14
+plus strand inosine methylation state	14
+plus strand m5C methylation state	14
+plus strand m6A methylation state	14
+plus strand pseudouridine methylation state	14
+filtered modified peptide quantification	12
+hotspots1 reference	12
+hotspots2 reference	12
+representative DNase hypersensitivity sites	12
+unfiltered modified peptide quantification	12
+gRNAs	11
+minus strand Nm methylation state	11
+plus strand Nm methylation state	11
+transcriptome reference	11
+bias models	9
+spike-ins	9
+distal peaks	8
+proximal peaks	8
+sequence adapters	8
+sparse peak count matrix	8
+methylated reads	7
+predicted enhancers	7
+ranked gRNAs	7
+read annotations	7
+regulatory elements	7
+relative replication signal	7
+filtered indels	6
+personalized genome assembly	6
+safe-targeting gRNAs	6
+cell coordinates	5
+filtered SNPs	5
+functional conservation mapping	5
+male genome reference	5
+minus strand end position signal	5
+minus strand normalized end position signal	5
+plus strand end position signal	5
+plus strand normalized end position signal	5
+predicted whole brain enhancers	5
+raw imaging signal	5
+sparse transcript count matrix	5
+depth normalized signals matrix	4
+mitochondrial genome index	4
+restriction enzyme site locations	4
+TF peaks matrix	3
+curated SNVs	3
+inclusion list	3
+rRNA reference	3
+reference variants	3
+transcriptome index	3
+chromosomes reference	2
+enhancers reference	2
+female genome reference	2
+mitochondrial genome reference	2
+primer sequence	2
+promoters reference	2
+sequence uniqueness	2
+DHS regions reference	1
+cell type annotations	1
+non-targeting gRNAs	1
+sparse gRNA count matrix	1
+3D structure	0
+DNN-MPRA contribution scores	0
+DNN-MPRA predicted signal	0
+allele-specific contact matrix	0
+capture targets	0
+cell topic participation	0
+consensus DNase hypersensitivity sites	0
+diploid personal genome alignments	0
+element gene interactions p-value	0
+enhancer-gene links	0
+gene stabilities	0
+genic regions quantifications	0
+haplotype-specific alignments	0
+mRNA stabilities	0
+maternal haplotype mapping	0
+maternal variant calls	0
+miRNA annotations	0
+miRNA reference	0
+minus strand transcription start sites	0
+mitochondrial exclusion list regions	0
+motif clusters reference	0
+motif model	0
+negative control regions	0
+normalized bias-corrected predicted signal profile	0
+normalized observed signal profile	0
+normalized predicted bias profile	0
+normalized predicted signal profile	0
+novel peptides	0
+observed bias profile	0
+paternal haplotype mapping	0
+paternal variant calls	0
+peptide quantifications	0
+phased mapping	0
+phastcons score reference	0
+plus strand transcription start sites	0
+positive control regions	0
+predicted bias profile	0
+protein expression quantifications	0
+raw data	0
+raw minus strand signal	0
+raw normalized signal	0
+raw plus strand signal	0
+reference	0
+regulatory elements prediction model	0
+repeat elements annotation	0
+repeats reference	0
+representative IDR thresholded peaks	0
+scaled RNA stability	0
+selected regions for bias-corrected predicted signal profile	0
+selected regions for count sequence contribution scores	0
+selected regions for predicted bias profile	0
+selected regions for predicted signal profile	0
+selected regions for predicted signal profile (minus strand)	0
+selected regions for predicted signal profile (plus strand)	0
+selected regions for profile sequence contribution scores	0
+snRNA reference	0
+tRNA reference	0
+topic gene weights	0
+training set	0
+transposable element TF ancestral origin percent by motif	0
+transposable element TF ancestral origin percent by subfamily	0
+variant functional prediction	0
+variant reference	0

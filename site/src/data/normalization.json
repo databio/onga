@@ -1,0 +1,38 @@
+[
+  {
+    "id": "raw",
+    "name": "raw",
+    "slug": "raw",
+    "description": "Unprocessed signal before any normalization.",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "normalization",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "depth_normalized",
+    "name": "depth_normalized",
+    "slug": "depth_normalized",
+    "description": "Normalized by sequencing depth / library size — the generic \"normalized\" case.",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "normalization",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "percentage_normalized",
+    "name": "percentage_normalized",
+    "slug": "percentage_normalized",
+    "description": "Expressed as a percentage of total signal.",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "normalization",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  }
+]

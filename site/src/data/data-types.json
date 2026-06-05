@@ -53,23 +53,6 @@
     "encodeSource": true
   },
   {
-    "id": "filtered_reads",
-    "name": "filtered reads",
-    "slug": "filtered_reads",
-    "description": "Sequencing reads passing quality control filters such as minimum quality score, adapter removal, or duplicate marking.",
-    "category": "alignment",
-    "categorySlug": "alignment",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "broadMatch",
-      "edamId": "edam:data_0863",
-      "edamLabel": "Sequence alignment",
-      "comment": "EDAM lacks filtered reads concept"
-    },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "gene_alignments",
     "name": "gene alignments",
     "slug": "gene_alignments",
@@ -157,18 +140,6 @@
     "encodeSource": true
   },
   {
-    "id": "redacted_unfiltered_alignments",
-    "name": "redacted unfiltered alignments",
-    "slug": "redacted_unfiltered_alignments",
-    "description": "Unfiltered alignments with sensitive positions redacted.",
-    "category": "alignment",
-    "categorySlug": "alignment",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "rejected_reads",
     "name": "rejected reads",
     "slug": "rejected_reads",
@@ -210,23 +181,6 @@
       "gene expression",
       "splicing"
     ],
-    "encodeSource": true
-  },
-  {
-    "id": "unfiltered_alignments",
-    "name": "unfiltered alignments",
-    "slug": "unfiltered_alignments",
-    "description": "Raw alignments before quality filtering, duplicate removal, or other post-processing.",
-    "category": "alignment",
-    "categorySlug": "alignment",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "broadMatch",
-      "edamId": "edam:data_0863",
-      "edamLabel": "Sequence alignment",
-      "comment": "EDAM lacks filtering-status qualifier"
-    },
-    "seeAlso": [],
     "encodeSource": true
   },
   {
@@ -293,174 +247,6 @@
     "encodeSource": true
   },
   {
-    "id": "minus_strand_end_position_signal",
-    "name": "minus strand end position signal",
-    "slug": "minus_strand_end_position_signal",
-    "description": "Signal of read end positions on the minus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "minus_strand_normalized_end_position_signal",
-    "name": "minus strand normalized end position signal",
-    "slug": "minus_strand_normalized_end_position_signal",
-    "description": "Normalized signal of read end positions on the minus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "minus_strand_signal",
-    "name": "minus strand signal",
-    "slug": "minus_strand_signal",
-    "description": "Signal values computed from reads mapping to the minus (reverse/Crick) DNA strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "minus_strand_signal_of_all_reads",
-    "name": "minus strand signal of all reads",
-    "slug": "minus_strand_signal_of_all_reads",
-    "description": "Minus strand signal from all aligned reads regardless of mapping quality.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "minus_strand_signal_of_unique_reads",
-    "name": "minus strand signal of unique reads",
-    "slug": "minus_strand_signal_of_unique_reads",
-    "description": "Minus strand signal from uniquely mapping reads only (MAPQ >= threshold).",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "normalized_bias_corrected_predicted_signal_profile",
-    "name": "normalized bias-corrected predicted signal profile",
-    "slug": "normalized_bias_corrected_predicted_signal_profile",
-    "description": "Normalized predicted signal profile with bias correction.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "normalized_observed_signal_profile",
-    "name": "normalized observed signal profile",
-    "slug": "normalized_observed_signal_profile",
-    "description": "Observed signal profile normalized for sequencing depth or library size.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "normalized_observed_signal_profile_minus_strand",
-    "name": "normalized observed signal profile (minus strand)",
-    "slug": "normalized_observed_signal_profile_minus_strand",
-    "description": "Normalized observed signal profile on the minus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "normalized_observed_signal_profile_plus_strand",
-    "name": "normalized observed signal profile (plus strand)",
-    "slug": "normalized_observed_signal_profile_plus_strand",
-    "description": "Normalized observed signal profile on the plus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "normalized_predicted_bias_profile",
-    "name": "normalized predicted bias profile",
-    "slug": "normalized_predicted_bias_profile",
-    "description": "Normalized predicted sequencing bias profile.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "normalized_predicted_signal_profile",
-    "name": "normalized predicted signal profile",
-    "slug": "normalized_predicted_signal_profile",
-    "description": "Predicted signal profile normalized for sequencing depth or library size.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "normalized_predicted_signal_profile_minus_strand",
-    "name": "normalized predicted signal profile (minus strand)",
-    "slug": "normalized_predicted_signal_profile_minus_strand",
-    "description": "Normalized predicted signal profile on the minus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "normalized_predicted_signal_profile_plus_strand",
-    "name": "normalized predicted signal profile (plus strand)",
-    "slug": "normalized_predicted_signal_profile_plus_strand",
-    "description": "Normalized predicted signal profile on the plus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "normalized_signal_of_all_reads",
-    "name": "normalized signal of all reads",
-    "slug": "normalized_signal_of_all_reads",
-    "description": "Depth-normalized signal including all reads.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "observed_bias_profile",
     "name": "observed bias profile",
     "slug": "observed_bias_profile",
@@ -473,130 +259,10 @@
     "encodeSource": true
   },
   {
-    "id": "observed_control_profile_minus_strand",
-    "name": "observed control profile (minus strand)",
-    "slug": "observed_control_profile_minus_strand",
-    "description": "Observed control signal profile on the minus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "observed_control_profile_plus_strand",
-    "name": "observed control profile (plus strand)",
-    "slug": "observed_control_profile_plus_strand",
-    "description": "Observed control signal profile on the plus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "observed_signal_profile",
     "name": "observed signal profile",
     "slug": "observed_signal_profile",
     "description": "Experimentally measured signal profile from sequencing data.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "observed_signal_profile_minus_strand",
-    "name": "observed signal profile (minus strand)",
-    "slug": "observed_signal_profile_minus_strand",
-    "description": "Observed signal profile on the minus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "observed_signal_profile_plus_strand",
-    "name": "observed signal profile (plus strand)",
-    "slug": "observed_signal_profile_plus_strand",
-    "description": "Observed signal profile on the plus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "percentage_normalized_signal",
-    "name": "percentage normalized signal",
-    "slug": "percentage_normalized_signal",
-    "description": "Signal expressed as a percentage of total signal, useful for comparing relative enrichment.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "plus_strand_end_position_signal",
-    "name": "plus strand end position signal",
-    "slug": "plus_strand_end_position_signal",
-    "description": "Signal of read end positions on the plus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "plus_strand_normalized_end_position_signal",
-    "name": "plus strand normalized end position signal",
-    "slug": "plus_strand_normalized_end_position_signal",
-    "description": "Normalized signal of read end positions on the plus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "plus_strand_signal",
-    "name": "plus strand signal",
-    "slug": "plus_strand_signal",
-    "description": "Signal values computed from reads mapping to the plus (forward/Watson) DNA strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "plus_strand_signal_of_all_reads",
-    "name": "plus strand signal of all reads",
-    "slug": "plus_strand_signal_of_all_reads",
-    "description": "Plus strand signal from all aligned reads regardless of mapping quality.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "plus_strand_signal_of_unique_reads",
-    "name": "plus strand signal of unique reads",
-    "slug": "plus_strand_signal_of_unique_reads",
-    "description": "Plus strand signal from uniquely mapping reads only (MAPQ >= threshold).",
     "category": "signal_track",
     "categorySlug": "signal_track",
     "vocabType": "data",
@@ -629,90 +295,6 @@
     "encodeSource": true
   },
   {
-    "id": "predicted_signal_profile_minus_strand",
-    "name": "predicted signal profile (minus strand)",
-    "slug": "predicted_signal_profile_minus_strand",
-    "description": "Computationally predicted signal profile on the minus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "predicted_signal_profile_plus_strand",
-    "name": "predicted signal profile (plus strand)",
-    "slug": "predicted_signal_profile_plus_strand",
-    "description": "Computationally predicted signal profile on the plus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "raw_minus_strand_signal",
-    "name": "raw minus strand signal",
-    "slug": "raw_minus_strand_signal",
-    "description": "Unprocessed signal on the minus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "raw_normalized_signal",
-    "name": "raw normalized signal",
-    "slug": "raw_normalized_signal",
-    "description": "Raw signal after library-size normalization.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "raw_plus_strand_signal",
-    "name": "raw plus strand signal",
-    "slug": "raw_plus_strand_signal",
-    "description": "Unprocessed signal on the plus strand.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "raw_signal",
-    "name": "raw signal",
-    "slug": "raw_signal",
-    "description": "Unprocessed signal track before normalization or bias correction.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "read_depth_normalized_signal",
-    "name": "read-depth normalized signal",
-    "slug": "read_depth_normalized_signal",
-    "description": "Signal normalized by total sequencing depth to enable cross-sample comparisons.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "signal",
     "name": "signal",
     "slug": "signal",
@@ -726,30 +308,6 @@
       "chromatin accessibility",
       "TF binding"
     ],
-    "encodeSource": true
-  },
-  {
-    "id": "signal_of_all_reads",
-    "name": "signal of all reads",
-    "slug": "signal_of_all_reads",
-    "description": "Signal computed from all aligned reads regardless of mapping quality or uniqueness.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "signal_of_unique_reads",
-    "name": "signal of unique reads",
-    "slug": "signal_of_unique_reads",
-    "description": "Signal computed only from uniquely mapping reads (typically MAPQ >= 30), excluding multi-mappers.",
-    "category": "signal_track",
-    "categorySlug": "signal_track",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
     "encodeSource": true
   },
   {
@@ -865,27 +423,6 @@
       "comment": "From LinkML schema"
     },
     "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "filtered_peaks",
-    "name": "filtered peaks",
-    "slug": "filtered_peaks",
-    "description": "Peak calls after quality filtering, typically removing peaks in blacklist regions or with low signal.",
-    "category": "peak_set",
-    "categorySlug": "peak_set",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_3002",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
-    "seeAlso": [
-      "TF binding sites",
-      "open chromatin regions",
-      "histone modifications"
-    ],
     "encodeSource": true
   },
   {
@@ -1476,18 +1013,6 @@
     "encodeSource": true
   },
   {
-    "id": "depth_normalized_signals_matrix",
-    "name": "depth normalized signals matrix",
-    "slug": "depth_normalized_signals_matrix",
-    "description": "Matrix of read-depth normalized signals across features and samples.",
-    "category": "count_matrix",
-    "categorySlug": "count_matrix",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "fold_over_change_matrix",
     "name": "fold over change matrix",
     "slug": "fold_over_change_matrix",
@@ -1504,40 +1029,6 @@
     "name": "sparse gene count matrix",
     "slug": "sparse_gene_count_matrix",
     "description": "Sparse matrix of gene-level read counts across cells or samples, standard for single-cell RNA-seq.",
-    "category": "count_matrix",
-    "categorySlug": "count_matrix",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_3917",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "sparse_gene_count_matrix_of_all_reads",
-    "name": "sparse gene count matrix of all reads",
-    "slug": "sparse_gene_count_matrix_of_all_reads",
-    "description": "Sparse gene count matrix including all reads regardless of mapping quality.",
-    "category": "count_matrix",
-    "categorySlug": "count_matrix",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_3917",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "sparse_gene_count_matrix_of_unique_reads",
-    "name": "sparse gene count matrix of unique reads",
-    "slug": "sparse_gene_count_matrix_of_unique_reads",
-    "description": "Sparse gene count matrix from uniquely mapping reads only.",
     "category": "count_matrix",
     "categorySlug": "count_matrix",
     "vocabType": "data",
@@ -1593,57 +1084,6 @@
     "categorySlug": "count_matrix",
     "vocabType": "data",
     "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "unfiltered_sparse_gene_count_matrix_of_all_reads",
-    "name": "unfiltered sparse gene count matrix of all reads",
-    "slug": "unfiltered_sparse_gene_count_matrix_of_all_reads",
-    "description": "Unfiltered sparse gene count matrix from all reads.",
-    "category": "count_matrix",
-    "categorySlug": "count_matrix",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_3917",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "unfiltered_sparse_gene_count_matrix_of_unique_reads",
-    "name": "unfiltered sparse gene count matrix of unique reads",
-    "slug": "unfiltered_sparse_gene_count_matrix_of_unique_reads",
-    "description": "Unfiltered sparse gene count matrix from uniquely mapping reads.",
-    "category": "count_matrix",
-    "categorySlug": "count_matrix",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_3917",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "unfiltered_sparse_splice_junction_count_matrix_of_unique_reads",
-    "name": "unfiltered sparse splice junction count matrix of unique reads",
-    "slug": "unfiltered_sparse_splice_junction_count_matrix_of_unique_reads",
-    "description": "Unfiltered sparse count matrix of splice junctions from unique reads.",
-    "category": "count_matrix",
-    "categorySlug": "count_matrix",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_3917",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -1723,30 +1163,6 @@
       "exon usage",
       "splicing"
     ],
-    "encodeSource": true
-  },
-  {
-    "id": "filtered_modified_peptide_quantification",
-    "name": "filtered modified peptide quantification",
-    "slug": "filtered_modified_peptide_quantification",
-    "description": "Filtered quantification of post-translationally modified peptides.",
-    "category": "quantification",
-    "categorySlug": "quantification",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "filtered_peptide_quantification",
-    "name": "filtered peptide quantification",
-    "slug": "filtered_peptide_quantification",
-    "description": "Filtered quantification of peptides from proteomics data.",
-    "category": "quantification",
-    "categorySlug": "quantification",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
     "encodeSource": true
   },
   {
@@ -1993,30 +1409,6 @@
     "encodeSource": true
   },
   {
-    "id": "unfiltered_modified_peptide_quantification",
-    "name": "unfiltered modified peptide quantification",
-    "slug": "unfiltered_modified_peptide_quantification",
-    "description": "Unfiltered quantification of post-translationally modified peptides.",
-    "category": "quantification",
-    "categorySlug": "quantification",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "unfiltered_peptide_quantification",
-    "name": "unfiltered peptide quantification",
-    "slug": "unfiltered_peptide_quantification",
-    "description": "Unfiltered quantification of peptides from proteomics data.",
-    "category": "quantification",
-    "categorySlug": "quantification",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "uv_enriched_segment_quantifications",
     "name": "UV enriched segment quantifications",
     "slug": "uv_enriched_segment_quantifications",
@@ -2199,30 +1591,6 @@
     "name": "selected regions for predicted signal profile",
     "slug": "selected_regions_for_predicted_signal_profile",
     "description": "Genomic regions selected for predicted signal profile interpretation.",
-    "category": "deep_learning",
-    "categorySlug": "deep_learning",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "selected_regions_for_predicted_signal_profile_minus_strand",
-    "name": "selected regions for predicted signal profile (minus strand)",
-    "slug": "selected_regions_for_predicted_signal_profile_minus_strand",
-    "description": "Minus strand genomic regions selected for predicted signal interpretation.",
-    "category": "deep_learning",
-    "categorySlug": "deep_learning",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "selected_regions_for_predicted_signal_profile_plus_strand",
-    "name": "selected regions for predicted signal profile (plus strand)",
-    "slug": "selected_regions_for_predicted_signal_profile_plus_strand",
-    "description": "Plus strand genomic regions selected for predicted signal interpretation.",
     "category": "deep_learning",
     "categorySlug": "deep_learning",
     "vocabType": "data",
@@ -3020,6 +2388,71 @@
     "description": "Data generated for experimental validation purposes.",
     "category": "technical",
     "categorySlug": "technical",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "end_position_signal",
+    "name": "end position signal",
+    "slug": "end_position_signal",
+    "description": "Signal of read end positions.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "observed_control_profile",
+    "name": "observed control profile",
+    "slug": "observed_control_profile",
+    "description": "Observed control signal profile.",
+    "category": "signal_track",
+    "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "modified_peptide_quantification",
+    "name": "modified peptide quantification",
+    "slug": "modified_peptide_quantification",
+    "description": "Quantification of post-translationally modified peptides.",
+    "category": "quantification",
+    "categorySlug": "quantification",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "sparse_splice_junction_count_matrix",
+    "name": "sparse splice junction count matrix",
+    "slug": "sparse_splice_junction_count_matrix",
+    "description": "Sparse count matrix of splice junctions.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
+    "vocabType": "data",
+    "edamMapping": {
+      "predicate": "exactMatch",
+      "edamId": "edam:data_3917",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "signals_matrix",
+    "name": "signals matrix",
+    "slug": "signals_matrix",
+    "description": "Matrix of signal values across features and samples.",
+    "category": "count_matrix",
+    "categorySlug": "count_matrix",
     "vocabType": "data",
     "edamMapping": null,
     "seeAlso": [],

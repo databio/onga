@@ -1,0 +1,34 @@
+{
+  "properties": [
+    {
+      "id": "read_multiplicity",
+      "slug": "read_multiplicity",
+      "name": "read_multiplicity",
+      "description": "The read mapping-multiplicity subset the data was computed from (all mapped reads vs uniquely-mapping reads only) — the read-selection operation applied. Factored out of compound DataType terms (e.g. \"signal of all reads\"). Absent means unspecified.",
+      "range": "ReadMultiplicity",
+      "required": false,
+      "vocabHref": "/read-multiplicity",
+      "vocabCount": 2
+    },
+    {
+      "id": "filter_status",
+      "slug": "filter_status",
+      "name": "filter_status",
+      "description": "The quality-control filtering operation applied (filtered vs unfiltered). Factored out of compound DataType terms (e.g. \"filtered peaks\", \"unfiltered alignments\"). Absent means unspecified.",
+      "range": "FilterStatus",
+      "required": false,
+      "vocabHref": "/filter-status",
+      "vocabCount": 2
+    },
+    {
+      "id": "normalization",
+      "slug": "normalization",
+      "name": "normalization",
+      "description": "The scaling normalization applied to a signal (raw vs depth-normalized vs percentage-normalized) — the scaling operation applied. Factored out of compound DataType terms (e.g. \"raw signal\", \"normalized signal\", \"percentage normalized signal\"). Does not cover statistic transforms (p-value, fold-change, z-score, enrichment) or smoothing, which are distinct output_types. Absent means unspecified (not raw).",
+      "range": "Normalization",
+      "required": false,
+      "vocabHref": "/normalization",
+      "vocabCount": 3
+    }
+  ]
+}

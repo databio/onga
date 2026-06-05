@@ -49,13 +49,27 @@ const currentPath = Astro.url.pathname;
               </a>
             </div>
           </div>
-          <div class="flex gap-6 text-sm">
+          <div class="flex items-center gap-4 text-sm">
             {side === 'browse' ? (
               <>
                 <a href="/" class:list={['hover:text-gray-900', currentPath === '/' ? 'text-gray-900 font-medium' : 'text-gray-600']}>Home</a>
-                <a href="/categories" class:list={['hover:text-gray-900', currentPath.startsWith('/categories') ? 'text-gray-900 font-medium' : 'text-gray-600']}>Categories</a>
-                <a href="/data-types" class:list={['hover:text-gray-900', currentPath.startsWith('/data-types') ? 'text-gray-900 font-medium' : 'text-gray-600']}>DataTypes</a>
-                <a href="/feature-types" class:list={['hover:text-gray-900', currentPath.startsWith('/feature-types') ? 'text-gray-900 font-medium' : 'text-gray-600']}>FeatureTypes</a>
+                <span class="text-gray-300">|</span>
+                <span class="text-[11px] uppercase tracking-wide text-gray-400 font-semibold">Vocabularies</span>
+                <a href="/data-types" class:list={['hover:text-blue-800', currentPath.startsWith('/data-types') ? 'text-blue-700 font-medium' : 'text-blue-600']}>DataTypes</a>
+                <a href="/feature-types" class:list={['hover:text-green-800', currentPath.startsWith('/feature-types') ? 'text-green-700 font-medium' : 'text-green-600']}>FeatureTypes</a>
+                <a href="/formats" class:list={['hover:text-teal-800', currentPath.startsWith('/formats') ? 'text-teal-700 font-medium' : 'text-teal-600']}>Formats</a>
+                <span class="text-[10px] uppercase tracking-wide text-indigo-300 font-semibold">facets</span>
+                <a href="/strand-orientation" class:list={['hover:text-indigo-800', currentPath.startsWith('/strand-orientation') ? 'text-indigo-700 font-medium' : 'text-indigo-500']}>Strand</a>
+                <a href="/read-multiplicity" class:list={['hover:text-indigo-800', currentPath.startsWith('/read-multiplicity') ? 'text-indigo-700 font-medium' : 'text-indigo-500']}>ReadMultiplicity</a>
+                <a href="/filter-status" class:list={['hover:text-indigo-800', currentPath.startsWith('/filter-status') ? 'text-indigo-700 font-medium' : 'text-indigo-500']}>FilterStatus</a>
+                <a href="/normalization" class:list={['hover:text-indigo-800', currentPath.startsWith('/normalization') ? 'text-indigo-700 font-medium' : 'text-indigo-500']}>Normalization</a>
+                <span class="text-gray-300">|</span>
+                <span class="text-[11px] uppercase tracking-wide text-gray-400 font-semibold">Schemas</span>
+                <a href="/track-format" class:list={['hover:text-amber-800', currentPath.startsWith('/track-format') ? 'text-amber-700 font-medium' : 'text-amber-600']}>Track Format</a>
+                <a href="/track-interpretation" class:list={['hover:text-amber-800', currentPath.startsWith('/track-interpretation') ? 'text-amber-700 font-medium' : 'text-amber-600']}>Interpretation</a>
+                <a href="/track-provenance" class:list={['hover:text-amber-800', currentPath.startsWith('/track-provenance') ? 'text-amber-700 font-medium' : 'text-amber-600']}>Provenance</a>
+                <a href="/track-geometry" class:list={['hover:text-amber-800', currentPath.startsWith('/track-geometry') ? 'text-amber-700 font-medium' : 'text-amber-600']}>Geometry</a>
+                <span class="text-gray-300">|</span>
                 <a href="/mappings" class:list={['hover:text-gray-900', currentPath.startsWith('/mappings') ? 'text-gray-900 font-medium' : 'text-gray-600']}>Mappings</a>
                 <a href="/about" class:list={['hover:text-gray-900', currentPath.startsWith('/about') ? 'text-gray-900 font-medium' : 'text-gray-600']}>About</a>
               </>
@@ -66,6 +80,7 @@ const currentPath = Astro.url.pathname;
                 <a href="/develop/gaps" class:list={['hover:text-gray-900', currentPath.startsWith('/develop/gaps') ? 'text-gray-900 font-medium' : 'text-gray-600']}>Gaps</a>
                 <a href="/develop/mapping-suggestions" class:list={['hover:text-gray-900', currentPath.startsWith('/develop/mapping-suggestions') ? 'text-gray-900 font-medium' : 'text-gray-600']}>Mapping Suggestions</a>
                 <a href="/develop/quality-issues" class:list={['hover:text-gray-900', currentPath.startsWith('/develop/quality-issues') ? 'text-gray-900 font-medium' : 'text-gray-600']}>Quality Issues</a>
+                <a href="/develop/frequency" class:list={['hover:text-gray-900', currentPath.startsWith('/develop/frequency') ? 'text-gray-900 font-medium' : 'text-gray-600']}>Usage Frequency</a>
                 <a href="/develop/changeset" class:list={['hover:text-gray-900', currentPath.startsWith('/develop/changeset') ? 'text-gray-900 font-medium' : 'text-gray-600']}>Changeset</a>
               </>
             )}

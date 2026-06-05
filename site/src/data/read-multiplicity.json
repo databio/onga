@@ -1,0 +1,26 @@
+[
+  {
+    "id": "all_reads",
+    "name": "all reads",
+    "slug": "all_reads",
+    "description": "Signal/counts computed from all mapped reads.",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "read_multiplicity",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "unique_reads",
+    "name": "unique reads",
+    "slug": "unique_reads",
+    "description": "Signal/counts computed from uniquely-mapping reads only.",
+    "category": "uncategorized",
+    "categorySlug": "uncategorized",
+    "vocabType": "read_multiplicity",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  }
+]

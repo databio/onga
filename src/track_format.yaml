@@ -1,0 +1,78 @@
+id: https://databio.org/onga/track_format
+name: track_format
+title: ONGA Track Format Schema
+description: >-
+  Descriptor schema for how a genomic annotation file is encoded on disk: its
+  primary file format and any format-specific column conventions. `TrackFormat`
+  is a Layer-2 descriptor schema (a class of slots) that records the encoding of
+  a single track; its `file_format` slot draws on the Layer-1 `Format`
+  vocabulary (defined in format.yaml), a closed value set of common genomic
+  track formats aligned with the EDAM ontology.
+
+
+  Ported from / aligned with FGA-WG issue #1 (data formats):
+  https://github.com/fairtracks/fga-wg (issue #1). The FGA #1 discussion
+  distinguishes a format (e.g. narrowPeak) from a column standard (e.g. BED6+3);
+  this schema captures that split via `file_format` plus the conditional
+  `bed_core_columns` / `bed_extra_columns` slots.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+  edam: http://edamontology.org/
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+  - format
+
+classes:
+  TrackFormat:
+    description: >-
+      How a genomic annotation file is encoded: its primary file format and,
+      for BED-family formats, the number of standard (core) and extra (custom)
+      columns. Corresponds to FGA-WG issue #1.
+    slots:
+      - file_format
+      - bed_core_columns
+      - bed_extra_columns
+
+    rules:
+      # The bed_* column counts are only meaningful for BED-family formats.
+      # LinkML enum equality in slot_conditions uses `equals_string`. Here we
+      # mark bed_core_columns as recommended (required) when the format is a
+      # plain BED file. Other BED-family formats (narrowPeak/broadPeak/etc.)
+      # imply a fixed column standard and so are not constrained here.
+      - preconditions:
+          slot_conditions:
+            file_format:
+              equals_string: BED
+        postconditions:
+          slot_conditions:
+            bed_core_columns:
+              required: true
+
+slots:
+  file_format:
+    description: 'The primary file format in which the track is encoded.'
+    required: true
+    range: Format
+    examples:
+      - value: BED
+  bed_core_columns:
+    description: >-
+      For BED-family formats, the number of standard (core) BED columns present
+      — the N in "BEDN". Only relevant when file_format is a BED-family format.
+    range: integer
+    examples:
+      - value: '6'
+  bed_extra_columns:
+    description: >-
+      For BED-family formats, the number of extra/custom columns appended after
+      the core columns — the M in "BEDN+M". Only relevant when file_format is a
+      BED-family format.
+    range: integer
+    examples:
+      - value: '3'

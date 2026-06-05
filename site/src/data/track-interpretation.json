@@ -1,0 +1,34 @@
+{
+  "properties": [
+    {
+      "id": "output_type",
+      "slug": "output_type",
+      "name": "output_type",
+      "description": "The algorithmic interpretation: the computational process or output the file represents (e.g. peaks, signal, alignment, count matrix). Draws on the DataType vocabulary.",
+      "range": "DataType",
+      "required": false,
+      "vocabHref": "/data-types",
+      "vocabCount": 174
+    },
+    {
+      "id": "feature_type",
+      "slug": "feature_type",
+      "name": "feature_type",
+      "description": "The biological interpretation: the biological entity or concept the data represents (e.g. TF binding site, enhancer, CpG island). Draws on the FeatureType vocabulary.",
+      "range": "FeatureType",
+      "required": false,
+      "vocabHref": "/feature-types",
+      "vocabCount": 92
+    },
+    {
+      "id": "strand",
+      "slug": "strand",
+      "name": "strand",
+      "description": "The strand orientation the file represents. Factored out of compound DataType terms (e.g. \"minus strand signal\"). Absent means unstranded/unspecified.",
+      "range": "StrandOrientation",
+      "required": false,
+      "vocabHref": "/strand-orientation",
+      "vocabCount": 4
+    }
+  ]
+}

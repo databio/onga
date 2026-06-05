@@ -30,16 +30,6 @@
     "comment": "EDAM lacks diploid/personal alignment concept"
   },
   {
-    "termId": "filtered_reads",
-    "termName": "filtered reads",
-    "category": "alignment",
-    "vocabType": "data",
-    "predicate": "broadMatch",
-    "edamId": "edam:data_0863",
-    "edamLabel": "Sequence alignment",
-    "comment": "EDAM lacks filtered reads concept"
-  },
-  {
     "termId": "haplotype_specific_alignments",
     "termName": "haplotype-specific alignments",
     "category": "alignment",
@@ -78,16 +68,6 @@
     "edamId": "edam:data_0863",
     "edamLabel": "Sequence alignment",
     "comment": "EDAM lacks transcriptome-specific alignment"
-  },
-  {
-    "termId": "unfiltered_alignments",
-    "termName": "unfiltered alignments",
-    "category": "alignment",
-    "vocabType": "data",
-    "predicate": "broadMatch",
-    "edamId": "edam:data_0863",
-    "edamLabel": "Sequence alignment",
-    "comment": "EDAM lacks filtering-status qualifier"
   },
   {
     "termId": "signal_p_value",
@@ -132,16 +112,6 @@
   {
     "termId": "divergent_peaks",
     "termName": "divergent peaks",
-    "category": "peak_set",
-    "vocabType": "data",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
-    "termId": "filtered_peaks",
-    "termName": "filtered peaks",
     "category": "peak_set",
     "vocabType": "data",
     "predicate": "exactMatch",
@@ -300,26 +270,6 @@
     "comment": "From LinkML schema"
   },
   {
-    "termId": "sparse_gene_count_matrix_of_all_reads",
-    "termName": "sparse gene count matrix of all reads",
-    "category": "count_matrix",
-    "vocabType": "data",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_3917",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
-    "termId": "sparse_gene_count_matrix_of_unique_reads",
-    "termName": "sparse gene count matrix of unique reads",
-    "category": "count_matrix",
-    "vocabType": "data",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_3917",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
     "termId": "sparse_peak_count_matrix",
     "termName": "sparse peak count matrix",
     "category": "count_matrix",
@@ -332,36 +282,6 @@
   {
     "termId": "sparse_transcript_count_matrix",
     "termName": "sparse transcript count matrix",
-    "category": "count_matrix",
-    "vocabType": "data",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_3917",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
-    "termId": "unfiltered_sparse_gene_count_matrix_of_all_reads",
-    "termName": "unfiltered sparse gene count matrix of all reads",
-    "category": "count_matrix",
-    "vocabType": "data",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_3917",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
-    "termId": "unfiltered_sparse_gene_count_matrix_of_unique_reads",
-    "termName": "unfiltered sparse gene count matrix of unique reads",
-    "category": "count_matrix",
-    "vocabType": "data",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_3917",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
-    "termId": "unfiltered_sparse_splice_junction_count_matrix_of_unique_reads",
-    "termName": "unfiltered sparse splice junction count matrix of unique reads",
     "category": "count_matrix",
     "vocabType": "data",
     "predicate": "exactMatch",
@@ -706,6 +626,16 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_2977",
+    "edamLabel": "",
+    "comment": "From LinkML schema"
+  },
+  {
+    "termId": "sparse_splice_junction_count_matrix",
+    "termName": "sparse splice junction count matrix",
+    "category": "count_matrix",
+    "vocabType": "data",
+    "predicate": "exactMatch",
+    "edamId": "edam:data_3917",
     "edamLabel": "",
     "comment": "From LinkML schema"
   },

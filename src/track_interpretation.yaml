@@ -1,0 +1,72 @@
+id: https://databio.org/onga/track_interpretation
+name: track_interpretation
+title: ONGA Track Interpretation Schema
+description: >-
+  Descriptor schema for what the data in a genomic annotation file represents.
+  Interpretation has two distinct halves: an *algorithmic* concept (the
+  process/output the file represents, e.g. "peaks", "signal") and a *biological*
+  concept (the biological entity it represents, e.g. "TF binding site",
+  "enhancer"). These map onto the `DataType` and `FeatureType` vocabularies
+  defined in file_content.yaml, respectively.
+
+
+  Ported from / aligned with FGA-WG issue #2 (data interpretation):
+  https://github.com/fairtracks/fga-wg (issue #2), which explicitly splits
+  interpretation into an algorithmic concept and a biological concept.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+  - file_content
+  - strand_orientation
+
+classes:
+  TrackInterpretation:
+    description: >-
+      What the data in a genomic annotation file represents, split into an
+      algorithmic interpretation (output_type, drawing on the DataType
+      vocabulary) and a biological interpretation (feature_type, drawing on the
+      FeatureType vocabulary). Corresponds to FGA-WG issue #2.
+    slots:
+      - output_type
+      - feature_type
+      # Facet slot, factored out of compound DataType strings (e.g.
+      # "minus strand signal" -> output_type: signal, strand: minus). See
+      # mappings/facet_decomposition.tsv for the full ENCODE round-trip map.
+      - strand
+      # Processing/derivation facets (read_multiplicity, filter_status, and the
+      # planned normalization / observed-vs-predicted / bias-correction axes)
+      # describe *what was done to the data*, not *what it is*, so they live on
+      # TrackProvenance (src/track_provenance.yaml), not here.
+
+slots:
+  output_type:
+    description: >-
+      The algorithmic interpretation: the computational process or output the
+      file represents (e.g. peaks, signal, alignment, count matrix). Draws on
+      the DataType vocabulary.
+    range: DataType
+    examples:
+      - value: peaks
+  feature_type:
+    description: >-
+      The biological interpretation: the biological entity or concept the data
+      represents (e.g. TF binding site, enhancer, CpG island). Draws on the
+      FeatureType vocabulary.
+    range: FeatureType
+    examples:
+      - value: 'transcription factor binding site'
+  strand:
+    description: >-
+      The strand orientation the file represents. Factored out of compound
+      DataType terms (e.g. "minus strand signal"). Absent means
+      unstranded/unspecified.
+    range: StrandOrientation
+    examples:
+      - value: minus

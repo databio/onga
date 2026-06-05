@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import formats from '../../data/format.json';
+---
+
+<Layout title="Formats" description="Controlled vocabulary of genomic track file formats — EDAM-aligned">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Format</h1>
+    <p class="text-teal-600 font-medium">{formats.length} terms</p>
+    <p class="text-gray-600 mt-2">
+      Controlled vocabulary of common file formats for genomic annotation tracks,
+      aligned with the <a href="http://edamontology.org/" class="text-teal-600 underline hover:text-teal-800">EDAM</a>
+      ontology (Sequence-annotation-track formats) where corresponding terms exist.
+      Referenced by the <code class="bg-gray-100 px-1 rounded">file_format</code> slot
+      of the <a href="/track-format" class="text-amber-600 underline hover:text-amber-800">Track Format</a>
+      schema. Aligned with FGA-WG issue #1 (data formats).
+    </p>
+  </div>
+
+  <!-- Search -->
+  <div class="bg-white rounded-lg p-4 shadow-sm mb-8">
+    <input
+      type="search"
+      id="search"
+      placeholder="Filter Formats..."
+      class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal-500"
+    />
+  </div>
+
+  <!-- Terms -->
+  <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
+    {formats.map((term: any) => (
+      <div
+        class="term-item block p-4"
+        data-name={term.name.toLowerCase()}
+        data-description={term.description.toLowerCase()}
+      >
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="font-medium text-gray-900 font-mono text-sm">{term.name}</h3>
+            <p class="text-sm text-gray-500 mt-1">{term.description}</p>
+          </div>
+          {term.edamMapping && (
+            <span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded shrink-0 ml-4 font-mono">
+              {term.edamMapping.edamId}
+            </span>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('search') as HTMLInputElement;
+    const items = document.querySelectorAll('.term-item') as NodeListOf<HTMLElement>;
+
+    searchInput?.addEventListener('input', (e) => {
+      const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+      items.forEach(item => {
+        const name = item.dataset.name || '';
+        const desc = item.dataset.description || '';
+        const matches = !query || name.includes(query) || desc.includes(query);
+        item.classList.toggle('hidden', !matches);
+      });
+    });
+  </script>
+</Layout>

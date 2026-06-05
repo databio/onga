@@ -1,0 +1,37 @@
+{
+  "properties": [
+    {
+      "id": "file_format",
+      "slug": "file_format",
+      "name": "file_format",
+      "description": "The primary file format in which the track is encoded.",
+      "range": "Format",
+      "required": true,
+      "rule": null,
+      "vocabHref": "/formats",
+      "vocabCount": 12
+    },
+    {
+      "id": "bed_core_columns",
+      "slug": "bed_core_columns",
+      "name": "bed_core_columns",
+      "description": "For BED-family formats, the number of standard (core) BED columns present — the N in \"BEDN\". Only relevant when file_format is a BED-family format.",
+      "range": "integer",
+      "required": false,
+      "rule": "Recommended when file_format is BED.",
+      "vocabHref": null,
+      "vocabCount": null
+    },
+    {
+      "id": "bed_extra_columns",
+      "slug": "bed_extra_columns",
+      "name": "bed_extra_columns",
+      "description": "For BED-family formats, the number of extra/custom columns appended after the core columns — the M in \"BEDN+M\". Only relevant when file_format is a BED-family format.",
+      "range": "integer",
+      "required": false,
+      "rule": null,
+      "vocabHref": null,
+      "vocabCount": null
+    }
+  ]
+}
