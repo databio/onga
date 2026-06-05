@@ -2,9 +2,14 @@ SCHEMA_DIR = src
 SCHEMA_NAME = onga
 MAIN_SCHEMA = $(SCHEMA_DIR)/$(SCHEMA_NAME).yaml
 
-.PHONY: all gen-owl gen-jsonld gen-python gen-docs validate clean embeddings-build embeddings-compare apply
+.PHONY: all gen-owl gen-jsonld gen-python gen-docs validate test clean embeddings-build embeddings-compare apply
 
 all: gen-owl gen-jsonld
+
+# Enforced lossless round-trip invariant: every facet-map row resolves to a live
+# enum base, no compound term survives, counts match DECISIONS. Stdlib + pyyaml.
+test:
+	python scripts/check_roundtrip.py
 
 gen-owl:
 	gen-owl $(MAIN_SCHEMA) > project/owl/$(SCHEMA_NAME).owl.ttl

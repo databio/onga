@@ -178,5 +178,28 @@ def main():
     print(f"Wrote {OUT}: {len(rows)} rows, {no_count} with base_exists=no")
 
 
+_GUARD = """
+╔══════════════════════════════════════════════════════════════════════════╗
+║  REFUSING TO RUN — this is a one-time SNAPSHOT generator, not a rebuilder. ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║  mappings/facet_decomposition.tsv is now CURATED and hand-maintained. It   ║
+║  persists rows for compound terms that have since been REMOVED from the    ║
+║  enum, and it has grown columns this script does not know about            ║
+║  (feature_type, thresholding, derivation, reference_build_sex).            ║
+║                                                                            ║
+║  Re-running this would emit only rows for compounds STILL in the enum      ║
+║  (≈none remain) in the OLD 7-column shape — silently destroying the        ║
+║  lossless round-trip map. To add new decompositions, append rows by hand   ║
+║  / via an apply_*.py step and verify with scripts/check_roundtrip.py.      ║
+║                                                                            ║
+║  If you truly understand this and want the historical snapshot anyway,     ║
+║  pass --force-regenerate-snapshot (it will OVERWRITE the curated TSV).     ║
+╚══════════════════════════════════════════════════════════════════════════╝
+"""
+
 if __name__ == "__main__":
+    import sys
+    if "--force-regenerate-snapshot" not in sys.argv:
+        print(_GUARD)
+        sys.exit(2)
     main()
