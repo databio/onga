@@ -391,6 +391,75 @@ for file content types. We took these verbatim as the initial term set.
     is recorded in `mappings/facet_decomposition.tsv`. FeatureType **77 → 76**
     (−1, no mint). Applied via `scripts/apply_gene_links_merge.py`.
 
+17. **Faceted out haplotype resolution — the second intrinsic-CONTENT facet.**
+    Factored the allele/haplotype phasing qualifier baked into compound
+    DataType / FeatureType strings into a new facet vocabulary
+    **HaplotypeResolution** (`allele_specific` / `haplotype_specific` / `phased`,
+    `src/haplotype_resolution.yaml`, absent = haplotype-collapsed / not
+    phase-resolved) and a `haplotype_resolution` slot on **`TrackInterpretation`**
+    — homed alongside `strand`, NOT on TrackProvenance. **Content-facet
+    rationale (design principle #4):** haplotype resolution answers *what the
+    values represent* (allele-resolved vs. haplotype-partitioned vs.
+    phase-resolved), an intrinsic property of the content, not an operation
+    applied to the data — exactly like `strand`. It is therefore the second
+    intrinsic-content facet after strand and belongs in interpretation. The
+    vocabulary carries no `meaning:` CURIEs (no clean ontology term for the
+    resolution sense), following the facet convention.
+    **Decomposed 7 compound terms** (verified present in the live enums) — 5 in
+    **DataType**, 2 in **FeatureType**:
+    - DataType: `haplotype-specific alignments` → `alignments` +
+      `haplotype_resolution:haplotype_specific` (base existed);
+      `haplotype-specific contact matrix` → `contact matrix` +
+      `haplotype_specific` (base existed); `allele-specific contact matrix` →
+      `contact matrix` + `haplotype_resolution:allele_specific` (base existed);
+      `haplotype-specific nuclease cleavage frequency` → `nuclease cleavage
+      frequency` + `haplotype_specific` (base existed); `haplotype-specific
+      nuclease cleavage corrected frequency` → `nuclease cleavage corrected
+      frequency` + `haplotype_specific` (base **minted**).
+    - FeatureType: `phased variant calls` → `variant calls` (base existed, has
+      `meaning: edam:data_0918`) + `haplotype_resolution:phased`; `phased
+      mapping` → `mapping` + `phased` (base **minted**).
+    **Minted 2 bases (no meaning):**
+    - `nuclease cleavage corrected frequency` (DataType, `in_subset:
+      [chromatin_accessibility]` — verified to match its sibling `nuclease
+      cleavage frequency`; description "Bias-corrected per-base nuclease cleavage
+      frequency." retains the deferred `corrected` bias-correction axis baked
+      in).
+    - `mapping` (FeatureType, `in_subset: [haplotype]` — verified the `haplotype`
+      subset exists; description "Sequence reads or contigs assigned to a
+      haplotype."; the residual of `phased mapping`).
+    **Deferred parental-origin axis (maternal/paternal) — WHY.** The
+    parental-origin axis (which parent a haplotype came from) is a SEPARATE axis
+    and is deliberately NOT a value of HaplotypeResolution. The terms `maternal
+    variant calls`, `paternal variant calls`, `maternal haplotype mapping`,
+    `paternal haplotype mapping` are left ATOMIC (guarded PROTECTED, confirmed
+    intact) pending a future parental-origin facet; collapsing maternal/paternal
+    into `haplotype_specific` would lose the parent label, so the axis is held.
+    **Kept atomic — 2 terms (different axes), guarded PROTECTED, confirmed
+    intact:** `diploid personal genome alignments` (DataType) — `diploid` is the
+    REFERENCE PLOIDY, a property of the reference, not a resolution value;
+    `allele-specific variants` (FeatureType) — here "allele-specific" denotes
+    the ALLELIC-IMBALANCE behavior (a different sense of the phrase), not
+    allele-resolved content, so it is NOT decomposed onto
+    `haplotype_resolution:allele_specific`.
+    The round-trip `compound term = output_type/feature_type +
+    haplotype_resolution (+ other facets)` is preserved in
+    `mappings/facet_decomposition.tsv` (a new `haplotype_resolution` column was
+    inserted immediately before `base_exists`, empty-backfilled for all prior
+    rows; 7 new rows appended — 5 DataType, 2 FeatureType). DataType **166 → 162**
+    (−5 compound, +1 minted base); FeatureType **76 → 75** (−2 compound, +1
+    minted base). PROTECTED confirmed 6/6 (1 DataType + 5 FeatureType). Applied
+    via `scripts/apply_haplotype_resolution_decomposition.py` (ruamel round-trip,
+    TSV read by header name). Developmental software — clean removals, no
+    back-compat.
+    **NOTE on count target.** The driving plan named a gate of
+    `DataType=161 / total=236`, but that is arithmetically off by one: 166 − 5
+    removals + 1 required mint (`nuclease cleavage corrected frequency`, whose
+    base did not exist — skipping it would dangle the TSV row and fail the
+    round-trip check) = **162**, not 161. The true post-operation counts are
+    DataType **162** / FeatureType **75** / Total **237**, and the round-trip
+    check passes against these.
+
 ## Design principles
 
 Rules established in design discussion that govern the faceting operations above:
@@ -488,6 +557,8 @@ was verified live in `src/file_content.yaml` (enum noted per row).
 | **Smoothing** — `wavelet-smoothed signal`, `summed densities signal` (DataType); `smoothed methylation state at CpG` (FeatureType) | DataType, FeatureType | A transform, not scaling; deferred. |
 | **Selected-regions wrapper** — `selected regions for predicted signal profile` + its 5 siblings (`… for bias-corrected predicted signal profile`, `… for predicted bias profile`, `… for count sequence contribution scores`, `… for predicted signal and sequence contribution scores`, `… for profile sequence contribution scores`) | DataType | A role/geometry wrapper, not an orthogonal content axis; deferred. |
 | **Assay/method-fused predicted** — `DNN-MPRA predicted signal`, `HMM predicted chromatin state` | DataType | The model/assay name is part of identity, not an orthogonal facet; kept atomic (the assay-name axis is itself deferred — see principle #5). |
+| **Reference ploidy** — `diploid personal genome alignments` | DataType | `diploid` qualifies the REFERENCE (its ploidy), not the haplotype resolution of the content; not a value of `HaplotypeResolution` (operation #17). Kept atomic. |
+| **Parental origin + allelic-imbalance sense** — `allele-specific variants`; `maternal variant calls`, `paternal variant calls`, `maternal haplotype mapping`, `paternal haplotype mapping` | FeatureType | `allele-specific variants` is the ALLELIC-IMBALANCE behavior (a different sense of "allele-specific"), not allele-resolved content. The maternal/paternal terms carry a parental-origin axis (which parent a haplotype came from) that is SEPARATE from `HaplotypeResolution` and DEFERRED to a future parental-origin facet — collapsing them into `haplotype_specific` would lose the parent label (operation #17). |
 
 **Bias-correction note.** After operation #14, `bias profile` is now an atomic
 base, and the standalone `observed bias profile` / `predicted bias profile`
@@ -499,10 +570,10 @@ the compound `bias-corrected predicted signal profile`, held for a future
 
 ## Current state
 
-- **DataType:** 166 terms (53 with EDAM `meaning:`)
-- **FeatureType:** 76 terms (21 with EDAM `meaning:`)
+- **DataType:** 162 terms (53 with EDAM `meaning:`)
+- **FeatureType:** 75 terms (20 with EDAM `meaning:`)
 - **Categories:** 22 subsets
-- **Total:** 242 terms, 74 EDAM-mapped
+- **Total:** 237 terms, 73 EDAM-mapped
 - **Descriptor schemas:** 5 — TrackFormat, TrackInterpretation, TrackProvenance,
   TrackGeometry, ReferenceGenome (Layer 2)
 

@@ -8,7 +8,7 @@
       "range": "DataType",
       "required": false,
       "vocabHref": "/data-types",
-      "vocabCount": 166
+      "vocabCount": 162
     },
     {
       "id": "feature_type",
@@ -18,7 +18,7 @@
       "range": "FeatureType",
       "required": false,
       "vocabHref": "/feature-types",
-      "vocabCount": 76
+      "vocabCount": 75
     },
     {
       "id": "strand",
@@ -29,6 +29,16 @@
       "required": false,
       "vocabHref": "/strand-orientation",
       "vocabCount": 4
+    },
+    {
+      "id": "haplotype_resolution",
+      "slug": "haplotype_resolution",
+      "name": "haplotype_resolution",
+      "description": "The haplotype resolution the file represents: whether content is resolved to individual alleles (allele_specific), partitioned per parental haplotype (haplotype_specific), or phase-resolved without per-haplotype splitting (phased). A content facet factored out of compound DataType/FeatureType terms (e.g. \"haplotype-specific contact matrix\", \"phased variant calls\"). Absent means haplotype-collapsed / not phase-resolved.",
+      "range": "HaplotypeResolution",
+      "required": false,
+      "vocabHref": "/haplotype-resolution",
+      "vocabCount": 3
     }
   ]
 }

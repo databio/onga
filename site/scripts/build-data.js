@@ -4,8 +4,9 @@
  *
  * ONGA has two layers:
  *   Layer 1 — Vocabularies (closed value sets): 3 core (DataType, FeatureType,
- *     Format) + 7 facet (StrandOrientation, ReadMultiplicity, FilterStatus,
- *     Normalization, Thresholding, Derivation, ReferenceBuildSex) = 10 total.
+ *     Format) + 8 facet (StrandOrientation, ReadMultiplicity, FilterStatus,
+ *     Normalization, Thresholding, Derivation, ReferenceBuildSex,
+ *     HaplotypeResolution) = 11 total.
  *   Layer 2 — Track descriptor schemas (classes of slots): TrackFormat (#1,
  *     encoding), TrackInterpretation (#2, meaning), TrackProvenance (what was
  *     done to the data — processing/derivation operations), TrackGeometry (#3,
@@ -260,6 +261,7 @@ function processInterpretation(schema, vocabCounts) {
     DataType: { href: '/data-types', count: vocabCounts.dataType },
     FeatureType: { href: '/feature-types', count: vocabCounts.featureType },
     StrandOrientation: { href: '/strand-orientation', count: vocabCounts.strandOrientation },
+    HaplotypeResolution: { href: '/haplotype-resolution', count: vocabCounts.haplotypeResolution },
   };
 
   for (const name of cls.slots || []) {
@@ -405,6 +407,7 @@ function build() {
   const thresholdingSchema = readYaml('thresholding.yaml');
   const derivationSchema = readYaml('derivation.yaml');
   const referenceBuildSexSchema = readYaml('reference_build_sex.yaml');
+  const haplotypeResolutionSchema = readYaml('haplotype_resolution.yaml');
   const trackFormat = readYaml('track_format.yaml');
   const trackInterpretation = readYaml('track_interpretation.yaml');
   const trackProvenance = readYaml('track_provenance.yaml');
@@ -430,6 +433,7 @@ function build() {
   const thresholdings = processEnum(thresholdingSchema?.enums?.Thresholding, 'thresholding', edamMappings);
   const derivations = processEnum(derivationSchema?.enums?.Derivation, 'derivation', edamMappings);
   const referenceBuildSexes = processEnum(referenceBuildSexSchema?.enums?.ReferenceBuildSex, 'reference_build_sex', edamMappings);
+  const haplotypeResolutions = processEnum(haplotypeResolutionSchema?.enums?.HaplotypeResolution, 'haplotype_resolution', edamMappings);
   const geometry = processGeometry(trackGeometry);
   // TrackFormat is a schema; its file_format slot links to the Format vocabulary.
   const format = processFormat(trackFormat, {
@@ -439,6 +443,7 @@ function build() {
     dataType: dataTypes.terms.length,
     featureType: featureTypes.terms.length,
     strandOrientation: strandOrientations.terms.length,
+    haplotypeResolution: haplotypeResolutions.terms.length,
   });
   // TrackProvenance: facet slots link to their facet vocabularies.
   const provenance = processProvenance(trackProvenance, {
@@ -513,17 +518,19 @@ function build() {
       thresholdingTerms: thresholdings.terms.length,
       derivationTerms: derivations.terms.length,
       referenceBuildSexTerms: referenceBuildSexes.terms.length,
+      haplotypeResolutionTerms: haplotypeResolutions.terms.length,
       geometryTerms: geometry.properties.length,
       totalCategories: categories.length,
       totalMappings: mappings.length,
       coveragePercent: Math.round((mappings.length / allTerms.length) * 100),
       // Two-layer summary for the home page. There are 3 core vocabularies
-      // (DataType, FeatureType, Format) plus 7 facet vocabularies
+      // (DataType, FeatureType, Format) plus 8 facet vocabularies
       // (StrandOrientation, ReadMultiplicity, FilterStatus, Normalization,
-      // Thresholding, Derivation, ReferenceBuildSex), so 10 vocabularies total.
-      vocabularyCount: 10,
+      // Thresholding, Derivation, ReferenceBuildSex, HaplotypeResolution), so
+      // 11 vocabularies total.
+      vocabularyCount: 11,
       coreVocabCount: 3,
-      facetVocabCount: 7,
+      facetVocabCount: 8,
       schemaCount: 5,
       formatProps: format.properties.length,
       interpretationProps: interpretation.properties.length,
@@ -556,6 +563,7 @@ function build() {
   writeFileSync(join(dataDir, 'thresholding.json'), JSON.stringify(thresholdings.terms, null, 2));
   writeFileSync(join(dataDir, 'derivation.json'), JSON.stringify(derivations.terms, null, 2));
   writeFileSync(join(dataDir, 'reference-build-sex.json'), JSON.stringify(referenceBuildSexes.terms, null, 2));
+  writeFileSync(join(dataDir, 'haplotype-resolution.json'), JSON.stringify(haplotypeResolutions.terms, null, 2));
 
   // Track geometry vocabulary (class with slots, plus the DataTypes enum)
   writeFileSync(join(dataDir, 'track-geometry.json'), JSON.stringify({
@@ -591,9 +599,9 @@ function build() {
   writeFileSync(join(dataDir, 'terms.json'), JSON.stringify(allTerms, null, 2));
   writeFileSync(join(dataDir, 'mappings.json'), JSON.stringify(mappings, null, 2));
 
-  console.log('Built 10 vocabularies (3 core + 7 facet) + 5 schemas:');
+  console.log('Built 11 vocabularies (3 core + 8 facet) + 5 schemas:');
   console.log(`  Core vocabularies: ${dataTypes.terms.length} DataType, ${featureTypes.terms.length} FeatureType, ${formats.terms.length} Format`);
-  console.log(`  Facet vocabularies: ${strandOrientations.terms.length} StrandOrientation, ${readMultiplicities.terms.length} ReadMultiplicity, ${filterStatuses.terms.length} FilterStatus, ${normalizations.terms.length} Normalization, ${thresholdings.terms.length} Thresholding, ${derivations.terms.length} Derivation, ${referenceBuildSexes.terms.length} ReferenceBuildSex`);
+  console.log(`  Facet vocabularies: ${strandOrientations.terms.length} StrandOrientation, ${readMultiplicities.terms.length} ReadMultiplicity, ${filterStatuses.terms.length} FilterStatus, ${normalizations.terms.length} Normalization, ${thresholdings.terms.length} Thresholding, ${derivations.terms.length} Derivation, ${referenceBuildSexes.terms.length} ReferenceBuildSex, ${haplotypeResolutions.terms.length} HaplotypeResolution`);
   console.log(`  Schemas: TrackFormat (${format.properties.length} props), TrackInterpretation (${interpretation.properties.length} props), TrackProvenance (${provenance.properties.length} props), TrackGeometry (${geometry.properties.length} props), ReferenceGenome (${referenceGenomeSchema.properties.length} props)`);
   console.log(`Categories: ${categories.length}, Mappings: ${mappings.length}, Scope delegations: ${delegations.length}`);
 

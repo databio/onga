@@ -21,6 +21,11 @@ const STYLES: Record<string, { card: string; badge: string; link: string }> = {
     badge: 'bg-indigo-100 text-indigo-800',
     link: 'text-indigo-600 hover:text-indigo-800',
   },
+  HaplotypeResolution: {
+    card: 'border-indigo-400',
+    badge: 'bg-indigo-100 text-indigo-800',
+    link: 'text-indigo-600 hover:text-indigo-800',
+  },
   default: {
     card: 'border-gray-400',
     badge: 'bg-gray-100 text-gray-800',
@@ -80,11 +85,14 @@ const styleFor = (range: string) => STYLES[range] || STYLES.default;
 
   <!-- Facets note -->
   <p class="text-xs text-gray-400 mt-8 max-w-2xl">
-    The <code class="bg-gray-100 px-1 rounded">strand</code> slot is a
-    <strong>facet</strong>, factored out of compound DataType terms
-    (e.g. "minus strand signal" → output_type: signal, strand: minus); the
+    The <code class="bg-gray-100 px-1 rounded">strand</code> and
+    <code class="bg-gray-100 px-1 rounded">haplotype_resolution</code> slots are
+    <strong>content facets</strong>, factored out of compound DataType / FeatureType terms
+    (e.g. "minus strand signal" → output_type: signal, strand: minus;
+    "haplotype-specific contact matrix" → output_type: contact matrix,
+    haplotype_resolution: haplotype_specific); the
     ENCODE round-trip is preserved in <code class="bg-gray-100 px-1 rounded">mappings/facet_decomposition.tsv</code>.
-    Strand is intrinsic content, so it stays here. The processing facets
+    Both are intrinsic content, so they stay here. The processing facets
     <code class="bg-gray-100 px-1 rounded">read_multiplicity</code> and
     <code class="bg-gray-100 px-1 rounded">filter_status</code> describe <em>what
     was done to the data</em> and now live on

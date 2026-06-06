@@ -1,0 +1,61 @@
+id: https://databio.org/onga/haplotype_resolution
+name: haplotype_resolution
+title: ONGA Haplotype Resolution Vocabulary
+description: >-
+  Controlled vocabulary of haplotype resolution. `HaplotypeResolution` is a
+  Layer-1 ONGA facet vocabulary (a closed value set) and a CONTENT facet — the
+  second intrinsic-content facet after strand — answering *what the values
+  represent* with respect to allele/haplotype phasing, not an operation applied
+  to the data. It is asserted via the `haplotype_resolution` slot of the
+  `TrackInterpretation` descriptor schema (alongside `strand`), factoring the
+  resolution qualifier out of compound ENCODE / DataType / FeatureType terms
+  (e.g. "haplotype-specific contact matrix", "phased variant calls") rather than
+  baking it into the interpretation value. Absent means haplotype-collapsed /
+  not phase-resolved.
+
+
+  Scope — three deliberately EXCLUDED axes. (1) The parental-origin axis
+  (maternal / paternal) is NOT a value here; it is a separate deferred axis
+  (the `maternal/paternal variant calls` and `maternal/paternal haplotype
+  mapping` terms stay atomic). (2) Reference ploidy (diploid, as in `diploid
+  personal genome alignments`) is NOT a value here — it qualifies the reference,
+  not the resolution. (3) The allelic-imbalance sense of "allele-specific"
+  (e.g. `allele-specific variants`, an allelic-imbalance behavior) is a
+  different sense and is NOT a value of this axis.
+
+
+  Following the facet convention for axes lacking a clean ontology term for the
+  resolution sense, the permissible values carry NO `meaning:` CURIEs.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+
+enums:
+  HaplotypeResolution:
+    description: >-
+      Haplotype resolution of a genomic annotation track, factored out of the
+      compound ENCODE / DataType / FeatureType terms. Absent means
+      haplotype-collapsed / not phase-resolved.
+    permissible_values:
+      allele_specific:
+        description: >-
+          Content resolved to individual alleles, partitioning signal or
+          interactions between the two alleles using phased variants (e.g. an
+          allele-specific contact matrix).
+      haplotype_specific:
+        description: >-
+          Content computed separately for a specific parental haplotype, i.e.
+          partitioned by haplotype (e.g. haplotype-specific alignments or
+          contact matrix).
+      phased:
+        description: >-
+          Content with haplotype phase resolved (which alleles co-occur on the
+          same chromosome) without necessarily being split per-haplotype (e.g.
+          phased variant calls, phased mapping).

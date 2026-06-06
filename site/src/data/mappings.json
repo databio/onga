@@ -30,16 +30,6 @@
     "comment": "EDAM lacks diploid/personal alignment concept"
   },
   {
-    "termId": "haplotype_specific_alignments",
-    "termName": "haplotype-specific alignments",
-    "category": "alignment",
-    "vocabType": "data",
-    "predicate": "broadMatch",
-    "edamId": "edam:data_0863",
-    "edamLabel": "Sequence alignment",
-    "comment": "EDAM lacks haplotype-aware alignment concept"
-  },
-  {
     "termId": "preprocessed_alignments",
     "termName": "preprocessed alignments",
     "category": "alignment",
@@ -722,16 +712,6 @@
   {
     "termId": "paternal_variant_calls",
     "termName": "paternal variant calls",
-    "category": "variant",
-    "vocabType": "feature",
-    "predicate": "exactMatch",
-    "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
-  },
-  {
-    "termId": "phased_variant_calls",
-    "termName": "phased variant calls",
     "category": "variant",
     "vocabType": "feature",
     "predicate": "exactMatch",

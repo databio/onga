@@ -556,23 +556,6 @@
     "encodeSource": true
   },
   {
-    "id": "phased_variant_calls",
-    "name": "phased variant calls",
-    "slug": "phased_variant_calls",
-    "description": "Variants with haplotype phase resolved, indicating which alleles co-occur on the same chromosome.",
-    "category": "variant",
-    "categorySlug": "variant",
-    "vocabType": "feature",
-    "edamMapping": {
-      "predicate": "exactMatch",
-      "edamId": "edam:data_0918",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
-    },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "reference_variants",
     "name": "reference variants",
     "slug": "reference_variants",
@@ -961,18 +944,6 @@
     "encodeSource": true
   },
   {
-    "id": "phased_mapping",
-    "name": "phased mapping",
-    "slug": "phased_mapping",
-    "description": "Sequence data with haplotype phase information resolved.",
-    "category": "haplotype",
-    "categorySlug": "haplotype",
-    "vocabType": "feature",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "nm_methylation_state",
     "name": "Nm methylation state",
     "slug": "nm_methylation_state",
@@ -1073,6 +1044,18 @@
     "description": "Generic regulatory links associating genomic elements with target features.",
     "category": "element_gene_linkage",
     "categorySlug": "element_gene_linkage",
+    "vocabType": "feature",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "mapping",
+    "name": "mapping",
+    "slug": "mapping",
+    "description": "Sequence reads or contigs assigned to a haplotype.",
+    "category": "haplotype",
+    "categorySlug": "haplotype",
     "vocabType": "feature",
     "edamMapping": null,
     "seeAlso": [],

@@ -65,23 +65,6 @@
     "encodeSource": true
   },
   {
-    "id": "haplotype_specific_alignments",
-    "name": "haplotype-specific alignments",
-    "slug": "haplotype_specific_alignments",
-    "description": "Reads confidently assigned and aligned to a specific parental haplotype based on phased variant information.",
-    "category": "alignment",
-    "categorySlug": "alignment",
-    "vocabType": "data",
-    "edamMapping": {
-      "predicate": "broadMatch",
-      "edamId": "edam:data_0863",
-      "edamLabel": "Sequence alignment",
-      "comment": "EDAM lacks haplotype-aware alignment concept"
-    },
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "preprocessed_alignments",
     "name": "preprocessed alignments",
     "slug": "preprocessed_alignments",
@@ -640,30 +623,6 @@
     "encodeSource": true
   },
   {
-    "id": "haplotype_specific_nuclease_cleavage_corrected_frequency",
-    "name": "haplotype-specific nuclease cleavage corrected frequency",
-    "slug": "haplotype_specific_nuclease_cleavage_corrected_frequency",
-    "description": "Bias-corrected nuclease cleavage frequency for a specific haplotype.",
-    "category": "chromatin_accessibility",
-    "categorySlug": "chromatin_accessibility",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
-    "id": "haplotype_specific_nuclease_cleavage_frequency",
-    "name": "haplotype-specific nuclease cleavage frequency",
-    "slug": "haplotype_specific_nuclease_cleavage_frequency",
-    "description": "Nuclease cleavage frequency measured for a specific haplotype.",
-    "category": "chromatin_accessibility",
-    "categorySlug": "chromatin_accessibility",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "hotspots",
     "name": "hotspots",
     "slug": "hotspots",
@@ -714,18 +673,6 @@
     "encodeSource": true
   },
   {
-    "id": "allele_specific_contact_matrix",
-    "name": "allele-specific contact matrix",
-    "slug": "allele_specific_contact_matrix",
-    "description": "Chromatin contact matrix resolved to individual alleles using phased variants.",
-    "category": "contact_matrix",
-    "categorySlug": "contact_matrix",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
-    "encodeSource": true
-  },
-  {
     "id": "contact_matrix",
     "name": "contact matrix",
     "slug": "contact_matrix",
@@ -744,18 +691,6 @@
       "TADs",
       "compartments"
     ],
-    "encodeSource": true
-  },
-  {
-    "id": "haplotype_specific_contact_matrix",
-    "name": "haplotype-specific contact matrix",
-    "slug": "haplotype_specific_contact_matrix",
-    "description": "Contact matrix computed separately for a specific parental haplotype.",
-    "category": "contact_matrix",
-    "categorySlug": "contact_matrix",
-    "vocabType": "data",
-    "edamMapping": null,
-    "seeAlso": [],
     "encodeSource": true
   },
   {
@@ -2328,6 +2263,18 @@
     "description": "Control signal profile.",
     "category": "signal_track",
     "categorySlug": "signal_track",
+    "vocabType": "data",
+    "edamMapping": null,
+    "seeAlso": [],
+    "encodeSource": true
+  },
+  {
+    "id": "nuclease_cleavage_corrected_frequency",
+    "name": "nuclease cleavage corrected frequency",
+    "slug": "nuclease_cleavage_corrected_frequency",
+    "description": "Bias-corrected per-base nuclease cleavage frequency.",
+    "category": "chromatin_accessibility",
+    "categorySlug": "chromatin_accessibility",
     "vocabType": "data",
     "edamMapping": null,
     "seeAlso": [],

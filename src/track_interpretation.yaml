@@ -25,6 +25,7 @@ imports:
   - linkml:types
   - file_content
   - strand_orientation
+  - haplotype_resolution
 
 classes:
   TrackInterpretation:
@@ -40,6 +41,13 @@ classes:
       # "minus strand signal" -> output_type: signal, strand: minus). See
       # mappings/facet_decomposition.tsv for the full ENCODE round-trip map.
       - strand
+      # Content facet: haplotype resolution (allele_specific / haplotype_specific
+      # / phased), factored out of compound DataType/FeatureType strings (e.g.
+      # "haplotype-specific contact matrix" -> output_type: contact matrix,
+      # haplotype_resolution: haplotype_specific). Like strand, this answers what
+      # the values represent, so it lives in interpretation, not provenance.
+      # Absent = haplotype-collapsed / not phase-resolved.
+      - haplotype_resolution
       # Processing/derivation facets (read_multiplicity, filter_status, and the
       # planned normalization / observed-vs-predicted / bias-correction axes)
       # describe *what was done to the data*, not *what it is*, so they live on
@@ -70,3 +78,15 @@ slots:
     range: StrandOrientation
     examples:
       - value: minus
+  haplotype_resolution:
+    description: >-
+      The haplotype resolution the file represents: whether content is resolved
+      to individual alleles (allele_specific), partitioned per parental
+      haplotype (haplotype_specific), or phase-resolved without per-haplotype
+      splitting (phased). A content facet factored out of compound
+      DataType/FeatureType terms (e.g. "haplotype-specific contact matrix",
+      "phased variant calls"). Absent means haplotype-collapsed / not
+      phase-resolved.
+    range: HaplotypeResolution
+    examples:
+      - value: haplotype_specific

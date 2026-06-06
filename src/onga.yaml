@@ -36,6 +36,7 @@ imports:
   - file_content
   - format
   - strand_orientation
+  - haplotype_resolution
   - read_multiplicity
   - filter_status
   - normalization

@@ -125,6 +125,15 @@ import vocabulary from '../data/vocabulary.json';
               Sex of the reference assembly build (male / female), factored out of compound DataType terms.
             </p>
           </a>
+          <a href="/haplotype-resolution" class="block bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow border-l-4 border-indigo-400">
+            <div class="flex items-baseline justify-between">
+              <h3 class="text-lg font-semibold text-gray-900">HaplotypeResolution</h3>
+              <span class="text-indigo-600 text-sm font-medium">{vocabulary.stats.haplotypeResolutionTerms} terms</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">
+              Haplotype resolution (allele-specific / haplotype-specific / phased), a content facet factored out of compound DataType / FeatureType terms.
+            </p>
+          </a>
         </div>
       </div>
     </section>
@@ -155,7 +164,7 @@ import vocabulary from '../data/vocabulary.json';
           </p>
           <p class="text-sm text-gray-500">
             Draws on the <span class="text-blue-600">DataType</span> and <span class="text-green-600">FeatureType</span> vocabularies,
-            plus a <span class="text-indigo-600">strand</span> facet slot — <em>what the data is</em>.
+            plus <span class="text-indigo-600">strand</span> and <span class="text-indigo-600">haplotype_resolution</span> content facet slots — <em>what the data is</em>.
           </p>
         </a>
 
@@ -201,7 +210,7 @@ import vocabulary from '../data/vocabulary.json';
     <section class="bg-gray-50 rounded-lg p-6">
       <h3 class="font-semibold text-gray-900 mb-3">How they relate</h3>
       <p class="text-gray-600 text-sm">
-        The three core <strong>vocabularies</strong> are closed value sets, complemented by seven small
+        The three core <strong>vocabularies</strong> are closed value sets, complemented by eight small
         <strong>facet vocabularies</strong>. The five <strong>schemas</strong> are sets of
         properties you assert about a track, with slots whose values come from those vocabularies or from primitives.
         <strong>Track Format</strong> describes <em>how a track is encoded</em> (file format, BED columns).
@@ -255,6 +264,7 @@ import vocabulary from '../data/vocabulary.json';
       <a href="/thresholding" class="text-indigo-600 hover:text-indigo-800 underline">Thresholding</a>
       <a href="/derivation" class="text-indigo-600 hover:text-indigo-800 underline">Derivation</a>
       <a href="/reference-build-sex" class="text-indigo-600 hover:text-indigo-800 underline">ReferenceBuildSex</a>
+      <a href="/haplotype-resolution" class="text-indigo-600 hover:text-indigo-800 underline">HaplotypeResolution</a>
       <a href="/track-format" class="text-amber-600 hover:text-amber-800 underline">Track Format</a>
       <a href="/track-interpretation" class="text-amber-600 hover:text-amber-800 underline">Track Interpretation</a>
       <a href="/track-provenance" class="text-amber-600 hover:text-amber-800 underline">Track Provenance</a>

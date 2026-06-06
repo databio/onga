@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import terms from '../../data/haplotype-resolution.json';
+---
+
+<Layout title="Haplotype Resolution" description="Facet vocabulary of haplotype resolution — allele-specific / haplotype-specific / phased — factored out of compound DataType / FeatureType terms">
+  <div class="mb-8">
+    <p class="text-[11px] uppercase tracking-wide text-indigo-400 font-semibold">Facet vocabulary</p>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Haplotype Resolution</h1>
+    <p class="text-indigo-600 font-medium">{terms.length} terms</p>
+    <p class="text-gray-600 mt-2">
+      Controlled vocabulary recording the <strong>haplotype resolution</strong> of a
+      file's content — what the values represent with respect to allele/haplotype
+      phasing: resolved to individual alleles (<code class="bg-gray-100 px-1 rounded">allele_specific</code>),
+      partitioned per parental haplotype (<code class="bg-gray-100 px-1 rounded">haplotype_specific</code>),
+      or phase-resolved without per-haplotype splitting (<code class="bg-gray-100 px-1 rounded">phased</code>).
+      A small <strong>content</strong> facet — the second intrinsic-content facet after
+      strand — that factors the resolution qualifier out of compound ENCODE
+      <code class="bg-gray-100 px-1 rounded">output_type</code> / DataType /
+      FeatureType terms (e.g. "haplotype-specific contact matrix", "phased variant
+      calls") rather than baking it into the interpretation value. It records
+      <em>what the values represent</em>, not an operation applied to the data, so it
+      lives in interpretation, not provenance. An absent value means the content is
+      haplotype-collapsed / not phase-resolved. The vocabulary deliberately
+      <strong>excludes</strong> three axes: the parental-origin axis (maternal/paternal),
+      reference ploidy (diploid), and the allelic-imbalance sense of "allele-specific".
+      Following the facet convention for axes lacking a clean ontology term for the
+      resolution sense, the permissible values carry no <code class="bg-gray-100 px-1 rounded">meaning:</code> CURIEs.
+      Surfaced via the
+      <a href="/track-interpretation" class="text-amber-600 underline hover:text-amber-800">Track Interpretation</a>
+      schema's <code class="bg-gray-100 px-1 rounded">haplotype_resolution</code> slot
+      (alongside <code class="bg-gray-100 px-1 rounded">strand</code>).
+      Aligned with FGA-WG issue #2 (data interpretation).
+    </p>
+  </div>
+
+  <!-- Terms -->
+  <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
+    {terms.map((term: any) => (
+      <div class="block p-4">
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="font-medium text-gray-900 font-mono text-sm">{term.name}</h3>
+            <p class="text-sm text-gray-500 mt-1">{term.description}</p>
+          </div>
+          {term.edamMapping && (
+            <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded shrink-0 ml-4 font-mono">
+              {term.edamMapping.edamId}
+            </span>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</Layout>

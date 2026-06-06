@@ -114,11 +114,6 @@ enums:
         description: Reads or sequences aligned at the gene level.
         in_subset:
         - alignment
-      haplotype-specific alignments:
-        description: Reads confidently assigned and aligned to a specific parental haplotype based on phased variant 
-          information.
-        in_subset:
-        - alignment
       preprocessed alignments:
         description: 'Alignments after preprocessing: duplicate marking, base quality score recalibration, or indel realignment.'
         in_subset:
@@ -322,14 +317,6 @@ enums:
         description: False discovery rate-controlled cut rate signal from DNase-seq analysis.
         in_subset:
         - chromatin_accessibility
-      haplotype-specific nuclease cleavage corrected frequency:
-        description: Bias-corrected nuclease cleavage frequency for a specific haplotype.
-        in_subset:
-        - chromatin_accessibility
-      haplotype-specific nuclease cleavage frequency:
-        description: Nuclease cleavage frequency measured for a specific haplotype.
-        in_subset:
-        - chromatin_accessibility
       hotspots:
         description: Broad regions of elevated DNase cleavage activity representing domains of chromatin accessibility.
         in_subset:
@@ -348,10 +335,6 @@ enums:
         description: Per-base frequency of DNase I or Tn5 transposase cleavage across the genome.
         in_subset:
         - chromatin_accessibility
-      allele-specific contact matrix:
-        description: Chromatin contact matrix resolved to individual alleles using phased variants.
-        in_subset:
-        - contact_matrix
       contact matrix:
         description: Genome-wide matrix of chromatin interaction frequencies from Hi-C or similar chromosome 
           conformation capture experiments.
@@ -361,10 +344,6 @@ enums:
         - chromatin loops
         - TADs
         - compartments
-      haplotype-specific contact matrix:
-        description: Contact matrix computed separately for a specific parental haplotype.
-        in_subset:
-        - contact_matrix
       pairs:
         description: Raw read pair data from Hi-C or proximity ligation before matrix construction.
         in_subset:
@@ -887,6 +866,10 @@ enums:
         description: Control signal profile.
         in_subset:
         - signal_track
+      nuclease cleavage corrected frequency:
+        description: Bias-corrected per-base nuclease cleavage frequency.
+        in_subset:
+        - chromatin_accessibility
   FeatureType:
     description: "Biological feature types - the biological entity or concept the data \nrepresents. Describes WHAT biological
       phenomenon the features capture.\nExamples: enhancers, TF binding sites, methylation states, chromatin loops."
@@ -1091,11 +1074,6 @@ enums:
         meaning: edam:data_0918
         in_subset:
         - variant
-      phased variant calls:
-        description: Variants with haplotype phase resolved, indicating which alleles co-occur on the same chromosome.
-        meaning: edam:data_0918
-        in_subset:
-        - variant
       reference variants:
         description: Variants relative to a reference genome.
         meaning: edam:data_0918
@@ -1228,12 +1206,6 @@ enums:
         description: Sequence reads or contigs assigned to the paternal haplotype.
         in_subset:
         - haplotype
-      phased mapping:
-        description: Sequence data with haplotype phase information resolved.
-        in_subset:
-        - haplotype
-
-      # ─── technical ────────────────────────────────────────────────────────
       Nm methylation state:
         description: 2′-O-methylation (Nm) modification.
         in_subset:
@@ -1269,3 +1241,7 @@ enums:
         description: Generic regulatory links associating genomic elements with target features.
         in_subset:
         - element_gene_linkage
+      mapping:
+        description: Sequence reads or contigs assigned to a haplotype.
+        in_subset:
+        - haplotype
