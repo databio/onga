@@ -1,9 +1,9 @@
 # ONGA Ontology Mapping Report
 
-Generated: 2026-06-04T20:50:42.628814
+Generated: 2026-06-05T20:58:47.131637
 
-- **Total ONGA terms**: 310
-- **Terms with matches**: 287
+- **Total ONGA terms**: 242
+- **Terms with matches**: 224
 
 ## Terms by Category
 
@@ -14,15 +14,12 @@ Generated: 2026-06-04T20:50:42.628814
 | Term | Max Sim | Best Match | Ontology | Type |
 |------|---------|------------|----------|------|
 | redacted alignments | 0.52 | File name extension | edam | weak |
-| redacted unfiltered alignments | 0.55 | Sequence cluster ID (UniRef50) | edam | weak |
 | redacted transcriptome alignments | 0.56 | unedited_region | so | weak |
 | diploid personal genome alignments | 0.58 | Genome alignment | edam | weak |
 | rejected reads | 0.60 | Sequence contamination filteri | edam | weak |
 | preprocessed alignments | 0.61 | trimmed sequence data | obi | weak |
 | alignments with modifications | 0.63 | Bisulfite mapping | edam | weak |
-| unfiltered alignments | 0.65 | trimmed sequence data | obi | weak |
 | haplotype-specific alignments | 0.66 | Haplotype mapping | edam | weak |
-| filtered reads | 0.67 | Sequence trimming | edam | weak |
 | reads | 0.70 | proportion mapped reads | obi | weak |
 | spike-in alignments | 0.72 | spike in | efo | moderate |
 | alignments | 0.73 | alignment counting algorithm | obi | moderate |
@@ -61,7 +58,6 @@ Generated: 2026-06-04T20:50:42.628814
 | allele-specific contact matrix | 0.56 | chromosome conformation captur | obi | weak |
 | haplotype-specific contact matrix | 0.57 | haplotype | so | weak |
 | variants contact matrix | 0.58 | Distance matrix | edam | weak |
-| mapping quality thresholded contact matrix | 0.58 | Protein contact map | edam | weak |
 | pairs | 0.74 | multi-contact Hi-C assay | obi | moderate |
 | contact matrix | 0.80 | Hi-C assay | obi | moderate |
 
@@ -71,14 +67,10 @@ Generated: 2026-06-04T20:50:42.628814
 |------|---------|------------|----------|------|
 | TF peaks matrix | 0.55 | Peak calling | edam | weak |
 | fold over change matrix | 0.55 | differential expression analys | obi | weak |
-| depth normalized signals matrix | 0.57 | processed matrix generation | efo | weak |
+| signals matrix | 0.58 | analysis of matrices | efo | weak |
 | z scores matrix | 0.59 | Z-value | edam | weak |
-| unfiltered sparse splice junction count matrix of unique reads | 0.60 | RNA-seq read count analysis | edam | weak |
-| unfiltered sparse gene count matrix of unique reads | 0.63 | Count matrix | edam | weak |
-| unfiltered sparse gene count matrix of all reads | 0.65 | Count matrix | edam | weak |
+| sparse splice junction count matrix | 0.63 | Count matrix | edam | weak |
 | sparse transcript count matrix | 0.65 | Count matrix | edam | weak |
-| sparse gene count matrix of unique reads | 0.67 | Count matrix | edam | weak |
-| sparse gene count matrix of all reads | 0.67 | Count matrix | edam | weak |
 | sparse peak count matrix | 0.69 | scATAC-seq (cell index) | efo | weak |
 | sparse gene count matrix | 0.72 | RNA-seq read count analysis | edam | moderate |
 
@@ -105,8 +97,6 @@ Generated: 2026-06-04T20:50:42.628814
 | selected regions for bias-corrected predicted signal profile | - | No matches | - | - |
 | selected regions for predicted bias profile | - | No matches | - | - |
 | selected regions for predicted signal and sequence contribution scores | - | No matches | - | - |
-| selected regions for predicted signal profile (minus strand) | - | No matches | - | - |
-| selected regions for predicted signal profile (plus strand) | - | No matches | - | - |
 | selected regions for profile sequence contribution scores | - | No matches | - | - |
 | training and test regions | - | No matches | - | - |
 | DNN-MPRA predicted signal | 0.51 | Gene regulatory network predic | edam | weak |
@@ -131,7 +121,6 @@ Generated: 2026-06-04T20:50:42.628814
 | pseudoreplicated IDR thresholded peaks | 0.53 | Peak calling | edam | weak |
 | optimal IDR thresholded peaks | 0.54 | peak matching | obi | weak |
 | conservative IDR thresholded peaks | 0.55 | Peak calling | edam | weak |
-| IDR thresholded peaks | 0.57 | Peak calling | edam | weak |
 | valleys | 0.57 | Nucleosome position prediction | edam | weak |
 | pseudoreplicated peaks | 0.58 | Peak calling | edam | weak |
 | representative IDR thresholded peaks | 0.58 | peak matching | obi | weak |
@@ -142,7 +131,6 @@ Generated: 2026-06-04T20:50:42.628814
 | proximal peaks | 0.63 | promoter_flanking_region | so | weak |
 | replicated peaks | 0.67 | biological replicate | efo | weak |
 | peaks | 0.70 | ChIP_seq_region | so | moderate |
-| filtered peaks | 0.70 | Peak calling | edam | moderate |
 | representative DNase hypersensitivity sites | 0.71 | DNase I hypersensitive sites s | obi | moderate |
 
 #### quantification
@@ -159,17 +147,14 @@ Generated: 2026-06-04T20:50:42.628814
 | transcribed region quantifications | 0.60 | transcription_unit | so | weak |
 | UV enriched segment quantifications | 0.60 | bromouride labeling and sequen | obi | weak |
 | microRNA quantifications | 0.61 | microRNA profiling assay | obi | weak |
-| filtered modified peptide quantification | 0.62 | peptide mass fingerprinting as | obi | weak |
 | novel peptides | 0.63 | Peptide identification | edam | weak |
-| unfiltered modified peptide quantification | 0.63 | peptide mass fingerprinting as | obi | weak |
 | exon quantifications | 0.64 | RNA-seq read count analysis | edam | weak |
 | transcript quantifications | 0.66 | transcriptome measurement | efo | weak |
 | mRNA stabilities | 0.66 | mRNA stabilization | go | weak |
 | gene quantifications | 0.67 | RNA-Seq quantification | edam | weak |
+| modified peptide quantification | 0.69 | peptidyl-glutamine modificatio | go | weak |
 | protein expression quantifications | 0.71 | Expression data | edam | moderate |
-| unfiltered peptide quantification | 0.71 | label-free quantification | efo | moderate |
 | differential splicing quantifications | 0.74 | differential expression analys | obi | moderate |
-| filtered peptide quantification | 0.75 | label-free quantification | efo | moderate |
 | peptide quantifications | 0.76 | label-free quantification | efo | moderate |
 | differential expression quantifications | 0.89 | differential expression analys | obi | strong |
 
@@ -182,14 +167,10 @@ Generated: 2026-06-04T20:50:42.628814
 | mitochondrial genome index | 0.61 | mitochondrial_sequence | so | weak |
 | elements reference | 0.65 | reference_genome | so | weak |
 | motif clusters reference | 0.66 | Sequence motif comparison | edam | weak |
-| female genome reference | 0.66 | reference_genome | so | weak |
 | miRNA reference | 0.66 | ref_miRNA | so | weak |
-| male genome reference | 0.67 | reference_genome | so | weak |
-| female genome index | 0.67 | Genome index | edam | weak |
 | repeats reference | 0.68 | Sequence features (repeats) fo | edam | weak |
 | rRNA reference | 0.68 | rRNA_primary_transcript | so | weak |
 | chromosomes reference | 0.68 | reference_genome | so | weak |
-| male genome index | 0.69 | Genome index | edam | weak |
 | snRNA reference | 0.69 | snRNA | so | weak |
 | genome index | 0.72 | reference genome-transcriptome | obi | moderate |
 | mitochondrial genome reference | 0.73 | mitochondrial_sequence | so | moderate |
@@ -210,52 +191,19 @@ Generated: 2026-06-04T20:50:42.628814
 
 | Term | Max Sim | Best Match | Ontology | Type |
 |------|---------|------------|----------|------|
-| observed bias profile | - | No matches | - | - |
-| observed signal profile | - | No matches | - | - |
+| control profile | - | No matches | - | - |
 | wavelet-smoothed signal | 0.51 | lowess global transformation | obi | weak |
-| predicted signal profile (plus strand) | 0.52 | Watson_strand | so | weak |
 | fold change over control | 0.52 | array control biosequence | efo | weak |
-| predicted signal profile (minus strand) | 0.53 | Crick_strand | so | weak |
-| normalized predicted bias profile | 0.53 | Sequence composition plot | edam | weak |
-| normalized observed signal profile (plus strand) | 0.53 | Crick_strand | so | weak |
-| normalized predicted signal profile (plus strand) | 0.53 | Crick_strand | so | weak |
-| predicted signal profile | 0.54 | Nucleosome position prediction | edam | weak |
+| signal profile | 0.53 | Sequence tag profile | edam | weak |
 | enrichment | 0.54 | Enrichment analysis | edam | weak |
-| observed signal profile (plus strand) | 0.55 | Watson_strand | so | weak |
-| normalized predicted signal profile (minus strand) | 0.55 | Crick_strand | so | weak |
 | bias-corrected predicted signal profile | 0.55 | Sequence composition plot | edam | weak |
-| normalized observed signal profile (minus strand) | 0.56 | Crick_strand | so | weak |
-| percentage normalized signal | 0.56 | lowess transformation | obi | weak |
-| raw plus strand signal | 0.57 | Watson_strand | so | weak |
-| raw minus strand signal | 0.57 | Crick_strand | so | weak |
-| observed signal profile (minus strand) | 0.57 | Crick_strand | so | weak |
+| bias profile | 0.57 | end bias | efo | weak |
+| end position signal | 0.59 | nucleotide sequence offset | efo | weak |
 | base overlap signal | 0.59 | proportion mapped reads | obi | weak |
 | signal | 0.59 | BCL format | obi | weak |
-| normalized bias-corrected predicted signal profile | 0.59 | background corrected data set | obi | weak |
-| normalized predicted signal profile | 0.60 | sequencing library input quant | obi | weak |
 | summed densities signal | 0.60 | proportion mapped reads | obi | weak |
-| normalized observed signal profile | 0.61 | sequencing library input quant | obi | weak |
-| observed control profile (plus strand) | 0.61 | Crick_strand | so | weak |
-| predicted bias profile | 0.62 | Sequence profile | edam | weak |
 | control normalized signal | 0.63 | background correction objectiv | obi | weak |
-| observed control profile (minus strand) | 0.63 | Crick_strand | so | weak |
-| normalized signal of all reads | 0.64 | proportion mapped reads | obi | weak |
-| plus strand end position signal | 0.64 | end bias | efo | weak |
-| plus strand normalized end position signal | 0.66 | end bias | efo | weak |
 | signal p-value | 0.66 | P-value | edam | weak |
-| minus strand end position signal | 0.66 | end bias | efo | weak |
-| raw signal | 0.67 | background corrected data set | obi | weak |
-| minus strand normalized end position signal | 0.67 | end bias | efo | weak |
-| plus strand signal of all reads | 0.68 | proportion mapped reads | obi | weak |
-| minus strand signal of all reads | 0.68 | proportion mapped reads | obi | weak |
-| read-depth normalized signal | 0.70 | Read depth analysis | edam | moderate |
-| raw normalized signal | 0.70 | normalized data set | obi | moderate |
-| plus strand signal | 0.71 | Watson_strand | so | moderate |
-| minus strand signal of unique reads | 0.71 | proportion mapped reads | obi | moderate |
-| minus strand signal | 0.72 | Crick_strand | so | moderate |
-| plus strand signal of unique reads | 0.72 | proportion mapped reads | obi | moderate |
-| signal of all reads | 0.74 | proportion mapped reads | obi | moderate |
-| signal of unique reads | 0.75 | proportion mapped reads | obi | moderate |
 
 #### single_cell
 
@@ -314,7 +262,6 @@ Generated: 2026-06-04T20:50:42.628814
 | transposable element TF ancestral origin percent by motif | 0.60 | foreign_transposable_element | so | weak |
 | repeat elements annotation | 0.60 | transposable element identific | efo | weak |
 | miRNA annotations | 0.61 | Gene ID (miRBase) | edam | weak |
-| filtered transcribed fragments | 0.63 | Sequence contamination filteri | edam | weak |
 | transcribed fragments | 0.70 | self-transcribing active regul | obi | moderate |
 | splice junctions | 0.73 | splice_site | so | moderate |
 | RNA-binding protein associated mRNAs | 0.77 | RNA-binding protein immunoprec | obi | moderate |
@@ -347,8 +294,6 @@ Generated: 2026-06-04T20:50:42.628814
 | methylation state at CHG | 0.61 | DNA residue methylation | obi | weak |
 | CpG sites coverage | 0.63 | average depth of sequence cove | obi | weak |
 | methylation state at CHH | 0.66 | hemi-methylated DNA-binding | go | weak |
-| minus strand methylation state at CpG | 0.70 | hemi-methylated DNA-binding | go | weak |
-| plus strand methylation state at CpG | 0.71 | hemi-methylated DNA-binding | go | moderate |
 | methylated reads | 0.74 | MeDIP-seq assay | obi | moderate |
 | methylation state at CpG | 0.75 | unmethylated CpG binding | go | moderate |
 
@@ -357,11 +302,10 @@ Generated: 2026-06-04T20:50:42.628814
 | Term | Max Sim | Best Match | Ontology | Type |
 |------|---------|------------|----------|------|
 | element gene interactions signal | - | No matches | - | - |
-| thresholded element gene links | - | No matches | - | - |
-| thresholded links | - | No matches | - | - |
 | element gene interactions p-value | 0.51 | genetic interaction identifica | obi | weak |
-| element gene links | 0.56 | cis_regulatory_module | so | weak |
+| links | 0.52 | chromosomal_regulatory_element | so | weak |
 | topic gene weights | 0.56 | Phylogenetic character weights | edam | weak |
+| element gene links | 0.61 | Transcriptional regulatory ele | edam | weak |
 
 #### haplotype
 
@@ -375,21 +319,14 @@ Generated: 2026-06-04T20:50:42.628814
 
 | Term | Max Sim | Best Match | Ontology | Type |
 |------|---------|------------|----------|------|
-| predicted whole brain enhancers | 0.50 | self-transcribing active regul | obi | weak |
-| predicted forebrain enhancers | 0.51 | formaldehyde-assisted isolatio | obi | weak |
-| predicted heart enhancers | 0.52 | Exonic splicing enhancer predi | edam | weak |
 | enhancers reference | 0.56 | ENCODE | efo | weak |
 | candidate enhancers | 0.57 | transcription cofactor activit | obi | weak |
 | enhancer validation | 0.57 | Exonic splicing enhancer predi | edam | weak |
-| enhancer-gene links | 0.59 | promoter-enhancer loop anchori | go | weak |
 | curated binding sites | 0.60 | Transcription factor binding s | edam | weak |
 | promoters reference | 0.61 | Promoter prediction | edam | weak |
 | predicted enhancers | 0.63 | Exonic splicing enhancer predi | edam | weak |
 | candidate promoters | 0.68 | Promoter prediction | edam | weak |
-| predicted transcription start sites | 0.68 | Transcription factor binding s | edam | weak |
 | regulatory elements | 0.68 | Transcriptional regulatory ele | edam | weak |
-| minus strand transcription start sites | 0.70 | DNA-templated transcriptional  | go | moderate |
-| plus strand transcription start sites | 0.72 | DNA-templated transcriptional  | go | moderate |
 | TSS reference | 0.75 | transcription_start_cluster | so | moderate |
 | candidate Cis-Regulatory Elements | 0.76 | cis-regulatory element predict | edam | moderate |
 | transcription start sites | 0.78 | TSS Sequencing | efo | moderate |
@@ -406,16 +343,11 @@ Generated: 2026-06-04T20:50:42.628814
 
 | Term | Max Sim | Best Match | Ontology | Type |
 |------|---------|------------|----------|------|
-| minus strand inosine methylation state | 0.66 | adenosine to inosine editing | go | weak |
-| plus strand pseudouridine methylation state | 0.67 | snRNA pseudouridine synthesis | go | weak |
-| plus strand inosine methylation state | 0.68 | adenosine to inosine editing | go | weak |
-| minus strand m5C methylation state | 0.68 | rRNA base methylation | go | weak |
-| plus strand m5C methylation state | 0.69 | rRNA base methylation | go | weak |
-| plus strand m6A methylation state | 0.70 | snRNA (adenine-N6)-methylation | go | moderate |
-| minus strand Nm methylation state | 0.70 | snRNA 2'-O-methylation | go | moderate |
-| plus strand Nm methylation state | 0.71 | snRNA 2'-O-methylation | go | moderate |
-| minus strand pseudouridine methylation state | 0.71 | snRNA pseudouridine synthesis | go | moderate |
-| minus strand m6A methylation state | 0.75 | m6A-LAIC-seq | efo | moderate |
+| Nm methylation state | 0.72 | Nm-seq | efo | moderate |
+| inosine methylation state | 0.73 | adenosine to inosine editing | go | moderate |
+| pseudouridine methylation state | 0.75 | pseudouridine synthesis | go | moderate |
+| m5C methylation state | 0.78 | 5_methylcytosine | so | moderate |
+| m6A methylation state | 0.79 | m6A-LAIC-seq | efo | moderate |
 
 #### sequence_motif
 
@@ -453,10 +385,10 @@ Generated: 2026-06-04T20:50:42.628814
 | dsQTLs | 0.64 | DNase I hypersensitive sites s | obi | weak |
 | maternal variant calls | 0.68 | Variant calling | edam | weak |
 | variant reference | 0.69 | variant_genome | so | weak |
-| filtered SNPs | 0.69 | Variant filtering | edam | weak |
 | reference variants | 0.69 | reference_genome | so | weak |
 | paternal variant calls | 0.70 | Variant calling | edam | moderate |
-| filtered indels | 0.72 | Variant filtering | edam | moderate |
 | variant calls | 0.72 | Variant calling | edam | moderate |
+| SNPs | 0.76 | SNP | so | moderate |
 | eQTLs | 0.77 | Gene expression QTL analysis | edam | moderate |
 | copy number variation | 0.82 | copy number variation | efo | moderate |
+| indels | 0.83 | delins | so | moderate |

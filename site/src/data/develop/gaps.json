@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-04T20:50:42.659596",
-  "total_onga_terms": 310,
-  "gap_terms_count": 23,
+  "generated_at": "2026-06-05T20:58:47.167963",
+  "total_onga_terms": 242,
+  "gap_terms_count": 18,
   "gap_percentage": 7.4,
   "by_subset": {
     "contact_matrix": {
@@ -33,7 +33,7 @@
       ]
     },
     "deep_learning": {
-      "count": 8,
+      "count": 6,
       "max_similarity_in_group": 0,
       "avg_similarity": 0,
       "terms": [
@@ -66,20 +66,6 @@
           "best_match": null
         },
         {
-          "name": "selected regions for predicted signal profile (minus strand)",
-          "category": "DataType",
-          "definition": "Minus strand genomic regions selected for predicted signal interpretation.",
-          "max_similarity": 0,
-          "best_match": null
-        },
-        {
-          "name": "selected regions for predicted signal profile (plus strand)",
-          "category": "DataType",
-          "definition": "Plus strand genomic regions selected for predicted signal interpretation.",
-          "max_similarity": 0,
-          "best_match": null
-        },
-        {
           "name": "selected regions for profile sequence contribution scores",
           "category": "DataType",
           "definition": "Genomic regions selected for profile contribution score analysis.",
@@ -96,7 +82,7 @@
       ]
     },
     "element_gene_linkage": {
-      "count": 3,
+      "count": 1,
       "max_similarity_in_group": 0,
       "avg_similarity": 0,
       "terms": [
@@ -104,20 +90,6 @@
           "name": "element gene interactions signal",
           "category": "FeatureType",
           "definition": "Signal strength of element-gene interaction associations.",
-          "max_similarity": 0,
-          "best_match": null
-        },
-        {
-          "name": "thresholded element gene links",
-          "category": "FeatureType",
-          "definition": "Element-gene links filtered by a significance threshold.",
-          "max_similarity": 0,
-          "best_match": null
-        },
-        {
-          "name": "thresholded links",
-          "category": "FeatureType",
-          "definition": "Generic significance-thresholded regulatory links.",
           "max_similarity": 0,
           "best_match": null
         }
@@ -166,21 +138,14 @@
       ]
     },
     "signal_track": {
-      "count": 2,
+      "count": 1,
       "max_similarity_in_group": 0,
       "avg_similarity": 0,
       "terms": [
         {
-          "name": "observed bias profile",
+          "name": "control profile",
           "category": "DataType",
-          "definition": "Empirically measured sequencing bias profile from experimental data.",
-          "max_similarity": 0,
-          "best_match": null
-        },
-        {
-          "name": "observed signal profile",
-          "category": "DataType",
-          "definition": "Experimentally measured signal profile from sequencing data.",
+          "definition": "Control signal profile.",
           "max_similarity": 0,
           "best_match": null
         }

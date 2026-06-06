@@ -1,173 +1,8 @@
 {
-  "generated_at": "2026-06-04T20:50:42.657536",
-  "total_pairs": 149,
+  "generated_at": "2026-06-05T20:58:47.164787",
+  "total_pairs": 41,
   "cross_category_pairs": 3,
   "pairs": [
-    {
-      "term1": "minus strand signal of unique reads",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "plus strand signal of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9747,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "minus strand signal of all reads",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "plus strand signal of all reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9664,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "normalized observed signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "normalized observed signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9637,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "normalized predicted signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "normalized predicted signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9614,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "minus strand Nm methylation state",
-      "term1_category": "FeatureType",
-      "term1_subset": "rna_modification",
-      "term2": "plus strand Nm methylation state",
-      "term2_category": "FeatureType",
-      "term2_subset": "rna_modification",
-      "similarity": 0.9613,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "minus strand inosine methylation state",
-      "term1_category": "FeatureType",
-      "term1_subset": "rna_modification",
-      "term2": "plus strand inosine methylation state",
-      "term2_category": "FeatureType",
-      "term2_subset": "rna_modification",
-      "similarity": 0.9599,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "minus strand normalized end position signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "plus strand normalized end position signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9597,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "minus strand m5C methylation state",
-      "term1_category": "FeatureType",
-      "term1_subset": "rna_modification",
-      "term2": "plus strand m5C methylation state",
-      "term2_category": "FeatureType",
-      "term2_subset": "rna_modification",
-      "similarity": 0.9569,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "observed control profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed control profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9561,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "selected regions for predicted signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "deep_learning",
-      "term2": "selected regions for predicted signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "deep_learning",
-      "similarity": 0.9561,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "minus strand transcription start sites",
-      "term1_category": "FeatureType",
-      "term1_subset": "regulatory_element",
-      "term2": "plus strand transcription start sites",
-      "term2_category": "FeatureType",
-      "term2_subset": "regulatory_element",
-      "similarity": 0.9549,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "minus strand end position signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "minus strand normalized end position signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.954,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "normalized observed signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9537,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "predicted signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "predicted signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9525,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
-    {
-      "term1": "raw minus strand signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "raw plus strand signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9524,
-      "crosses_categories": false,
-      "recommendation": "Consider merging"
-    },
     {
       "term1": "hotspots1 reference",
       "term1_category": "DataType",
@@ -180,61 +15,6 @@
       "recommendation": "Consider merging"
     },
     {
-      "term1": "observed signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9485,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "plus strand end position signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "plus strand normalized end position signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9473,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "minus strand end position signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "plus strand end position signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.947,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "minus strand methylation state at CpG",
-      "term1_category": "FeatureType",
-      "term1_subset": "dna_methylation",
-      "term2": "plus strand methylation state at CpG",
-      "term2_category": "FeatureType",
-      "term2_subset": "dna_methylation",
-      "similarity": 0.9449,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized observed signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9436,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
       "term1": "maternal haplotype mapping",
       "term1_category": "FeatureType",
       "term1_subset": "haplotype",
@@ -242,61 +22,6 @@
       "term2_category": "FeatureType",
       "term2_subset": "haplotype",
       "similarity": 0.9415,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized observed signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "normalized predicted signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9414,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized predicted signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "predicted signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9405,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "minus strand m6A methylation state",
-      "term1_category": "FeatureType",
-      "term1_subset": "rna_modification",
-      "term2": "plus strand m6A methylation state",
-      "term2_category": "FeatureType",
-      "term2_subset": "rna_modification",
-      "similarity": 0.9396,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "unfiltered sparse gene count matrix of all reads",
-      "term1_category": "DataType",
-      "term1_subset": "count_matrix",
-      "term2": "unfiltered sparse gene count matrix of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "count_matrix",
-      "similarity": 0.9381,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized observed signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "normalized predicted signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9365,
       "crosses_categories": false,
       "recommendation": "Consider hierarchy relationship"
     },
@@ -312,72 +37,6 @@
       "recommendation": "Consider hierarchy relationship"
     },
     {
-      "term1": "normalized predicted signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "predicted signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9359,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized observed signal profile",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "normalized predicted signal profile",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9342,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "observed control profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.932,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "sparse gene count matrix of all reads",
-      "term1_category": "DataType",
-      "term1_subset": "count_matrix",
-      "term2": "sparse gene count matrix of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "count_matrix",
-      "similarity": 0.9219,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "minus strand pseudouridine methylation state",
-      "term1_category": "FeatureType",
-      "term1_subset": "rna_modification",
-      "term2": "plus strand pseudouridine methylation state",
-      "term2_category": "FeatureType",
-      "term2_subset": "rna_modification",
-      "similarity": 0.9191,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "observed control profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9178,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
       "term1": "negative control regions",
       "term1_category": "DataType",
       "term1_subset": "technical",
@@ -385,17 +44,6 @@
       "term2_category": "DataType",
       "term2_subset": "technical",
       "similarity": 0.9174,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "sparse gene count matrix of unique reads",
-      "term1_category": "DataType",
-      "term1_subset": "count_matrix",
-      "term2": "unfiltered sparse gene count matrix of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "count_matrix",
-      "similarity": 0.9173,
       "crosses_categories": false,
       "recommendation": "Consider hierarchy relationship"
     },
@@ -411,105 +59,6 @@
       "recommendation": "Consider hierarchy relationship"
     },
     {
-      "term1": "filtered modified peptide quantification",
-      "term1_category": "DataType",
-      "term1_subset": "quantification",
-      "term2": "unfiltered modified peptide quantification",
-      "term2_category": "DataType",
-      "term2_subset": "quantification",
-      "similarity": 0.917,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "female genome index",
-      "term1_category": "DataType",
-      "term1_subset": "reference",
-      "term2": "male genome index",
-      "term2_category": "DataType",
-      "term2_subset": "reference",
-      "similarity": 0.9158,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized observed signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9149,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "minus strand end position signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "plus strand normalized end position signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9144,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "minus strand signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "plus strand signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9134,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "female genome reference",
-      "term1_category": "DataType",
-      "term1_subset": "reference",
-      "term2": "male genome reference",
-      "term2_category": "DataType",
-      "term2_subset": "reference",
-      "similarity": 0.9114,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized predicted signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "predicted signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9071,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "minus strand signal of all reads",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "minus strand signal of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9061,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized observed signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "normalized predicted signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9055,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
       "term1": "idat green channel",
       "term1_category": "DataType",
       "term1_subset": "technical",
@@ -517,39 +66,6 @@
       "term2_category": "DataType",
       "term2_subset": "technical",
       "similarity": 0.9048,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "plus strand signal of all reads",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "plus strand signal of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9025,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized observed signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed control profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9011,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized observed signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "normalized predicted signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.9003,
       "crosses_categories": false,
       "recommendation": "Consider hierarchy relationship"
     },
@@ -565,83 +81,6 @@
       "recommendation": "Consider hierarchy relationship"
     },
     {
-      "term1": "normalized observed signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.899,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "filtered peptide quantification",
-      "term1_category": "DataType",
-      "term1_subset": "quantification",
-      "term2": "unfiltered peptide quantification",
-      "term2_category": "DataType",
-      "term2_subset": "quantification",
-      "similarity": 0.8976,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "minus strand normalized end position signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "plus strand end position signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8974,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized predicted signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8927,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized predicted signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "predicted signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8865,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized observed signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed control profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8864,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "unfiltered sparse gene count matrix of unique reads",
-      "term1_category": "DataType",
-      "term1_subset": "count_matrix",
-      "term2": "unfiltered sparse splice junction count matrix of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "count_matrix",
-      "similarity": 0.8845,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
       "term1": "transposable element TF ancestral origin percent by motif",
       "term1_category": "FeatureType",
       "term1_subset": "annotation",
@@ -649,39 +88,6 @@
       "term2_category": "FeatureType",
       "term2_subset": "annotation",
       "similarity": 0.882,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "observed control profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8804,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized predicted signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.88,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized predicted bias profile",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "predicted bias profile",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8794,
       "crosses_categories": false,
       "recommendation": "Consider hierarchy relationship"
     },
@@ -697,39 +103,6 @@
       "recommendation": "Consider hierarchy relationship"
     },
     {
-      "term1": "observed control profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8788,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "minus strand signal of unique reads",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "plus strand signal of all reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8763,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "minus strand signal of all reads",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "plus strand signal of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8763,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
       "term1": "differential expression quantifications",
       "term1_category": "DataType",
       "term1_subset": "quantification",
@@ -737,17 +110,6 @@
       "term2_category": "DataType",
       "term2_subset": "quantification",
       "similarity": 0.8752,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "sparse gene count matrix of all reads",
-      "term1_category": "DataType",
-      "term1_subset": "count_matrix",
-      "term2": "unfiltered sparse gene count matrix of all reads",
-      "term2_category": "DataType",
-      "term2_subset": "count_matrix",
-      "similarity": 0.8745,
       "crosses_categories": false,
       "recommendation": "Consider hierarchy relationship"
     },
@@ -763,39 +125,6 @@
       "recommendation": "Consider hierarchy relationship"
     },
     {
-      "term1": "observed signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "predicted signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8709,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized observed signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed control profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8656,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "sparse gene count matrix of all reads",
-      "term1_category": "DataType",
-      "term1_subset": "count_matrix",
-      "term2": "unfiltered sparse gene count matrix of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "count_matrix",
-      "similarity": 0.8641,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
       "term1": "sparse gRNA count matrix",
       "term1_category": "DataType",
       "term1_subset": "crispr_screen",
@@ -803,17 +132,6 @@
       "term2_category": "DataType",
       "term2_subset": "count_matrix",
       "similarity": 0.8635,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "bias-corrected predicted signal profile",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "normalized bias-corrected predicted signal profile",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8605,
       "crosses_categories": false,
       "recommendation": "Consider hierarchy relationship"
     },
@@ -840,39 +158,6 @@
       "recommendation": "Consider hierarchy relationship"
     },
     {
-      "term1": "observed signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "predicted signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8556,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "minus strand m5C methylation state",
-      "term1_category": "FeatureType",
-      "term1_subset": "rna_modification",
-      "term2": "minus strand Nm methylation state",
-      "term2_category": "FeatureType",
-      "term2_subset": "rna_modification",
-      "similarity": 0.8531,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "signal of all reads",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "signal of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8531,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
       "term1": "methylation state at CHG",
       "term1_category": "FeatureType",
       "term1_subset": "dna_methylation",
@@ -880,28 +165,6 @@
       "term2_category": "FeatureType",
       "term2_subset": "dna_methylation",
       "similarity": 0.8527,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "normalized predicted signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8519,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
-      "term1": "candidate promoters",
-      "term1_category": "FeatureType",
-      "term1_subset": "regulatory_element",
-      "term2": "predicted transcription start sites",
-      "term2_category": "FeatureType",
-      "term2_subset": "regulatory_element",
-      "similarity": 0.8503,
       "crosses_categories": false,
       "recommendation": "Consider hierarchy relationship"
     },
@@ -917,39 +180,6 @@
       "recommendation": "Review for potential consolidation"
     },
     {
-      "term1": "unfiltered sparse gene count matrix of all reads",
-      "term1_category": "DataType",
-      "term1_subset": "count_matrix",
-      "term2": "unfiltered sparse splice junction count matrix of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "count_matrix",
-      "similarity": 0.8485,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "normalized observed signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "predicted signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8484,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "normalized observed signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed control profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8473,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
       "term1": "selected regions for count sequence contribution scores",
       "term1_category": "DataType",
       "term1_subset": "deep_learning",
@@ -957,50 +187,6 @@
       "term2_category": "DataType",
       "term2_subset": "deep_learning",
       "similarity": 0.8457,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "plus strand m5C methylation state",
-      "term1_category": "FeatureType",
-      "term1_subset": "rna_modification",
-      "term2": "plus strand Nm methylation state",
-      "term2_category": "FeatureType",
-      "term2_subset": "rna_modification",
-      "similarity": 0.8451,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "plus strand m5C methylation state",
-      "term1_category": "FeatureType",
-      "term1_subset": "rna_modification",
-      "term2": "plus strand m6A methylation state",
-      "term2_category": "FeatureType",
-      "term2_subset": "rna_modification",
-      "similarity": 0.8446,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "sparse gene count matrix",
-      "term1_category": "DataType",
-      "term1_subset": "count_matrix",
-      "term2": "sparse gene count matrix of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "count_matrix",
-      "similarity": 0.8444,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "unfiltered modified peptide quantification",
-      "term1_category": "DataType",
-      "term1_subset": "quantification",
-      "term2": "unfiltered peptide quantification",
-      "term2_category": "DataType",
-      "term2_subset": "quantification",
-      "similarity": 0.8438,
       "crosses_categories": false,
       "recommendation": "Review for potential consolidation"
     },
@@ -1027,17 +213,6 @@
       "recommendation": "Review: similar terms in different categories"
     },
     {
-      "term1": "sparse gene count matrix",
-      "term1_category": "DataType",
-      "term1_subset": "count_matrix",
-      "term2": "sparse gene count matrix of all reads",
-      "term2_category": "DataType",
-      "term2_subset": "count_matrix",
-      "similarity": 0.8402,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
       "term1": "reference variants",
       "term1_category": "FeatureType",
       "term1_subset": "variant",
@@ -1045,17 +220,6 @@
       "term2_category": "FeatureType",
       "term2_subset": "variant",
       "similarity": 0.8399,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "plus strand signal of unique reads",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "signal of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.839,
       "crosses_categories": false,
       "recommendation": "Review for potential consolidation"
     },
@@ -1069,17 +233,6 @@
       "similarity": 0.8382,
       "crosses_categories": true,
       "recommendation": "Review: similar terms in different categories"
-    },
-    {
-      "term1": "normalized predicted signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8368,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
     },
     {
       "term1": "representative DNase hypersensitivity sites",
@@ -1104,28 +257,6 @@
       "recommendation": "Review for potential consolidation"
     },
     {
-      "term1": "sparse gene count matrix of unique reads",
-      "term1_category": "DataType",
-      "term1_subset": "count_matrix",
-      "term2": "unfiltered sparse gene count matrix of all reads",
-      "term2_category": "DataType",
-      "term2_subset": "count_matrix",
-      "similarity": 0.8342,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "plus strand signal of all reads",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "signal of all reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.833,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
       "term1": "element gene interactions p-value",
       "term1_category": "FeatureType",
       "term1_subset": "element_gene_linkage",
@@ -1133,28 +264,6 @@
       "term2_category": "FeatureType",
       "term2_subset": "element_gene_linkage",
       "similarity": 0.8323,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "normalized observed signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "predicted signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8313,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "normalized predicted signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed control profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8297,
       "crosses_categories": false,
       "recommendation": "Review for potential consolidation"
     },
@@ -1181,17 +290,6 @@
       "recommendation": "Review for potential consolidation"
     },
     {
-      "term1": "enhancer-gene links",
-      "term1_category": "FeatureType",
-      "term1_subset": "regulatory_element",
-      "term2": "element gene links",
-      "term2_category": "FeatureType",
-      "term2_subset": "element_gene_linkage",
-      "similarity": 0.8266,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
       "term1": "selected regions for bias-corrected predicted signal profile",
       "term1_category": "DataType",
       "term1_subset": "deep_learning",
@@ -1199,39 +297,6 @@
       "term2_category": "DataType",
       "term2_subset": "deep_learning",
       "similarity": 0.826,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "minus strand m5C methylation state",
-      "term1_category": "FeatureType",
-      "term1_subset": "rna_modification",
-      "term2": "plus strand Nm methylation state",
-      "term2_category": "FeatureType",
-      "term2_subset": "rna_modification",
-      "similarity": 0.8253,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "observed signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "raw minus strand signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8245,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "minus strand signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "minus strand signal of all reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8227,
       "crosses_categories": false,
       "recommendation": "Review for potential consolidation"
     },
@@ -1258,17 +323,6 @@
       "recommendation": "Review for potential consolidation"
     },
     {
-      "term1": "sparse gene count matrix of unique reads",
-      "term1_category": "DataType",
-      "term1_subset": "count_matrix",
-      "term2": "sparse transcript count matrix",
-      "term2_category": "DataType",
-      "term2_subset": "count_matrix",
-      "similarity": 0.8198,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
       "term1": "exon quantifications",
       "term1_category": "DataType",
       "term1_subset": "quantification",
@@ -1291,50 +345,6 @@
       "recommendation": "Review for potential consolidation"
     },
     {
-      "term1": "observed signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "predicted signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8182,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "minus strand m5C methylation state",
-      "term1_category": "FeatureType",
-      "term1_subset": "rna_modification",
-      "term2": "plus strand m6A methylation state",
-      "term2_category": "FeatureType",
-      "term2_subset": "rna_modification",
-      "similarity": 0.818,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "normalized observed signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "raw minus strand signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8179,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "observed signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "predicted signal profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8157,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
       "term1": "DHS peaks",
       "term1_category": "DataType",
       "term1_subset": "chromatin_accessibility",
@@ -1344,39 +354,6 @@
       "similarity": 0.815,
       "crosses_categories": true,
       "recommendation": "Review: similar terms in different categories"
-    },
-    {
-      "term1": "sparse gene count matrix of all reads",
-      "term1_category": "DataType",
-      "term1_subset": "count_matrix",
-      "term2": "sparse transcript count matrix",
-      "term2_category": "DataType",
-      "term2_subset": "count_matrix",
-      "similarity": 0.8138,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "normalized observed signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "predicted signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8131,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "minus strand normalized end position signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "minus strand signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8127,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
     },
     {
       "term1": "peptide quantifications",
@@ -1412,39 +389,6 @@
       "recommendation": "Review for potential consolidation"
     },
     {
-      "term1": "normalized predicted signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "observed control profile (plus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8096,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "minus strand signal of all reads",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "signal of all reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8088,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "observed signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "raw plus strand signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8083,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
       "term1": "elements reference",
       "term1_category": "DataType",
       "term1_subset": "reference",
@@ -1452,17 +396,6 @@
       "term2_category": "DataType",
       "term2_subset": "reference",
       "similarity": 0.8082,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "minus strand signal of unique reads",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "signal of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8079,
       "crosses_categories": false,
       "recommendation": "Review for potential consolidation"
     },
@@ -1478,39 +411,6 @@
       "recommendation": "Review for potential consolidation"
     },
     {
-      "term1": "preprocessed alignments",
-      "term1_category": "DataType",
-      "term1_subset": "alignment",
-      "term2": "unfiltered alignments",
-      "term2_category": "DataType",
-      "term2_subset": "alignment",
-      "similarity": 0.8065,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "filtered peptide quantification",
-      "term1_category": "DataType",
-      "term1_subset": "quantification",
-      "term2": "peptide quantifications",
-      "term2_category": "DataType",
-      "term2_subset": "quantification",
-      "similarity": 0.8049,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "minus strand signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "raw minus strand signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8045,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
       "term1": "gene quantifications",
       "term1_category": "DataType",
       "term1_subset": "quantification",
@@ -1518,28 +418,6 @@
       "term2_category": "DataType",
       "term2_subset": "quantification",
       "similarity": 0.8042,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "minus strand signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "minus strand signal of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.804,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "plus strand signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "plus strand signal of all reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.804,
       "crosses_categories": false,
       "recommendation": "Review for potential consolidation"
     },
@@ -1555,28 +433,6 @@
       "recommendation": "Review for potential consolidation"
     },
     {
-      "term1": "plus strand signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "raw plus strand signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8033,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "thresholded element gene links",
-      "term1_category": "FeatureType",
-      "term1_subset": "element_gene_linkage",
-      "term2": "thresholded links",
-      "term2_category": "FeatureType",
-      "term2_subset": "element_gene_linkage",
-      "similarity": 0.8031,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
       "term1": "sequence motifs",
       "term1_category": "FeatureType",
       "term1_subset": "sequence_motif",
@@ -1588,28 +444,6 @@
       "recommendation": "Review for potential consolidation"
     },
     {
-      "term1": "normalized predicted signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "raw minus strand signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8025,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "predicted signal profile (minus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "selected regions for predicted signal profile (minus strand)",
-      "term2_category": "DataType",
-      "term2_subset": "deep_learning",
-      "similarity": 0.8021,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
       "term1": "candidate enhancers",
       "term1_category": "FeatureType",
       "term1_subset": "regulatory_element",
@@ -1617,28 +451,6 @@
       "term2_category": "FeatureType",
       "term2_subset": "regulatory_element",
       "similarity": 0.801,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "plus strand signal",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "plus strand signal of unique reads",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8006,
-      "crosses_categories": false,
-      "recommendation": "Review for potential consolidation"
-    },
-    {
-      "term1": "normalized observed signal profile (plus strand)",
-      "term1_category": "DataType",
-      "term1_subset": "signal_track",
-      "term2": "raw plus strand signal",
-      "term2_category": "DataType",
-      "term2_subset": "signal_track",
-      "similarity": 0.8003,
       "crosses_categories": false,
       "recommendation": "Review for potential consolidation"
     }

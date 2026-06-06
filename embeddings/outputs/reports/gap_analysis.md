@@ -1,6 +1,6 @@
 # ONGA Gap Analysis Report
 
-Generated: 2026-06-04T20:50:42.659596
+Generated: 2026-06-05T20:58:47.167963
 
 This report identifies ONGA terms that have no strong matches in any of the
 target ontologies. These represent concepts that may be:
@@ -10,8 +10,8 @@ target ontologies. These represent concepts that may be:
 
 ## Summary
 
-- **Total ONGA terms**: 310
-- **Gap terms**: 23 (7.4%)
+- **Total ONGA terms**: 242
+- **Gap terms**: 18 (7.4%)
 
 ## Gap Terms by Category
 
@@ -25,7 +25,7 @@ target ontologies. These represent concepts that may be:
 - **perturbation signal** (max sim: 0.00)
   - Definition: Phenotypic signal associated with CRISPR perturbations....
 
-### deep_learning (8 terms, max sim: 0.00)
+### deep_learning (6 terms, max sim: 0.00)
 
 - **DNN-MPRA contribution scores** (max sim: 0.00)
   - Definition: Nucleotide contribution scores from a deep neural network trained on MPRA data....
@@ -35,23 +35,15 @@ target ontologies. These represent concepts that may be:
   - Definition: Genomic regions selected for predicted bias profile interpretation....
 - **selected regions for predicted signal and sequence contribution scores** (max sim: 0.00)
   - Definition: Genomic regions selected for combined signal and contribution score analysis....
-- **selected regions for predicted signal profile (minus strand)** (max sim: 0.00)
-  - Definition: Minus strand genomic regions selected for predicted signal interpretation....
-- **selected regions for predicted signal profile (plus strand)** (max sim: 0.00)
-  - Definition: Plus strand genomic regions selected for predicted signal interpretation....
 - **selected regions for profile sequence contribution scores** (max sim: 0.00)
   - Definition: Genomic regions selected for profile contribution score analysis....
 - **training and test regions** (max sim: 0.00)
   - Definition: Genomic regions designated for model training and held-out evaluation....
 
-### element_gene_linkage (3 terms, max sim: 0.00)
+### element_gene_linkage (1 terms, max sim: 0.00)
 
 - **element gene interactions signal** (max sim: 0.00)
   - Definition: Signal strength of element-gene interaction associations....
-- **thresholded element gene links** (max sim: 0.00)
-  - Definition: Element-gene links filtered by a significance threshold....
-- **thresholded links** (max sim: 0.00)
-  - Definition: Generic significance-thresholded regulatory links....
 
 ### peak_set (1 terms, max sim: 0.00)
 
@@ -68,12 +60,10 @@ target ontologies. These represent concepts that may be:
 - **phastcons score reference** (max sim: 0.00)
   - Definition: Reference phastCons conservation scores across the genome....
 
-### signal_track (2 terms, max sim: 0.00)
+### signal_track (1 terms, max sim: 0.00)
 
-- **observed bias profile** (max sim: 0.00)
-  - Definition: Empirically measured sequencing bias profile from experimental data....
-- **observed signal profile** (max sim: 0.00)
-  - Definition: Experimentally measured signal profile from sequencing data....
+- **control profile** (max sim: 0.00)
+  - Definition: Control signal profile....
 
 ### single_cell (1 terms, max sim: 0.00)
 
