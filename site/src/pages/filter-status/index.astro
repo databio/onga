@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import terms from '../../data/filter-status.json';
 ---
@@ -18,7 +19,7 @@ import terms from '../../data/filter-status.json';
       this axis is not read-specific — it applies across output types (reads,
       alignments, peaks, variants, quantifications, count matrices). Surfaced via
       the
-      <a href="/track-interpretation" class="text-amber-600 underline hover:text-amber-800">Track Interpretation</a>
+      <a href={url("/track-interpretation")} class="text-amber-600 underline hover:text-amber-800">Track Interpretation</a>
       schema's <code class="bg-gray-100 px-1 rounded">filter_status</code> slot.
       Aligned with FGA-WG issue #2 (data interpretation).
     </p>

@@ -1,0 +1,48 @@
+# Build the Astro site (in site/) and deploy it to GitHub Pages.
+#
+# Because the databio org Pages site (databio.github.io) has the custom domain
+# dev.databio.org, this project-repo Pages site is served at
+# https://dev.databio.org/onga/ . The base path ('/onga') is set in
+# site/astro.config.mjs and must match the repo name.
+#
+# Pages source must be set to "GitHub Actions" (build_type: workflow) on the
+# repo (Settings -> Pages), not a branch.
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+name: pages
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; let an in-progress run finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build with Astro
+        uses: withastro/action@v3
+        with:
+          path: ./site          # the Astro project lives in site/
+          node-version: 22       # package.json engines: >=22.12.0
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

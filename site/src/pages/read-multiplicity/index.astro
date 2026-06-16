@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import terms from '../../data/read-multiplicity.json';
 ---
@@ -15,7 +16,7 @@ import terms from '../../data/read-multiplicity.json';
       factors the mapping-multiplicity qualifier out of compound ENCODE
       <code class="bg-gray-100 px-1 rounded">output_type</code> / DataType terms
       (e.g. "signal of all reads"). Surfaced via the
-      <a href="/track-interpretation" class="text-amber-600 underline hover:text-amber-800">Track Interpretation</a>
+      <a href={url("/track-interpretation")} class="text-amber-600 underline hover:text-amber-800">Track Interpretation</a>
       schema's <code class="bg-gray-100 px-1 rounded">read_multiplicity</code> slot.
       Aligned with FGA-WG issue #2 (data interpretation).
     </p>

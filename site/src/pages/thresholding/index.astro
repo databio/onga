@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import terms from '../../data/thresholding.json';
 ---
@@ -21,7 +22,7 @@ import terms from '../../data/thresholding.json';
       means no threshold was applied or the thresholding is unspecified. This axis
       cross-cuts output kinds — it applies to peaks, contact matrices, and
       regulatory (element–gene) links alike. Surfaced via the
-      <a href="/track-provenance" class="text-amber-600 underline hover:text-amber-800">Track Provenance</a>
+      <a href={url("/track-provenance")} class="text-amber-600 underline hover:text-amber-800">Track Provenance</a>
       schema's <code class="bg-gray-100 px-1 rounded">thresholding</code> slot.
       Aligned with FGA-WG issue #2 (data interpretation).
     </p>

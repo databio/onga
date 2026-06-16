@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import Layout from '../layouts/Layout.astro';
 import mappings from '../data/mappings.json';
 import vocabulary from '../data/vocabulary.json';
@@ -74,7 +75,7 @@ const predicateColors: Record<string, string> = {
         {sortedMappings.map((m: any) => (
           <tr class="mapping-row hover:bg-gray-50" data-predicate={m.predicate}>
             <td class="px-4 py-3">
-              <a href={`/terms/${m.termId}`} class="text-blue-600 hover:underline">
+              <a href={url(`/terms/${m.termId}`)} class="text-blue-600 hover:underline">
                 {m.termName}
               </a>
               <div class="text-xs text-gray-500">{m.category}</div>

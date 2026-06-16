@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import interpretation from '../../data/track-interpretation.json';
 
@@ -44,12 +45,12 @@ const styleFor = (range: string) => STYLES[range] || STYLES.default;
       has two distinct halves — an <strong>algorithmic</strong> concept (the
       process/output, e.g. "peaks") and a <strong>biological</strong> concept
       (the entity, e.g. "TF binding site"). These draw on the
-      <a href="/data-types" class="text-blue-600 underline hover:text-blue-800">DataType</a> and
-      <a href="/feature-types" class="text-green-600 underline hover:text-green-800">FeatureType</a>
+      <a href={url("/data-types")} class="text-blue-600 underline hover:text-blue-800">DataType</a> and
+      <a href={url("/feature-types")} class="text-green-600 underline hover:text-green-800">FeatureType</a>
       vocabularies respectively. Corresponds to FGA-WG issue #2 (data interpretation).
       This schema records <strong>what the data is</strong>; for
       <strong>what was done to it</strong> (read selection, QC filtering),
-      see <a href="/track-provenance" class="text-amber-600 underline hover:text-amber-800">Track Provenance</a>.
+      see <a href={url("/track-provenance")} class="text-amber-600 underline hover:text-amber-800">Track Provenance</a>.
     </p>
   </div>
 
@@ -73,7 +74,7 @@ const styleFor = (range: string) => STYLES[range] || STYLES.default;
           </div>
           {prop.vocabHref && (
             <p class="text-sm mt-4">
-              <a href={prop.vocabHref} class:list={['underline font-medium', s.link]}>
+              <a href={url(prop.vocabHref)} class:list={['underline font-medium', s.link]}>
                 Draws from the {prop.vocabCount}-term {prop.range} vocabulary →
               </a>
             </p>
@@ -96,6 +97,6 @@ const styleFor = (range: string) => STYLES[range] || STYLES.default;
     <code class="bg-gray-100 px-1 rounded">read_multiplicity</code> and
     <code class="bg-gray-100 px-1 rounded">filter_status</code> describe <em>what
     was done to the data</em> and now live on
-    <a href="/track-provenance" class="text-amber-600 underline hover:text-amber-800">Track Provenance</a>.
+    <a href={url("/track-provenance")} class="text-amber-600 underline hover:text-amber-800">Track Provenance</a>.
   </p>
 </Layout>

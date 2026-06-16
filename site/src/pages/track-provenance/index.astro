@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import provenance from '../../data/track-provenance.json';
 
@@ -47,7 +48,7 @@ const styleFor = (range: string) => STYLES[range] || STYLES.default;
     <p class="text-gray-600 mt-2">
       The processing/derivation operations applied to the data to produce the
       file — <strong>what was done to it</strong>, as opposed to
-      <a href="/track-interpretation" class="text-amber-600 underline hover:text-amber-800">Track Interpretation</a>,
+      <a href={url("/track-interpretation")} class="text-amber-600 underline hover:text-amber-800">Track Interpretation</a>,
       which records <strong>what the data is</strong>. Where
       <code class="bg-gray-100 px-1 rounded">output_type</code> names a result
       <em>kind</em> (a noun — "peaks"), these slots name <em>operations</em>
@@ -83,7 +84,7 @@ const styleFor = (range: string) => STYLES[range] || STYLES.default;
           </div>
           {prop.vocabHref && (
             <p class="text-sm mt-4">
-              <a href={prop.vocabHref} class:list={['underline font-medium', s.link]}>
+              <a href={url(prop.vocabHref)} class:list={['underline font-medium', s.link]}>
                 Draws from the {prop.vocabCount}-term {prop.range} vocabulary →
               </a>
             </p>

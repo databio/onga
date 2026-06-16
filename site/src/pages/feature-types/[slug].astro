@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import featureTypes from '../../data/feature-types.json';
 import dataTypes from '../../data/data-types.json';
@@ -33,9 +34,9 @@ function edamUrl(edamId: string): string {
 
 <Layout title={term.name} description={term.description}>
   <nav class="text-sm text-gray-500 mb-6">
-    <a href="/" class="hover:text-gray-700">Home</a>
+    <a href={url("/")} class="hover:text-gray-700">Home</a>
     <span class="mx-2">/</span>
-    <a href="/feature-types" class="hover:text-gray-700">FeatureTypes</a>
+    <a href={url("/feature-types")} class="hover:text-gray-700">FeatureTypes</a>
     <span class="mx-2">/</span>
     <span class="text-gray-900">{term.name}</span>
   </nav>
@@ -65,7 +66,7 @@ function edamUrl(edamId: string): string {
           <div class="flex flex-wrap gap-2">
             {linkedDataTypes.map((d: any) => (
               d.slug ? (
-                <a href={`/data-types/${d.slug}`} class="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full hover:bg-blue-200">
+                <a href={url(`/data-types/${d.slug}`)} class="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full hover:bg-blue-200">
                   {d.name}
                 </a>
               ) : (
@@ -98,7 +99,7 @@ function edamUrl(edamId: string): string {
           <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Related FeatureTypes</h2>
           <div class="flex flex-wrap gap-2">
             {relatedTerms.map((t: any) => (
-              <a href={`/feature-types/${t.slug}`} class="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-200">
+              <a href={url(`/feature-types/${t.slug}`)} class="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-200">
                 {t.name}
               </a>
             ))}

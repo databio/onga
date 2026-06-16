@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import terms from '../../data/normalization.json';
 ---
@@ -23,7 +24,7 @@ import terms from '../../data/normalization.json';
       <strong>not</strong> cover statistic transforms (p-value, fold-change,
       z-score, enrichment) or smoothing, which change what the values mean and
       remain distinct output_types. Surfaced via the
-      <a href="/track-provenance" class="text-amber-600 underline hover:text-amber-800">Track Provenance</a>
+      <a href={url("/track-provenance")} class="text-amber-600 underline hover:text-amber-800">Track Provenance</a>
       schema's <code class="bg-gray-100 px-1 rounded">normalization</code> slot.
       Aligned with FGA-WG issue #2 (data interpretation).
     </p>

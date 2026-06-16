@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import dataTypes from '../../data/data-types.json';
 import dataTypesByCategory from '../../data/data-types-by-category.json';
@@ -39,7 +40,7 @@ const categories = Object.keys(dataTypesByCategory).sort();
         <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
           {dataTypesByCategory[category].map((term: any) => (
             <a
-              href={`/data-types/${term.slug}`}
+              href={url(`/data-types/${term.slug}`)}
               class="term-item block p-4 hover:bg-gray-50"
               data-name={term.name.toLowerCase()}
               data-description={term.description.toLowerCase()}

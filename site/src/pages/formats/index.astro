@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import formats from '../../data/format.json';
 ---
@@ -12,7 +13,7 @@ import formats from '../../data/format.json';
       aligned with the <a href="http://edamontology.org/" class="text-teal-600 underline hover:text-teal-800">EDAM</a>
       ontology (Sequence-annotation-track formats) where corresponding terms exist.
       Referenced by the <code class="bg-gray-100 px-1 rounded">file_format</code> slot
-      of the <a href="/track-format" class="text-amber-600 underline hover:text-amber-800">Track Format</a>
+      of the <a href={url("/track-format")} class="text-amber-600 underline hover:text-amber-800">Track Format</a>
       schema. Aligned with FGA-WG issue #1 (data formats).
     </p>
   </div>

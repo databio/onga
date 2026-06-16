@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import terms from '../../data/reference-build-sex.json';
 ---
@@ -17,13 +18,13 @@ import terms from '../../data/reference-build-sex.json';
       <code class="bg-gray-100 px-1 rounded">output_type</code> / DataType terms
       (e.g. "male genome reference", "female genome index"). An absent value means the
       build sex is unspecified — a sex-neutral / combined assembly. Surfaced via the
-      <a href="/reference-genome" class="text-amber-600 underline hover:text-amber-800">Reference Genome</a>
+      <a href={url("/reference-genome")} class="text-amber-600 underline hover:text-amber-800">Reference Genome</a>
       schema's <code class="bg-gray-100 px-1 rounded">build_sex</code> slot.
     </p>
     <p class="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded p-3 mt-4 max-w-2xl">
       <strong>Important:</strong> this records the sex of the reference genome
       <em>build</em>, NOT the biological sample's sex. Sample sex is a biospecimen
-      property and is <a href="/scope" class="underline hover:text-amber-900">delegated to PATO</a>
+      property and is <a href={url("/scope")} class="underline hover:text-amber-900">delegated to PATO</a>
       (FAIRtracks has no sex field, so it cannot be imported from the FGA-WG).
     </p>
   </div>

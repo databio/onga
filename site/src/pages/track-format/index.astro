@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import format from '../../data/track-format.json';
 
@@ -16,7 +17,7 @@ const properties = format.properties;
       format (e.g. <code class="bg-gray-100 px-1 rounded">narrowPeak</code>) from
       a column standard (e.g. <code class="bg-gray-100 px-1 rounded">BED6+3</code>).
       The <code class="bg-gray-100 px-1 rounded">file_format</code> slot draws on the
-      <a href="/formats" class="text-teal-600 underline hover:text-teal-800">Format</a> vocabulary.
+      <a href={url("/formats")} class="text-teal-600 underline hover:text-teal-800">Format</a> vocabulary.
     </p>
   </div>
 
@@ -35,7 +36,7 @@ const properties = format.properties;
               )}
               {prop.vocabHref && (
                 <p class="text-sm mt-2">
-                  <a href={prop.vocabHref} class="text-teal-600 underline font-medium hover:text-teal-800">
+                  <a href={url(prop.vocabHref)} class="text-teal-600 underline font-medium hover:text-teal-800">
                     Draws from the {prop.vocabCount}-term {prop.range} vocabulary →
                   </a>
                 </p>

@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import featureTypes from '../../data/feature-types.json';
 import featureTypesByCategory from '../../data/feature-types-by-category.json';
@@ -39,7 +40,7 @@ const categories = Object.keys(featureTypesByCategory).sort();
         <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
           {featureTypesByCategory[category].map((term: any) => (
             <a
-              href={`/feature-types/${term.slug}`}
+              href={url(`/feature-types/${term.slug}`)}
               class="term-item block p-4 hover:bg-gray-50"
               data-name={term.name.toLowerCase()}
               data-description={term.description.toLowerCase()}

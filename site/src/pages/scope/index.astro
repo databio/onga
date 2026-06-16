@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import delegations from '../../data/delegations.json';
 ---
@@ -35,7 +36,7 @@ import delegations from '../../data/delegations.json';
       <p class="text-sm text-gray-500 mt-1">
         Delegated to <a href="http://obofoundry.org/ontology/pato.html" class="text-rose-600 underline hover:text-rose-800">PATO</a>
         — distinct from
-        <a href="/reference-build-sex" class="text-indigo-600 underline hover:text-indigo-800">reference build sex</a>.
+        <a href={url("/reference-build-sex")} class="text-indigo-600 underline hover:text-indigo-800">reference build sex</a>.
       </p>
     </div>
     <div class="bg-white rounded-lg p-5 shadow-sm border-l-4 border-rose-400">
