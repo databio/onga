@@ -1,0 +1,530 @@
+# upstream_requests.yaml
+#
+# Source of truth for term requests ONGA sends OUT to upstream ontologies, and
+# for the concepts ONGA deliberately decided NOT to send.
+#
+# This is the mirror image of mappings/scope_delegations.tsv. That file records
+# axes ONGA ejects from its own content scope (anatomy -> UBERON). This file
+# records the opposite direction: concepts ONGA *does* own that the upstream
+# ontology is missing, so the upstream ontology should grow a term for them.
+#
+# Structure
+# ---------
+#   ontologies:   registry of every upstream ontology named anywhere in the file
+#   requests:     keyed by target ontology CURIE prefix -> list of requests
+#   rejections:   keyed by the ontology the concept was CONSIDERED for -> list
+#
+# Both `requests` and `rejections` are keyed by ontology so that EDAM (or any
+# other upstream target) can be added later without restructuring the file.
+#
+# Request fields
+# --------------
+#   id                 stable, never reused; <ONTOLOGY>-REQ-NNN
+#   kind               new_term | modification
+#   status             proposed | filed | accepted | declined | withdrawn
+#   confidence         high | medium | low  (how strongly the evidence supports it)
+#   proposed_label     new_term only: the label being requested
+#   proposed_definition new_term only
+#   additional_terms   new_term only: sibling terms bundled into the same request
+#   parent             new_term only: {id, label} of the intended is_a parent.
+#                      `id: null` + `pending_request` means the parent is itself
+#                      being proposed in this file.
+#   target             modification only: {id, label} of the existing term
+#   requested_change   modification only
+#   rationale          why upstream needs this
+#   existing_related_terms  upstream terms that already exist and bound the gap
+#   motivating_terms   ONGA terms driving the request: {term, category, enum}
+#                      category/enum is the LinkML enum the term lives in
+#                      (DataType or FeatureType) -- always verify before editing
+#   depends_on         other request ids this one requires
+#   note               free text
+#
+# Rejection fields
+# ----------------
+#   id                 stable; <ONTOLOGY>-REJ-NNN
+#   disposition        delegate    -> another ontology owns this kind of thing
+#                      out_of_scope -> not a sequence feature at all
+#   status             rejected (terminal; kept so the reasoning is not lost)
+#   redirect           {ontology, name} where the concept should go instead
+#   reason             why it is not going to the ontology it was considered for
+#   precedent          existing repo artifact that set the pattern, if any
+#   onga_terms         the ONGA terms covered by this disposition
+#
+# The set / element rule
+# ----------------------
+# Every request in this file is for an ELEMENT TYPE -- an individual sequence
+# feature. It is never for a SET. An ONGA DataType or FeatureType term names a
+# SET of genomic elements (a file, a track, a set of rows); an SO class names the
+# element. ONGA owns the set vocabulary and will not ask SO to mint set terms: if
+# ONGA needs a set concept SO lacks, that is an ONGA term, not an SO request.
+# See the ADR "ONGA terms denote sets; SO terms denote elements" and DECISIONS.md
+# design principle #7.
+#
+# The machine-readable feed for this file is mappings/so.sssom.tsv:
+#   element_type_fit: broad           every member is an instance but the SO
+#                                     class is broader -- AN SO GAP, and the
+#                                     candidate list for new-term requests here.
+#   element_type_fit: not_applicable  reviewed and deliberately out of SO's
+#                                     reach (signal values, matrices, models,
+#                                     edges) -- NOT a gap, and not a request.
+#
+# Verification note: every upstream id cited here was checked against
+# embeddings/data/ontologies/so.obo for existence and non-obsolescence, and
+# every proposed new label was checked absent from that file's names AND
+# synonyms. Every ONGA term was checked present in src/file_content.yaml in the
+# enum named on its row.
+
+version: 1
+source: SO mapping survey of the ONGA DataType and FeatureType vocabularies
+checked_against:
+  SO: embeddings/data/ontologies/so.obo
+
+ontologies:
+  SO:
+    name: Sequence Ontology
+    homepage: http://www.sequenceontology.org/
+    tracker: https://github.com/The-Sequence-Ontology/SO-Ontologies/issues
+    purl: http://purl.obolibrary.org/obo/SO_
+  CL:
+    name: Cell Ontology
+    homepage: https://obophenotype.github.io/cell-ontology/
+    tracker: https://github.com/obophenotype/cell-ontology/issues
+    purl: http://purl.obolibrary.org/obo/CL_
+  RO:
+    name: Relation Ontology
+    homepage: https://oborel.github.io/
+    tracker: https://github.com/oborel/obo-relations/issues
+    purl: http://purl.obolibrary.org/obo/RO_
+  EDAM:
+    name: EDAM
+    homepage: https://edamontology.org/
+    tracker: https://github.com/edamontology/edamontology/issues
+    purl: http://edamontology.org/
+
+requests:
+  SO:
+    - id: SO-REQ-001
+      kind: new_term
+      status: proposed
+      confidence: high
+      proposed_label: chromatin_stripe
+      proposed_definition: >-
+        A DNA region in which a single anchor point contacts a continuous span of
+        sequence to one side, producing a linear band of elevated contact
+        frequency in a chromosome conformation capture contact map.
+      parent:
+        id: SO:0001412
+        label: topologically_defined_region
+      rationale: >-
+        SO already covers the rest of the standard Hi-C feature vocabulary: TAD,
+        TAD boundary, DNA loop and DNA loop anchor all have terms. Stripes (also
+        called flames or architectural stripes) are the one common Hi-C feature
+        class with no SO term, so stripe calls have nowhere to point.
+      existing_related_terms:
+        - id: SO:0002304
+          label: topologically_associated_domain
+        - id: SO:0002305
+          label: topologically_associated_domain_boundary
+        - id: SO:0002307
+          label: DNA_loop
+        - id: SO:0002308
+          label: DNA_loop_anchor
+      motivating_terms:
+        - term: chromatin stripes
+          category: FeatureType
+
+    - id: SO-REQ-002
+      kind: new_term
+      status: proposed
+      confidence: high
+      proposed_label: chromatin_compartment
+      proposed_definition: >-
+        A megabase-scale DNA region assigned to one of the two mutually
+        segregated spatial compartments (A or B) resolved from a chromosome
+        conformation capture contact map.
+      parent:
+        id: SO:0001412
+        label: topologically_defined_region
+      rationale: >-
+        A/B compartments are the coarsest standard feature derived from Hi-C
+        data. SO covers the finer levels of the same hierarchy (TADs, loops) but
+        has no term at the compartment level.
+      existing_related_terms:
+        - id: SO:0002304
+          label: topologically_associated_domain
+        - id: SO:0002307
+          label: DNA_loop
+      motivating_terms:
+        - term: genome compartments
+          category: FeatureType
+
+    - id: SO-REQ-003
+      kind: new_term
+      status: proposed
+      confidence: high
+      proposed_label: chromatin_subcompartment
+      proposed_definition: >-
+        A DNA region assigned to one of the finer spatial subdivisions of a
+        chromatin compartment, such as A1, A2, B1, B2, B3 or B4.
+      parent:
+        id: null
+        label: chromatin_compartment
+        pending_request: SO-REQ-002
+      depends_on:
+        - SO-REQ-002
+      rationale: >-
+        Subcompartments (A1, A2, B1-B4) are routinely reported alongside
+        compartment calls and are strictly finer than them, so they need the
+        proposed chromatin_compartment term as a parent.
+      existing_related_terms: []
+      motivating_terms:
+        - term: genome subcompartments
+          category: FeatureType
+
+    - id: SO-REQ-004
+      kind: new_term
+      status: proposed
+      confidence: high
+      proposed_label: TF_footprint
+      proposed_definition: >-
+        A short DNA region within an accessible chromatin region that is
+        protected from nuclease cleavage by a bound transcription factor.
+      parent:
+        id: SO:0000235
+        label: TF_binding_site
+      rationale: >-
+        SO has DNaseI_hypersensitive_site and accessible_DNA_region, which
+        describe the surrounding open region, but nothing for the protected
+        sub-region that marks actual factor occupancy. That sub-region is what
+        footprinting assays report, and it is a narrower thing than either the
+        accessible region or the generic binding site.
+      existing_related_terms:
+        - id: SO:0000685
+          label: DNaseI_hypersensitive_site
+        - id: SO:0002331
+          label: accessible_DNA_region
+        - id: SO:0000235
+          label: TF_binding_site
+      motivating_terms:
+        - term: footprints
+          category: FeatureType
+
+    - id: SO-REQ-005
+      kind: new_term
+      status: proposed
+      confidence: high
+      proposed_label: CpG_site
+      proposed_definition: >-
+        A cytosine immediately followed by a guanine on the same strand of a DNA
+        molecule.
+      parent:
+        id: SO:0000714
+        label: nucleotide_motif
+      additional_terms:
+        - label: CHG_site
+          definition: >-
+            A cytosine followed by any base other than guanine and then a
+            guanine, on the same strand of a DNA molecule.
+        - label: CHH_site
+          definition: >-
+            A cytosine followed by two bases, neither of which is guanine, on the
+            same strand of a DNA molecule.
+      rationale: >-
+        SO has CpG_island but no term for the dinucleotide itself, which is the
+        unit every methylation track actually reports (one row per site). The
+        only existing CpG mention is the variant term
+        C_to_T_transition_at_pCpG_site, which is not a feature class. CHG and
+        CHH siblings are needed for plant and non-CG methylation data.
+      existing_related_terms:
+        - id: SO:0000307
+          label: CpG_island
+        - id: SO:0000714
+          label: nucleotide_motif
+      motivating_terms:
+        - term: methylation state at CpG
+          category: FeatureType
+        - term: methylation state at CHG
+          category: FeatureType
+        - term: methylation state at CHH
+          category: FeatureType
+
+    - id: SO-REQ-006
+      kind: new_term
+      status: proposed
+      confidence: high
+      proposed_label: two_prime_O_methylated_nucleotide
+      proposed_definition: >-
+        A nucleotide carrying a methyl group on the 2'-hydroxyl of its ribose,
+        irrespective of base identity.
+      parent:
+        id: SO:0000250
+        label: modified_RNA_base_feature
+      rationale: >-
+        SO has six base-specific 2'-O-methyl terms, but each one hangs off its
+        own base-specific parent (modified_adenosine, modified_cytidine and so
+        on), so there is no grouping class that collects them. Generic Nm data,
+        which does not resolve the underlying base, therefore has nowhere to
+        point.
+      existing_related_terms:
+        - id: SO:0001280
+          label: two_prime_O_methylinosine
+        - id: SO:0001283
+          label: two_prime_O_methylcytidine
+        - id: SO:0001298
+          label: two_prime_O_methyladenosine
+        - id: SO:0001327
+          label: two_prime_O_methylguanosine
+        - id: SO:0001345
+          label: two_prime_O_methyluridine
+        - id: SO:0001348
+          label: two_prime_O_methylpseudouridine
+      motivating_terms:
+        - term: Nm methylation state
+          category: FeatureType
+
+    - id: SO-REQ-007
+      kind: new_term
+      status: proposed
+      confidence: low
+      proposed_label: nucleosome
+      proposed_definition: >-
+        A DNA region of approximately 147 base pairs wrapped around a histone
+        octamer.
+      parent:
+        id: SO:0001411
+        label: biological_region
+      rationale: >-
+        Verified absent from SO, which is surprising given how central
+        nucleosome positioning is to chromatin data. The word appears only
+        inside the definitions of other terms, never as a term label or synonym.
+        GO covers the nucleosome as a cellular component but not as a region of
+        sequence.
+      existing_related_terms:
+        - id: SO:0002331
+          label: accessible_DNA_region
+      motivating_terms:
+        - term: valleys
+          category: DataType
+      note: >-
+        Lower confidence than the rest. The motivating ONGA term, "valleys", is
+        a weak signal for nucleosome positioning rather than a direct request
+        for the concept, so the evidence from ONGA alone is thin even though the
+        gap in SO is real.
+
+    - id: SO-REQ-008
+      kind: new_term
+      status: proposed
+      confidence: medium
+      proposed_label: replication_timing_domain
+      proposed_definition: >-
+        A DNA region that replicates as a coordinated unit at a characteristic
+        time during S phase.
+      parent:
+        id: SO:0001411
+        label: biological_region
+      rationale: >-
+        SO has origin_of_replication but nothing for the early- and
+        late-replicating domains that replication timing assays segment the
+        genome into.
+      existing_related_terms:
+        - id: SO:0000296
+          label: origin_of_replication
+      motivating_terms:
+        - term: replication timing profile
+          category: FeatureType
+        - term: relative replication signal
+          category: FeatureType
+      note: >-
+        Medium confidence because both motivating ONGA terms name a profile or a
+        signal rather than a segmented domain, so they sit close to the
+        measurement-versus-feature line that sends other terms to EDAM. The
+        domain itself is still a genuine sequence region and belongs in SO.
+
+    - id: SO-REQ-009
+      kind: modification
+      status: proposed
+      confidence: high
+      target:
+        id: SO:0002254
+        label: loop
+      requested_change: >-
+        Disambiguate the label. Either rename the term to something that names
+        its RNA secondary-structure context, or add an explicit comment stating
+        that chromatin and DNA loops are SO:0002307 DNA_loop and not this term.
+      rationale: >-
+        SO:0002254 is defined as the loop portion of a stem-loop and sits under
+        stem_loop_region, an RNA secondary-structure branch. Its bare label
+        "loop" collides head-on with chromatin loops, which are SO:0002307
+        DNA_loop under chromosome_part. Any name-based or string-similarity
+        mapping tool matches chromatin loop data to SO:0002254 and gets the
+        meaning exactly backwards.
+      existing_related_terms:
+        - id: SO:0002254
+          label: loop
+        - id: SO:0002253
+          label: stem_loop_region
+        - id: SO:0002307
+          label: DNA_loop
+      motivating_terms: []
+      note: >-
+        No single ONGA term motivates this. It surfaced from the mapping process
+        itself, when name-based matching of ONGA chromatin loop concepts landed
+        on the RNA term.
+
+    - id: SO-REQ-010
+      kind: new_term
+      status: proposed
+      confidence: high
+      proposed_label: sequence_adapter
+      proposed_definition: >-
+        A short synthetic oligonucleotide ligated to the ends of a nucleic acid
+        fragment during sequencing library preparation, providing the sequences
+        required for platform binding, amplification and priming.
+      parent:
+        id: SO:0000696
+        label: oligo
+      rationale: >-
+        SO covers the rest of the library-preparation reagent vocabulary --
+        primer, oligo, synthetic_oligo and the multiplexing index -- but has no
+        term for the adapter itself. Verified absent from so.obo: neither
+        "adapter" nor "adaptor" appears as a term name or as a synonym. Adapter
+        sequences are one of the most routinely reported items in a sequencing
+        run, and with no SO term the ONGA DataType `sequence adapters` has
+        nowhere to point: it currently carries only a skos:relatedMatch to
+        SO:0000150 read, which is wrong (an adapter is not a read) and is
+        recorded as such rather than as an element type.
+      existing_related_terms:
+        - id: SO:0000696
+          label: oligo
+        - id: SO:0001247
+          label: synthetic_oligo
+        - id: SO:0000112
+          label: primer
+        - id: SO:0002023
+          label: index
+      motivating_terms:
+        - term: sequence adapters
+          category: DataType
+      note: >-
+        Parent chosen as SO:0000696 oligo (under SO:0000695 reagent), the branch
+        that already holds primer and synthetic_oligo, rather than the generic
+        SO:0000110 sequence_feature. An adapter is a reagent sequence, not a
+        feature of the genome being sequenced.
+
+rejections:
+  SO:
+    - id: SO-REJ-001
+      disposition: delegate
+      status: rejected
+      redirect:
+        ontology: CL
+        name: Cell Ontology
+      reason: >-
+        These name a property of the biological sample, not a class of sequence
+        feature. ONGA already ejects sample and assay axes out of its content
+        scope to the ontology that owns them, and cell type is exactly that kind
+        of axis. It belongs to CL, and it should not be pushed into SO.
+      precedent: >-
+        mappings/scope_delegations.tsv, where anatomy qualifiers were ejected
+        from ONGA content terms to UBERON. Cell type is the same move to CL.
+      onga_terms:
+        - term: cell type annotations
+          category: FeatureType
+        - term: cell type data
+          category: FeatureType
+
+    - id: SO-REJ-002
+      disposition: delegate
+      status: rejected
+      redirect:
+        ontology: RO
+        name: Relation Ontology
+      reason: >-
+        This is a relation between two features -- a regulatory element and the
+        gene it acts on -- not a class of region. SO models what a stretch of
+        sequence IS; a binary relation between two such stretches is what RO is
+        for. Adding it to SO as a class would misrepresent its arity.
+      precedent: null
+      onga_terms:
+        - term: element gene links
+          category: FeatureType
+
+    - id: SO-REJ-003
+      disposition: out_of_scope
+      status: rejected
+      redirect:
+        ontology: EDAM
+        name: EDAM
+      reason: >-
+        These are measurements, scores, reports and derived data products rather
+        than classes of sequence feature. SO answers "what is this region"; each
+        of these answers "what was measured or computed about some region",
+        which is EDAM's domain. They are mapped through the EDAM mapping set
+        instead of being sent to SO.
+      precedent: mappings/edam.sssom.tsv
+      onga_terms:
+        - term: CpG sites coverage
+          category: FeatureType
+        - term: sequence motifs report
+          category: FeatureType
+        - term: functional conservation quantifications
+          category: FeatureType
+        - term: element gene interactions p-value
+          category: FeatureType
+        - term: element gene interactions signal
+          category: FeatureType
+        - term: topic gene weights
+          category: FeatureType
+        - term: transposable element TF ancestral origin percent by motif
+          category: FeatureType
+        - term: transposable element TF ancestral origin percent by subfamily
+          category: FeatureType
+        - term: transcriptome annotations
+          category: FeatureType
+        - term: enhancer validation
+          category: FeatureType
+        - term: 3D structure
+          category: FeatureType
+        - term: predicted 3D structural ensembles
+          category: FeatureType
+        - term: links
+          category: FeatureType
+
+    - id: SO-REJ-004
+      disposition: out_of_scope
+      status: rejected
+      redirect:
+        ontology: null
+        name: ONGA itself
+      reason: >-
+        SO models INDIVIDUAL sequence features; each ONGA term below names a SET
+        of them, which is ONGA's own scope. A set of enhancers is not an
+        enhancer, so asking SO to mint a class for the set would push ONGA's
+        vocabulary into SO and would assert the level shift the whole set/element
+        rule exists to prevent. The correct treatment is the one already applied:
+        the ONGA term stays in ONGA and points at the SO element type via
+        onga:has_element_type in mappings/so.sssom.tsv. This rejection is
+        standing policy, not a one-off: it applies to every future case where an
+        ONGA set term is considered for an SO request. See the ADR "ONGA terms
+        denote sets; SO terms denote elements".
+      precedent: >-
+        mappings/so.sssom.tsv, where all 74 membership rows use
+        onga:has_element_type instead of a SKOS match, and the only two SKOS
+        matches left against SO are SO:0001505 reference_genome and SO:0001506
+        variant_genome -- SO classes that are THEMSELVES set-denoting ("A
+        collection of sequences ..."), where no level shift occurs.
+      onga_terms:
+        - term: enhancers reference
+          category: FeatureType
+        - term: promoters reference
+          category: FeatureType
+        - term: TSS reference
+          category: FeatureType
+        - term: reference variants
+          category: FeatureType
+        - term: variant reference
+          category: FeatureType
+        - term: DHS regions reference
+          category: DataType
+        - term: repeats reference
+          category: DataType

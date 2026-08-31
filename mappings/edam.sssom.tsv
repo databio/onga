@@ -1,20 +1,29 @@
-# SSSOM Mapping file: ONGA OutputType → EDAM
+# SSSOM Mapping file: ONGA -> EDAM
 # curie_map:
 #   onga: https://databio.org/onga/
 #   edam: http://edamontology.org/
 #   skos: http://www.w3.org/2004/02/skos/core#
+#   semapv: https://w3id.org/semapv/vocab/
 # mapping_set_id: https://databio.org/onga/mappings/edam
-# mapping_set_description: Mappings from ONGA OutputType terms to EDAM data and topic terms
+# mapping_set_description: Mappings from ONGA DataType and FeatureType terms to EDAM data and topic terms. EDAM covers data products and analysis topics, so coverage concentrates on DataType; located sequence features map to the Sequence Ontology instead (see so.sssom.tsv).
 # creator_id: https://orcid.org/0000-0001-5884-4247
 # license: https://creativecommons.org/licenses/by/4.0/
-# mapping_date: 2026-05-20
+# mapping_date: 2026-08-31
+# subject_source: https://databio.org/onga/
+# object_source: EDAM
+#
+# Subjects are live terms of the DataType / FeatureType enums in
+# src/file_content.yaml. Compound terms that the faceting program decomposed
+# (see mappings/facet_decomposition.tsv) carry no mapping of their own: the
+# facet value (filter_status, thresholding, reference_build_sex,
+# haplotype_resolution, ...) has no EDAM counterpart, so the EDAM sense is
+# carried entirely by the atomic base term's row.
 subject_id	predicate_id	object_id	mapping_justification	subject_label	object_label	comment
 onga:alignments	skos:exactMatch	edam:data_0863	semapv:ManualMappingCuration	alignments	Sequence alignment	Direct match: aligned reads to reference
 onga:reads	skos:closeMatch	edam:data_0924	semapv:ManualMappingCuration	reads	Sequence trace	Close match: sequencing reads
 onga:genome_index	skos:exactMatch	edam:data_3210	semapv:ManualMappingCuration	genome index	Genome index	Direct match
 onga:genome_reference	skos:broadMatch	edam:data_2977	semapv:ManualMappingCuration	genome reference	Nucleic acid sequence	EDAM lacks specific genome reference term
 onga:gene_quantifications	skos:closeMatch	edam:data_0928	semapv:ManualMappingCuration	gene quantifications	Gene expression profile	Close match: per-gene expression values
-onga:sequence_assembly	skos:exactMatch	edam:data_0925	semapv:ManualMappingCuration	sequence assembly	Sequence assembly	Direct match
 onga:sequence_motifs	skos:exactMatch	edam:data_1353	semapv:ManualMappingCuration	sequence motifs	Sequence motif	Direct match
 onga:variant_calls	skos:closeMatch	edam:data_0918	semapv:ManualMappingCuration	variant calls	DNA variation	Close match: called genomic variants
 onga:peaks	skos:broadMatch	edam:data_3002	semapv:ManualMappingCuration	peaks	Annotation track	EDAM lacks specific peak data type
@@ -29,16 +38,11 @@ onga:signal_p_value	skos:broadMatch	edam:data_0951	semapv:ManualMappingCuration	
 onga:contact_matrix	skos:broadMatch	edam:topic_3940	semapv:ManualMappingCuration	contact matrix	Chromosome conformation capture	EDAM has topic; lacks contact matrix data type
 onga:alignments_with_modifications	skos:broadMatch	edam:data_0863	semapv:ManualMappingCuration	alignments with modifications	Sequence alignment	EDAM lacks modification-aware alignment concept
 onga:diploid_personal_genome_alignments	skos:broadMatch	edam:data_0863	semapv:ManualMappingCuration	diploid personal genome alignments	Sequence alignment	EDAM lacks diploid/personal alignment concept
-onga:filtered_reads	skos:broadMatch	edam:data_0863	semapv:ManualMappingCuration	filtered reads	Sequence alignment	EDAM lacks filtered reads concept
-onga:haplotype_specific_alignments	skos:broadMatch	edam:data_0863	semapv:ManualMappingCuration	haplotype-specific alignments	Sequence alignment	EDAM lacks haplotype-aware alignment concept
 onga:preprocessed_alignments	skos:broadMatch	edam:data_0863	semapv:ManualMappingCuration	preprocessed alignments	Sequence alignment	EDAM lacks preprocessing stage qualifier
 onga:transcriptome_alignments	skos:broadMatch	edam:data_0863	semapv:ManualMappingCuration	transcriptome alignments	Sequence alignment	EDAM lacks transcriptome-specific alignment
-onga:unfiltered_alignments	skos:broadMatch	edam:data_0863	semapv:ManualMappingCuration	unfiltered alignments	Sequence alignment	EDAM lacks filtering-status qualifier
 onga:bidirectional_peaks	skos:broadMatch	edam:data_3002	semapv:ManualMappingCuration	bidirectional peaks	Annotation track	EDAM lacks peak directionality concept
 onga:conservative_IDR_thresholded_peaks	skos:broadMatch	edam:data_3002	semapv:ManualMappingCuration	conservative IDR thresholded peaks	Annotation track	EDAM lacks IDR-specific peak type
-onga:filtered_peaks	skos:broadMatch	edam:data_3002	semapv:ManualMappingCuration	filtered peaks	Annotation track	EDAM lacks filtering qualifier for peaks
 onga:IDR_ranked_peaks	skos:broadMatch	edam:data_3002	semapv:ManualMappingCuration	IDR ranked peaks	Annotation track	EDAM lacks IDR ranking concept
-onga:IDR_thresholded_peaks	skos:broadMatch	edam:data_3002	semapv:ManualMappingCuration	IDR thresholded peaks	Annotation track	EDAM lacks IDR thresholding concept
 onga:optimal_IDR_thresholded_peaks	skos:broadMatch	edam:data_3002	semapv:ManualMappingCuration	optimal IDR thresholded peaks	Annotation track	EDAM lacks IDR variant types
 onga:pseudoreplicated_IDR_thresholded_peaks	skos:broadMatch	edam:data_3002	semapv:ManualMappingCuration	pseudoreplicated IDR thresholded peaks	Annotation track	EDAM lacks IDR/pseudorep combined type
 onga:pseudoreplicated_peaks	skos:broadMatch	edam:data_3002	semapv:ManualMappingCuration	pseudoreplicated peaks	Annotation track	EDAM lacks pseudoreplication concept
@@ -55,10 +59,6 @@ onga:methylation_state_at_CHH	skos:broadMatch	edam:topic_3295	semapv:ManualMappi
 onga:allele_specific_variants	skos:broadMatch	edam:data_0918	semapv:ManualMappingCuration	allele-specific variants	DNA variation	EDAM lacks allele-specific variant type
 onga:eQTLs	skos:broadMatch	edam:data_1860	semapv:ManualMappingCuration	eQTLs	QTL map	EDAM lacks eQTL-specific data type
 onga:dsQTLs	skos:broadMatch	edam:data_1860	semapv:ManualMappingCuration	dsQTLs	QTL map	EDAM lacks dsQTL data type
-onga:female_genome_index	skos:broadMatch	edam:data_3210	semapv:ManualMappingCuration	female genome index	Genome index	EDAM lacks sex-specific genome index
-onga:female_genome_reference	skos:broadMatch	edam:data_2977	semapv:ManualMappingCuration	female genome reference	Nucleic acid sequence	EDAM lacks sex-specific reference
-onga:male_genome_index	skos:broadMatch	edam:data_3210	semapv:ManualMappingCuration	male genome index	Genome index	EDAM lacks sex-specific genome index
-onga:male_genome_reference	skos:broadMatch	edam:data_2977	semapv:ManualMappingCuration	male genome reference	Nucleic acid sequence	EDAM lacks sex-specific reference
 onga:mitochondrial_genome_index	skos:broadMatch	edam:data_3210	semapv:ManualMappingCuration	mitochondrial genome index	Genome index	EDAM lacks organelle-specific index
 onga:mitochondrial_genome_reference	skos:broadMatch	edam:data_2977	semapv:ManualMappingCuration	mitochondrial genome reference	Nucleic acid sequence	EDAM lacks organelle-specific reference
 onga:transcriptome_index	skos:broadMatch	edam:data_3210	semapv:ManualMappingCuration	transcriptome index	Genome index	EDAM lacks transcriptome index type

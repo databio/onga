@@ -35,6 +35,11 @@ import summary from '../../data/develop/summary.json';
         <div class="text-sm text-gray-500 mt-1">Quality Issues</div>
         <p class="text-xs text-gray-400 mt-2">Structural and categorization problems</p>
       </a>
+      <a href={url("/develop/so-proposals")} class="block bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4 border-purple-500">
+        <div class="text-3xl font-bold text-purple-600">{summary.soProposals}</div>
+        <div class="text-sm text-gray-500 mt-1">SO Proposals</div>
+        <p class="text-xs text-gray-400 mt-2">Terms to request from SO, plus {summary.soRejections} terms deliberately not sent</p>
+      </a>
     </section>
 
     <section class="bg-white rounded-lg p-8 shadow-sm">

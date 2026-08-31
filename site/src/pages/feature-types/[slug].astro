@@ -94,6 +94,60 @@ function edamUrl(edamId: string): string {
         </section>
       )}
 
+      {term.elementType && (
+        <section>
+          <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Element type</h2>
+          <p class="text-xs text-gray-500 mb-3">
+            This term names a <strong>set</strong>. Its individual rows are instances of the
+            Sequence Ontology class{term.elementType.classes.length > 1 ? 'es' : ''} below
+            (<code class="bg-gray-100 px-1 rounded">onga:has_element_type</code>).
+          </p>
+          <div class="bg-teal-50 rounded-lg p-4">
+            <span class="text-xs font-medium bg-teal-200 text-teal-900 px-2 py-1 rounded mr-2">
+              fit: {term.elementType.fit}
+            </span>
+            {term.elementType.classes.length > 1 && (
+              <span class="text-xs text-teal-800">mixed set — rows may be instances of any of these</span>
+            )}
+            <ul class="mt-3 space-y-1">
+              {term.elementType.classes.map((c: any) => (
+                <li>
+                  <a href={c.url} target="_blank" rel="noopener" class="font-mono text-teal-800 hover:underline">{c.id}</a>
+                  {c.label && <span class="text-sm text-teal-700 ml-2">{c.label}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {!term.elementType && term.elementTypeFit === 'not_applicable' && (
+        <section>
+          <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Element type</h2>
+          <div class="bg-gray-50 rounded-lg p-4 text-sm text-gray-600">
+            <span class="text-xs font-medium bg-gray-200 text-gray-700 px-2 py-1 rounded mr-2">not applicable</span>
+            Reviewed: the rows of this term are not Sequence Ontology features (they are
+            values, matrices, models or edges), so it carries no element type.
+          </div>
+        </section>
+      )}
+
+      {(term.soMapping || []).filter((m: any) => m.predicate !== 'onga:has_element_type').length > 0 && (
+        <section>
+          <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Related SO classes</h2>
+          <div class="bg-gray-50 rounded-lg p-4 space-y-2">
+            {term.soMapping.filter((m: any) => m.predicate !== 'onga:has_element_type').map((m: any) => (
+              <div>
+                <span class="text-xs font-medium bg-gray-200 text-gray-700 px-2 py-1 rounded mr-2 font-mono">{m.predicateShort}</span>
+                <a href={m.soUrl} target="_blank" rel="noopener" class="font-mono text-gray-800 hover:underline">{m.soId}</a>
+                {m.soLabel && <span class="text-sm text-gray-600 ml-2">{m.soLabel}</span>}
+                {m.comment && <p class="text-xs text-gray-500 mt-1">{m.comment}</p>}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {relatedTerms.length > 0 && (
         <section>
           <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Related FeatureTypes</h2>

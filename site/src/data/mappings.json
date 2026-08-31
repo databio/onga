@@ -6,8 +6,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_0863",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Sequence alignment",
+    "comment": "Direct match: aligned reads to reference"
   },
   {
     "termId": "alignments_with_modifications",
@@ -44,10 +44,10 @@
     "termName": "reads",
     "category": "alignment",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "closeMatch",
     "edamId": "edam:data_0924",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Sequence trace",
+    "comment": "Close match: sequencing reads"
   },
   {
     "termId": "transcriptome_alignments",
@@ -64,30 +64,30 @@
     "termName": "signal p-value",
     "category": "signal_track",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_0951",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Statistical estimate score",
+    "comment": "Partial: no signal-specific p-value in EDAM"
   },
   {
     "termId": "bidirectional_peaks",
     "termName": "bidirectional peaks",
     "category": "peak_set",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "EDAM lacks peak directionality concept"
   },
   {
     "termId": "conservative_idr_thresholded_peaks",
     "termName": "conservative IDR thresholded peaks",
     "category": "peak_set",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "EDAM lacks IDR-specific peak type"
   },
   {
     "termId": "distal_peaks",
@@ -114,30 +114,30 @@
     "termName": "IDR ranked peaks",
     "category": "peak_set",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "EDAM lacks IDR ranking concept"
   },
   {
     "termId": "optimal_idr_thresholded_peaks",
     "termName": "optimal IDR thresholded peaks",
     "category": "peak_set",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "EDAM lacks IDR variant types"
   },
   {
     "termId": "peaks",
     "termName": "peaks",
     "category": "peak_set",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "EDAM lacks specific peak data type"
   },
   {
     "termId": "peaks_and_background_as_input_for_idr",
@@ -164,30 +164,30 @@
     "termName": "pseudoreplicated IDR thresholded peaks",
     "category": "peak_set",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "EDAM lacks IDR/pseudorep combined type"
   },
   {
     "termId": "pseudoreplicated_peaks",
     "termName": "pseudoreplicated peaks",
     "category": "peak_set",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "EDAM lacks pseudoreplication concept"
   },
   {
     "termId": "replicated_peaks",
     "termName": "replicated peaks",
     "category": "peak_set",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "EDAM lacks replication-status qualifier"
   },
   {
     "termId": "representative_dnase_hypersensitivity_sites",
@@ -204,10 +204,10 @@
     "termName": "representative IDR thresholded peaks",
     "category": "peak_set",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "EDAM lacks representative peak concept"
   },
   {
     "termId": "unidirectional_peaks",
@@ -246,68 +246,68 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_3917",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Count matrix",
+    "comment": "Direct match"
   },
   {
     "termId": "sparse_peak_count_matrix",
     "termName": "sparse peak count matrix",
     "category": "count_matrix",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3917",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Count matrix",
+    "comment": "EDAM lacks peak count matrix type"
   },
   {
     "termId": "sparse_transcript_count_matrix",
     "termName": "sparse transcript count matrix",
     "category": "count_matrix",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3917",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Count matrix",
+    "comment": "EDAM lacks transcript count matrix type"
   },
   {
     "termId": "differential_expression_quantifications",
     "termName": "differential expression quantifications",
     "category": "quantification",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "EDAM lacks differential expression data type"
   },
   {
     "termId": "differential_splicing_quantifications",
     "termName": "differential splicing quantifications",
     "category": "quantification",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "EDAM lacks differential splicing data type"
   },
   {
     "termId": "exon_quantifications",
     "termName": "exon quantifications",
     "category": "quantification",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "EDAM lacks exon-level quantification"
   },
   {
     "termId": "gene_quantifications",
     "termName": "gene quantifications",
     "category": "quantification",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "closeMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "Close match: per-gene expression values"
   },
   {
     "termId": "gene_stabilities",
@@ -354,10 +354,10 @@
     "termName": "microRNA quantifications",
     "category": "quantification",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "EDAM lacks miRNA-specific quantification"
   },
   {
     "termId": "mrna_stabilities",
@@ -374,30 +374,30 @@
     "termName": "novel peptides",
     "category": "quantification",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_0945",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Peptide identification",
+    "comment": "EDAM lacks novel peptide concept"
   },
   {
     "termId": "peptide_quantifications",
     "termName": "peptide quantifications",
     "category": "quantification",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "closeMatch",
     "edamId": "edam:data_0945",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Peptide identification",
+    "comment": "Close match"
   },
   {
     "termId": "protein_expression_quantifications",
     "termName": "protein expression quantifications",
     "category": "quantification",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_2603",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Expression data",
+    "comment": "Broad match: covers protein expression"
   },
   {
     "termId": "scaled_rna_stability",
@@ -414,10 +414,10 @@
     "termName": "transcript quantifications",
     "category": "quantification",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "EDAM lacks transcript-level quantification"
   },
   {
     "termId": "transcribed_region_quantifications",
@@ -454,10 +454,10 @@
     "termName": "motif model",
     "category": "deep_learning",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "closeMatch",
     "edamId": "edam:data_0859",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Sequence signature model",
+    "comment": "Close match"
   },
   {
     "termId": "fine_mapped_variants",
@@ -484,10 +484,10 @@
     "termName": "chromosome sizes",
     "category": "reference",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_0919",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Chromosome report",
+    "comment": "Contains chromosome size information"
   },
   {
     "termId": "chromosomes_reference",
@@ -506,38 +506,38 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_3210",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Genome index",
+    "comment": "Direct match"
   },
   {
     "termId": "genome_reference",
     "termName": "genome reference",
     "category": "reference",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_2977",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Nucleic acid sequence",
+    "comment": "EDAM lacks specific genome reference term"
   },
   {
     "termId": "mitochondrial_genome_index",
     "termName": "mitochondrial genome index",
     "category": "reference",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3210",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Genome index",
+    "comment": "EDAM lacks organelle-specific index"
   },
   {
     "termId": "mitochondrial_genome_reference",
     "termName": "mitochondrial genome reference",
     "category": "reference",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_2977",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Nucleic acid sequence",
+    "comment": "EDAM lacks organelle-specific reference"
   },
   {
     "termId": "motif_clusters_reference",
@@ -554,20 +554,20 @@
     "termName": "transcriptome index",
     "category": "reference",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3210",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Genome index",
+    "comment": "EDAM lacks transcriptome index type"
   },
   {
     "termId": "transcriptome_reference",
     "termName": "transcriptome reference",
     "category": "reference",
     "vocabType": "data",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_2977",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Nucleic acid sequence",
+    "comment": "EDAM lacks transcriptome reference type"
   },
   {
     "termId": "sparse_splice_junction_count_matrix",
@@ -610,6 +610,16 @@
     "comment": "EDAM has topic; lacks CpG methylation data type"
   },
   {
+    "termId": "candidate_cis_regulatory_elements",
+    "termName": "candidate Cis-Regulatory Elements",
+    "category": "regulatory_element",
+    "vocabType": "feature",
+    "predicate": "broadMatch",
+    "edamId": "edam:data_3002",
+    "edamLabel": "",
+    "comment": "From LinkML schema"
+  },
+  {
     "termId": "candidate_enhancers",
     "termName": "candidate enhancers",
     "category": "regulatory_element",
@@ -634,10 +644,10 @@
     "termName": "curated binding sites",
     "category": "regulatory_element",
     "vocabType": "feature",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_3125",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "DNA binding sites",
+    "comment": "EDAM lacks curated binding site concept"
   },
   {
     "termId": "regulatory_elements",
@@ -664,10 +674,10 @@
     "termName": "allele-specific variants",
     "category": "variant",
     "vocabType": "feature",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "DNA variation",
+    "comment": "EDAM lacks allele-specific variant type"
   },
   {
     "termId": "curated_snvs",
@@ -684,20 +694,20 @@
     "termName": "dsQTLs",
     "category": "variant",
     "vocabType": "feature",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_1860",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "QTL map",
+    "comment": "EDAM lacks dsQTL data type"
   },
   {
     "termId": "eqtls",
     "termName": "eQTLs",
     "category": "variant",
     "vocabType": "feature",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_1860",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "QTL map",
+    "comment": "EDAM lacks eQTL-specific data type"
   },
   {
     "termId": "maternal_variant_calls",
@@ -734,10 +744,10 @@
     "termName": "variant calls",
     "category": "variant",
     "vocabType": "feature",
-    "predicate": "exactMatch",
+    "predicate": "closeMatch",
     "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "DNA variation",
+    "comment": "Close match: called genomic variants"
   },
   {
     "termId": "variant_effect_quantifications",
@@ -756,8 +766,8 @@
     "vocabType": "feature",
     "predicate": "exactMatch",
     "edamId": "edam:data_1362",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Position weight matrix",
+    "comment": "Direct match"
   },
   {
     "termId": "sequence_motifs",
@@ -766,38 +776,38 @@
     "vocabType": "feature",
     "predicate": "exactMatch",
     "edamId": "edam:data_1353",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Sequence motif",
+    "comment": "Direct match"
   },
   {
     "termId": "sequence_motifs_instances",
     "termName": "sequence motifs instances",
     "category": "sequence_motif",
     "vocabType": "feature",
-    "predicate": "exactMatch",
+    "predicate": "closeMatch",
     "edamId": "edam:data_1353",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Sequence motif",
+    "comment": "Close match: instances of motif occurrences"
   },
   {
     "termId": "sequence_motifs_report",
     "termName": "sequence motifs report",
     "category": "sequence_motif",
     "vocabType": "feature",
-    "predicate": "exactMatch",
+    "predicate": "closeMatch",
     "edamId": "edam:data_2762",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Sequence signature report",
+    "comment": "Close match"
   },
   {
     "termId": "restriction_enzyme_site_locations",
     "termName": "restriction enzyme site locations",
     "category": "annotation",
     "vocabType": "feature",
-    "predicate": "exactMatch",
+    "predicate": "closeMatch",
     "edamId": "edam:data_3125",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "DNA binding sites",
+    "comment": "Close match"
   },
   {
     "termId": "splice_junctions",
@@ -814,30 +824,30 @@
     "termName": "3D structure",
     "category": "structure",
     "vocabType": "feature",
-    "predicate": "exactMatch",
+    "predicate": "closeMatch",
     "edamId": "edam:data_0883",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Structure",
+    "comment": "EDAM is protein-focused; close for genomic 3D structure"
   },
   {
     "termId": "contigs",
     "termName": "contigs",
     "category": "structure",
     "vocabType": "feature",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_0925",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Sequence assembly",
+    "comment": "Close match: assembled contigs"
   },
   {
     "termId": "personalized_genome_assembly",
     "termName": "personalized genome assembly",
     "category": "structure",
     "vocabType": "feature",
-    "predicate": "exactMatch",
+    "predicate": "broadMatch",
     "edamId": "edam:data_0925",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Sequence assembly",
+    "comment": "EDAM lacks personal genome assembly concept"
   },
   {
     "termId": "snps",

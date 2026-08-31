@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import Layout from '../layouts/Layout.astro';
 import vocabulary from '../data/vocabulary.json';
 ---
@@ -33,12 +34,29 @@ import vocabulary from '../data/vocabulary.json';
     <ul>
       <li><strong>Hierarchical organization</strong> — {vocabulary.stats.totalCategories} categories organizing {vocabulary.stats.totalTerms} specific terms</li>
       <li><strong>Proper definitions</strong> — Each term has a description explaining its meaning</li>
-      <li><strong>Ontology mappings</strong> — {vocabulary.stats.totalMappings} terms mapped to EDAM, Sequence Ontology, and OBI where applicable</li>
+      <li><strong>Ontology mappings</strong> — {vocabulary.stats.totalMappings} terms mapped to EDAM, and {vocabulary.stats.elementTypeCoverage} terms whose rows are typed against the Sequence Ontology via <code>onga:has_element_type</code></li>
       <li><strong>Clear provenance</strong> — Terms track their source (ENCODE, UCSC, etc.)</li>
       <li><strong>Extension mechanism</strong> — New terms can be proposed and reviewed</li>
     </ul>
 
     <h2>Scope</h2>
+
+    <h3>ONGA and SO: sets vs. elements</h3>
+    <p>
+      An ONGA term names a <strong>set</strong> of genomic elements — a file, a track, a set
+      of rows. A Sequence Ontology class names an <strong>individual element type</strong>.
+      <code>onga:enhancers</code> is "a file whose rows are instances of <code>SO:0000165
+      enhancer</code>", not "an enhancer", and a set of enhancers is not an enhancer.
+    </p>
+    <p>
+      So ONGA never claims to be equivalent to an SO class. Where every row of a file
+      instantiates one SO class, ONGA records that with its own property
+      <code>onga:has_element_type</code>. <strong>ONGA is a user of SO, not a competitor to
+      it</strong> — SO supplies the element vocabulary, ONGA supplies the set vocabulary and
+      the descriptor schemas around it. See <a href={url("/scope")}>the scope page</a> for
+      the worked cases.
+    </p>
+
     <h3>In Scope</h3>
     <ul>
       <li><strong>File content types</strong> — Peaks, signals, quantifications, matrices, references</li>
@@ -53,7 +71,7 @@ import vocabulary from '../data/vocabulary.json';
       <li><strong>Organisms</strong> → NCBITaxon</li>
       <li><strong>Cell types</strong> → Cell Ontology (CL)</li>
       <li><strong>Anatomical terms</strong> → UBERON</li>
-      <li><strong>Sequence features</strong> → Sequence Ontology (SO)</li>
+      <li><strong>Individual sequence feature types</strong> → <a href="http://www.sequenceontology.org/">Sequence Ontology (SO)</a>. ONGA terms name <em>sets</em> of features; SO names the elements inside them. See <a href={url("/scope")}>the scope page</a>.</li>
     </ul>
 
     <h2>Technical Details</h2>

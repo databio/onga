@@ -8,6 +8,10 @@
     "categorySlug": "uncategorized",
     "vocabType": "derivation",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -20,6 +24,10 @@
     "categorySlug": "uncategorized",
     "vocabType": "derivation",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   }

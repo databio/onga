@@ -460,6 +460,99 @@ for file content types. We took these verbatim as the initial term set.
     DataType **162** / FeatureType **75** / Total **237**, and the round-trip
     check passes against these.
 
+18. **Separated ONGA set-denoting terms from SO element types — minted
+    `onga:has_element_type`.** ONGA `DataType` / `FeatureType` terms name a **SET**
+    of genomic elements (a file, a track, a set of rows); a Sequence Ontology
+    class names an **individual element type**. The newly added SO mapping layer
+    asserted the opposite, and it corrupted the generated OWL. **Two bugs, one
+    root cause (confusing "maps to" with "is"):** (a) **SO IRI hijack** — 15
+    permissible values carried `meaning: SO:*`, and `meaning:` makes the value's
+    IRI *be* that CURIE, so `gen-owl` relabelled, redefined and re-parented live
+    SO classes (`SO:0001747 rdfs:subClassOf onga:FeatureType`, plus a vacuous
+    self-referential `skos:exactMatch`) and put raw SO IRIs inside the
+    `owl:unionOf` list defining `onga:FeatureType`; anyone importing
+    `onga.owl.ttl` alongside SO got SO mutated. (b) **24 permissible values
+    silently deleted** — 48 values carried a `meaning:` but only 24 distinct
+    CURIEs were used, so `meaning:`-as-identity collapsed each colliding group
+    into one OWL node: `edam:data_0928` (9 values), `edam:data_0918` (9),
+    `edam:data_3002` (6), `edam:data_3917` (3), `edam:data_1353` (2).
+    **Removed all 48 `meaning:` keys** (15 SO + 33 EDAM); the 28 EDAM CURIEs not
+    already recorded elsewhere were MOVED into `exact_mappings` (identity was
+    what `meaning:` asserted), so no EDAM cross-reference was lost — ONGA↔EDAM is
+    a legitimate set-to-set relation and stays in
+    `exact_mappings`/`close_mappings`/`broad_mappings`, just never in `meaning:`.
+    Also moved the 2 `meaning: so:*` keys in `src/strand_orientation.yaml`
+    (`plus`/`minus`) to `exact_mappings` — the same hijack, in a facet vocabulary.
+    **Minted `onga:has_element_type`**: *relates an ONGA content term, which
+    denotes a SET of genomic elements, to the Sequence Ontology class that its
+    individual members instantiate.* Homed as the `element_type` slot on
+    **`TrackInterpretation`** (range `uriorcurie`, multivalued) — a CONTENT facet
+    under design principle #4, deliberately separate from `feature_type`, which
+    names the ONGA **set** term.
+    **Predicate policy in `mappings/so.sssom.tsv`** (81 rows before → **84**
+    after, the growth being `regulatory elements` expanding from 1 ancestor row
+    to 4 element rows): **74** `onga:has_element_type` membership rows, **8**
+    `skos:relatedMatch` rows (members are *not* instances), **2** whitelisted
+    set-to-set `skos:exactMatch`/`closeMatch` rows. `skos:exactMatch` /
+    `closeMatch` / `broadMatch` against SO are **banned**, with exactly two
+    exceptions where the SO class is itself set-denoting: `SO:0001505
+    reference_genome` and `SO:0001506 variant_genome`, both defined as "A
+    collection of sequences". `build_so_sssom.py` fails the build on any other
+    SKOS match, and `check_roundtrip.py` re-checks it. The exact/close/broad
+    grade moved to the declared SSSOM extension column **`element_type_fit`**
+    (`exact` | `approximate` | `broad` | `not_applicable`) — a curation grade, not
+    a different relation; the 81 existing rows converted mechanically
+    (`exactMatch→exact`, `closeMatch→approximate`, `broadMatch→broad`), so no
+    curation judgment was re-opened.
+    **Annotations on permissible values:** `element_type` (pipe-joined SO CURIEs,
+    a STRING — a YAML list stringifies as `"['SO:0000165', 'SO:0000167']"` in
+    `gen-owl` output) and `element_type_fit`. **87** values annotated: **71**
+    carry an `element_type` (24 DataType + 47 FeatureType), **16** carry
+    `not_applicable` (curated-none, distinct from not-yet-curated).
+    **DataType admissibility rule.** A DataType term may carry
+    `onga:has_element_type` only if the file's rows are typed objects that
+    instantiate an SO class. DataType names *how* data was produced; most
+    DataTypes (signal, quantifications, matrices, models) have rows that are
+    *values*, not features. Triage of the 27 DataType rows: **Group A** —
+    18 sequence-object sets (reads, subreads, barcodes, primers, gRNAs, the
+    reference sequence sets) kept as membership; **Group B** — 6 located-region
+    sets with biological names (`peaks`, `DHS peaks`, `consensus`/`representative
+    DNase hypersensitivity sites`, `DHS regions reference`, `hotspots`) kept as
+    membership **and flagged**: that a clean SO element type holds is a
+    DIAGNOSTIC that the term is FeatureType-shaped (see "Cleanup decisions" —
+    deliberately deferred, not an oversight); **Group C** — `nuclease cleavage
+    frequency` demoted (rows are per-base numbers, not nuclease-sensitive sites);
+    **Group D** — `sequence adapters` has no SO element type at all (SO has no
+    adapter term; new-term request SO-REQ-010 filed). `genome reference` sits in
+    Group A but takes the set-to-set exception. `peaks` was **re-graded** from
+    `skos:relatedMatch` to membership at `approximate` fit: peak rows *are*
+    experimental result regions, and the original objection (that `SO:0001697
+    ChIP_seq_region` is assay-bound) was a different point.
+    **Mixed sets.** `regulatory elements`, whose definition enumerates
+    "enhancers, promoters, silencers, and insulators", now carries four SO
+    classes (`SO:0000165`, `SO:0000167`, `SO:0000625`, `SO:0000627`) instead of
+    one `closeMatch` to the `SO:0005836 regulatory_region` ancestor; the OWL
+    emits `owl:allValuesFrom [ owl:unionOf (...) ]`. Precedent for the "not one
+    kind" shape: `TrackGeometry.DataTypes` already ships a `multiple` value, and
+    `TrackGeometry.has_edges` already models the pair/edge row shape that
+    `element gene links` and `links` have.
+    **OWL.** `make gen-owl` now runs `gen-owl-core` + `gen-owl-so`; the latter is
+    `scripts/gen_so_axioms.py`, which reads the SSSOM file and emits
+    `project/owl/onga-so-element-types.owl.ttl` as
+    `onga:X rdfs:subClassOf [ owl:onProperty onga:has_element_type ;
+    owl:allValuesFrom SO:Y ]`, asserting an honest, importable statement and
+    **never emitting a triple whose subject is an SO IRI** (enforced by an
+    assertion in the generator). SO IRIs appearing as subjects in the core OWL:
+    **17 → 0**. The `owl:unionOf` lists now hold **162** and **75** distinct ONGA
+    IRIs with no `SO_` or `edam:` members — the 24 collapsed values are back.
+    Applied via `scripts/build_so_sssom.py` (4 curated tables, validated against
+    `so.obo`) and `scripts/apply_element_type.py` (ruamel round-trip, importing
+    those tables so the TSV and the schema cannot drift). `make test` gained
+    checks 6–10 as the regression guard. **No term was added, removed, renamed or
+    re-homed:** DataType **162**, FeatureType **75**, total **237**, unchanged.
+    Developmental software — clean removals, no back-compat.
+
+
 ## Design principles
 
 Rules established in design discussion that govern the faceting operations above:
@@ -541,6 +634,36 @@ Rules established in design discussion that govern the faceting operations above
    vocabulary was large, but because it is concentrated in the peak/DHS
    reproducibility family and does not cross-cut.)
 
+7. **ONGA denotes sets; SO denotes elements.** An ONGA `DataType` or
+   `FeatureType` term names a **set** of genomic elements — a file, a track, a
+   set of rows. A Sequence Ontology class names an **individual element type**.
+   These are different kinds of thing, and ONGA never asserts identity,
+   equivalence, or hierarchy between them. When every member of an ONGA set
+   instantiates one SO class, ONGA records that with `onga:has_element_type` — a
+   membership relation, not a mapping. When members are of several kinds,
+   `element_type` carries several SO classes. When the rows are not features at
+   all (values, matrices, models, edges), there is no element type and
+   `element_type_fit` is `not_applicable`. ONGA is a **user** of SO: SO supplies
+   the element vocabulary, ONGA supplies the set vocabulary and the descriptor
+   schemas around it. The one exception is an SO class that is itself
+   set-denoting (`SO:0001505 reference_genome`, `SO:0001506 variant_genome`),
+   where a plain SKOS match is correct.
+
+   This is a **different boundary from principle #5**. Principle #5 ejects axes
+   that are not ONGA's subject matter at all (sample anatomy → UBERON).
+   Principle #7 is a *level* distinction within ONGA's own subject matter: ONGA
+   and SO describe the same biology at different granularities, and the
+   connection between them is membership.
+
+   Practical corollary: **never use `meaning:` for a cross-reference.**
+   `meaning:` sets the permissible value's IRI, so an SO CURIE there hijacks the
+   SO class and a repeated EDAM CURIE collapses distinct ONGA terms into a single
+   OWL node. Cross-references belong in
+   `exact_mappings`/`close_mappings`/`broad_mappings` (set-to-set, e.g. EDAM), in
+   `related_mappings` (non-membership, SO), or in the `element_type` annotation
+   (membership, SO).
+
+
 ### Atomic by principle (deliberately un-faceted)
 
 Axes and terms left atomic *by decision* under principle #6 (they fail the
@@ -570,10 +693,15 @@ the compound `bias-corrected predicted signal profile`, held for a future
 
 ## Current state
 
-- **DataType:** 162 terms (53 with EDAM `meaning:`)
-- **FeatureType:** 75 terms (20 with EDAM `meaning:`)
+- **DataType:** 162 terms (58 EDAM-mapped, 26 with an `element_type` annotation)
+- **FeatureType:** 75 terms (29 EDAM-mapped, 61 with an `element_type` annotation)
 - **Categories:** 22 subsets
-- **Total:** 237 terms, 73 EDAM-mapped
+- **Total:** 237 terms, 87 EDAM-mapped, 87 element-type-annotated (71 with an SO
+  class, 16 `not_applicable`)
+- **`meaning:` keys in the content enums:** 0 (banned — principle #7)
+- **SO element-type rows:** 74 (`onga:has_element_type`, in `mappings/so.sssom.tsv`)
+- **SO relatedMatch rows:** 8 (members are *not* instances)
+- **SO set-to-set rows:** 2 (whitelisted: `SO:0001505`, `SO:0001506`)
 - **Descriptor schemas:** 5 — TrackFormat, TrackInterpretation, TrackProvenance,
   TrackGeometry, ReferenceGenome (Layer 2)
 
@@ -589,3 +717,22 @@ not change the vocabulary; only the operations logged here do.
 
 _(in progress — term cleanup operations will be appended here as we curate via
 the Develop dashboard)_
+
+- **Group B re-homing candidates (open, deferred from operation #18).** Six
+  **DataType** terms carry a clean SO element type: `peaks`, `DHS peaks`,
+  `consensus DNase hypersensitivity sites`, `representative DNase
+  hypersensitivity sites`, `DHS regions reference`, `hotspots`. Under the
+  DataType admissibility rule that is legitimate — their rows really are located
+  regions — but *that it holds at all* is a diagnostic: a DataType names **how**
+  data was produced, and a term whose rows have a biological element type is
+  **FeatureType-shaped**. They were deliberately **not** re-homed in operation
+  #18, which moved cross-references only and changed no term's enum. A future
+  operation should decide whether they belong in FeatureType. **This is a
+  deferred decision, not an oversight** — do not treat it as one.
+- **`meaning:` in the non-content vocabularies (open).** `src/format.yaml` (9
+  `edam:format_*`) and `src/reference_build_sex.yaml` (2 `PATO:*`) still use
+  `meaning:`. These are facet values, not set-denoting content terms, and each
+  CURIE is used exactly once, so neither the level-shift objection nor the
+  collapse bug applies. They are left alone; the SO ones in
+  `src/strand_orientation.yaml` were moved to `exact_mappings` in operation #18
+  because those *did* hijack live SO classes in the generated OWL.

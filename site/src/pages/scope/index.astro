@@ -2,12 +2,143 @@
 import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
 import delegations from '../../data/delegations.json';
+import soMappings from '../../data/so-mappings.json';
+import vocabulary from '../../data/vocabulary.json';
+
+// The three shapes of the set/element relation, shown with live terms.
+const rows = soMappings as any[];
+const byTerm = (name: string) => rows.filter(r => r.termName === name);
+const single = byTerm('candidate enhancers');
+const multiple = byTerm('regulatory elements');
+const fitCounts = rows
+  .filter(r => r.predicate === 'onga:has_element_type')
+  .reduce((acc: Record<string, number>, r) => {
+    acc[r.fit] = (acc[r.fit] || 0) + 1;
+    return acc;
+  }, {});
+const relatedCount = rows.filter(r => r.predicate === 'skos:relatedMatch').length;
+const setToSetCount = rows.filter(
+  r => r.predicate === 'skos:exactMatch' || r.predicate === 'skos:closeMatch').length;
 ---
 
-<Layout title="Scope Boundary" description="Axes ONGA deliberately delegates out of content scope to external ontologies">
-  <div class="mb-8">
+<Layout title="Scope Boundary" description="The two boundaries: ONGA terms name sets while SO names elements, and axes ONGA delegates out of content scope">
+  <div class="mb-10">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Scope boundaries</h1>
+    <p class="text-gray-600 mt-2 max-w-3xl">
+      ONGA has <strong>two</strong> different boundaries, and they are not the same kind of
+      thing. The first is a <strong>level</strong> distinction inside ONGA's own subject
+      matter: ONGA names sets of genomic elements, the Sequence Ontology names the elements.
+      The second is a <strong>scope ejection</strong>: axes that are not ONGA's subject
+      matter at all and belong to another ontology.
+    </p>
+  </div>
+
+  <!-- ================= Boundary 1: sets vs. elements ================= -->
+  <section class="mb-14">
+    <p class="text-[11px] uppercase tracking-wide text-teal-500 font-semibold">Design principle #7</p>
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Sets vs. elements</h2>
+    <p class="text-gray-600 mt-2 max-w-3xl">
+      An ONGA <code class="bg-gray-100 px-1 rounded">DataType</code> or
+      <code class="bg-gray-100 px-1 rounded">FeatureType</code> term names a
+      <strong>set</strong> of genomic elements — a file, a track, a set of rows. A Sequence
+      Ontology class names an <strong>individual element type</strong>.
+      <code class="bg-gray-100 px-1 rounded">onga:enhancers</code> is "a file whose rows are
+      instances of <code class="bg-gray-100 px-1 rounded">SO:0000165 enhancer</code>", not
+      "an enhancer" — and a set of enhancers is not an enhancer.
+    </p>
+    <p class="text-gray-600 mt-3 max-w-3xl">
+      So ONGA never asserts identity, equivalence or hierarchy against an SO class. Where
+      every member of the set instantiates one SO class, ONGA records that with its own
+      property <code class="bg-gray-100 px-1 rounded">onga:has_element_type</code>, and grades
+      how tightly SO's class fits with
+      <code class="bg-gray-100 px-1 rounded">element_type_fit</code>.
+      <strong>ONGA is a user of SO, not a competitor to it.</strong>
+    </p>
+
+    <div class="bg-white rounded-lg shadow-sm border-l-4 border-teal-400 overflow-hidden mt-6">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-50 text-gray-500 text-left text-xs uppercase tracking-wide">
+          <tr>
+            <th class="px-4 py-3 font-semibold">ONGA term (a set)</th>
+            <th class="px-4 py-3 font-semibold">Relation</th>
+            <th class="px-4 py-3 font-semibold">SO class (an element)</th>
+            <th class="px-4 py-3 font-semibold">Case</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr>
+            <td class="px-4 py-3">
+              <a href={url(`/feature-types/${single[0]?.termId ?? ''}`)} class="font-mono text-teal-700 underline hover:text-teal-900">candidate enhancers</a>
+              <div class="text-xs text-gray-500">a file whose rows are enhancers</div>
+            </td>
+            <td class="px-4 py-3 font-mono text-xs text-gray-600">has_element_type</td>
+            <td class="px-4 py-3">
+              <a href="http://purl.obolibrary.org/obo/SO_0000165" target="_blank" rel="noopener" class="font-mono text-gray-700 underline">SO:0000165</a>
+              <div class="text-xs text-gray-500">enhancer</div>
+            </td>
+            <td class="px-4 py-3 text-gray-600">One element type <span class="text-xs text-gray-400">(fit: broad — "candidate" is an ONGA derivation facet, not an SO class)</span></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3">
+              <a href={url(`/feature-types/${multiple[0]?.termId ?? ''}`)} class="font-mono text-teal-700 underline hover:text-teal-900">regulatory elements</a>
+              <div class="text-xs text-gray-500">a mixed set</div>
+            </td>
+            <td class="px-4 py-3 font-mono text-xs text-gray-600">has_element_type</td>
+            <td class="px-4 py-3">
+              {multiple.map((m: any) => (
+                <div>
+                  <a href={m.soUrl} target="_blank" rel="noopener" class="font-mono text-gray-700 underline">{m.soId}</a>
+                  <span class="text-xs text-gray-500 ml-2">{m.soLabel}</span>
+                </div>
+              ))}
+            </td>
+            <td class="px-4 py-3 text-gray-600">Several element types <span class="text-xs text-gray-400">(rows may be instances of any of them)</span></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3">
+              <a href={url("/feature-types/element_gene_links")} class="font-mono text-teal-700 underline hover:text-teal-900">element gene links</a>
+              <div class="text-xs text-gray-500">rows are pairs, not features</div>
+            </td>
+            <td class="px-4 py-3 font-mono text-xs text-gray-400">—</td>
+            <td class="px-4 py-3 text-gray-400">none</td>
+            <td class="px-4 py-3 text-gray-600">No element type <span class="text-xs text-gray-400">(fit: not_applicable — an edge, modelled by <code class="bg-gray-100 px-1 rounded">TrackGeometry.has_edges</code>)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <section class="grid sm:grid-cols-3 gap-4 mt-6">
+      <div class="bg-white rounded-lg p-5 shadow-sm border-l-4 border-teal-400">
+        <h3 class="font-semibold text-gray-900">{vocabulary.stats.elementTypeCoverage} terms typed</h3>
+        <p class="text-sm text-gray-500 mt-1">
+          carry an <code class="bg-gray-100 px-1 rounded">element_type</code>, over
+          {vocabulary.stats.soMappings} rows in <a href={url("/mappings")} class="text-teal-600 underline hover:text-teal-800">the SO mapping set</a>.
+        </p>
+      </div>
+      <div class="bg-white rounded-lg p-5 shadow-sm border-l-4 border-teal-400">
+        <h3 class="font-semibold text-gray-900">{fitCounts.broad ?? 0} broad fits</h3>
+        <p class="text-sm text-gray-500 mt-1">
+          every member is an instance but SO's class is broader — an SO gap, and the feed for
+          <a href={url("/develop/so-proposals")} class="text-teal-600 underline hover:text-teal-800">new-term requests</a>.
+        </p>
+      </div>
+      <div class="bg-white rounded-lg p-5 shadow-sm border-l-4 border-teal-400">
+        <h3 class="font-semibold text-gray-900">{setToSetCount} set-to-set exceptions</h3>
+        <p class="text-sm text-gray-500 mt-1">
+          A plain SKOS match is correct only when the SO class is itself set-denoting:
+          <span class="font-mono text-xs">SO:0001505</span> reference_genome and
+          <span class="font-mono text-xs">SO:0001506</span> variant_genome. Another
+          {relatedCount} rows are <span class="font-mono text-xs">skos:relatedMatch</span>,
+          meaning the members are <em>not</em> instances.
+        </p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= Boundary 2: delegated axes ================= -->
+  <div class="mb-8 border-t border-gray-200 pt-10">
     <p class="text-[11px] uppercase tracking-wide text-rose-400 font-semibold">Design principle #5</p>
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">Delegated axes / Scope boundary</h1>
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Delegated axes</h2>
     <p class="text-gray-600 mt-2 max-w-3xl">
       ONGA describes <strong>what a genomic file's content is</strong>. Some qualifiers
       that appear baked into ENCODE
@@ -51,7 +182,7 @@ import delegations from '../../data/delegations.json';
   <!-- Current anatomy delegations from scope_delegations.tsv -->
   <section>
     <div class="mb-4">
-      <h2 class="text-2xl font-bold text-gray-900">Current delegations</h2>
+      <h3 class="text-xl font-bold text-gray-900">Current delegations</h3>
       <p class="text-gray-500 text-sm">
         {delegations.length} compound content terms ejected to external ontologies.
         Each removed term is recoverable as content base + delegated axis:value.

@@ -18,10 +18,17 @@ description: >-
 
   The same DataType can represent different FeatureTypes depending on the experiment.
 
+  Both vocabularies are **set-denoting**: a DataType or FeatureType term names a file or track whose rows are instances of some element type, not the element itself. Where every row instantiates one Sequence Ontology class, that class is recorded as the term's `element_type` annotation. ONGA is a user of SO, never a substitute for it.
+
+  Both vocabularies are **set-denoting**: a DataType or FeatureType term names a file or track whose rows are instances of
+  some element type, not the element itself. Where every row instantiates one Sequence Ontology class, that class is recorded
+  as the term's `element_type` annotation. ONGA is a user of SO, never a substitute for it.
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/
   edam: http://edamontology.org/
+  SO: http://purl.obolibrary.org/obo/SO_
   skos: http://www.w3.org/2004/02/skos/core#
 
 default_prefix: onga
@@ -86,6 +93,39 @@ subsets:
   technical:
     description: Raw instrument output, adapters, barcodes, and technical artifacts.
 
+# ANNOTATION KEYS ON PERMISSIBLE VALUES
+# -------------------------------------
+# An ONGA DataType or FeatureType term names a SET of genomic elements -- a
+# file, a track, a set of rows. A Sequence Ontology class names an INDIVIDUAL
+# element type. ONGA never asserts identity, equivalence or hierarchy against an
+# SO class (design principle #7; see the ADR "ONGA terms denote sets; SO terms
+# denote elements"). Two annotation keys carry the level shift:
+#
+#   element_type      Pipe-separated ("|") SO CURIEs naming the class(es) the
+#                     individual rows/records instantiate. MUST BE A STRING, not
+#                     a YAML list -- a list stringifies as
+#                     "['SO:0000165', 'SO:0000167']" in gen-owl output. One value
+#                     = a homogeneous set; several = a mixed set.
+#   element_type_fit  How tightly the SO class fits the members. A curation
+#                     grade, not a different relation:
+#                       exact           the SO class is the tight fit
+#                       approximate     SO's nearest available class; imperfect
+#                       broad           all members are instances but the SO
+#                                       class is broader -- AN SO GAP, and the
+#                                       machine-readable feed into
+#                                       proposals/upstream_requests.yaml
+#                       not_applicable  reviewed and found to have no SO element
+#                                       type (signal values, matrices, models,
+#                                       edges). Distinguishes CURATED-NONE from
+#                                       NOT-YET-CURATED (an absent annotation).
+#
+# NEVER use `meaning:` for a cross-reference. `meaning:` sets the permissible
+# value's IRI, so an SO CURIE there hijacks the SO class and a repeated EDAM
+# CURIE collapses distinct terms into one OWL node. Cross-references belong in
+# exact_mappings / close_mappings / broad_mappings (EDAM, set-to-set) or in
+# related_mappings (SO, non-membership). Machine-generated companion file:
+# mappings/so.sssom.tsv, written by scripts/build_so_sssom.py.
+
 enums:
 
   DataType:
@@ -95,19 +135,24 @@ enums:
       alignments:
         description: Sequencing reads mapped to positions in a reference genome, typically in BAM/CRAM format with 
           mapping quality scores and alignment coordinates.
-        meaning: edam:data_0863
+        exact_mappings:
+        - edam:data_0863
         in_subset:
         - alignment
-        see_also:
+        keywords:
         - sequencing reads
       alignments with modifications:
         description: Aligned reads preserving base modification information (e.g., methylation from bisulfite-seq or 
           direct detection) encoded in BAM auxiliary fields.
+        broad_mappings:
+        - edam:data_0863
         in_subset:
         - alignment
       diploid personal genome alignments:
         description: Reads aligned to a diploid personal genome reference including both parental haplotypes, enabling 
           allele-specific analysis.
+        broad_mappings:
+        - edam:data_0863
         in_subset:
         - alignment
       gene alignments:
@@ -116,12 +161,18 @@ enums:
         - alignment
       preprocessed alignments:
         description: 'Alignments after preprocessing: duplicate marking, base quality score recalibration, or indel realignment.'
+        broad_mappings:
+        - edam:data_0863
         in_subset:
         - alignment
       reads:
         description: Raw or minimally processed sequencing reads in FASTQ format, including quality scores and read 
           identifiers.
-        meaning: edam:data_0924
+        annotations:
+          element_type: SO:0000150
+          element_type_fit: exact
+        close_mappings:
+        - edam:data_0924
         in_subset:
         - alignment
       redacted alignments:
@@ -135,6 +186,9 @@ enums:
         - alignment
       rejected reads:
         description: Reads that failed quality control filters and were excluded from downstream analysis.
+        annotations:
+          element_type: SO:0000150
+          element_type_fit: broad
         in_subset:
         - alignment
       spike-in alignments:
@@ -144,9 +198,11 @@ enums:
         - alignment
       transcriptome alignments:
         description: Reads aligned to a transcriptome reference (cDNA sequences) rather than the genome.
+        broad_mappings:
+        - edam:data_0863
         in_subset:
         - alignment
-        see_also:
+        keywords:
         - gene expression
         - splicing
       base overlap signal:
@@ -171,7 +227,7 @@ enums:
           background.
         in_subset:
         - signal_track
-        see_also:
+        keywords:
         - TF binding
         - histone modifications
       signal:
@@ -179,13 +235,14 @@ enums:
           format.
         in_subset:
         - signal_track
-        see_also:
+        keywords:
         - gene expression
         - chromatin accessibility
         - TF binding
       signal p-value:
         description: Statistical significance track showing -log10(p-value) of enrichment at each position.
-        meaning: edam:data_0951
+        broad_mappings:
+        - edam:data_0951
         in_subset:
         - signal_track
       summed densities signal:
@@ -200,98 +257,123 @@ enums:
       # ─── peak_set ─────────────────────────────────────────────────────────
       bidirectional peaks:
         description: Peaks from bidirectional transcription signal, characteristic of active enhancers and promoters.
-        meaning: edam:data_3002
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - peak_set
-        see_also:
+        keywords:
         - enhancers
         - promoters
       conservative IDR thresholded peaks:
         description: Peaks using a conservative (stricter) IDR cutoff, yielding high-confidence but smaller peak set.
-        meaning: edam:data_3002
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - peak_set
         see_also:
+        - onga:open_chromatin_regions
+        keywords:
         - TF binding sites
-        - open chromatin regions
       distal peaks:
         description: Peaks located distal (>2-3kb) from transcription start sites, often representing enhancers.
-        meaning: edam:data_3002
         in_subset:
         - peak_set
+        exact_mappings:
+        - edam:data_3002
       divergent peaks:
         description: Peaks from divergent transcription where initiation occurs in both directions from a central point.
-        meaning: edam:data_3002
         in_subset:
         - peak_set
+        exact_mappings:
+        - edam:data_3002
       IDR ranked peaks:
         description: Peaks ranked by IDR score, with lower IDR indicating higher reproducibility across replicates.
-        meaning: edam:data_3002
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - peak_set
       optimal IDR thresholded peaks:
         description: Peaks using the optimal IDR cutoff balancing sensitivity and reproducibility.
-        meaning: edam:data_3002
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - peak_set
         see_also:
+        - onga:open_chromatin_regions
+        keywords:
         - TF binding sites
-        - open chromatin regions
       peaks:
         description: Discrete genomic regions of statistically significant enrichment from peak calling. The fundamental
           unit of ChIP-seq and ATAC-seq analysis.
-        meaning: edam:data_3002
+        annotations:
+          element_type: SO:0000703
+          element_type_fit: approximate
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - peak_set
         see_also:
+        - onga:open_chromatin_regions
+        keywords:
         - TF binding sites
-        - open chromatin regions
         - histone modifications
         - enhancers
       peaks and background as input for IDR:
         description: Combined peak and background signal data formatted as input for IDR analysis.
-        meaning: edam:data_3002
         in_subset:
         - peak_set
+        exact_mappings:
+        - edam:data_3002
       proximal peaks:
         description: Peaks located proximal (<2-3kb) to transcription start sites, often representing promoters.
-        meaning: edam:data_3002
         in_subset:
         - peak_set
+        exact_mappings:
+        - edam:data_3002
       pseudoreplicated IDR thresholded peaks:
         description: IDR-thresholded peaks from pseudoreplicates (subsampled reads) when true replicates unavailable.
-        meaning: edam:data_3002
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - peak_set
       pseudoreplicated peaks:
         description: Peak calls from pseudoreplicates created by subsampling reads from a single experiment.
-        meaning: edam:data_3002
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - peak_set
       replicated peaks:
         description: Peaks reproducibly called across biological or technical replicates.
-        meaning: edam:data_3002
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - peak_set
         see_also:
+        - onga:open_chromatin_regions
+        keywords:
         - TF binding sites
-        - open chromatin regions
         - histone modifications
       representative DNase hypersensitivity sites:
         description: A curated representative set of DNase hypersensitivity sites for reference.
-        meaning: edam:data_3002
+        annotations:
+          element_type: SO:0000685
+          element_type_fit: broad
         in_subset:
         - peak_set
+        exact_mappings:
+        - edam:data_3002
       representative IDR thresholded peaks:
         description: A representative set of IDR-thresholded peaks selected for downstream analysis.
-        meaning: edam:data_3002
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - peak_set
       unidirectional peaks:
         description: Peaks from unidirectional transcription signal, typically associated with gene bodies.
-        meaning: edam:data_3002
         in_subset:
         - peak_set
+        exact_mappings:
+        - edam:data_3002
       valleys:
         description: Local minima in signal tracks used in footprint detection or nucleosome positioning analysis.
         in_subset:
@@ -300,17 +382,26 @@ enums:
       # ─── chromatin_accessibility ──────────────────────────────────────────
       consensus DNase hypersensitivity sites:
         description: DNase I hypersensitivity sites consistently identified across multiple samples or cell types.
+        annotations:
+          element_type: SO:0000685
+          element_type_fit: broad
         in_subset:
         - chromatin_accessibility
       DHS peaks:
         description: Peak calls from DNase I hypersensitivity sequencing (DNase-seq), indicating open chromatin regions.
+        annotations:
+          element_type: SO:0000685
+          element_type_fit: exact
         in_subset:
         - chromatin_accessibility
         see_also:
-        - open chromatin regions
-        - footprints
+        - onga:open_chromatin_regions
+        - onga:footprints
       DHS regions reference:
         description: Reference set of DNase I hypersensitivity regions.
+        annotations:
+          element_type: SO:0000685
+          element_type_fit: broad
         in_subset:
         - chromatin_accessibility
       FDR cut rate:
@@ -319,10 +410,13 @@ enums:
         - chromatin_accessibility
       hotspots:
         description: Broad regions of elevated DNase cleavage activity representing domains of chromatin accessibility.
+        annotations:
+          element_type: SO:0002331
+          element_type_fit: approximate
         in_subset:
         - chromatin_accessibility
         see_also:
-        - open chromatin regions
+        - onga:open_chromatin_regions
       hotspots1 reference:
         description: Reference hotspot calls at lenient threshold (hotspot1 algorithm).
         in_subset:
@@ -333,14 +427,20 @@ enums:
         - chromatin_accessibility
       nuclease cleavage frequency:
         description: Per-base frequency of DNase I or Tn5 transposase cleavage across the genome.
+        annotations:
+          element_type_fit: not_applicable
+        related_mappings:
+        - SO:0000684
         in_subset:
         - chromatin_accessibility
       contact matrix:
         description: Genome-wide matrix of chromatin interaction frequencies from Hi-C or similar chromosome 
           conformation capture experiments.
+        broad_mappings:
+        - edam:topic_3940
         in_subset:
         - contact_matrix
-        see_also:
+        keywords:
         - chromatin loops
         - TADs
         - compartments
@@ -368,6 +468,9 @@ enums:
         - crispr_screen
       gRNAs:
         description: Guide RNA sequences used in CRISPR screens.
+        annotations:
+          element_type: SO:0001998
+          element_type_fit: exact
         in_subset:
         - crispr_screen
       guide locations:
@@ -380,6 +483,9 @@ enums:
         - crispr_screen
       non-targeting gRNAs:
         description: Guide RNAs designed as non-targeting negative controls.
+        annotations:
+          element_type: SO:0001998
+          element_type_fit: broad
         in_subset:
         - crispr_screen
       perturbation signal:
@@ -388,6 +494,9 @@ enums:
         - crispr_screen
       ranked gRNAs:
         description: Guide RNAs ranked by screen performance or activity.
+        annotations:
+          element_type: SO:0001998
+          element_type_fit: broad
         in_subset:
         - crispr_screen
       reporter code counts:
@@ -396,32 +505,39 @@ enums:
         - crispr_screen
       safe-targeting gRNAs:
         description: Guide RNAs targeting genomic safe-harbor loci as controls.
+        annotations:
+          element_type: SO:0001998
+          element_type_fit: broad
         in_subset:
         - crispr_screen
       sparse gRNA count matrix:
         description: Sparse count matrix of guide RNA abundances across cells.
-        meaning: edam:data_3917
         in_subset:
         - crispr_screen
 
       # ─── count_matrix ─────────────────────────────────────────────────────
+        exact_mappings:
+        - edam:data_3917
       fold over change matrix:
         description: Matrix of fold-change values relative to control across features.
         in_subset:
         - count_matrix
       sparse gene count matrix:
         description: Sparse matrix of gene-level read counts across cells or samples, standard for single-cell RNA-seq.
-        meaning: edam:data_3917
+        exact_mappings:
+        - edam:data_3917
         in_subset:
         - count_matrix
       sparse peak count matrix:
         description: Sparse matrix of peak accessibility counts across cells, used in single-cell ATAC-seq.
-        meaning: edam:data_3917
+        broad_mappings:
+        - edam:data_3917
         in_subset:
         - count_matrix
       sparse transcript count matrix:
         description: Sparse matrix of transcript-level counts across cells or samples.
-        meaning: edam:data_3917
+        broad_mappings:
+        - edam:data_3917
         in_subset:
         - count_matrix
       TF peaks matrix:
@@ -436,12 +552,14 @@ enums:
       # ─── quantification ───────────────────────────────────────────────────
       differential expression quantifications:
         description: Statistical results from differential expression analysis comparing conditions.
-        meaning: edam:data_0928
+        broad_mappings:
+        - edam:data_0928
         in_subset:
         - quantification
       differential splicing quantifications:
         description: Statistical results from differential splicing analysis comparing conditions.
-        meaning: edam:data_0928
+        broad_mappings:
+        - edam:data_0928
         in_subset:
         - quantification
       element quantifications:
@@ -450,94 +568,110 @@ enums:
         - quantification
       exon quantifications:
         description: Read counts or expression values quantified at individual exons.
-        meaning: edam:data_0928
+        broad_mappings:
+        - edam:data_0928
         in_subset:
         - quantification
-        see_also:
+        keywords:
         - exon usage
         - splicing
       gene quantifications:
         description: Expression quantifications at gene level as read counts, TPM, or FPKM values.
-        meaning: edam:data_0928
+        close_mappings:
+        - edam:data_0928
         in_subset:
         - quantification
-        see_also:
+        keywords:
         - gene expression
       gene stabilities:
         description: Measurements of mRNA or gene expression stability over time.
-        meaning: edam:data_0928
         in_subset:
         - quantification
+        exact_mappings:
+        - edam:data_0928
       genic features quantifications:
         description: Quantifications across various genic features (exons, introns, UTRs).
-        meaning: edam:data_0928
         in_subset:
         - quantification
+        exact_mappings:
+        - edam:data_0928
       genic regions quantifications:
         description: Read count quantifications over defined genic regions.
-        meaning: edam:data_0928
         in_subset:
         - quantification
+        exact_mappings:
+        - edam:data_0928
       merged transcription segment quantifications:
         description: Quantifications from merged transcription segments.
-        meaning: edam:data_0928
         in_subset:
         - quantification
+        exact_mappings:
+        - edam:data_0928
       microRNA quantifications:
         description: Expression quantifications of microRNAs (miRNAs).
-        meaning: edam:data_0928
+        broad_mappings:
+        - edam:data_0928
         in_subset:
         - quantification
       mRNA stabilities:
         description: Measurements of mRNA half-life or decay rates.
-        meaning: edam:data_0928
         in_subset:
         - quantification
+        exact_mappings:
+        - edam:data_0928
       novel peptides:
         description: Peptides identified that are absent from reference databases.
-        meaning: edam:data_0945
+        broad_mappings:
+        - edam:data_0945
         in_subset:
         - quantification
       peptide quantifications:
         description: Abundance measurements of peptides from mass spectrometry proteomics.
-        meaning: edam:data_0945
+        close_mappings:
+        - edam:data_0945
         in_subset:
         - quantification
       protein expression quantifications:
         description: Abundance measurements of proteins from proteomics data.
-        meaning: edam:data_2603
+        broad_mappings:
+        - edam:data_2603
         in_subset:
         - quantification
       scaled RNA stability:
         description: RNA stability measurements scaled across samples.
-        meaning: edam:data_0928
         in_subset:
         - quantification
+        exact_mappings:
+        - edam:data_0928
       transcript quantifications:
         description: Expression quantifications at transcript isoform level.
-        meaning: edam:data_0928
+        broad_mappings:
+        - edam:data_0928
         in_subset:
         - quantification
-        see_also:
+        keywords:
         - transcript expression
         - splicing
       transcribed region quantifications:
         description: Quantifications over transcribed genomic regions.
-        meaning: edam:data_0928
         in_subset:
         - quantification
+        exact_mappings:
+        - edam:data_0928
       transcription segment quantifications:
         description: Quantifications over discrete transcription segments.
-        meaning: edam:data_0928
         in_subset:
         - quantification
+        exact_mappings:
+        - edam:data_0928
       UV enriched segment quantifications:
         description: Quantifications from UV-crosslinking enriched RNA segments.
-        meaning: edam:data_0928
         in_subset:
         - quantification
 
       # ─── deep_learning ────────────────────────────────────────────────────
+        exact_mappings:
+        - edam:data_0928
       bias models:
         description: Trained models capturing sequencing bias patterns based on sequence composition.
         in_subset:
@@ -565,7 +699,8 @@ enums:
         - deep_learning
       motif model:
         description: Sequence motif model (e.g., convolutional filter weights) from deep learning or motif discovery.
-        meaning: edam:data_0859
+        close_mappings:
+        - edam:data_0859
         in_subset:
         - deep_learning
       profile sequence contribution scores:
@@ -616,57 +751,75 @@ enums:
       # ─── replication_timing ───────────────────────────────────────────────
       fine-mapped variants:
         description: Variants identified as likely causal through statistical fine-mapping within associated loci.
-        meaning: edam:data_0918
         in_subset:
         - variant
+        exact_mappings:
+        - edam:data_0918
       variant functional prediction:
         description: Computational predictions of variant functional impact.
-        meaning: edam:data_0918
         in_subset:
         - variant
+        exact_mappings:
+        - edam:data_0918
       chromosome sizes:
         description: File listing chromosome/contig names and lengths, required by many genomics tools.
-        meaning: edam:data_0919
+        broad_mappings:
+        - edam:data_0919
         in_subset:
         - reference
       chromosomes reference:
         description: Reference sequences for individual chromosomes.
-        meaning: edam:data_2977
+        annotations:
+          element_type: SO:0000340
+          element_type_fit: broad
         in_subset:
         - reference
+        exact_mappings:
+        - edam:data_2977
       elements reference:
         description: Reference set of annotated genomic elements.
         in_subset:
         - reference
       genome index:
         description: Precomputed index enabling rapid sequence alignment to a reference genome.
-        meaning: edam:data_3210
+        exact_mappings:
+        - edam:data_3210
         in_subset:
         - reference
       genome reference:
         description: Reference genome sequence assembly used for alignment and annotation.
-        meaning: edam:data_2977
+        broad_mappings:
+        - edam:data_2977
         in_subset:
         - reference
       miRNA reference:
         description: Reference sequences and annotations for microRNAs.
+        annotations:
+          element_type: SO:0000276
+          element_type_fit: broad
         in_subset:
         - reference
       mitochondrial genome index:
         description: Alignment index for the mitochondrial genome.
-        meaning: edam:data_3210
+        broad_mappings:
+        - edam:data_3210
         in_subset:
         - reference
       mitochondrial genome reference:
         description: Reference sequence for the mitochondrial genome.
-        meaning: edam:data_2977
+        annotations:
+          element_type: SO:0000737
+          element_type_fit: approximate
+        broad_mappings:
+        - edam:data_2977
         in_subset:
         - reference
       motif clusters reference:
         description: Reference set of clustered sequence motifs.
-        meaning: edam:data_1353
         in_subset:
         - reference
+        exact_mappings:
+        - edam:data_1353
       phastcons score reference:
         description: Reference phastCons conservation scores across the genome.
         in_subset:
@@ -677,28 +830,42 @@ enums:
         - reference
       repeats reference:
         description: Reference annotations of repetitive elements.
+        annotations:
+          element_type: SO:0000657
+          element_type_fit: broad
         in_subset:
         - reference
       rRNA reference:
         description: Reference sequences for ribosomal RNA.
+        annotations:
+          element_type: SO:0000252
+          element_type_fit: broad
         in_subset:
         - reference
       snRNA reference:
         description: Reference sequences for small nuclear RNA.
+        annotations:
+          element_type: SO:0000274
+          element_type_fit: broad
         in_subset:
         - reference
       transcriptome index:
         description: Index for rapid alignment to transcriptome reference sequences.
-        meaning: edam:data_3210
+        broad_mappings:
+        - edam:data_3210
         in_subset:
         - reference
       transcriptome reference:
         description: Reference transcript sequences for a species, used for RNA-seq alignment.
-        meaning: edam:data_2977
+        broad_mappings:
+        - edam:data_2977
         in_subset:
         - reference
       tRNA reference:
         description: Reference sequences for transfer RNA.
+        annotations:
+          element_type: SO:0000253
+          element_type_fit: broad
         in_subset:
         - reference
 
@@ -771,6 +938,9 @@ enums:
         - technical
       index reads:
         description: Index read sequences for sample demultiplexing.
+        annotations:
+          element_type: SO:0002023
+          element_type_fit: approximate
         in_subset:
         - technical
       intensity values:
@@ -803,10 +973,16 @@ enums:
         - technical
       primer sequence:
         description: Oligonucleotide primer sequences used in PCR or sequencing.
+        annotations:
+          element_type: SO:0000112
+          element_type_fit: exact
         in_subset:
         - technical
       R2C2 subreads:
         description: Rolling circle amplification sub-reads from R2C2 long-read sequencing.
+        annotations:
+          element_type: SO:0000150
+          element_type_fit: broad
         in_subset:
         - technical
       raw data:
@@ -819,10 +995,17 @@ enums:
         - technical
       sequence adapters:
         description: Adapter sequences ligated to library fragments for sequencing platform compatibility.
+        annotations:
+          element_type_fit: not_applicable
+        related_mappings:
+        - SO:0000150
         in_subset:
         - technical
       sequence barcodes:
         description: Short DNA sequences labeling samples (multiplexing) or individual cells (single-cell).
+        annotations:
+          element_type: SO:0002023
+          element_type_fit: approximate
         in_subset:
         - technical
       spike-ins:
@@ -831,6 +1014,9 @@ enums:
         - technical
       subreads:
         description: Sub-read data from long-read sequencing platforms (PacBio).
+        annotations:
+          element_type: SO:0000150
+          element_type_fit: broad
         in_subset:
         - technical
       validation:
@@ -847,9 +1033,10 @@ enums:
         - quantification
       sparse splice junction count matrix:
         description: Sparse count matrix of splice junctions.
-        meaning: edam:data_3917
         in_subset:
         - count_matrix
+        exact_mappings:
+        - edam:data_3917
       signals matrix:
         description: Matrix of signal values across features and samples.
         in_subset:
@@ -877,21 +1064,27 @@ enums:
       footprints:
         description: Short protected regions within open chromatin indicating transcription factor occupancy, identified
           as local signal minima within peaks.
+        annotations:
+          element_type: SO:0000235
+          element_type_fit: approximate
         in_subset:
         - chromatin_accessibility
         see_also:
-        - DHS peaks
-        - nuclease cleavage frequency
+        - onga:DHS_peaks
+        - onga:nuclease_cleavage_frequency
       open chromatin regions:
         description: Genomic regions of accessible chromatin from ATAC-seq, DNase-seq, or similar assays.
+        annotations:
+          element_type: SO:0001747
+          element_type_fit: exact
         in_subset:
         - chromatin_accessibility
 
       # ─── contact_matrix ───────────────────────────────────────────────────
         see_also:
-        - peaks
-        - DHS peaks
-        - hotspots
+        - onga:peaks
+        - onga:DHS_peaks
+        - onga:hotspots
       chromatin stripes:
         description: Elongated features in contact matrices extending from loop anchors, indicating active loop 
           extrusion.
@@ -900,16 +1093,19 @@ enums:
       contact domains:
         description: Topologically associating domains (TADs) from contact matrix analysis, representing 
           self-interacting chromatin regions.
+        annotations:
+          element_type: SO:0002304
+          element_type_fit: exact
         in_subset:
         - contact_matrix
         see_also:
-        - contact matrix
+        - onga:contact_matrix
       genome compartments:
         description: Large-scale A (active) and B (inactive) chromatin compartments from PCA of Hi-C contact matrices.
         in_subset:
         - contact_matrix
         see_also:
-        - contact matrix
+        - onga:contact_matrix
       genome subcompartments:
         description: Fine-grained chromatin compartments (A1, A2, B1, B2, B3, B4) within major A/B compartments.
         in_subset:
@@ -917,12 +1113,18 @@ enums:
       loops:
         description: Chromatin loop interactions (point-to-point contacts) from contact matrices, often connecting 
           enhancers to promoters.
+        annotations:
+          element_type: SO:0002307
+          element_type_fit: exact
         in_subset:
         - contact_matrix
         see_also:
-        - contact matrix
+        - onga:contact_matrix
       nested contact domains:
         description: Hierarchically nested topological domains showing multi-scale chromatin organization.
+        annotations:
+          element_type: SO:0002304
+          element_type_fit: broad
         in_subset:
         - contact_matrix
       CpG sites coverage:
@@ -931,25 +1133,47 @@ enums:
         - dna_methylation
       methylated reads:
         description: Reads containing DNA methylation marks from bisulfite or direct detection methods.
+        annotations:
+          element_type_fit: not_applicable
+        related_mappings:
+        - SO:0000306
         in_subset:
         - dna_methylation
       methylation state at CHG:
         description: DNA methylation status at CHG sequence context (H = A, C, or T), common in plant genomes.
+        annotations:
+          element_type: SO:0000114
+          element_type_fit: broad
+        broad_mappings:
+        - edam:topic_3295
         in_subset:
         - dna_methylation
       methylation state at CHH:
         description: DNA methylation status at CHH sequence context, representing asymmetric non-CpG methylation.
+        annotations:
+          element_type: SO:0000114
+          element_type_fit: broad
+        broad_mappings:
+        - edam:topic_3295
         in_subset:
         - dna_methylation
       methylation state at CpG:
         description: DNA methylation status (methylated/unmethylated fraction) at CpG dinucleotides, the primary context
           for mammalian methylation.
+        annotations:
+          element_type: SO:0000114
+          element_type_fit: broad
+        broad_mappings:
+        - edam:topic_3295
         in_subset:
         - dna_methylation
         see_also:
-        - methylated reads
+        - onga:methylated_reads
       smoothed methylation state at CpG:
         description: CpG methylation values smoothed across neighboring sites to reduce noise.
+        annotations:
+          element_type: SO:0000114
+          element_type_fit: broad
         in_subset:
         - dna_methylation
 
@@ -957,20 +1181,39 @@ enums:
       candidate Cis-Regulatory Elements:
         description: Computationally predicted cis-regulatory elements (CREs) including enhancers, promoters, and 
           insulators from chromatin accessibility and histone data.
+        annotations:
+          element_type: SO:0001055
+          element_type_fit: broad
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - regulatory_element
       candidate enhancers:
         description: Computationally predicted enhancer elements based on chromatin signatures (H3K4me1, H3K27ac, 
           accessibility).
+        annotations:
+          element_type: SO:0000165
+          element_type_fit: broad
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - regulatory_element
       candidate promoters:
         description: Computationally predicted promoter elements based on chromatin signatures and TSS proximity.
+        annotations:
+          element_type: SO:0000167
+          element_type_fit: broad
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - regulatory_element
       curated binding sites:
         description: Manually curated and validated transcription factor binding sites.
-        meaning: edam:data_3125
+        annotations:
+          element_type: SO:0000235
+          element_type_fit: broad
+        broad_mappings:
+        - edam:data_3125
         in_subset:
         - regulatory_element
       enhancer validation:
@@ -979,47 +1222,78 @@ enums:
         - regulatory_element
       enhancers reference:
         description: Reference set of annotated enhancer elements.
+        annotations:
+          element_type: SO:0000165
+          element_type_fit: broad
         in_subset:
         - regulatory_element
       polyA sites:
         description: Polyadenylation signal sites where pre-mRNA is cleaved and polyadenylated.
+        annotations:
+          element_type: SO:0000553
+          element_type_fit: exact
         in_subset:
         - regulatory_element
       predicted enhancers:
         description: Computationally predicted enhancer elements.
+        annotations:
+          element_type: SO:0000165
+          element_type_fit: broad
         in_subset:
         - regulatory_element
       promoters reference:
         description: Reference set of annotated promoter elements.
+        annotations:
+          element_type: SO:0000167
+          element_type_fit: broad
         in_subset:
         - regulatory_element
       regulatory elements:
         description: 'General annotation of regulatory elements: enhancers, promoters, silencers, and insulators.'
+        annotations:
+          element_type: SO:0000165|SO:0000167|SO:0000625|SO:0000627
+          element_type_fit: exact
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - regulatory_element
       transcription start sites:
         description: Experimentally determined transcription start sites (TSS) from CAGE, PRO-seq, or similar assays.
+        annotations:
+          element_type: SO:0000315
+          element_type_fit: exact
+        broad_mappings:
+        - edam:data_3002
         in_subset:
         - regulatory_element
         see_also:
-        - peaks
-        - bidirectional peaks
+        - onga:peaks
+        - onga:bidirectional_peaks
       TSS reference:
         description: Reference set of transcription start sites.
+        annotations:
+          element_type: SO:0000315
+          element_type_fit: broad
         in_subset:
         - regulatory_element
 
       # ─── element_gene_linkage ─────────────────────────────────────────────
       element gene interactions p-value:
         description: Statistical significance of element-gene interaction associations.
+        annotations:
+          element_type_fit: not_applicable  # Rows are statistics about edges, not features
         in_subset:
         - element_gene_linkage
       element gene interactions signal:
         description: Signal strength of element-gene interaction associations.
+        annotations:
+          element_type_fit: not_applicable  # Rows are statistics about edges, not features
         in_subset:
         - element_gene_linkage
       element gene links:
         description: Associations linking regulatory elements (commonly enhancers) to their putative target genes.
+        annotations:
+          element_type_fit: not_applicable  # Rows are PAIRS (edges) between an element and a gene, not features; see TrackGeometry.has_edges
         in_subset:
         - element_gene_linkage
         aliases:
@@ -1042,55 +1316,98 @@ enums:
       # ─── variant ──────────────────────────────────────────────────────────
       allele-specific variants:
         description: Variants showing allele-specific behavior in expression or chromatin accessibility.
-        meaning: edam:data_0918
+        annotations:
+          element_type: SO:0001060
+          element_type_fit: broad
+        broad_mappings:
+        - edam:data_0918
         in_subset:
         - variant
       copy number variation:
         description: Genomic regions with altered copy numbers (deletions, duplications) relative to reference.
+        annotations:
+          element_type: SO:0001019
+          element_type_fit: exact
         in_subset:
         - variant
       curated SNVs:
         description: Manually curated and validated single nucleotide variants.
-        meaning: edam:data_0918
+        annotations:
+          element_type: SO:0001483
+          element_type_fit: broad
         in_subset:
         - variant
+        exact_mappings:
+        - edam:data_0918
       dsQTLs:
         description: 'DNase I sensitivity quantitative trait loci: variants associated with chromatin accessibility.'
-        meaning: edam:data_1860
+        annotations:
+          element_type: SO:0000771
+          element_type_fit: broad
+        broad_mappings:
+        - edam:data_1860
         in_subset:
         - variant
       eQTLs:
         description: 'Expression quantitative trait loci: variants statistically associated with gene expression levels.'
-        meaning: edam:data_1860
+        annotations:
+          element_type: SO:0000771
+          element_type_fit: broad
+        broad_mappings:
+        - edam:data_1860
         in_subset:
         - variant
       maternal variant calls:
         description: Variants called specifically from the maternal haplotype.
-        meaning: edam:data_0918
+        annotations:
+          element_type: SO:0001775
+          element_type_fit: approximate
         in_subset:
         - variant
+        exact_mappings:
+        - edam:data_0918
       paternal variant calls:
         description: Variants called specifically from the paternal haplotype.
-        meaning: edam:data_0918
+        annotations:
+          element_type: SO:0001776
+          element_type_fit: approximate
         in_subset:
         - variant
+        exact_mappings:
+        - edam:data_0918
       reference variants:
         description: Variants relative to a reference genome.
-        meaning: edam:data_0918
+        annotations:
+          element_type: SO:0001060
+          element_type_fit: broad
         in_subset:
         - variant
+        exact_mappings:
+        - edam:data_0918
       variant calls:
         description: Called genomic variants (SNPs, indels, structural variants) in VCF format.
-        meaning: edam:data_0918
+        annotations:
+          element_type: SO:0001060
+          element_type_fit: approximate
+        close_mappings:
+        - edam:data_0918
         in_subset:
         - variant
       variant effect quantifications:
         description: Quantitative measurements of variant functional effects.
-        meaning: edam:data_0918
+        annotations:
+          element_type_fit: not_applicable
+        related_mappings:
+        - SO:0001536
         in_subset:
         - variant
+        exact_mappings:
+        - edam:data_0918
       variant reference:
         description: Reference database or set of known genomic variants.
+        annotations:
+          element_type: SO:0001060
+          element_type_fit: broad
         in_subset:
         - variant
 
@@ -1098,28 +1415,47 @@ enums:
       PWMs:
         description: Position weight matrices representing sequence motif models, encoding nucleotide preferences at 
           each position.
-        meaning: edam:data_1362
+        annotations:
+          element_type_fit: not_applicable
+        exact_mappings:
+        - edam:data_1362
+        related_mappings:
+        - SO:0001683
         in_subset:
         - sequence_motif
       sequence motifs:
         description: Sequence patterns enriched in genomic regions of interest.
-        meaning: edam:data_1353
+        annotations:
+          element_type: SO:0001683
+          element_type_fit: exact
+        exact_mappings:
+        - edam:data_1353
         in_subset:
         - sequence_motif
       sequence motifs instances:
         description: Genomic locations where specific sequence motifs occur.
-        meaning: edam:data_1353
+        annotations:
+          element_type: SO:0000714
+          element_type_fit: approximate
+        close_mappings:
+        - edam:data_1353
         in_subset:
         - sequence_motif
       sequence motifs report:
         description: Summary report of motif discovery or enrichment analysis.
-        meaning: edam:data_2762
+        annotations:
+          element_type_fit: not_applicable  # Rows are report entries, not located features
+        close_mappings:
+        - edam:data_2762
         in_subset:
         - sequence_motif
 
       # ─── annotation ───────────────────────────────────────────────────────
       functional conservation mapping:
         description: Mapping of functionally conserved regions across species.
+        annotations:
+          element_type: SO:0000330
+          element_type_fit: approximate
         in_subset:
         - annotation
       functional conservation quantifications:
@@ -1128,29 +1464,50 @@ enums:
         - annotation
       miRNA annotations:
         description: Annotation tracks for microRNA genes and precursors.
+        annotations:
+          element_type: SO:0000276
+          element_type_fit: broad
         in_subset:
         - annotation
       repeat elements annotation:
         description: Annotation of repetitive element locations and classes.
+        annotations:
+          element_type: SO:0000657
+          element_type_fit: broad
         in_subset:
         - annotation
       restriction enzyme site locations:
         description: Genomic positions of restriction enzyme recognition sites.
-        meaning: edam:data_3125
+        annotations:
+          element_type: SO:0001687
+          element_type_fit: approximate
+        close_mappings:
+        - edam:data_3125
         in_subset:
         - annotation
       RNA-binding protein associated mRNAs:
         description: mRNAs co-immunoprecipitated with RNA-binding proteins.
+        annotations:
+          element_type: SO:0000279
+          element_type_fit: approximate
         in_subset:
         - annotation
       splice junctions:
         description: Splice site junctions identified from RNA-seq alignments.
+        annotations:
+          element_type: SO:0001421
+          element_type_fit: exact
+        broad_mappings:
+        - edam:topic_3320
         in_subset:
         - annotation
         see_also:
-        - transcriptome alignments
+        - onga:transcriptome_alignments
       transcribed fragments:
         description: Genomic regions identified as transcribed from RNA-seq data.
+        annotations:
+          element_type: SO:0001418
+          element_type_fit: exact
         in_subset:
         - annotation
       transcriptome annotations:
@@ -1169,27 +1526,39 @@ enums:
       # ─── single_cell ──────────────────────────────────────────────────────
       cell type annotations:
         description: Cell type labels assigned to individual cells based on marker genes or reference mapping.
+        annotations:
+          element_type_fit: not_applicable  # Rows are cell labels; cell type is delegated to CL (SO-REJ-001)
         in_subset:
         - single_cell
         see_also:
-        - clusters
+        - onga:clusters
       cell type data:
         description: Data associated with cell type identity in single-cell experiments.
+        annotations:
+          element_type_fit: not_applicable  # Rows are per-cell values; cell type is delegated to CL (SO-REJ-001)
         in_subset:
         - single_cell
       3D structure:
         description: Three-dimensional structural model of a genomic region or chromatin domain.
-        meaning: edam:data_0883
+        annotations:
+          element_type_fit: not_applicable  # Rows are structural model coordinates, not sequence features
+        close_mappings:
+        - edam:data_0883
         in_subset:
         - structure
       contigs:
         description: Assembled sequence contigs from genome assembly.
-        meaning: edam:data_0925
+        annotations:
+          element_type: SO:0000149
+          element_type_fit: exact
+        broad_mappings:
+        - edam:data_0925
         in_subset:
         - structure
       personalized genome assembly:
         description: Genome assembly incorporating an individual's sequence variation.
-        meaning: edam:data_0925
+        broad_mappings:
+        - edam:data_0925
         in_subset:
         - structure
       predicted 3D structural ensembles:
@@ -1200,48 +1569,85 @@ enums:
       # ─── haplotype ────────────────────────────────────────────────────────
       maternal haplotype mapping:
         description: Sequence reads or contigs assigned to the maternal haplotype.
+        annotations:
+          element_type_fit: not_applicable
+        related_mappings:
+        - SO:0001024
         in_subset:
         - haplotype
       paternal haplotype mapping:
         description: Sequence reads or contigs assigned to the paternal haplotype.
+        annotations:
+          element_type_fit: not_applicable
+        related_mappings:
+        - SO:0001024
         in_subset:
         - haplotype
       Nm methylation state:
         description: 2′-O-methylation (Nm) modification.
+        annotations:
+          element_type: SO:0000250
+          element_type_fit: broad
         in_subset:
         - rna_modification
       SNPs:
         description: Single nucleotide polymorphisms.
-        meaning: edam:data_0918
+        annotations:
+          element_type: SO:0000694
+          element_type_fit: exact
+        exact_mappings:
+        - edam:data_0918
         in_subset:
         - variant
       indels:
         description: Insertion/deletion variants.
-        meaning: edam:data_0918
+        annotations:
+          element_type: SO:1000032
+          element_type_fit: approximate
         in_subset:
         - variant
+        exact_mappings:
+        - edam:data_0918
       inosine methylation state:
         description: Inosine (A-to-I editing) modification.
+        annotations:
+          element_type: SO:0001274
+          element_type_fit: approximate
         in_subset:
         - rna_modification
       m5C methylation state:
         description: 5-methylcytosine (m5C) RNA modification.
+        annotations:
+          element_type: SO:0001282
+          element_type_fit: approximate
         in_subset:
         - rna_modification
       m6A methylation state:
         description: N6-methyladenosine (m6A) modification on transcripts. m6A is the most abundant internal mRNA 
           modification.
+        annotations:
+          element_type: SO:0001297
+          element_type_fit: exact
         in_subset:
         - rna_modification
       pseudouridine methylation state:
         description: Pseudouridine (Ψ) modification. Pseudouridine is the most abundant RNA modification.
+        annotations:
+          element_type: SO:0001229
+          element_type_fit: approximate
         in_subset:
         - rna_modification
       links:
         description: Generic regulatory links associating genomic elements with target features.
+        annotations:
+          element_type_fit: not_applicable  # Rows are PAIRS (edges), not features; see TrackGeometry.has_edges
         in_subset:
         - element_gene_linkage
       mapping:
         description: Sequence reads or contigs assigned to a haplotype.
+        annotations:
+          element_type_fit: not_applicable
+        related_mappings:
+        - SO:0001024
         in_subset:
         - haplotype

@@ -21,6 +21,16 @@
       "vocabCount": 75
     },
     {
+      "id": "element_type",
+      "slug": "element_type",
+      "name": "element_type",
+      "description": "The Sequence Ontology class(es) that the individual rows/records of this track instantiate. One value = a homogeneous set; several values = a mixed set (rows may be instances of any listed class); absent = the rows are not SO-typeable features (signal values, matrices, models, edges). This is a CONTENT facet — it answers *what the rows are* — so it lives on TrackInterpretation, not TrackProvenance (design principle #4). It is the slot form of the `onga:has_element_type` relation: an ONGA term denotes a SET of elements, an SO class denotes the element type, and ONGA never asserts equivalence between them (design principle #7).",
+      "range": "uriorcurie",
+      "required": false,
+      "vocabHref": null,
+      "vocabCount": null
+    },
+    {
       "id": "strand",
       "slug": "strand",
       "name": "strand",

@@ -8,6 +8,31 @@
     "categorySlug": "chromatin_accessibility",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "approximate",
+      "classes": [
+        {
+          "id": "SO:0000235",
+          "label": "TF_binding_site",
+          "url": "http://purl.obolibrary.org/obo/SO_0000235"
+        }
+      ]
+    },
+    "elementTypeFit": "approximate",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000235",
+        "soLabel": "TF_binding_site",
+        "fit": "approximate",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Nuclease footprint marks an inferred TF binding site; SO has no footprint term",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000235"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [
       "DHS peaks",
       "nuclease cleavage frequency"
@@ -23,6 +48,31 @@
     "categorySlug": "chromatin_accessibility",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "exact",
+      "classes": [
+        {
+          "id": "SO:0001747",
+          "label": "open_chromatin_region",
+          "url": "http://purl.obolibrary.org/obo/SO_0001747"
+        }
+      ]
+    },
+    "elementTypeFit": "exact",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001747",
+        "soLabel": "open_chromatin_region",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Direct match",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001747"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [
       "peaks",
       "DHS peaks",
@@ -39,6 +89,10 @@
     "categorySlug": "contact_matrix",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -51,6 +105,31 @@
     "categorySlug": "contact_matrix",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "exact",
+      "classes": [
+        {
+          "id": "SO:0002304",
+          "label": "topologically_associated_domain",
+          "url": "http://purl.obolibrary.org/obo/SO_0002304"
+        }
+      ]
+    },
+    "elementTypeFit": "exact",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0002304",
+        "soLabel": "topologically_associated_domain",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "ONGA definition is TADs verbatim",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0002304"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [
       "contact matrix"
     ],
@@ -65,6 +144,10 @@
     "categorySlug": "contact_matrix",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [
       "contact matrix"
     ],
@@ -79,6 +162,10 @@
     "categorySlug": "contact_matrix",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -91,6 +178,31 @@
     "categorySlug": "contact_matrix",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "exact",
+      "classes": [
+        {
+          "id": "SO:0002307",
+          "label": "DNA_loop",
+          "url": "http://purl.obolibrary.org/obo/SO_0002307"
+        }
+      ]
+    },
+    "elementTypeFit": "exact",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0002307",
+        "soLabel": "DNA_loop",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Chromatin loop. NOTE: SO:0002254 'loop' is an RNA stem-loop, a lexical false friend",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0002307"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [
       "contact matrix"
     ],
@@ -105,6 +217,31 @@
     "categorySlug": "contact_matrix",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0002304",
+          "label": "topologically_associated_domain",
+          "url": "http://purl.obolibrary.org/obo/SO_0002304"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0002304",
+        "soLabel": "topologically_associated_domain",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Hierarchical nesting is not modeled in SO",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0002304"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -117,6 +254,10 @@
     "categorySlug": "dna_methylation",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -129,6 +270,26 @@
     "categorySlug": "dna_methylation",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [
+      {
+        "predicate": "skos:relatedMatch",
+        "predicateShort": "relatedMatch",
+        "soId": "SO:0000306",
+        "soLabel": "methylated_DNA_base_feature",
+        "fit": "",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Rows are reads CARRYING the base modification, not the base feature itself",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000306"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "relatedMatch",
+      "id": "SO:0000306",
+      "url": "http://purl.obolibrary.org/obo/SO_0000306"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -145,6 +306,35 @@
       "edamId": "edam:topic_3295",
       "edamLabel": "Epigenetics",
       "comment": "EDAM has topic; lacks CHG methylation data type"
+    },
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000114",
+          "label": "methylated_cytosine",
+          "url": "http://purl.obolibrary.org/obo/SO_0000114"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000114",
+        "soLabel": "methylated_cytosine",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "SO has no CHG-context term",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000114"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:topic_3295",
+      "url": "http://edamontology.org/topic_3295"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -163,6 +353,35 @@
       "edamLabel": "Epigenetics",
       "comment": "EDAM has topic; lacks CHH methylation data type"
     },
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000114",
+          "label": "methylated_cytosine",
+          "url": "http://purl.obolibrary.org/obo/SO_0000114"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000114",
+        "soLabel": "methylated_cytosine",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "SO has no CHH-context term",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000114"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:topic_3295",
+      "url": "http://edamontology.org/topic_3295"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -180,6 +399,35 @@
       "edamLabel": "Epigenetics",
       "comment": "EDAM has topic; lacks CpG methylation data type"
     },
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000114",
+          "label": "methylated_cytosine",
+          "url": "http://purl.obolibrary.org/obo/SO_0000114"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000114",
+        "soLabel": "methylated_cytosine",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "SO has no sequence-context-specific methylation terms",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000114"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:topic_3295",
+      "url": "http://edamontology.org/topic_3295"
+    },
     "seeAlso": [
       "methylated reads"
     ],
@@ -194,6 +442,31 @@
     "categorySlug": "dna_methylation",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000114",
+          "label": "methylated_cytosine",
+          "url": "http://purl.obolibrary.org/obo/SO_0000114"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000114",
+        "soLabel": "methylated_cytosine",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Smoothing is provenance; content is CpG methylation",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000114"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -205,7 +478,41 @@
     "category": "regulatory_element",
     "categorySlug": "regulatory_element",
     "vocabType": "feature",
-    "edamMapping": null,
+    "edamMapping": {
+      "predicate": "broadMatch",
+      "edamId": "edam:data_3002",
+      "edamLabel": "",
+      "comment": "From LinkML schema"
+    },
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0001055",
+          "label": "transcriptional_cis_regulatory_region",
+          "url": "http://purl.obolibrary.org/obo/SO_0001055"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001055",
+        "soLabel": "transcriptional_cis_regulatory_region",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "cCREs mix enhancers/promoters/insulators; SO:0001055 is the correct common ancestor and 'candidate' is an ONGA derivation facet",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001055"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:data_3002",
+      "url": "http://edamontology.org/data_3002"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -222,6 +529,35 @@
       "edamId": "edam:data_3002",
       "edamLabel": "Annotation track",
       "comment": "EDAM lacks enhancer data type"
+    },
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000165",
+          "label": "enhancer",
+          "url": "http://purl.obolibrary.org/obo/SO_0000165"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000165",
+        "soLabel": "enhancer",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "'candidate' is a derivation facet, not a distinct SO class",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000165"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:data_3002",
+      "url": "http://edamontology.org/data_3002"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -240,6 +576,35 @@
       "edamLabel": "Annotation track",
       "comment": "EDAM lacks promoter data type"
     },
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000167",
+          "label": "promoter",
+          "url": "http://purl.obolibrary.org/obo/SO_0000167"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000167",
+        "soLabel": "promoter",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "'candidate' is a derivation facet",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000167"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:data_3002",
+      "url": "http://edamontology.org/data_3002"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -252,10 +617,39 @@
     "categorySlug": "regulatory_element",
     "vocabType": "feature",
     "edamMapping": {
-      "predicate": "exactMatch",
+      "predicate": "broadMatch",
       "edamId": "edam:data_3125",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "DNA binding sites",
+      "comment": "EDAM lacks curated binding site concept"
+    },
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000235",
+          "label": "TF_binding_site",
+          "url": "http://purl.obolibrary.org/obo/SO_0000235"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000235",
+        "soLabel": "TF_binding_site",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Curation is provenance; content is a TF binding site",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000235"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:data_3125",
+      "url": "http://edamontology.org/data_3125"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -269,6 +663,10 @@
     "categorySlug": "regulatory_element",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -281,6 +679,31 @@
     "categorySlug": "regulatory_element",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000165",
+          "label": "enhancer",
+          "url": "http://purl.obolibrary.org/obo/SO_0000165"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000165",
+        "soLabel": "enhancer",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Reference set of enhancers",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000165"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -293,6 +716,31 @@
     "categorySlug": "regulatory_element",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "exact",
+      "classes": [
+        {
+          "id": "SO:0000553",
+          "label": "polyA_site",
+          "url": "http://purl.obolibrary.org/obo/SO_0000553"
+        }
+      ]
+    },
+    "elementTypeFit": "exact",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000553",
+        "soLabel": "polyA_site",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Direct match",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000553"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -305,6 +753,31 @@
     "categorySlug": "regulatory_element",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000165",
+          "label": "enhancer",
+          "url": "http://purl.obolibrary.org/obo/SO_0000165"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000165",
+        "soLabel": "enhancer",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "'predicted' is a derivation facet",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000165"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -317,6 +790,31 @@
     "categorySlug": "regulatory_element",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000167",
+          "label": "promoter",
+          "url": "http://purl.obolibrary.org/obo/SO_0000167"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000167",
+        "soLabel": "promoter",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Reference set of promoters",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000167"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -333,6 +831,83 @@
       "edamId": "edam:data_3002",
       "edamLabel": "Annotation track",
       "comment": "EDAM lacks regulatory element data type"
+    },
+    "elementType": {
+      "fit": "exact",
+      "classes": [
+        {
+          "id": "SO:0000165",
+          "label": "enhancer",
+          "url": "http://purl.obolibrary.org/obo/SO_0000165"
+        },
+        {
+          "id": "SO:0000167",
+          "label": "promoter",
+          "url": "http://purl.obolibrary.org/obo/SO_0000167"
+        },
+        {
+          "id": "SO:0000625",
+          "label": "silencer",
+          "url": "http://purl.obolibrary.org/obo/SO_0000625"
+        },
+        {
+          "id": "SO:0000627",
+          "label": "insulator",
+          "url": "http://purl.obolibrary.org/obo/SO_0000627"
+        }
+      ]
+    },
+    "elementTypeFit": "exact",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000165",
+        "soLabel": "enhancer",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Mixed set; the ONGA definition enumerates enhancers, promoters, silencers, insulators",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000165"
+      },
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000167",
+        "soLabel": "promoter",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Mixed set; see the enhancer row",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000167"
+      },
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000625",
+        "soLabel": "silencer",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Mixed set; see the enhancer row",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000625"
+      },
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000627",
+        "soLabel": "insulator",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Mixed set; see the enhancer row",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000627"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:data_3002",
+      "url": "http://edamontology.org/data_3002"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -351,6 +926,35 @@
       "edamLabel": "Annotation track",
       "comment": "EDAM lacks TSS data type"
     },
+    "elementType": {
+      "fit": "exact",
+      "classes": [
+        {
+          "id": "SO:0000315",
+          "label": "TSS",
+          "url": "http://purl.obolibrary.org/obo/SO_0000315"
+        }
+      ]
+    },
+    "elementTypeFit": "exact",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000315",
+        "soLabel": "TSS",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Direct match",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000315"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:data_3002",
+      "url": "http://edamontology.org/data_3002"
+    },
     "seeAlso": [
       "peaks",
       "bidirectional peaks"
@@ -366,6 +970,31 @@
     "categorySlug": "regulatory_element",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000315",
+          "label": "TSS",
+          "url": "http://purl.obolibrary.org/obo/SO_0000315"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000315",
+        "soLabel": "TSS",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Reference set of TSSs",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000315"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -378,6 +1007,10 @@
     "categorySlug": "element_gene_linkage",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -390,6 +1023,10 @@
     "categorySlug": "element_gene_linkage",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -402,6 +1039,10 @@
     "categorySlug": "element_gene_linkage",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -414,6 +1055,10 @@
     "categorySlug": "element_gene_linkage",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -426,6 +1071,10 @@
     "categorySlug": "replication_timing",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -438,6 +1087,10 @@
     "categorySlug": "replication_timing",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -450,10 +1103,39 @@
     "categorySlug": "variant",
     "vocabType": "feature",
     "edamMapping": {
-      "predicate": "exactMatch",
+      "predicate": "broadMatch",
       "edamId": "edam:data_0918",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "DNA variation",
+      "comment": "EDAM lacks allele-specific variant type"
+    },
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0001060",
+          "label": "sequence_variant",
+          "url": "http://purl.obolibrary.org/obo/SO_0001060"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001060",
+        "soLabel": "sequence_variant",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Allele-specificity is an interpretation facet, not an SO class",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001060"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:data_0918",
+      "url": "http://edamontology.org/data_0918"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -467,6 +1149,31 @@
     "categorySlug": "variant",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "exact",
+      "classes": [
+        {
+          "id": "SO:0001019",
+          "label": "copy_number_variation",
+          "url": "http://purl.obolibrary.org/obo/SO_0001019"
+        }
+      ]
+    },
+    "elementTypeFit": "exact",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001019",
+        "soLabel": "copy_number_variation",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Direct match",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001019"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -484,6 +1191,35 @@
       "edamLabel": "",
       "comment": "From LinkML schema"
     },
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0001483",
+          "label": "SNV",
+          "url": "http://purl.obolibrary.org/obo/SO_0001483"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001483",
+        "soLabel": "SNV",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Curation is provenance; content is an SNV",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001483"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:data_0918",
+      "url": "http://edamontology.org/data_0918"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -496,10 +1232,39 @@
     "categorySlug": "variant",
     "vocabType": "feature",
     "edamMapping": {
-      "predicate": "exactMatch",
+      "predicate": "broadMatch",
       "edamId": "edam:data_1860",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "QTL map",
+      "comment": "EDAM lacks dsQTL data type"
+    },
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000771",
+          "label": "QTL",
+          "url": "http://purl.obolibrary.org/obo/SO_0000771"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000771",
+        "soLabel": "QTL",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "SO has no accessibility-specific QTL subtype",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000771"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:data_1860",
+      "url": "http://edamontology.org/data_1860"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -513,10 +1278,39 @@
     "categorySlug": "variant",
     "vocabType": "feature",
     "edamMapping": {
-      "predicate": "exactMatch",
+      "predicate": "broadMatch",
       "edamId": "edam:data_1860",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "QTL map",
+      "comment": "EDAM lacks eQTL-specific data type"
+    },
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000771",
+          "label": "QTL",
+          "url": "http://purl.obolibrary.org/obo/SO_0000771"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000771",
+        "soLabel": "QTL",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "SO has no expression-specific QTL subtype",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000771"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:data_1860",
+      "url": "http://edamontology.org/data_1860"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -535,6 +1329,35 @@
       "edamLabel": "",
       "comment": "From LinkML schema"
     },
+    "elementType": {
+      "fit": "approximate",
+      "classes": [
+        {
+          "id": "SO:0001775",
+          "label": "maternal_variant",
+          "url": "http://purl.obolibrary.org/obo/SO_0001775"
+        }
+      ]
+    },
+    "elementTypeFit": "approximate",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001775",
+        "soLabel": "maternal_variant",
+        "fit": "approximate",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Direct match on parental origin",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001775"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:data_0918",
+      "url": "http://edamontology.org/data_0918"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -551,6 +1374,35 @@
       "edamId": "edam:data_0918",
       "edamLabel": "",
       "comment": "From LinkML schema"
+    },
+    "elementType": {
+      "fit": "approximate",
+      "classes": [
+        {
+          "id": "SO:0001776",
+          "label": "paternal_variant",
+          "url": "http://purl.obolibrary.org/obo/SO_0001776"
+        }
+      ]
+    },
+    "elementTypeFit": "approximate",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001776",
+        "soLabel": "paternal_variant",
+        "fit": "approximate",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Direct match on parental origin",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001776"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:data_0918",
+      "url": "http://edamontology.org/data_0918"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -569,6 +1421,35 @@
       "edamLabel": "",
       "comment": "From LinkML schema"
     },
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0001060",
+          "label": "sequence_variant",
+          "url": "http://purl.obolibrary.org/obo/SO_0001060"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001060",
+        "soLabel": "sequence_variant",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Known-variant reference set",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001060"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:data_0918",
+      "url": "http://edamontology.org/data_0918"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -581,10 +1462,39 @@
     "categorySlug": "variant",
     "vocabType": "feature",
     "edamMapping": {
-      "predicate": "exactMatch",
+      "predicate": "closeMatch",
       "edamId": "edam:data_0918",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "DNA variation",
+      "comment": "Close match: called genomic variants"
+    },
+    "elementType": {
+      "fit": "approximate",
+      "classes": [
+        {
+          "id": "SO:0001060",
+          "label": "sequence_variant",
+          "url": "http://purl.obolibrary.org/obo/SO_0001060"
+        }
+      ]
+    },
+    "elementTypeFit": "approximate",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001060",
+        "soLabel": "sequence_variant",
+        "fit": "approximate",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Generic called variants",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001060"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "closeMatch",
+      "id": "edam:data_0918",
+      "url": "http://edamontology.org/data_0918"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -603,6 +1513,26 @@
       "edamLabel": "",
       "comment": "From LinkML schema"
     },
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [
+      {
+        "predicate": "skos:relatedMatch",
+        "predicateShort": "relatedMatch",
+        "soId": "SO:0001536",
+        "soLabel": "functional_effect_variant",
+        "fit": "",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Rows are numbers about variants, not variants",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001536"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:data_0918",
+      "url": "http://edamontology.org/data_0918"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -615,6 +1545,31 @@
     "categorySlug": "variant",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0001060",
+          "label": "sequence_variant",
+          "url": "http://purl.obolibrary.org/obo/SO_0001060"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001060",
+        "soLabel": "sequence_variant",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Known-variant reference database",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001060"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -629,8 +1584,28 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_1362",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Position weight matrix",
+      "comment": "Direct match"
+    },
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [
+      {
+        "predicate": "skos:relatedMatch",
+        "predicateShort": "relatedMatch",
+        "soId": "SO:0001683",
+        "soLabel": "sequence_motif",
+        "fit": "",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "A PWM is a MODEL of a motif; SO has no matrix/model term",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001683"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:data_1362",
+      "url": "http://edamontology.org/data_1362"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -646,8 +1621,37 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_1353",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Sequence motif",
+      "comment": "Direct match"
+    },
+    "elementType": {
+      "fit": "exact",
+      "classes": [
+        {
+          "id": "SO:0001683",
+          "label": "sequence_motif",
+          "url": "http://purl.obolibrary.org/obo/SO_0001683"
+        }
+      ]
+    },
+    "elementTypeFit": "exact",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001683",
+        "soLabel": "sequence_motif",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Direct match",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001683"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:data_1353",
+      "url": "http://edamontology.org/data_1353"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -661,10 +1665,39 @@
     "categorySlug": "sequence_motif",
     "vocabType": "feature",
     "edamMapping": {
-      "predicate": "exactMatch",
+      "predicate": "closeMatch",
       "edamId": "edam:data_1353",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Sequence motif",
+      "comment": "Close match: instances of motif occurrences"
+    },
+    "elementType": {
+      "fit": "approximate",
+      "classes": [
+        {
+          "id": "SO:0000714",
+          "label": "nucleotide_motif",
+          "url": "http://purl.obolibrary.org/obo/SO_0000714"
+        }
+      ]
+    },
+    "elementTypeFit": "approximate",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000714",
+        "soLabel": "nucleotide_motif",
+        "fit": "approximate",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Located motif occurrences in nucleotide sequence",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000714"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "closeMatch",
+      "id": "edam:data_1353",
+      "url": "http://edamontology.org/data_1353"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -678,10 +1711,18 @@
     "categorySlug": "sequence_motif",
     "vocabType": "feature",
     "edamMapping": {
-      "predicate": "exactMatch",
+      "predicate": "closeMatch",
       "edamId": "edam:data_2762",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Sequence signature report",
+      "comment": "Close match"
+    },
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [],
+    "externalMapping": {
+      "predicate": "closeMatch",
+      "id": "edam:data_2762",
+      "url": "http://edamontology.org/data_2762"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -695,6 +1736,31 @@
     "categorySlug": "annotation",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "approximate",
+      "classes": [
+        {
+          "id": "SO:0000330",
+          "label": "conserved_region",
+          "url": "http://purl.obolibrary.org/obo/SO_0000330"
+        }
+      ]
+    },
+    "elementTypeFit": "approximate",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000330",
+        "soLabel": "conserved_region",
+        "fit": "approximate",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Conserved regions across species",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000330"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -707,6 +1773,10 @@
     "categorySlug": "annotation",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -719,6 +1789,31 @@
     "categorySlug": "annotation",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000276",
+          "label": "miRNA",
+          "url": "http://purl.obolibrary.org/obo/SO_0000276"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000276",
+        "soLabel": "miRNA",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Annotation of miRNA genes and precursors",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000276"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -731,6 +1826,31 @@
     "categorySlug": "annotation",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000657",
+          "label": "repeat_region",
+          "url": "http://purl.obolibrary.org/obo/SO_0000657"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000657",
+        "soLabel": "repeat_region",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Annotation of repeat regions",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000657"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -743,10 +1863,39 @@
     "categorySlug": "annotation",
     "vocabType": "feature",
     "edamMapping": {
-      "predicate": "exactMatch",
+      "predicate": "closeMatch",
       "edamId": "edam:data_3125",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "DNA binding sites",
+      "comment": "Close match"
+    },
+    "elementType": {
+      "fit": "approximate",
+      "classes": [
+        {
+          "id": "SO:0001687",
+          "label": "restriction_enzyme_recognition_site",
+          "url": "http://purl.obolibrary.org/obo/SO_0001687"
+        }
+      ]
+    },
+    "elementTypeFit": "approximate",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001687",
+        "soLabel": "restriction_enzyme_recognition_site",
+        "fit": "approximate",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Locations of recognition sites",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001687"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "closeMatch",
+      "id": "edam:data_3125",
+      "url": "http://edamontology.org/data_3125"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -760,6 +1909,31 @@
     "categorySlug": "annotation",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "approximate",
+      "classes": [
+        {
+          "id": "SO:0000279",
+          "label": "transcript_bound_by_protein",
+          "url": "http://purl.obolibrary.org/obo/SO_0000279"
+        }
+      ]
+    },
+    "elementTypeFit": "approximate",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000279",
+        "soLabel": "transcript_bound_by_protein",
+        "fit": "approximate",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Transcripts bound by protein",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000279"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -777,6 +1951,35 @@
       "edamLabel": "RNA splicing",
       "comment": "EDAM has topic only; no splice junction data type"
     },
+    "elementType": {
+      "fit": "exact",
+      "classes": [
+        {
+          "id": "SO:0001421",
+          "label": "splice_junction",
+          "url": "http://purl.obolibrary.org/obo/SO_0001421"
+        }
+      ]
+    },
+    "elementTypeFit": "exact",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001421",
+        "soLabel": "splice_junction",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Direct match",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001421"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:topic_3320",
+      "url": "http://edamontology.org/topic_3320"
+    },
     "seeAlso": [
       "transcriptome alignments"
     ],
@@ -791,6 +1994,31 @@
     "categorySlug": "annotation",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "exact",
+      "classes": [
+        {
+          "id": "SO:0001418",
+          "label": "transcribed_fragment",
+          "url": "http://purl.obolibrary.org/obo/SO_0001418"
+        }
+      ]
+    },
+    "elementTypeFit": "exact",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001418",
+        "soLabel": "transcribed_fragment",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Direct match",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001418"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -803,6 +2031,10 @@
     "categorySlug": "annotation",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -815,6 +2047,10 @@
     "categorySlug": "annotation",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -827,6 +2063,10 @@
     "categorySlug": "annotation",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -839,6 +2079,10 @@
     "categorySlug": "single_cell",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [
       "clusters"
     ],
@@ -853,6 +2097,10 @@
     "categorySlug": "single_cell",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -865,10 +2113,18 @@
     "categorySlug": "structure",
     "vocabType": "feature",
     "edamMapping": {
-      "predicate": "exactMatch",
+      "predicate": "closeMatch",
       "edamId": "edam:data_0883",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Structure",
+      "comment": "EDAM is protein-focused; close for genomic 3D structure"
+    },
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [],
+    "externalMapping": {
+      "predicate": "closeMatch",
+      "id": "edam:data_0883",
+      "url": "http://edamontology.org/data_0883"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -882,10 +2138,39 @@
     "categorySlug": "structure",
     "vocabType": "feature",
     "edamMapping": {
-      "predicate": "exactMatch",
+      "predicate": "broadMatch",
       "edamId": "edam:data_0925",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Sequence assembly",
+      "comment": "Close match: assembled contigs"
+    },
+    "elementType": {
+      "fit": "exact",
+      "classes": [
+        {
+          "id": "SO:0000149",
+          "label": "contig",
+          "url": "http://purl.obolibrary.org/obo/SO_0000149"
+        }
+      ]
+    },
+    "elementTypeFit": "exact",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000149",
+        "soLabel": "contig",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Direct match",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000149"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:data_0925",
+      "url": "http://edamontology.org/data_0925"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -899,10 +2184,30 @@
     "categorySlug": "structure",
     "vocabType": "feature",
     "edamMapping": {
-      "predicate": "exactMatch",
+      "predicate": "broadMatch",
       "edamId": "edam:data_0925",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Sequence assembly",
+      "comment": "EDAM lacks personal genome assembly concept"
+    },
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [
+      {
+        "predicate": "skos:closeMatch",
+        "predicateShort": "closeMatch",
+        "soId": "SO:0001506",
+        "soLabel": "variant_genome",
+        "fit": "",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Set-to-set exception: SO:0001506 is itself defined as 'A collection of sequences (often chromosomes) of an individual'",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001506"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "broadMatch",
+      "id": "edam:data_0925",
+      "url": "http://edamontology.org/data_0925"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -916,6 +2221,10 @@
     "categorySlug": "structure",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -928,6 +2237,26 @@
     "categorySlug": "haplotype",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [
+      {
+        "predicate": "skos:relatedMatch",
+        "predicateShort": "relatedMatch",
+        "soId": "SO:0001024",
+        "soLabel": "haplotype",
+        "fit": "",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Rows are haplotype assignments, not haplotypes",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001024"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "relatedMatch",
+      "id": "SO:0001024",
+      "url": "http://purl.obolibrary.org/obo/SO_0001024"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -940,6 +2269,26 @@
     "categorySlug": "haplotype",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [
+      {
+        "predicate": "skos:relatedMatch",
+        "predicateShort": "relatedMatch",
+        "soId": "SO:0001024",
+        "soLabel": "haplotype",
+        "fit": "",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Rows are haplotype assignments, not haplotypes",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001024"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "relatedMatch",
+      "id": "SO:0001024",
+      "url": "http://purl.obolibrary.org/obo/SO_0001024"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -952,6 +2301,31 @@
     "categorySlug": "rna_modification",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "broad",
+      "classes": [
+        {
+          "id": "SO:0000250",
+          "label": "modified_RNA_base_feature",
+          "url": "http://purl.obolibrary.org/obo/SO_0000250"
+        }
+      ]
+    },
+    "elementTypeFit": "broad",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000250",
+        "soLabel": "modified_RNA_base_feature",
+        "fit": "broad",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "SO has only base-specific 2'-O-methyl terms, no generic Nm",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000250"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -968,6 +2342,35 @@
       "edamId": "edam:data_0918",
       "edamLabel": "",
       "comment": "From LinkML schema"
+    },
+    "elementType": {
+      "fit": "exact",
+      "classes": [
+        {
+          "id": "SO:0000694",
+          "label": "SNP",
+          "url": "http://purl.obolibrary.org/obo/SO_0000694"
+        }
+      ]
+    },
+    "elementTypeFit": "exact",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0000694",
+        "soLabel": "SNP",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Direct match",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0000694"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:data_0918",
+      "url": "http://edamontology.org/data_0918"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -986,6 +2389,35 @@
       "edamLabel": "",
       "comment": "From LinkML schema"
     },
+    "elementType": {
+      "fit": "approximate",
+      "classes": [
+        {
+          "id": "SO:1000032",
+          "label": "delins",
+          "url": "http://purl.obolibrary.org/obo/SO_1000032"
+        }
+      ]
+    },
+    "elementTypeFit": "approximate",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:1000032",
+        "soLabel": "delins",
+        "fit": "approximate",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "SO 'delins' carries the 'indel' synonym; SO:0002217 unspecified_indel is a narrower sibling",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_1000032"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:data_0918",
+      "url": "http://edamontology.org/data_0918"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -998,6 +2430,31 @@
     "categorySlug": "rna_modification",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "approximate",
+      "classes": [
+        {
+          "id": "SO:0001274",
+          "label": "modified_inosine",
+          "url": "http://purl.obolibrary.org/obo/SO_0001274"
+        }
+      ]
+    },
+    "elementTypeFit": "approximate",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001274",
+        "soLabel": "modified_inosine",
+        "fit": "approximate",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "A-to-I editing product",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001274"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -1010,6 +2467,31 @@
     "categorySlug": "rna_modification",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "approximate",
+      "classes": [
+        {
+          "id": "SO:0001282",
+          "label": "five_methylcytidine",
+          "url": "http://purl.obolibrary.org/obo/SO_0001282"
+        }
+      ]
+    },
+    "elementTypeFit": "approximate",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001282",
+        "soLabel": "five_methylcytidine",
+        "fit": "approximate",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "RNA 5-methylcytidine (not the DNA term SO:0001918)",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001282"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -1022,6 +2504,31 @@
     "categorySlug": "rna_modification",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "exact",
+      "classes": [
+        {
+          "id": "SO:0001297",
+          "label": "N6_methyladenosine",
+          "url": "http://purl.obolibrary.org/obo/SO_0001297"
+        }
+      ]
+    },
+    "elementTypeFit": "exact",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001297",
+        "soLabel": "N6_methyladenosine",
+        "fit": "exact",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Direct match",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001297"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -1034,6 +2541,31 @@
     "categorySlug": "rna_modification",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": {
+      "fit": "approximate",
+      "classes": [
+        {
+          "id": "SO:0001229",
+          "label": "pseudouridine",
+          "url": "http://purl.obolibrary.org/obo/SO_0001229"
+        }
+      ]
+    },
+    "elementTypeFit": "approximate",
+    "soMapping": [
+      {
+        "predicate": "onga:has_element_type",
+        "predicateShort": "has_element_type",
+        "soId": "SO:0001229",
+        "soLabel": "pseudouridine",
+        "fit": "approximate",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Direct match on the modified base",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001229"
+      }
+    ],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -1046,6 +2578,10 @@
     "categorySlug": "element_gene_linkage",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -1058,6 +2594,26 @@
     "categorySlug": "haplotype",
     "vocabType": "feature",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": "not_applicable",
+    "soMapping": [
+      {
+        "predicate": "skos:relatedMatch",
+        "predicateShort": "relatedMatch",
+        "soId": "SO:0001024",
+        "soLabel": "haplotype",
+        "fit": "",
+        "subjectCategory": "genomic element set",
+        "objectCategory": "sequence feature type",
+        "comment": "Rows are haplotype assignments, not haplotypes",
+        "soUrl": "http://purl.obolibrary.org/obo/SO_0001024"
+      }
+    ],
+    "externalMapping": {
+      "predicate": "relatedMatch",
+      "id": "SO:0001024",
+      "url": "http://purl.obolibrary.org/obo/SO_0001024"
+    },
     "seeAlso": [],
     "encodeSource": true
   }

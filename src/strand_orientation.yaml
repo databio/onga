@@ -14,12 +14,15 @@ description: >-
   Aligned with FGA-WG issue #2 (data interpretation): the strand axis is one of
   the orthogonal facets a compound interpretation term collapses. Where a
   Sequence Ontology (SO) term exists for the strand sense, it is referenced via
-  `meaning`.
+  `exact_mappings` — never via `meaning:`, which would make the ONGA permissible
+  value's IRI *be* the SO class and so relabel, redefine and re-parent a live SO
+  term in the generated OWL. See the ADR "ONGA terms denote sets; SO terms
+  denote elements".
 
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/
-  so: http://purl.obolibrary.org/obo/SO_
+  SO: http://purl.obolibrary.org/obo/SO_
 
 default_prefix: onga
 default_range: string
@@ -35,10 +38,12 @@ enums:
     permissible_values:
       plus:
         description: 'Features on the forward/plus (+) strand.'
-        meaning: so:0001030
+        exact_mappings:
+        - SO:0001030
       minus:
         description: 'Features on the reverse/minus (−) strand.'
-        meaning: so:0001031
+        exact_mappings:
+        - SO:0001031
       unstranded:
         description: 'No strand distinction / not applicable. This is the default when the strand slot is absent.'
       bidirectional:

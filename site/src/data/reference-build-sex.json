@@ -7,11 +7,14 @@
     "category": "uncategorized",
     "categorySlug": "uncategorized",
     "vocabType": "reference_build_sex",
-    "edamMapping": {
+    "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": {
       "predicate": "exactMatch",
-      "edamId": "PATO:0000384",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "id": "PATO:0000384",
+      "url": "http://purl.obolibrary.org/obo/PATO_0000384"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -24,11 +27,14 @@
     "category": "uncategorized",
     "categorySlug": "uncategorized",
     "vocabType": "reference_build_sex",
-    "edamMapping": {
+    "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": {
       "predicate": "exactMatch",
-      "edamId": "PATO:0000383",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "id": "PATO:0000383",
+      "url": "http://purl.obolibrary.org/obo/PATO_0000383"
     },
     "seeAlso": [],
     "encodeSource": true

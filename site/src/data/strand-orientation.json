@@ -7,11 +7,14 @@
     "category": "uncategorized",
     "categorySlug": "uncategorized",
     "vocabType": "strand",
-    "edamMapping": {
+    "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": {
       "predicate": "exactMatch",
-      "edamId": "so:0001030",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "id": "SO:0001030",
+      "url": "http://purl.obolibrary.org/obo/SO_0001030"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -24,11 +27,14 @@
     "category": "uncategorized",
     "categorySlug": "uncategorized",
     "vocabType": "strand",
-    "edamMapping": {
+    "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": {
       "predicate": "exactMatch",
-      "edamId": "so:0001031",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "id": "SO:0001031",
+      "url": "http://purl.obolibrary.org/obo/SO_0001031"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -42,6 +48,10 @@
     "categorySlug": "uncategorized",
     "vocabType": "strand",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -54,6 +64,10 @@
     "categorySlug": "uncategorized",
     "vocabType": "strand",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   }

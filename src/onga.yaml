@@ -12,15 +12,24 @@ description: >-
   structural shape, FGA #3), and ReferenceGenome (the reference assembly it is
   defined against, including the reference-build sex). A separate biospecimen
   module covers the sample axis.
+
+
+  ONGA terms denote **sets** of genomic elements — a file, a track, a set of
+  rows. Sequence Ontology terms denote **individual element types**. The two are
+  not the same kind of thing and ONGA never asserts equivalence with an SO class.
+  Where every member of an ONGA set is an instance of one SO class, ONGA records
+  that with `onga:has_element_type`. ONGA is a user of SO, not a competitor to
+  it.
 license: https://creativecommons.org/licenses/by/4.0/
 version: 0.1.0
-created_by: Nathan Sheffield
-creation_date: "2026-05-20"
+created_by: https://orcid.org/0000-0001-5884-4247
+created_on: "2026-05-20T00:00:00"
 
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/
   edam: http://edamontology.org/
+  SO: http://purl.obolibrary.org/obo/SO_
   skos: http://www.w3.org/2004/02/skos/core#
   dct: http://purl.org/dc/terms/
   owl: http://www.w3.org/2002/07/owl#

@@ -38,9 +38,11 @@ import terms from '../../data/reference-build-sex.json';
             <h3 class="font-medium text-gray-900 font-mono text-sm">{term.name}</h3>
             <p class="text-sm text-gray-500 mt-1">{term.description}</p>
           </div>
-          {term.edamMapping && (
+          {term.externalMapping && (
             <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded shrink-0 ml-4 font-mono">
-              {term.edamMapping.edamId}
+              {term.externalMapping.url ? (
+                <a href={term.externalMapping.url} target="_blank" rel="noopener" class="hover:underline">{term.externalMapping.id}</a>
+              ) : term.externalMapping.id}
             </span>
           )}
         </div>

@@ -13,6 +13,14 @@
       "edamLabel": "",
       "comment": "From LinkML schema"
     },
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:format_3003",
+      "url": "http://edamontology.org/format_3003"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -29,6 +37,14 @@
       "edamId": "edam:format_3004",
       "edamLabel": "",
       "comment": "From LinkML schema"
+    },
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:format_3004",
+      "url": "http://edamontology.org/format_3004"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -47,6 +63,14 @@
       "edamLabel": "",
       "comment": "From LinkML schema"
     },
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:format_3006",
+      "url": "http://edamontology.org/format_3006"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -63,6 +87,14 @@
       "edamId": "edam:format_3005",
       "edamLabel": "",
       "comment": "From LinkML schema"
+    },
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:format_3005",
+      "url": "http://edamontology.org/format_3005"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -81,6 +113,14 @@
       "edamLabel": "",
       "comment": "From LinkML schema"
     },
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:format_3583",
+      "url": "http://edamontology.org/format_3583"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -93,6 +133,10 @@
     "categorySlug": "uncategorized",
     "vocabType": "format",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -105,6 +149,10 @@
     "categorySlug": "uncategorized",
     "vocabType": "format",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -117,6 +165,10 @@
     "categorySlug": "uncategorized",
     "vocabType": "format",
     "edamMapping": null,
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": null,
     "seeAlso": [],
     "encodeSource": true
   },
@@ -133,6 +185,14 @@
       "edamId": "edam:format_1939",
       "edamLabel": "",
       "comment": "From LinkML schema"
+    },
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:format_1939",
+      "url": "http://edamontology.org/format_1939"
     },
     "seeAlso": [],
     "encodeSource": true
@@ -151,6 +211,14 @@
       "edamLabel": "",
       "comment": "From LinkML schema"
     },
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:format_2306",
+      "url": "http://edamontology.org/format_2306"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -168,6 +236,14 @@
       "edamLabel": "",
       "comment": "From LinkML schema"
     },
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:format_3016",
+      "url": "http://edamontology.org/format_3016"
+    },
     "seeAlso": [],
     "encodeSource": true
   },
@@ -184,6 +260,14 @@
       "edamId": "edam:format_2572",
       "edamLabel": "",
       "comment": "From LinkML schema"
+    },
+    "elementType": null,
+    "elementTypeFit": null,
+    "soMapping": [],
+    "externalMapping": {
+      "predicate": "exactMatch",
+      "id": "edam:format_2572",
+      "url": "http://edamontology.org/format_2572"
     },
     "seeAlso": [],
     "encodeSource": true

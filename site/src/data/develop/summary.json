@@ -3,6 +3,10 @@
   "gapTerms": 18,
   "mappingSuggestions": 224,
   "qualityIssues": 0,
+  "soProposals": 10,
+  "soRejections": 23,
   "zeroUsageTerms": 63,
-  "totalTerms": 237
+  "totalTerms": 237,
+  "soMappings": 84,
+  "elementTypeCoverage": 71
 }

@@ -26,6 +26,7 @@ const developDir = join(dataDir, 'develop');
 const mappingsDir = join(__dirname, '../../mappings');
 const reportsDir = join(__dirname, '../../embeddings/outputs/reports');
 const frequencyTsv = join(__dirname, '../../encode-term-use-frequency/seed_term_frequency.tsv');
+const proposalsDir = join(__dirname, '../../proposals');
 
 function readYaml(filename) {
   const path = join(schemaDir, filename);
@@ -36,27 +37,71 @@ function readYaml(filename) {
   return parse(readFileSync(path, 'utf-8'));
 }
 
+// Read an SSSOM TSV BY HEADER NAME (robust to column insertion), skipping the
+// YAML-in-comments header block.
+function readSssom(path) {
+  if (!existsSync(path)) return [];
+  const lines = readFileSync(path, 'utf-8')
+    .split(/\r?\n/)
+    .filter(l => l.trim() && !l.startsWith('#'));
+  if (lines.length < 2) return [];
+  const header = lines[0].split('\t').map(h => h.trim());
+  return lines.slice(1).map(line => {
+    const cells = line.split('\t');
+    const row = {};
+    header.forEach((h, i) => { row[h] = (cells[i] || '').trim(); });
+    return row;
+  });
+}
+
 function readMappings() {
-  const path = join(mappingsDir, 'edam.sssom.tsv');
-  if (!existsSync(path)) return {};
-
-  const content = readFileSync(path, 'utf-8');
-  const lines = content.split('\n').filter(l => l && !l.startsWith('#'));
   const mappings = {};
-
-  for (const line of lines.slice(1)) {
-    const [subject, predicate, object, , subjectLabel, objectLabel, comment] = line.split('\t');
-    if (subject && object) {
-      const termId = subject.replace('onga:', '');
-      mappings[termId] = {
-        predicate: predicate?.replace('skos:', '') || 'relatedMatch',
-        edamId: object,
-        edamLabel: objectLabel || '',
-        comment: comment || ''
-      };
-    }
+  for (const r of readSssom(join(mappingsDir, 'edam.sssom.tsv'))) {
+    if (!r.subject_id || !r.object_id) continue;
+    mappings[r.subject_id.replace('onga:', '')] = {
+      predicate: (r.predicate_id || '').replace('skos:', '') || 'relatedMatch',
+      edamId: r.object_id,
+      edamLabel: r.object_label || '',
+      comment: r.comment || ''
+    };
   }
   return mappings;
+}
+
+// ONGA -> Sequence Ontology. NOT a SKOS mapping set: ONGA terms denote SETS of
+// genomic elements and SO classes denote INDIVIDUAL element types, so membership
+// rows use onga:has_element_type with an element_type_fit grade. skos:relatedMatch
+// means the members are NOT instances; skos:exactMatch/closeMatch appear only for
+// the two whitelisted SO classes that are themselves set-denoting. See the ADR
+// "ONGA terms denote sets; SO terms denote elements".
+// A term may have SEVERAL rows (a mixed set), so this is keyed slug -> array.
+function readSoMappings() {
+  const bySlug = {};
+  for (const r of readSssom(join(mappingsDir, 'so.sssom.tsv'))) {
+    if (!r.subject_id || !r.object_id) continue;
+    const slug = slugify(r.subject_label || r.subject_id.replace('onga:', ''));
+    const predicate = r.predicate_id || '';
+    (bySlug[slug] = bySlug[slug] || []).push({
+      predicate,
+      // 'has_element_type' | 'exactMatch' | 'closeMatch' | 'relatedMatch'
+      predicateShort: predicate.replace('skos:', '').replace('onga:', ''),
+      soId: r.object_id,
+      soLabel: r.object_label || '',
+      fit: r.element_type_fit || '',
+      subjectCategory: r.subject_category || '',
+      objectCategory: r.object_category || '',
+      comment: r.comment || ''
+    });
+  }
+  return bySlug;
+}
+
+function soUrl(soId) {
+  return `http://purl.obolibrary.org/obo/${String(soId).replace(':', '_')}`;
+}
+
+function curieToName(ref) {
+  return String(ref).replace(/^onga:/, '').replace(/_/g, ' ');
 }
 
 function slugify(name) {
@@ -66,7 +111,65 @@ function slugify(name) {
     .replace(/^_|_$/g, '');
 }
 
-function processEnum(enumData, vocabType, edamMappings) {
+// EDAM cross-references declared in the schema itself. `meaning:` is BANNED on
+// the content enums (it makes the value's IRI *be* the CURIE, which hijacks SO
+// classes and collapses duplicate EDAM CURIEs into one OWL node -- see the ADR
+// "ONGA terms denote sets; SO terms denote elements"), so DataType/FeatureType
+// badges come from edam.sssom.tsv. The small facet/format vocabularies still
+// declare their single EDAM CURIE inline, so read those slots here.
+function schemaEdamMapping(data) {
+  const slots = [
+    ['exactMatch', data.exact_mappings],
+    ['closeMatch', data.close_mappings],
+    ['broadMatch', data.broad_mappings],
+    ['relatedMatch', data.related_mappings],
+  ];
+  for (const [predicate, values] of slots) {
+    const hit = (values || []).find(v => String(v).startsWith('edam:'));
+    if (hit) return { predicate, edamId: hit, edamLabel: '', comment: 'From LinkML schema' };
+  }
+  if (String(data.meaning || '').startsWith('edam:')) {
+    return { predicate: 'exactMatch', edamId: data.meaning, edamLabel: '', comment: 'From LinkML schema' };
+  }
+  return null;
+}
+
+// Any-prefix cross-reference declared inline in the schema (EDAM, SO, PATO, ...).
+// The facet vocabularies (StrandOrientation -> SO, ReferenceBuildSex -> PATO)
+// carry one of these, and rendering them as EDAM produced dead links, so they
+// get their own field with a prefix-correct URL.
+const CURIE_BASES = {
+  edam: id => `http://edamontology.org/${id}`,
+  SO: id => `http://purl.obolibrary.org/obo/SO_${id}`,
+  PATO: id => `http://purl.obolibrary.org/obo/PATO_${id}`,
+  UBERON: id => `http://purl.obolibrary.org/obo/UBERON_${id}`,
+  CL: id => `http://purl.obolibrary.org/obo/CL_${id}`,
+};
+
+function curieUrl(curie) {
+  const [prefix, local] = String(curie).split(':');
+  const base = CURIE_BASES[prefix];
+  return base && local ? base(local) : null;
+}
+
+function schemaCrossRef(data) {
+  const slots = [
+    ['exactMatch', data.exact_mappings],
+    ['closeMatch', data.close_mappings],
+    ['broadMatch', data.broad_mappings],
+    ['relatedMatch', data.related_mappings],
+  ];
+  for (const [predicate, values] of slots) {
+    const hit = (values || [])[0];
+    if (hit) return { predicate, id: String(hit), url: curieUrl(hit) };
+  }
+  if (data.meaning) {
+    return { predicate: 'exactMatch', id: String(data.meaning), url: curieUrl(data.meaning) };
+  }
+  return null;
+}
+
+function processEnum(enumData, vocabType, edamMappings, soMappings = {}) {
   const terms = [];
   const termsByCategory = {};
 
@@ -76,17 +179,28 @@ function processEnum(enumData, vocabType, edamMappings) {
     const slug = slugify(name);
     const category = data.in_subset?.[0] || 'uncategorized';
 
-    let edamMapping = null;
-    if (data.meaning) {
-      edamMapping = {
-        predicate: 'exactMatch',
-        edamId: data.meaning,
-        edamLabel: '',
-        comment: 'From LinkML schema'
-      };
-    } else if (edamMappings[slug] || edamMappings[name.replace(/ /g, '_')]) {
-      edamMapping = edamMappings[slug] || edamMappings[name.replace(/ /g, '_')];
-    }
+    const edamMapping =
+      edamMappings[slug] || edamMappings[name.replace(/ /g, '_')] || schemaEdamMapping(data);
+
+    // The set/element layer: which SO class(es) the rows of this term instantiate.
+    // `element_type` is a pipe-joined STRING of SO CURIEs (a YAML list stringifies
+    // badly in gen-owl output); absent + fit 'not_applicable' means "reviewed, the
+    // rows are not SO-typeable features", which is different from no annotation
+    // at all ("not yet curated").
+    const ann = data.annotations || {};
+    const elementTypes = String(ann.element_type || '')
+      .split('|').map(s => s.trim()).filter(Boolean);
+    const rows = soMappings[slug] || [];
+    const labelOf = id => (rows.find(r => r.soId === id) || {}).soLabel || '';
+    const elementType = elementTypes.length
+      ? {
+          fit: ann.element_type_fit || '',
+          classes: elementTypes.map(id => ({ id, label: labelOf(id), url: soUrl(id) })),
+        }
+      : null;
+    const elementTypeFit = ann.element_type_fit || null;
+    const soMapping = rows.map(r => ({ ...r, soUrl: soUrl(r.soId) }));
+    const externalMapping = schemaCrossRef(data);
 
     const term = {
       id: slug,
@@ -97,7 +211,18 @@ function processEnum(enumData, vocabType, edamMappings) {
       categorySlug: slugify(category),
       vocabType, // 'data' or 'feature'
       edamMapping,
-      seeAlso: data.see_also || [],
+      // Set/element layer (ADR: ONGA terms name SETS, SO classes name ELEMENTS).
+      elementType,
+      elementTypeFit,
+      soMapping,
+      externalMapping,
+      // see_also holds onga: CURIEs (schema-valid URIorCURIE); keywords holds
+      // free-text related concepts that are not ONGA terms. The site shows both
+      // as plain names, so resolve the CURIEs back and concatenate.
+      seeAlso: [
+        ...(data.see_also || []).map(curieToName),
+        ...(data.keywords || [])
+      ],
       encodeSource: true
     };
 
@@ -394,6 +519,111 @@ function readDelegations() {
   });
 }
 
+// Read the upstream term requests (proposals/upstream_requests.yaml): concepts
+// ONGA owns that an upstream ontology (currently SO) is missing, plus the
+// concepts deliberately NOT sent upstream. This is the mirror image of
+// scope_delegations.tsv — that file ejects axes OUT of ONGA's scope, this one
+// pushes missing terms INTO an upstream ontology. Emitted as
+// develop/upstream-requests.json for the so-proposals develop page.
+//
+// The YAML keys both `requests` and `rejections` by target ontology CURIE
+// prefix so EDAM requests can land alongside SO ones later; we flatten both
+// into arrays here, stamping the ontology onto each row.
+function readUpstreamRequests() {
+  const empty = {
+    ontologies: {},
+    requests: [],
+    rejections: [],
+    stats: { newTerms: 0, modifications: 0, proposedLabels: 0, rejectionGroups: 0, rejectedTerms: 0 },
+  };
+  const path = join(proposalsDir, 'upstream_requests.yaml');
+  if (!existsSync(path)) {
+    console.warn('Warning: proposals/upstream_requests.yaml not found, SO proposals page will be empty');
+    return empty;
+  }
+  const doc = parse(readFileSync(path, 'utf-8'));
+  const ontologies = doc.ontologies || {};
+
+  // Resolve an ONGA term to its browse page, using the same slug rule
+  // processEnum uses so the links line up with the generated term pages.
+  const ongaTerm = (t) => {
+    const slug = slugify(t.term || '');
+    const base = t.category === 'DataType' ? '/data-types' : '/feature-types';
+    return { term: t.term, category: t.category, slug, href: `${base}/${slug}` };
+  };
+
+  const purl = (id) => {
+    if (!id || typeof id !== 'string' || !id.includes(':')) return null;
+    const [prefix, local] = id.split(':');
+    const base = ontologies[prefix]?.purl;
+    return base ? `${base}${local}` : null;
+  };
+
+  const requests = [];
+  for (const [ontology, list] of Object.entries(doc.requests || {})) {
+    for (const r of list || []) {
+      const isMod = r.kind === 'modification';
+      const additional = r.additional_terms || [];
+      requests.push({
+        id: r.id,
+        kind: r.kind,
+        status: r.status || 'proposed',
+        confidence: r.confidence || 'medium',
+        ontology,
+        ontologyName: ontologies[ontology]?.name || ontology,
+        tracker: ontologies[ontology]?.tracker || null,
+        // Display label: the proposed label for a new term, the existing label
+        // for a modification request.
+        label: isMod ? (r.target?.label || '') : (r.proposed_label || ''),
+        definition: r.proposed_definition || '',
+        parent: r.parent
+          ? { ...r.parent, url: purl(r.parent.id) }
+          : null,
+        target: r.target ? { ...r.target, url: purl(r.target.id) } : null,
+        requestedChange: r.requested_change || '',
+        additionalTerms: additional,
+        rationale: r.rationale || '',
+        existingRelatedTerms: (r.existing_related_terms || []).map(t => ({ ...t, url: purl(t.id) })),
+        motivatingTerms: (r.motivating_terms || []).map(ongaTerm),
+        dependsOn: r.depends_on || [],
+        note: r.note || '',
+        // A single request can ask for several labels at once (CpG/CHG/CHH).
+        labelCount: isMod ? 0 : 1 + additional.length,
+      });
+    }
+  }
+
+  const rejections = [];
+  for (const [ontology, list] of Object.entries(doc.rejections || {})) {
+    for (const r of list || []) {
+      const redirect = r.redirect || {};
+      rejections.push({
+        id: r.id,
+        disposition: r.disposition,
+        status: r.status || 'rejected',
+        consideredFor: ontology,
+        consideredForName: ontologies[ontology]?.name || ontology,
+        redirectOntology: redirect.ontology || null,
+        redirectName: redirect.name || redirect.ontology || null,
+        redirectHomepage: ontologies[redirect.ontology]?.homepage || null,
+        reason: r.reason || '',
+        precedent: r.precedent || null,
+        ongaTerms: (r.onga_terms || []).map(ongaTerm),
+      });
+    }
+  }
+
+  const stats = {
+    newTerms: requests.filter(r => r.kind === 'new_term').length,
+    modifications: requests.filter(r => r.kind === 'modification').length,
+    proposedLabels: requests.reduce((s, r) => s + r.labelCount, 0),
+    rejectionGroups: rejections.length,
+    rejectedTerms: rejections.reduce((s, r) => s + r.ongaTerms.length, 0),
+  };
+
+  return { ontologies, requests, rejections, stats };
+}
+
 function build() {
   console.log('Building ONGA site data...');
 
@@ -414,15 +644,17 @@ function build() {
   const trackGeometry = readYaml('track_geometry.yaml');
   const referenceGenome = readYaml('reference_genome.yaml');
   const edamMappings = readMappings();
+  const soMappings = readSoMappings();
   const delegations = readDelegations();
+  const upstream = readUpstreamRequests();
 
   // Process the vocabularies (DataType, FeatureType, Format) — all LinkML enums.
   const dataTypeEnum = fileContent?.enums?.DataType;
   const featureTypeEnum = fileContent?.enums?.FeatureType;
   const formatEnum = formatSchema?.enums?.Format;
 
-  const dataTypes = processEnum(dataTypeEnum, 'data', edamMappings);
-  const featureTypes = processEnum(featureTypeEnum, 'feature', edamMappings);
+  const dataTypes = processEnum(dataTypeEnum, 'data', edamMappings, soMappings);
+  const featureTypes = processEnum(featureTypeEnum, 'feature', edamMappings, soMappings);
   const formats = processEnum(formatEnum, 'format', edamMappings);
   // Facet vocabularies (small, tied to interpretation): StrandOrientation,
   // ReadMultiplicity, FilterStatus.
@@ -496,6 +728,25 @@ function build() {
       ...t.edamMapping
     }));
 
+  // ONGA -> SO. One entry per SSSOM row, so a mixed set (e.g. `regulatory
+  // elements`, whose rows may be enhancers, promoters, silencers or insulators)
+  // contributes one row per SO class.
+  const soMappingList = allTerms
+    .filter(t => (t.soMapping || []).length)
+    .flatMap(t => t.soMapping.map(m => ({
+      termId: t.id,
+      termName: t.name,
+      category: t.category,
+      vocabType: t.vocabType,
+      ...m
+    })));
+
+  // Terms reviewed and found to have NO SO element type at all -- curated-none,
+  // which is different from not-yet-curated (no annotation).
+  const elementTypeNone = allTerms.filter(
+    t => !t.elementType && t.elementTypeFit === 'not_applicable');
+  const elementTypeCoverage = allTerms.filter(t => t.elementType).length;
+
   // Build vocabulary info
   const vocabularyInfo = {
     name: onga?.name || 'onga',
@@ -523,6 +774,13 @@ function build() {
       totalCategories: categories.length,
       totalMappings: mappings.length,
       coveragePercent: Math.round((mappings.length / allTerms.length) * 100),
+      // Set/element layer: SSSOM rows against SO, and how many terms carry an
+      // element type at all. See the ADR "ONGA terms denote sets; SO terms
+      // denote elements".
+      soMappings: soMappingList.length,
+      elementTypeCoverage,
+      elementTypeNone: elementTypeNone.length,
+      elementTypePercent: Math.round((elementTypeCoverage / allTerms.length) * 100),
       // Two-layer summary for the home page. There are 3 core vocabularies
       // (DataType, FeatureType, Format) plus 8 facet vocabularies
       // (StrandOrientation, ReadMultiplicity, FilterStatus, Normalization,
@@ -598,12 +856,14 @@ function build() {
   // Combined for backwards compat
   writeFileSync(join(dataDir, 'terms.json'), JSON.stringify(allTerms, null, 2));
   writeFileSync(join(dataDir, 'mappings.json'), JSON.stringify(mappings, null, 2));
+  writeFileSync(join(dataDir, 'so-mappings.json'), JSON.stringify(soMappingList, null, 2));
 
   console.log('Built 11 vocabularies (3 core + 8 facet) + 5 schemas:');
   console.log(`  Core vocabularies: ${dataTypes.terms.length} DataType, ${featureTypes.terms.length} FeatureType, ${formats.terms.length} Format`);
   console.log(`  Facet vocabularies: ${strandOrientations.terms.length} StrandOrientation, ${readMultiplicities.terms.length} ReadMultiplicity, ${filterStatuses.terms.length} FilterStatus, ${normalizations.terms.length} Normalization, ${thresholdings.terms.length} Thresholding, ${derivations.terms.length} Derivation, ${referenceBuildSexes.terms.length} ReferenceBuildSex, ${haplotypeResolutions.terms.length} HaplotypeResolution`);
   console.log(`  Schemas: TrackFormat (${format.properties.length} props), TrackInterpretation (${interpretation.properties.length} props), TrackProvenance (${provenance.properties.length} props), TrackGeometry (${geometry.properties.length} props), ReferenceGenome (${referenceGenomeSchema.properties.length} props)`);
   console.log(`Categories: ${categories.length}, Mappings: ${mappings.length}, Scope delegations: ${delegations.length}`);
+  console.log(`SO element-type layer: ${soMappingList.length} SSSOM rows, ${elementTypeCoverage} terms with an element type, ${elementTypeNone.length} curated not_applicable`);
 
   // Build develop data from embeddings reports
   mkdirSync(developDir, { recursive: true });
@@ -632,6 +892,12 @@ function build() {
   writeFileSync(
     join(developDir, 'mapping-suggestions.json'),
     JSON.stringify(mappingReport || { total_terms: 0, terms_with_matches: 0, terms: [] }, null, 2)
+  );
+
+  // Upstream ontology requests (proposals/upstream_requests.yaml)
+  writeFileSync(
+    join(developDir, 'upstream-requests.json'),
+    JSON.stringify(upstream, null, 2)
   );
 
   const qualityIssuesPath = join(developDir, 'quality-issues.json');
@@ -670,12 +936,17 @@ function build() {
     gapTerms: gapAnalysis?.gap_terms_count || 0,
     mappingSuggestions: mappingReport?.terms_with_matches || 0,
     qualityIssues: 0,
+    soProposals: upstream.stats.newTerms + upstream.stats.modifications,
+    soRejections: upstream.stats.rejectedTerms,
     zeroUsageTerms: frequency.zeroUsage,
     totalTerms: allTerms.length,
+    soMappings: soMappingList.length,
+    elementTypeCoverage,
   };
   writeFileSync(join(developDir, 'summary.json'), JSON.stringify(summary, null, 2));
 
   console.log(`Develop: ${summary.mergeCandidates} merge candidates, ${summary.gapTerms} gaps, ${summary.mappingSuggestions} mapping suggestions`);
+  console.log(`Upstream requests: ${upstream.stats.newTerms} new terms (${upstream.stats.proposedLabels} labels), ${upstream.stats.modifications} modifications, ${upstream.stats.rejectionGroups} rejections covering ${upstream.stats.rejectedTerms} ONGA terms`);
 }
 
 build();

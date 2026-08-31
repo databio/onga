@@ -1,0 +1,381 @@
+---
+import { url } from '../../lib/url';
+import Layout from '../../layouts/Layout.astro';
+import data from '../../data/develop/upstream-requests.json';
+
+const report = data as any;
+const requests = (report.requests || []) as any[];
+const rejections = (report.rejections || []) as any[];
+const stats = report.stats || {};
+
+const newTerms = requests.filter(r => r.kind === 'new_term');
+const modifications = requests.filter(r => r.kind === 'modification');
+
+const kindBadge: Record<string, string> = {
+  new_term: 'bg-blue-100 text-blue-800',
+  modification: 'bg-amber-100 text-amber-800',
+};
+const kindLabel: Record<string, string> = {
+  new_term: 'new term',
+  modification: 'modification',
+};
+const confidenceBadge: Record<string, string> = {
+  high: 'bg-green-100 text-green-800',
+  medium: 'bg-yellow-100 text-yellow-800',
+  low: 'bg-gray-200 text-gray-600',
+};
+const dispositionBadge: Record<string, string> = {
+  delegate: 'bg-purple-100 text-purple-800',
+  out_of_scope: 'bg-rose-100 text-rose-800',
+};
+const dispositionLabel: Record<string, string> = {
+  delegate: 'delegate',
+  out_of_scope: 'out of scope',
+};
+const categoryBadge: Record<string, string> = {
+  DataType: 'bg-sky-100 text-sky-700',
+  FeatureType: 'bg-emerald-100 text-emerald-700',
+};
+
+// Search blob: label + the ONGA terms that motivate it + the rationale, so a
+// reviewer can find a request either by the term it proposes or by the ONGA
+// term that drove it.
+const searchBlob = (r: any) =>
+  [r.id, r.label, ...(r.additionalTerms || []).map((a: any) => a.label),
+   ...(r.motivatingTerms || []).map((m: any) => m.term), r.rationale]
+    .filter(Boolean).join(' ').toLowerCase();
+
+const rejectSearchBlob = (r: any) =>
+  [r.id, r.redirectName, r.redirectOntology, r.reason,
+   ...(r.ongaTerms || []).map((t: any) => t.term)]
+    .filter(Boolean).join(' ').toLowerCase();
+---
+
+<Layout title="SO Proposals" side="develop" description="Terms ONGA is asking the Sequence Ontology to add, and the concepts deliberately not sent">
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">SO Proposals</h1>
+  <p class="text-gray-600 mb-6">
+    Concepts ONGA covers that the Sequence Ontology is missing. {stats.newTerms} new-term requests
+    (asking for {stats.proposedLabels} labels in total) and {stats.modifications} modification request,
+    plus {stats.rejectionGroups} recorded rejections covering {stats.rejectedTerms} ONGA terms that
+    are deliberately <em>not</em> going to SO. Source of truth:
+    <code>proposals/upstream_requests.yaml</code>.
+  </p>
+
+  <div class="flex flex-wrap gap-4 mb-6">
+    <select id="kind-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
+      <option value="">All ({requests.length + rejections.length})</option>
+      <option value="new_term">New terms ({newTerms.length})</option>
+      <option value="modification">Modifications ({modifications.length})</option>
+      <option value="rejected">Rejected ({rejections.length})</option>
+    </select>
+    <input type="search" id="search" placeholder="Search proposals..." class="px-3 py-2 border border-gray-300 rounded text-sm" />
+    <label class="flex items-center gap-2 text-sm text-gray-600">
+      <input type="checkbox" id="hide-decided" />
+      Hide decided
+    </label>
+  </div>
+
+  <!-- ================= Requests ================= -->
+  <section class="proposal-section mb-12" data-section="requests">
+    <h2 class="text-lg font-semibold text-gray-900 mb-1">
+      Requests to SO
+      <span class="text-sm font-normal text-gray-500 ml-2">({requests.length})</span>
+    </h2>
+    <p class="text-sm text-gray-500 mb-4">
+      Each request names the parent it would sit under and the ONGA terms that motivate it.
+    </p>
+
+    <div class="space-y-4">
+      {requests.map((r: any) => (
+        <div
+          class:list={[
+            'proposal-card bg-white rounded-lg shadow-sm p-4 border-l-4',
+            r.kind === 'modification' ? 'border-amber-500' : 'border-blue-500',
+          ]}
+          data-kind={r.kind}
+          data-req-id={r.id}
+          data-search={searchBlob(r)}
+        >
+          <div class="flex items-start justify-between gap-4">
+            <div class="min-w-0">
+              <div class="flex items-center flex-wrap gap-2">
+                <span class="font-mono font-medium text-gray-900">{r.label}</span>
+                <span class:list={['text-xs px-2 py-0.5 rounded', kindBadge[r.kind] || 'bg-gray-100 text-gray-700']}>
+                  {kindLabel[r.kind] || r.kind}
+                </span>
+                <span class:list={['text-xs px-2 py-0.5 rounded', confidenceBadge[r.confidence] || 'bg-gray-100 text-gray-600']}>
+                  {r.confidence} confidence
+                </span>
+                <span class="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600">{r.status}</span>
+                <span class="text-xs text-gray-400 font-mono">{r.id}</span>
+              </div>
+
+              {r.kind === 'new_term' && r.parent && (
+                <div class="text-xs text-gray-500 mt-1.5">
+                  Parent:{' '}
+                  {r.parent.url ? (
+                    <a href={r.parent.url} class="font-mono text-blue-600 hover:underline">{r.parent.id}</a>
+                  ) : (
+                    <span class="font-mono text-gray-400">proposed</span>
+                  )}
+                  <span class="ml-1 font-mono">{r.parent.label}</span>
+                  {r.parent.pending_request && (
+                    <span class="ml-1 text-amber-600">(itself proposed as {r.parent.pending_request})</span>
+                  )}
+                </div>
+              )}
+
+              {r.kind === 'modification' && r.target && (
+                <div class="text-xs text-gray-500 mt-1.5">
+                  Target:{' '}
+                  <a href={r.target.url} class="font-mono text-blue-600 hover:underline">{r.target.id}</a>
+                  <span class="ml-1 font-mono">{r.target.label}</span>
+                </div>
+              )}
+            </div>
+
+            <select
+              class="proposal-decision text-xs border border-gray-300 rounded px-2 py-1 shrink-0"
+              data-req-id={r.id}
+            >
+              <option value="">-- review --</option>
+              <option value="ready">Ready to file</option>
+              <option value="filed">Filed upstream</option>
+              <option value="hold">On hold</option>
+            </select>
+          </div>
+
+          {r.definition && (
+            <p class="text-sm text-gray-700 mt-3">{r.definition}</p>
+          )}
+
+          {r.requestedChange && (
+            <div class="mt-3">
+              <div class="text-xs font-medium text-gray-500 uppercase tracking-wide">Requested change</div>
+              <p class="text-sm text-gray-700 mt-1">{r.requestedChange}</p>
+            </div>
+          )}
+
+          {r.additionalTerms.length > 0 && (
+            <div class="mt-3 border-t border-gray-100 pt-3">
+              <div class="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
+                Sibling terms in the same request
+              </div>
+              <ul class="space-y-1">
+                {r.additionalTerms.map((a: any) => (
+                  <li class="text-sm text-gray-700">
+                    <span class="font-mono text-gray-900">{a.label}</span>
+                    <span class="text-gray-500"> — {a.definition}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div class="mt-3 border-t border-gray-100 pt-3">
+            <div class="text-xs font-medium text-gray-500 uppercase tracking-wide">Rationale</div>
+            <p class="text-sm text-gray-600 mt-1">{r.rationale}</p>
+          </div>
+
+          {r.existingRelatedTerms.length > 0 && (
+            <div class="mt-3">
+              <div class="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
+                Already in SO
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                {r.existingRelatedTerms.map((t: any) => (
+                  <a
+                    href={t.url}
+                    class="text-xs font-mono px-2 py-0.5 rounded bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  >
+                    {t.id} {t.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div class="mt-3">
+            <div class="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
+              Motivating ONGA terms
+            </div>
+            {r.motivatingTerms.length > 0 ? (
+              <div class="flex flex-wrap gap-1.5">
+                {r.motivatingTerms.map((m: any) => (
+                  <a
+                    href={url(m.href)}
+                    class="text-xs px-2 py-0.5 rounded bg-gray-50 border border-gray-200 text-gray-700 hover:bg-gray-100"
+                  >
+                    {m.term}
+                    <span class:list={['ml-1.5 px-1 py-0.5 rounded', categoryBadge[m.category] || 'bg-gray-100 text-gray-600']}>
+                      {m.category}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <p class="text-xs text-gray-400">
+                None — this one came out of the mapping process itself, not a specific ONGA term.
+              </p>
+            )}
+          </div>
+
+          {r.dependsOn.length > 0 && (
+            <div class="mt-3 text-xs text-amber-700">
+              Depends on: <span class="font-mono">{r.dependsOn.join(', ')}</span>
+            </div>
+          )}
+
+          {r.note && (
+            <div class="mt-3 text-sm text-gray-600 bg-yellow-50 border border-yellow-100 rounded p-2">
+              <span class="font-medium text-yellow-800">Note:</span> {r.note}
+            </div>
+          )}
+
+          {r.tracker && (
+            <div class="mt-3 text-xs">
+              <a href={r.tracker} class="text-blue-600 hover:underline">File this on the {r.ontologyName} tracker →</a>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ================= Rejections ================= -->
+  <section class="proposal-section" data-section="rejected">
+    <h2 class="text-lg font-semibold text-gray-900 mb-1">
+      Rejected — not going to SO
+      <span class="text-sm font-normal text-gray-500 ml-2">
+        ({rejections.length} dispositions, {stats.rejectedTerms} ONGA terms)
+      </span>
+    </h2>
+    <p class="text-sm text-gray-500 mb-4">
+      Concepts that were considered for SO and deliberately turned away. The reasoning is kept here
+      so the decision does not have to be rediscovered.
+    </p>
+
+    <div class="space-y-4">
+      {rejections.map((r: any) => (
+        <div
+          class="proposal-card bg-white rounded-lg shadow-sm p-4 border-l-4 border-rose-400"
+          data-kind="rejected"
+          data-req-id={r.id}
+          data-search={rejectSearchBlob(r)}
+        >
+          <div class="flex items-center flex-wrap gap-2">
+            <span class:list={['text-xs px-2 py-0.5 rounded', dispositionBadge[r.disposition] || 'bg-gray-100 text-gray-700']}>
+              {dispositionLabel[r.disposition] || r.disposition}
+            </span>
+            <span class="text-sm text-gray-500">goes to</span>
+            {r.redirectHomepage ? (
+              <a href={r.redirectHomepage} class="text-sm font-medium text-gray-900 hover:underline">
+                {r.redirectOntology} — {r.redirectName}
+              </a>
+            ) : (
+              <span class="text-sm font-medium text-gray-900">{r.redirectOntology}</span>
+            )}
+            <span class="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600">{r.status}</span>
+            <span class="text-xs text-gray-400 font-mono">{r.id}</span>
+          </div>
+
+          <p class="text-sm text-gray-700 mt-3">{r.reason}</p>
+
+          {r.precedent && (
+            <div class="mt-3 text-xs text-gray-500">
+              Precedent: <code class="text-gray-700">{r.precedent}</code>
+            </div>
+          )}
+
+          <div class="mt-3 border-t border-gray-100 pt-3">
+            <div class="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
+              ONGA terms ({r.ongaTerms.length})
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              {r.ongaTerms.map((t: any) => (
+                <a
+                  href={url(t.href)}
+                  class="text-xs px-2 py-0.5 rounded bg-gray-50 border border-gray-200 text-gray-700 hover:bg-gray-100"
+                >
+                  {t.term}
+                  <span class:list={['ml-1.5 px-1 py-0.5 rounded', categoryBadge[t.category] || 'bg-gray-100 text-gray-600']}>
+                    {t.category}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {requests.length === 0 && rejections.length === 0 && (
+    <div class="bg-white rounded-lg p-8 shadow-sm text-center text-gray-500">
+      No upstream requests recorded. Add them to <code>proposals/upstream_requests.yaml</code>
+      and rebuild the site data.
+    </div>
+  )}
+
+  <script>
+    // Review state is local to this page. It tracks whether a request has been
+    // filed upstream, which is NOT a change to the ONGA schema, so it is
+    // deliberately not wired into the changeset export.
+    const STORAGE_KEY = 'onga-upstream-decisions';
+
+    function loadDecisions() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+      catch { return {}; }
+    }
+
+    function saveDecisions(d) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+    }
+
+    const decisions = loadDecisions();
+    document.querySelectorAll('.proposal-decision').forEach(sel => {
+      const id = sel.dataset.reqId;
+      if (decisions[id]) sel.value = decisions[id];
+      sel.addEventListener('change', () => {
+        const d = loadDecisions();
+        if (sel.value) d[id] = sel.value;
+        else delete d[id];
+        saveDecisions(d);
+        applyFilters();
+      });
+    });
+
+    const kindFilter = document.getElementById('kind-filter');
+    const searchInput = document.getElementById('search');
+    const hideDecided = document.getElementById('hide-decided');
+    const cards = document.querySelectorAll('.proposal-card');
+    const sections = document.querySelectorAll('.proposal-section');
+
+    function applyFilters() {
+      const kind = kindFilter.value;
+      const query = searchInput.value.toLowerCase().trim();
+      const hideDone = hideDecided.checked;
+      const d = loadDecisions();
+
+      cards.forEach(card => {
+        let show = true;
+        if (kind && card.dataset.kind !== kind) show = false;
+        if (query && !card.dataset.search.includes(query)) show = false;
+        // Rejections carry no review select, so "hide decided" never hides them.
+        if (hideDone && card.dataset.kind !== 'rejected' && d[card.dataset.reqId]) show = false;
+        card.classList.toggle('hidden', !show);
+      });
+
+      // Collapse a section once every card in it is filtered out.
+      sections.forEach(sec => {
+        const visible = sec.querySelectorAll('.proposal-card:not(.hidden)').length;
+        sec.classList.toggle('hidden', visible === 0);
+      });
+    }
+
+    kindFilter?.addEventListener('change', applyFilters);
+    searchInput?.addEventListener('input', applyFilters);
+    hideDecided?.addEventListener('change', applyFilters);
+    applyFilters();
+  </script>
+</Layout>

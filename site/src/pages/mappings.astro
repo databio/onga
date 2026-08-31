@@ -2,18 +2,36 @@
 import { url } from '../lib/url';
 import Layout from '../layouts/Layout.astro';
 import mappings from '../data/mappings.json';
+import soMappings from '../data/so-mappings.json';
 import vocabulary from '../data/vocabulary.json';
 
 const sortedMappings = [...(mappings as any[])].sort((a, b) => a.termName.localeCompare(b.termName));
+const sortedSo = [...(soMappings as any[])].sort((a, b) => a.termName.localeCompare(b.termName));
 
 const predicateCounts = sortedMappings.reduce((acc, m) => {
   acc[m.predicate] = (acc[m.predicate] || 0) + 1;
   return acc;
 }, {} as Record<string, number>);
 
+const soPredicateCounts = sortedSo.reduce((acc, m) => {
+  acc[m.predicateShort] = (acc[m.predicateShort] || 0) + 1;
+  return acc;
+}, {} as Record<string, number>);
+
+const fitCounts = sortedSo.reduce((acc, m) => {
+  if (m.fit) acc[m.fit] = (acc[m.fit] || 0) + 1;
+  return acc;
+}, {} as Record<string, number>);
+
+const soTermCount = new Set(sortedSo.map(m => m.termId)).size;
+
 function edamUrl(edamId: string): string {
   const id = edamId.replace('edam:', '');
   return `http://edamontology.org/${id}`;
+}
+
+function termHref(m: any): string {
+  return url(`${m.vocabType === 'data' ? '/data-types' : '/feature-types'}/${m.termId}`);
 }
 
 const predicateColors: Record<string, string> = {
@@ -21,100 +39,261 @@ const predicateColors: Record<string, string> = {
   closeMatch: 'bg-blue-100 text-blue-800',
   broadMatch: 'bg-yellow-100 text-yellow-800',
   narrowMatch: 'bg-purple-100 text-purple-800',
-  relatedMatch: 'bg-gray-100 text-gray-800'
+  relatedMatch: 'bg-gray-100 text-gray-800',
+  // The ONGA-minted membership property reads distinctly from the SKOS badges,
+  // because it is a different KIND of statement, not a different strength.
+  has_element_type: 'bg-teal-100 text-teal-800 ring-1 ring-teal-300'
+};
+
+const fitColors: Record<string, string> = {
+  exact: 'bg-green-100 text-green-800',
+  approximate: 'bg-blue-100 text-blue-800',
+  broad: 'bg-yellow-100 text-yellow-800',
+  not_applicable: 'bg-gray-100 text-gray-600'
 };
 ---
 
-<Layout title="EDAM Mappings" description="Mappings from ONGA terms to EDAM ontology">
-  <h1 class="text-3xl font-bold text-gray-900 mb-2">EDAM Mappings</h1>
-  <p class="text-gray-600 mb-6">
-    {mappings.length} of {vocabulary.stats.totalTerms} ONGA terms ({vocabulary.stats.coveragePercent}%)
-    are mapped to the <a href="https://edamontology.org/" target="_blank" rel="noopener" class="text-blue-600 hover:underline">EDAM ontology</a>.
+<Layout title="Mappings" description="ONGA mappings to EDAM, and element-type assertions against the Sequence Ontology">
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">Mappings</h1>
+  <p class="text-gray-600 mb-6 max-w-3xl">
+    ONGA relates to two upstream vocabularies in two different ways.
+    <strong>EDAM mappings are concept-to-concept</strong> (SKOS): an ONGA term and an EDAM
+    data term name the same kind of thing.
+    <strong>SO mappings are element-type assertions</strong>
+    (<code class="bg-gray-100 px-1 rounded">onga:has_element_type</code>): ONGA terms name
+    <em>sets</em>, SO terms name the elements in them. See
+    <a href={url("/scope")} class="text-blue-600 hover:underline">the scope page</a>.
   </p>
 
-  <!-- Summary -->
-  <div class="bg-white rounded-lg p-6 shadow-sm mb-8">
-    <h2 class="text-lg font-semibold text-gray-900 mb-4">Mapping Types</h2>
-    <div class="flex flex-wrap gap-4">
-      {Object.entries(predicateCounts).sort((a, b) => b[1] - a[1]).map(([predicate, count]) => (
-        <div class="flex items-center gap-2">
-          <span class={`text-xs font-medium px-2 py-1 rounded ${predicateColors[predicate] || predicateColors.relatedMatch}`}>
-            {predicate}
-          </span>
-          <span class="text-sm text-gray-600">{count}</span>
-        </div>
-      ))}
-    </div>
-    <p class="text-xs text-gray-500 mt-4">
-      Mappings follow <a href="https://mapping-commons.github.io/sssom/" target="_blank" rel="noopener" class="underline">SSSOM</a> standard using SKOS predicates.
+  <!-- Tabs -->
+  <div class="border-b border-gray-200 mb-6">
+    <nav class="flex gap-6 text-sm">
+      <button id="tab-edam" class="tab-btn border-b-2 border-blue-600 text-blue-700 font-medium pb-2">
+        EDAM ({sortedMappings.length})
+      </button>
+      <button id="tab-so" class="tab-btn border-b-2 border-transparent text-gray-500 hover:text-gray-700 pb-2">
+        Sequence Ontology ({sortedSo.length})
+      </button>
+    </nav>
+  </div>
+
+  <!-- ===================== EDAM ===================== -->
+  <div id="panel-edam">
+    <p class="text-gray-600 mb-4">
+      {sortedMappings.length} of {vocabulary.stats.totalTerms} ONGA terms ({vocabulary.stats.coveragePercent}%)
+      are mapped to the <a href="https://edamontology.org/" target="_blank" rel="noopener" class="text-blue-600 hover:underline">EDAM ontology</a>.
     </p>
-  </div>
 
-  <!-- Filter -->
-  <div class="mb-4">
-    <select id="predicate-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
-      <option value="">All mapping types</option>
-      {Object.keys(predicateCounts).map(p => (
-        <option value={p}>{p} ({predicateCounts[p]})</option>
-      ))}
-    </select>
-  </div>
-
-  <!-- Table -->
-  <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-    <table class="w-full text-sm">
-      <thead class="bg-gray-50 text-left">
-        <tr>
-          <th class="px-4 py-3 font-medium text-gray-700">ONGA Term</th>
-          <th class="px-4 py-3 font-medium text-gray-700">Predicate</th>
-          <th class="px-4 py-3 font-medium text-gray-700">EDAM Term</th>
-          <th class="px-4 py-3 font-medium text-gray-700 hidden md:table-cell">Comment</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-100" id="mappings-table">
-        {sortedMappings.map((m: any) => (
-          <tr class="mapping-row hover:bg-gray-50" data-predicate={m.predicate}>
-            <td class="px-4 py-3">
-              <a href={url(`/terms/${m.termId}`)} class="text-blue-600 hover:underline">
-                {m.termName}
-              </a>
-              <div class="text-xs text-gray-500">{m.category}</div>
-            </td>
-            <td class="px-4 py-3">
-              <span class={`text-xs font-medium px-2 py-1 rounded ${predicateColors[m.predicate] || predicateColors.relatedMatch}`}>
-                {m.predicate}
-              </span>
-            </td>
-            <td class="px-4 py-3">
-              <a href={edamUrl(m.edamId)} target="_blank" rel="noopener" class="text-blue-600 hover:underline">
-                {m.edamId}
-              </a>
-              {m.edamLabel && (
-                <div class="text-xs text-gray-500">{m.edamLabel}</div>
-              )}
-            </td>
-            <td class="px-4 py-3 text-gray-500 text-xs hidden md:table-cell max-w-xs truncate" title={m.comment}>
-              {m.comment}
-            </td>
-          </tr>
+    <div class="bg-white rounded-lg p-6 shadow-sm mb-6">
+      <h2 class="text-lg font-semibold text-gray-900 mb-4">Mapping types</h2>
+      <div class="flex flex-wrap gap-4">
+        {Object.entries(predicateCounts).sort((a, b) => b[1] - a[1]).map(([predicate, count]) => (
+          <div class="flex items-center gap-2">
+            <span class={`text-xs font-medium px-2 py-1 rounded ${predicateColors[predicate] || predicateColors.relatedMatch}`}>
+              {predicate}
+            </span>
+            <span class="text-sm text-gray-600">{count}</span>
+          </div>
         ))}
-      </tbody>
-    </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-4">
+        EDAM mappings are concept-to-concept (SKOS), following the
+        <a href="https://mapping-commons.github.io/sssom/" target="_blank" rel="noopener" class="underline">SSSOM</a> standard.
+        Both an ONGA term and an EDAM <code class="bg-gray-100 px-1 rounded">data</code> term
+        denote a data item, so no level shift occurs.
+      </p>
+    </div>
+
+    <div class="mb-4">
+      <select id="predicate-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
+        <option value="">All mapping types</option>
+        {Object.keys(predicateCounts).map(p => (
+          <option value={p}>{p} ({predicateCounts[p]})</option>
+        ))}
+      </select>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-50 text-left">
+          <tr>
+            <th class="px-4 py-3 font-medium text-gray-700">ONGA Term</th>
+            <th class="px-4 py-3 font-medium text-gray-700">Predicate</th>
+            <th class="px-4 py-3 font-medium text-gray-700">EDAM Term</th>
+            <th class="px-4 py-3 font-medium text-gray-700 hidden md:table-cell">Comment</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100" id="mappings-table">
+          {sortedMappings.map((m: any) => (
+            <tr class="mapping-row hover:bg-gray-50" data-predicate={m.predicate}>
+              <td class="px-4 py-3">
+                <a href={termHref(m)} class="text-blue-600 hover:underline">
+                  {m.termName}
+                </a>
+                <div class="text-xs text-gray-500">{m.category}</div>
+              </td>
+              <td class="px-4 py-3">
+                <span class={`text-xs font-medium px-2 py-1 rounded ${predicateColors[m.predicate] || predicateColors.relatedMatch}`}>
+                  {m.predicate}
+                </span>
+              </td>
+              <td class="px-4 py-3">
+                <a href={edamUrl(m.edamId)} target="_blank" rel="noopener" class="text-blue-600 hover:underline">
+                  {m.edamId}
+                </a>
+                {m.edamLabel && (
+                  <div class="text-xs text-gray-500">{m.edamLabel}</div>
+                )}
+              </td>
+              <td class="px-4 py-3 text-gray-500 text-xs hidden md:table-cell max-w-xs truncate" title={m.comment}>
+                {m.comment}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== Sequence Ontology ===================== -->
+  <div id="panel-so" class="hidden">
+    <p class="text-gray-600 mb-4">
+      {sortedSo.length} rows covering {soTermCount} ONGA terms. An ONGA term names a
+      <strong>set</strong> of genomic elements; an SO class names an
+      <strong>individual element type</strong>, so these are not SKOS mappings.
+    </p>
+
+    <div class="bg-white rounded-lg p-6 shadow-sm mb-6 border-l-4 border-teal-400">
+      <h2 class="text-lg font-semibold text-gray-900 mb-4">Predicates</h2>
+      <div class="flex flex-wrap gap-4 mb-4">
+        {Object.entries(soPredicateCounts).sort((a, b) => b[1] - a[1]).map(([predicate, count]) => (
+          <div class="flex items-center gap-2">
+            <span class={`text-xs font-medium px-2 py-1 rounded font-mono ${predicateColors[predicate] || predicateColors.relatedMatch}`}>
+              {predicate}
+            </span>
+            <span class="text-sm text-gray-600">{count}</span>
+          </div>
+        ))}
+      </div>
+      <h2 class="text-lg font-semibold text-gray-900 mb-3">Element-type fit</h2>
+      <div class="flex flex-wrap gap-4">
+        {Object.entries(fitCounts).sort((a, b) => b[1] - a[1]).map(([fit, count]) => (
+          <div class="flex items-center gap-2">
+            <span class={`text-xs font-medium px-2 py-1 rounded ${fitColors[fit] || fitColors.not_applicable}`}>
+              {fit}
+            </span>
+            <span class="text-sm text-gray-600">{count}</span>
+          </div>
+        ))}
+      </div>
+      <p class="text-xs text-gray-500 mt-4">
+        <code class="bg-gray-100 px-1 rounded">onga:has_element_type</code> means every row of
+        a file bearing the ONGA term is an <em>instance</em> of the SO class; the
+        <strong>fit</strong> grade says how tightly SO's class fits, and
+        <code class="bg-gray-100 px-1 rounded">broad</code> marks an SO gap.
+        <code class="bg-gray-100 px-1 rounded">skos:relatedMatch</code> means the members are
+        <em>not</em> instances. <code class="bg-gray-100 px-1 rounded">skos:exactMatch</code>
+        and <code class="bg-gray-100 px-1 rounded">skos:closeMatch</code> appear only for the
+        two SO classes that are themselves set-denoting
+        (<span class="font-mono">SO:0001505</span>, <span class="font-mono">SO:0001506</span>).
+      </p>
+    </div>
+
+    <div class="mb-4">
+      <select id="so-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
+        <option value="">All predicates</option>
+        {Object.keys(soPredicateCounts).map(p => (
+          <option value={p}>{p} ({soPredicateCounts[p]})</option>
+        ))}
+      </select>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-50 text-left">
+          <tr>
+            <th class="px-4 py-3 font-medium text-gray-700">ONGA Term (a set)</th>
+            <th class="px-4 py-3 font-medium text-gray-700">Predicate</th>
+            <th class="px-4 py-3 font-medium text-gray-700">SO Class (an element)</th>
+            <th class="px-4 py-3 font-medium text-gray-700">Fit</th>
+            <th class="px-4 py-3 font-medium text-gray-700 hidden md:table-cell">Comment</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {sortedSo.map((m: any) => (
+            <tr class="so-row hover:bg-gray-50" data-predicate={m.predicateShort}>
+              <td class="px-4 py-3">
+                <a href={termHref(m)} class="text-teal-700 hover:underline">
+                  {m.termName}
+                </a>
+                <div class="text-xs text-gray-500">{m.category}</div>
+              </td>
+              <td class="px-4 py-3">
+                <span class={`text-xs font-medium px-2 py-1 rounded font-mono ${predicateColors[m.predicateShort] || predicateColors.relatedMatch}`}>
+                  {m.predicateShort}
+                </span>
+              </td>
+              <td class="px-4 py-3">
+                <a href={m.soUrl} target="_blank" rel="noopener" class="text-teal-700 hover:underline font-mono">
+                  {m.soId}
+                </a>
+                {m.soLabel && (
+                  <div class="text-xs text-gray-500">{m.soLabel}</div>
+                )}
+              </td>
+              <td class="px-4 py-3">
+                {m.fit ? (
+                  <span class={`text-xs font-medium px-2 py-1 rounded ${fitColors[m.fit] || fitColors.not_applicable}`}>
+                    {m.fit}
+                  </span>
+                ) : (
+                  <span class="text-xs text-gray-400">—</span>
+                )}
+              </td>
+              <td class="px-4 py-3 text-gray-500 text-xs hidden md:table-cell max-w-xs truncate" title={m.comment}>
+                {m.comment}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script>
     const filter = document.getElementById('predicate-filter') as HTMLSelectElement;
     const rows = document.querySelectorAll('.mapping-row') as NodeListOf<HTMLElement>;
-
     filter?.addEventListener('change', () => {
       const predicate = filter.value;
       rows.forEach(row => {
-        if (!predicate || row.dataset.predicate === predicate) {
-          row.classList.remove('hidden');
-        } else {
-          row.classList.add('hidden');
-        }
+        row.classList.toggle('hidden', !!predicate && row.dataset.predicate !== predicate);
       });
     });
+
+    const soFilter = document.getElementById('so-filter') as HTMLSelectElement;
+    const soRows = document.querySelectorAll('.so-row') as NodeListOf<HTMLElement>;
+    soFilter?.addEventListener('change', () => {
+      const predicate = soFilter.value;
+      soRows.forEach(row => {
+        row.classList.toggle('hidden', !!predicate && row.dataset.predicate !== predicate);
+      });
+    });
+
+    const tabEdam = document.getElementById('tab-edam');
+    const tabSo = document.getElementById('tab-so');
+    const panelEdam = document.getElementById('panel-edam');
+    const panelSo = document.getElementById('panel-so');
+    const active = 'border-b-2 border-blue-600 text-blue-700 font-medium pb-2';
+    const idle = 'border-b-2 border-transparent text-gray-500 hover:text-gray-700 pb-2';
+    function select(which: 'edam' | 'so') {
+      const isEdam = which === 'edam';
+      panelEdam?.classList.toggle('hidden', !isEdam);
+      panelSo?.classList.toggle('hidden', isEdam);
+      if (tabEdam) tabEdam.className = 'tab-btn ' + (isEdam ? active : idle);
+      if (tabSo) tabSo.className = 'tab-btn ' + (isEdam ? idle : active);
+    }
+    tabEdam?.addEventListener('click', () => select('edam'));
+    tabSo?.addEventListener('click', () => select('so'));
+    if (location.hash === '#so') select('so');
   </script>
 </Layout>
