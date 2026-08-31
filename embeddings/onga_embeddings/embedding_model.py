@@ -1,10 +1,17 @@
-"""Embedding model wrapper for biomedical text."""
+"""Embedding model wrapper for biomedical text.
+
+``sentence_transformers`` (and the torch stack behind it) is imported lazily, so
+importing this package - or the lexical matcher, the OBO parser, or the report
+generator - does not pull in a deep-learning runtime.
+"""
 
 from pathlib import Path
-from typing import TypeAlias
+from typing import TYPE_CHECKING, TypeAlias
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
+
+if TYPE_CHECKING:  # pragma: no cover - typing only
+    from sentence_transformers import SentenceTransformer
 
 Metadata: TypeAlias = list[dict]
 
@@ -28,12 +35,14 @@ class EmbeddingModel:
             model_name: HuggingFace model identifier. Defaults to PubMedBERT.
         """
         self.model_name = model_name
-        self._model: SentenceTransformer | None = None
+        self._model: "SentenceTransformer | None" = None
 
     @property
-    def model(self) -> SentenceTransformer:
-        """Lazy-load the model on first access."""
+    def model(self) -> "SentenceTransformer":
+        """Lazy-load sentence-transformers and the model on first access."""
         if self._model is None:
+            from sentence_transformers import SentenceTransformer
+
             self._model = SentenceTransformer(self.model_name)
         return self._model
 

@@ -1,9 +1,28 @@
-"""Similarity search for comparing ONGA terms against ontology embeddings."""
+"""Similarity search for comparing ONGA terms against ontology embeddings.
 
-import numpy as np
+Two levels of search live here:
+
+* :class:`SimilaritySearcher` - the embedding-only search used by the mapping,
+  internal-similarity and gap reports. Unchanged.
+* :func:`blend_candidates` and :meth:`SimilaritySearcher.find_candidates` - the
+  blended search used to generate curation candidates. Lexical hits from
+  :mod:`onga_embeddings.lexical_match` come first, then embedding hits fill the
+  remainder, de-duplicated by ontology term id and each labelled with its match
+  kind. This is what makes SO:0000165 ``enhancer`` show up for the ONGA term
+  ``candidate enhancers``, which embeddings alone rank around cosine 0.31.
+"""
+
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Sequence
+
+import numpy as np
+
+from onga_embeddings.lexical_match import LexicalHit, LexicalIndex
+from onga_embeddings.ontology_loader import OntologyTerm
+
+#: Match kind recorded for a hit that only the embedding search found.
+EMBEDDING = "embedding"
 
 
 @dataclass
@@ -51,6 +70,132 @@ class TermSimilarityResults:
 
 
 @dataclass
+class CandidateMatch:
+    """One blended candidate mapping for an ONGA term.
+
+    ``match_kind`` is ``"lexical"`` (whole-name label/synonym hit),
+    ``"lexical-suffix"`` (head-noun hit) or ``"embedding"``. ``score`` is always
+    the cosine similarity of the two embeddings, including for lexical hits, so
+    the column stays comparable across kinds.
+    """
+
+    query_term: str
+    rank: int
+    match_kind: str
+    match_ontology: str
+    match_id: str
+    match_term: str
+    matched_on: str
+    score: float
+    match_definition: str = ""
+    query_category: str = ""
+    query_subset: str = ""
+    query_mapping: Optional[str] = None
+
+    @property
+    def is_lexical(self) -> bool:
+        """True for whole-name and head-noun hits, False for embedding hits."""
+        return self.match_kind != EMBEDDING
+
+    def to_dict(self) -> dict:
+        return {
+            "onga_term": self.query_term,
+            "category": self.query_category,
+            "subset": self.query_subset,
+            "existing_mapping": self.query_mapping or "",
+            "rank": self.rank,
+            "match_kind": self.match_kind,
+            "match_id": self.match_id,
+            "match_label": self.match_term,
+            "matched_on": self.matched_on,
+            "score": self.score,
+            "match_def": self.match_definition,
+        }
+
+
+def blend_candidates(
+    query: dict,
+    lexical_hits: Sequence[LexicalHit],
+    similarities: np.ndarray,
+    terms: Sequence[OntologyTerm],
+    top_k: int = 5,
+    ontology_name: str = "",
+    row_of_id: Optional[dict[str, int]] = None,
+) -> list[CandidateMatch]:
+    """Merge lexical and embedding hits into one ranked candidate list.
+
+    Lexical hits are emitted first, in the order the index returned them, then
+    the highest-scoring embedding hits fill up to ``top_k``. Any ontology term
+    already emitted as a lexical hit is skipped in the embedding pass, so an id
+    never appears twice.
+
+    Args:
+        query: ONGA term metadata dict (``name``, ``category``, ``subset``,
+            ``meaning``).
+        lexical_hits: Hits from :meth:`LexicalIndex.search` for this term.
+        similarities: 1-D cosine similarity row aligned with ``terms``.
+        terms: The ontology terms, aligned with ``similarities``.
+        top_k: How many embedding hits to add after the lexical hits.
+        ontology_name: Name recorded on each candidate.
+        row_of_id: Optional precomputed ``{term id: row}`` map.
+
+    Returns:
+        Ranked candidates, lexical first. Ranks start at 1.
+    """
+    if row_of_id is None:
+        row_of_id = {term.id: i for i, term in enumerate(terms)}
+
+    query_name = query.get("name", "")
+    category = query.get("category", "")
+    subset = query.get("subset", "")
+    mapping = query.get("meaning")
+
+    def make(kind: str, term: OntologyTerm, matched_on: str, score: float) -> CandidateMatch:
+        return CandidateMatch(
+            query_term=query_name,
+            rank=0,  # assigned below
+            match_kind=kind,
+            match_ontology=ontology_name or term.ontology,
+            match_id=term.id,
+            match_term=term.name,
+            matched_on=matched_on,
+            score=score,
+            match_definition=term.definition or "",
+            query_category=category,
+            query_subset=subset,
+            query_mapping=mapping,
+        )
+
+    candidates: list[CandidateMatch] = []
+    seen: set[str] = set()
+
+    for hit in lexical_hits:
+        if hit.term.id in seen:
+            continue
+        seen.add(hit.term.id)
+        row = row_of_id.get(hit.term.id)
+        score = float(similarities[row]) if row is not None else 0.0
+        candidates.append(make(hit.match_kind, hit.term, hit.matched_on, score))
+
+    # Pull a pool large enough that `top_k` unseen terms are always available.
+    pool = np.argsort(-similarities)[: top_k + len(seen)]
+    added = 0
+    for row in pool:
+        term = terms[row]
+        if term.id in seen:
+            continue
+        seen.add(term.id)
+        candidates.append(make(EMBEDDING, term, term.name, float(similarities[row])))
+        added += 1
+        if added >= top_k:
+            break
+
+    for rank, candidate in enumerate(candidates, 1):
+        candidate.rank = rank
+    return candidates
+
+
+@dataclass
 class InternalSimilarityPair:
     """A pair of ONGA terms that are similar to each other."""
     term1_name: str
@@ -82,6 +227,8 @@ class SimilaritySearcher:
         self._onga_metadata: Optional[list[dict]] = None
         self._ontology_embeddings: dict[str, np.ndarray] = {}
         self._ontology_metadata: dict[str, list[dict]] = {}
+        self._ontology_terms: dict[str, list[OntologyTerm]] = {}
+        self._lexical_indexes: dict[str, LexicalIndex] = {}
 
     def load_onga_embeddings(self) -> None:
         """Load ONGA embeddings from disk."""
@@ -194,7 +341,7 @@ class SimilaritySearcher:
                 category=meta.get("category", ""),
                 subset=meta.get("subset", ""),
                 definition=meta.get("definition", ""),
-                existing_mapping=meta.get("edam_mapping"),
+                existing_mapping=meta.get("meaning"),
                 matches_by_ontology={}
             ))
 
@@ -266,3 +413,103 @@ class SimilaritySearcher:
             if term_result.max_similarity() < max_similarity_threshold:
                 gaps.append(term_result)
         return gaps
+
+    # ------------------------------------------------------------------
+    # Blended lexical + embedding candidate search
+    # ------------------------------------------------------------------
+
+    def ontology_terms(self, ontology_name: str) -> list[OntologyTerm]:
+        """Rebuild OntologyTerm objects from the cached embedding metadata.
+
+        The metadata stored in each ``.npz`` is exactly ``OntologyTerm.to_dict()``,
+        so labels, definitions and synonyms round-trip. No ontology source file
+        is needed to run a lexical search.
+        """
+        if ontology_name not in self._ontology_terms:
+            if ontology_name not in self._ontology_metadata:
+                self.load_ontology_embeddings(ontology_name)
+            self._ontology_terms[ontology_name] = [
+                OntologyTerm.from_dict(meta)
+                for meta in self._ontology_metadata[ontology_name]
+            ]
+        return self._ontology_terms[ontology_name]
+
+    def lexical_index(self, ontology_name: str) -> LexicalIndex:
+        """Return (and cache) the lexical index for an ontology."""
+        if ontology_name not in self._lexical_indexes:
+            self._lexical_indexes[ontology_name] = LexicalIndex(
+                self.ontology_terms(ontology_name)
+            )
+        return self._lexical_indexes[ontology_name]
+
+    def find_candidates(
+        self,
+        ontology_name: str,
+        top_k: int = 5,
+    ) -> list[list[CandidateMatch]]:
+        """Blended lexical + embedding candidates for every ONGA term.
+
+        Args:
+            ontology_name: Target ontology (must have a built ``.npz``).
+            top_k: Number of embedding hits to append after the lexical hits.
+
+        Returns:
+            One ranked candidate list per ONGA term, in ONGA metadata order.
+        """
+        if ontology_name not in self._ontology_embeddings:
+            self.load_ontology_embeddings(ontology_name)
+
+        terms = self.ontology_terms(ontology_name)
+        index = self.lexical_index(ontology_name)
+        row_of_id = {term.id: i for i, term in enumerate(terms)}
+
+        similarities = self.onga_embeddings @ self._ontology_embeddings[ontology_name].T
+
+        results = []
+        for i, query in enumerate(self.onga_metadata):
+            results.append(
+                blend_candidates(
+                    query,
+                    index.search(query.get("name", "")),
+                    similarities[i],
+                    terms,
+                    top_k=top_k,
+                    ontology_name=ontology_name,
+                    row_of_id=row_of_id,
+                )
+            )
+        return results
+
+    def find_candidates_for_term(
+        self,
+        ontology_name: str,
+        term_name: str,
+        top_k: int = 5,
+    ) -> list[CandidateMatch]:
+        """Blended candidates for a single ONGA term, by name.
+
+        Raises:
+            KeyError: If the ONGA term is not in the loaded metadata.
+        """
+        for i, query in enumerate(self.onga_metadata):
+            if query.get("name") == term_name:
+                break
+        else:
+            raise KeyError(f"ONGA term not found in embeddings: {term_name!r}")
+
+        if ontology_name not in self._ontology_embeddings:
+            self.load_ontology_embeddings(ontology_name)
+
+        terms = self.ontology_terms(ontology_name)
+        index = self.lexical_index(ontology_name)
+        similarities = (
+            self.onga_embeddings[i] @ self._ontology_embeddings[ontology_name].T
+        )
+        return blend_candidates(
+            self.onga_metadata[i],
+            index.search(term_name),
+            similarities,
+            terms,
+            top_k=top_k,
+            ontology_name=ontology_name,
+        )

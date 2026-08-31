@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 from onga_embeddings.onga_parser import ONGATerm, parse_onga
-from onga_embeddings.ontology_loader import OntologyTerm, load_ontology
+from onga_embeddings.ontology_loader import OntologyTerm, load_ontology, parse_obo
 
 
 # Path to ONGA vocabulary (adjust if needed)
@@ -41,12 +41,26 @@ class TestONGAParser:
         assert "signal_track" in subsets
 
     @pytest.mark.skipif(not ONGA_PATH.exists(), reason="ONGA file not found")
-    def test_parse_onga_extracts_edam_mappings(self):
-        """parse_onga should extract existing EDAM mappings."""
+    def test_parse_onga_extracts_meanings(self):
+        """parse_onga should extract `meaning:` values from any ontology.
+
+        `meaning:` is ontology-neutral -- it names the one identifier that IS
+        the term. Cross-references to other ontologies live in the typed
+        exact/close/broad/related mapping slots instead, so asserting a raw
+        count of EDAM meanings would drift every time curation moves one.
+        """
         terms = parse_onga(ONGA_PATH)
-        edam_terms = [t for t in terms if t.edam_mapping is not None]
-        # We know there are ~84 existing EDAM mappings
-        assert len(edam_terms) > 50
+        with_meaning = [t for t in terms if t.meaning is not None]
+
+        assert with_meaning, "no term carries a meaning"
+        # A meaning is always a CURIE, never a bare label.
+        for term in with_meaning:
+            assert ":" in term.meaning, f"{term.name}: {term.meaning!r} is not a CURIE"
+
+        # Meanings are drawn from more than one ontology.
+        prefixes = {t.meaning.split(":", 1)[0] for t in with_meaning}
+        assert "edam" in prefixes
+        assert "SO" in prefixes
 
     def test_onga_term_embedding_text(self):
         """ONGATerm.embedding_text should combine name and description."""
@@ -67,7 +81,7 @@ class TestONGAParser:
             description="Test description",
             category="DataType",
             subset="peak_set",
-            edam_mapping="edam:data_3002",
+            meaning="edam:data_3002",
         )
         d = term.to_dict()
         assert d["name"] == "peaks"
@@ -82,12 +96,62 @@ class TestOntologyLoader:
     """Tests for OWL/OBO ontology loader."""
 
     @pytest.mark.skipif(not SO_OBO_PATH.exists(), reason="so.obo not downloaded")
-    def test_load_obo_with_obonet_fallback(self):
-        """load_ontology should parse so.obo via obonet when pronto fails."""
+    def test_load_obo_needs_no_third_party_parser(self):
+        """load_ontology should parse so.obo with the stdlib parser alone."""
         terms = list(load_ontology(SO_OBO_PATH, "so"))
         assert len(terms) > 1000
         assert all(t.ontology == "so" for t in terms)
         assert all(t.name for t in terms)
+
+    @pytest.mark.skipif(not SO_OBO_PATH.exists(), reason="so.obo not downloaded")
+    def test_load_obo_does_not_import_pronto_or_obonet(self, monkeypatch):
+        """The OBO path must work in an environment without pronto/obonet."""
+        import builtins
+
+        real_import = builtins.__import__
+
+        def blocked(name, *args, **kwargs):
+            if name.split(".")[0] in {"pronto", "obonet"}:
+                raise ImportError(f"{name} is not installed")
+            return real_import(name, *args, **kwargs)
+
+        monkeypatch.setattr(builtins, "__import__", blocked)
+        terms = list(load_ontology(SO_OBO_PATH, "so"))
+        assert len(terms) > 1000
+
+    @pytest.mark.skipif(not SO_OBO_PATH.exists(), reason="so.obo not downloaded")
+    def test_parse_obo_returns_raw_stanzas(self):
+        """parse_obo keeps the raw dict shape that build_so_sssom.py consumes."""
+        raw = parse_obo(SO_OBO_PATH)
+        by_id = {t["id"]: t for t in raw}
+        assert by_id["SO:0000165"]["name"] == "enhancer"
+        assert all("obsolete" not in t for t in raw)
+        # Synonyms keep their scope, e.g. ("CNV", "EXACT").
+        cnv = by_id["SO:0001019"]["synonyms"]
+        assert all(len(pair) == 2 for pair in cnv)
+
+    @pytest.mark.skipif(not SO_OBO_PATH.exists(), reason="so.obo not downloaded")
+    def test_load_obo_carries_synonyms(self):
+        """Synonym text must survive; the lexical matcher indexes it."""
+        terms = {t.id: t for t in load_ontology(SO_OBO_PATH, "so")}
+        assert "CNV" in terms["SO:0001019"].synonyms
+
+    def test_load_owl_reports_missing_pronto(self, tmp_path, monkeypatch):
+        """An OWL file without pronto installed should say what to install."""
+        import builtins
+
+        real_import = builtins.__import__
+
+        def blocked(name, *args, **kwargs):
+            if name.split(".")[0] == "pronto":
+                raise ImportError("no pronto")
+            return real_import(name, *args, **kwargs)
+
+        monkeypatch.setattr(builtins, "__import__", blocked)
+        owl = tmp_path / "edam.owl"
+        owl.write_text("<rdf/>")
+        with pytest.raises(ImportError, match="pronto"):
+            list(load_ontology(owl, "edam"))
 
     def test_ontology_term_embedding_text_basic(self):
         """OntologyTerm.embedding_text should combine name and definition."""

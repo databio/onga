@@ -4,8 +4,6 @@ version = "0.1.0"
 description = "Compare ONGA terms against genomics ontologies using embeddings"
 requires-python = ">=3.10"
 dependencies = [
-    "pronto>=2.5.0",
-    "obonet>=0.3.0",
     "sentence-transformers>=2.2.0",
     "numpy>=1.24.0",
     "pyyaml>=6.0",
@@ -13,6 +11,10 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+# OBO files are parsed by onga_embeddings.ontology_loader.parse_obo (stdlib only).
+# pronto is needed solely to read OWL releases (EDAM, OBI, CLO) and is imported
+# lazily, so it stays out of the base install.
+owl = ["pronto>=2.5.0"]
 dev = ["pytest", "black", "ruff"]
 
 [build-system]

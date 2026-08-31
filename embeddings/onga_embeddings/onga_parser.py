@@ -15,7 +15,7 @@ class ONGATerm:
     description: str
     category: str  # "DataType" or "FeatureType"
     subset: str  # e.g., "alignment", "peak_set", "signal_track"
-    edam_mapping: str | None = None
+    meaning: str | None = None
     see_also: list[str] = field(default_factory=list)
 
     def embedding_text(self) -> str:
@@ -33,7 +33,7 @@ class ONGATerm:
             "ontology": "ONGA",
             "category": self.category,
             "subset": self.subset,
-            "edam_mapping": self.edam_mapping,
+            "meaning": self.meaning,
             "see_also": self.see_also,
         }
 
@@ -81,7 +81,7 @@ def parse_onga(path: str | Path) -> list[ONGATerm]:
                     description=term_data.get("description", ""),
                     category=enum_name,
                     subset=subset,
-                    edam_mapping=term_data.get("meaning"),
+                    meaning=term_data.get("meaning"),
                     see_also=term_data.get("see_also", []),
                 )
             )

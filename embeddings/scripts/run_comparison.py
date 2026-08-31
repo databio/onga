@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
 """Run the full ONGA comparison pipeline.
 
+Two modes:
+
+* default - embedding-only mapping / internal-similarity / gap reports.
+* ``--candidates`` - a blended lexical + embedding candidate TSV for one
+  ontology, for manual curation into ``mappings/<ontology>.sssom.tsv``.
+
 Usage:
     python scripts/run_comparison.py
     python scripts/run_comparison.py --onga-path /path/to/file_content.yaml
     python scripts/run_comparison.py --threshold 0.6 --internal-threshold 0.85
+    python scripts/run_comparison.py --ontology so --candidates
+    python scripts/run_comparison.py --ontology edam --candidates --top-k 10
 """
 
 import argparse
+import csv
 import sys
 from pathlib import Path
 
@@ -16,6 +25,24 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from onga_embeddings.similarity_search import SimilaritySearcher
 from onga_embeddings.report_generator import ReportGenerator
+
+
+CANDIDATE_COLUMNS = [
+    "onga_term",
+    "category",
+    "subset",
+    "existing_mapping",
+    "rank",
+    "match_kind",
+    "match_id",
+    "match_label",
+    "matched_on",
+    "score",
+    "match_def",
+]
+
+#: Definitions are truncated in the TSV so the file stays readable in a spreadsheet.
+DEF_TRUNCATE = 300
 
 
 # Default paths relative to project root
@@ -82,7 +109,82 @@ def parse_args() -> argparse.Namespace:
         nargs="+",
         help="Specific ontologies to compare against (default: all available)"
     )
+    parser.add_argument(
+        "--candidates",
+        action="store_true",
+        help="Write a blended lexical + embedding candidate TSV instead of reports"
+    )
+    parser.add_argument(
+        "--ontology",
+        default="so",
+        help="Ontology to build candidates for, with --candidates (default: so)"
+    )
+    parser.add_argument(
+        "--candidates-out",
+        type=Path,
+        help="Candidate TSV path (default: <output-dir>/<ontology>_candidates.tsv)"
+    )
     return parser.parse_args()
+
+
+def _require_embeddings(args: argparse.Namespace, *names: str) -> None:
+    """Exit with a helpful message when a needed .npz is missing."""
+    if not args.embedding_dir.exists():
+        print(f"ERROR: Embedding directory not found: {args.embedding_dir}")
+        print("Run 'python scripts/build_embeddings.py' first to generate embeddings.")
+        sys.exit(1)
+    for name in names:
+        path = args.embedding_dir / f"{name}.npz"
+        if not path.exists():
+            print(f"ERROR: Embeddings not found: {path}")
+            print(
+                "Run 'python scripts/build_embeddings.py' first to generate embeddings."
+            )
+            sys.exit(1)
+
+
+def run_candidates(args: argparse.Namespace) -> None:
+    """Write the blended lexical + embedding candidate TSV for one ontology."""
+    _require_embeddings(args, "onga", args.ontology)
+
+    out_path = args.candidates_out or (
+        args.output_dir / f"{args.ontology}_candidates.tsv"
+    )
+
+    print("=" * 60)
+    print(f"ONGA candidate search against {args.ontology.upper()}")
+    print("=" * 60)
+
+    searcher = SimilaritySearcher(args.embedding_dir)
+    searcher.load_onga_embeddings()
+    searcher.load_ontology_embeddings(args.ontology)
+    index = searcher.lexical_index(args.ontology)
+
+    print(f"  ONGA terms: {len(searcher.onga_metadata)}")
+    print(f"  {args.ontology} terms: {len(index)}")
+
+    candidates = searcher.find_candidates(args.ontology, top_k=args.top_k)
+
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_path, "w", newline="") as fh:
+        writer = csv.writer(fh, delimiter="\t")
+        writer.writerow(CANDIDATE_COLUMNS)
+        for term_candidates in candidates:
+            for candidate in term_candidates:
+                row = candidate.to_dict()
+                row["score"] = f"{candidate.score:.3f}"
+                row["match_def"] = (row["match_def"] or "")[:DEF_TRUNCATE]
+                writer.writerow([row[col] for col in CANDIDATE_COLUMNS])
+
+    names = [meta.get("name", "") for meta in searcher.onga_metadata]
+    n_whole = sum(1 for name in names if index.has_whole_name_match(name))
+    n_head = sum(1 for name in names if index.has_any_match(name))
+    n_rows = sum(len(c) for c in candidates)
+
+    print()
+    print(f"  wrote {n_rows} rows to {out_path}")
+    print(f"  ONGA terms with exact {args.ontology} label/synonym match: {n_whole}")
+    print(f"  ONGA terms with any head-noun {args.ontology} match:       {n_head}")
 
 
 def run_comparison(args: argparse.Namespace) -> None:
@@ -183,7 +285,10 @@ def run_comparison(args: argparse.Namespace) -> None:
 
 def main() -> None:
     args = parse_args()
-    run_comparison(args)
+    if args.candidates:
+        run_candidates(args)
+    else:
+        run_comparison(args)
 
 
 if __name__ == "__main__":
