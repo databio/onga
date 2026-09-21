@@ -1,0 +1,9 @@
+{
+  "description": "The read mapping-multiplicity subset used to compute a signal or count track (all mapped reads vs uniquely-mapping reads only), factored out of the compound ENCODE output_type / DataType terms.",
+  "enum": [
+    "all reads",
+    "unique reads"
+  ],
+  "title": "ReadMultiplicity",
+  "type": "string"
+}

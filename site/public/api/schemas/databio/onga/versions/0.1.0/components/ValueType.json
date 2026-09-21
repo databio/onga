@@ -1,0 +1,12 @@
+{
+  "description": "Types of data values associated with sequence features or edges. (Renamed from the FGA-WG enum DataTypes to avoid the near-clash with the ONGA DataType content vocabulary.)",
+  "enum": [
+    "integer",
+    "decimal",
+    "boolean",
+    "string",
+    "multiple"
+  ],
+  "title": "ValueType",
+  "type": "string"
+}

@@ -1,0 +1,60 @@
+{
+  "additionalProperties": false,
+  "description": "Information about a document containing metadata about a set of genome annotation files, harmonised according to this schema. This includes self-referential identifiers and versioning of public deposits of the document.",
+  "properties": {
+    "document_deposit": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Deposit"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Information about the public deposit of the metadata document."
+    },
+    "document_description": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Human-readable description of the metadata document."
+    },
+    "document_input_sources": {
+      "description": "References to other input sources from which this entire metadata document was derived, or possibly including DOIs of other metadata documents used as source.",
+      "items": {
+        "$ref": "#/$defs/InputSource"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "document_label": {
+      "description": "A human-readable description of the metadata document, short enough to be used for listings within software user interfaces, tables, illustration legends, etc.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "document_ontology_versions": {
+      "description": "Map from the version-agnostic URL to a versioned URL (e.g. \"versionIRI\" in owl) of each ontology used in the current metadata deposit (corresponding to deposit_versioned_id\").",
+      "items": {
+        "$ref": "#/$defs/OntologyVersions"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "title": "Document",
+  "type": "object"
+}

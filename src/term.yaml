@@ -1,0 +1,44 @@
+id: https://databio.org/onga/term
+name: term
+title: ONGA Term Helper
+description: >-
+  Helper entity for representing an ontology term as a data value (a CURIE plus
+  its human-readable label). Ported from the FGA-WG schema
+  (https://w3id.org/fga-wg/schema/term).
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+  fga: https://w3id.org/fga-wg/schema/
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+  Term:
+    description: >-
+      Helper entity to represent an ontology term as a data value. Term
+      instances are DATA-LEVEL cross-references: a CURIE carried inside a
+      record, never a schema-level IRI. Schema-level cross-references use
+      mapping slots (exact_mappings/close_mappings/broad_mappings) per ONGA
+      design principle #7, never `meaning:`.
+    source: https://w3id.org/fga-wg/schema/term
+    slots:
+      - id
+      - label
+
+slots:
+  id:
+    description: 'External, globally unique identifier for the ontology term (in CURIE form).'
+    required: true
+    range: curie
+    examples:
+      - value: 'obi:OBI_0000716'
+  label:
+    description: 'Human-readable label associated to the term id in the current version of the ontology (as listed in the "ontology_versions" field of the Deposit object).'
+    range: string
+    examples:
+      - value: 'ChIP-seq assay'

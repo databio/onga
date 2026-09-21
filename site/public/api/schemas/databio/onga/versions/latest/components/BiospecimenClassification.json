@@ -1,0 +1,16 @@
+{
+  "description": "Vocabulary from the ENCODE model describing the general category of biospecimen (see \"Properties->classification\" in https://www.encodeproject.org/profiles/biosample_type).",
+  "enum": [
+    "cell line",
+    "in vitro differentiated cells",
+    "primary cell",
+    "cell-free sample",
+    "cloning host",
+    "tissue",
+    "whole organisms",
+    "organoid",
+    "technical sample"
+  ],
+  "title": "BiospecimenClassification",
+  "type": "string"
+}

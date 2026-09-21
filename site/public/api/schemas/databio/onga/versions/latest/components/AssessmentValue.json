@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "description": "Key-value pair representing a specific value produced by a quality assessment.",
+  "properties": {
+    "key": {
+      "description": "Key/name of the assessment value.",
+      "type": "string"
+    },
+    "value": {
+      "$ref": "#/$defs/Any",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "description": "Value corresponding to the assessment key."
+    }
+  },
+  "required": [
+    "key",
+    "value"
+  ],
+  "title": "AssessmentValue",
+  "type": "object"
+}

@@ -1,0 +1,48 @@
+id: https://databio.org/onga/checksum
+name: checksum
+title: ONGA Checksum Record
+description: >-
+  A checksum of a data file, copied from the GA4GH DRS Checksum model. Ported
+  from the FGA-WG schema (https://w3id.org/fga-wg/schema/checksum).
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+  fga: https://w3id.org/fga-wg/schema/
+  ga4gh_drs_info: https://ga4gh.github.io/data-repository-service-schemas/preview/release/drs-1.4.0/
+#  ga4gh_drs:  https://w3id.org/ga4gh/schema/drs/1.4.0/
+
+imports:
+  - linkml:types
+
+default_prefix: onga
+default_range: string
+
+classes:
+  Checksum:
+    description: 'A checksum of a File object (orig: DrsObject). Exact copy of the Checksum object of the GA4GH DRS data model.'
+    conforms_to: "GA4GH DRS 1.4.0"
+#    class_uri: ga4gh_drs:Checksum
+    source: https://w3id.org/fga-wg/schema/checksum
+    see_also:
+      - ga4gh_drs_info:docs/#tag/ChecksumModel
+    slots:
+      - checksum
+      - checksum_type
+
+# TODO: Add vocabulary for checksum types
+
+slots:
+  checksum:
+    description: 'The hex-string encoded checksum for the data.'
+#    slot_uri: ga4gh_drs:Checksum/checksum
+    range: string
+    examples:
+      - value: '535bc9628a1c5e5215226f9996e4eaca'
+  checksum_type:
+    description: "The digest method used to create the checksum. The value (e.g. `sha-256`) SHOULD be listed as `Hash Name String` in the https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg [IANA Named Information Hash Algorithm Registry]. Other values MAY be used, as long as implementors are aware of the issues discussed in https://tools.ietf.org/html/rfc6920#section-9.4 [RFC6920]. GA4GH may provide more explicit guidance for use of non-IANA-registered algorithms in the future. Until then, if implementors do choose such an algorithm (e.g. because it's implemented by their storage provider), they SHOULD use an existing standard `type` value such as `md5`, `etag`, `crc32c`, `trunc512`, or `sha1`."
+#    slot_uri: ga4gh_drs:Checksum/type
+    required: true
+    range: string
+    examples:
+      - value: 'md5'

@@ -1,0 +1,11 @@
+{
+  "description": "Strand orientation of a genomic annotation track, factored out of the compound ENCODE output_type / DataType terms.",
+  "enum": [
+    "plus",
+    "minus",
+    "unstranded",
+    "bidirectional"
+  ],
+  "title": "StrandOrientation",
+  "type": "string"
+}

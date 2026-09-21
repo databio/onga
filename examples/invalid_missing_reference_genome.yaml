@@ -1,0 +1,6 @@
+# Expected-failure counterexample: a GenomicAnnotationFile WITHOUT
+# reference_genome. A coordinate-system-less annotation is not a genomic
+# annotation, so this record must NOT validate (make test asserts the failure).
+file_id: 'file:example0002'
+track_format:
+  file_format: bigBed

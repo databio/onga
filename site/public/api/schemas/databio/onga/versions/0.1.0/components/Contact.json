@@ -1,0 +1,30 @@
+{
+  "additionalProperties": false,
+  "description": "Contact information for a person or an organisation.",
+  "properties": {
+    "contact_id": {
+      "description": "Globally unique identifier for a person (e.g. ORCID ID) or organisation (e.g. BioProject accession).",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "email": {
+      "description": "E-mail address of the person or organisation.",
+      "pattern": "^\\S+@\\S+\\.\\S+$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name": {
+      "description": "Name of the person or organisation.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "title": "Contact",
+  "type": "object"
+}

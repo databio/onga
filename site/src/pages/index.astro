@@ -13,7 +13,9 @@ import vocabulary from '../data/vocabulary.json';
         Ontology for Genomic Annotations
       </p>
       <p class="mt-4 text-gray-500 max-w-2xl mx-auto text-sm">
-        {vocabulary.stats.vocabularyCount} vocabularies + {vocabulary.stats.schemaCount} schemas for describing genomic data files
+        A four-layer schema for genomic annotation files: {vocabulary.stats.vocabularyCount} vocabularies,
+        {vocabulary.stats.schemaCount} descriptor schemas, {vocabulary.stats.recordClassCount} record classes,
+        and {vocabulary.stats.investigationClassCount} investigation classes
       </p>
     </section>
 
@@ -207,6 +209,39 @@ import vocabulary from '../data/vocabulary.json';
       </div>
     </section>
 
+    <!-- Records & Investigation (Layers 3-4) -->
+    <section>
+      <div class="mb-4">
+        <h2 class="text-2xl font-bold text-gray-900">Records &amp; Investigation</h2>
+        <p class="text-gray-500 text-sm">The classes you validate actual metadata against — ported from the FGA-WG schema with machine-readable lineage.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <a href={url("/schema#record")} class="block bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow border-l-4 border-emerald-500">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Record layer</h3>
+          <p class="text-emerald-600 font-medium mb-4">{vocabulary.stats.recordClassCount} classes</p>
+          <p class="text-gray-600 mb-4">
+            <strong>A record about one file</strong> — <code class="bg-gray-100 px-1 rounded">GenomicAnnotationFile</code>
+            composes the five descriptors into a validatable record; <code class="bg-gray-100 px-1 rounded">File</code>
+            and its GA4GH-DRS-shaped components carry access, checksums, and QC.
+          </p>
+          <p class="text-sm text-gray-500">
+            Aligned with GA4GH DRS, refget seqcol, and PROV-O. This is the layer a repository adopts.
+          </p>
+        </a>
+        <a href={url("/schema#investigation")} class="block bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow border-l-4 border-purple-500">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Investigation layer</h3>
+          <p class="text-purple-600 font-medium mb-4">{vocabulary.stats.investigationClassCount} classes</p>
+          <p class="text-gray-600 mb-4">
+            <strong>The research and publishing context</strong> — Experiment, Study, Analysis, Sample, Donor,
+            Deposit, Document, FileCollection, and the <code class="bg-gray-100 px-1 rounded">TopLevel</code> deposit document.
+          </p>
+          <p class="text-sm text-gray-500">
+            Aligned with ENA/SRA, BioStudies, BioSamples, Phenopackets, DCAT, and DataCite.
+          </p>
+        </a>
+      </div>
+    </section>
+
     <!-- Relationship explanation -->
     <section class="bg-gray-50 rounded-lg p-6">
       <h3 class="font-semibold text-gray-900 mb-3">How they relate</h3>
@@ -223,9 +258,13 @@ import vocabulary from '../data/vocabulary.json';
         <strong>Track Geometry</strong> describes its <em>structural shape</em> (point vs interval vs signal vs graph) —
         measured from the bytes, orthogonal to the others.
         <strong>Reference Genome</strong> describes the <em>reference assembly</em> a track is defined against
-        (its identifier and build sex).
-        Properties that describe the <em>sample</em> or <em>assay</em> rather than the file's content —
-        anatomy, sample sex, method — are deliberately kept <a href={url("/scope")} class="text-rose-600 underline hover:text-rose-800">out of scope and delegated</a> to external ontologies.
+        (its seqcol digests, identifiers, and build sex).
+        Above the descriptors, the <strong>record layer</strong> composes them into a validatable
+        <code class="bg-gray-100 px-1 rounded">GenomicAnnotationFile</code> record, and the
+        <strong>investigation layer</strong> records the experiment/study/sample/deposit context around the files.
+        Properties that describe the <em>sample</em> or <em>assay</em> live on those investigation records as
+        ontology-delegated Term values (UBERON, CL, OBI, PATO), never baked into the
+        <a href={url("/scope")} class="text-rose-600 underline hover:text-rose-800">content vocabularies</a>.
       </p>
     </section>
 

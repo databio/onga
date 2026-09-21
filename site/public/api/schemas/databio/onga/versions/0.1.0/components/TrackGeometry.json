@@ -1,0 +1,188 @@
+{
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "has_lengths": {
+            "const": true
+          }
+        },
+        "required": [
+          "has_lengths"
+        ]
+      },
+      "then": {
+        "properties": {
+          "lengths_constant": {}
+        },
+        "required": [
+          "lengths_constant"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "has_values": {
+            "const": true
+          }
+        },
+        "required": [
+          "has_values"
+        ]
+      },
+      "then": {
+        "properties": {
+          "value_type": {}
+        },
+        "required": [
+          "value_type"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "has_edges": {
+            "const": true
+          }
+        },
+        "required": [
+          "has_edges"
+        ]
+      },
+      "then": {
+        "allOf": [
+          {
+            "properties": {
+              "edges_have_weights": {}
+            },
+            "required": [
+              "edges_have_weights"
+            ]
+          },
+          {
+            "properties": {
+              "edges_are_directed": {}
+            },
+            "required": [
+              "edges_are_directed"
+            ]
+          },
+          {
+            "properties": {
+              "edges_denote_parents": {}
+            },
+            "required": [
+              "edges_denote_parents"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "edges_have_weights": {
+            "const": true
+          }
+        },
+        "required": [
+          "edges_have_weights"
+        ]
+      },
+      "then": {
+        "properties": {
+          "edge_weight_type": {}
+        },
+        "required": [
+          "edge_weight_type"
+        ]
+      }
+    }
+  ],
+  "description": "Overall geometric properties of the sequence features in the genomic annotation file if considered as an one-dimensional genome browser track, in line with the track type delineations from Gundersen et. al, 2011. While conceptually based on visual characteristics, these properties are also useful to e.g. select relevant annotation files for non-visual analyses.",
+  "properties": {
+    "edge_weight_type": {
+      "$ref": "#/$defs/ValueType",
+      "description": "The type of values associated with the edges."
+    },
+    "edges_are_directed": {
+      "description": "Whether the edges linking sequence features are directed (at least one edge between sequence features is defined with a direction).",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "edges_denote_parents": {
+      "description": "Whether the edges linking sequence features denote a parent-child relationship (all edges between sequence features denote parent-child relationships such as genes to exons, i.e. where the child is fully covered by the parent).",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "edges_have_weights": {
+      "description": "Whether the edges linking sequence features are weighted (at least one edge between sequence features has an associated weight).",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "elements_circular": {
+      "description": "Whether the sequence features have circular coordinates (at least one feature that cross a sequence border).",
+      "type": "boolean"
+    },
+    "elements_overlapping": {
+      "description": "Whether the sequence features are overlapping (at least one base pair is simultaneously covered by two sequence features).",
+      "type": "boolean"
+    },
+    "has_edges": {
+      "description": "Whether the sequence features are linked across positions (at least one edge between features exists).",
+      "type": "boolean"
+    },
+    "has_gaps": {
+      "description": "Whether there are gaps between the sequence features (there exists at least one gap between two features on the same sequence).",
+      "type": "boolean"
+    },
+    "has_lengths": {
+      "description": "Whether the sequence features have lengths (at least one feature spans more than 1 base pair).",
+      "type": "boolean"
+    },
+    "has_names": {
+      "description": "Whether the sequence features are named (at least one feature has a name).",
+      "type": "boolean"
+    },
+    "has_strands": {
+      "description": "Whether the sequence features are stranded (at least one feature has strand information).",
+      "type": "boolean"
+    },
+    "has_values": {
+      "description": "Whether the sequence features have associated values (at least one feature has an associated value).",
+      "type": "boolean"
+    },
+    "lengths_constant": {
+      "description": "Whether the sequence lengths are constant (all sequence features have the same length, excluding features at the very end of a sequence).",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "value_type": {
+      "$ref": "#/$defs/ValueType",
+      "description": "The type of values associated with the sequence features, if any."
+    }
+  },
+  "required": [
+    "has_gaps",
+    "has_lengths",
+    "has_strands",
+    "has_values",
+    "has_edges",
+    "has_names",
+    "elements_overlapping",
+    "elements_circular"
+  ],
+  "title": "TrackGeometry",
+  "type": "object"
+}

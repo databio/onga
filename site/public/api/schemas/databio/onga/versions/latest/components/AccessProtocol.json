@@ -1,0 +1,15 @@
+{
+  "description": "Access protocols (i.e. communication protocols) for fetching a data file, following the vocabulary defined in the GA4GH DRS specification (renamed from the FGA-WG enum AccessMethods to avoid the near-clash with the AccessMethod class).",
+  "enum": [
+    "s3",
+    "gs",
+    "ftp",
+    "gsiftp",
+    "globus",
+    "htsget",
+    "https",
+    "file"
+  ],
+  "title": "AccessProtocol",
+  "type": "string"
+}

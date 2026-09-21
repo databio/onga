@@ -1,0 +1,60 @@
+id: https://databio.org/onga/contact
+name: contact
+title: ONGA Contact Record
+description: >-
+  Contact information for a person or an organisation. Ported from the FGA-WG
+  schema (https://w3id.org/fga-wg/schema/contact).
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+  fga: https://w3id.org/fga-wg/schema/
+  schema: http://schema.org/
+
+imports:
+  - linkml:types
+
+default_prefix: onga
+default_range: string
+
+classes:
+  Contact:
+    description: 'Contact information for a person or an organisation.'
+    source: https://w3id.org/fga-wg/schema/contact
+    close_mappings:
+      - schema:Person
+      - schema:Organization
+    slots:
+      - name
+      - contact_id
+      - email
+
+slots:
+  name:
+    description: 'Name of the person or organisation.'
+    recommended: true
+    range: string
+    examples:
+      - value: 'John Doe'
+  contact_id:
+    description: 'Globally unique identifier for a person (e.g. ORCID ID) or organisation (e.g. BioProject accession).'
+    range: curie
+    examples:
+      - value: 'orcid:0000-0001-2345-6789'
+  email:
+    description: 'E-mail address of the person or organisation.'
+    range: string
+    pattern: "^\\S+@\\S+\\.\\S+$"
+    examples:
+      - value: 'john@doe.com'
+  # Shared by Study and FileCollection (defined once here to avoid a duplicate
+  # slot definition when all modules are merged in onga.yaml).
+  contact:
+    description: 'Contact point for the parent object (e.g. the study, or the creator/maintainer of a file collection).'
+    range: Contact
+    inlined: true
+    examples:
+      - object:
+          name: 'Mark Gerstein'
+          contact_id: 'orcid:0000-0002-9746-3719'
+          email: 'mark@gersteinlab.org'

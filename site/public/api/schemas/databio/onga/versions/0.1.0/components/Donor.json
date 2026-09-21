@@ -1,0 +1,44 @@
+{
+  "additionalProperties": false,
+  "description": "Information about the donor or complete organism from which the sample was taken.",
+  "properties": {
+    "donor_external_id": {
+      "description": "External, globally unique identifier for the donor/organism.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "donor_id": {
+      "description": "Internal identifier for the donor/organism (unique within the metadata deposit). ",
+      "type": "string"
+    },
+    "donor_sex": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Term"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Biological sex of the donor/organism (the SAMPLE side of the crucial sample-sex vs reference-build-sex distinction, ONGA design principle #5). Do not confuse with ReferenceGenome.build_sex, which records which sex chromosomes the reference ASSEMBLY contains. Renamed from the FGA-WG slot sex."
+    },
+    "species_taxon": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Term"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Taxonomical classification of the species of the donor/organism."
+    }
+  },
+  "required": [
+    "donor_id"
+  ],
+  "title": "Donor",
+  "type": "object"
+}

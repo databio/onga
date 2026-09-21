@@ -1,0 +1,9 @@
+{
+  "description": "The quality-control filtering status of the data a file represents, factored out of the compound ENCODE output_type / DataType terms. Applies across output types (reads, alignments, peaks, variants, quantifications, count matrices).",
+  "enum": [
+    "filtered",
+    "unfiltered"
+  ],
+  "title": "FilterStatus",
+  "type": "string"
+}

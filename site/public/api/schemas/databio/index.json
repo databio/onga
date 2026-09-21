@@ -1,0 +1,19 @@
+{
+  "pagination": {
+    "page": 0,
+    "page_size": 100000,
+    "total": 1,
+    "total_pages": 1
+  },
+  "results": [
+    {
+      "namespace": "databio",
+      "schema_name": "onga",
+      "latest_released_version": "0.1.0",
+      "maintainers": [
+        "databio"
+      ],
+      "maturity_level": "draft"
+    }
+  ]
+}

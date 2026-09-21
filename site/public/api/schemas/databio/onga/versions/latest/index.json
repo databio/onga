@@ -1,0 +1,2294 @@
+{
+  "$defs": {
+    "AccessMethod": {
+      "additionalProperties": false,
+      "description": "Description of an access method (i.e. communication protocol) that can be used to fetch a File object (orig: DrsObject). Exact copy of the AccessMethod object of the GA4GH DRS data model.",
+      "properties": {
+        "access_protocol": {
+          "$ref": "#/$defs/AccessProtocol",
+          "description": "Access protocol used to access the File object (orig: DrsObject). Renamed from the FGA-WG slot access_method."
+        },
+        "access_url": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AccessURL"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "AccessURL object providing URL and associated HTTP headers to access the File object (orig: DrsObject)."
+        },
+        "region": {
+          "description": "Name of the region in the cloud service provider that the object belongs to.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "title": "AccessMethod",
+      "type": "object"
+    },
+    "AccessProtocol": {
+      "description": "Access protocols (i.e. communication protocols) for fetching a data file, following the vocabulary defined in the GA4GH DRS specification (renamed from the FGA-WG enum AccessMethods to avoid the near-clash with the AccessMethod class).",
+      "enum": [
+        "s3",
+        "gs",
+        "ftp",
+        "gsiftp",
+        "globus",
+        "htsget",
+        "https",
+        "file"
+      ],
+      "title": "AccessProtocol",
+      "type": "string"
+    },
+    "AccessURL": {
+      "additionalProperties": false,
+      "description": "The URL and associated HTTP headers to access the File object (orig: DrsObject). Exact copy of AccessURL object of the GA4GH DRS data model.",
+      "properties": {
+        "headers": {
+          "description": "An optional list of headers to include in the HTTP request to `url`. These headers can be used to provide auth tokens required to fetch the object bytes.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "url": {
+          "description": "A fully resolvable URL that can be used to fetch the actual object bytes.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "title": "AccessURL",
+      "type": "object"
+    },
+    "Analysis": {
+      "additionalProperties": false,
+      "description": "Represents the computational processing applied to data from a sequencing experiment, or from another analysis. This can be described at the level of individual analysis steps in a workflow/pipeline, or more generally for the workflow/pipeline as a whole. Boundary with TrackProvenance: TrackProvenance (Layer 2) carries faceted, closed-vocabulary descriptors of what was done to the CONTENT (read selection, filtering, normalization, ...); Analysis is the record of the ACTIVITY itself (workflow, tool, version, inputs). Complementary, not competing.",
+      "properties": {
+        "analysis_description": {
+          "description": "Human-readable description of the analysis.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "analysis_external_id": {
+          "description": "External, globally unique identifier for the analysis.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "analysis_id": {
+          "description": "Internal identifier for the analysis (unique within the metadata deposit). ",
+          "type": "string"
+        },
+        "analysis_input_sources": {
+          "description": "External or internal references to the data sources used as input to the analysis.",
+          "items": {
+            "$ref": "#/$defs/InputSource"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "analysis_label": {
+          "description": "A human-readable description of the analysis, short enough to be used for listings within software user interfaces, tables, illustration legends, etc.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "analysis_main_tool": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Main software tool used for the analysis."
+        },
+        "analysis_main_tool_version": {
+          "description": "Version of the main software tool used for the analysis.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "analysis_protocol": {
+          "description": "Document describing the analysis protocol that was followed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "analysis_study_ref": {
+          "description": "Internal reference to the study within which the analysis has been carried out.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "analysis_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The type of analysis carried out."
+        },
+        "analysis_workflow": {
+          "description": "External reference to the analysis workflow, with availability in at least one machine-operable form (e.g. CWL, Nextflow, ...).",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "analysis_id"
+      ],
+      "title": "Analysis",
+      "type": "object"
+    },
+    "Any": {
+      "additionalProperties": true,
+      "description": "The linkml:Any allows the range of a slot to be any object (see https://linkml.io/linkml/schemas/advanced.html#linkml-any-type).",
+      "title": "Any",
+      "type": [
+        "null",
+        "boolean",
+        "object",
+        "number",
+        "string"
+      ]
+    },
+    "AssessmentValue": {
+      "additionalProperties": false,
+      "description": "Key-value pair representing a specific value produced by a quality assessment.",
+      "properties": {
+        "key": {
+          "description": "Key/name of the assessment value.",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/$defs/Any",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "Value corresponding to the assessment key."
+        }
+      },
+      "required": [
+        "key",
+        "value"
+      ],
+      "title": "AssessmentValue",
+      "type": "object"
+    },
+    "BiospecimenClassification": {
+      "description": "Vocabulary from the ENCODE model describing the general category of biospecimen (see \"Properties->classification\" in https://www.encodeproject.org/profiles/biosample_type).",
+      "enum": [
+        "cell line",
+        "in vitro differentiated cells",
+        "primary cell",
+        "cell-free sample",
+        "cloning host",
+        "tissue",
+        "whole organisms",
+        "organoid",
+        "technical sample"
+      ],
+      "title": "BiospecimenClassification",
+      "type": "string"
+    },
+    "Checksum": {
+      "additionalProperties": false,
+      "description": "A checksum of a File object (orig: DrsObject). Exact copy of the Checksum object of the GA4GH DRS data model.",
+      "properties": {
+        "checksum": {
+          "description": "The hex-string encoded checksum for the data.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "checksum_type": {
+          "description": "The digest method used to create the checksum. The value (e.g. `sha-256`) SHOULD be listed as `Hash Name String` in the https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg [IANA Named Information Hash Algorithm Registry]. Other values MAY be used, as long as implementors are aware of the issues discussed in https://tools.ietf.org/html/rfc6920#section-9.4 [RFC6920]. GA4GH may provide more explicit guidance for use of non-IANA-registered algorithms in the future. Until then, if implementors do choose such an algorithm (e.g. because it's implemented by their storage provider), they SHOULD use an existing standard `type` value such as `md5`, `etag`, `crc32c`, `trunc512`, or `sha1`.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "checksum_type"
+      ],
+      "title": "Checksum",
+      "type": "object"
+    },
+    "Contact": {
+      "additionalProperties": false,
+      "description": "Contact information for a person or an organisation.",
+      "properties": {
+        "contact_id": {
+          "description": "Globally unique identifier for a person (e.g. ORCID ID) or organisation (e.g. BioProject accession).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "email": {
+          "description": "E-mail address of the person or organisation.",
+          "pattern": "^\\S+@\\S+\\.\\S+$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Name of the person or organisation.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "title": "Contact",
+      "type": "object"
+    },
+    "DataType": {
+      "description": "Computational output types - the data structure or processing result \na file contains. Describes HOW data was produced or represented.\nExamples: peaks (output of peak caller), signal track, alignments, count matrix.",
+      "enum": [
+        "alignments",
+        "alignments with modifications",
+        "diploid personal genome alignments",
+        "gene alignments",
+        "preprocessed alignments",
+        "reads",
+        "redacted alignments",
+        "redacted transcriptome alignments",
+        "rejected reads",
+        "spike-in alignments",
+        "transcriptome alignments",
+        "base overlap signal",
+        "bias-corrected predicted signal profile",
+        "control normalized signal",
+        "enrichment",
+        "fold change over control",
+        "signal",
+        "signal p-value",
+        "summed densities signal",
+        "wavelet-smoothed signal",
+        "bidirectional peaks",
+        "conservative IDR thresholded peaks",
+        "distal peaks",
+        "divergent peaks",
+        "IDR ranked peaks",
+        "optimal IDR thresholded peaks",
+        "peaks",
+        "peaks and background as input for IDR",
+        "proximal peaks",
+        "pseudoreplicated IDR thresholded peaks",
+        "pseudoreplicated peaks",
+        "replicated peaks",
+        "representative DNase hypersensitivity sites",
+        "representative IDR thresholded peaks",
+        "unidirectional peaks",
+        "valleys",
+        "consensus DNase hypersensitivity sites",
+        "DHS peaks",
+        "DHS regions reference",
+        "FDR cut rate",
+        "hotspots",
+        "hotspots1 reference",
+        "hotspots2 reference",
+        "nuclease cleavage frequency",
+        "contact matrix",
+        "pairs",
+        "variants contact matrix",
+        "enhancer prediction model",
+        "regulatory elements prediction model",
+        "element barcode mapping",
+        "gRNAs",
+        "guide locations",
+        "guide quantifications",
+        "non-targeting gRNAs",
+        "perturbation signal",
+        "ranked gRNAs",
+        "reporter code counts",
+        "safe-targeting gRNAs",
+        "sparse gRNA count matrix",
+        "fold over change matrix",
+        "sparse gene count matrix",
+        "sparse peak count matrix",
+        "sparse transcript count matrix",
+        "TF peaks matrix",
+        "z scores matrix",
+        "differential expression quantifications",
+        "differential splicing quantifications",
+        "element quantifications",
+        "exon quantifications",
+        "gene quantifications",
+        "gene stabilities",
+        "genic features quantifications",
+        "genic regions quantifications",
+        "merged transcription segment quantifications",
+        "microRNA quantifications",
+        "mRNA stabilities",
+        "novel peptides",
+        "peptide quantifications",
+        "protein expression quantifications",
+        "scaled RNA stability",
+        "transcript quantifications",
+        "transcribed region quantifications",
+        "transcription segment quantifications",
+        "UV enriched segment quantifications",
+        "bias models",
+        "counts sequence contribution scores",
+        "DNN-MPRA contribution scores",
+        "DNN-MPRA predicted signal",
+        "model performance metrics",
+        "models",
+        "motif model",
+        "profile sequence contribution scores",
+        "promoter prediction model",
+        "selected regions for bias-corrected predicted signal profile",
+        "selected regions for count sequence contribution scores",
+        "selected regions for predicted bias profile",
+        "selected regions for predicted signal and sequence contribution scores",
+        "selected regions for predicted signal profile",
+        "selected regions for profile sequence contribution scores",
+        "TF binding prediction model",
+        "training and test regions",
+        "training set",
+        "fine-mapped variants",
+        "variant functional prediction",
+        "chromosome sizes",
+        "chromosomes reference",
+        "elements reference",
+        "genome index",
+        "genome reference",
+        "miRNA reference",
+        "mitochondrial genome index",
+        "mitochondrial genome reference",
+        "motif clusters reference",
+        "phastcons score reference",
+        "reference",
+        "repeats reference",
+        "rRNA reference",
+        "snRNA reference",
+        "transcriptome index",
+        "transcriptome reference",
+        "tRNA reference",
+        "HMM predicted chromatin state",
+        "read annotations",
+        "semi-automated genome annotation",
+        "sequence alignability",
+        "sequence uniqueness",
+        "archr project",
+        "cell coordinates",
+        "cell topic participation",
+        "clusters",
+        "capture targets",
+        "exclusion list regions",
+        "filtered regions",
+        "fragments",
+        "idat green channel",
+        "idat red channel",
+        "inclusion list",
+        "index reads",
+        "intensity values",
+        "kmer weights",
+        "library fraction",
+        "mitochondrial exclusion list regions",
+        "nanopore signal",
+        "negative control regions",
+        "positive control regions",
+        "primer sequence",
+        "R2C2 subreads",
+        "raw data",
+        "raw imaging signal",
+        "sequence adapters",
+        "sequence barcodes",
+        "spike-ins",
+        "subreads",
+        "validation",
+        "end position signal",
+        "modified peptide quantification",
+        "sparse splice junction count matrix",
+        "signals matrix",
+        "signal profile",
+        "bias profile",
+        "control profile",
+        "nuclease cleavage corrected frequency"
+      ],
+      "title": "DataType",
+      "type": "string"
+    },
+    "Deposit": {
+      "additionalProperties": false,
+      "description": "Information about a public deposit of a document containing metadata about a set of genome annotation files.",
+      "properties": {
+        "deposit_first_created": {
+          "description": "The date and time of the creation of the first deposited version of the metadata document.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deposit_id": {
+          "description": "A globally unique and persistent identifier for the public deposit of the metadata document. A DOI or other persistent identifier is recommended.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deposit_last_changed": {
+          "description": "The date and time of the last deposited change of the current metadata document (corresponding to \"deposit_versioned_id\").",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deposit_versioned_id": {
+          "description": "A globally unique, persistent and versioned identifier for the public deposit of the metadata document. A versioned DOI to a deposited document is recommended.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "deposit_versioned_id"
+      ],
+      "title": "Deposit",
+      "type": "object"
+    },
+    "Derivation": {
+      "description": "The epistemic origin of a file's values \u2014 empirically observed (measured from experimental data) vs. computationally predicted (generated by a model) \u2014 factored out of the compound ENCODE output_type / DataType / FeatureType terms. A provenance facet recording how the values were obtained, not what they mean. Absent means unspecified (not a default of observed). `control` is deliberately excluded: it denotes an experimental role or normalization reference, not the measured-vs-model axis.",
+      "enum": [
+        "observed",
+        "predicted"
+      ],
+      "title": "Derivation",
+      "type": "string"
+    },
+    "Document": {
+      "additionalProperties": false,
+      "description": "Information about a document containing metadata about a set of genome annotation files, harmonised according to this schema. This includes self-referential identifiers and versioning of public deposits of the document.",
+      "properties": {
+        "document_deposit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Deposit"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Information about the public deposit of the metadata document."
+        },
+        "document_description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-readable description of the metadata document."
+        },
+        "document_input_sources": {
+          "description": "References to other input sources from which this entire metadata document was derived, or possibly including DOIs of other metadata documents used as source.",
+          "items": {
+            "$ref": "#/$defs/InputSource"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "document_label": {
+          "description": "A human-readable description of the metadata document, short enough to be used for listings within software user interfaces, tables, illustration legends, etc.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "document_ontology_versions": {
+          "description": "Map from the version-agnostic URL to a versioned URL (e.g. \"versionIRI\" in owl) of each ontology used in the current metadata deposit (corresponding to deposit_versioned_id\").",
+          "items": {
+            "$ref": "#/$defs/OntologyVersions"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "title": "Document",
+      "type": "object"
+    },
+    "Donor": {
+      "additionalProperties": false,
+      "description": "Information about the donor or complete organism from which the sample was taken.",
+      "properties": {
+        "donor_external_id": {
+          "description": "External, globally unique identifier for the donor/organism.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "donor_id": {
+          "description": "Internal identifier for the donor/organism (unique within the metadata deposit). ",
+          "type": "string"
+        },
+        "donor_sex": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Biological sex of the donor/organism (the SAMPLE side of the crucial sample-sex vs reference-build-sex distinction, ONGA design principle #5). Do not confuse with ReferenceGenome.build_sex, which records which sex chromosomes the reference ASSEMBLY contains. Renamed from the FGA-WG slot sex."
+        },
+        "species_taxon": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Taxonomical classification of the species of the donor/organism."
+        }
+      },
+      "required": [
+        "donor_id"
+      ],
+      "title": "Donor",
+      "type": "object"
+    },
+    "Experiment": {
+      "additionalProperties": false,
+      "description": "Represents a sequencing experiment that has been carried out within a study, based on biological samples, and providing data files as output. Subsequent analysis of output data is described by the Analysis entity. Assay properties (assay_type, antibody_target, instrument, ...) live HERE, on the investigation-layer Experiment record \u2014 not in the ONGA content vocabularies, consistent with ONGA design principle #5 (sample and assay properties are out of scope for the content vocabularies).",
+      "properties": {
+        "antibody_target": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The target of the antibody used in the experiment."
+        },
+        "assay_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Sequencing technique intended for this library."
+        },
+        "biological_processes": {
+          "description": "Biological processes illuminated by the experiment.",
+          "items": {
+            "$ref": "#/$defs/Term"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "design_description": {
+          "description": "The high-level experiment design including layout, protocol.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "experiment_external_id": {
+          "description": "External, globally unique identifier for the experiment.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "experiment_id": {
+          "description": "Internal identifier for the experiment (unique within the metadata deposit).",
+          "type": "string"
+        },
+        "experiment_label": {
+          "description": "A human-readable description of the experiment, short enough to be used for listings within software user interfaces, tables, illustration legends, etc.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "experiment_samples": {
+          "description": "External or internal references to samples used in the experiment. Internal references should refer to Sample objects.",
+          "items": {
+            "$ref": "#/$defs/InputSource"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "experiment_study_ref": {
+          "description": "Internal reference to the study within which the experiment has been carried out.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "instrument": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Technology platform used to perform nucleic acid sequencing, including name and/or number associated with a specific sequencing instrument model. It is recommended to be as specific as possible for this property (e.g. if the model/revision are available, providing that instead of just the instrument maker)."
+        },
+        "library_layout": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Whether the library was built as paired-end, or single-end."
+        },
+        "molecule_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Specifies the type of source material that is being sequenced."
+        },
+        "sequencing_protocol": {
+          "description": "Set of rules which guides how the sequencing protocol was followed. Change-tracking services such as Protocol.io or GitHub are encouraged instead of dumping free text in this field.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "experiment_id"
+      ],
+      "title": "Experiment",
+      "type": "object"
+    },
+    "FeatureType": {
+      "description": "Biological feature types - the biological entity or concept the data \nrepresents. Describes WHAT biological phenomenon the features capture.\nExamples: enhancers, TF binding sites, methylation states, chromatin loops.",
+      "enum": [
+        "footprints",
+        "open chromatin regions",
+        "chromatin stripes",
+        "contact domains",
+        "genome compartments",
+        "genome subcompartments",
+        "loops",
+        "nested contact domains",
+        "CpG sites coverage",
+        "methylated reads",
+        "methylation state at CHG",
+        "methylation state at CHH",
+        "methylation state at CpG",
+        "smoothed methylation state at CpG",
+        "candidate Cis-Regulatory Elements",
+        "candidate enhancers",
+        "candidate promoters",
+        "curated binding sites",
+        "enhancer validation",
+        "enhancers reference",
+        "polyA sites",
+        "predicted enhancers",
+        "promoters reference",
+        "regulatory elements",
+        "transcription start sites",
+        "TSS reference",
+        "element gene interactions p-value",
+        "element gene interactions signal",
+        "element gene links",
+        "topic gene weights",
+        "relative replication signal",
+        "replication timing profile",
+        "allele-specific variants",
+        "copy number variation",
+        "curated SNVs",
+        "dsQTLs",
+        "eQTLs",
+        "maternal variant calls",
+        "paternal variant calls",
+        "reference variants",
+        "variant calls",
+        "variant effect quantifications",
+        "variant reference",
+        "PWMs",
+        "sequence motifs",
+        "sequence motifs instances",
+        "sequence motifs report",
+        "functional conservation mapping",
+        "functional conservation quantifications",
+        "miRNA annotations",
+        "repeat elements annotation",
+        "restriction enzyme site locations",
+        "RNA-binding protein associated mRNAs",
+        "splice junctions",
+        "transcribed fragments",
+        "transcriptome annotations",
+        "transposable element TF ancestral origin percent by motif",
+        "transposable element TF ancestral origin percent by subfamily",
+        "cell type annotations",
+        "cell type data",
+        "3D structure",
+        "contigs",
+        "personalized genome assembly",
+        "predicted 3D structural ensembles",
+        "maternal haplotype mapping",
+        "paternal haplotype mapping",
+        "Nm methylation state",
+        "SNPs",
+        "indels",
+        "inosine methylation state",
+        "m5C methylation state",
+        "m6A methylation state",
+        "pseudouridine methylation state",
+        "links",
+        "mapping"
+      ],
+      "title": "FeatureType",
+      "type": "string"
+    },
+    "File": {
+      "additionalProperties": false,
+      "description": "General information about a particular data file. Most fields (marked with an asterix*) are copied from the GA4GH DRS DrsObject model, which is the top-level object returned from a DRS server in response to a successful lookup call (i.e. https://ga4gh.github.io/data-repository-service-schemas/preview/release/drs-1.4.0/docs/#tag/Objects).",
+      "properties": {
+        "access_methods": {
+          "description": "The list of access methods that can be used to fetch the data file. ",
+          "items": {
+            "$ref": "#/$defs/AccessMethod"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "checksums": {
+          "description": "A list of checksums of the data file. For blobs, the checksum is computed over the bytes in the blob.",
+          "items": {
+            "$ref": "#/$defs/Checksum"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "created_time": {
+          "description": "Timestamp of content creation in RFC3339. (This is the creation time of the underlying content, not of the JSON object.).",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "drs_uri": {
+          "description": "A drs:// hostname-based URI, as defined in the DRS documentation, that tells clients how to access this object. The intent of this field is to make DRS objects self-contained, and therefore easier for clients to store and pass around. For example, if you arrive at this DRS JSON by resolving a compact identifier-based DRS URI, the self_uri presents you with a hostname and properly encoded DRS ID for use in subsequent access endpoint calls.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "file_description": {
+          "description": "A human readable description of the data file.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "file_external_id": {
+          "description": "External, globally unique identifier for the data file.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "file_id": {
+          "description": "Internal identifier for the data file (unique within the metadata deposit). ",
+          "type": "string"
+        },
+        "file_input_sources": {
+          "description": "External or internal references to data sources for the file, typically a data collection or a process that has generated the file. Internal references should lead to FileCollection, File, Experiment, or Analysis objects.",
+          "items": {
+            "$ref": "#/$defs/InputSource"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "file_label": {
+          "description": "A human-readable description of the data file, short enough to be used for listings within software user interfaces, tables, illustration legends, etc.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "file_name": {
+          "description": "A string that can be used to name a data file. This string is made up of uppercase and lowercase letters, decimal digits, hypen, period, and underscore [A-Za-z0-9.-_]. See http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_282 [portable filenames].",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "file_size": {
+          "description": "For blobs, the blob size in bytes. ",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "file_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The file format of the data file, as an ontology term. For genomic annotation files the authoritative format is `TrackFormat.file_format` (the ONGA Format vocabulary, reached via `track_format` on GenomicAnnotationFile); `file_type` exists for non-annotation files (e.g. FASTQ) that File also covers."
+        },
+        "file_version": {
+          "description": "A string representing a version. (Some systems may use checksum, a RFC3339 timestamp, or an incrementing version number.).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "filecollection_refs": {
+          "description": "Internal references to the FileCollection objects (within the deposit) that contains the data file, if any.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "mime_type": {
+          "description": "A string providing the mime-type of the data file.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quality_assessments": {
+          "description": "An array of QualityAssessment objects containing the main quality scores from assessment techniques applied to the data file.",
+          "items": {
+            "$ref": "#/$defs/QualityAssessment"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "run_provenance": {
+          "description": "Document detailing the provenance of the experiment or analysis run which produced the file as one of its outputs. The provenance info should include software versions, parameter settings, etc.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updated_time": {
+          "description": "Timestamp of content update in RFC3339, identical to created_time in systems that do not support updates. (This is the update time of the underlying content, not of the JSON object.).",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "file_id"
+      ],
+      "title": "File",
+      "type": "object"
+    },
+    "FileCollection": {
+      "additionalProperties": false,
+      "description": "A collection of files, according to some selection criteria. Mainly intended for GenomicAnnotationFile entities, but other types of files can also be contained in a collection, e.g. raw data files such as FASTQ files. This is the natural future home for the BEDset concept (a curated collection of BED files).",
+      "properties": {
+        "contact": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Contact"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Contact point for the parent object (e.g. the study, or the creator/maintainer of a file collection)."
+        },
+        "deposit_versioned_ref": {
+          "description": "Reference to versioned id of deposit containing this file collection.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "filecollection_description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-readable description of the file collection."
+        },
+        "filecollection_external_id": {
+          "description": "External, globally unique identifier for the file collection (in most cases, this will not exist).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "filecollection_id": {
+          "description": "Internal identifier for the file collection (unique within the metadata deposit). ",
+          "type": "string"
+        },
+        "filecollection_input_sources": {
+          "description": "References to other input sources from which this file collection was derived.",
+          "items": {
+            "$ref": "#/$defs/InputSource"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "filecollection_label": {
+          "description": "A human-readable description of the file collection, short enough to be used for listings within software user interfaces, tables, illustration legends, etc.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "filecollection_id"
+      ],
+      "title": "FileCollection",
+      "type": "object"
+    },
+    "FilterStatus": {
+      "description": "The quality-control filtering status of the data a file represents, factored out of the compound ENCODE output_type / DataType terms. Applies across output types (reads, alignments, peaks, variants, quantifications, count matrices).",
+      "enum": [
+        "filtered",
+        "unfiltered"
+      ],
+      "title": "FilterStatus",
+      "type": "string"
+    },
+    "Format": {
+      "description": "Common file formats for genomic annotation tracks. Where an EDAM term exists for the format, it is referenced via `meaning`.",
+      "enum": [
+        "BED",
+        "bigBed",
+        "bigWig",
+        "WIG",
+        "bedGraph",
+        "narrowPeak",
+        "broadPeak",
+        "gappedPeak",
+        "GFF3",
+        "GTF",
+        "VCF",
+        "BAM"
+      ],
+      "title": "Format",
+      "type": "string"
+    },
+    "GenomicAnnotationFile": {
+      "additionalProperties": false,
+      "description": "Information about a genomic annotation / track file. GenomicAnnotationFile is a specification of the File entity and inherits all the fields defined in File, in addition to the fields that are specific to GenomicAnnotationFile, as detailed here. This is the class that composes the five ONGA descriptor schemas: the required reference_genome (the coordinate system) plus the recommended track_format, track_interpretation, track_provenance, and track_geometry descriptors.",
+      "properties": {
+        "access_methods": {
+          "description": "The list of access methods that can be used to fetch the data file. ",
+          "items": {
+            "$ref": "#/$defs/AccessMethod"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "checksums": {
+          "description": "A list of checksums of the data file. For blobs, the checksum is computed over the bytes in the blob.",
+          "items": {
+            "$ref": "#/$defs/Checksum"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "created_time": {
+          "description": "Timestamp of content creation in RFC3339. (This is the creation time of the underlying content, not of the JSON object.).",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "drs_uri": {
+          "description": "A drs:// hostname-based URI, as defined in the DRS documentation, that tells clients how to access this object. The intent of this field is to make DRS objects self-contained, and therefore easier for clients to store and pass around. For example, if you arrive at this DRS JSON by resolving a compact identifier-based DRS URI, the self_uri presents you with a hostname and properly encoded DRS ID for use in subsequent access endpoint calls.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "file_description": {
+          "description": "A human readable description of the data file.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "file_external_id": {
+          "description": "External, globally unique identifier for the data file.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "file_id": {
+          "description": "Internal identifier for the data file (unique within the metadata deposit). ",
+          "type": "string"
+        },
+        "file_input_sources": {
+          "description": "External or internal references to data sources for the file, typically a data collection or a process that has generated the file. Internal references should lead to FileCollection, File, Experiment, or Analysis objects.",
+          "items": {
+            "$ref": "#/$defs/InputSource"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "file_label": {
+          "description": "A human-readable description of the data file, short enough to be used for listings within software user interfaces, tables, illustration legends, etc.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "file_name": {
+          "description": "A string that can be used to name a data file. This string is made up of uppercase and lowercase letters, decimal digits, hypen, period, and underscore [A-Za-z0-9.-_]. See http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_282 [portable filenames].",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "file_size": {
+          "description": "For blobs, the blob size in bytes. ",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "file_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The file format of the data file, as an ontology term. For genomic annotation files the authoritative format is `TrackFormat.file_format` (the ONGA Format vocabulary, reached via `track_format` on GenomicAnnotationFile); `file_type` exists for non-annotation files (e.g. FASTQ) that File also covers."
+        },
+        "file_version": {
+          "description": "A string representing a version. (Some systems may use checksum, a RFC3339 timestamp, or an incrementing version number.).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "filecollection_refs": {
+          "description": "Internal references to the FileCollection objects (within the deposit) that contains the data file, if any.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "genomic_annotation_digest": {
+          "description": "Content-derived digest for distributed identification of genomic annotation files. (This field is currently a placeholder, as an algorithm for generating such a digest is yet to be specified.).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mime_type": {
+          "description": "A string providing the mime-type of the data file.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quality_assessments": {
+          "description": "An array of QualityAssessment objects containing the main quality scores from assessment techniques applied to the data file.",
+          "items": {
+            "$ref": "#/$defs/QualityAssessment"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "reference_genome": {
+          "$ref": "#/$defs/ReferenceGenome",
+          "description": "The reference genome the annotation is defined against, consequently defining the genomic coordinate system for the annotation. Renamed from the FGA-WG slot genome_assembly; the range is the ONGA ReferenceGenome descriptor schema. Required: a genomic annotation without a coordinate system is not a genomic annotation."
+        },
+        "run_provenance": {
+          "description": "Document detailing the provenance of the experiment or analysis run which produced the file as one of its outputs. The provenance info should include software versions, parameter settings, etc.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "track_format": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TrackFormat"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How the track is encoded on disk: the TrackFormat descriptor (file_format drawing on the Format vocabulary, plus BED column conventions)."
+        },
+        "track_geometry": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TrackGeometry"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Geometric properties of the sequence features in the genomic annotation file if considered as an one-dimensional genome browser track (also relevant for non-visual analyses)."
+        },
+        "track_interpretation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TrackInterpretation"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "What the track content represents: the TrackInterpretation descriptor (output_type / feature_type drawing on the DataType and FeatureType vocabularies, plus the content facets)."
+        },
+        "track_provenance": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TrackProvenance"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "What was done to the data: the TrackProvenance descriptor (processing/derivation facets such as read_multiplicity, filter_status, normalization, thresholding, derivation)."
+        },
+        "updated_time": {
+          "description": "Timestamp of content update in RFC3339, identical to created_time in systems that do not support updates. (This is the update time of the underlying content, not of the JSON object.).",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "reference_genome",
+        "file_id"
+      ],
+      "title": "GenomicAnnotationFile",
+      "type": "object"
+    },
+    "HaplotypeResolution": {
+      "description": "Haplotype resolution of a genomic annotation track, factored out of the compound ENCODE / DataType / FeatureType terms. Absent means haplotype-collapsed / not phase-resolved.",
+      "enum": [
+        "allele_specific",
+        "haplotype_specific",
+        "phased"
+      ],
+      "title": "HaplotypeResolution",
+      "type": "string"
+    },
+    "InputSource": {
+      "additionalProperties": false,
+      "description": "General object representing the source of data files, samples, or other entities used as input to a process or a result. An input source refering to a single file or sample object will represent that item only, while an input source referring to a container or process may represent a number of disctinct input items. InputSource also contains information about the type of relationship, replication labelling, versioning and retrieval date. The qualified_relation values are typically PROV CURIEs (prov:wasDerivedFrom, prov:used, prov:wasGeneratedBy, ...) carried as data-level cross-references.",
+      "if": {
+        "properties": {
+          "qualified_relation": {}
+        },
+        "required": [
+          "qualified_relation"
+        ]
+      },
+      "properties": {
+        "biological_replicate_labels": {
+          "description": "Labels denoting the biological replicates within which the relation is defined, if any.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "database_accessions": {
+          "description": "Accession numbers for database records used as input source. Used in connection with \"inputsource_external_ref\".",
+          "items": {
+            "$ref": "#/$defs/Any",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "date_of_retrieval": {
+          "description": "Date of retrieval from the input source, typically used to timestamp downloading data from a database or URL.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "inputsource_external_ref": {
+          "description": "Reference to an external entity as the input source, using a globally unique identifier or an URL. External references will in most cases refer to a database, data record, data file, website or other data source. One of \"inputsource_external_ref\" or \"inputsource_ref\" must be specified.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "inputsource_ref": {
+          "description": "Reference to an internal object as the input source using a local identifier. Entities to be used as an internal input source includes FileCollection, Sample, Experiment, Analysis or File as restricted by the description of the field where the input source is used. One of \"inputsource_external_ref\" or \"inputsource_ref\" must be specified.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualified_relation": {
+          "$ref": "#/$defs/Term",
+          "description": "A description of the relationship with the input source, typically a PROV CURIE (prov:wasDerivedFrom, prov:used, ...) carried as a data value."
+        },
+        "technical_replicate_labels": {
+          "description": "Labels denoting the technical replicates within which the relation is defined, if any.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "version": {
+          "description": "Version information for the retrieval from the input source.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "qualified_relation"
+      ],
+      "then": {
+        "oneOf": [
+          {
+            "properties": {
+              "inputsource_external_ref": {}
+            },
+            "required": [
+              "inputsource_external_ref"
+            ]
+          },
+          {
+            "properties": {
+              "inputsource_ref": {}
+            },
+            "required": [
+              "inputsource_ref"
+            ]
+          }
+        ]
+      },
+      "title": "InputSource",
+      "type": "object"
+    },
+    "Normalization": {
+      "description": "The scaling normalization applied to a signal, factored out of the compound ENCODE output_type / DataType terms. A provenance facet recording the scaling operation applied to produce the values. Absent means unspecified (not raw). Does not cover statistic transforms (p-value, fold-change, z-score, enrichment) or smoothing, which are distinct output_types.",
+      "enum": [
+        "raw",
+        "depth_normalized",
+        "percentage_normalized"
+      ],
+      "title": "Normalization",
+      "type": "string"
+    },
+    "OntologyVersions": {
+      "additionalProperties": false,
+      "description": "Information about an ontology used in the metadata: a map from the version-agnostic URL to a versioned URL. Version pinning is real work for deposit documents \u2014 the OWL versionIRI mechanism serves the same purpose at the ontology level.",
+      "properties": {
+        "namespace": {
+          "description": "The CURIE namespace (prefix) an ontology (e.g. \"GO\" for Gene Ontology).",
+          "type": "string"
+        },
+        "ontology_url": {
+          "description": "The version-agnostic URL of the ontology (e.g. the IRI of the ontology in OWL).",
+          "type": "string"
+        },
+        "versioned_ontology_url": {
+          "description": "The versioned URL of the ontology (e.g. the \"versionIRI\" in OWL).",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "ontology_url",
+        "versioned_ontology_url"
+      ],
+      "title": "OntologyVersions",
+      "type": "object"
+    },
+    "QualityAssessment": {
+      "additionalProperties": false,
+      "description": "Represents the results of a quality assessment that has been carried out on a data file resulting from an experiment or analysis. This is the natural home for repository QC metrics (e.g. BEDbase BedStats numbers). A typed QC vocabulary may later tighten assessment_method; for now it accepts a free string or a Term.",
+      "properties": {
+        "assessment_details_url": {
+          "description": "URL to a report containing the detailed output from the quality assessment.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "assessment_method": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Quality assessment method that has been carried out (e.g. BUSCO, OMArk, peak calling statistics, etc.)"
+        },
+        "assessment_values": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "$ref": "#/$defs/AssessmentValue"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Main values produced by the quality assessment."
+        }
+      },
+      "title": "QualityAssessment",
+      "type": "object"
+    },
+    "ReadMultiplicity": {
+      "description": "The read mapping-multiplicity subset used to compute a signal or count track (all mapped reads vs uniquely-mapping reads only), factored out of the compound ENCODE output_type / DataType terms.",
+      "enum": [
+        "all reads",
+        "unique reads"
+      ],
+      "title": "ReadMultiplicity",
+      "type": "string"
+    },
+    "ReferenceBuildSex": {
+      "description": "The sex of the reference genome build used (which sex chromosomes the assembly contains), factored out of compound ENCODE output_type / DataType terms. A property of the reference assembly, NOT of the biological sample. Absent means unspecified / sex-neutral combined assembly.",
+      "enum": [
+        "male",
+        "female"
+      ],
+      "title": "ReferenceBuildSex",
+      "type": "string"
+    },
+    "ReferenceGenome": {
+      "additionalProperties": false,
+      "description": "ONGA descriptor schema for the reference genome a track is defined against (FGA-issue-adjacent: every genomic annotation is relative to a reference assembly). Carries content-derived seqcol digests and human-readable identifiers for the exact assembly, plus the sex of the reference build (factored out of compound terms like \"male genome reference\"). The build sex is a property of the reference assembly, NOT of the biological sample (that is Donor.donor_sex). Absorbs the FGA-WG GenomeAssembly class.",
+      "properties": {
+        "accessions": {
+          "description": "Database accession numbers for the genome assembly, if available. Should precisely identify the genome assembly and be omitted if changes have been made to the assembly after retrieval, such as removing the alternate sequences.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "aliases": {
+          "description": "Human-readable aliases of the genome assembly. Can be imprecise, as preciseness is enforced in the other fields.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "build_sex": {
+          "$ref": "#/$defs/ReferenceBuildSex",
+          "description": "The sex of the reference genome build (which sex chromosomes the assembly contains). Factored out of compound DataType terms like \"male genome reference\" / \"female genome index\". A property of the reference assembly, NOT of the biological sample. Absent means unspecified / sex-neutral combined assembly."
+        },
+        "seqcol_digest": {
+          "description": "Top-level sequence collection digest according to the GA4GH refget, Sequence Collections standard (v1.0). This a globally unique identifier for the genome assembly, algorithmically derivable from the genome assembly content. Usage is to uniquely identify the exact genome assembly used and allow detailed comparisons across genome assembly variants (say, variants of the GRCh38 assembly).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "seqcol_ordered_coord_system": {
+          "description": "Content-derived digest that uniquely identifies the ordered coordinate system of the genome assembly. (Coordinate systems with the same sequence names and lengths, but where the sequences are ordered differently, will have different ordered digests.). Usage is the ordered coordinate system digest can be used to uniquely generate a chromSizes file, useful in a number of analysis tools. Definition is the ordered coordinate system digest is defined as the level 1 digest of the name_length_pairs attribute of the sequence collection generated from the genome assembly.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "seqcol_unordered_coord_system": {
+          "description": "Content-derived digest that uniquely identifies the order-invariant coordinate system of the genome assembly. This digest will be shared across all coordinate systems with the same sequence names and lenghts, regardless of the order of the sequences. Usage is the order-invariant coordinate system digest can be used to uniquely describe the coordinate system of a particular genome browser instance and the annotation files that are compatible with it. Definition is the order-invariant coordinate system digest is defined as the level 1 digest of the sorted_name_length_pairs attribute of the sequence collection generated from the genome assembly.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "title": "ReferenceGenome",
+      "type": "object"
+    },
+    "Sample": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "biospecimen_classification": {
+                "const": "cell line"
+              }
+            },
+            "required": [
+              "biospecimen_classification"
+            ]
+          },
+          "then": {
+            "properties": {
+              "cell_line": {}
+            },
+            "required": [
+              "cell_line"
+            ]
+          }
+        },
+        {
+          "if": {
+            "anyOf": [
+              {
+                "properties": {
+                  "biospecimen_classification": {
+                    "const": "in vitro differentiated cells"
+                  }
+                },
+                "required": [
+                  "biospecimen_classification"
+                ]
+              },
+              {
+                "properties": {
+                  "biospecimen_classification": {
+                    "const": "primary cell"
+                  }
+                },
+                "required": [
+                  "biospecimen_classification"
+                ]
+              }
+            ]
+          },
+          "then": {
+            "properties": {
+              "cell_type": {}
+            },
+            "required": [
+              "cell_type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "anyOf": [
+              {
+                "properties": {
+                  "biospecimen_classification": {
+                    "const": "tissue"
+                  }
+                },
+                "required": [
+                  "biospecimen_classification"
+                ]
+              },
+              {
+                "properties": {
+                  "biospecimen_classification": {
+                    "const": "organoid"
+                  }
+                },
+                "required": [
+                  "biospecimen_classification"
+                ]
+              }
+            ]
+          },
+          "then": {
+            "properties": {
+              "organism_tissue": {}
+            },
+            "required": [
+              "organism_tissue"
+            ]
+          }
+        }
+      ],
+      "description": "Information about a biospecimen/sample used as raw material for lab experiments. Sample properties are ontology-delegated via Term-valued slots (UBERON for tissue, CL for cell type, CLO for cell line, PATO for phenotype), per ONGA design principle #5.",
+      "properties": {
+        "biospecimen_classification": {
+          "$ref": "#/$defs/BiospecimenClassification",
+          "description": "Main type of structural unit to be used for classification of the biospecimen/sample."
+        },
+        "cell_line": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Cultured cell line used in the biospecimen/sample."
+        },
+        "cell_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Cell type of isolated normal cells in the biospecimen/sample."
+        },
+        "donor_age": {
+          "description": "Age of the donor/organism at the time of sampling",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "donor_clinical_information": {
+          "description": "Clinical information of the donor/organism at the time of sampling.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "donor_development_stage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Development stage of the donor at the time of sampling."
+        },
+        "donor_organism_ref": {
+          "description": "Internal reference to the donor/organism from which the biospecimen/sample was taken.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "organism_tissue": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Part of organism (typically tissue or organ) from which the biospecimen/sample was taken, or cell line was derived from. UBERON range; this is the organism_part landing slot anticipated by mappings/scope_delegations.tsv."
+        },
+        "other_biospecimen": {
+          "description": "Other biospecimen-related terms that can be used to further classify the biospecimen/sample.",
+          "items": {
+            "$ref": "#/$defs/Term"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "phenotype": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Term"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Main phenotype (e.g. disease) connected to the biospecimen/sample."
+        },
+        "sample_collection_date": {
+          "description": "Date of sample collection.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sample_collection_location": {
+          "description": "Geographical location where the sample was collected.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sample_description": {
+          "description": "Human-readable description of the biospecimen/sample and the sampling process.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sample_external_id": {
+          "description": "External, globally unique identifier for the biospecimen/sample.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sample_id": {
+          "description": "Internal identifier for the biospecimen/sample (unique within the metadata deposit).",
+          "type": "string"
+        },
+        "sample_label": {
+          "description": "A human-readable description of the sample, short enough to be used for listings within software user interfaces, tables, illustration legends, etc.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sampling_protocol": {
+          "description": "Protocol detailing the collection and treatment of the biospecimen/sample.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "sample_id"
+      ],
+      "title": "Sample",
+      "type": "object"
+    },
+    "StrandOrientation": {
+      "description": "Strand orientation of a genomic annotation track, factored out of the compound ENCODE output_type / DataType terms.",
+      "enum": [
+        "plus",
+        "minus",
+        "unstranded",
+        "bidirectional"
+      ],
+      "title": "StrandOrientation",
+      "type": "string"
+    },
+    "Study": {
+      "additionalProperties": false,
+      "description": "A scientific study, i.e. a unit of research, within which experiments and/or analyses have been carried out.",
+      "properties": {
+        "contact": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Contact"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Contact point for the parent object (e.g. the study, or the creator/maintainer of a file collection)."
+        },
+        "project_external_ref": {
+          "description": "Reference to a project within which the study was carried out (preferably a BioProject CURIE).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "project_name": {
+          "description": "Name of the project within which the study was carried out.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "publications": {
+          "description": "List of (relevant) publications containing the results of the study (in the form of DOI CURIEs).",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "study_abstract": {
+          "description": "Abstract of the study.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "study_external_id": {
+          "description": "External, globally unique identifier for the study (preferably a BioStudies CURIE).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "study_id": {
+          "description": "Internal identifier for the study (unique within the metadata deposit). Namespace: \"study\".",
+          "type": "string"
+        },
+        "study_title": {
+          "description": "Title of the study.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "study_id"
+      ],
+      "title": "Study",
+      "type": "object"
+    },
+    "Term": {
+      "additionalProperties": false,
+      "description": "Helper entity to represent an ontology term as a data value. Term instances are DATA-LEVEL cross-references: a CURIE carried inside a record, never a schema-level IRI. Schema-level cross-references use mapping slots (exact_mappings/close_mappings/broad_mappings) per ONGA design principle #7, never `meaning:`.",
+      "properties": {
+        "id": {
+          "description": "External, globally unique identifier for the ontology term (in CURIE form).",
+          "type": "string"
+        },
+        "label": {
+          "description": "Human-readable label associated to the term id in the current version of the ontology (as listed in the \"ontology_versions\" field of the Deposit object).",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Term",
+      "type": "object"
+    },
+    "Thresholding": {
+      "description": "The retention cut applied to produce a file and the basis of that cut, factored out of the compound ENCODE output_type / DataType terms. A provenance facet recording that a threshold was applied. Absent means no threshold / unspecified. Cross-cuts peaks, contact matrices, and regulatory links.",
+      "enum": [
+        "idr",
+        "mapping_quality",
+        "significance"
+      ],
+      "title": "Thresholding",
+      "type": "string"
+    },
+    "TopLevel": {
+      "additionalProperties": false,
+      "description": "A document of harmonised metadata for a set of genome annotation files. This is the top-level class to be used as root for a metadata deposit document.",
+      "properties": {
+        "analyses": {
+          "description": "Information about computational processing and analyses that have been carried out to generate the files.",
+          "items": {
+            "$ref": "#/$defs/Analysis"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "document": {
+          "$ref": "#/$defs/Document",
+          "description": "Information about this document containing harmonised metadata about a set of genome annotation files. This includes self-referential identifiers and versioning of public deposits of the document."
+        },
+        "donors": {
+          "description": "Information about the donors or complete organisms from which the samples were taken.",
+          "items": {
+            "$ref": "#/$defs/Donor"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "experiments": {
+          "description": "Information about sequencing experiments that have been carried out to generate the files.",
+          "items": {
+            "$ref": "#/$defs/Experiment"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "file_collections": {
+          "description": "Information about collections of files contained in this dataset, each collection defined according to some selection criteria.",
+          "items": {
+            "$ref": "#/$defs/FileCollection"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "files": {
+          "description": "Information about particular genome annotation (and other relevant) files.",
+          "items": {
+            "$ref": "#/$defs/File"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "samples": {
+          "description": "Information about the biospecimens/samples used as raw material for lab experiments.",
+          "items": {
+            "$ref": "#/$defs/Sample"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "document"
+      ],
+      "title": "TopLevel",
+      "type": "object"
+    },
+    "TrackFormat": {
+      "additionalProperties": false,
+      "description": "How a genomic annotation file is encoded: its primary file format and, for BED-family formats, the number of standard (core) and extra (custom) columns. Corresponds to FGA-WG issue #1.",
+      "if": {
+        "properties": {
+          "file_format": {
+            "const": "BED"
+          }
+        },
+        "required": [
+          "file_format"
+        ]
+      },
+      "properties": {
+        "bed_core_columns": {
+          "description": "For BED-family formats, the number of standard (core) BED columns present \u2014 the N in \"BEDN\". Only relevant when file_format is a BED-family format.",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "bed_extra_columns": {
+          "description": "For BED-family formats, the number of extra/custom columns appended after the core columns \u2014 the M in \"BEDN+M\". Only relevant when file_format is a BED-family format.",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "file_format": {
+          "$ref": "#/$defs/Format",
+          "description": "The primary file format in which the track is encoded."
+        }
+      },
+      "required": [
+        "file_format"
+      ],
+      "then": {
+        "properties": {
+          "bed_core_columns": {}
+        },
+        "required": [
+          "bed_core_columns"
+        ]
+      },
+      "title": "TrackFormat",
+      "type": "object"
+    },
+    "TrackGeometry": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "has_lengths": {
+                "const": true
+              }
+            },
+            "required": [
+              "has_lengths"
+            ]
+          },
+          "then": {
+            "properties": {
+              "lengths_constant": {}
+            },
+            "required": [
+              "lengths_constant"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "has_values": {
+                "const": true
+              }
+            },
+            "required": [
+              "has_values"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value_type": {}
+            },
+            "required": [
+              "value_type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "has_edges": {
+                "const": true
+              }
+            },
+            "required": [
+              "has_edges"
+            ]
+          },
+          "then": {
+            "allOf": [
+              {
+                "properties": {
+                  "edges_have_weights": {}
+                },
+                "required": [
+                  "edges_have_weights"
+                ]
+              },
+              {
+                "properties": {
+                  "edges_are_directed": {}
+                },
+                "required": [
+                  "edges_are_directed"
+                ]
+              },
+              {
+                "properties": {
+                  "edges_denote_parents": {}
+                },
+                "required": [
+                  "edges_denote_parents"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "edges_have_weights": {
+                "const": true
+              }
+            },
+            "required": [
+              "edges_have_weights"
+            ]
+          },
+          "then": {
+            "properties": {
+              "edge_weight_type": {}
+            },
+            "required": [
+              "edge_weight_type"
+            ]
+          }
+        }
+      ],
+      "description": "Overall geometric properties of the sequence features in the genomic annotation file if considered as an one-dimensional genome browser track, in line with the track type delineations from Gundersen et. al, 2011. While conceptually based on visual characteristics, these properties are also useful to e.g. select relevant annotation files for non-visual analyses.",
+      "properties": {
+        "edge_weight_type": {
+          "$ref": "#/$defs/ValueType",
+          "description": "The type of values associated with the edges."
+        },
+        "edges_are_directed": {
+          "description": "Whether the edges linking sequence features are directed (at least one edge between sequence features is defined with a direction).",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "edges_denote_parents": {
+          "description": "Whether the edges linking sequence features denote a parent-child relationship (all edges between sequence features denote parent-child relationships such as genes to exons, i.e. where the child is fully covered by the parent).",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "edges_have_weights": {
+          "description": "Whether the edges linking sequence features are weighted (at least one edge between sequence features has an associated weight).",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "elements_circular": {
+          "description": "Whether the sequence features have circular coordinates (at least one feature that cross a sequence border).",
+          "type": "boolean"
+        },
+        "elements_overlapping": {
+          "description": "Whether the sequence features are overlapping (at least one base pair is simultaneously covered by two sequence features).",
+          "type": "boolean"
+        },
+        "has_edges": {
+          "description": "Whether the sequence features are linked across positions (at least one edge between features exists).",
+          "type": "boolean"
+        },
+        "has_gaps": {
+          "description": "Whether there are gaps between the sequence features (there exists at least one gap between two features on the same sequence).",
+          "type": "boolean"
+        },
+        "has_lengths": {
+          "description": "Whether the sequence features have lengths (at least one feature spans more than 1 base pair).",
+          "type": "boolean"
+        },
+        "has_names": {
+          "description": "Whether the sequence features are named (at least one feature has a name).",
+          "type": "boolean"
+        },
+        "has_strands": {
+          "description": "Whether the sequence features are stranded (at least one feature has strand information).",
+          "type": "boolean"
+        },
+        "has_values": {
+          "description": "Whether the sequence features have associated values (at least one feature has an associated value).",
+          "type": "boolean"
+        },
+        "lengths_constant": {
+          "description": "Whether the sequence lengths are constant (all sequence features have the same length, excluding features at the very end of a sequence).",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "value_type": {
+          "$ref": "#/$defs/ValueType",
+          "description": "The type of values associated with the sequence features, if any."
+        }
+      },
+      "required": [
+        "has_gaps",
+        "has_lengths",
+        "has_strands",
+        "has_values",
+        "has_edges",
+        "has_names",
+        "elements_overlapping",
+        "elements_circular"
+      ],
+      "title": "TrackGeometry",
+      "type": "object"
+    },
+    "TrackInterpretation": {
+      "additionalProperties": false,
+      "description": "What the data in a genomic annotation file represents, split into an algorithmic interpretation (output_type, drawing on the DataType vocabulary) and a biological interpretation (feature_type, drawing on the FeatureType vocabulary). Corresponds to FGA-WG issue #2.",
+      "properties": {
+        "element_type": {
+          "description": "The Sequence Ontology class(es) that the individual rows/records of this track instantiate. One value = a homogeneous set; several values = a mixed set (rows may be instances of any listed class); absent = the rows are not SO-typeable features (signal values, matrices, models, edges). This is a CONTENT facet \u2014 it answers *what the rows are* \u2014 so it lives on TrackInterpretation, not TrackProvenance (design principle #4). It is the slot form of the `onga:has_element_type` relation: an ONGA term denotes a SET of elements, an SO class denotes the element type, and ONGA never asserts equivalence between them (design principle #7).",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "feature_type": {
+          "$ref": "#/$defs/FeatureType",
+          "description": "The biological interpretation: the biological entity or concept the data represents (e.g. TF binding site, enhancer, CpG island). Draws on the FeatureType vocabulary."
+        },
+        "haplotype_resolution": {
+          "$ref": "#/$defs/HaplotypeResolution",
+          "description": "The haplotype resolution the file represents: whether content is resolved to individual alleles (allele_specific), partitioned per parental haplotype (haplotype_specific), or phase-resolved without per-haplotype splitting (phased). A content facet factored out of compound DataType/FeatureType terms (e.g. \"haplotype-specific contact matrix\", \"phased variant calls\"). Absent means haplotype-collapsed / not phase-resolved."
+        },
+        "output_type": {
+          "$ref": "#/$defs/DataType",
+          "description": "The algorithmic interpretation: the computational process or output the file represents (e.g. peaks, signal, alignment, count matrix). Draws on the DataType vocabulary."
+        },
+        "strand": {
+          "$ref": "#/$defs/StrandOrientation",
+          "description": "The strand orientation the file represents. Factored out of compound DataType terms (e.g. \"minus strand signal\"). Absent means unstranded/unspecified."
+        }
+      },
+      "title": "TrackInterpretation",
+      "type": "object"
+    },
+    "TrackProvenance": {
+      "additionalProperties": false,
+      "description": "The processing/derivation operations applied to the data to produce the file: which read subset it was computed from (read_multiplicity), what QC filtering operation was applied (filter_status), and what scaling normalization was applied (normalization), what retention cut / thresholding was applied (thresholding), and the epistemic origin of the values (derivation: observed vs. predicted). This schema is the planned home for further processing facets as they are decided. Boundary with the Analysis record class (Layer 4): TrackProvenance carries faceted, closed-vocabulary descriptors of what was done to the CONTENT; Analysis is the record of the ACTIVITY itself (workflow, tool, version, inputs). Complementary, not competing.",
+      "properties": {
+        "derivation": {
+          "$ref": "#/$defs/Derivation",
+          "description": "The epistemic origin of the file's values (observed vs predicted) \u2014 whether they were empirically measured from experimental data or generated by a computational/statistical model. Factored out of compound DataType / FeatureType terms (e.g. \"observed signal profile\", \"predicted signal profile\", \"predicted transcription start sites\"). `control` is excluded: it denotes an experimental role or normalization reference, not the measured-vs-model axis. Absent means unspecified (not a default of observed)."
+        },
+        "filter_status": {
+          "$ref": "#/$defs/FilterStatus",
+          "description": "The quality-control filtering operation applied (filtered vs unfiltered). Factored out of compound DataType terms (e.g. \"filtered peaks\", \"unfiltered alignments\"). Absent means unspecified."
+        },
+        "normalization": {
+          "$ref": "#/$defs/Normalization",
+          "description": "The scaling normalization applied to a signal (raw vs depth-normalized vs percentage-normalized) \u2014 the scaling operation applied. Factored out of compound DataType terms (e.g. \"raw signal\", \"normalized signal\", \"percentage normalized signal\"). Does not cover statistic transforms (p-value, fold-change, z-score, enrichment) or smoothing, which are distinct output_types. Absent means unspecified (not raw)."
+        },
+        "read_multiplicity": {
+          "$ref": "#/$defs/ReadMultiplicity",
+          "description": "The read mapping-multiplicity subset the data was computed from (all mapped reads vs uniquely-mapping reads only) \u2014 the read-selection operation applied. Factored out of compound DataType terms (e.g. \"signal of all reads\"). Absent means unspecified."
+        },
+        "thresholding": {
+          "$ref": "#/$defs/Thresholding",
+          "description": "The retention cut / thresholding operation applied to produce the file, and its basis (idr vs mapping_quality vs significance). Factored out of compound DataType terms (e.g. \"IDR thresholded peaks\", \"mapping quality thresholded contact matrix\"). Cross-cuts peaks, contact matrices, and regulatory links. Absent means no threshold / unspecified."
+        }
+      },
+      "title": "TrackProvenance",
+      "type": "object"
+    },
+    "ValueType": {
+      "description": "Types of data values associated with sequence features or edges. (Renamed from the FGA-WG enum DataTypes to avoid the near-clash with the ONGA DataType content vocabulary.)",
+      "enum": [
+        "integer",
+        "decimal",
+        "boolean",
+        "string",
+        "multiple"
+      ],
+      "title": "ValueType",
+      "type": "string"
+    }
+  },
+  "$id": "https://databio.org/onga",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": true,
+  "metamodel_version": "1.7.0",
+  "title": "onga",
+  "type": "object",
+  "version": "0.1.0"
+}

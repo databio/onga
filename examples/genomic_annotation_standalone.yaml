@@ -1,0 +1,11 @@
+# The Layer-3-only adoption path: a bare GenomicAnnotationFile record with only
+# its identifier and the one non-negotiable descriptor (reference_genome — the
+# coordinate system). Everything else is optional/recommended by the ONGA
+# required-slot policy, so a repository can speak Layers 1-3 and ignore Layer 4
+# entirely.
+#
+# Validate with: linkml-validate -s src/onga.yaml -C GenomicAnnotationFile examples/genomic_annotation_standalone.yaml
+file_id: 'file:example0001'
+reference_genome:
+  aliases:
+    - 'GRCh38'

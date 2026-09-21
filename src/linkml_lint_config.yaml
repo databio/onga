@@ -1,0 +1,6 @@
+# Use the recommended rule set except for the standard_naming rule (both the
+# ONGA vocabularies and the ported FGA-WG enums use space-containing values).
+extends: recommended
+rules:
+  standard_naming:
+    level: disabled

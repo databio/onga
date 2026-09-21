@@ -1,0 +1,10 @@
+{
+  "description": "The retention cut applied to produce a file and the basis of that cut, factored out of the compound ENCODE output_type / DataType terms. A provenance facet recording that a threshold was applied. Absent means no threshold / unspecified. Cross-cuts peaks, contact matrices, and regulatory links.",
+  "enum": [
+    "idr",
+    "mapping_quality",
+    "significance"
+  ],
+  "title": "Thresholding",
+  "type": "string"
+}

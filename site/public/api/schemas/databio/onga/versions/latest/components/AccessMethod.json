@@ -1,0 +1,30 @@
+{
+  "additionalProperties": false,
+  "description": "Description of an access method (i.e. communication protocol) that can be used to fetch a File object (orig: DrsObject). Exact copy of the AccessMethod object of the GA4GH DRS data model.",
+  "properties": {
+    "access_protocol": {
+      "$ref": "#/$defs/AccessProtocol",
+      "description": "Access protocol used to access the File object (orig: DrsObject). Renamed from the FGA-WG slot access_method."
+    },
+    "access_url": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AccessURL"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "AccessURL object providing URL and associated HTTP headers to access the File object (orig: DrsObject)."
+    },
+    "region": {
+      "description": "Name of the region in the cloud service provider that the object belongs to.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "title": "AccessMethod",
+  "type": "object"
+}

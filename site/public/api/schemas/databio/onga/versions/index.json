@@ -1,0 +1,21 @@
+{
+  "pagination": {
+    "page": 0,
+    "page_size": 100000,
+    "total": 1,
+    "total_pages": 1
+  },
+  "results": [
+    {
+      "schema_name": "onga",
+      "version": "0.1.0",
+      "status": "current",
+      "release_date": "",
+      "contributors": [
+        "databio"
+      ],
+      "release_notes": "",
+      "tags": {}
+    }
+  ]
+}

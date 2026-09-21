@@ -1,0 +1,238 @@
+{
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "biospecimen_classification": {
+            "const": "cell line"
+          }
+        },
+        "required": [
+          "biospecimen_classification"
+        ]
+      },
+      "then": {
+        "properties": {
+          "cell_line": {}
+        },
+        "required": [
+          "cell_line"
+        ]
+      }
+    },
+    {
+      "if": {
+        "anyOf": [
+          {
+            "properties": {
+              "biospecimen_classification": {
+                "const": "in vitro differentiated cells"
+              }
+            },
+            "required": [
+              "biospecimen_classification"
+            ]
+          },
+          {
+            "properties": {
+              "biospecimen_classification": {
+                "const": "primary cell"
+              }
+            },
+            "required": [
+              "biospecimen_classification"
+            ]
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "cell_type": {}
+        },
+        "required": [
+          "cell_type"
+        ]
+      }
+    },
+    {
+      "if": {
+        "anyOf": [
+          {
+            "properties": {
+              "biospecimen_classification": {
+                "const": "tissue"
+              }
+            },
+            "required": [
+              "biospecimen_classification"
+            ]
+          },
+          {
+            "properties": {
+              "biospecimen_classification": {
+                "const": "organoid"
+              }
+            },
+            "required": [
+              "biospecimen_classification"
+            ]
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "organism_tissue": {}
+        },
+        "required": [
+          "organism_tissue"
+        ]
+      }
+    }
+  ],
+  "description": "Information about a biospecimen/sample used as raw material for lab experiments. Sample properties are ontology-delegated via Term-valued slots (UBERON for tissue, CL for cell type, CLO for cell line, PATO for phenotype), per ONGA design principle #5.",
+  "properties": {
+    "biospecimen_classification": {
+      "$ref": "#/$defs/BiospecimenClassification",
+      "description": "Main type of structural unit to be used for classification of the biospecimen/sample."
+    },
+    "cell_line": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Term"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Cultured cell line used in the biospecimen/sample."
+    },
+    "cell_type": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Term"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Cell type of isolated normal cells in the biospecimen/sample."
+    },
+    "donor_age": {
+      "description": "Age of the donor/organism at the time of sampling",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "donor_clinical_information": {
+      "description": "Clinical information of the donor/organism at the time of sampling.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "donor_development_stage": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Term"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Development stage of the donor at the time of sampling."
+    },
+    "donor_organism_ref": {
+      "description": "Internal reference to the donor/organism from which the biospecimen/sample was taken.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "organism_tissue": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Term"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Part of organism (typically tissue or organ) from which the biospecimen/sample was taken, or cell line was derived from. UBERON range; this is the organism_part landing slot anticipated by mappings/scope_delegations.tsv."
+    },
+    "other_biospecimen": {
+      "description": "Other biospecimen-related terms that can be used to further classify the biospecimen/sample.",
+      "items": {
+        "$ref": "#/$defs/Term"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "phenotype": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Term"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Main phenotype (e.g. disease) connected to the biospecimen/sample."
+    },
+    "sample_collection_date": {
+      "description": "Date of sample collection.",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sample_collection_location": {
+      "description": "Geographical location where the sample was collected.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sample_description": {
+      "description": "Human-readable description of the biospecimen/sample and the sampling process.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sample_external_id": {
+      "description": "External, globally unique identifier for the biospecimen/sample.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sample_id": {
+      "description": "Internal identifier for the biospecimen/sample (unique within the metadata deposit).",
+      "type": "string"
+    },
+    "sample_label": {
+      "description": "A human-readable description of the sample, short enough to be used for listings within software user interfaces, tables, illustration legends, etc.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sampling_protocol": {
+      "description": "Protocol detailing the collection and treatment of the biospecimen/sample.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "sample_id"
+  ],
+  "title": "Sample",
+  "type": "object"
+}

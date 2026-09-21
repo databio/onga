@@ -36,7 +36,11 @@ classes:
       normalization was applied (normalization), what retention cut /
       thresholding was applied (thresholding), and the epistemic origin of the
       values (derivation: observed vs. predicted). This schema is the planned
-      home for further processing facets as they are decided.
+      home for further processing facets as they are decided. Boundary with the
+      Analysis record class (Layer 4): TrackProvenance carries faceted,
+      closed-vocabulary descriptors of what was done to the CONTENT; Analysis is
+      the record of the ACTIVITY itself (workflow, tool, version, inputs).
+      Complementary, not competing.
     slots:
       - read_multiplicity
       - filter_status

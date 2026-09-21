@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "description": "ONGA descriptor schema for the reference genome a track is defined against (FGA-issue-adjacent: every genomic annotation is relative to a reference assembly). Carries content-derived seqcol digests and human-readable identifiers for the exact assembly, plus the sex of the reference build (factored out of compound terms like \"male genome reference\"). The build sex is a property of the reference assembly, NOT of the biological sample (that is Donor.donor_sex). Absorbs the FGA-WG GenomeAssembly class.",
+  "properties": {
+    "accessions": {
+      "description": "Database accession numbers for the genome assembly, if available. Should precisely identify the genome assembly and be omitted if changes have been made to the assembly after retrieval, such as removing the alternate sequences.",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "aliases": {
+      "description": "Human-readable aliases of the genome assembly. Can be imprecise, as preciseness is enforced in the other fields.",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "build_sex": {
+      "$ref": "#/$defs/ReferenceBuildSex",
+      "description": "The sex of the reference genome build (which sex chromosomes the assembly contains). Factored out of compound DataType terms like \"male genome reference\" / \"female genome index\". A property of the reference assembly, NOT of the biological sample. Absent means unspecified / sex-neutral combined assembly."
+    },
+    "seqcol_digest": {
+      "description": "Top-level sequence collection digest according to the GA4GH refget, Sequence Collections standard (v1.0). This a globally unique identifier for the genome assembly, algorithmically derivable from the genome assembly content. Usage is to uniquely identify the exact genome assembly used and allow detailed comparisons across genome assembly variants (say, variants of the GRCh38 assembly).",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "seqcol_ordered_coord_system": {
+      "description": "Content-derived digest that uniquely identifies the ordered coordinate system of the genome assembly. (Coordinate systems with the same sequence names and lengths, but where the sequences are ordered differently, will have different ordered digests.). Usage is the ordered coordinate system digest can be used to uniquely generate a chromSizes file, useful in a number of analysis tools. Definition is the ordered coordinate system digest is defined as the level 1 digest of the name_length_pairs attribute of the sequence collection generated from the genome assembly.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "seqcol_unordered_coord_system": {
+      "description": "Content-derived digest that uniquely identifies the order-invariant coordinate system of the genome assembly. This digest will be shared across all coordinate systems with the same sequence names and lenghts, regardless of the order of the sequences. Usage is the order-invariant coordinate system digest can be used to uniquely describe the coordinate system of a particular genome browser instance and the annotation files that are compatible with it. Definition is the order-invariant coordinate system digest is defined as the level 1 digest of the sorted_name_length_pairs attribute of the sequence collection generated from the genome assembly.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "title": "ReferenceGenome",
+  "type": "object"
+}

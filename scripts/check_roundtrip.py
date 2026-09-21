@@ -189,6 +189,32 @@ def check_no_meaning(pools):
                      f"See {ADR}.")
 
 
+# `meaning:` is grandfathered ONLY in these files (each CURIE used exactly once
+# on a facet value, so neither the hijack nor the collapse bug applies — see
+# DECISIONS "Cleanup decisions"). Everything else in src/, including every
+# module ported from the FGA-WG schema, is banned from using it.
+MEANING_WHITELIST = {"format.yaml", "reference_build_sex.yaml"}
+
+
+def check_no_meaning_all_src():
+    """Check 6b: no `meaning:` key in ANY src/*.yaml enum outside the whitelist."""
+    for f in sorted(glob.glob(os.path.join(ROOT, "src", "*.yaml"))):
+        base = os.path.basename(f)
+        if base in MEANING_WHITELIST or base == "linkml_lint_config.yaml":
+            continue
+        try:
+            d = yaml.safe_load(open(f))
+        except Exception:  # noqa: BLE001  (reported by check_schemas_parse)
+            continue
+        for enum_name, enum_def in ((d or {}).get("enums") or {}).items():
+            for term, pv in (enum_def.get("permissible_values") or {}).items():
+                if isinstance(pv, dict) and "meaning" in pv:
+                    fail(f"[meaning] {base} enum {enum_name} '{term}' has "
+                         f"meaning: {pv['meaning']!r}. `meaning:` is banned "
+                         f"across src/ (design principle #7); use "
+                         f"exact/close/broad_mappings or annotations. See {ADR}.")
+
+
 def check_no_so_in_skos_slots(pools):
     """Check 7: no SO CURIE in exact_mappings / close_mappings / broad_mappings."""
     for enum_name, pool in pools.items():
@@ -336,6 +362,7 @@ def main():
     n_scope = check_scope(dt, ft)
     check_counts(dt, ft, rows)
     check_no_meaning(pools)
+    check_no_meaning_all_src()
     check_no_so_in_skos_slots(pools)
     check_so_predicates(rows)
     check_annotations(pools)

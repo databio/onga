@@ -1,0 +1,47 @@
+id: https://databio.org/onga/access_url
+name: access_url
+title: ONGA Access URL Record
+description: >-
+  The URL and associated HTTP headers to access a data file, copied from the
+  GA4GH DRS AccessURL model. Ported from the FGA-WG schema
+  (https://w3id.org/fga-wg/schema/access-url).
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+  fga: https://w3id.org/fga-wg/schema/
+  ga4gh_drs_info: https://ga4gh.github.io/data-repository-service-schemas/preview/release/drs-1.4.0/
+#  ga4gh_drs:  https://w3id.org/ga4gh/schema/drs/1.4.0/
+
+imports:
+  - linkml:types
+
+default_prefix: onga
+default_range: string
+
+classes:
+  AccessURL:
+    description: 'The URL and associated HTTP headers to access the File object (orig: DrsObject). Exact copy of AccessURL object of the GA4GH DRS data model.'
+    conforms_to: "GA4GH DRS 1.4.0"
+#    class_uri: ga4gh_drs:AccessURL
+    source: https://w3id.org/fga-wg/schema/access-url
+    see_also:
+      - ga4gh_drs_info:docs/#tag/AccessURLModel
+    slots:
+      - url
+      - headers
+
+slots:
+  url:
+    description: 'A fully resolvable URL that can be used to fetch the actual object bytes.'
+#    slot_uri: ga4gh_drs:AccessURL/url
+    required: true
+    range: uri
+    examples:
+      - value: 'https://epigenomesportal.ca/tracks/ENCODE/hg38/87234.ENCODE.ENCBS004ENC.H3K9me3.peak_calls.bigBed'
+  headers:
+    description: 'An optional list of headers to include in the HTTP request to `url`. These headers can be used to provide auth tokens required to fetch the object bytes.'
+#    slot_uri: ga4gh_drs:AccessURL/headers
+    range: string
+    multivalued: true
+    examples: []

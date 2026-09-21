@@ -60,17 +60,23 @@ import vocabulary from '../data/vocabulary.json';
     <h3>In Scope</h3>
     <ul>
       <li><strong>File content types</strong> — Peaks, signals, quantifications, matrices, references</li>
-      <li><strong>Biospecimen classifications</strong> — Cell line, primary cell, tissue, organoid (planned)</li>
-      <li><strong>Track geometry types</strong> — Points, segments, valued points, step functions (planned)</li>
+      <li><strong>Track descriptor schemas</strong> — Format, interpretation, provenance, geometry, and reference genome (Layer 2)</li>
+      <li><strong>File records</strong> — <code>GenomicAnnotationFile</code>, <code>File</code>, and their GA4GH-DRS-shaped components: access methods, checksums, input sources, quality assessments (Layer 3)</li>
+      <li><strong>Investigation records</strong> — Experiments, studies, analyses, samples (with the <code>BiospecimenClassification</code> vocabulary), donors, deposits, and metadata deposit documents (Layer 4), ported from the FGA-WG schema with machine-readable lineage</li>
     </ul>
 
-    <h3>Out of Scope (use existing ontologies)</h3>
+    <h3>Delegated to existing ontologies</h3>
+    <p>
+      ONGA never mints its own terms for these axes. Record and investigation slots carry
+      them as data-level ontology references (CURIE + label), and the content vocabularies
+      keep them factored out entirely:
+    </p>
     <ul>
-      <li><strong>File formats</strong> → <a href="https://edamontology.org/">EDAM</a> format branch</li>
-      <li><strong>Assay types</strong> → OBI/EFO (ChIP-seq, ATAC-seq, etc.)</li>
-      <li><strong>Organisms</strong> → NCBITaxon</li>
-      <li><strong>Cell types</strong> → Cell Ontology (CL)</li>
-      <li><strong>Anatomical terms</strong> → UBERON</li>
+      <li><strong>Assay types</strong> → OBI/EFO (e.g. <code>Experiment.assay_type</code>)</li>
+      <li><strong>Organisms</strong> → NCBITaxon (e.g. <code>Donor.species_taxon</code>)</li>
+      <li><strong>Cell types</strong> → Cell Ontology (CL) (e.g. <code>Sample.cell_type</code>)</li>
+      <li><strong>Anatomical terms</strong> → UBERON (e.g. <code>Sample.organism_tissue</code>)</li>
+      <li><strong>Sample sex</strong> → PATO (via <code>Donor.donor_sex</code> — distinct from the reference build's <code>build_sex</code>)</li>
       <li><strong>Individual sequence feature types</strong> → <a href="http://www.sequenceontology.org/">Sequence Ontology (SO)</a>. ONGA terms name <em>sets</em> of features; SO names the elements inside them. See <a href={url("/scope")}>the scope page</a>.</li>
     </ul>
 

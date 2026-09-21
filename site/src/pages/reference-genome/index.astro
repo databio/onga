@@ -28,8 +28,9 @@ const styleFor = (range: string) => STYLES[range] || STYLES.default;
     <p class="text-gray-600 mt-2">
       The <strong>reference assembly</strong> a track is defined against. Every
       genomic annotation is expressed relative to a reference assembly, and
-      properties of that assembly — its
-      <code class="bg-gray-100 px-1 rounded">assembly</code> identifier and the
+      properties of that assembly — its content-derived
+      <code class="bg-gray-100 px-1 rounded">seqcol</code> digests (GA4GH refget
+      Sequence Collections), its accessions and aliases, and the
       <code class="bg-gray-100 px-1 rounded">build_sex</code> of the build — are a
       distinct axis from what the track's content <em>is</em>
       (<a href={url("/track-interpretation")} class="text-amber-600 underline hover:text-amber-800">Interpretation</a>),

@@ -1,0 +1,10 @@
+{
+  "description": "The scaling normalization applied to a signal, factored out of the compound ENCODE output_type / DataType terms. A provenance facet recording the scaling operation applied to produce the values. Absent means unspecified (not raw). Does not cover statistic transforms (p-value, fold-change, z-score, enrichment) or smoothing, which are distinct output_types.",
+  "enum": [
+    "raw",
+    "depth_normalized",
+    "percentage_normalized"
+  ],
+  "title": "Normalization",
+  "type": "string"
+}

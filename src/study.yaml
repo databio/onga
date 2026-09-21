@@ -1,0 +1,76 @@
+id: https://databio.org/onga/study
+name: study
+title: ONGA Study Record
+description: >-
+  A scientific study — a unit of research within which experiments and/or
+  analyses have been carried out. Ported from the FGA-WG schema
+  (https://w3id.org/fga-wg/schema/study).
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+  fga: https://w3id.org/fga-wg/schema/
+  schema: http://schema.org/
+
+imports:
+  - linkml:types
+  - contact
+
+default_prefix: onga
+default_range: string
+
+classes:
+  Study:
+    description: 'A scientific study, i.e. a unit of research, within which experiments and/or analyses have been carried out.'
+    source: https://w3id.org/fga-wg/schema/study
+    close_mappings:
+      - schema:Study
+    see_also:
+      - https://www.ebi.ac.uk/biostudies/
+      - https://bioschemas.org/profiles/Study
+    slots:
+      - study_external_id
+      - study_id
+      - study_title
+      - study_abstract
+      - project_external_ref
+      - project_name
+      - publications
+      - contact
+
+slots:
+  study_external_id:
+    description: 'External, globally unique identifier for the study (preferably a BioStudies CURIE).'
+    range: curie
+    examples:
+      - value: 'biostudies:S-EPMC7391744'
+  study_id:
+    description: 'Internal identifier for the study (unique within the metadata deposit). Namespace: "study".'
+    required: true
+    identifier: true
+    range: curie
+    examples:
+      - value: 'study:S-EPMC7391744'
+  study_title:
+    description: 'Title of the study.'
+    recommended: true
+    range: string
+    examples:
+      - value: 'An integrative ENCODE resource for cancer genomics'
+  study_abstract:
+    description: 'Abstract of the study.'
+    range: string
+  project_external_ref:
+    description: 'Reference to a project within which the study was carried out (preferably a BioProject CURIE).'
+    range: uriorcurie
+    examples:
+      - value: 'bioproject:PRJNA63441'
+  project_name:
+    description: 'Name of the project within which the study was carried out.'
+    range: string
+  publications:
+    description: 'List of (relevant) publications containing the results of the study (in the form of DOI CURIEs).'
+    range: curie
+    multivalued: true
+    examples:
+      - value: 'https://doi.org/10.1038/s41467-020-14743-w'

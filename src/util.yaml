@@ -1,0 +1,23 @@
+id: https://databio.org/onga/util
+name: util
+title: ONGA Utility Types
+description: >-
+  Utility helper types. Ported from the FGA-WG schema
+  (https://w3id.org/fga-wg/schema/util).
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+  fga: https://w3id.org/fga-wg/schema/
+
+default_prefix: onga
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+  Any:
+    description: 'The linkml:Any allows the range of a slot to be any object (see https://linkml.io/linkml/schemas/advanced.html#linkml-any-type).'
+    source: https://w3id.org/fga-wg/schema/util
+    class_uri: linkml:Any

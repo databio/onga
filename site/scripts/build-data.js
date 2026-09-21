@@ -2,19 +2,32 @@
 /**
  * Build JSON data files from ONGA LinkML schema for Astro site.
  *
- * ONGA has two layers:
+ * ONGA has four layers:
  *   Layer 1 — Vocabularies (closed value sets): 3 core (DataType, FeatureType,
  *     Format) + 8 facet (StrandOrientation, ReadMultiplicity, FilterStatus,
  *     Normalization, Thresholding, Derivation, ReferenceBuildSex,
- *     HaplotypeResolution) = 11 total.
+ *     HaplotypeResolution) = 11 hand-curated, plus 3 small structural enums
+ *     (ValueType, AccessProtocol, BiospecimenClassification).
  *   Layer 2 — Track descriptor schemas (classes of slots): TrackFormat (#1,
  *     encoding), TrackInterpretation (#2, meaning), TrackProvenance (what was
  *     done to the data — processing/derivation operations), TrackGeometry (#3,
- *     shape), ReferenceGenome (#4, the reference assembly a track is defined
- *     against) = 5 total.
+ *     shape), ReferenceGenome (the reference assembly a track is defined
+ *     against, seqcol digests + build sex) = 5 total.
+ *   Layer 3 — Record classes (a record about ONE file): GenomicAnnotationFile
+ *     (composes the descriptors) + File and its DRS-shaped components
+ *     (Checksum, AccessMethod, AccessURL, InputSource, QualityAssessment) and
+ *     helpers (Term, Any).
+ *   Layer 4 — Investigation classes (the research/publishing context):
+ *     Experiment, Study, Analysis, Sample, Donor, Contact, Deposit, Document,
+ *     FileCollection, TopLevel.
+ *
+ * Layer 1 vocabularies keep their hand-curated pages; Layers 2-4 classes and
+ * the structural enums are rendered by the GENERIC schema browser pages under
+ * /schema, driven by the schema/ JSON emitted here (buildSchemaBrowser) —
+ * adding a class to src/ must produce a page with zero new hand-written Astro.
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from 'fs';
 import { parse } from 'yaml';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
@@ -250,10 +263,10 @@ function processGeometry(schema) {
   const cls = schema.classes.TrackGeometry;
   const slotDefs = schema.slots || {};
 
-  // Surface the DataTypes enum values (referenced by value_type / edge_weight_type).
-  const dataTypesEnum = schema.enums?.DataTypes;
-  if (dataTypesEnum?.permissible_values) {
-    for (const [name, data] of Object.entries(dataTypesEnum.permissible_values)) {
+  // Surface the ValueType enum values (referenced by value_type / edge_weight_type).
+  const valueTypeEnum = schema.enums?.ValueType;
+  if (valueTypeEnum?.permissible_values) {
+    for (const [name, data] of Object.entries(valueTypeEnum.permissible_values)) {
       valueTypes.push({ name, description: data.description || '' });
     }
   }
@@ -624,6 +637,231 @@ function readUpstreamRequests() {
   return { ontologies, requests, rejections, stats };
 }
 
+// ---------------------------------------------------------------------------
+// Generic schema browser (Layers 2-4 + structural enums), approach ported from
+// nsheff's schema-registry-site import_linkml.py: merge all src/*.yaml modules,
+// resolve each class's effective slots (is_a inheritance, mixins, slot_usage
+// overrides — matters now that GenomicAnnotationFile is_a File), classify each
+// slot's range, compute forward references and inverse referenced_by, and emit
+// per-class/per-enum JSON the dynamic /schema Astro routes render generically.
+// ---------------------------------------------------------------------------
+
+// module -> layer. Layer 1 vocabularies keep hand-curated pages; classes in
+// Layers 2-4 (and the structural enums) get generic pages.
+const MODULE_LAYERS = {
+  file_content: 1, format: 1, strand_orientation: 1, haplotype_resolution: 1,
+  read_multiplicity: 1, filter_status: 1, normalization: 1, thresholding: 1,
+  derivation: 1, reference_build_sex: 1,
+  track_format: 2, track_interpretation: 2, track_provenance: 2,
+  track_geometry: 2, reference_genome: 2,
+  term: 3, util: 3, checksum: 3, access_url: 3, access_method: 3,
+  input_source: 3, quality_assessment: 3, file: 3, genomic_annotation_file: 3,
+  experiment: 4, analysis: 4, study: 4, sample: 4, donor: 4, contact: 4,
+  deposit: 4, document: 4, file_collection: 4, top_level: 4,
+};
+const LAYER_NAMES = { 1: 'Vocabulary', 2: 'Descriptor', 3: 'Record', 4: 'Investigation' };
+
+// Enums with hand-curated browse pages (Layer-1 vocabularies). Slot ranges
+// hitting these link there; everything else enum-shaped gets a generic page.
+const VOCAB_ENUM_HREFS = {
+  DataType: '/data-types',
+  FeatureType: '/feature-types',
+  Format: '/formats',
+  StrandOrientation: '/strand-orientation',
+  ReadMultiplicity: '/read-multiplicity',
+  FilterStatus: '/filter-status',
+  Normalization: '/normalization',
+  Thresholding: '/thresholding',
+  Derivation: '/derivation',
+  ReferenceBuildSex: '/reference-build-sex',
+  HaplotypeResolution: '/haplotype-resolution',
+};
+
+// Layer-2 descriptor classes keep their richer hand-written pages; slot ranges
+// hitting them link there rather than to the generic class page.
+const CLASS_HREF_OVERRIDES = {
+  TrackFormat: '/track-format',
+  TrackInterpretation: '/track-interpretation',
+  TrackProvenance: '/track-provenance',
+  TrackGeometry: '/track-geometry',
+  ReferenceGenome: '/reference-genome',
+};
+
+function loadAllModules() {
+  const classes = {};
+  const slots = {};
+  const enums = {};
+  const fs = readdirSync(schemaDir);
+  for (const fname of fs.sort()) {
+    if (!fname.endsWith('.yaml') || fname === 'linkml_lint_config.yaml') continue;
+    const data = parse(readFileSync(join(schemaDir, fname), 'utf-8'));
+    if (!data) continue;
+    const module = fname.replace(/\.yaml$/, '');
+    for (const [name, def] of Object.entries(data.classes || {})) {
+      classes[name] = { ...(def || {}), _module: module };
+    }
+    for (const [name, def] of Object.entries(data.slots || {})) {
+      slots[name] = { ...(def || {}), _module: module };
+    }
+    for (const [name, def] of Object.entries(data.enums || {})) {
+      enums[name] = { ...(def || {}), _module: module };
+    }
+  }
+  return { classes, slots, enums };
+}
+
+function resolveClassSlots(clsName, classes, slots, fromParent = null) {
+  const cls = classes[clsName] || {};
+  const result = {};
+  if (cls.is_a && classes[cls.is_a]) {
+    Object.assign(result, resolveClassSlots(cls.is_a, classes, slots, cls.is_a));
+  }
+  for (const mixin of cls.mixins || []) {
+    if (classes[mixin]) Object.assign(result, resolveClassSlots(mixin, classes, slots, mixin));
+  }
+  for (const slotName of cls.slots || []) {
+    const def = { ...(slots[slotName] || {}) };
+    const usage = (cls.slot_usage || {})[slotName];
+    if (usage) Object.assign(def, usage);
+    result[slotName] = { ...def, _name: slotName, _inheritedFrom: fromParent };
+  }
+  return result;
+}
+
+// Human-readable conditional-rule summaries per postcondition slot (same shape
+// as ruleSummariesFor, kept separate so the browser can list whole rules too).
+function ruleList(cls) {
+  const rules = [];
+  for (const rule of cls.rules || []) {
+    const preConds = rule.preconditions?.slot_conditions || {};
+    const pre = Object.keys(preConds).map(s => {
+      const c = preConds[s];
+      if (c?.equals_string !== undefined) return `${s} = "${c.equals_string}"`;
+      if (c?.equals_number !== undefined) return `${s} is true`;
+      if (c?.value_presence !== undefined) return `${s} is present`;
+      return s;
+    });
+    const anyOfPre = (rule.preconditions?.any_of || []).flatMap(b =>
+      Object.entries(b.slot_conditions || {}).map(([s, c]) =>
+        c?.equals_string !== undefined ? `${s} = "${c.equals_string}"` : s));
+    const preLabel = [...pre, ...(anyOfPre.length ? [anyOfPre.join(' or ')] : [])].join(' and ');
+
+    const post = rule.postconditions || {};
+    const postSlots = [
+      ...Object.keys(post.slot_conditions || {}),
+      ...(post.all_of || []).flatMap(b => Object.keys(b.slot_conditions || {})),
+    ];
+    if (post.exactly_one_of) {
+      const alts = post.exactly_one_of.flatMap(b => Object.keys(b.slot_conditions || {}));
+      rules.push({ summary: `Exactly one of ${alts.join(' / ')} is required.`, slots: alts });
+    }
+    if (postSlots.length) {
+      rules.push({ summary: `When ${preLabel}: ${postSlots.join(', ')} required.`, slots: postSlots });
+    }
+  }
+  return rules;
+}
+
+function buildSchemaBrowser() {
+  const { classes, slots, enums } = loadAllModules();
+  const classNames = new Set(Object.keys(classes));
+  const enumNames = new Set(Object.keys(enums));
+
+  const classRecords = [];
+  for (const [name, cls] of Object.entries(classes)) {
+    const layer = MODULE_LAYERS[cls._module] ?? 3;
+    if (layer < 2) continue; // Layer-1 files hold no classes, but be safe.
+    const resolved = resolveClassSlots(name, classes, slots);
+    const references = new Set();
+    const slotRecords = Object.entries(resolved).map(([slotName, def]) => {
+      const range = def.range || 'string';
+      let rangeKind = 'scalar';
+      let rangeHref = null;
+      if (classNames.has(range)) {
+        rangeKind = 'class';
+        rangeHref = CLASS_HREF_OVERRIDES[range] || `/schema/class/${range}`;
+        references.add(range);
+      } else if (enumNames.has(range)) {
+        rangeKind = 'enum';
+        rangeHref = VOCAB_ENUM_HREFS[range] || `/schema/enum/${range}`;
+        references.add(range);
+      }
+      return {
+        name: slotName,
+        description: def.description || '',
+        range,
+        rangeKind,
+        rangeHref,
+        required: def.required === true,
+        recommended: def.recommended === true,
+        multivalued: def.multivalued === true,
+        identifier: def.identifier === true,
+        inlined: def.inlined === true,
+        inheritedFrom: def._inheritedFrom || null,
+        pattern: def.pattern || null,
+      };
+    });
+    slotRecords.sort((a, b) =>
+      (b.identifier - a.identifier) || (b.required - a.required) ||
+      (b.recommended - a.recommended) || a.name.localeCompare(b.name));
+
+    classRecords.push({
+      name,
+      module: cls._module,
+      layer,
+      layerName: LAYER_NAMES[layer],
+      description: cls.description || '',
+      isA: cls.is_a || null,
+      isAHref: cls.is_a ? (CLASS_HREF_OVERRIDES[cls.is_a] || `/schema/class/${cls.is_a}`) : null,
+      href: CLASS_HREF_OVERRIDES[name] || `/schema/class/${name}`,
+      // Provenance box: machine-readable lineage + external-standard alignment.
+      conformsTo: cls.conforms_to || null,
+      source: cls.source || null,
+      seeAlso: cls.see_also || [],
+      closeMappings: cls.close_mappings || [],
+      exactMappings: cls.exact_mappings || [],
+      rules: ruleList(cls),
+      slots: slotRecords,
+      references: [...references].sort(),
+    });
+  }
+
+  // Inverse references
+  for (const record of classRecords) {
+    record.referencedBy = classRecords
+      .filter(r => r.name !== record.name && r.references.includes(record.name))
+      .map(r => ({ name: r.name, href: r.href }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  // Structural enums (everything without a hand-curated vocabulary page).
+  const enumRecords = [];
+  for (const [name, en] of Object.entries(enums)) {
+    if (VOCAB_ENUM_HREFS[name]) continue;
+    enumRecords.push({
+      name,
+      module: en._module,
+      layer: 1,
+      layerName: 'Vocabulary (structural)',
+      description: en.description || '',
+      source: en.source || null,
+      seeAlso: en.see_also || [],
+      values: Object.entries(en.permissible_values || {}).map(([v, def]) => ({
+        name: v,
+        description: (def || {}).description || '',
+      })),
+      referencedBy: classRecords
+        .filter(r => r.references.includes(name))
+        .map(r => ({ name: r.name, href: r.href }))
+        .sort((a, b) => a.name.localeCompare(b.name)),
+    });
+  }
+
+  classRecords.sort((a, b) => (a.layer - b.layer) || a.name.localeCompare(b.name));
+  enumRecords.sort((a, b) => a.name.localeCompare(b.name));
+  return { classes: classRecords, enums: enumRecords };
+}
+
 function build() {
   console.log('Building ONGA site data...');
 
@@ -647,6 +885,7 @@ function build() {
   const soMappings = readSoMappings();
   const delegations = readDelegations();
   const upstream = readUpstreamRequests();
+  const schemaBrowser = buildSchemaBrowser();
 
   // Process the vocabularies (DataType, FeatureType, Format) — all LinkML enums.
   const dataTypeEnum = fileContent?.enums?.DataType;
@@ -781,15 +1020,20 @@ function build() {
       elementTypeCoverage,
       elementTypeNone: elementTypeNone.length,
       elementTypePercent: Math.round((elementTypeCoverage / allTerms.length) * 100),
-      // Two-layer summary for the home page. There are 3 core vocabularies
-      // (DataType, FeatureType, Format) plus 8 facet vocabularies
+      // Four-layer summary for the home page. Layer 1: 3 core vocabularies
+      // (DataType, FeatureType, Format) + 8 facet vocabularies
       // (StrandOrientation, ReadMultiplicity, FilterStatus, Normalization,
-      // Thresholding, Derivation, ReferenceBuildSex, HaplotypeResolution), so
-      // 11 vocabularies total.
-      vocabularyCount: 11,
+      // Thresholding, Derivation, ReferenceBuildSex, HaplotypeResolution)
+      // + the small structural enums (ValueType, AccessProtocol,
+      // BiospecimenClassification). Layer 2: the 5 descriptor schemas.
+      // Layers 3/4: the record and investigation classes from the FGA-WG merge.
+      vocabularyCount: 11 + schemaBrowser.enums.length,
       coreVocabCount: 3,
       facetVocabCount: 8,
+      structuralVocabCount: schemaBrowser.enums.length,
       schemaCount: 5,
+      recordClassCount: schemaBrowser.classes.filter(c => c.layer === 3).length,
+      investigationClassCount: schemaBrowser.classes.filter(c => c.layer === 4).length,
       formatProps: format.properties.length,
       interpretationProps: interpretation.properties.length,
       provenanceProps: provenance.properties.length,
@@ -823,7 +1067,7 @@ function build() {
   writeFileSync(join(dataDir, 'reference-build-sex.json'), JSON.stringify(referenceBuildSexes.terms, null, 2));
   writeFileSync(join(dataDir, 'haplotype-resolution.json'), JSON.stringify(haplotypeResolutions.terms, null, 2));
 
-  // Track geometry vocabulary (class with slots, plus the DataTypes enum)
+  // Track geometry vocabulary (class with slots, plus the ValueType enum)
   writeFileSync(join(dataDir, 'track-geometry.json'), JSON.stringify({
     properties: geometry.properties,
     valueTypes: geometry.valueTypes,
@@ -853,12 +1097,19 @@ function build() {
   // Scope-boundary delegations (axes ONGA delegates OUT to external ontologies)
   writeFileSync(join(dataDir, 'delegations.json'), JSON.stringify(delegations, null, 2));
 
+  // Generic schema browser data (Layers 2-4 classes + structural enums); the
+  // dynamic /schema Astro routes getStaticPaths() over these.
+  mkdirSync(join(dataDir, 'schema'), { recursive: true });
+  writeFileSync(join(dataDir, 'schema', 'classes.json'), JSON.stringify(schemaBrowser.classes, null, 2));
+  writeFileSync(join(dataDir, 'schema', 'enums.json'), JSON.stringify(schemaBrowser.enums, null, 2));
+
   // Combined for backwards compat
   writeFileSync(join(dataDir, 'terms.json'), JSON.stringify(allTerms, null, 2));
   writeFileSync(join(dataDir, 'mappings.json'), JSON.stringify(mappings, null, 2));
   writeFileSync(join(dataDir, 'so-mappings.json'), JSON.stringify(soMappingList, null, 2));
 
-  console.log('Built 11 vocabularies (3 core + 8 facet) + 5 schemas:');
+  console.log(`Schema browser: ${schemaBrowser.classes.length} classes (${vocabularyInfo.stats.recordClassCount} record + ${vocabularyInfo.stats.investigationClassCount} investigation + 5 descriptor), ${schemaBrowser.enums.length} structural enums`);
+  console.log('Built 11 hand-curated vocabularies (3 core + 8 facet) + 5 schemas:');
   console.log(`  Core vocabularies: ${dataTypes.terms.length} DataType, ${featureTypes.terms.length} FeatureType, ${formats.terms.length} Format`);
   console.log(`  Facet vocabularies: ${strandOrientations.terms.length} StrandOrientation, ${readMultiplicities.terms.length} ReadMultiplicity, ${filterStatuses.terms.length} FilterStatus, ${normalizations.terms.length} Normalization, ${thresholdings.terms.length} Thresholding, ${derivations.terms.length} Derivation, ${referenceBuildSexes.terms.length} ReferenceBuildSex, ${haplotypeResolutions.terms.length} HaplotypeResolution`);
   console.log(`  Schemas: TrackFormat (${format.properties.length} props), TrackInterpretation (${interpretation.properties.length} props), TrackProvenance (${provenance.properties.length} props), TrackGeometry (${geometry.properties.length} props), ReferenceGenome (${referenceGenomeSchema.properties.length} props)`);

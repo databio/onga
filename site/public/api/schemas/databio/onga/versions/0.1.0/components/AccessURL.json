@@ -1,0 +1,25 @@
+{
+  "additionalProperties": false,
+  "description": "The URL and associated HTTP headers to access the File object (orig: DrsObject). Exact copy of AccessURL object of the GA4GH DRS data model.",
+  "properties": {
+    "headers": {
+      "description": "An optional list of headers to include in the HTTP request to `url`. These headers can be used to provide auth tokens required to fetch the object bytes.",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "url": {
+      "description": "A fully resolvable URL that can be used to fetch the actual object bytes.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "url"
+  ],
+  "title": "AccessURL",
+  "type": "object"
+}

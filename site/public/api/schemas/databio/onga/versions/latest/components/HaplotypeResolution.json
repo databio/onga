@@ -1,0 +1,10 @@
+{
+  "description": "Haplotype resolution of a genomic annotation track, factored out of the compound ENCODE / DataType / FeatureType terms. Absent means haplotype-collapsed / not phase-resolved.",
+  "enum": [
+    "allele_specific",
+    "haplotype_specific",
+    "phased"
+  ],
+  "title": "HaplotypeResolution",
+  "type": "string"
+}

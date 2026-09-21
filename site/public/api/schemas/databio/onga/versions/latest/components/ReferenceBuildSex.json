@@ -1,0 +1,9 @@
+{
+  "description": "The sex of the reference genome build used (which sex chromosomes the assembly contains), factored out of compound ENCODE output_type / DataType terms. A property of the reference assembly, NOT of the biological sample. Absent means unspecified / sex-neutral combined assembly.",
+  "enum": [
+    "male",
+    "female"
+  ],
+  "title": "ReferenceBuildSex",
+  "type": "string"
+}

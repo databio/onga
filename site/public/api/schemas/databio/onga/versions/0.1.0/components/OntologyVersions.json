@@ -1,0 +1,25 @@
+{
+  "additionalProperties": false,
+  "description": "Information about an ontology used in the metadata: a map from the version-agnostic URL to a versioned URL. Version pinning is real work for deposit documents \u2014 the OWL versionIRI mechanism serves the same purpose at the ontology level.",
+  "properties": {
+    "namespace": {
+      "description": "The CURIE namespace (prefix) an ontology (e.g. \"GO\" for Gene Ontology).",
+      "type": "string"
+    },
+    "ontology_url": {
+      "description": "The version-agnostic URL of the ontology (e.g. the IRI of the ontology in OWL).",
+      "type": "string"
+    },
+    "versioned_ontology_url": {
+      "description": "The versioned URL of the ontology (e.g. the \"versionIRI\" in OWL).",
+      "type": "string"
+    }
+  },
+  "required": [
+    "namespace",
+    "ontology_url",
+    "versioned_ontology_url"
+  ],
+  "title": "OntologyVersions",
+  "type": "object"
+}

@@ -47,6 +47,25 @@ const navGroups = [
       { href: '/reference-genome', label: 'Reference Genome' },
     ],
   },
+  {
+    label: 'Record',
+    color: { active: 'text-emerald-700', item: 'text-emerald-600', hover: 'hover:bg-emerald-50 hover:text-emerald-800' },
+    items: [
+      { href: '/schema#record', label: 'All record classes' },
+      { href: '/schema/class/GenomicAnnotationFile', label: 'GenomicAnnotationFile' },
+      { href: '/schema/class/File', label: 'File' },
+    ],
+  },
+  {
+    label: 'Investigation',
+    color: { active: 'text-purple-700', item: 'text-purple-600', hover: 'hover:bg-purple-50 hover:text-purple-800' },
+    items: [
+      { href: '/schema#investigation', label: 'All investigation classes' },
+      { href: '/schema/class/TopLevel', label: 'TopLevel' },
+      { href: '/schema/class/Experiment', label: 'Experiment' },
+      { href: '/schema/class/Sample', label: 'Sample' },
+    ],
+  },
 ];
 
 const isActive = (p: string) => currentPath.startsWith(url(p));

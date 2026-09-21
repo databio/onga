@@ -1,0 +1,89 @@
+---
+import { url } from '../../lib/url';
+import Layout from '../../layouts/Layout.astro';
+import classes from '../../data/schema/classes.json';
+import enums from '../../data/schema/enums.json';
+
+// Layer-grouped listing of all schema classes + the structural enums. This
+// page and its class/enum detail routes are fully generic: adding a class to
+// src/ produces a page with zero new hand-written Astro.
+const LAYERS = [
+  {
+    layer: 2,
+    anchor: 'descriptor',
+    title: 'Layer 2 — Descriptor schemas',
+    blurb: 'Classes of slots describing one track, drawing on the Layer-1 vocabularies. These five keep their richer hand-curated pages.',
+    color: { border: 'border-amber-500', text: 'text-amber-600' },
+  },
+  {
+    layer: 3,
+    anchor: 'record',
+    title: 'Layer 3 — Record classes',
+    blurb: 'A record about ONE file: GenomicAnnotationFile (composing the descriptors) plus File and its DRS-shaped components. This is the layer a repository adopts.',
+    color: { border: 'border-emerald-500', text: 'text-emerald-600' },
+  },
+  {
+    layer: 4,
+    anchor: 'investigation',
+    title: 'Layer 4 — Investigation classes',
+    blurb: 'The research and publishing context: experiments, studies, analyses, samples, donors, deposits. Ported from the FGA-WG schema with machine-readable lineage.',
+    color: { border: 'border-purple-500', text: 'text-purple-600' },
+  },
+];
+const byLayer = (n: number) => classes.filter((c: any) => c.layer === n);
+---
+
+<Layout title="Schema Browser" description="All ONGA schema classes, grouped by layer">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Schema Browser</h1>
+    <p class="text-gray-600 max-w-3xl">
+      Every class in the ONGA schema, grouped by layer and rendered generically
+      from the LinkML sources. The Layer-1
+      <a href={url('/')} class="text-blue-600 underline hover:text-blue-800">vocabularies</a>
+      keep their hand-curated pages; classes are generated pages. Imports and
+      inlined ranges point only downward (Layer 4 → 3 → 2 → 1); a lower layer
+      refers up only by CURIE value.
+    </p>
+  </div>
+
+  {LAYERS.map((L) => (
+    <section id={L.anchor} class="mb-10">
+      <h2 class:list={['text-2xl font-bold text-gray-900 mb-1']}>{L.title}</h2>
+      <p class="text-gray-500 text-sm mb-4 max-w-3xl">{L.blurb}</p>
+      <div class="grid md:grid-cols-2 gap-4">
+        {byLayer(L.layer).map((cls: any) => (
+          <a href={url(cls.href)} class:list={['block bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow border-l-4', L.color.border]}>
+            <div class="flex items-baseline justify-between">
+              <h3 class="font-mono text-lg font-semibold text-gray-900">{cls.name}</h3>
+              <span class:list={['text-sm font-medium shrink-0 ml-3', L.color.text]}>{cls.slots.length} slots</span>
+            </div>
+            {cls.isA && <p class="text-xs text-gray-400 mt-0.5">is_a <span class="font-mono">{cls.isA}</span></p>}
+            <p class="text-sm text-gray-600 mt-2 line-clamp-3">{cls.description}</p>
+            {cls.conformsTo && (
+              <p class="text-xs text-gray-400 mt-2">conforms to <span class="font-medium text-gray-500">{cls.conformsTo}</span></p>
+            )}
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <section id="enums" class="mb-10">
+    <h2 class="text-2xl font-bold text-gray-900 mb-1">Structural enums</h2>
+    <p class="text-gray-500 text-sm mb-4 max-w-3xl">
+      Small closed value sets used by the schema classes (Layer 1, but not
+      hand-curated content vocabularies).
+    </p>
+    <div class="grid md:grid-cols-3 gap-4">
+      {enums.map((en: any) => (
+        <a href={url(`/schema/enum/${en.name}`)} class="block bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow border-l-4 border-indigo-400">
+          <div class="flex items-baseline justify-between">
+            <h3 class="font-mono text-lg font-semibold text-gray-900">{en.name}</h3>
+            <span class="text-indigo-600 text-sm font-medium shrink-0 ml-3">{en.values.length} values</span>
+          </div>
+          <p class="text-sm text-gray-600 mt-2 line-clamp-3">{en.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

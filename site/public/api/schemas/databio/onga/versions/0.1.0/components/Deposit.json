@@ -1,0 +1,38 @@
+{
+  "additionalProperties": false,
+  "description": "Information about a public deposit of a document containing metadata about a set of genome annotation files.",
+  "properties": {
+    "deposit_first_created": {
+      "description": "The date and time of the creation of the first deposited version of the metadata document.",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "deposit_id": {
+      "description": "A globally unique and persistent identifier for the public deposit of the metadata document. A DOI or other persistent identifier is recommended.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "deposit_last_changed": {
+      "description": "The date and time of the last deposited change of the current metadata document (corresponding to \"deposit_versioned_id\").",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "deposit_versioned_id": {
+      "description": "A globally unique, persistent and versioned identifier for the public deposit of the metadata document. A versioned DOI to a deposited document is recommended.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "deposit_versioned_id"
+  ],
+  "title": "Deposit",
+  "type": "object"
+}

@@ -1,0 +1,15 @@
+{
+  "pagination": {
+    "page": 0,
+    "page_size": 100000,
+    "total": 1,
+    "total_pages": 1
+  },
+  "results": [
+    {
+      "server": "https://dev.databio.org/onga/api",
+      "namespace_name": "databio",
+      "contact_url": "https://databio.org"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "org.databio.onga",
+  "name": "ONGA Schema Registry",
+  "type": {
+    "group": "org.ga4gh",
+    "artifact": "schema-registry",
+    "version": "1.0.0"
+  },
+  "description": "A static GA4GH Schema Registry serving the ONGA (Ontology for Genomic Annotations) LinkML schema as JSON Schema.",
+  "organization": {
+    "name": "databio",
+    "url": "https://databio.org"
+  },
+  "version": "0.1.0",
+  "environment": "production"
+}

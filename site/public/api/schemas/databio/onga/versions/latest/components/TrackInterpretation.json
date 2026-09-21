@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "description": "What the data in a genomic annotation file represents, split into an algorithmic interpretation (output_type, drawing on the DataType vocabulary) and a biological interpretation (feature_type, drawing on the FeatureType vocabulary). Corresponds to FGA-WG issue #2.",
+  "properties": {
+    "element_type": {
+      "description": "The Sequence Ontology class(es) that the individual rows/records of this track instantiate. One value = a homogeneous set; several values = a mixed set (rows may be instances of any listed class); absent = the rows are not SO-typeable features (signal values, matrices, models, edges). This is a CONTENT facet \u2014 it answers *what the rows are* \u2014 so it lives on TrackInterpretation, not TrackProvenance (design principle #4). It is the slot form of the `onga:has_element_type` relation: an ONGA term denotes a SET of elements, an SO class denotes the element type, and ONGA never asserts equivalence between them (design principle #7).",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "feature_type": {
+      "$ref": "#/$defs/FeatureType",
+      "description": "The biological interpretation: the biological entity or concept the data represents (e.g. TF binding site, enhancer, CpG island). Draws on the FeatureType vocabulary."
+    },
+    "haplotype_resolution": {
+      "$ref": "#/$defs/HaplotypeResolution",
+      "description": "The haplotype resolution the file represents: whether content is resolved to individual alleles (allele_specific), partitioned per parental haplotype (haplotype_specific), or phase-resolved without per-haplotype splitting (phased). A content facet factored out of compound DataType/FeatureType terms (e.g. \"haplotype-specific contact matrix\", \"phased variant calls\"). Absent means haplotype-collapsed / not phase-resolved."
+    },
+    "output_type": {
+      "$ref": "#/$defs/DataType",
+      "description": "The algorithmic interpretation: the computational process or output the file represents (e.g. peaks, signal, alignment, count matrix). Draws on the DataType vocabulary."
+    },
+    "strand": {
+      "$ref": "#/$defs/StrandOrientation",
+      "description": "The strand orientation the file represents. Factored out of compound DataType terms (e.g. \"minus strand signal\"). Absent means unstranded/unspecified."
+    }
+  },
+  "title": "TrackInterpretation",
+  "type": "object"
+}

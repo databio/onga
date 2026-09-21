@@ -553,6 +553,127 @@ for file content types. We took these verbatim as the initial term set.
     Developmental software — clean removals, no back-compat.
 
 
+19. **Merged the FGA-WG schemas into ONGA as Layers 3 and 4.** Brought the
+    record and investigation classes of the FGA-WG schema
+    (`~/…/intervals/repos/fga-qg`, branch `sveinugu-link-ml-schema`) into ONGA
+    as full, first-class classes under the `onga` id and prefix, making ONGA
+    the whole schema — vocabularies, descriptors, records, and investigation
+    context — rather than just an ontology. The fga-qg repo was not touched;
+    it remains the WG's artifact and ONGA becomes the reference
+    implementation. **Disposition: 19 adopt / 2 merge / 1 supersede** over the
+    22-item fga-qg inventory:
+    - **Adopted (19 new `src/*.yaml` modules):** term, util, checksum,
+      access_url, access_method, input_source, quality_assessment, file,
+      genomic_annotation_file (Layer 3); experiment, analysis, study, sample,
+      donor, contact, deposit, document, file_collection, top_level (Layer 4).
+    - **Merged (2):** TrackGeometry (ONGA's copy was already canonical —
+      verified body-identical); GenomeAssembly folded into the existing
+      `ReferenceGenome` descriptor (seqcol digest slots, accessions, aliases;
+      the fga `aliases: range curie` bug fixed to string; the GenomeAssembly
+      class name disappears; ONGA's placeholder free-string `assembly` slot
+      deleted).
+    - **Superseded (1):** fga's `OutputType` enum (~270 flat ENCODE values) —
+      DataType (162) + FeatureType (75) + the 8 facet vocabularies replace it,
+      with `mappings/facet_decomposition.tsv` as the enforced lossless
+      crosswalk; `File.data_content` deleted accordingly (content lives in
+      `track_interpretation`). The generated `schema_summary.tsv` is an
+      artifact, not a definition — not migrated.
+    **Layer architecture:** Layer 3 (Record — a record about ONE file:
+    GenomicAnnotationFile, File, and File's DRS-shaped components; the layer a
+    repository adopts; external alignment GA4GH DRS/refget/PROV-O) and Layer 4
+    (Investigation — the research/publishing context: Experiment through
+    TopLevel; external alignment ENA/SRA, BioStudies, BioSamples,
+    Phenopackets, DCAT, DataCite, schema.org). Verified against the actual
+    import graph: the split required zero restructuring.
+    **GenomicAnnotationFile** keeps `is_a: File`; slot `genome_assembly` →
+    **`reference_genome`** (range ReferenceGenome, inlined, REQUIRED — the one
+    non-negotiable: a coordinate-system-less annotation is not a genomic
+    annotation); `track_geometry` demoted to optional+recommended; gains
+    optional+recommended `track_format` / `track_interpretation` /
+    `track_provenance` — the class now composes all five descriptors.
+    `sequence_features` (open Term list) dropped: superseded by the closed
+    FeatureType vocabulary via `track_interpretation.feature_type` +
+    `element_type`.
+    **Renames (no aliases — developmental software):** enum `DataTypes` →
+    **`ValueType`** (track_geometry); enum `AccessMethods` →
+    **`AccessProtocol`** + slot `access_method` → **`access_protocol`** (kills
+    the one-letter class/enum near-clashes, and adopts the fga annotation
+    branch's range bug fix); slot `sex` → **`donor_sex`** (firewalled in its
+    description from `ReferenceGenome.build_sex` per principle #5).
+    **Dropped:** `data_content`, `sequence_features`, `assembly`, and the
+    `^.{1,60}$` patterns on `*_label` slots (UI hints masquerading as validity
+    conditions; Contact's email pattern kept). The `biospecimen.yaml` stub
+    (empty planned enums) deleted — **Sample/Donor realize it** via
+    ontology-delegated Term slots (UBERON/CL/CLO/PATO), exactly the principle
+    #5 posture; `organism_tissue` is the `organism_part` landing slot
+    anticipated by `mappings/scope_delegations.tsv`.
+    **Required-slot policy** (from the BEDbase adoption finding that heavy
+    `required:` makes a schema unadoptable): `required: true` survives ONLY on
+    identifier slots and on slots without which the instance is meaningless
+    (`Checksum.checksum_type`, `AccessURL.url`,
+    `InputSource.qualified_relation`, `GenomicAnnotationFile.reference_genome`,
+    `TopLevel.document`, and the key/value pair of AssessmentValue and
+    OntologyVersions' three slots); everything else fga required is demoted to
+    `recommended: true` (or plain optional for administrative fields).
+    Conditional rules are KEPT (Sample's classification rules, InputSource's
+    XOR, TrackGeometry's rules) — conditional requirement is targeted and
+    cheap.
+    **Annotation pattern (lineage as annotation, not delegation):** every
+    ported class carries `source: https://w3id.org/fga-wg/schema/<original>`;
+    classes copied from an external standard additionally carry
+    `conforms_to` + `see_also` + `close_mappings`/`exact_mappings`, reusing
+    the fga `add-external-standard-annotations` branch content verbatim where
+    it existed (AccessMethod/AccessURL/Checksum/File → DRS 1.4.0; the refget
+    block on ReferenceGenome) and extending the same pattern to InputSource
+    (PROV-O), Analysis (prov:Activity), Study/Contact (schema.org),
+    Document/FileCollection (DCAT), Deposit (DataCite), Donor (Phenopackets),
+    Sample (BioSamples), Experiment (ENA/ISA). No `meaning:` keys came in
+    (verified), and `scripts/check_roundtrip.py` now bans `meaning:` across
+    ALL of `src/` (whitelisting only the grandfathered format.yaml /
+    reference_build_sex.yaml single-use facet CURIEs).
+    **Validation:** `make test` unchanged invariants (DataType=162
+    FeatureType=75 total=237; Set/element OK) plus new `test-examples`:
+    `examples/encff323lcs_deposit.yaml` (a full TopLevel deposit
+    reconstructing ENCFF323LCS — H3K9me3 ChIP-seq replicated peaks, bigBed,
+    GRCh38 — from fga-qg's own per-file examples, doubling as the executable
+    fga→ONGA migration demonstration), `examples/genomic_annotation_standalone.yaml`
+    (the Layer-3-only adoption path), and an expected-failure counterexample
+    missing `reference_genome`. `make gen-owl` / `gen-jsonld` exit 0; SO IRIs
+    as subjects in core OWL: still 0. Lint: adopted fga's
+    `src/linkml_lint_config.yaml` (recommended minus standard_naming);
+    `make validate` is clean.
+    **Site:** a generic, LinkML-driven schema browser (`/schema`,
+    `/schema/class/<Name>`, `/schema/enum/<Name>`; built by
+    `buildSchemaBrowser()` in `site/scripts/build-data.js`, approach ported
+    from nsheff's schema-registry-site `import_linkml.py`) now owns Layers 2–4
+    plus the structural enums — adding a class to `src/` produces a page with
+    zero new hand-written Astro. The hand-curated Layer-1 vocabulary pages
+    STAY (they are curation surfaces and the product of operations #1–#18);
+    rule going forward: vocabularies are hand-curated pages, classes are
+    generated pages. The renamed small enums get generic pages, not
+    hand-written ones.
+    **Registry:** ONGA now serves the GA4GH Schema Registry API shape
+    statically under `site/public/api/` (`scripts/gen_registry.py`, `make
+    gen-registry`): service-info, namespaces (single namespace `databio`),
+    `schemas/databio/onga/versions/<v>/` with the full `gen-json-schema`
+    bundle + per-class components, and `versions/latest/` as a full copy.
+    Compliance (suite in `repos/schema-registry/compliance`, run via `make
+    test-registry` against a locally served tree): **22/25 — all required
+    checks pass**; the 3 failures are recommended-level and inherent to a
+    static tree (CORS headers are the host's job, no /openapi endpoint,
+    query-parameter filtering impossible statically). **Version policy:**
+    `version:` in `src/onga.yaml` is the single source of truth; the current
+    version is regenerated in place on every build (mutable current) and
+    `latest/` mirrors it; cutting a version is a DECISIONS-logged bump that
+    leaves the superseded directory as committed static history and flips its
+    row to `superseded`; once a version has been shared externally, any change
+    to its generated JSON Schema requires a bump — until then 0.1.0 absorbs
+    everything, this merge included.
+    **Note for Nathan (no action taken):** the 4 issues previously filed on
+    the FGA-WG repo argue for shrink-and-reference; this merge went the other
+    way (full classes with lineage annotations). Consider reframing them as
+    "annotate lineage instead of restructuring," or withdrawing them.
+
 ## Design principles
 
 Rules established in design discussion that govern the faceting operations above:
@@ -663,6 +784,16 @@ Rules established in design discussion that govern the faceting operations above
    `related_mappings` (non-membership, SO), or in the `element_type` annotation
    (membership, SO).
 
+8. **Layer dependency discipline.** Imports and inlined class ranges point only
+   downward or sideways — Layer 4 (Investigation) → Layer 3 (Record) → Layer 2
+   (Descriptor) → Layer 1 (Vocabulary). A lower layer refers *up* only by
+   CURIE / uriorcurie value, never by class range (e.g. `File` points at its
+   containing FileCollection via the curie slot `filecollection_refs`, not a
+   FileCollection range). This keeps every adoption boundary real: a repository
+   can speak Layers 1–3 and ignore Layer 4 entirely, and the vocabularies stay
+   usable stand-alone. Established with operation #19 (the FGA-WG merge), where
+   it held over the incoming import graph with zero restructuring.
+
 
 ### Atomic by principle (deliberately un-faceted)
 
@@ -704,6 +835,15 @@ the compound `bias-corrected predicted signal profile`, held for a future
 - **SO set-to-set rows:** 2 (whitelisted: `SO:0001505`, `SO:0001506`)
 - **Descriptor schemas:** 5 — TrackFormat, TrackInterpretation, TrackProvenance,
   TrackGeometry, ReferenceGenome (Layer 2)
+- **Record classes (Layer 3):** GenomicAnnotationFile, File, Checksum,
+  AccessMethod, AccessURL, InputSource, QualityAssessment/AssessmentValue, and
+  the helpers Term and Any (+ the AccessProtocol enum in Layer 1)
+- **Investigation classes (Layer 4):** Experiment, Study, Analysis, Sample,
+  Donor, Contact, Deposit, Document/OntologyVersions, FileCollection, TopLevel
+  (+ the BiospecimenClassification enum in Layer 1)
+- **Registry API:** GA4GH Schema Registry static tree under `site/public/api/`
+  (`databio/onga`, current version from `src/onga.yaml` `version:`);
+  compliance 22/25, all required checks passing
 
 ## Tooling note
 

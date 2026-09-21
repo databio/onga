@@ -28,15 +28,18 @@
     "elementTypeCoverage": 71,
     "elementTypeNone": 16,
     "elementTypePercent": 30,
-    "vocabularyCount": 11,
+    "vocabularyCount": 14,
     "coreVocabCount": 3,
     "facetVocabCount": 8,
+    "structuralVocabCount": 3,
     "schemaCount": 5,
+    "recordClassCount": 10,
+    "investigationClassCount": 11,
     "formatProps": 3,
     "interpretationProps": 5,
     "provenanceProps": 5,
     "geometryProps": 14,
-    "referenceGenomeProps": 2,
+    "referenceGenomeProps": 6,
     "delegationCount": 3
   }
 }

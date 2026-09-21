@@ -1,0 +1,99 @@
+{
+  "additionalProperties": false,
+  "description": "Represents the computational processing applied to data from a sequencing experiment, or from another analysis. This can be described at the level of individual analysis steps in a workflow/pipeline, or more generally for the workflow/pipeline as a whole. Boundary with TrackProvenance: TrackProvenance (Layer 2) carries faceted, closed-vocabulary descriptors of what was done to the CONTENT (read selection, filtering, normalization, ...); Analysis is the record of the ACTIVITY itself (workflow, tool, version, inputs). Complementary, not competing.",
+  "properties": {
+    "analysis_description": {
+      "description": "Human-readable description of the analysis.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "analysis_external_id": {
+      "description": "External, globally unique identifier for the analysis.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "analysis_id": {
+      "description": "Internal identifier for the analysis (unique within the metadata deposit). ",
+      "type": "string"
+    },
+    "analysis_input_sources": {
+      "description": "External or internal references to the data sources used as input to the analysis.",
+      "items": {
+        "$ref": "#/$defs/InputSource"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "analysis_label": {
+      "description": "A human-readable description of the analysis, short enough to be used for listings within software user interfaces, tables, illustration legends, etc.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "analysis_main_tool": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Main software tool used for the analysis."
+    },
+    "analysis_main_tool_version": {
+      "description": "Version of the main software tool used for the analysis.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "analysis_protocol": {
+      "description": "Document describing the analysis protocol that was followed.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "analysis_study_ref": {
+      "description": "Internal reference to the study within which the analysis has been carried out.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "analysis_type": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Term"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "The type of analysis carried out."
+    },
+    "analysis_workflow": {
+      "description": "External reference to the analysis workflow, with availability in at least one machine-operable form (e.g. CWL, Nextflow, ...).",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "analysis_id"
+  ],
+  "title": "Analysis",
+  "type": "object"
+}

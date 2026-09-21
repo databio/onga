@@ -1,0 +1,46 @@
+{
+  "additionalProperties": false,
+  "description": "Represents the results of a quality assessment that has been carried out on a data file resulting from an experiment or analysis. This is the natural home for repository QC metrics (e.g. BEDbase BedStats numbers). A typed QC vocabulary may later tighten assessment_method; for now it accepts a free string or a Term.",
+  "properties": {
+    "assessment_details_url": {
+      "description": "URL to a report containing the detailed output from the quality assessment.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "assessment_method": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/$defs/Term"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Quality assessment method that has been carried out (e.g. BUSCO, OMArk, peak calling statistics, etc.)"
+    },
+    "assessment_values": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "items": {
+            "$ref": "#/$defs/AssessmentValue"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Main values produced by the quality assessment."
+    }
+  },
+  "title": "QualityAssessment",
+  "type": "object"
+}

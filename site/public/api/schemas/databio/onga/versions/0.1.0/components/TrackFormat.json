@@ -1,0 +1,47 @@
+{
+  "additionalProperties": false,
+  "description": "How a genomic annotation file is encoded: its primary file format and, for BED-family formats, the number of standard (core) and extra (custom) columns. Corresponds to FGA-WG issue #1.",
+  "if": {
+    "properties": {
+      "file_format": {
+        "const": "BED"
+      }
+    },
+    "required": [
+      "file_format"
+    ]
+  },
+  "properties": {
+    "bed_core_columns": {
+      "description": "For BED-family formats, the number of standard (core) BED columns present \u2014 the N in \"BEDN\". Only relevant when file_format is a BED-family format.",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "bed_extra_columns": {
+      "description": "For BED-family formats, the number of extra/custom columns appended after the core columns \u2014 the M in \"BEDN+M\". Only relevant when file_format is a BED-family format.",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "file_format": {
+      "$ref": "#/$defs/Format",
+      "description": "The primary file format in which the track is encoded."
+    }
+  },
+  "required": [
+    "file_format"
+  ],
+  "then": {
+    "properties": {
+      "bed_core_columns": {}
+    },
+    "required": [
+      "bed_core_columns"
+    ]
+  },
+  "title": "TrackFormat",
+  "type": "object"
+}

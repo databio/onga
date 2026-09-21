@@ -1,0 +1,55 @@
+id: https://databio.org/onga/deposit
+name: deposit
+title: ONGA Deposit Record
+description: >-
+  A public deposit of a document containing metadata about a set of genomic
+  annotation files. Ported from the FGA-WG schema
+  (https://w3id.org/fga-wg/schema/deposit).
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+  fga: https://w3id.org/fga-wg/schema/
+
+imports:
+  - linkml:types
+
+default_prefix: onga
+default_range: string
+
+classes:
+  Deposit:
+    description: 'Information about a public deposit of a document containing metadata about a set of genome annotation files.'
+    source: https://w3id.org/fga-wg/schema/deposit
+    see_also:
+      - https://schema.datacite.org/
+      - https://developers.zenodo.org/#depositions
+    slots:
+      - deposit_id
+      - deposit_versioned_id
+      - deposit_first_created
+      - deposit_last_changed
+
+slots:
+  deposit_id:
+    description: 'A globally unique and persistent identifier for the public deposit of the metadata document. A DOI or other persistent identifier is recommended.'
+    range: curie
+    examples:
+      - value: 'doi:10.1234/zenodo.12345678'
+  deposit_versioned_id:
+    description: 'A globally unique, persistent and versioned identifier for the public deposit of the metadata document. A versioned DOI to a deposited document is recommended.'
+    identifier: true
+    required: true
+    range: curie
+    examples:
+      - value: 'doi:10.1234/zenodo.12345679'
+  deposit_first_created:
+    description: 'The date and time of the creation of the first deposited version of the metadata document.'
+    range: datetime
+    examples:
+      - value: '2025-07-01T12:36:00Z'
+  deposit_last_changed:
+    description: 'The date and time of the last deposited change of the current metadata document (corresponding to "deposit_versioned_id").'
+    range: datetime
+    examples:
+      - value: '2025-07-01T12:36:00Z'

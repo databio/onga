@@ -1,0 +1,71 @@
+{
+  "additionalProperties": false,
+  "description": "A collection of files, according to some selection criteria. Mainly intended for GenomicAnnotationFile entities, but other types of files can also be contained in a collection, e.g. raw data files such as FASTQ files. This is the natural future home for the BEDset concept (a curated collection of BED files).",
+  "properties": {
+    "contact": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Contact"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Contact point for the parent object (e.g. the study, or the creator/maintainer of a file collection)."
+    },
+    "deposit_versioned_ref": {
+      "description": "Reference to versioned id of deposit containing this file collection.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "filecollection_description": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Human-readable description of the file collection."
+    },
+    "filecollection_external_id": {
+      "description": "External, globally unique identifier for the file collection (in most cases, this will not exist).",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "filecollection_id": {
+      "description": "Internal identifier for the file collection (unique within the metadata deposit). ",
+      "type": "string"
+    },
+    "filecollection_input_sources": {
+      "description": "References to other input sources from which this file collection was derived.",
+      "items": {
+        "$ref": "#/$defs/InputSource"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "filecollection_label": {
+      "description": "A human-readable description of the file collection, short enough to be used for listings within software user interfaces, tables, illustration legends, etc.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "filecollection_id"
+  ],
+  "title": "FileCollection",
+  "type": "object"
+}

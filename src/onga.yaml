@@ -2,16 +2,24 @@ id: https://databio.org/onga
 name: onga
 title: ONGA - Ontology for Genomic Annotations
 description: >-
-  ONGA describes the content, purpose, and classification of genomic data
-  files using two layers. Layer 1 is a set of closed value vocabularies
-  (DataType, FeatureType, Format, and value primitives). Layer 2 is a set of
-  four track-descriptor schemas — classes of slots whose ranges draw on the
-  vocabularies: TrackFormat (how a track is encoded, FGA #1),
+  ONGA describes genomic annotation files — their content, encoding, provenance,
+  and research context — in four layers. Layer 1 is a set of closed value
+  vocabularies (DataType, FeatureType, Format, the facet vocabularies, and small
+  structural vocabularies such as AccessProtocol and BiospecimenClassification).
+  Layer 2 is a set of five track-descriptor schemas — classes of slots whose
+  ranges draw on the vocabularies: TrackFormat (how a track is encoded, FGA #1),
   TrackInterpretation (what it represents, FGA #2), TrackProvenance (what was
   done to the data — processing/derivation operations), TrackGeometry (its
   structural shape, FGA #3), and ReferenceGenome (the reference assembly it is
-  defined against, including the reference-build sex). A separate biospecimen
-  module covers the sample axis.
+  defined against, including the seqcol digests and reference-build sex).
+  Layer 3 is the record layer: GenomicAnnotationFile — the class that composes
+  the descriptors into a validatable record — plus File and its DRS-shaped
+  components (Checksum, AccessMethod, AccessURL, InputSource,
+  QualityAssessment). Layer 4 is the investigation layer: the experiment /
+  study / analysis / sample / donor / deposit context of the files, ported from
+  the FGA-WG schema (https://w3id.org/fga-wg/schema/) with machine-readable
+  lineage annotations. Imports and inlined ranges point only downward (Layer 4
+  -> 3 -> 2 -> 1); a lower layer refers up only by CURIE value.
 
 
   ONGA terms denote **sets** of genomic elements — a file, a track, a set of
@@ -31,17 +39,22 @@ prefixes:
   edam: http://edamontology.org/
   SO: http://purl.obolibrary.org/obo/SO_
   skos: http://www.w3.org/2004/02/skos/core#
-  dct: http://purl.org/dc/terms/
+  dcterms: http://purl.org/dc/terms/
   owl: http://www.w3.org/2002/07/owl#
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   rdfs: http://www.w3.org/2000/01/rdf-schema#
   xsd: http://www.w3.org/2001/XMLSchema#
+  fga: https://w3id.org/fga-wg/schema/
+  prov: http://www.w3.org/ns/prov#
+  dcat: http://www.w3.org/ns/dcat#
+  schema: http://schema.org/
 
 default_prefix: onga
 default_range: string
 
 imports:
   - linkml:types
+  # Layer 1 — closed value vocabularies
   - file_content
   - format
   - strand_orientation
@@ -52,9 +65,30 @@ imports:
   - thresholding
   - derivation
   - reference_build_sex
-  - biospecimen
+  # Layer 2 — track descriptor schemas
   - track_format
   - track_interpretation
   - track_provenance
   - track_geometry
   - reference_genome
+  # Layer 3 — record classes (a record about one file) + helpers
+  - term
+  - util
+  - checksum
+  - access_url
+  - access_method
+  - input_source
+  - quality_assessment
+  - file
+  - genomic_annotation_file
+  # Layer 4 — investigation classes (the research and publishing context)
+  - experiment
+  - analysis
+  - study
+  - sample
+  - donor
+  - contact
+  - deposit
+  - document
+  - file_collection
+  - top_level

@@ -1,0 +1,143 @@
+[
+  {
+    "name": "AccessProtocol",
+    "module": "access_method",
+    "layer": 1,
+    "layerName": "Vocabulary (structural)",
+    "description": "Access protocols (i.e. communication protocols) for fetching a data file, following the vocabulary defined in the GA4GH DRS specification (renamed from the FGA-WG enum AccessMethods to avoid the near-clash with the AccessMethod class).",
+    "source": "https://w3id.org/fga-wg/schema/access-method",
+    "seeAlso": [
+      "ga4gh_drs_info:docs/#tag/AccessMethodModel/operation/getAccessMethod"
+    ],
+    "values": [
+      {
+        "name": "s3",
+        "description": "Amazon S3 and other S3-compatible bucket."
+      },
+      {
+        "name": "gs",
+        "description": "Google Cloud Storage (and compatible) bucket."
+      },
+      {
+        "name": "ftp",
+        "description": "File Transfer Protocol."
+      },
+      {
+        "name": "gsiftp",
+        "description": "GridFTP protocol (an extension of the File Transfer Protocol (FTP) for grid computing)."
+      },
+      {
+        "name": "globus",
+        "description": "Data transfer via the Globus research cyberinfrastructure (https://www.globus.org/.)"
+      },
+      {
+        "name": "htsget",
+        "description": "GA4GH HTSget standard for retrieving subsections of genomic data (https://www.ga4gh.org/product/htsget/)."
+      },
+      {
+        "name": "https",
+        "description": "Hypertext Transfer Protocol Secure, the standard encrypted protocol used on the web."
+      },
+      {
+        "name": "file",
+        "description": "For local files accessible via a file URI (e.g., file://path/to/file)."
+      }
+    ],
+    "referencedBy": [
+      {
+        "name": "AccessMethod",
+        "href": "/schema/class/AccessMethod"
+      }
+    ]
+  },
+  {
+    "name": "BiospecimenClassification",
+    "module": "sample",
+    "layer": 1,
+    "layerName": "Vocabulary (structural)",
+    "description": "Vocabulary from the ENCODE model describing the general category of biospecimen (see \"Properties->classification\" in https://www.encodeproject.org/profiles/biosample_type).",
+    "source": "https://www.encodeproject.org/profiles/biosample_type",
+    "seeAlso": [],
+    "values": [
+      {
+        "name": "cell line",
+        "description": ""
+      },
+      {
+        "name": "in vitro differentiated cells",
+        "description": ""
+      },
+      {
+        "name": "primary cell",
+        "description": ""
+      },
+      {
+        "name": "cell-free sample",
+        "description": ""
+      },
+      {
+        "name": "cloning host",
+        "description": ""
+      },
+      {
+        "name": "tissue",
+        "description": ""
+      },
+      {
+        "name": "whole organisms",
+        "description": ""
+      },
+      {
+        "name": "organoid",
+        "description": ""
+      },
+      {
+        "name": "technical sample",
+        "description": ""
+      }
+    ],
+    "referencedBy": [
+      {
+        "name": "Sample",
+        "href": "/schema/class/Sample"
+      }
+    ]
+  },
+  {
+    "name": "ValueType",
+    "module": "track_geometry",
+    "layer": 1,
+    "layerName": "Vocabulary (structural)",
+    "description": "Types of data values associated with sequence features or edges. (Renamed from the FGA-WG enum DataTypes to avoid the near-clash with the ONGA DataType content vocabulary.)",
+    "source": null,
+    "seeAlso": [],
+    "values": [
+      {
+        "name": "integer",
+        "description": "Integer numeric values."
+      },
+      {
+        "name": "decimal",
+        "description": "Decimal numeric values."
+      },
+      {
+        "name": "boolean",
+        "description": "Boolean values (true/false)."
+      },
+      {
+        "name": "string",
+        "description": "Text string values."
+      },
+      {
+        "name": "multiple",
+        "description": "Multiple types of values are associated (e.g. both integer and string)."
+      }
+    ],
+    "referencedBy": [
+      {
+        "name": "TrackGeometry",
+        "href": "/track-geometry"
+      }
+    ]
+  }
+]

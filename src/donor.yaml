@@ -1,0 +1,65 @@
+id: https://databio.org/onga/donor
+name: donor
+title: ONGA Donor Record
+description: >-
+  The donor or complete organism from which a sample was taken. Ported from the
+  FGA-WG schema (https://w3id.org/fga-wg/schema/donor). Port note: the FGA-WG
+  slot `sex` is renamed `donor_sex` — it records the biological sex of the
+  SAMPLE's donor, which must never be confused with
+  `ReferenceGenome.build_sex` (the sex of the reference assembly build).
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  onga: https://databio.org/onga/
+  fga: https://w3id.org/fga-wg/schema/
+  phenopackets_info: https://phenopacket-schema.readthedocs.io/en/latest/
+
+imports:
+  - linkml:types
+  - term
+
+default_prefix: onga
+default_range: string
+
+classes:
+  Donor:
+    description: 'Information about the donor or complete organism from which the sample was taken.'
+    source: https://w3id.org/fga-wg/schema/donor
+    close_mappings:
+      - phenopackets_info:individual.html
+    see_also:
+      - phenopackets_info:individual.html
+    slots:
+      - donor_external_id
+      - donor_id
+      - species_taxon
+      - donor_sex
+
+slots:
+  donor_external_id:
+    description: 'External, globally unique identifier for the donor/organism.'
+    range: curie
+    examples:
+      - value: 'biosamples:SAMN04284578'
+  donor_id:
+    description: 'Internal identifier for the donor/organism (unique within the metadata deposit). '
+    required: true
+    identifier: true
+    range: curie
+    examples:
+      - value: 'donor:ENCDO001AAA'
+  species_taxon:
+    description: 'Taxonomical classification of the species of the donor/organism.'
+    recommended: true
+    range: Term
+    examples:
+      - object:
+          id: 'NCBITaxon:9606'
+          label: 'Homo sapiens'
+  donor_sex:
+    description: 'Biological sex of the donor/organism (the SAMPLE side of the crucial sample-sex vs reference-build-sex distinction, ONGA design principle #5). Do not confuse with ReferenceGenome.build_sex, which records which sex chromosomes the reference ASSEMBLY contains. Renamed from the FGA-WG slot sex.'
+    range: Term
+    examples:
+      - object:
+          id: 'CARO:0000027'
+          label: 'male organism'

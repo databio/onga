@@ -1,0 +1,22 @@
+{
+  "additionalProperties": false,
+  "description": "Helper entity to represent an ontology term as a data value. Term instances are DATA-LEVEL cross-references: a CURIE carried inside a record, never a schema-level IRI. Schema-level cross-references use mapping slots (exact_mappings/close_mappings/broad_mappings) per ONGA design principle #7, never `meaning:`.",
+  "properties": {
+    "id": {
+      "description": "External, globally unique identifier for the ontology term (in CURIE form).",
+      "type": "string"
+    },
+    "label": {
+      "description": "Human-readable label associated to the term id in the current version of the ontology (as listed in the \"ontology_versions\" field of the Deposit object).",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id"
+  ],
+  "title": "Term",
+  "type": "object"
+}
