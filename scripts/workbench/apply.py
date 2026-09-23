@@ -248,7 +248,8 @@ def _stamp(result, root):
         rec = by_id[r["id"]]
         rec["status"] = "applied"
         rec["applied"] = store._to_yaml({
-            "on": datetime.date.fromordinal(today.toordinal()),  # own object: no YAML anchor "subject_hashes_after": hashes,
+            "on": datetime.date.fromordinal(today.toordinal()),  # own object: no YAML anchor
+            "subject_hashes_after": hashes,
             "created": list(eff.created), "retired": list(eff.retired),
             **({"renamed": dict(eff.renamed)} if eff.renamed else {}),
         })
