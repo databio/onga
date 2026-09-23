@@ -185,8 +185,10 @@ def cleanup(reg, aliases, decs):
     lines = []
     for n, (on, dec_id, d, entry) in enumerate(applied, start=FIRST_NUMBER):
         op = {k: v for k, v in (d.get("operation") or {}).items() if k != "op"}
-        op_txt = ", ".join(f"{k}: {v}" for k, v in op.items())
+        op_txt = ", ".join(f"{k}: {json.dumps(v) if isinstance(v, bool) else v}" for k, v in op.items())
         rationale = " ".join(str(d.get("rationale") or "").split())
+        if rationale and rationale[-1] not in ".!?":
+            rationale += "."
         also = d.get("also_affects") or []
         head = f"- **#{n}. {entry.get('label', d['verdict'])}: {display(d['subject'], reg, aliases)}**"
         if also:

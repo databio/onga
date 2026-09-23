@@ -687,7 +687,15 @@ class EnumAddTerm(Handler):
         pv["meaning"] = f"onga:{tid}"
         if op.get("subsets"):
             pv["in_subset"] = CommentedSeq(subject(ctx, s)["name"] for s in op["subsets"])
-        body.setdefault("permissible_values", CommentedMap())[op["label"]] = pv
+        pvs = body.setdefault("permissible_values", CommentedMap())
+        prev = pvs[list(pvs)[-1]] if pvs else None
+        pvs[op["label"]] = pv
+        # Carry the blank line that closed the enum over to the new last value.
+        if isinstance(prev, CommentedMap) and prev and not isinstance(pv[list(pv)[-1]], list):
+            tok = prev.ca.items.get(list(prev)[-1])
+            if tok and len(tok) > 2 and tok[2] is not None:
+                pv.ca.items[list(pv)[-1]] = [None, None, tok[2], None]
+                tok[2] = None
         return Effects(created=[f"term:{tid}"])
 
 
