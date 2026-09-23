@@ -7,11 +7,12 @@ never touched. Three blocks between markers are generated:
   <!-- BEGIN GENERATED: current-state -->       counts and class lists, from
                                                 curation/subjects.json
   <!-- BEGIN GENERATED: atomic-by-principle -->  the "Atomic by principle" table:
-                                                the transitional rows in
-                                                curation/atomic_by_principle.transitional.md
-                                                plus one row per keep_atomic record
+                                                one row per distinct rationale of
+                                                the keep_atomic records
   <!-- BEGIN GENERATED: cleanup-decisions -->   every applied decision that wrote
-                                                something, numbered from #21
+                                                something, numbered from #21; seeded
+                                                records (origin: seed) restate
+                                                operations #1-#20 and are skipped
 
 No program reads DECISIONS.md outside the markers. The first run inserts the
 marker pairs at their sections; later runs only rewrite what is between them.
@@ -33,7 +34,6 @@ from workbench.store import load_verdicts, plain_records  # noqa: E402
 ROOT = Path(__file__).resolve().parents[1]
 DOC = ROOT / "DECISIONS.md"
 CURATION = ROOT / "curation"
-ATOMIC_ROWS = CURATION / "atomic_by_principle.transitional.md"
 FIRST_NUMBER = 21
 BLOCKS = ("current-state", "atomic-by-principle", "cleanup-decisions")
 
@@ -152,14 +152,20 @@ def current_state(reg):
 
 
 def atomic(reg, aliases, decs):
-    lines = ATOMIC_ROWS.read_text().rstrip("\n").splitlines()
+    """One row per distinct rationale, in order of each group's first record."""
+    groups = {}
     for d in decs:
         if d.get("verdict") != "keep_atomic" or d.get("status") == "withdrawn":
             continue
-        s = reg.get(resolve(d["subject"], aliases)) or {}
         reason = " ".join(str(d.get("rationale") or "").split()).replace("|", "\\|")
-        lines.append(f"| `{s.get('label', d['subject'])}` | {s.get('enum', '')} | "
-                     f"{reason} ({d['id']}) |")
+        groups.setdefault(reason, []).append(d)
+    lines = ["| Terms | Enum | Reason kept atomic |", "|---|---|---|"]
+    for reason, ds in groups.items():
+        subs = [reg.get(resolve(d["subject"], aliases)) or {} for d in ds]
+        terms = ", ".join(f"`{s.get('label', d['subject'])}`" for s, d in zip(subs, ds))
+        enums = ", ".join(sorted({s.get("enum", "") for s in subs} - {""}))
+        ids = ", ".join(d["id"] for d in ds)
+        lines.append(f"| {terms} | {enums} | {reason} ({ids}) |")
     return "\n".join(lines)
 
 
@@ -168,7 +174,7 @@ def cleanup(reg, aliases, decs):
     kind_of = {sid: s["kind"] for sid, s in reg.items()}
     applied = []
     for d in decs:
-        if d.get("status") != "applied":
+        if d.get("status") != "applied" or (d.get("origin") or {}).get("kind") == "seed":
             continue
         kind = kind_of.get(resolve(d["subject"], aliases))
         entry = verdicts.get(kind, {}).get(d["verdict"], {})
@@ -207,8 +213,6 @@ def insert_markers(text):
         m = re.search(r"(\| Axis / terms \|.*?\n)(?=\n)", text, re.S)
         if not m:
             sys.exit("render_decisions: cannot find the Atomic by principle table to wrap")
-        if not ATOMIC_ROWS.exists():
-            ATOMIC_ROWS.write_text(m.group(1))
         text = text[:m.start(1)] + wrap("atomic-by-principle", m.group(1).rstrip("\n")) + "\n" + text[m.end(1):]
     if begin("cleanup-decisions") not in text:
         if "## Cleanup decisions" not in text:

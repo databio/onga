@@ -14,7 +14,7 @@
  "sources": [
   {
    "path": "curation/findings/schema_lint.json",
-   "findings": 339,
+   "findings": 314,
    "stale": false
   },
   {
@@ -39,10 +39,12 @@
    "container": null,
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0101"
+   ],
+   "latest": "DEC-0101",
    "signals": {
     "findings": 0,
     "impact": 0.5566,
@@ -60,10 +62,12 @@
    "container": null,
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0100"
+   ],
+   "latest": "DEC-0100",
    "signals": {
     "findings": 0,
     "impact": 0.4307,
@@ -81,10 +85,12 @@
    "container": null,
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0107"
+   ],
+   "latest": "DEC-0107",
    "signals": {
     "findings": 0,
     "impact": 0.7968,
@@ -102,10 +108,12 @@
    "container": null,
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0099"
+   ],
+   "latest": "DEC-0099",
    "signals": {
     "findings": 0,
     "impact": 0.4307,
@@ -123,10 +131,12 @@
    "container": null,
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0111"
+   ],
+   "latest": "DEC-0111",
    "signals": {
     "findings": 0,
     "impact": 0.5566,
@@ -144,10 +154,12 @@
    "container": null,
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0112"
+   ],
+   "latest": "DEC-0112",
    "signals": {
     "findings": 0,
     "impact": 0.5566,
@@ -186,10 +198,12 @@
    "container": null,
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0113"
+   ],
+   "latest": "DEC-0113",
    "signals": {
     "findings": 0,
     "impact": 0.7449,
@@ -207,10 +221,12 @@
    "container": null,
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0110"
+   ],
+   "latest": "DEC-0110",
    "signals": {
     "findings": 0,
     "impact": 0.5566,
@@ -228,10 +244,12 @@
    "container": null,
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0106"
+   ],
+   "latest": "DEC-0106",
    "signals": {
     "findings": 0,
     "impact": 0.8413,
@@ -249,10 +267,12 @@
    "container": null,
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0104"
+   ],
+   "latest": "DEC-0104",
    "signals": {
     "findings": 0,
     "impact": 0.9307,
@@ -270,10 +290,12 @@
    "container": null,
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0114"
+   ],
+   "latest": "DEC-0114",
    "signals": {
     "findings": 0,
     "impact": 0.646,
@@ -354,10 +376,12 @@
    "container": null,
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0105"
+   ],
+   "latest": "DEC-0105",
    "signals": {
     "findings": 0,
     "impact": 0.646,
@@ -396,10 +420,12 @@
    "container": null,
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0102"
+   ],
+   "latest": "DEC-0102",
    "signals": {
     "findings": 0,
     "impact": 0.7153,
@@ -459,10 +485,12 @@
    "container": null,
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0103"
+   ],
+   "latest": "DEC-0103",
    "signals": {
     "findings": 0,
     "impact": 0.646,
@@ -543,10 +571,12 @@
    "container": null,
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0109"
+   ],
+   "latest": "DEC-0109",
    "signals": {
     "findings": 0,
     "impact": 0.9307,
@@ -585,10 +615,12 @@
    "container": null,
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0108"
+   ],
+   "latest": "DEC-0108",
    "signals": {
     "findings": 0,
     "impact": 0.6826,
@@ -606,10 +638,12 @@
    "container": null,
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0097"
+   ],
+   "latest": "DEC-0097",
    "signals": {
     "findings": 0,
     "impact": 0.4307,
@@ -648,10 +682,12 @@
    "container": null,
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0115"
+   ],
+   "latest": "DEC-0115",
    "signals": {
     "findings": 0,
     "impact": 0.6826,
@@ -753,10 +789,12 @@
    "container": null,
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0098"
+   ],
+   "latest": "DEC-0098",
    "signals": {
     "findings": 0,
     "impact": 0.2153,
@@ -1236,23 +1274,23 @@
    "container": "module:access_method",
    "layer": 3,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:inline-enum:d8e13df2f6"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0090"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0090",
    "signals": {
-    "findings": 1,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.2618
+   "score": 1.7618
   },
   "enum:BiospecimenClassification": {
    "kind": "enum",
@@ -1513,23 +1551,23 @@
    "container": "module:track_geometry",
    "layer": 2,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:inline-enum:bd701bffe0"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0089"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0089",
    "signals": {
-    "findings": 1,
+    "findings": 0,
     "impact": 1.0,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 6.0
+   "score": 2.5
   },
   "term:ONGA_0000001": {
    "kind": "term",
@@ -1552,9 +1590,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.7936
+   "score": 4.7936
   },
   "term:ONGA_0000002": {
    "kind": "term",
@@ -1577,35 +1615,32 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.493
+   "score": 3.493
   },
   "term:ONGA_0000003": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:zero-usage-term:57e536c070",
-    "map:56f623dfb3db",
-    "map:c02764969037",
-    "map:ca8dcbf5e3c9"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0026"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0026",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.5
+   "score": 1.5
   },
   "term:ONGA_0000004": {
    "kind": "term",
@@ -1654,9 +1689,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.798
+   "score": 3.798
   },
   "term:ONGA_0000006": {
    "kind": "term",
@@ -1678,51 +1713,46 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.3162
+   "score": 4.3162
   },
   "term:ONGA_0000007": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:a0bb8921a83c",
-    "lint:no-mapping-at-all:f97fc6d206",
-    "lint:unmapped-high-usage:f97fc6d206"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0013"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0013",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.6344,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.7688
+   "score": 2.7688
   },
   "term:ONGA_0000008": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:no-mapping-at-all:c03f24a053",
-    "map:a64511020c2d",
-    "map:d3f3fc46062c",
-    "map:e0deb6c11ad7"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0014"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0014",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.2828,
     "adoption": 1,
     "required": 0,
@@ -1731,30 +1761,30 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 3.0656
+   "score": 1.0656
   },
   "term:ONGA_0000009": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:a0fd79c7610b"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0117"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0117",
    "signals": {
-    "findings": 1,
+    "findings": 0,
     "impact": 0.4592,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.9184
+   "score": 2.4184
   },
   "term:ONGA_0000010": {
    "kind": "term",
@@ -1777,9 +1807,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.1892
+   "score": 4.1892
   },
   "term:ONGA_0000011": {
    "kind": "term",
@@ -1802,9 +1832,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.4236
+   "score": 4.4236
   },
   "term:ONGA_0000012": {
    "kind": "term",
@@ -1828,180 +1858,168 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.798
+   "score": 4.798
   },
   "term:ONGA_0000013": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:aafae81794fb",
-    "lint:no-mapping-at-all:40abd08529",
-    "lint:residual-compound:40abd08529"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0012"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0012",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.2228,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.9456
+   "score": 1.9456
   },
   "term:ONGA_0000014": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:9af0e4efaeb9",
-    "lint:no-mapping-at-all:6b233b83e7",
-    "lint:residual-compound:6b233b83e7",
-    "lint:unmapped-high-usage:6b233b83e7"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0122"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0122",
    "signals": {
-    "findings": 6,
+    "findings": 0,
     "impact": 0.6586,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.8172
+   "score": 2.8172
   },
   "term:ONGA_0000015": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:fc91e079ec60",
-    "lint:no-mapping-at-all:d57af36a5c",
-    "lint:unmapped-high-usage:d57af36a5c"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0124"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0124",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.4954,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.4908
+   "score": 2.4908
   },
   "term:ONGA_0000016": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:557a9324f664",
-    "lint:no-mapping-at-all:b13f263031",
-    "lint:unmapped-high-usage:b13f263031"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0121"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0121",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.8203,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.1406
+   "score": 3.1406
   },
   "term:ONGA_0000017": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:no-mapping-at-all:13d98cbbc6",
-    "lint:unmapped-high-usage:13d98cbbc6",
-    "map:c4e33a1df9e2"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0129"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0129",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.8812,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.2624
+   "score": 3.2624
   },
   "term:ONGA_0000018": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "map:09f3667f89f8"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0123"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0123",
    "signals": {
-    "findings": 1,
+    "findings": 0,
     "impact": 0.8709,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.7418
+   "score": 3.2418
   },
   "term:ONGA_0000019": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:cb4368cbdb80",
-    "lint:no-mapping-at-all:710a73f861"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0016"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0016",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.2144,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
    "score": 1.9288
   },
@@ -2010,25 +2028,23 @@
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:4b2d2a056dd1",
-    "lint:no-mapping-at-all:66f021e1f9",
-    "lint:unmapped-high-usage:66f021e1f9"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0015"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0015",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.3755,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.251
+   "score": 2.251
   },
   "term:ONGA_0000021": {
    "kind": "term",
@@ -2052,33 +2068,32 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.3392
+   "score": 5.3392
   },
   "term:ONGA_0000022": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:831c156355fe",
-    "lint:residual-compound:659c8517e5"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0001"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0001",
    "signals": {
-    "findings": 3,
+    "findings": 0,
     "impact": 0.7287,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.4574
+   "score": 2.9574
   },
   "term:ONGA_0000023": {
    "kind": "term",
@@ -2103,9 +2118,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.3326
+   "score": 5.3326
   },
   "term:ONGA_0000024": {
    "kind": "term",
@@ -2129,70 +2144,69 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.8142
+   "score": 4.8142
   },
   "term:ONGA_0000025": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:1c44e1896732",
-    "lint:residual-compound:82a0521f2b"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0010"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0010",
    "signals": {
-    "findings": 3,
+    "findings": 0,
     "impact": 0.7435,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.487
+   "score": 2.987
   },
   "term:ONGA_0000026": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:5cbda9ad2dec",
-    "lint:residual-compound:b5626d3dc9",
-    "sim:9577d7e27a1f"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0002"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0002",
    "signals": {
-    "findings": 5,
+    "findings": 0,
     "impact": 0.7277,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.4554
+   "score": 2.9554
   },
   "term:ONGA_0000027": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
+   "state": "deferred",
    "open_findings": [
     "map:0f999cfe9e91"
    ],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0153"
+   ],
+   "latest": "DEC-0153",
    "signals": {
     "findings": 1,
     "impact": 0.8833,
@@ -2201,34 +2215,32 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.7666
+   "score": 3.7666
   },
   "term:ONGA_0000028": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:1382bb78426c",
-    "lint:residual-compound:09fcaffa44",
-    "lint:unreviewed-mapping:09fcaffa44"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0009"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0009",
    "signals": {
-    "findings": 5,
+    "findings": 0,
     "impact": 0.7923,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.5846
+   "score": 3.0846
   },
   "term:ONGA_0000029": {
    "kind": "term",
@@ -2253,132 +2265,125 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.3326
+   "score": 5.3326
   },
   "term:ONGA_0000030": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:ea6d38a51b38",
-    "lint:residual-compound:168284b781"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0004"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0004",
    "signals": {
-    "findings": 3,
+    "findings": 0,
     "impact": 0.5483,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.0966
+   "score": 2.5966
   },
   "term:ONGA_0000031": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:76b29b0e1677",
-    "lint:residual-compound:8f9a8d3cce"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0006"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0006",
    "signals": {
-    "findings": 3,
+    "findings": 0,
     "impact": 0.782,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.564
+   "score": 3.064
   },
   "term:ONGA_0000032": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:cc3da468023e",
-    "lint:residual-compound:33f020a99d"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0005"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0005",
    "signals": {
-    "findings": 3,
+    "findings": 0,
     "impact": 0.7187,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.4374
+   "score": 2.9374
   },
   "term:ONGA_0000033": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:unreviewed-mapping:d647ff7a9c",
-    "map:3f55de9147d5",
-    "sim:145513e03266"
+   "state": "deferred",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0007",
+    "DEC-0156"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0156",
    "signals": {
-    "findings": 5,
+    "findings": 0,
     "impact": 0.1941,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.3882
+   "score": 1.8882
   },
   "term:ONGA_0000034": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:8bc4257d26c8",
-    "lint:residual-compound:023a3bc6e1",
-    "lint:zero-usage-term:023a3bc6e1",
-    "sim:9577d7e27a1f"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0003"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0003",
    "signals": {
-    "findings": 6,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.5
+   "score": 1.5
   },
   "term:ONGA_0000035": {
    "kind": "term",
@@ -2401,9 +2406,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.832
+   "score": 4.832
   },
   "term:ONGA_0000036": {
    "kind": "term",
@@ -2425,48 +2430,49 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.0292
+   "score": 5.0292
   },
   "term:ONGA_0000037": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:zero-usage-term:95a80f92ce",
-    "map:22736dc19cc5",
-    "sim:145513e03266"
+   "state": "deferred",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0008",
+    "DEC-0155"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0155",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.5
+   "score": 1.5
   },
   "term:ONGA_0000038": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
+   "state": "deferred",
    "open_findings": [
     "map:3ba8a7e30c55",
     "map:fd97b85e6b64",
     "sim:beceab66aa88"
    ],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0154"
+   ],
+   "latest": "DEC-0154",
    "signals": {
     "findings": 4,
     "impact": 0.4005,
@@ -2475,21 +2481,23 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.301
+   "score": 4.301
   },
   "term:ONGA_0000039": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
+   "state": "deferred",
    "open_findings": [
     "map:6ec133ece9a6"
    ],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0157"
+   ],
+   "latest": "DEC-0157",
    "signals": {
     "findings": 1,
     "impact": 0.0525,
@@ -2523,21 +2531,23 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.8704
+   "score": 4.8704
   },
   "term:ONGA_0000041": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
+   "state": "deferred",
    "open_findings": [
     "map:ad16bea55bdd"
    ],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0158"
+   ],
+   "latest": "DEC-0158",
    "signals": {
     "findings": 1,
     "impact": 0.7403,
@@ -2546,9 +2556,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.4806
+   "score": 3.4806
   },
   "term:ONGA_0000042": {
    "kind": "term",
@@ -2622,9 +2632,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.6278
+   "score": 3.6278
   },
   "term:ONGA_0000045": {
    "kind": "term",
@@ -2645,9 +2655,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.2678
+   "score": 3.2678
   },
   "term:ONGA_0000046": {
    "kind": "term",
@@ -2672,9 +2682,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.356
+   "score": 5.356
   },
   "term:ONGA_0000047": {
    "kind": "term",
@@ -2721,9 +2731,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.672
+   "score": 4.672
   },
   "term:ONGA_0000049": {
    "kind": "term",
@@ -2746,9 +2756,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.0
+   "score": 3.0
   },
   "term:ONGA_0000050": {
    "kind": "term",
@@ -2903,10 +2913,12 @@
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0011"
+   ],
+   "latest": "DEC-0011",
    "signals": {
     "findings": 0,
     "impact": 0.1574,
@@ -2998,22 +3010,21 @@
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:no-mapping-at-all:9a1e3be195",
-    "map:f3c18bcd5dfa"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0126"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0126",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.3204,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
    "score": 2.1408
   },
@@ -3039,9 +3050,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 5.2572
+   "score": 6.2572
   },
   "term:ONGA_0000062": {
    "kind": "term",
@@ -3063,9 +3074,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.3326
+   "score": 3.3326
   },
   "term:ONGA_0000063": {
    "kind": "term",
@@ -3088,9 +3099,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.2712
+   "score": 4.2712
   },
   "term:ONGA_0000064": {
    "kind": "term",
@@ -3112,31 +3123,30 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.7098
+   "score": 2.7098
   },
   "term:ONGA_0000065": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:b045340d92fe",
-    "lint:no-mapping-at-all:8f7069d81e"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0125"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0125",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.2144,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
    "score": 1.9288
   },
@@ -3160,9 +3170,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.1754
+   "score": 4.1754
   },
   "term:ONGA_0000067": {
    "kind": "term",
@@ -3184,9 +3194,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.0982
+   "score": 4.0982
   },
   "term:ONGA_0000068": {
    "kind": "term",
@@ -3233,9 +3243,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.0298
+   "score": 4.0298
   },
   "term:ONGA_0000070": {
    "kind": "term",
@@ -3259,9 +3269,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.9924
+   "score": 5.9924
   },
   "term:ONGA_0000071": {
    "kind": "term",
@@ -3285,9 +3295,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.0
+   "score": 4.0
   },
   "term:ONGA_0000072": {
    "kind": "term",
@@ -3383,9 +3393,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.0816
+   "score": 3.0816
   },
   "term:ONGA_0000076": {
    "kind": "term",
@@ -3408,9 +3418,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.5
+   "score": 3.5
   },
   "term:ONGA_0000077": {
    "kind": "term",
@@ -3458,9 +3468,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.6118
+   "score": 3.6118
   },
   "term:ONGA_0000079": {
    "kind": "term",
@@ -3483,9 +3493,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.5
+   "score": 3.5
   },
   "term:ONGA_0000080": {
    "kind": "term",
@@ -3534,9 +3544,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.4846
+   "score": 5.4846
   },
   "term:ONGA_0000082": {
    "kind": "term",
@@ -3633,9 +3643,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.8484
+   "score": 2.8484
   },
   "term:ONGA_0000086": {
    "kind": "term",
@@ -3659,9 +3669,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.2788
+   "score": 5.2788
   },
   "term:ONGA_0000087": {
    "kind": "term",
@@ -3684,35 +3694,32 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.0
+   "score": 3.0
   },
   "term:ONGA_0000088": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:93aa5d97debc",
-    "lint:no-mapping-at-all:bdc9025447",
-    "lint:residual-compound:bdc9025447",
-    "lint:zero-usage-term:bdc9025447"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0024"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0024",
    "signals": {
-    "findings": 5,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.0
+   "score": 1.5
   },
   "term:ONGA_0000089": {
    "kind": "term",
@@ -3735,9 +3742,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.673
+   "score": 4.673
   },
   "term:ONGA_0000090": {
    "kind": "term",
@@ -3760,9 +3767,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.6768
+   "score": 4.6768
   },
   "term:ONGA_0000091": {
    "kind": "term",
@@ -3784,9 +3791,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.5
+   "score": 2.5
   },
   "term:ONGA_0000092": {
    "kind": "term",
@@ -3809,9 +3816,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.7788
+   "score": 4.7788
   },
   "term:ONGA_0000093": {
    "kind": "term",
@@ -3834,28 +3841,23 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.672
+   "score": 4.672
   },
   "term:ONGA_0000094": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:ee67efae48a0",
-    "lint:no-mapping-at-all:2905da53c1",
-    "lint:residual-compound:2905da53c1",
-    "lint:zero-usage-term:2905da53c1",
-    "sim:2e1e1de1bb97",
-    "sim:4667e9f155e0"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0019"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0019",
    "signals": {
-    "findings": 9,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
@@ -3864,25 +3866,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 5.0
+   "score": 0.5
   },
   "term:ONGA_0000095": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:6f4055f5f192",
-    "lint:no-mapping-at-all:51ae78403f",
-    "lint:zero-usage-term:51ae78403f",
-    "sim:05dca4d5e629",
-    "sim:ec0c0ce62dc4"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0021"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0021",
    "signals": {
-    "findings": 7,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
@@ -3891,26 +3889,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 4.0
+   "score": 0.5
   },
   "term:ONGA_0000096": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:82b0dfa22506",
-    "lint:no-mapping-at-all:798f941167",
-    "lint:residual-compound:798f941167",
-    "lint:zero-usage-term:798f941167",
-    "sim:4667e9f155e0",
-    "sim:c6a463d3d213"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0020"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0020",
    "signals": {
-    "findings": 9,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
@@ -3919,27 +3912,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 5.0
+   "score": 0.5
   },
   "term:ONGA_0000097": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:d0e33e8cf956",
-    "lint:no-mapping-at-all:5f42cf14dc",
-    "lint:residual-compound:5f42cf14dc",
-    "lint:unmapped-high-usage:5f42cf14dc",
-    "sim:2933e49c74f3",
-    "sim:d310636bcd54",
-    "sim:ec0c0ce62dc4"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0022"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0022",
    "signals": {
-    "findings": 10,
+    "findings": 0,
     "impact": 0.6393,
     "adoption": 1,
     "required": 0,
@@ -3948,27 +3935,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 6.7786
+   "score": 1.7786
   },
   "term:ONGA_0000098": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:e52735f7eed8",
-    "lint:no-mapping-at-all:6d76da4773",
-    "lint:residual-compound:6d76da4773",
-    "lint:zero-usage-term:6d76da4773",
-    "sim:2e1e1de1bb97",
-    "sim:c6a463d3d213",
-    "sim:d310636bcd54"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0018"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0018",
    "signals": {
-    "findings": 10,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
@@ -3977,25 +3958,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 5.5
+   "score": 0.5
   },
   "term:ONGA_0000099": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:7a91360f4508",
-    "lint:no-mapping-at-all:9b3d1ede02",
-    "lint:zero-usage-term:9b3d1ede02",
-    "sim:05dca4d5e629",
-    "sim:2933e49c74f3"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0023"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0023",
    "signals": {
-    "findings": 7,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
@@ -4004,7 +3981,7 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 4.0
+   "score": 0.5
   },
   "term:ONGA_0000100": {
    "kind": "term",
@@ -4027,9 +4004,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.7056
+   "score": 4.7056
   },
   "term:ONGA_0000101": {
    "kind": "term",
@@ -4052,9 +4029,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.6766
+   "score": 4.6766
   },
   "term:ONGA_0000102": {
    "kind": "term",
@@ -4077,9 +4054,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.0
+   "score": 3.0
   },
   "term:ONGA_0000103": {
    "kind": "term",
@@ -4101,9 +4078,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.7246
+   "score": 3.7246
   },
   "term:ONGA_0000104": {
    "kind": "term",
@@ -4152,9 +4129,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.4288
+   "score": 3.4288
   },
   "term:ONGA_0000106": {
    "kind": "term",
@@ -4178,9 +4155,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.1662
+   "score": 4.1662
   },
   "term:ONGA_0000107": {
    "kind": "term",
@@ -4231,9 +4208,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.6706
+   "score": 3.6706
   },
   "term:ONGA_0000109": {
    "kind": "term",
@@ -4255,9 +4232,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.1318
+   "score": 3.1318
   },
   "term:ONGA_0000110": {
    "kind": "term",
@@ -4306,9 +4283,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.2436
+   "score": 3.2436
   },
   "term:ONGA_0000112": {
    "kind": "term",
@@ -4330,9 +4307,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.6662
+   "score": 2.6662
   },
   "term:ONGA_0000113": {
    "kind": "term",
@@ -4513,9 +4490,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.2098
+   "score": 4.2098
   },
   "term:ONGA_0000120": {
    "kind": "term",
@@ -4539,9 +4516,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.376
+   "score": 4.376
   },
   "term:ONGA_0000121": {
    "kind": "term",
@@ -4574,25 +4551,23 @@
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:6a5a8b4a2401",
-    "lint:no-mapping-at-all:cfbce6094f",
-    "lint:residual-compound:cfbce6094f"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0025"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0025",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.3059,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.1118
+   "score": 2.1118
   },
   "term:ONGA_0000123": {
    "kind": "term",
@@ -4666,9 +4641,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.9608
+   "score": 3.9608
   },
   "term:ONGA_0000126": {
    "kind": "term",
@@ -4691,9 +4666,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.1662
+   "score": 3.1662
   },
   "term:ONGA_0000127": {
    "kind": "term",
@@ -4715,9 +4690,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.9456
+   "score": 2.9456
   },
   "term:ONGA_0000128": {
    "kind": "term",
@@ -4739,9 +4714,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.7712
+   "score": 2.7712
   },
   "term:ONGA_0000129": {
    "kind": "term",
@@ -4764,9 +4739,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.0
+   "score": 3.0
   },
   "term:ONGA_0000130": {
    "kind": "term",
@@ -4788,9 +4763,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.1408
+   "score": 3.1408
   },
   "term:ONGA_0000131": {
    "kind": "term",
@@ -4813,9 +4788,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.0
+   "score": 3.0
   },
   "term:ONGA_0000132": {
    "kind": "term",
@@ -4837,34 +4812,32 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.9746
+   "score": 2.9746
   },
   "term:ONGA_0000133": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:no-mapping-at-all:61292ecc18",
-    "lint:residual-compound:61292ecc18",
-    "map:55e8009a467d"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0118"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0118",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.2304,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.9608
+   "score": 1.9608
   },
   "term:ONGA_0000134": {
    "kind": "term",
@@ -4889,9 +4862,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.4078
+   "score": 5.4078
   },
   "term:ONGA_0000135": {
    "kind": "term",
@@ -4915,9 +4888,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.3528
+   "score": 5.3528
   },
   "term:ONGA_0000136": {
    "kind": "term",
@@ -4941,9 +4914,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.3506
+   "score": 5.3506
   },
   "term:ONGA_0000137": {
    "kind": "term",
@@ -4966,9 +4939,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.2098
+   "score": 3.2098
   },
   "term:ONGA_0000138": {
    "kind": "term",
@@ -4990,9 +4963,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.705
+   "score": 3.705
   },
   "term:ONGA_0000139": {
    "kind": "term",
@@ -5015,9 +4988,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.2344
+   "score": 4.2344
   },
   "term:ONGA_0000140": {
    "kind": "term",
@@ -5040,9 +5013,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.8502
+   "score": 4.8502
   },
   "term:ONGA_0000141": {
    "kind": "term",
@@ -5065,9 +5038,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.3642
+   "score": 4.3642
   },
   "term:ONGA_0000142": {
    "kind": "term",
@@ -5092,9 +5065,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.0
+   "score": 4.0
   },
   "term:ONGA_0000143": {
    "kind": "term",
@@ -5116,61 +5089,55 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.1294
+   "score": 3.1294
   },
   "term:ONGA_0000144": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:6b3a853375fb",
-    "lint:no-mapping-at-all:da0130484c",
-    "lint:zero-usage-term:da0130484c",
-    "sim:7deaec4a9047"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0137"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0137",
    "signals": {
-    "findings": 5,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.0
+   "score": 1.5
   },
   "term:ONGA_0000145": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:098545ceff81",
-    "lint:no-mapping-at-all:1e1e51221a",
-    "lint:zero-usage-term:1e1e51221a",
-    "sim:7deaec4a9047"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0138"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0138",
    "signals": {
-    "findings": 5,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.0
+   "score": 1.5
   },
   "term:ONGA_0000146": {
    "kind": "term",
@@ -5193,9 +5160,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.1662
+   "score": 3.1662
   },
   "term:ONGA_0000147": {
    "kind": "term",
@@ -5218,60 +5185,55 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.5198
+   "score": 3.5198
   },
   "term:ONGA_0000148": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:4b3733eb645e",
-    "lint:no-mapping-at-all:99ba3b0a05",
-    "lint:residual-compound:99ba3b0a05",
-    "lint:zero-usage-term:99ba3b0a05"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0127"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0127",
    "signals": {
-    "findings": 5,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.0
+   "score": 1.5
   },
   "term:ONGA_0000149": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:c79eca0bcbc4",
-    "lint:no-mapping-at-all:a21fa7001e",
-    "lint:residual-compound:a21fa7001e"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0128"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0128",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.1356,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.7712
+   "score": 1.7712
   },
   "term:ONGA_0000150": {
    "kind": "term",
@@ -5294,9 +5256,9 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.3326
+   "score": 5.3326
   },
   "term:ONGA_0000151": {
    "kind": "term",
@@ -5318,9 +5280,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.0826
+   "score": 3.0826
   },
   "term:ONGA_0000152": {
    "kind": "term",
@@ -5344,9 +5306,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.3484
+   "score": 4.3484
   },
   "term:ONGA_0000153": {
    "kind": "term",
@@ -5369,9 +5331,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.8056
+   "score": 3.8056
   },
   "term:ONGA_0000154": {
    "kind": "term",
@@ -5393,27 +5355,24 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.0424
+   "score": 3.0424
   },
   "term:ONGA_0000155": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:no-mapping-at-all:ce8a3db5eb",
-    "lint:terse-description:ce8a3db5eb",
-    "map:00d92ba165d0",
-    "map:5635c58bd3fc",
-    "map:718a12418384"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0116",
+    "DEC-0130"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0130",
    "signals": {
-    "findings": 6,
+    "findings": 0,
     "impact": 0.2304,
     "adoption": 1,
     "required": 0,
@@ -5422,24 +5381,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 3.9608
+   "score": 0.9608
   },
   "term:ONGA_0000156": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:no-mapping-at-all:95ade30d8c",
-    "map:188c1a6b2934",
-    "map:4dd20f55b8b7",
-    "map:ca809f17df90"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0119"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0119",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.2436,
     "adoption": 1,
     "required": 0,
@@ -5448,22 +5404,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 2.9872
+   "score": 0.9872
   },
   "term:ONGA_0000157": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:31dc92cecede",
-    "lint:unreviewed-mapping:99f35bb230"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0120"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0120",
    "signals": {
-    "findings": 3,
+    "findings": 0,
     "impact": 0.5592,
     "adoption": 1,
     "required": 0,
@@ -5472,22 +5427,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 3.1184
+   "score": 1.6184
   },
   "term:ONGA_0000158": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:edd46bed2fe5",
-    "lint:no-mapping-at-all:1c6407483f"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0131"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0131",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.1218,
     "adoption": 1,
     "required": 0,
@@ -5496,23 +5450,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 1.7436
+   "score": 0.7436
   },
   "term:ONGA_0000159": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:768bed603823",
-    "lint:no-mapping-at-all:53c3fd9254",
-    "lint:unmapped-high-usage:53c3fd9254"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0134"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0134",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.753,
     "adoption": 1,
     "required": 0,
@@ -5521,23 +5473,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 4.006
+   "score": 2.006
   },
   "term:ONGA_0000160": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:1a0647535150",
-    "lint:no-mapping-at-all:2aa037a6e3",
-    "lint:zero-usage-term:2aa037a6e3"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0135"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0135",
    "signals": {
-    "findings": 3,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
@@ -5546,24 +5496,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 2.0
+   "score": 0.5
   },
   "term:ONGA_0000161": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:92b594585593",
-    "lint:no-mapping-at-all:4e4af94b7a",
-    "lint:terse-description:4e4af94b7a",
-    "lint:unmapped-high-usage:4e4af94b7a"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0136"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0136",
    "signals": {
-    "findings": 6,
+    "findings": 0,
     "impact": 0.5788,
     "adoption": 1,
     "required": 0,
@@ -5572,25 +5519,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 4.6576
+   "score": 1.6576
   },
   "term:ONGA_0000162": {
    "kind": "term",
    "container": "enum:DataType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:no-mapping-at-all:285f3b360d",
-    "lint:unmapped-high-usage:285f3b360d",
-    "map:2e95553f98d2",
-    "map:51c6c4c62a52",
-    "map:7375d62bff60"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0141"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0141",
    "signals": {
-    "findings": 6,
+    "findings": 0,
     "impact": 0.3816,
     "adoption": 1,
     "required": 0,
@@ -5599,7 +5542,7 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2632
+   "score": 1.2632
   },
   "term:ONGA_0000163": {
    "kind": "term",
@@ -5622,9 +5565,9 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 6.0
+   "score": 7.0
   },
   "term:ONGA_0000164": {
    "kind": "term",
@@ -5648,9 +5591,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.4608
+   "score": 4.4608
   },
   "term:ONGA_0000165": {
    "kind": "term",
@@ -5675,9 +5618,9 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 6.341
+   "score": 7.341
   },
   "term:ONGA_0000166": {
    "kind": "term",
@@ -5699,9 +5642,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.4998
+   "score": 3.4998
   },
   "term:ONGA_0000167": {
    "kind": "term",
@@ -5724,9 +5667,9 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 5.5858
+   "score": 6.5858
   },
   "term:ONGA_0000168": {
    "kind": "term",
@@ -5749,9 +5692,9 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 5.551
+   "score": 6.551
   },
   "term:ONGA_0000169": {
    "kind": "term",
@@ -5773,9 +5716,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.6002
+   "score": 3.6002
   },
   "term:ONGA_0000170": {
    "kind": "term",
@@ -5794,9 +5737,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 0.9872
+   "score": 1.9872
   },
   "term:ONGA_0000171": {
    "kind": "term",
@@ -5819,9 +5762,9 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 5.449
+   "score": 6.449
   },
   "term:ONGA_0000172": {
    "kind": "term",
@@ -5843,9 +5786,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.8148
+   "score": 2.8148
   },
   "term:ONGA_0000173": {
    "kind": "term",
@@ -5868,9 +5811,9 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 5.6178
+   "score": 6.6178
   },
   "term:ONGA_0000174": {
    "kind": "term",
@@ -5894,57 +5837,55 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 6.6178
+   "score": 7.6178
   },
   "term:ONGA_0000175": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "map:01660ccaa2e4",
-    "map:17f1c20a1e1e",
-    "sim:9d746927a11b"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0143"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0143",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.6108,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 5.7216
+   "score": 4.7216
   },
   "term:ONGA_0000176": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "map:661f0da3a433"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0017"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0017",
    "signals": {
-    "findings": 1,
+    "findings": 0,
     "impact": 0.281,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.562
+   "score": 2.062
   },
   "term:ONGA_0000177": {
    "kind": "term",
@@ -5967,9 +5908,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.4272
+   "score": 4.4272
   },
   "term:ONGA_0000178": {
    "kind": "term",
@@ -5991,9 +5932,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.0282
+   "score": 4.0282
   },
   "term:ONGA_0000179": {
    "kind": "term",
@@ -6015,9 +5956,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.4606
+   "score": 3.4606
   },
   "term:ONGA_0000180": {
    "kind": "term",
@@ -6038,9 +5979,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.5464
+   "score": 2.5464
   },
   "term:ONGA_0000181": {
    "kind": "term",
@@ -6111,25 +6052,23 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.0544
+   "score": 3.0544
   },
   "term:ONGA_0000184": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:811489df0f39",
-    "lint:residual-compound:4d5ea34365",
-    "sim:8e6c069c00a8"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0139"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0139",
    "signals": {
-    "findings": 5,
+    "findings": 0,
     "impact": 0.1574,
     "adoption": 1,
     "required": 0,
@@ -6138,7 +6077,7 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 3.3148
+   "score": 0.8148
   },
   "term:ONGA_0000185": {
    "kind": "term",
@@ -6186,34 +6125,32 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.8148
+   "score": 2.8148
   },
   "term:ONGA_0000187": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "map:3b2aca128e9a",
-    "map:6a7283cd160b",
-    "map:cfda936ce336"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0144"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0144",
    "signals": {
-    "findings": 3,
+    "findings": 0,
     "impact": 0.6032,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.2064
+   "score": 2.7064
   },
   "term:ONGA_0000188": {
    "kind": "term",
@@ -6294,16 +6231,14 @@
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "map:7e51c48e9967",
-    "map:a4c27d2a661a",
-    "map:df2c057a347b"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0132"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0132",
    "signals": {
-    "findings": 3,
+    "findings": 0,
     "impact": 0.7014,
     "adoption": 1,
     "required": 0,
@@ -6312,7 +6247,7 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 5.4028
+   "score": 3.9028
   },
   "term:ONGA_0000192": {
    "kind": "term",
@@ -6392,25 +6327,23 @@
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "map:1203c806272d",
-    "map:bde3a6d1290e",
-    "map:ef4dc9291df3"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0027"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0027",
    "signals": {
-    "findings": 3,
+    "findings": 0,
     "impact": 0.2864,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.5728
+   "score": 2.0728
   },
   "term:ONGA_0000196": {
    "kind": "term",
@@ -6432,9 +6365,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.286
+   "score": 3.286
   },
   "term:ONGA_0000197": {
    "kind": "term",
@@ -6455,9 +6388,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.7098
+   "score": 2.7098
   },
   "term:ONGA_0000198": {
    "kind": "term",
@@ -6478,9 +6411,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.5042
+   "score": 2.5042
   },
   "term:ONGA_0000199": {
    "kind": "term",
@@ -6501,28 +6434,23 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.634
+   "score": 2.634
   },
   "term:ONGA_0000200": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:residual-compound:6ec6016c10",
-    "lint:unreviewed-mapping:6ec6016c10",
-    "lint:zero-usage-term:6ec6016c10",
-    "map:7aa43e5e6b34",
-    "map:853915f0bb4e",
-    "sim:7c567131d682"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0028"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0028",
    "signals": {
-    "findings": 9,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
@@ -6531,26 +6459,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 5.0
+   "score": 0.5
   },
   "term:ONGA_0000201": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:residual-compound:e26df46f58",
-    "lint:unreviewed-mapping:e26df46f58",
-    "lint:zero-usage-term:e26df46f58",
-    "map:d3471e604de6",
-    "map:fcdf77d4c807",
-    "sim:7c567131d682"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0029"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0029",
    "signals": {
-    "findings": 9,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
@@ -6559,7 +6482,7 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 5.0
+   "score": 0.5
   },
   "term:ONGA_0000202": {
    "kind": "term",
@@ -6608,9 +6531,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.2402
+   "score": 3.2402
   },
   "term:ONGA_0000204": {
    "kind": "term",
@@ -6682,9 +6605,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.1888
+   "score": 3.1888
   },
   "term:ONGA_0000207": {
    "kind": "term",
@@ -6707,9 +6630,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.674
+   "score": 4.674
   },
   "term:ONGA_0000208": {
    "kind": "term",
@@ -6733,9 +6656,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.2692
+   "score": 5.2692
   },
   "term:ONGA_0000209": {
    "kind": "term",
@@ -6758,9 +6681,9 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 5.1734
+   "score": 6.1734
   },
   "term:ONGA_0000210": {
    "kind": "term",
@@ -6781,9 +6704,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.2712
+   "score": 2.2712
   },
   "term:ONGA_0000211": {
    "kind": "term",
@@ -6805,9 +6728,9 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 4.089
+   "score": 5.089
   },
   "term:ONGA_0000212": {
    "kind": "term",
@@ -6831,9 +6754,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.5
+   "score": 3.5
   },
   "term:ONGA_0000213": {
    "kind": "term",
@@ -6858,9 +6781,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.5
+   "score": 4.5
   },
   "term:ONGA_0000214": {
    "kind": "term",
@@ -6882,9 +6805,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.7436
+   "score": 2.7436
   },
   "term:ONGA_0000215": {
    "kind": "term",
@@ -6930,31 +6853,30 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.895
+   "score": 3.895
   },
   "term:ONGA_0000217": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "map:7bae785a2006",
-    "map:9e3ca6849592"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0145"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0145",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.3591,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
    "score": 2.2182
   },
@@ -6981,9 +6903,9 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 6.383
+   "score": 7.383
   },
   "term:ONGA_0000219": {
    "kind": "term",
@@ -7058,9 +6980,9 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.105
+   "score": 4.105
   },
   "term:ONGA_0000222": {
    "kind": "term",
@@ -7105,9 +7027,9 @@
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 3.5
+   "score": 4.5
   },
   "term:ONGA_0000224": {
    "kind": "term",
@@ -7129,9 +7051,9 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 2.4152
+   "score": 3.4152
   },
   "term:ONGA_0000225": {
    "kind": "term",
@@ -7153,108 +7075,92 @@
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 1.7944
+   "score": 2.7944
   },
   "term:ONGA_0000226": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "gap:1ce8ce601144",
-    "lint:no-mapping-at-all:2a90111b2a",
-    "lint:residual-compound:2a90111b2a"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0140"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0140",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.3059,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 1,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 5.1118
+   "score": 4.1118
   },
   "term:ONGA_0000227": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:residual-compound:956ff09773",
-    "lint:zero-usage-term:956ff09773",
-    "map:2edd88c7db18",
-    "map:8620d6ffb034",
-    "sim:677a03eff3e8",
-    "sim:f195c4514add"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0030"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0030",
    "signals": {
-    "findings": 9,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 5.0
+   "score": 1.5
   },
   "term:ONGA_0000228": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:residual-compound:cfd3045b78",
-    "lint:zero-usage-term:cfd3045b78",
-    "map:48ad023db6dc",
-    "map:acca0bd03c59",
-    "map:c5749d727d93",
-    "sim:50db93fe7590",
-    "sim:677a03eff3e8"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0031"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0031",
    "signals": {
-    "findings": 10,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
     "port": 0,
     "upstream": 0,
     "stale": 0,
-    "machine": 0
+    "machine": 1
    },
-   "score": 5.5
+   "score": 1.5
   },
   "term:ONGA_0000229": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:terse-description:e833a7c2d7",
-    "map:46957a00d6a4",
-    "map:76f0f7d912e1",
-    "map:fefd6a4bb750"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0149"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0149",
    "signals": {
-    "findings": 5,
+    "findings": 0,
     "impact": 0.2373,
     "adoption": 1,
     "required": 0,
@@ -7263,24 +7169,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 5.4746
+   "score": 2.9746
   },
   "term:ONGA_0000230": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:terse-description:4a901ad5b1",
-    "lint:unreviewed-mapping:4a901ad5b1",
-    "map:04c386d3505e",
-    "map:73aa590fc1a2"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0152"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0152",
    "signals": {
-    "findings": 6,
+    "findings": 0,
     "impact": 0.1356,
     "adoption": 1,
     "required": 0,
@@ -7289,24 +7192,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 3.7712
+   "score": 0.7712
   },
   "term:ONGA_0000231": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:terse-description:145e4f16b5",
-    "lint:unreviewed-mapping:145e4f16b5",
-    "map:40def66dfe2e",
-    "map:d7178c9686ef"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0151"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0151",
    "signals": {
-    "findings": 6,
+    "findings": 0,
     "impact": 0.1472,
     "adoption": 1,
     "required": 0,
@@ -7315,23 +7215,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 3.7944
+   "score": 0.7944
   },
   "term:ONGA_0000232": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:terse-description:c1abfb6342",
-    "map:6ee2c01d69b1",
-    "map:db849303d2f9"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0146"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0146",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.2548,
     "adoption": 1,
     "required": 0,
@@ -7340,22 +7238,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 3.0096
+   "score": 1.0096
   },
   "term:ONGA_0000233": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "map:75f765bada04",
-    "map:ad100c97b667"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0147"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0147",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.2548,
     "adoption": 1,
     "required": 0,
@@ -7364,22 +7261,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 2.0096
+   "score": 1.0096
   },
   "term:ONGA_0000234": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "map:6e1374567598",
-    "map:f260f4097519"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0148"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0148",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.2548,
     "adoption": 1,
     "required": 0,
@@ -7388,22 +7284,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 2.0096
+   "score": 1.0096
   },
   "term:ONGA_0000235": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "map:fc06d8795963",
-    "map:ff289a6cb464"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0150"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0150",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.2548,
     "adoption": 1,
     "required": 0,
@@ -7412,21 +7307,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 2.0096
+   "score": 1.0096
   },
   "term:ONGA_0000236": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "map:d2d8f788e25e"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0133"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0133",
    "signals": {
-    "findings": 1,
+    "findings": 0,
     "impact": 0.7013,
     "adoption": 1,
     "required": 0,
@@ -7435,26 +7330,21 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 4.4026
+   "score": 3.9026
   },
   "term:ONGA_0000237": {
    "kind": "term",
    "container": "enum:FeatureType",
    "layer": 1,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:zero-usage-term:a25aa3cf46",
-    "map:369d1de2dce8",
-    "map:64c5d6763433",
-    "map:a71d44b63b21",
-    "sim:50db93fe7590",
-    "sim:f195c4514add"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0142"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0142",
    "signals": {
-    "findings": 8,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
@@ -7463,7 +7353,7 @@
     "stale": 0,
     "machine": 0
    },
-   "score": 4.5
+   "score": 0.5
   },
   "term:ONGA_0000238": {
    "kind": "term",
@@ -8898,21 +8788,23 @@
    "container": "module:file",
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0094"
+   ],
+   "latest": "DEC-0094",
    "signals": {
     "findings": 0,
     "impact": 0.5,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.5
+   "score": 1.5
   },
   "class:FileCollection": {
    "kind": "class",
@@ -8940,23 +8832,23 @@
    "container": "module:genomic_annotation_file",
    "layer": 3,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:class-no-alignment:fc1b266e58"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0095"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0095",
    "signals": {
-    "findings": 1,
+    "findings": 0,
     "impact": 0.0,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.0
+   "score": 0.5
   },
   "class:InputSource": {
    "kind": "class",
@@ -9031,21 +8923,23 @@
    "container": "module:reference_genome",
    "layer": 2,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0096"
+   ],
+   "latest": "DEC-0096",
    "signals": {
     "findings": 0,
     "impact": 0.3155,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.131
+   "score": 1.131
   },
   "class:Sample": {
    "kind": "class",
@@ -9230,63 +9124,70 @@
    "container": "module:file",
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0051"
+   ],
+   "latest": "DEC-0051",
    "signals": {
     "findings": 0,
     "impact": 1.0,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.5
+   "score": 2.5
   },
   "slot:access_protocol": {
    "kind": "slot",
    "container": "module:access_method",
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0053",
+    "DEC-0091"
+   ],
+   "latest": "DEC-0091",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:access_url": {
    "kind": "slot",
    "container": "module:access_method",
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0052"
+   ],
+   "latest": "DEC-0052",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:accessions": {
    "kind": "slot",
@@ -9314,21 +9215,23 @@
    "container": "module:reference_genome",
    "layer": 2,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0054"
+   ],
+   "latest": "DEC-0054",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:analyses": {
    "kind": "slot",
@@ -9400,63 +9303,69 @@
    "container": "module:analysis",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0043"
+   ],
+   "latest": "DEC-0043",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:analysis_input_sources": {
    "kind": "slot",
    "container": "module:analysis",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0055"
+   ],
+   "latest": "DEC-0055",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:analysis_label": {
    "kind": "slot",
    "container": "module:analysis",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0056"
+   ],
+   "latest": "DEC-0056",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:analysis_main_tool": {
    "kind": "slot",
@@ -9547,23 +9456,23 @@
    "container": "module:analysis",
    "layer": 4,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:terse-description:4276a656ee"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0057"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0057",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.2618
+   "score": 1.2618
   },
   "slot:analysis_workflow": {
    "kind": "slot",
@@ -9614,21 +9523,23 @@
    "container": "module:experiment",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0058"
+   ],
+   "latest": "DEC-0058",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:assessment_details_url": {
    "kind": "slot",
@@ -9656,42 +9567,46 @@
    "container": "module:quality_assessment",
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0059"
+   ],
+   "latest": "DEC-0059",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:assessment_values": {
    "kind": "slot",
    "container": "module:quality_assessment",
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0060"
+   ],
+   "latest": "DEC-0060",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:bed_core_columns": {
    "kind": "slot",
@@ -9782,21 +9697,23 @@
    "container": "module:sample",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0061"
+   ],
+   "latest": "DEC-0061",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:build_sex": {
    "kind": "slot",
@@ -9891,44 +9808,46 @@
    "container": "module:checksum",
    "layer": 3,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:required-policy:cb577c4fb2"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0032"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0032",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 6.2618
+   "score": 2.2618
   },
   "slot:checksums": {
    "kind": "slot",
    "container": "module:file",
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0062"
+   ],
+   "latest": "DEC-0062",
    "signals": {
     "findings": 0,
     "impact": 1.0,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.5
+   "score": 2.5
   },
   "slot:contact": {
    "kind": "slot",
@@ -9979,21 +9898,23 @@
    "container": "module:file",
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0063"
+   ],
+   "latest": "DEC-0063",
    "signals": {
     "findings": 0,
     "impact": 1.0,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.5
+   "score": 2.5
   },
   "slot:database_accessions": {
    "kind": "slot",
@@ -10044,21 +9965,23 @@
    "container": "module:deposit",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0064"
+   ],
+   "latest": "DEC-0064",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:deposit_id": {
    "kind": "slot",
@@ -10086,63 +10009,69 @@
    "container": "module:deposit",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0065"
+   ],
+   "latest": "DEC-0065",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:deposit_versioned_id": {
    "kind": "slot",
    "container": "module:deposit",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0044"
+   ],
+   "latest": "DEC-0044",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:deposit_versioned_ref": {
    "kind": "slot",
    "container": "module:file_collection",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0066"
+   ],
+   "latest": "DEC-0066",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:derivation": {
    "kind": "slot",
@@ -10191,24 +10120,23 @@
    "container": "module:top_level",
    "layer": 4,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:required-policy:dcc3c3f935",
-    "lint:slot-no-examples:dcc3c3f935"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0036"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0036",
    "signals": {
-    "findings": 3,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 6.2618
+   "score": 1.7618
   },
   "slot:document_deposit": {
    "kind": "slot",
@@ -10278,42 +10206,46 @@
    "container": "module:document",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0067"
+   ],
+   "latest": "DEC-0067",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:document_ontology_versions": {
    "kind": "slot",
    "container": "module:document",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0068"
+   ],
+   "latest": "DEC-0068",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:donor_age": {
    "kind": "slot",
@@ -10406,63 +10338,69 @@
    "container": "module:donor",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0045"
+   ],
+   "latest": "DEC-0045",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:donor_organism_ref": {
    "kind": "slot",
    "container": "module:sample",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0069"
+   ],
+   "latest": "DEC-0069",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:donor_sex": {
    "kind": "slot",
    "container": "module:donor",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0092"
+   ],
+   "latest": "DEC-0092",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:donors": {
    "kind": "slot",
@@ -10714,84 +10652,92 @@
    "container": "module:experiment",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0046"
+   ],
+   "latest": "DEC-0046",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:experiment_label": {
    "kind": "slot",
    "container": "module:experiment",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0070"
+   ],
+   "latest": "DEC-0070",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:experiment_samples": {
    "kind": "slot",
    "container": "module:experiment",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0071"
+   ],
+   "latest": "DEC-0071",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:experiment_study_ref": {
    "kind": "slot",
    "container": "module:experiment",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0072"
+   ],
+   "latest": "DEC-0072",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:experiments": {
    "kind": "slot",
@@ -10930,63 +10876,69 @@
    "container": "module:file",
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0047"
+   ],
+   "latest": "DEC-0047",
    "signals": {
     "findings": 0,
     "impact": 1.0,
     "adoption": 1,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 6.0
+   "score": 3.0
   },
   "slot:file_input_sources": {
    "kind": "slot",
    "container": "module:file",
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0073"
+   ],
+   "latest": "DEC-0073",
    "signals": {
     "findings": 0,
     "impact": 1.0,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.5
+   "score": 2.5
   },
   "slot:file_label": {
    "kind": "slot",
    "container": "module:file",
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0074"
+   ],
+   "latest": "DEC-0074",
    "signals": {
     "findings": 0,
     "impact": 1.0,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.5
+   "score": 2.5
   },
   "slot:file_name": {
    "kind": "slot",
@@ -11014,44 +10966,46 @@
    "container": "module:file",
    "layer": 3,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:terse-description:e1fab941ae"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0075"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0075",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 1.0,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 6.5
+   "score": 2.5
   },
   "slot:file_type": {
    "kind": "slot",
    "container": "module:file",
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0076"
+   ],
+   "latest": "DEC-0076",
    "signals": {
     "findings": 0,
     "impact": 1.0,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.5
+   "score": 2.5
   },
   "slot:file_version": {
    "kind": "slot",
@@ -11123,21 +11077,23 @@
    "container": "module:file_collection",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0048"
+   ],
+   "latest": "DEC-0048",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:filecollection_input_sources": {
    "kind": "slot",
@@ -11165,42 +11121,46 @@
    "container": "module:file_collection",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0077"
+   ],
+   "latest": "DEC-0077",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:filecollection_refs": {
    "kind": "slot",
    "container": "module:file",
    "layer": 3,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0078"
+   ],
+   "latest": "DEC-0078",
    "signals": {
     "findings": 0,
     "impact": 1.0,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.5
+   "score": 2.5
   },
   "slot:files": {
    "kind": "slot",
@@ -11457,23 +11417,23 @@
    "container": "module:term",
    "layer": 3,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:required-policy:24724dd615"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0042"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0042",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 6.2618
+   "score": 2.2618
   },
   "slot:inputsource_external_ref": {
    "kind": "slot",
@@ -11545,24 +11505,23 @@
    "container": "module:quality_assessment",
    "layer": 3,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:required-policy:ac2cc2f1a6",
-    "lint:terse-description:ac2cc2f1a6"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0037"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0037",
    "signals": {
-    "findings": 4,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 7.2618
+   "score": 2.2618
   },
   "slot:label": {
    "kind": "slot",
@@ -11653,67 +11612,69 @@
    "container": "module:experiment",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0079"
+   ],
+   "latest": "DEC-0079",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:name": {
    "kind": "slot",
    "container": "module:contact",
    "layer": 4,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:terse-description:c447f1289c"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0080"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0080",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.2618
+   "score": 1.2618
   },
   "slot:namespace": {
    "kind": "slot",
    "container": "module:document",
    "layer": 4,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:required-policy:c60e3fdceb"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0039"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0039",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.7618
+   "score": 1.7618
   },
   "slot:normalization": {
    "kind": "slot",
@@ -11741,23 +11702,23 @@
    "container": "module:document",
    "layer": 4,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:required-policy:57941d7ba6"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0040"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0040",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.7618
+   "score": 1.7618
   },
   "slot:organism_tissue": {
    "kind": "slot",
@@ -11913,23 +11874,23 @@
    "container": "module:input_source",
    "layer": 3,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:required-policy:dd8f156d3f"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0034"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0034",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 6.2618
+   "score": 2.2618
   },
   "slot:quality_assessments": {
    "kind": "slot",
@@ -11978,24 +11939,24 @@
    "container": "module:genomic_annotation_file",
    "layer": 3,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:required-policy:5228bcb74a",
-    "lint:slot-no-examples:5228bcb74a"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0035",
+    "DEC-0093"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0093",
    "signals": {
-    "findings": 3,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 6.7618
+   "score": 2.2618
   },
   "slot:region": {
    "kind": "slot",
@@ -12115,63 +12076,69 @@
    "container": "module:sample",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0081"
+   ],
+   "latest": "DEC-0081",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:sample_id": {
    "kind": "slot",
    "container": "module:sample",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0049"
+   ],
+   "latest": "DEC-0049",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:sample_label": {
    "kind": "slot",
    "container": "module:sample",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0082"
+   ],
+   "latest": "DEC-0082",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:samples": {
    "kind": "slot",
@@ -12222,63 +12189,69 @@
    "container": "module:reference_genome",
    "layer": 2,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0083"
+   ],
+   "latest": "DEC-0083",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:seqcol_ordered_coord_system": {
    "kind": "slot",
    "container": "module:reference_genome",
    "layer": 2,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0084"
+   ],
+   "latest": "DEC-0084",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:seqcol_unordered_coord_system": {
    "kind": "slot",
    "container": "module:reference_genome",
    "layer": 2,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0085"
+   ],
+   "latest": "DEC-0085",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:sequencing_protocol": {
    "kind": "slot",
@@ -12308,21 +12281,23 @@
    "container": "module:donor",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0086"
+   ],
+   "latest": "DEC-0086",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.2618
+   "score": 1.2618
   },
   "slot:strand": {
    "kind": "slot",
@@ -12395,44 +12370,46 @@
    "container": "module:study",
    "layer": 4,
    "retired": false,
-   "state": "unreviewed",
+   "state": "applied",
    "open_findings": [],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0050"
+   ],
+   "latest": "DEC-0050",
    "signals": {
     "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 4.7618
+   "score": 1.7618
   },
   "slot:study_title": {
    "kind": "slot",
    "container": "module:study",
    "layer": 4,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:terse-description:33bac558e8"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0087"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0087",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.2618
+   "score": 1.2618
   },
   "slot:technical_replicate_labels": {
    "kind": "slot",
@@ -12504,23 +12481,23 @@
    "container": "module:genomic_annotation_file",
    "layer": 3,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:slot-no-examples:5de6f5a159"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0088"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0088",
    "signals": {
-    "findings": 1,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 0,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.2618
+   "score": 1.7618
   },
   "slot:track_interpretation": {
    "kind": "slot",
@@ -12594,46 +12571,46 @@
    "container": "module:access_url",
    "layer": 3,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:required-policy:dd104aff1d"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0033"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0033",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 6.2618
+   "score": 2.2618
   },
   "slot:value": {
    "kind": "slot",
    "container": "module:quality_assessment",
    "layer": 3,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:required-policy:7de718df40"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0038"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0038",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 1,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 6.2618
+   "score": 2.2618
   },
   "slot:value_type": {
    "kind": "slot",
@@ -12684,76 +12661,76 @@
    "container": "module:document",
    "layer": 4,
    "retired": false,
-   "state": "open",
-   "open_findings": [
-    "lint:required-policy:e77a815872"
+   "state": "applied",
+   "open_findings": [],
+   "decisions": [
+    "DEC-0041"
    ],
-   "decisions": [],
-   "latest": null,
+   "latest": "DEC-0041",
    "signals": {
-    "findings": 2,
+    "findings": 0,
     "impact": 0.6309,
     "adoption": 0,
     "required": 1,
-    "port": 1,
+    "port": 0,
     "upstream": 0,
     "stale": 0,
     "machine": 0
    },
-   "score": 5.7618
+   "score": 1.7618
   }
  },
  "rollups": {
   "overall": {
-   "unreviewed": 227,
-   "open": 322,
-   "deferred": 0,
+   "unreviewed": 163,
+   "open": 233,
+   "deferred": 6,
    "settled": 0,
-   "applied": 0,
+   "applied": 147,
    "stale": 0,
    "total": 549,
-   "percent_settled": 0.0
+   "percent_settled": 26.8
   },
   "by_kind": {
    "class": {
-    "unreviewed": 13,
-    "open": 13,
+    "unreviewed": 11,
+    "open": 12,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 3,
     "stale": 0,
     "total": 26,
-    "percent_settled": 0.0
+    "percent_settled": 11.5
    },
    "enum": {
     "unreviewed": 11,
-    "open": 3,
+    "open": 1,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 2,
     "stale": 0,
     "total": 14,
-    "percent_settled": 0.0
+    "percent_settled": 14.3
    },
    "module": {
-    "unreviewed": 35,
+    "unreviewed": 16,
     "open": 0,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 19,
     "stale": 0,
     "total": 35,
-    "percent_settled": 0.0
+    "percent_settled": 54.3
    },
    "slot": {
-    "unreviewed": 105,
-    "open": 55,
+    "unreviewed": 63,
+    "open": 39,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 58,
     "stale": 0,
     "total": 160,
-    "percent_settled": 0.0
+    "percent_settled": 36.2
    },
    "subset": {
     "unreviewed": 22,
@@ -12766,14 +12743,14 @@
     "percent_settled": 0.0
    },
    "term": {
-    "unreviewed": 41,
-    "open": 251,
-    "deferred": 0,
+    "unreviewed": 40,
+    "open": 181,
+    "deferred": 6,
     "settled": 0,
-    "applied": 0,
+    "applied": 65,
     "stale": 0,
     "total": 292,
-    "percent_settled": 0.0
+    "percent_settled": 22.3
    }
   },
   "by_layer": {
@@ -12788,44 +12765,44 @@
     "percent_settled": 0.0
    },
    "1": {
-    "unreviewed": 76,
-    "open": 237,
-    "deferred": 0,
+    "unreviewed": 75,
+    "open": 167,
+    "deferred": 6,
     "settled": 0,
-    "applied": 0,
+    "applied": 65,
     "stale": 0,
     "total": 313,
-    "percent_settled": 0.0
+    "percent_settled": 20.8
    },
    "2": {
-    "unreviewed": 29,
-    "open": 20,
+    "unreviewed": 24,
+    "open": 19,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 6,
     "stale": 0,
     "total": 49,
-    "percent_settled": 0.0
+    "percent_settled": 12.2
    },
    "3": {
-    "unreviewed": 48,
-    "open": 26,
+    "unreviewed": 26,
+    "open": 15,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 33,
     "stale": 0,
     "total": 74,
-    "percent_settled": 0.0
+    "percent_settled": 44.6
    },
    "4": {
-    "unreviewed": 73,
-    "open": 39,
+    "unreviewed": 37,
+    "open": 32,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 43,
     "stale": 0,
     "total": 112,
-    "percent_settled": 0.0
+    "percent_settled": 38.4
    }
   },
   "by_container": {
@@ -12850,14 +12827,14 @@
     "percent_settled": 0.0
    },
    "enum:DataType": {
-    "unreviewed": 1,
-    "open": 161,
-    "deferred": 0,
+    "unreviewed": 0,
+    "open": 112,
+    "deferred": 6,
     "settled": 0,
-    "applied": 0,
+    "applied": 44,
     "stale": 0,
     "total": 162,
-    "percent_settled": 0.0
+    "percent_settled": 27.2
    },
    "enum:Derivation": {
     "unreviewed": 2,
@@ -12871,13 +12848,13 @@
    },
    "enum:FeatureType": {
     "unreviewed": 1,
-    "open": 74,
+    "open": 53,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 21,
     "stale": 0,
     "total": 75,
-    "percent_settled": 0.0
+    "percent_settled": 28.0
    },
    "enum:FilterStatus": {
     "unreviewed": 2,
@@ -12970,64 +12947,64 @@
     "percent_settled": 0.0
    },
    "module:access_method": {
-    "unreviewed": 3,
-    "open": 2,
+    "unreviewed": 1,
+    "open": 1,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 3,
     "stale": 0,
     "total": 5,
-    "percent_settled": 0.0
+    "percent_settled": 60.0
    },
    "module:access_url": {
     "unreviewed": 1,
-    "open": 2,
-    "deferred": 0,
-    "settled": 0,
-    "applied": 0,
-    "stale": 0,
-    "total": 3,
-    "percent_settled": 0.0
-   },
-   "module:analysis": {
-    "unreviewed": 11,
     "open": 1,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 1,
+    "stale": 0,
+    "total": 3,
+    "percent_settled": 33.3
+   },
+   "module:analysis": {
+    "unreviewed": 8,
+    "open": 0,
+    "deferred": 0,
+    "settled": 0,
+    "applied": 4,
     "stale": 0,
     "total": 12,
-    "percent_settled": 0.0
+    "percent_settled": 33.3
    },
    "module:checksum": {
     "unreviewed": 1,
-    "open": 2,
-    "deferred": 0,
-    "settled": 0,
-    "applied": 0,
-    "stale": 0,
-    "total": 3,
-    "percent_settled": 0.0
-   },
-   "module:contact": {
-    "unreviewed": 3,
-    "open": 2,
-    "deferred": 0,
-    "settled": 0,
-    "applied": 0,
-    "stale": 0,
-    "total": 5,
-    "percent_settled": 0.0
-   },
-   "module:deposit": {
-    "unreviewed": 4,
     "open": 1,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 1,
+    "stale": 0,
+    "total": 3,
+    "percent_settled": 33.3
+   },
+   "module:contact": {
+    "unreviewed": 3,
+    "open": 1,
+    "deferred": 0,
+    "settled": 0,
+    "applied": 1,
     "stale": 0,
     "total": 5,
-    "percent_settled": 0.0
+    "percent_settled": 20.0
+   },
+   "module:deposit": {
+    "unreviewed": 1,
+    "open": 1,
+    "deferred": 0,
+    "settled": 0,
+    "applied": 3,
+    "stale": 0,
+    "total": 5,
+    "percent_settled": 60.0
    },
    "module:derivation": {
     "unreviewed": 1,
@@ -13040,54 +13017,54 @@
     "percent_settled": 0.0
    },
    "module:document": {
-    "unreviewed": 6,
-    "open": 4,
-    "deferred": 0,
-    "settled": 0,
-    "applied": 0,
-    "stale": 0,
-    "total": 10,
-    "percent_settled": 0.0
-   },
-   "module:donor": {
     "unreviewed": 4,
     "open": 1,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 5,
+    "stale": 0,
+    "total": 10,
+    "percent_settled": 50.0
+   },
+   "module:donor": {
+    "unreviewed": 1,
+    "open": 1,
+    "deferred": 0,
+    "settled": 0,
+    "applied": 3,
     "stale": 0,
     "total": 5,
-    "percent_settled": 0.0
+    "percent_settled": 60.0
    },
    "module:experiment": {
-    "unreviewed": 11,
+    "unreviewed": 5,
     "open": 3,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 6,
     "stale": 0,
     "total": 14,
-    "percent_settled": 0.0
+    "percent_settled": 42.9
    },
    "module:file": {
-    "unreviewed": 18,
-    "open": 1,
+    "unreviewed": 9,
+    "open": 0,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 10,
     "stale": 0,
     "total": 19,
-    "percent_settled": 0.0
+    "percent_settled": 52.6
    },
    "module:file_collection": {
-    "unreviewed": 6,
+    "unreviewed": 3,
     "open": 1,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 3,
     "stale": 0,
     "total": 7,
-    "percent_settled": 0.0
+    "percent_settled": 42.9
    },
    "module:file_content": {
     "unreviewed": 24,
@@ -13121,13 +13098,13 @@
    },
    "module:genomic_annotation_file": {
     "unreviewed": 0,
-    "open": 7,
+    "open": 4,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 3,
     "stale": 0,
     "total": 7,
-    "percent_settled": 0.0
+    "percent_settled": 42.9
    },
    "module:haplotype_resolution": {
     "unreviewed": 1,
@@ -13141,13 +13118,13 @@
    },
    "module:input_source": {
     "unreviewed": 5,
-    "open": 4,
+    "open": 3,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 1,
     "stale": 0,
     "total": 9,
-    "percent_settled": 0.0
+    "percent_settled": 11.1
    },
    "module:normalization": {
     "unreviewed": 1,
@@ -13160,14 +13137,14 @@
     "percent_settled": 0.0
    },
    "module:quality_assessment": {
-    "unreviewed": 3,
-    "open": 4,
+    "unreviewed": 1,
+    "open": 2,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 4,
     "stale": 0,
     "total": 7,
-    "percent_settled": 0.0
+    "percent_settled": 57.1
    },
    "module:read_multiplicity": {
     "unreviewed": 1,
@@ -13190,24 +13167,24 @@
     "percent_settled": 0.0
    },
    "module:reference_genome": {
-    "unreviewed": 7,
+    "unreviewed": 2,
     "open": 0,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 5,
     "stale": 0,
     "total": 7,
-    "percent_settled": 0.0
+    "percent_settled": 71.4
    },
    "module:sample": {
-    "unreviewed": 13,
+    "unreviewed": 8,
     "open": 6,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 5,
     "stale": 0,
     "total": 19,
-    "percent_settled": 0.0
+    "percent_settled": 26.3
    },
    "module:strand_orientation": {
     "unreviewed": 1,
@@ -13220,24 +13197,24 @@
     "percent_settled": 0.0
    },
    "module:study": {
-    "unreviewed": 5,
-    "open": 3,
-    "deferred": 0,
-    "settled": 0,
-    "applied": 0,
-    "stale": 0,
-    "total": 8,
-    "percent_settled": 0.0
-   },
-   "module:term": {
-    "unreviewed": 1,
+    "unreviewed": 4,
     "open": 2,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 2,
+    "stale": 0,
+    "total": 8,
+    "percent_settled": 25.0
+   },
+   "module:term": {
+    "unreviewed": 1,
+    "open": 1,
+    "deferred": 0,
+    "settled": 0,
+    "applied": 1,
     "stale": 0,
     "total": 3,
-    "percent_settled": 0.0
+    "percent_settled": 33.3
    },
    "module:thresholding": {
     "unreviewed": 1,
@@ -13251,13 +13228,13 @@
    },
    "module:top_level": {
     "unreviewed": 0,
-    "open": 8,
+    "open": 7,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 1,
     "stale": 0,
     "total": 8,
-    "percent_settled": 0.0
+    "percent_settled": 12.5
    },
    "module:track_format": {
     "unreviewed": 3,
@@ -13271,13 +13248,13 @@
    },
    "module:track_geometry": {
     "unreviewed": 2,
-    "open": 14,
+    "open": 13,
     "deferred": 0,
     "settled": 0,
-    "applied": 0,
+    "applied": 1,
     "stale": 0,
     "total": 16,
-    "percent_settled": 0.0
+    "percent_settled": 6.2
    },
    "module:track_interpretation": {
     "unreviewed": 6,
@@ -13312,16 +13289,15 @@
   }
  },
  "queue": [
-  "slot:key",
-  "term:ONGA_0000097",
-  "slot:reference_genome",
   "term:ONGA_0000174",
-  "slot:file_size",
-  "term:ONGA_0000107",
   "term:ONGA_0000218",
   "term:ONGA_0000165",
-  "slot:checksum_type",
-  "slot:document",
+  "term:ONGA_0000163",
+  "term:ONGA_0000173",
+  "term:ONGA_0000167",
+  "term:ONGA_0000168",
+  "term:ONGA_0000171",
+  "term:ONGA_0000107",
   "slot:elements_circular",
   "slot:elements_overlapping",
   "slot:genomic_annotation_digest",
@@ -13331,56 +13307,42 @@
   "slot:has_names",
   "slot:has_strands",
   "slot:has_values",
-  "slot:id",
-  "slot:qualified_relation",
-  "slot:url",
-  "slot:value",
+  "term:ONGA_0000061",
   "term:ONGA_0000202",
+  "term:ONGA_0000209",
   "class:QualityAssessment",
   "class:Term",
-  "enum:ValueType",
-  "slot:file_id",
   "term:ONGA_0000116",
-  "term:ONGA_0000163",
   "term:ONGA_0000219",
+  "term:ONGA_0000070",
   "class:Any",
   "slot:checksum",
-  "slot:namespace",
-  "slot:ontology_url",
   "slot:sample_collection_date",
   "slot:sample_collection_location",
   "slot:study_abstract",
-  "slot:versioned_ontology_url",
-  "term:ONGA_0000175",
-  "term:ONGA_0000173",
-  "term:ONGA_0000167",
-  "term:ONGA_0000168",
-  "slot:access_methods",
-  "slot:checksums",
   "slot:contact",
-  "slot:created_time",
   "slot:drs_uri",
   "slot:file_description",
   "slot:file_external_id",
-  "slot:file_input_sources",
-  "slot:file_label",
   "slot:file_name",
-  "slot:file_type",
   "slot:file_version",
-  "slot:filecollection_refs",
   "slot:mime_type",
   "slot:quality_assessments",
   "slot:run_provenance",
   "slot:updated_time",
-  "term:ONGA_0000098",
   "term:ONGA_0000205",
-  "term:ONGA_0000228",
-  "term:ONGA_0000229",
-  "term:ONGA_0000171",
-  "term:ONGA_0000191",
+  "term:ONGA_0000081",
+  "term:ONGA_0000134",
+  "term:ONGA_0000046",
+  "term:ONGA_0000135",
+  "term:ONGA_0000136",
+  "term:ONGA_0000021",
+  "term:ONGA_0000023",
+  "term:ONGA_0000029",
+  "term:ONGA_0000150",
+  "term:ONGA_0000086",
   "class:InputSource",
-  "enum:AccessProtocol",
-  "slot:analysis_type",
+  "term:ONGA_0000208",
   "slot:antibody_target",
   "slot:database_accessions",
   "slot:donor_age",
@@ -13390,176 +13352,45 @@
   "slot:edges_have_weights",
   "slot:headers",
   "slot:inputsource_ref",
-  "slot:name",
   "slot:region",
-  "slot:study_title",
   "slot:track_format",
-  "slot:track_geometry",
   "slot:track_interpretation",
   "slot:track_provenance",
   "slot:version",
-  "term:ONGA_0000061",
-  "term:ONGA_0000209",
   "term:ONGA_0000182",
   "term:ONGA_0000185",
-  "term:ONGA_0000226",
-  "term:ONGA_0000094",
-  "term:ONGA_0000096",
-  "term:ONGA_0000200",
-  "term:ONGA_0000201",
+  "term:ONGA_0000211",
+  "term:ONGA_0000036",
   "term:ONGA_0000220",
-  "term:ONGA_0000227",
-  "term:ONGA_0000070",
-  "term:ONGA_0000014",
+  "term:ONGA_0000040",
+  "term:ONGA_0000140",
+  "term:ONGA_0000035",
+  "term:ONGA_0000024",
+  "term:ONGA_0000012",
+  "term:ONGA_0000001",
+  "term:ONGA_0000092",
   "term:ONGA_0000188",
   "enum:BiospecimenClassification",
-  "slot:access_protocol",
-  "slot:access_url",
   "slot:accessions",
-  "slot:aliases",
   "slot:analyses",
-  "slot:analysis_id",
   "slot:assessment_details_url",
-  "slot:assessment_method",
-  "slot:assessment_values",
   "slot:biological_replicate_labels",
   "slot:build_sex",
   "slot:cell_type",
   "slot:date_of_retrieval",
-  "slot:deposit_versioned_id",
-  "slot:donor_id",
   "slot:donors",
-  "slot:experiment_id",
   "slot:experiments",
   "slot:file_collections",
   "slot:filecollection_external_id",
-  "slot:filecollection_id",
   "slot:files",
   "slot:inputsource_external_ref",
   "slot:label",
   "slot:lengths_constant",
   "slot:project_name",
-  "slot:sample_id",
   "slot:samples",
-  "slot:seqcol_digest",
-  "slot:seqcol_ordered_coord_system",
-  "slot:seqcol_unordered_coord_system",
   "slot:sequencing_protocol",
-  "slot:study_id",
   "slot:technical_replicate_labels",
   "slot:value_type",
-  "term:ONGA_0000161",
-  "class:AssessmentValue",
-  "class:Donor",
-  "class:TrackGeometry",
-  "term:ONGA_0000028",
-  "class:AccessMethod",
-  "class:Checksum",
-  "class:File",
-  "term:ONGA_0000189",
-  "term:ONGA_0000237",
-  "term:ONGA_0000081",
-  "term:ONGA_0000190",
-  "term:ONGA_0000026",
-  "term:ONGA_0000134",
-  "term:ONGA_0000236",
-  "term:ONGA_0000046",
-  "term:ONGA_0000135",
-  "term:ONGA_0000136",
-  "term:ONGA_0000021",
-  "term:ONGA_0000023",
-  "term:ONGA_0000029",
-  "term:ONGA_0000150",
-  "term:ONGA_0000124",
-  "term:ONGA_0000086",
-  "term:ONGA_0000208",
-  "term:ONGA_0000162",
-  "term:ONGA_0000017",
-  "slot:analysis_description",
-  "slot:analysis_external_id",
-  "slot:analysis_input_sources",
-  "slot:analysis_label",
-  "slot:analysis_main_tool",
-  "slot:analysis_main_tool_version",
-  "slot:analysis_protocol",
-  "slot:analysis_study_ref",
-  "slot:analysis_workflow",
-  "slot:assay_type",
-  "slot:biological_processes",
-  "slot:biospecimen_classification",
-  "slot:cell_line",
-  "slot:contact_id",
-  "slot:deposit_first_created",
-  "slot:deposit_id",
-  "slot:deposit_last_changed",
-  "slot:deposit_versioned_ref",
-  "slot:design_description",
-  "slot:document_deposit",
-  "slot:document_description",
-  "slot:document_input_sources",
-  "slot:document_label",
-  "slot:document_ontology_versions",
-  "slot:donor_clinical_information",
-  "slot:donor_development_stage",
-  "slot:donor_external_id",
-  "slot:donor_organism_ref",
-  "slot:donor_sex",
-  "slot:email",
-  "slot:experiment_external_id",
-  "slot:experiment_label",
-  "slot:experiment_samples",
-  "slot:experiment_study_ref",
-  "slot:filecollection_description",
-  "slot:filecollection_input_sources",
-  "slot:filecollection_label",
-  "slot:instrument",
-  "slot:library_layout",
-  "slot:molecule_type",
-  "slot:organism_tissue",
-  "slot:other_biospecimen",
-  "slot:phenotype",
-  "slot:project_external_ref",
-  "slot:publications",
-  "slot:sample_description",
-  "slot:sample_external_id",
-  "slot:sample_label",
-  "slot:sampling_protocol",
-  "slot:species_taxon",
-  "slot:study_external_id",
-  "term:ONGA_0000082",
-  "term:ONGA_0000194",
-  "term:ONGA_0000016",
-  "class:AccessURL",
-  "class:Deposit",
-  "class:Experiment",
-  "class:OntologyVersions",
-  "class:ReferenceGenome",
-  "class:Sample",
-  "term:ONGA_0000059",
-  "term:ONGA_0000211",
-  "term:ONGA_0000036",
-  "term:ONGA_0000159",
-  "class:Contact",
-  "class:GenomicAnnotationFile",
-  "term:ONGA_0000095",
-  "term:ONGA_0000099",
-  "term:ONGA_0000192",
-  "term:ONGA_0000181",
-  "term:ONGA_0000074",
-  "term:ONGA_0000083",
-  "term:ONGA_0000155",
-  "term:ONGA_0000040",
-  "term:ONGA_0000140",
-  "term:ONGA_0000035",
-  "term:ONGA_0000193",
-  "term:ONGA_0000024",
-  "term:ONGA_0000012",
-  "term:ONGA_0000231",
-  "term:ONGA_0000001",
-  "term:ONGA_0000092",
-  "term:ONGA_0000230",
-  "term:ONGA_0000007",
-  "term:ONGA_0000222",
   "term:ONGA_0000100",
   "term:ONGA_0000090",
   "term:ONGA_0000101",
@@ -13567,154 +13398,177 @@
   "term:ONGA_0000089",
   "term:ONGA_0000048",
   "term:ONGA_0000093",
+  "class:AssessmentValue",
+  "class:Donor",
+  "class:TrackGeometry",
+  "class:AccessMethod",
+  "class:Checksum",
+  "term:ONGA_0000189",
+  "term:ONGA_0000213",
+  "term:ONGA_0000223",
+  "term:ONGA_0000164",
+  "term:ONGA_0000190",
+  "term:ONGA_0000177",
+  "term:ONGA_0000011",
+  "term:ONGA_0000120",
+  "term:ONGA_0000141",
+  "term:ONGA_0000152",
+  "term:ONGA_0000006",
+  "term:ONGA_0000124",
+  "term:ONGA_0000063",
+  "slot:analysis_description",
+  "slot:analysis_external_id",
+  "slot:analysis_main_tool",
+  "slot:analysis_main_tool_version",
+  "slot:analysis_protocol",
+  "slot:analysis_study_ref",
+  "slot:analysis_workflow",
+  "slot:biological_processes",
+  "slot:cell_line",
+  "slot:contact_id",
+  "slot:deposit_id",
+  "slot:design_description",
+  "slot:document_deposit",
+  "slot:document_description",
+  "slot:document_input_sources",
+  "slot:donor_clinical_information",
+  "slot:donor_development_stage",
+  "slot:donor_external_id",
+  "slot:email",
+  "slot:experiment_external_id",
+  "slot:filecollection_description",
+  "slot:filecollection_input_sources",
+  "slot:instrument",
+  "slot:library_layout",
+  "slot:organism_tissue",
+  "slot:other_biospecimen",
+  "slot:phenotype",
+  "slot:project_external_ref",
+  "slot:publications",
+  "slot:sample_description",
+  "slot:sampling_protocol",
+  "slot:study_external_id",
+  "term:ONGA_0000139",
+  "term:ONGA_0000119",
+  "term:ONGA_0000082",
+  "term:ONGA_0000010",
+  "term:ONGA_0000066",
+  "term:ONGA_0000106",
+  "term:ONGA_0000194",
+  "class:AccessURL",
+  "class:Deposit",
+  "class:Experiment",
+  "class:OntologyVersions",
+  "class:Sample",
+  "term:ONGA_0000059",
+  "term:ONGA_0000221",
+  "term:ONGA_0000067",
+  "term:ONGA_0000069",
+  "term:ONGA_0000178",
+  "class:Contact",
+  "term:ONGA_0000071",
+  "term:ONGA_0000142",
+  "term:ONGA_0000192",
+  "term:ONGA_0000181",
+  "term:ONGA_0000074",
+  "term:ONGA_0000083",
+  "term:ONGA_0000125",
+  "term:ONGA_0000216",
+  "term:ONGA_0000193",
+  "term:ONGA_0000153",
+  "term:ONGA_0000005",
+  "term:ONGA_0000103",
+  "term:ONGA_0000222",
+  "term:ONGA_0000138",
+  "term:ONGA_0000108",
   "term:ONGA_0000053",
   "class:Analysis",
   "class:Document",
   "class:FileCollection",
-  "term:ONGA_0000031",
-  "term:ONGA_0000068",
-  "class:TopLevel",
-  "term:ONGA_0000034",
-  "term:ONGA_0000073",
-  "term:ONGA_0000113",
-  "term:ONGA_0000115",
-  "term:ONGA_0000213",
-  "term:ONGA_0000223",
-  "term:ONGA_0000015",
-  "term:ONGA_0000025",
-  "term:ONGA_0000164",
-  "term:ONGA_0000022",
-  "term:ONGA_0000032",
-  "term:ONGA_0000177",
-  "term:ONGA_0000011",
-  "term:ONGA_0000033",
-  "term:ONGA_0000042",
-  "term:ONGA_0000043",
-  "term:ONGA_0000120",
-  "term:ONGA_0000141",
-  "term:ONGA_0000152",
-  "term:ONGA_0000057",
-  "term:ONGA_0000006",
-  "term:ONGA_0000184",
-  "term:ONGA_0000038",
-  "term:ONGA_0000063",
-  "slot:file_format",
-  "term:ONGA_0000020",
-  "term:ONGA_0000139",
-  "term:ONGA_0000055",
-  "term:ONGA_0000117",
-  "term:ONGA_0000119",
-  "term:ONGA_0000187",
-  "term:ONGA_0000010",
-  "term:ONGA_0000066",
-  "term:ONGA_0000106",
-  "term:ONGA_0000157",
-  "term:ONGA_0000122",
-  "term:ONGA_0000039",
-  "term:ONGA_0000221",
-  "term:ONGA_0000067",
-  "term:ONGA_0000030",
-  "term:ONGA_0000052",
-  "term:ONGA_0000008",
-  "term:ONGA_0000004",
-  "term:ONGA_0000069",
-  "term:ONGA_0000178",
-  "term:ONGA_0000232",
-  "class:Study",
-  "term:ONGA_0000071",
-  "term:ONGA_0000088",
-  "term:ONGA_0000104",
-  "term:ONGA_0000121",
-  "term:ONGA_0000142",
-  "term:ONGA_0000144",
-  "term:ONGA_0000145",
-  "term:ONGA_0000148",
-  "term:ONGA_0000156",
-  "term:ONGA_0000125",
-  "term:ONGA_0000133",
-  "term:ONGA_0000013",
-  "term:ONGA_0000216",
-  "term:ONGA_0000153",
-  "term:ONGA_0000005",
-  "term:ONGA_0000149",
-  "term:ONGA_0000072",
-  "term:ONGA_0000027",
-  "term:ONGA_0000018",
-  "term:ONGA_0000103",
-  "term:ONGA_0000138",
-  "term:ONGA_0000084",
-  "term:ONGA_0000108",
   "term:ONGA_0000044",
   "term:ONGA_0000078",
-  "term:ONGA_0000204",
   "term:ONGA_0000169",
-  "term:ONGA_0000195",
+  "term:ONGA_0000068",
   "term:ONGA_0000147",
-  "term:ONGA_0000003",
-  "term:ONGA_0000037",
+  "class:TopLevel",
+  "term:ONGA_0000073",
   "term:ONGA_0000076",
-  "term:ONGA_0000077",
   "term:ONGA_0000079",
-  "term:ONGA_0000080",
-  "term:ONGA_0000110",
+  "term:ONGA_0000113",
+  "term:ONGA_0000115",
   "term:ONGA_0000212",
   "term:ONGA_0000166",
   "term:ONGA_0000002",
-  "term:ONGA_0000041",
   "term:ONGA_0000179",
   "term:ONGA_0000105",
   "term:ONGA_0000224",
+  "term:ONGA_0000042",
+  "term:ONGA_0000043",
   "term:ONGA_0000062",
+  "term:ONGA_0000057",
   "term:ONGA_0000196",
   "term:ONGA_0000045",
+  "slot:file_format",
   "term:ONGA_0000111",
   "term:ONGA_0000203",
-  "term:ONGA_0000217",
+  "term:ONGA_0000055",
+  "term:ONGA_0000117",
   "term:ONGA_0000137",
   "term:ONGA_0000206",
   "term:ONGA_0000126",
   "term:ONGA_0000146",
-  "term:ONGA_0000060",
   "term:ONGA_0000130",
   "term:ONGA_0000109",
-  "class:TrackProvenance",
   "term:ONGA_0000143",
   "term:ONGA_0000151",
   "term:ONGA_0000075",
-  "term:ONGA_0000047",
-  "term:ONGA_0000050",
+  "term:ONGA_0000052",
   "term:ONGA_0000183",
+  "term:ONGA_0000004",
   "term:ONGA_0000154",
-  "term:ONGA_0000233",
-  "term:ONGA_0000234",
-  "term:ONGA_0000235",
-  "module:file_content",
-  "subset:technical",
+  "class:Study",
   "term:ONGA_0000049",
   "term:ONGA_0000087",
   "term:ONGA_0000102",
-  "term:ONGA_0000114",
-  "term:ONGA_0000118",
+  "term:ONGA_0000104",
+  "term:ONGA_0000121",
   "term:ONGA_0000129",
   "term:ONGA_0000131",
-  "term:ONGA_0000160",
   "term:ONGA_0000132",
   "term:ONGA_0000127",
-  "term:ONGA_0000019",
-  "term:ONGA_0000065",
-  "term:ONGA_0000009",
-  "subset:quantification",
-  "term:ONGA_0000051",
-  "module:file",
-  "module:sample",
   "term:ONGA_0000085",
-  "subset:deep_learning",
-  "term:ONGA_0000123",
   "term:ONGA_0000172",
   "term:ONGA_0000186",
-  "subset:reference",
   "term:ONGA_0000225",
   "term:ONGA_0000128",
+  "term:ONGA_0000072",
+  "term:ONGA_0000214",
+  "term:ONGA_0000064",
+  "term:ONGA_0000197",
+  "term:ONGA_0000084",
+  "term:ONGA_0000112",
+  "term:ONGA_0000199",
+  "term:ONGA_0000204",
+  "term:ONGA_0000180",
+  "term:ONGA_0000198",
+  "term:ONGA_0000077",
+  "term:ONGA_0000080",
+  "term:ONGA_0000091",
+  "term:ONGA_0000110",
+  "term:ONGA_0000210",
+  "class:TrackProvenance",
+  "term:ONGA_0000047",
+  "term:ONGA_0000050",
+  "module:file_content",
+  "subset:technical",
+  "term:ONGA_0000114",
+  "term:ONGA_0000118",
+  "term:ONGA_0000170",
+  "subset:quantification",
+  "term:ONGA_0000051",
+  "subset:deep_learning",
+  "term:ONGA_0000123",
+  "subset:reference",
   "enum:DataType",
   "enum:Derivation",
   "enum:FeatureType",
@@ -13741,25 +13595,13 @@
   "module:track_geometry",
   "subset:annotation",
   "subset:peak_set",
-  "term:ONGA_0000158",
-  "term:ONGA_0000214",
   "subset:variant",
-  "term:ONGA_0000064",
-  "term:ONGA_0000197",
   "term:ONGA_0000215",
-  "module:experiment",
   "subset:regulatory_element",
-  "term:ONGA_0000112",
   "subset:signal_track",
-  "term:ONGA_0000199",
   "term:ONGA_0000054",
-  "module:analysis",
-  "term:ONGA_0000176",
-  "term:ONGA_0000180",
   "subset:alignment",
   "subset:chromatin_accessibility",
-  "term:ONGA_0000198",
-  "term:ONGA_0000091",
   "term:ONGA_0000252",
   "term:ONGA_0000253",
   "term:ONGA_0000271",
@@ -13767,29 +13609,17 @@
   "term:ONGA_0000273",
   "term:ONGA_0000274",
   "term:ONGA_0000278",
-  "module:document",
   "subset:crispr_screen",
-  "module:input_source",
   "subset:contact_matrix",
-  "module:study",
-  "module:top_level",
   "subset:count_matrix",
   "term:ONGA_0000058",
-  "module:file_collection",
-  "module:genomic_annotation_file",
-  "module:quality_assessment",
   "module:reference_genome",
-  "term:ONGA_0000210",
   "module:track_interpretation",
   "module:track_provenance",
   "subset:dna_methylation",
   "subset:single_cell",
   "class:TrackFormat",
   "class:TrackInterpretation",
-  "module:access_method",
-  "module:contact",
-  "module:deposit",
-  "module:donor",
   "subset:element_gene_linkage",
   "subset:rna_modification",
   "module:track_format",
@@ -13804,12 +13634,7 @@
   "term:ONGA_0000290",
   "term:ONGA_0000291",
   "term:ONGA_0000292",
-  "term:ONGA_0000170",
-  "module:access_url",
-  "module:checksum",
-  "module:term",
   "subset:haplotype",
-  "term:ONGA_0000056",
   "subset:replication_timing",
   "term:ONGA_0000238",
   "term:ONGA_0000239",
@@ -13859,7 +13684,6 @@
   "module:reference_build_sex",
   "module:strand_orientation",
   "module:thresholding",
-  "module:util",
   "module:onga"
  ]
 }
