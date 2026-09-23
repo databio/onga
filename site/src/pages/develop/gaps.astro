@@ -40,11 +40,11 @@ const allTerms = subsets.flatMap(s =>
         </h2>
         <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
           {(gapData.by_subset[subset]?.terms || []).map((term: any) => {
-            const termId = `gap-${subset}-${term.name.replace(/\s+/g, '_')}`;
+            const termId = `gap-${subset}-${term.onga_term.replace(/\s+/g, '_')}`;
             return (
               <div class="gap-row p-4 hover:bg-gray-50 flex items-start justify-between" data-subset={subset} data-term-id={termId}>
                 <div class="flex-1">
-                  <div class="font-medium text-gray-900">{term.name}</div>
+                  <div class="font-medium text-gray-900">{term.onga_term}</div>
                   <div class="text-xs text-gray-500 mt-1">{term.category}</div>
                   <p class="text-sm text-gray-600 mt-1">{term.definition || 'No definition'}</p>
                   <div class="text-xs text-gray-400 mt-1">

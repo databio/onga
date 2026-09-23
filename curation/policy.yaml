@@ -21,7 +21,16 @@
 #                            from curation/verdicts.yaml, legal for the kind)
 #
 # queue:
-#   weights of the Phase 7 queue score (see scripts/curation_status.py).
+#   weights of the queue score (scripts/curation_status.py):
+#     score = findings * min(10, sum of open-finding severity points)
+#           + impact * impact(0..1) + adoption * adoption_path + required * required
+#           + port * unreviewed_port + upstream * upstream + stale * stale
+#           + machine * machine_definition
+#
+# status:
+#   severity_points   points per open finding, by severity
+#   finding_severity  severity of each embeddings finding rule (the schema
+#                     linter carries its own severity per finding)
 
 lint:
   terse_description_chars: 40
@@ -87,11 +96,18 @@ lint:
     duplicate-paragraph: {severity: info, suggested_verdict: edit_description}
 
 queue:
-  findings: 2.0
-  impact: 4.0
-  adoption: 1.5
-  required: 1.0
-  port: 1.5
+  findings: 0.5
+  impact: 2.0
+  adoption: 0.5
+  required: 0.5
+  port: 3.0
   upstream: 2.0
   stale: 3.0
   machine: 1.0
+
+status:
+  severity_points: {error: 3, warn: 2, info: 1}
+  finding_severity:
+    similar-terms: warn
+    coverage-gap: info
+    mapping-suggestion: info

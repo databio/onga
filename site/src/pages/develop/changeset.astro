@@ -80,8 +80,8 @@ import mappingData from '../../data/develop/mapping-suggestions.json';
         const termName = parts.slice(1).join(' ').replace(/_/g, ' ');
         if (decision === 'delete') {
           const subsetTerms = gapSubsets[subset]?.terms || [];
-          const term = subsetTerms.find(t => t.name.replace(/\s+/g, '_') === parts.slice(1).join('_'));
-          ops.push({ op: 'delete', term: term?.name || termName, category: term?.category || 'DataType', source: 'gaps' });
+          const term = subsetTerms.find(t => t.onga_term.replace(/\s+/g, '_') === parts.slice(1).join('_'));
+          ops.push({ op: 'delete', term: term?.onga_term || termName, category: term?.category || 'DataType', source: 'gaps' });
         }
       }
 

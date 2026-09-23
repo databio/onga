@@ -4,7 +4,8 @@
 Reads only `curation/subjects.json`, `src/*.yaml` (for attached comments), the
 mapping TSVs, `curation/usage.json`, `curation/decisions.yaml` (for
 `keep_atomic`, when present) and `curation/policy.yaml` (thresholds, severity,
-suggested verdict per rule). Writes `curation/findings/schema_lint.json`:
+suggested verdict per rule; each suggestion must be a verdict
+`curation/verdicts.yaml` allows for a kind the finding names). Writes `curation/findings/schema_lint.json`:
 
   {_generated_by, schema_fingerprint, counts: {rule: n},
    findings: [{id, rule, severity, message, subjects: [sid...], suggested_verdict}]}
@@ -26,6 +27,9 @@ from collections import defaultdict
 from pathlib import Path
 
 import yaml
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from workbench.store import load_verdicts  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -82,6 +86,7 @@ class Linter:
             for d in (yaml.safe_load(DECISIONS.read_text()) or {}).get("decisions") or []:
                 if d.get("verdict") == "keep_atomic" and d.get("status") != "withdrawn":
                     self.keep_atomic.add(d["subject"])
+        self.verdicts = load_verdicts()
         self.findings = {}
 
     # -- helpers -----------------------------------------------------------
@@ -96,6 +101,10 @@ class Linter:
             self.findings[fid]["message"] += f"; {message}"
             return
         cfg = self.pol["rules"][rule]
+        kinds = {self.by_sid[s]["kind"] for s in sids}
+        if not any(cfg["suggested_verdict"] in self.verdicts.get(k, {}) for k in kinds):
+            sys.exit(f"schema_lint: policy suggests {cfg['suggested_verdict']!r} for rule {rule}, "
+                     f"which curation/verdicts.yaml does not allow for {sorted(kinds)}")
         self.findings[fid] = {
             "id": fid, "rule": rule, "severity": cfg["severity"], "message": message,
             "subjects": sids, "suggested_verdict": cfg["suggested_verdict"],

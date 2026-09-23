@@ -2,7 +2,7 @@ SCHEMA_DIR = src
 SCHEMA_NAME = onga
 MAIN_SCHEMA = $(SCHEMA_DIR)/$(SCHEMA_NAME).yaml
 
-.PHONY: subjects subjects-check all gen-owl gen-owl-core gen-owl-so gen-jsonld gen-python gen-docs gen-registry validate test test-examples test-registry clean embeddings-build embeddings-compare apply mappings validate-mappings fmt fmt-check regen lint-schema usage
+.PHONY: subjects subjects-check all gen-owl gen-owl-core gen-owl-so gen-jsonld gen-python gen-docs gen-registry validate test test-examples test-registry clean embeddings-build embeddings-compare apply mappings validate-mappings fmt fmt-check regen lint-schema usage status
 
 all: gen-owl gen-jsonld gen-registry
 
@@ -15,6 +15,7 @@ test: fmt-check validate-mappings subjects-check test-examples
 	python scripts/check_roundtrip.py
 	python scripts/usage_rollup.py --check
 	python scripts/schema_lint.py --check
+	python scripts/curation_status.py --check
 
 # Every src/*.yaml must be a fixed point of the shared YAML writer
 # (scripts/workbench/yamlio.py), so a programmatic edit diffs only its own change.
@@ -74,7 +75,7 @@ subjects-check:
 
 # Every generator whose output is tracked. This recipe is the inventory.
 # subjects runs after mappings: a term's payload includes its SSSOM rows.
-regen: mappings subjects gen-registry usage lint-schema
+regen: mappings subjects gen-registry usage lint-schema status
 
 # ENCODE file/dataset counts rolled up onto live content terms through the
 # facet decomposition (curation/usage.json). Runs before lint-schema, which reads it.
@@ -85,6 +86,11 @@ usage:
 # thresholds, severities and suggested verdicts live in curation/policy.yaml.
 lint-schema: usage
 	python scripts/schema_lint.py
+
+# Per-subject state (unreviewed | open | deferred | settled | applied | stale),
+# queue score and rollups (curation/status.json); weights in curation/policy.yaml.
+status: lint-schema
+	python scripts/curation_status.py
 
 gen-jsonld:
 	mkdir -p project

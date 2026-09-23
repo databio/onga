@@ -1,16 +1,185 @@
 {
-  "generated_at": "2026-06-05T20:58:47.167963",
-  "total_onga_terms": 242,
-  "gap_terms_count": 18,
-  "gap_percentage": 7.4,
+  "provenance": {
+    "generated_at": "2026-09-23T09:46:04",
+    "generator_version": "onga-embeddings/0.1.0",
+    "model_name": "NeuML/pubmedbert-base-embeddings",
+    "schema_fingerprint": "e38085a5f024c1fa78a37aafb48ce256d33e2e1aaacf26421251159b08599bfb",
+    "subject_count": 237,
+    "ontologies": [
+      {
+        "name": "so",
+        "source_file": "so.obo",
+        "sha256": "sha256:22a8f3ec2b49125dbb6cee8456f0bca86dd8c98f433165ffa4b554da4f155204",
+        "term_count": 2409
+      }
+    ],
+    "params": {
+      "threshold": 0.5,
+      "internal_threshold": 0.8,
+      "gap_threshold": 0.5,
+      "top_k": 5,
+      "ontologies": [
+        "so"
+      ]
+    }
+  },
+  "total_onga_terms": 237,
+  "gap_terms_count": 102,
+  "gap_percentage": 43,
   "by_subset": {
-    "contact_matrix": {
+    "alignment": {
+      "count": 3,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "id": "gap:a0bb8921a83c",
+          "subjects": [
+            "term:ONGA_0000007"
+          ],
+          "onga_term": "redacted alignments",
+          "onga_term_id": "ONGA_0000007",
+          "category": "DataType",
+          "definition": "Alignments with sensitive genomic positions masked or removed for privacy protection in controlled-access data sharing.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:a0fd79c7610b",
+          "subjects": [
+            "term:ONGA_0000009"
+          ],
+          "onga_term": "rejected reads",
+          "onga_term_id": "ONGA_0000009",
+          "category": "DataType",
+          "definition": "Reads that failed quality control filters and were excluded from downstream analysis.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:426519e7bf01",
+          "subjects": [
+            "term:ONGA_0000010"
+          ],
+          "onga_term": "spike-in alignments",
+          "onga_term_id": "ONGA_0000010",
+          "category": "DataType",
+          "definition": "Reads aligned to exogenous spike-in control sequences (e.g., ERCC) for normalization and quality assessment.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "annotation": {
+      "count": 3,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "id": "gap:6a5a8b4a2401",
+          "subjects": [
+            "term:ONGA_0000122"
+          ],
+          "onga_term": "HMM predicted chromatin state",
+          "onga_term_id": "ONGA_0000122",
+          "category": "DataType",
+          "definition": "Chromatin state annotations (e.g., ChromHMM) predicted by hidden Markov model from histone marks.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:43f20146866a",
+          "subjects": [
+            "term:ONGA_0000210"
+          ],
+          "onga_term": "functional conservation mapping",
+          "onga_term_id": "ONGA_0000210",
+          "category": "FeatureType",
+          "definition": "Mapping of functionally conserved regions across species.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:d90afd2c1bc7",
+          "subjects": [
+            "term:ONGA_0000211"
+          ],
+          "onga_term": "functional conservation quantifications",
+          "onga_term_id": "ONGA_0000211",
+          "category": "FeatureType",
+          "definition": "Quantification of functional conservation scores.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "chromatin_accessibility": {
       "count": 1,
       "max_similarity_in_group": 0,
       "avg_similarity": 0,
       "terms": [
         {
-          "name": "genome subcompartments",
+          "id": "gap:57a09ef7139f",
+          "subjects": [
+            "term:ONGA_0000040"
+          ],
+          "onga_term": "FDR cut rate",
+          "onga_term_id": "ONGA_0000040",
+          "category": "DataType",
+          "definition": "False discovery rate-controlled cut rate signal from DNase-seq analysis.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "contact_matrix": {
+      "count": 4,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "id": "gap:3184517f54ac",
+          "subjects": [
+            "term:ONGA_0000045"
+          ],
+          "onga_term": "contact matrix",
+          "onga_term_id": "ONGA_0000045",
+          "category": "DataType",
+          "definition": "Genome-wide matrix of chromatin interaction frequencies from Hi-C or similar chromosome conformation capture experiments.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:d395984ef2f2",
+          "subjects": [
+            "term:ONGA_0000047"
+          ],
+          "onga_term": "variants contact matrix",
+          "onga_term_id": "ONGA_0000047",
+          "category": "DataType",
+          "definition": "Contact matrix incorporating variant information.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:9403defafe0f",
+          "subjects": [
+            "term:ONGA_0000167"
+          ],
+          "onga_term": "genome compartments",
+          "onga_term_id": "ONGA_0000167",
+          "category": "FeatureType",
+          "definition": "Large-scale A (active) and B (inactive) chromatin compartments from PCA of Hi-C contact matrices.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:6fffb98e3330",
+          "subjects": [
+            "term:ONGA_0000168"
+          ],
+          "onga_term": "genome subcompartments",
+          "onga_term_id": "ONGA_0000168",
           "category": "FeatureType",
           "definition": "Fine-grained chromatin compartments (A1, A2, B1, B2, B3, B4) within major A/B compartments.",
           "max_similarity": 0,
@@ -18,106 +187,667 @@
         }
       ]
     },
-    "crispr_screen": {
-      "count": 1,
+    "count_matrix": {
+      "count": 7,
       "max_similarity_in_group": 0,
       "avg_similarity": 0,
       "terms": [
         {
-          "name": "perturbation signal",
+          "id": "gap:510144154d32",
+          "subjects": [
+            "term:ONGA_0000061"
+          ],
+          "onga_term": "sparse gene count matrix",
+          "onga_term_id": "ONGA_0000061",
+          "category": "DataType",
+          "definition": "Sparse matrix of gene-level read counts across cells or samples, standard for single-cell RNA-seq.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:f0f6c31e68cb",
+          "subjects": [
+            "term:ONGA_0000062"
+          ],
+          "onga_term": "sparse peak count matrix",
+          "onga_term_id": "ONGA_0000062",
+          "category": "DataType",
+          "definition": "Sparse matrix of peak accessibility counts across cells, used in single-cell ATAC-seq.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:d5922d86a627",
+          "subjects": [
+            "term:ONGA_0000063"
+          ],
+          "onga_term": "sparse transcript count matrix",
+          "onga_term_id": "ONGA_0000063",
+          "category": "DataType",
+          "definition": "Sparse matrix of transcript-level counts across cells or samples.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:28ed28e1b2ea",
+          "subjects": [
+            "term:ONGA_0000064"
+          ],
+          "onga_term": "TF peaks matrix",
+          "onga_term_id": "ONGA_0000064",
+          "category": "DataType",
+          "definition": "Matrix of transcription factor peak counts across samples.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:b045340d92fe",
+          "subjects": [
+            "term:ONGA_0000065"
+          ],
+          "onga_term": "z scores matrix",
+          "onga_term_id": "ONGA_0000065",
+          "category": "DataType",
+          "definition": "Matrix of z-score normalized values across features and samples.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:31dc92cecede",
+          "subjects": [
+            "term:ONGA_0000157"
+          ],
+          "onga_term": "sparse splice junction count matrix",
+          "onga_term_id": "ONGA_0000157",
+          "category": "DataType",
+          "definition": "Sparse count matrix of splice junctions.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:edd46bed2fe5",
+          "subjects": [
+            "term:ONGA_0000158"
+          ],
+          "onga_term": "signals matrix",
+          "onga_term_id": "ONGA_0000158",
+          "category": "DataType",
+          "definition": "Matrix of signal values across features and samples.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "crispr_screen": {
+      "count": 5,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "id": "gap:c37689fa15b7",
+          "subjects": [
+            "term:ONGA_0000050"
+          ],
+          "onga_term": "element barcode mapping",
+          "onga_term_id": "ONGA_0000050",
+          "category": "DataType",
+          "definition": "Mapping of element barcodes used in CRISPR screen experiments.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:08d96b1c0273",
+          "subjects": [
+            "term:ONGA_0000053"
+          ],
+          "onga_term": "guide quantifications",
+          "onga_term_id": "ONGA_0000053",
+          "category": "DataType",
+          "definition": "Abundance quantifications of guide RNAs from screen data.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:bbb5808345f2",
+          "subjects": [
+            "term:ONGA_0000055"
+          ],
+          "onga_term": "perturbation signal",
+          "onga_term_id": "ONGA_0000055",
           "category": "DataType",
           "definition": "Phenotypic signal associated with CRISPR perturbations.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:04c4582078dd",
+          "subjects": [
+            "term:ONGA_0000057"
+          ],
+          "onga_term": "reporter code counts",
+          "onga_term_id": "ONGA_0000057",
+          "category": "DataType",
+          "definition": "Count data from reporter codes in CRISPR screen readouts.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:7776d74fb6a1",
+          "subjects": [
+            "term:ONGA_0000059"
+          ],
+          "onga_term": "sparse gRNA count matrix",
+          "onga_term_id": "ONGA_0000059",
+          "category": "DataType",
+          "definition": "Sparse count matrix of guide RNA abundances across cells.",
           "max_similarity": 0,
           "best_match": null
         }
       ]
     },
     "deep_learning": {
-      "count": 6,
+      "count": 16,
       "max_similarity_in_group": 0,
       "avg_similarity": 0,
       "terms": [
         {
-          "name": "DNN-MPRA contribution scores",
+          "id": "gap:8e93320fddfc",
+          "subjects": [
+            "term:ONGA_0000085"
+          ],
+          "onga_term": "bias models",
+          "onga_term_id": "ONGA_0000085",
+          "category": "DataType",
+          "definition": "Trained models capturing sequencing bias patterns based on sequence composition.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:4cd215097510",
+          "subjects": [
+            "term:ONGA_0000087"
+          ],
+          "onga_term": "DNN-MPRA contribution scores",
+          "onga_term_id": "ONGA_0000087",
           "category": "DataType",
           "definition": "Nucleotide contribution scores from a deep neural network trained on MPRA data.",
           "max_similarity": 0,
           "best_match": null
         },
         {
-          "name": "selected regions for bias-corrected predicted signal profile",
+          "id": "gap:93aa5d97debc",
+          "subjects": [
+            "term:ONGA_0000088"
+          ],
+          "onga_term": "DNN-MPRA predicted signal",
+          "onga_term_id": "ONGA_0000088",
+          "category": "DataType",
+          "definition": "Regulatory activity signal predicted by a DNN trained on MPRA data.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:d3fbc72ec4f3",
+          "subjects": [
+            "term:ONGA_0000089"
+          ],
+          "onga_term": "model performance metrics",
+          "onga_term_id": "ONGA_0000089",
+          "category": "DataType",
+          "definition": "Evaluation metrics (AUC, correlation, etc.) assessing predictive model performance.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:3df15215a26c",
+          "subjects": [
+            "term:ONGA_0000090"
+          ],
+          "onga_term": "models",
+          "onga_term_id": "ONGA_0000090",
+          "category": "DataType",
+          "definition": "Trained computational or machine learning models saved for prediction or interpretation.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:71906acfdf84",
+          "subjects": [
+            "term:ONGA_0000091"
+          ],
+          "onga_term": "motif model",
+          "onga_term_id": "ONGA_0000091",
+          "category": "DataType",
+          "definition": "Sequence motif model (e.g., convolutional filter weights) from deep learning or motif discovery.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:d4e64b4385f0",
+          "subjects": [
+            "term:ONGA_0000092"
+          ],
+          "onga_term": "profile sequence contribution scores",
+          "onga_term_id": "ONGA_0000092",
+          "category": "DataType",
+          "definition": "Per-nucleotide importance scores explaining sequence contribution to predicted signal profiles.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:e6f97ac2d731",
+          "subjects": [
+            "term:ONGA_0000093"
+          ],
+          "onga_term": "promoter prediction model",
+          "onga_term_id": "ONGA_0000093",
+          "category": "DataType",
+          "definition": "Computational model trained to predict promoter activity from sequence.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:ee67efae48a0",
+          "subjects": [
+            "term:ONGA_0000094"
+          ],
+          "onga_term": "selected regions for bias-corrected predicted signal profile",
+          "onga_term_id": "ONGA_0000094",
           "category": "DataType",
           "definition": "Genomic regions selected for bias-corrected signal profile interpretation.",
           "max_similarity": 0,
           "best_match": null
         },
         {
-          "name": "selected regions for predicted bias profile",
+          "id": "gap:6f4055f5f192",
+          "subjects": [
+            "term:ONGA_0000095"
+          ],
+          "onga_term": "selected regions for count sequence contribution scores",
+          "onga_term_id": "ONGA_0000095",
+          "category": "DataType",
+          "definition": "Genomic regions selected for count contribution score analysis.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:82b0dfa22506",
+          "subjects": [
+            "term:ONGA_0000096"
+          ],
+          "onga_term": "selected regions for predicted bias profile",
+          "onga_term_id": "ONGA_0000096",
           "category": "DataType",
           "definition": "Genomic regions selected for predicted bias profile interpretation.",
           "max_similarity": 0,
           "best_match": null
         },
         {
-          "name": "selected regions for predicted signal and sequence contribution scores",
+          "id": "gap:d0e33e8cf956",
+          "subjects": [
+            "term:ONGA_0000097"
+          ],
+          "onga_term": "selected regions for predicted signal and sequence contribution scores",
+          "onga_term_id": "ONGA_0000097",
           "category": "DataType",
           "definition": "Genomic regions selected for combined signal and contribution score analysis.",
           "max_similarity": 0,
           "best_match": null
         },
         {
-          "name": "selected regions for profile sequence contribution scores",
+          "id": "gap:e52735f7eed8",
+          "subjects": [
+            "term:ONGA_0000098"
+          ],
+          "onga_term": "selected regions for predicted signal profile",
+          "onga_term_id": "ONGA_0000098",
+          "category": "DataType",
+          "definition": "Genomic regions selected for predicted signal profile interpretation.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:7a91360f4508",
+          "subjects": [
+            "term:ONGA_0000099"
+          ],
+          "onga_term": "selected regions for profile sequence contribution scores",
+          "onga_term_id": "ONGA_0000099",
           "category": "DataType",
           "definition": "Genomic regions selected for profile contribution score analysis.",
           "max_similarity": 0,
           "best_match": null
         },
         {
-          "name": "training and test regions",
+          "id": "gap:41eb196b86d6",
+          "subjects": [
+            "term:ONGA_0000101"
+          ],
+          "onga_term": "training and test regions",
+          "onga_term_id": "ONGA_0000101",
           "category": "DataType",
           "definition": "Genomic regions designated for model training and held-out evaluation.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:e393c4446d3e",
+          "subjects": [
+            "term:ONGA_0000102"
+          ],
+          "onga_term": "training set",
+          "onga_term_id": "ONGA_0000102",
+          "category": "DataType",
+          "definition": "Data used to train a computational or machine learning model.",
           "max_similarity": 0,
           "best_match": null
         }
       ]
     },
     "element_gene_linkage": {
-      "count": 1,
+      "count": 3,
       "max_similarity_in_group": 0,
       "avg_similarity": 0,
       "terms": [
         {
-          "name": "element gene interactions signal",
+          "id": "gap:5aae80893996",
+          "subjects": [
+            "term:ONGA_0000189"
+          ],
+          "onga_term": "element gene interactions p-value",
+          "onga_term_id": "ONGA_0000189",
+          "category": "FeatureType",
+          "definition": "Statistical significance of element-gene interaction associations.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:ea2c1e58eab5",
+          "subjects": [
+            "term:ONGA_0000190"
+          ],
+          "onga_term": "element gene interactions signal",
+          "onga_term_id": "ONGA_0000190",
           "category": "FeatureType",
           "definition": "Signal strength of element-gene interaction associations.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:b6ed1e86e0fa",
+          "subjects": [
+            "term:ONGA_0000192"
+          ],
+          "onga_term": "topic gene weights",
+          "onga_term_id": "ONGA_0000192",
+          "category": "FeatureType",
+          "definition": "Gene weights derived from topic modeling of regulatory data.",
           "max_similarity": 0,
           "best_match": null
         }
       ]
     },
     "peak_set": {
-      "count": 1,
+      "count": 9,
       "max_similarity_in_group": 0,
       "avg_similarity": 0,
       "terms": [
         {
-          "name": "IDR ranked peaks",
+          "id": "gap:831c156355fe",
+          "subjects": [
+            "term:ONGA_0000022"
+          ],
+          "onga_term": "conservative IDR thresholded peaks",
+          "onga_term_id": "ONGA_0000022",
+          "category": "DataType",
+          "definition": "Peaks using a conservative (stricter) IDR cutoff, yielding high-confidence but smaller peak set.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:1c44e1896732",
+          "subjects": [
+            "term:ONGA_0000025"
+          ],
+          "onga_term": "IDR ranked peaks",
+          "onga_term_id": "ONGA_0000025",
           "category": "DataType",
           "definition": "Peaks ranked by IDR score, with lower IDR indicating higher reproducibility across replicates.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:5cbda9ad2dec",
+          "subjects": [
+            "term:ONGA_0000026"
+          ],
+          "onga_term": "optimal IDR thresholded peaks",
+          "onga_term_id": "ONGA_0000026",
+          "category": "DataType",
+          "definition": "Peaks using the optimal IDR cutoff balancing sensitivity and reproducibility.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:1382bb78426c",
+          "subjects": [
+            "term:ONGA_0000028"
+          ],
+          "onga_term": "peaks and background as input for IDR",
+          "onga_term_id": "ONGA_0000028",
+          "category": "DataType",
+          "definition": "Combined peak and background signal data formatted as input for IDR analysis.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:ea6d38a51b38",
+          "subjects": [
+            "term:ONGA_0000030"
+          ],
+          "onga_term": "pseudoreplicated IDR thresholded peaks",
+          "onga_term_id": "ONGA_0000030",
+          "category": "DataType",
+          "definition": "IDR-thresholded peaks from pseudoreplicates (subsampled reads) when true replicates unavailable.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:76b29b0e1677",
+          "subjects": [
+            "term:ONGA_0000031"
+          ],
+          "onga_term": "pseudoreplicated peaks",
+          "onga_term_id": "ONGA_0000031",
+          "category": "DataType",
+          "definition": "Peak calls from pseudoreplicates created by subsampling reads from a single experiment.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:cc3da468023e",
+          "subjects": [
+            "term:ONGA_0000032"
+          ],
+          "onga_term": "replicated peaks",
+          "onga_term_id": "ONGA_0000032",
+          "category": "DataType",
+          "definition": "Peaks reproducibly called across biological or technical replicates.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:8bc4257d26c8",
+          "subjects": [
+            "term:ONGA_0000034"
+          ],
+          "onga_term": "representative IDR thresholded peaks",
+          "onga_term_id": "ONGA_0000034",
+          "category": "DataType",
+          "definition": "A representative set of IDR-thresholded peaks selected for downstream analysis.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:7704f281e30c",
+          "subjects": [
+            "term:ONGA_0000036"
+          ],
+          "onga_term": "valleys",
+          "onga_term_id": "ONGA_0000036",
+          "category": "DataType",
+          "definition": "Local minima in signal tracks used in footprint detection or nucleosome positioning analysis.",
           "max_similarity": 0,
           "best_match": null
         }
       ]
     },
     "quantification": {
-      "count": 1,
+      "count": 12,
       "max_similarity_in_group": 0,
       "avg_similarity": 0,
       "terms": [
         {
-          "name": "genic features quantifications",
+          "id": "gap:38085355a756",
+          "subjects": [
+            "term:ONGA_0000066"
+          ],
+          "onga_term": "differential expression quantifications",
+          "onga_term_id": "ONGA_0000066",
+          "category": "DataType",
+          "definition": "Statistical results from differential expression analysis comparing conditions.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:f36470ec1f34",
+          "subjects": [
+            "term:ONGA_0000067"
+          ],
+          "onga_term": "differential splicing quantifications",
+          "onga_term_id": "ONGA_0000067",
+          "category": "DataType",
+          "definition": "Statistical results from differential splicing analysis comparing conditions.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:7c51690c4dbd",
+          "subjects": [
+            "term:ONGA_0000068"
+          ],
+          "onga_term": "element quantifications",
+          "onga_term_id": "ONGA_0000068",
+          "category": "DataType",
+          "definition": "Quantification values for regulatory elements.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:7c49d766153b",
+          "subjects": [
+            "term:ONGA_0000072"
+          ],
+          "onga_term": "genic features quantifications",
+          "onga_term_id": "ONGA_0000072",
           "category": "DataType",
           "definition": "Quantifications across various genic features (exons, introns, UTRs).",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:e7269fb44775",
+          "subjects": [
+            "term:ONGA_0000073"
+          ],
+          "onga_term": "genic regions quantifications",
+          "onga_term_id": "ONGA_0000073",
+          "category": "DataType",
+          "definition": "Read count quantifications over defined genic regions.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:958c12c73e08",
+          "subjects": [
+            "term:ONGA_0000074"
+          ],
+          "onga_term": "merged transcription segment quantifications",
+          "onga_term_id": "ONGA_0000074",
+          "category": "DataType",
+          "definition": "Quantifications from merged transcription segments.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:6c93feac995f",
+          "subjects": [
+            "term:ONGA_0000075"
+          ],
+          "onga_term": "microRNA quantifications",
+          "onga_term_id": "ONGA_0000075",
+          "category": "DataType",
+          "definition": "Expression quantifications of microRNAs (miRNAs).",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:bb83678a3c01",
+          "subjects": [
+            "term:ONGA_0000076"
+          ],
+          "onga_term": "mRNA stabilities",
+          "onga_term_id": "ONGA_0000076",
+          "category": "DataType",
+          "definition": "Measurements of mRNA half-life or decay rates.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:5b0b7c9af06b",
+          "subjects": [
+            "term:ONGA_0000078"
+          ],
+          "onga_term": "peptide quantifications",
+          "onga_term_id": "ONGA_0000078",
+          "category": "DataType",
+          "definition": "Abundance measurements of peptides from mass spectrometry proteomics.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:27505a949d01",
+          "subjects": [
+            "term:ONGA_0000079"
+          ],
+          "onga_term": "protein expression quantifications",
+          "onga_term_id": "ONGA_0000079",
+          "category": "DataType",
+          "definition": "Abundance measurements of proteins from proteomics data.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:0cc63d31bb78",
+          "subjects": [
+            "term:ONGA_0000080"
+          ],
+          "onga_term": "scaled RNA stability",
+          "onga_term_id": "ONGA_0000080",
+          "category": "DataType",
+          "definition": "RNA stability measurements scaled across samples.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:7390c775e977",
+          "subjects": [
+            "term:ONGA_0000084"
+          ],
+          "onga_term": "UV enriched segment quantifications",
+          "onga_term_id": "ONGA_0000084",
+          "category": "DataType",
+          "definition": "Quantifications from UV-crosslinking enriched RNA segments.",
           "max_similarity": 0,
           "best_match": null
         }
@@ -129,7 +859,12 @@
       "avg_similarity": 0,
       "terms": [
         {
-          "name": "phastcons score reference",
+          "id": "gap:14ea0da65d93",
+          "subjects": [
+            "term:ONGA_0000114"
+          ],
+          "onga_term": "phastcons score reference",
+          "onga_term_id": "ONGA_0000114",
           "category": "DataType",
           "definition": "Reference phastCons conservation scores across the genome.",
           "max_similarity": 0,
@@ -137,13 +872,231 @@
         }
       ]
     },
-    "signal_track": {
+    "regulatory_element": {
+      "count": 5,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "id": "gap:cbd5811ea962",
+          "subjects": [
+            "term:ONGA_0000048"
+          ],
+          "onga_term": "enhancer prediction model",
+          "onga_term_id": "ONGA_0000048",
+          "category": "DataType",
+          "definition": "Model predicting enhancer activity from sequence or chromatin features.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:bca53331ff8a",
+          "subjects": [
+            "term:ONGA_0000049"
+          ],
+          "onga_term": "regulatory elements prediction model",
+          "onga_term_id": "ONGA_0000049",
+          "category": "DataType",
+          "definition": "Computational model for predicting regulatory element activity and location.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:b595b50c4f21",
+          "subjects": [
+            "term:ONGA_0000178"
+          ],
+          "onga_term": "candidate enhancers",
+          "onga_term_id": "ONGA_0000178",
+          "category": "FeatureType",
+          "definition": "Computationally predicted enhancer elements based on chromatin signatures (H3K4me1, H3K27ac, accessibility).",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:221651dabcbc",
+          "subjects": [
+            "term:ONGA_0000181"
+          ],
+          "onga_term": "enhancer validation",
+          "onga_term_id": "ONGA_0000181",
+          "category": "FeatureType",
+          "definition": "Experimental validation data for predicted enhancers.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:811489df0f39",
+          "subjects": [
+            "term:ONGA_0000184"
+          ],
+          "onga_term": "predicted enhancers",
+          "onga_term_id": "ONGA_0000184",
+          "category": "FeatureType",
+          "definition": "Computationally predicted enhancer elements.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "replication_timing": {
+      "count": 2,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "id": "gap:06ce8046223e",
+          "subjects": [
+            "term:ONGA_0000193"
+          ],
+          "onga_term": "relative replication signal",
+          "onga_term_id": "ONGA_0000193",
+          "category": "FeatureType",
+          "definition": "Replication timing signal expressed relative to a reference.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:d7f4b516acd7",
+          "subjects": [
+            "term:ONGA_0000194"
+          ],
+          "onga_term": "replication timing profile",
+          "onga_term_id": "ONGA_0000194",
+          "category": "FeatureType",
+          "definition": "Genome-wide profile of DNA replication timing.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "sequence_motif": {
       "count": 1,
       "max_similarity_in_group": 0,
       "avg_similarity": 0,
       "terms": [
         {
-          "name": "control profile",
+          "id": "gap:8644739cc88a",
+          "subjects": [
+            "term:ONGA_0000206"
+          ],
+          "onga_term": "PWMs",
+          "onga_term_id": "ONGA_0000206",
+          "category": "FeatureType",
+          "definition": "Position weight matrices representing sequence motif models, encoding nucleotide preferences at each position.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "signal_track": {
+      "count": 9,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "id": "gap:aafae81794fb",
+          "subjects": [
+            "term:ONGA_0000013"
+          ],
+          "onga_term": "bias-corrected predicted signal profile",
+          "onga_term_id": "ONGA_0000013",
+          "category": "DataType",
+          "definition": "Model-predicted signal after correction for sequence-composition bias.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:9af0e4efaeb9",
+          "subjects": [
+            "term:ONGA_0000014"
+          ],
+          "onga_term": "control normalized signal",
+          "onga_term_id": "ONGA_0000014",
+          "category": "DataType",
+          "definition": "Signal normalized against a matched control experiment to remove background and technical artifacts.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:fc91e079ec60",
+          "subjects": [
+            "term:ONGA_0000015"
+          ],
+          "onga_term": "enrichment",
+          "onga_term_id": "ONGA_0000015",
+          "category": "DataType",
+          "definition": "Quantitative enrichment score over background, measuring signal above expected noise level.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:557a9324f664",
+          "subjects": [
+            "term:ONGA_0000016"
+          ],
+          "onga_term": "fold change over control",
+          "onga_term_id": "ONGA_0000016",
+          "category": "DataType",
+          "definition": "Signal expressed as the ratio of experimental signal to input/control, highlighting enrichment over background.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:cb4368cbdb80",
+          "subjects": [
+            "term:ONGA_0000019"
+          ],
+          "onga_term": "summed densities signal",
+          "onga_term_id": "ONGA_0000019",
+          "category": "DataType",
+          "definition": "Signal computed as the sum of per-base read densities across the region.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:4b2d2a056dd1",
+          "subjects": [
+            "term:ONGA_0000020"
+          ],
+          "onga_term": "wavelet-smoothed signal",
+          "onga_term_id": "ONGA_0000020",
+          "category": "DataType",
+          "definition": "Signal smoothed using wavelet transform to reduce noise while preserving peak structure.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:768bed603823",
+          "subjects": [
+            "term:ONGA_0000159"
+          ],
+          "onga_term": "signal profile",
+          "onga_term_id": "ONGA_0000159",
+          "category": "DataType",
+          "definition": "Signal profile across genomic positions.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:1a0647535150",
+          "subjects": [
+            "term:ONGA_0000160"
+          ],
+          "onga_term": "bias profile",
+          "onga_term_id": "ONGA_0000160",
+          "category": "DataType",
+          "definition": "Sequencing bias profile across genomic positions.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:92b594585593",
+          "subjects": [
+            "term:ONGA_0000161"
+          ],
+          "onga_term": "control profile",
+          "onga_term_id": "ONGA_0000161",
           "category": "DataType",
           "definition": "Control signal profile.",
           "max_similarity": 0,
@@ -152,49 +1105,273 @@
       ]
     },
     "single_cell": {
-      "count": 1,
+      "count": 6,
       "max_similarity_in_group": 0,
       "avg_similarity": 0,
       "terms": [
         {
-          "name": "cell topic participation",
+          "id": "gap:1972f1182e81",
+          "subjects": [
+            "term:ONGA_0000127"
+          ],
+          "onga_term": "archr project",
+          "onga_term_id": "ONGA_0000127",
+          "category": "DataType",
+          "definition": "ArchR software project file with processed single-cell ATAC-seq data and analyses.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:e839f8b2f737",
+          "subjects": [
+            "term:ONGA_0000128"
+          ],
+          "onga_term": "cell coordinates",
+          "onga_term_id": "ONGA_0000128",
+          "category": "DataType",
+          "definition": "Low-dimensional coordinates (UMAP, t-SNE, PCA) for single-cell visualization.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:dc2dae2cbaec",
+          "subjects": [
+            "term:ONGA_0000129"
+          ],
+          "onga_term": "cell topic participation",
+          "onga_term_id": "ONGA_0000129",
           "category": "DataType",
           "definition": "Cell-level participation scores in latent topics from topic modeling.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:859b45751b59",
+          "subjects": [
+            "term:ONGA_0000130"
+          ],
+          "onga_term": "clusters",
+          "onga_term_id": "ONGA_0000130",
+          "category": "DataType",
+          "definition": "Cell cluster assignments from unsupervised clustering of single-cell data.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:eec2efa91726",
+          "subjects": [
+            "term:ONGA_0000221"
+          ],
+          "onga_term": "cell type annotations",
+          "onga_term_id": "ONGA_0000221",
+          "category": "FeatureType",
+          "definition": "Cell type labels assigned to individual cells based on marker genes or reference mapping.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:6e31a529d918",
+          "subjects": [
+            "term:ONGA_0000222"
+          ],
+          "onga_term": "cell type data",
+          "onga_term_id": "ONGA_0000222",
+          "category": "FeatureType",
+          "definition": "Data associated with cell type identity in single-cell experiments.",
+          "max_similarity": 0,
+          "best_match": null
+        }
+      ]
+    },
+    "structure": {
+      "count": 2,
+      "max_similarity_in_group": 0,
+      "avg_similarity": 0,
+      "terms": [
+        {
+          "id": "gap:0e0dd48077a8",
+          "subjects": [
+            "term:ONGA_0000223"
+          ],
+          "onga_term": "3D structure",
+          "onga_term_id": "ONGA_0000223",
+          "category": "FeatureType",
+          "definition": "Three-dimensional structural model of a genomic region or chromatin domain.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:1ce8ce601144",
+          "subjects": [
+            "term:ONGA_0000226"
+          ],
+          "onga_term": "predicted 3D structural ensembles",
+          "onga_term_id": "ONGA_0000226",
+          "category": "FeatureType",
+          "definition": "Computationally predicted ensembles of 3D genomic structures.",
           "max_similarity": 0,
           "best_match": null
         }
       ]
     },
     "technical": {
-      "count": 4,
+      "count": 13,
       "max_similarity_in_group": 0,
       "avg_similarity": 0,
       "terms": [
         {
-          "name": "exclusion list regions",
+          "id": "gap:dcc17a93b1d5",
+          "subjects": [
+            "term:ONGA_0000131"
+          ],
+          "onga_term": "capture targets",
+          "onga_term_id": "ONGA_0000131",
+          "category": "DataType",
+          "definition": "Genomic regions targeted for enrichment in capture-based sequencing (exome, panels).",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:3b14c79a959e",
+          "subjects": [
+            "term:ONGA_0000132"
+          ],
+          "onga_term": "exclusion list regions",
+          "onga_term_id": "ONGA_0000132",
           "category": "DataType",
           "definition": "Genomic blacklist regions excluded due to mapping artifacts or technical issues.",
           "max_similarity": 0,
           "best_match": null
         },
         {
-          "name": "nanopore signal",
+          "id": "gap:6fbe8adae439",
+          "subjects": [
+            "term:ONGA_0000135"
+          ],
+          "onga_term": "idat green channel",
+          "onga_term_id": "ONGA_0000135",
+          "category": "DataType",
+          "definition": "Green channel intensity data from Illumina IDAT microarray files.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:56041b820b74",
+          "subjects": [
+            "term:ONGA_0000136"
+          ],
+          "onga_term": "idat red channel",
+          "onga_term_id": "ONGA_0000136",
+          "category": "DataType",
+          "definition": "Red channel intensity data from Illumina IDAT microarray files.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:1c907969d037",
+          "subjects": [
+            "term:ONGA_0000139"
+          ],
+          "onga_term": "intensity values",
+          "onga_term_id": "ONGA_0000139",
+          "category": "DataType",
+          "definition": "Raw intensity measurements from microarray or imaging experiments.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:e744b59c405b",
+          "subjects": [
+            "term:ONGA_0000140"
+          ],
+          "onga_term": "kmer weights",
+          "onga_term_id": "ONGA_0000140",
+          "category": "DataType",
+          "definition": "Frequency or weight values for k-mer sequences.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:08276e7d8ffe",
+          "subjects": [
+            "term:ONGA_0000141"
+          ],
+          "onga_term": "library fraction",
+          "onga_term_id": "ONGA_0000141",
+          "category": "DataType",
+          "definition": "Proportion of sequencing library represented by a sample or subset.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:cc15981c57f3",
+          "subjects": [
+            "term:ONGA_0000143"
+          ],
+          "onga_term": "nanopore signal",
+          "onga_term_id": "ONGA_0000143",
           "category": "DataType",
           "definition": "Raw ionic current signal from nanopore sequencing.",
           "max_similarity": 0,
           "best_match": null
         },
         {
-          "name": "negative control regions",
+          "id": "gap:6b3a853375fb",
+          "subjects": [
+            "term:ONGA_0000144"
+          ],
+          "onga_term": "negative control regions",
+          "onga_term_id": "ONGA_0000144",
           "category": "DataType",
           "definition": "Genomic regions used as negative controls in experiments.",
           "max_similarity": 0,
           "best_match": null
         },
         {
-          "name": "positive control regions",
+          "id": "gap:098545ceff81",
+          "subjects": [
+            "term:ONGA_0000145"
+          ],
+          "onga_term": "positive control regions",
+          "onga_term_id": "ONGA_0000145",
           "category": "DataType",
           "definition": "Genomic regions used as positive controls in experiments.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:4b3733eb645e",
+          "subjects": [
+            "term:ONGA_0000148"
+          ],
+          "onga_term": "raw data",
+          "onga_term_id": "ONGA_0000148",
+          "category": "DataType",
+          "definition": "Unprocessed experimental data in original format before computational processing.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:c79eca0bcbc4",
+          "subjects": [
+            "term:ONGA_0000149"
+          ],
+          "onga_term": "raw imaging signal",
+          "onga_term_id": "ONGA_0000149",
+          "category": "DataType",
+          "definition": "Unprocessed signal from imaging-based experiments.",
+          "max_similarity": 0,
+          "best_match": null
+        },
+        {
+          "id": "gap:c89882600d45",
+          "subjects": [
+            "term:ONGA_0000154"
+          ],
+          "onga_term": "validation",
+          "onga_term_id": "ONGA_0000154",
+          "category": "DataType",
+          "definition": "Data generated for experimental validation purposes.",
           "max_similarity": 0,
           "best_match": null
         }
