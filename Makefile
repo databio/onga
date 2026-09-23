@@ -131,3 +131,15 @@ apply:
 
 clean:
 	rm -f project/owl/*.ttl project/owl/*-so-element-types.owl.ttl project/*.jsonld project/*.py
+
+# Local curation loop: the loopback-only decision daemon (scripts/curation_server.py,
+# 127.0.0.1:8781) plus the site dev server. The daemon writes curation/decisions.yaml
+# and proposals/upstream_requests.yaml in the working tree; commit with normal git.
+.PHONY: curate curate-server
+curate:
+	@python scripts/curation_server.py & echo $$! > .curate.pid; \
+	trap 'kill $$(cat .curate.pid) 2>/dev/null; rm -f .curate.pid' EXIT INT TERM; \
+	cd site && npm run dev
+
+curate-server:
+	python scripts/curation_server.py

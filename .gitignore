@@ -3,3 +3,4 @@ embeddings/data/embeddings/
 embeddings/onga_embeddings.egg-info/
 __pycache__/
 project/
+.curate.pid

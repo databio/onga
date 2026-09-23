@@ -18,6 +18,11 @@ Two block-sequence styles exist in the tree, and each file keeps its own:
 A file is "indented" if ANY block sequence item under a mapping key is indented
 deeper than the key. `scripts/fmt_schema.py --check` (run by `make test`) keeps
 every `src/*.yaml` a fixed point of load + dump.
+
+Nulls: ruamel writes None as an empty value. A file that spells nulls out
+(`key: null`, e.g. proposals/upstream_requests.yaml) keeps `null`; files that
+use empty values (`src/*.yaml` permissible values) keep those. A writer may set
+`Doc.nulls` to choose explicitly.
 """
 import io
 import os
@@ -26,9 +31,11 @@ import tempfile
 from pathlib import Path
 
 from ruamel.yaml import YAML
+from ruamel.yaml.representer import RoundTripRepresenter
 
 _KEY = re.compile(r"^( *)[^\s#-][^:#]*:\s*(#.*)?$")
 _ITEM = re.compile(r"^( *)- ")
+_NULL = re.compile(r"^[^#]*(:|-)\s+null\s*(#.*)?$", re.M)
 
 
 def is_indented(text):
@@ -48,9 +55,25 @@ def is_indented(text):
     return False
 
 
-def _yaml(indented):
+def uses_null(text):
+    """True if the file spells null values as `null` rather than leaving them empty."""
+    return bool(_NULL.search(text))
+
+
+class _NullRepresenter(RoundTripRepresenter):
+    """Round-trip representer that writes None as `null` (a subclass, so the
+    default representer used for every other file is left alone)."""
+
+
+_NullRepresenter.add_representer(
+    type(None), lambda r, _: r.represent_scalar("tag:yaml.org,2002:null", "null"))
+
+
+def _yaml(indented, nulls=False):
     y = YAML()
     y.preserve_quotes = True
+    if nulls:
+        y.Representer = _NullRepresenter
     if indented:
         y.indent(mapping=2, sequence=4, offset=2)
         y.width = 4096
@@ -62,21 +85,22 @@ def _yaml(indented):
 class Doc:
     """A loaded document plus the style it must be written back in."""
 
-    def __init__(self, data, indented):
+    def __init__(self, data, indented, nulls=False):
         self.data = data
         self.indented = indented
+        self.nulls = nulls
 
 
 def load(path):
     """Round-trip load `path`; returns a Doc (use `.data` for the content)."""
     text = Path(path).read_text()
     indented = is_indented(text)
-    return Doc(_yaml(indented).load(text), indented)
+    return Doc(_yaml(indented).load(text), indented, uses_null(text))
 
 
 def dumps(doc):
     buf = io.StringIO()
-    _yaml(doc.indented).dump(doc.data, buf)
+    _yaml(doc.indented, doc.nulls).dump(doc.data, buf)
     return buf.getvalue()
 
 

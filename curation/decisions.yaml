@@ -1,0 +1,59 @@
+# decisions.yaml
+#
+# The decision store: every human curation decision about the ONGA schema, one
+# record per decision, each with a required rationale. Git is the history and
+# review layer; this file is the single machine-readable home of "what was
+# decided and why".
+#
+# Written only through scripts/workbench/store.py (by the local curation daemon,
+# scripts/curation_server.py, and the apply engine). Hand edits are allowed; the
+# daemon's optimistic concurrency check (file mtime) notices them.
+#
+# Structure
+# ---------
+#   version:    format version of this file
+#   next_id:    the number the next record gets (DEC-%04d); only ever grows
+#   decisions:  list of records, oldest first
+#
+# Record fields
+# -------------
+#   id                  DEC-NNNN; stable, never reused, never renumbered
+#   subject             the subject id (SID) decided on, as listed in
+#                       curation/subjects.json: term:ONGA_0000123, enum:<Enum>,
+#                       class:<Class>, slot:<slot>, usage:<Class>/<slot>,
+#                       subset:<subset>, module:<module>. Opaque: never parsed.
+#   also_affects        other SIDs the decision changes (e.g. the merge target);
+#                       [] when none
+#   verdict             one of the verdicts curation/verdicts.yaml allows for the
+#                       subject's kind
+#   operation           the verdict's parameters, shaped by the `operation`
+#                       schema in curation/verdicts.yaml; `op` equals the verdict.
+#                       null for verdicts that take none.
+#   rationale           why. Required and non-empty for every terminal verdict
+#                       (everything except `defer`).
+#   evidence            list of {kind, id?, detail?}; kind is finding | usage |
+#                       issue | pr | doc | other. `id` names a finding
+#                       ("sim:…", "lint:…") or issue; `detail` is free text.
+#   decided_by          git config user.name of whoever recorded it
+#   decided_on          date recorded (YYYY-MM-DD)
+#   subject_hashes      {SID: hash} for the subject and every also_affects SID,
+#                       as they were when the decision was made. A pending record
+#                       whose hashes no longer match is stale.
+#   schema_fingerprint  curation/subjects.json schema_fingerprint at decision time
+#   status              pending | applied | withdrawn. Withdrawn records stay.
+#   applied             {on, subject_hashes_after, created, retired}, filled by
+#                       the apply engine: the date, the post-apply hashes (an
+#                       applied record is stale when these no longer match), and
+#                       the SIDs it created and retired
+#   supersedes          id of an earlier record this one replaces, or null
+#   origin              {kind, ref}; kind is local | seed | github_issue |
+#                       github_pr, ref is the issue/PR reference or null. The
+#                       workbench writes local and seed only.
+#
+# Not here: confidence (the rationale carries strength of evidence), curation
+# tiers (a `promote_tier` verdict writes them to src/), and upstream-request
+# review state (that stays in proposals/upstream_requests.yaml `status:`).
+
+version: 1
+next_id: 1
+decisions: []
