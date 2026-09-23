@@ -16,6 +16,7 @@ Endpoints
   GET    /api/status              curation/status.json (404 until it exists)
   PATCH  /api/proposals/<id>      set `status:` of an upstream request
   POST   /api/apply               run scripts/apply_decisions.py (503 until present)
+  GET    /api/apply               the last run's log: {running, dry_run, log, exit}
 
 Every decision write goes through scripts/workbench/store.py (`validate` is the
 one gate). Errors are `{"errors": [...]}` with 400 (malformed), 404 (unknown id)
@@ -28,6 +29,7 @@ The server sets `decided_by` (git config user.name), `decided_on`,
 cannot supply them.
 """
 import argparse
+import contextlib
 import datetime
 import ipaddress
 import json
@@ -46,7 +48,7 @@ ROOT = store.ROOT
 PROPOSALS = ROOT / "proposals" / "upstream_requests.yaml"
 STATUS = ROOT / "curation" / "status.json"
 APPLY = ROOT / "scripts" / "apply_decisions.py"
-ALLOWED_ORIGINS = {f"http://{h}:{p}" for h in ("localhost", "127.0.0.1") for p in (4321, 4322)}
+ALLOWED_ORIGINS = {f"http://{h}:{p}" for h in ("localhost", "127.0.0.1") for p in range(4321, 4330)}
 REQUEST_STATUSES = ("proposed", "filed", "accepted", "declined", "withdrawn")
 # Fields only the server (or the apply engine) sets.
 SERVER_FIELDS = ("id", "decided_by", "decided_on", "schema_fingerprint", "status", "applied", "origin")
@@ -68,6 +70,9 @@ def is_loopback(host):
 class Api(BaseHTTPRequestHandler):
     server_version = "onga-curation/1"
     decided_by = None  # set in main()
+    # The last apply run, kept so a page reloaded mid-run (the dev server
+    # reloads when apply rewrites site data) can pick the log back up.
+    last_apply = {"running": False, "dry_run": False, "log": [], "exit": None}
 
     # ------------------------------------------------------------ plumbing
 
@@ -133,7 +138,9 @@ class Api(BaseHTTPRequestHandler):
         for prefix, fn in routes:
             if path == prefix or (prefix.endswith("/") and path.startswith(prefix)):
                 try:
-                    with store.LOCK:
+                    # Reads skip the lock (writes are atomic renames), so health
+                    # and the apply log stay reachable while an apply runs.
+                    with store.LOCK if self.command != "GET" else contextlib.nullcontext():
                         return fn(path[len(prefix):] if prefix.endswith("/") else None)
                 except store.StoreError as e:
                     extra = {"store": self._store_json()} if e.status == 409 else {}
@@ -158,6 +165,7 @@ class Api(BaseHTTPRequestHandler):
             ("/api/decisions", lambda _: self._send(200, self._store_json())),
             ("/api/subjects", lambda _: self._file(store.SUBJECTS)),
             ("/api/status", lambda _: self._file(STATUS)),
+            ("/api/apply", lambda _: self._send(200, Api.last_apply)),
         ])
 
     def do_POST(self):
@@ -250,15 +258,27 @@ class Api(BaseHTTPRequestHandler):
         if body.get("ids"):
             cmd += ["--ids", *map(str, body["ids"])]
         proc = subprocess.Popen(cmd, cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        run = Api.last_apply = {"running": True, "dry_run": bool(body.get("dry_run")), "log": [], "exit": None}
         self.send_response(200)
         self._cors()
         self.send_header("Content-Type", "text/plain; charset=utf-8")
         self.send_header("Connection", "close")
         self.end_headers()
+        client = True
         for line in proc.stdout:
-            self.wfile.write(line)
-            self.wfile.flush()
-        self.wfile.write(f"\nexit {proc.wait()}\n".encode())
+            run["log"].append(line.decode(errors="replace").rstrip("\n"))
+            if client:
+                try:
+                    self.wfile.write(line)
+                    self.wfile.flush()
+                except OSError:  # the page went away; keep draining the run
+                    client = False
+        run["exit"], run["running"] = proc.wait(), False
+        if client:
+            try:
+                self.wfile.write(f"\nexit {run['exit']}\n".encode())
+            except OSError:
+                pass
         self.close_connection = True
 
 

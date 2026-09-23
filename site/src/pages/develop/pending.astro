@@ -115,13 +115,32 @@ const lineClass = (l: string) =>
 </Layout>
 
 <script>
-  import { probe, apply, CurationError } from '../../lib/curation';
+  import { probe, apply, applyStatus, CurationError } from '../../lib/curation';
+
+  // The dev server reloads this page when an apply rewrites site data, which
+  // cuts the stream. Remember that a run was started and, after a reload,
+  // follow it through the daemon's copy of the log.
+  const WATCH = 'onga-apply-watch';
+  const store = (fn: () => void) => { try { fn(); } catch { /* storage blocked */ } };
+  const watching = () => { try { return sessionStorage.getItem(WATCH) === '1'; } catch { return false; } };
+  const doneNote = (code: number | null, dryRun: boolean) =>
+    `\n[exit ${code}]` + (code === 0 && !dryRun ? ' Applied. Run make regen, rebuild, and commit.' : '');
 
   probe().then((health) => {
     if (!health) return;
     document.querySelector('.pending-static')?.classList.add('hidden');
     document.querySelector('.pending-live')?.classList.remove('hidden');
     const log = document.getElementById('apply-log')!;
+    if (watching()) (async () => {
+      log.classList.remove('hidden');
+      for (;;) {
+        const run = await applyStatus().catch(() => null);
+        if (!run) return;
+        log.textContent = run.log.join('\n') + (run.running ? '\n[still running…]' : doneNote(run.exit, run.dry_run));
+        if (!run.running) { store(() => sessionStorage.removeItem(WATCH)); return; }
+        await new Promise((r) => setTimeout(r, 1000));
+      }
+    })();
     document.querySelectorAll<HTMLButtonElement>('.apply-btn').forEach((btn) => {
       btn.addEventListener('click', async () => {
         const dryRun = btn.dataset.dry === '1';
@@ -129,9 +148,11 @@ const lineClass = (l: string) =>
         document.querySelectorAll<HTMLButtonElement>('.apply-btn').forEach((b) => (b.disabled = true));
         log.classList.remove('hidden');
         log.textContent = '';
+        if (!dryRun) store(() => sessionStorage.setItem(WATCH, '1'));
         try {
           const code = await apply({ dryRun, onLine: (l) => { log.textContent += l + '\n'; log.scrollTop = log.scrollHeight; } });
-          log.textContent += `\n[exit ${code}]` + (code === 0 && !dryRun ? ' Applied. Run make regen, rebuild, and commit.' : '');
+          store(() => sessionStorage.removeItem(WATCH));
+          log.textContent += doneNote(code, dryRun);
         } catch (e) {
           const msg = e instanceof CurationError ? `${e.status}: ${e.message}` : String(e);
           log.textContent += `\n[error] ${msg}`;

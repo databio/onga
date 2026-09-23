@@ -6,8 +6,9 @@
 // JSON under src/data/develop/. Import this only from client <script>s.
 //
 // Mode is decided once per page load: probe() does one cached health check with
-// a 400 ms timeout, and only when the page itself is served from localhost (so
-// the public site never makes a request to 127.0.0.1).
+// a 3 s timeout (health hashes src/, ~350 ms; a stopped daemon fails fast
+// anyway), and only when the page itself is served from localhost (so the
+// public site never makes a request to 127.0.0.1).
 
 export const CURATION_API = 'http://127.0.0.1:8781';
 
@@ -64,7 +65,7 @@ export function probe(): Promise<Health | null> {
   const local = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
   probed = !local ? Promise.resolve(null) : (async () => {
     try {
-      const res = await fetch(`${CURATION_API}/api/health`, { signal: AbortSignal.timeout(400) });
+      const res = await fetch(`${CURATION_API}/api/health`, { signal: AbortSignal.timeout(3000) });
       return res.ok ? ((await res.json()) as Health) : null;
     } catch {
       return null;
@@ -154,6 +155,13 @@ export async function apply(
   }
   storePromise = null;
   return code;
+}
+
+export interface ApplyRun { running: boolean; dry_run: boolean; log: string[]; exit: number | null }
+
+/** The daemon's last apply run (so a page reloaded mid-run can show its log). */
+export function applyStatus(): Promise<ApplyRun> {
+  return call<ApplyRun>('GET', '/api/apply');
 }
 
 /** Fired on `document` after any save or withdraw, so other controls on the page can refresh. */
