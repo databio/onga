@@ -11,8 +11,11 @@ Checks every row of every SSSOM file (by header name):
     only onga:has_element_type, skos:relatedMatch, a SKOS match to a
     set-denoting SO class, or a SKOS match from a facet value to an SO sequence
     attribute; sssom:NoTermFound only on onga:has_element_type;
-  - element_type_fit is set (and in range) exactly on onga:has_element_type rows,
-    is not_applicable exactly on NoTermFound rows, and is consistent per subject;
+  - element_type_fit is set (and in range) exactly on positive
+    onga:has_element_type rows, is not_applicable exactly on NoTermFound rows,
+    and is consistent per subject;
+  - a negated row (`predicate_modifier: Not`, a rejected suggestion) is exempt
+    from the predicate policy and carries no element_type_fit;
   - a subject is never both a membership row and an SO skos:relatedMatch row;
   - no duplicate (subject, predicate, object) triple.
 
@@ -85,7 +88,7 @@ def main():
                 errs.append(f"{where}: object_label {r.get('object_label')!r} is not "
                             f"the SO name {so[obj]!r}")
             attribute = obj in policy["sequence_attribute_so"]
-            if pred in policy["banned_skos"] and obj not in licensed:
+            if pred in policy["banned_skos"] and obj not in licensed and not mod:
                 errs.append(
                     f"{where}: BANNED PREDICATE. ONGA terms denote SETS and SO classes "
                     f"denote ELEMENTS, so exact/close/broad/narrowMatch are licensed only "
@@ -96,9 +99,11 @@ def main():
             if attribute and content:
                 errs.append(f"{where}: SO sequence attributes are for facet values, "
                             f"not DataType / FeatureType terms (a set). See {ADR}.")
-            if pred == HAS_ELEMENT_TYPE and fit not in policy["fits"] - {"not_applicable"}:
+            if pred == HAS_ELEMENT_TYPE and not mod and fit not in policy["fits"] - {"not_applicable"}:
                 errs.append(f"{where}: element_type_fit {fit!r} must be one of "
                             f"{sorted(policy['fits'] - {'not_applicable'})}")
+            if mod and fit:
+                errs.append(f"{where}: a negated row carries no element_type_fit")
             for col in ("subject_category", "object_category"):
                 want = "" if attribute else policy[col]
                 if r.get(col, "") != want:

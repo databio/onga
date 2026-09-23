@@ -101,6 +101,16 @@ def records(path=STORE):
     return list(load(path).data["decisions"])
 
 
+def plain_records(path=STORE):
+    """The records as plain JSON-safe dicts (dates as YYYY-MM-DD strings).
+
+    Read the store through here, not PyYAML: YAML 1.1 loaders turn the
+    `applied.on` key into the boolean True."""
+    if not Path(path).exists():
+        return []
+    return [to_plain(r) for r in records(path)]
+
+
 def find(doc, dec_id):
     for i, rec in enumerate(doc.data["decisions"]):
         if rec["id"] == dec_id:

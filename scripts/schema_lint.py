@@ -29,7 +29,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from workbench.store import load_verdicts  # noqa: E402
+from workbench.store import load_verdicts, plain_records  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -82,10 +82,9 @@ class Linter:
         self.markers = [re.compile(p, re.I) for p in pol["todo_markers"]]
         self.usage = json.loads(USAGE.read_text())
         self.keep_atomic = set()
-        if DECISIONS.exists():
-            for d in (yaml.safe_load(DECISIONS.read_text()) or {}).get("decisions") or []:
-                if d.get("verdict") == "keep_atomic" and d.get("status") != "withdrawn":
-                    self.keep_atomic.add(d["subject"])
+        for d in plain_records(DECISIONS):
+            if d.get("verdict") == "keep_atomic" and d.get("status") != "withdrawn":
+                self.keep_atomic.add(d["subject"])
         self.verdicts = load_verdicts()
         self.findings = {}
 

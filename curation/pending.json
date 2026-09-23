@@ -1,0 +1,7 @@
+{
+ "_generated_by": "scripts/apply_decisions.py --dry-run --emit (make pending); do not edit",
+ "ok": true,
+ "decisions": [],
+ "files": [],
+ "errors": {}
+}

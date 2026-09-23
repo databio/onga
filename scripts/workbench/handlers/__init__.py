@@ -12,14 +12,24 @@ each call `register(...)` at import time. Record-only verdicts (those with
 `writes: none` in verdicts.yaml: keep, keep_atomic, defer, mint_base) are
 registered here as no-ops.
 
-A handler never touches disk. It reads through `ctx.read_*` (which sees earlier
-staged writes in the same run) and writes through `ctx.stage_*`.
+A handler never touches disk. It reads through `ctx.read_yaml` / `read_tsv` /
+`read_text` (which see earlier staged writes in the same run) and writes by
+mutating what those return (the object stays staged) or through `stage_text`.
+Handler modules in this package are discovered by `load_all()`; a new module
+only has to call `register(...)` at import time.
 """
+import importlib
+import pkgutil
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Protocol
 
 from .. import store, yamlio as _yamlio
+from ..tsv import Table
+
+
+class ApplyError(Exception):
+    """A handler (or the engine) found, while staging, that a record cannot apply."""
 
 
 @dataclass
@@ -30,7 +40,6 @@ class Effects:
     created: list = field(default_factory=list)    # SIDs created
     retired: list = field(default_factory=list)    # SIDs retired
     renamed: dict = field(default_factory=dict)    # old SID -> new SID
-    ledger: list = field(default_factory=list)     # curation/term_ids.tsv row updates
 
 
 @dataclass
@@ -41,8 +50,9 @@ class Ctx:
     yamlio    the one YAML writer
     ids       scripts/workbench/ids.py (term id allocation and resolution)
     subjects  store.Subjects index over curation/subjects.json
-    staged    {relative path: yamlio.Doc | str}, the pending writes; nothing
-              reaches disk until the engine commits
+    staged    {relative path: yamlio.Doc | tsv.Table | str}, the pending
+              writes; nothing reaches disk until the engine commits (and only
+              files whose rendered text differs from disk are written)
     """
     root: Path
     ids: Any
@@ -61,12 +71,37 @@ class Ctx:
             self.staged[key] = self.yamlio.load(self.root / key)
         return self.staged[key]
 
+    def read_tsv(self, path):
+        """The staged tsv.Table for `path`, loading (and staging) it on first use."""
+        key = self._key(path)
+        if key not in self.staged:
+            self.staged[key] = Table.parse((self.root / key).read_text())
+        return self.staged[key]
+
+    def render(self, key):
+        """The text the staged object for `key` would write."""
+        cur = self.staged[key]
+        if isinstance(cur, str):
+            return cur
+        if isinstance(cur, Table):
+            return cur.dumps()
+        return self.yamlio.dumps(cur)
+
     def read_text(self, path):
         key = self._key(path)
-        cur = self.staged.get(key)
-        if cur is None:
+        if key not in self.staged:
             return (self.root / key).read_text()
-        return cur if isinstance(cur, str) else self.yamlio.dumps(cur)
+        return self.render(key)
+
+    def changed(self):
+        """{relative path: new text} for every staged file that differs from disk."""
+        out = {}
+        for key in sorted(self.staged):
+            text = self.render(key)
+            p = self.root / key
+            if not p.exists() or p.read_text() != text:
+                out[key] = text
+        return out
 
     def stage_text(self, path, text):
         self.staged[self._key(path)] = text
@@ -113,6 +148,13 @@ def missing(verdicts=None):
     """(kind, verdict) pairs in verdicts.yaml with no registered handler."""
     verdicts = verdicts or store.load_verdicts()
     return sorted((k, v) for k, vs in verdicts.items() for v in vs if (k, v) not in REGISTRY)
+
+
+def load_all():
+    """Import every handler module in this package (each registers itself)."""
+    for info in pkgutil.iter_modules(__path__):
+        importlib.import_module(f"{__name__}.{info.name}")
+    return REGISTRY
 
 
 for _kind, _vs in store.load_verdicts().items():

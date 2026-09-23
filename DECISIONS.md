@@ -848,6 +848,7 @@ cross-cutting test, or are an identity rather than a base carrying a
 qualifier). This backlog is **closed by decision**, not open. Each term below
 was verified live in `src/file_content.yaml` (enum noted per row).
 
+<!-- BEGIN GENERATED: atomic-by-principle (scripts/render_decisions.py; do not edit) -->
 | Axis / terms | Enum | Reason kept atomic |
 |---|---|---|
 | **Reproducibility-selection** — `conservative/optimal/representative/pseudoreplicated IDR thresholded peaks`, `replicated peaks`, `pseudoreplicated peaks`, `representative DNase hypersensitivity sites`, `consensus DNase hypersensitivity sites` | DataType | Deferred this session; only cross-cuts ~2 base families (peaks, DHS), below the payoff bar. |
@@ -859,6 +860,7 @@ was verified live in `src/file_content.yaml` (enum noted per row).
 | **Assay/method-fused predicted** — `DNN-MPRA predicted signal`, `HMM predicted chromatin state` | DataType | The model/assay name is part of identity, not an orthogonal facet; kept atomic (the assay-name axis is itself deferred — see principle #5). |
 | **Reference ploidy** — `diploid personal genome alignments` | DataType | `diploid` qualifies the REFERENCE (its ploidy), not the haplotype resolution of the content; not a value of `HaplotypeResolution` (operation #17). Kept atomic. |
 | **Parental origin + allelic-imbalance sense** — `allele-specific variants`; `maternal variant calls`, `paternal variant calls`, `maternal haplotype mapping`, `paternal haplotype mapping` | FeatureType | `allele-specific variants` is the ALLELIC-IMBALANCE behavior (a different sense of "allele-specific"), not allele-resolved content. The maternal/paternal terms carry a parental-origin axis (which parent a haplotype came from) that is SEPARATE from `HaplotypeResolution` and DEFERRED to a future parental-origin facet — collapsing them into `haplotype_specific` would lose the parent label (operation #17). |
+<!-- END GENERATED: atomic-by-principle -->
 
 **Bias-correction note.** After operation #14, `bias profile` is now an atomic
 base, and the standalone `observed bias profile` / `predicted bias profile`
@@ -870,26 +872,22 @@ the compound `bias-corrected predicted signal profile`, held for a future
 
 ## Current state
 
+<!-- BEGIN GENERATED: current-state (scripts/render_decisions.py; do not edit) -->
 - **DataType:** 162 terms (58 EDAM-mapped, 26 with an `element_type` annotation)
 - **FeatureType:** 75 terms (29 EDAM-mapped, 61 with an `element_type` annotation)
 - **Categories:** 22 subsets
-- **Total:** 237 terms, 87 EDAM-mapped, 87 element-type-annotated (71 with an SO
-  class, 16 `not_applicable`)
-- **Term ids:** 292, `ONGA_0000001` … `ONGA_0000292`, one per permissible value
-  in every enum, as `meaning: onga:ONGA_NNNNNNN` (operation #20; ledger
-  `curation/term_ids.tsv`). No `meaning:` holds an external CURIE (principle #7).
-- **SO element-type rows:** 74 (`onga:has_element_type`, in `mappings/so.sssom.tsv`)
-- **SO relatedMatch rows:** 8 (members are *not* instances)
-- **SO set-to-set rows:** 2 (whitelisted: `SO:0001505`, `SO:0001506`)
-- **SO sequence-attribute rows:** 2 (StrandOrientation `plus` / `minus`)
-- **Descriptor schemas:** 5 — TrackFormat, TrackInterpretation, TrackProvenance,
-  TrackGeometry, ReferenceGenome (Layer 2)
-- **Record classes (Layer 3):** GenomicAnnotationFile, File, Checksum,
-  AccessMethod, AccessURL, InputSource, QualityAssessment/AssessmentValue, and
-  the helpers Term and Any (+ the AccessProtocol enum in Layer 1)
-- **Investigation classes (Layer 4):** Experiment, Study, Analysis, Sample,
-  Donor, Contact, Deposit, Document/OntologyVersions, FileCollection, TopLevel
-  (+ the BiospecimenClassification enum in Layer 1)
+- **Total:** 237 terms, 87 EDAM-mapped, 87 element-type-annotated (71 with an SO class, 16 `not_applicable`)
+- **Term ids:** 292 live (`ONGA_0000001` … `ONGA_0000292`), 0 retired; one per permissible value in every enum, as `meaning: onga:ONGA_NNNNNNN` (ledger `curation/term_ids.tsv`)
+- **SO element-type rows:** 74
+- **SO relatedMatch rows:** 8
+- **SO set-to-set rows:** 2
+- **SO sequence-attribute rows:** 2
+- **Vocabularies (Layer 1):** 11 enums: DataType, Derivation, FeatureType, FilterStatus, Format, HaplotypeResolution, Normalization, ReadMultiplicity, ReferenceBuildSex, StrandOrientation, Thresholding
+- **Descriptor schemas (Layer 2):** 5 classes: ReferenceGenome, TrackFormat, TrackGeometry, TrackInterpretation, TrackProvenance; 1 enum: ValueType
+- **Record classes (Layer 3):** 10 classes: AccessMethod, AccessURL, Any, AssessmentValue, Checksum, File, GenomicAnnotationFile, InputSource, QualityAssessment, Term; 1 enum: AccessProtocol
+- **Investigation classes (Layer 4):** 11 classes: Analysis, Contact, Deposit, Document, Donor, Experiment, FileCollection, OntologyVersions, Sample, Study, TopLevel; 1 enum: BiospecimenClassification
+- **Subjects:** 292 term, 14 enum, 26 class, 160 slot, 0 usage, 22 subset, 35 module
+<!-- END GENERATED: current-state -->
 - **Registry API:** GA4GH Schema Registry static tree under `site/public/api/`
   (`databio/onga`, current version from `src/onga.yaml` `version:`);
   compliance 22/25, all required checks passing
@@ -921,3 +919,6 @@ the Develop dashboard)_
 - **`meaning:` in the non-content vocabularies (resolved by operation #20).**
   The 9 `edam:format_*` and 2 `PATO:*` CURIEs moved to SSSOM rows, and every
   value's `meaning:` is now its own ONGA id.
+
+<!-- BEGIN GENERATED: cleanup-decisions (scripts/render_decisions.py; do not edit) -->
+<!-- END GENERATED: cleanup-decisions -->

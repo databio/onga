@@ -40,7 +40,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from workbench.store import load_verdicts  # noqa: E402
+from workbench.store import load_verdicts, plain_records  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 CURATION = ROOT / "curation"
@@ -276,7 +276,7 @@ def build():
     findings, sources = load_findings(fingerprint, spol["finding_severity"])
 
     # Decisions per subject, oldest first.
-    decs = (load_yaml(DECISIONS, {}) or {}).get("decisions") or []
+    decs = plain_records(DECISIONS)
     by_subject = defaultdict(list)
     for d in decs:
         if d.get("status") == "withdrawn":

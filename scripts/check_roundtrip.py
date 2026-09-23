@@ -15,9 +15,10 @@ Checks:
   3. No compound `encode_term` from the map is still present in the enums
      (every faceted term was actually removed).
   4. Every `scope_delegations.tsv` `content_base` exists in the live enum.
-  5. The DataType / FeatureType counts and the SO mapping-set counts match the
-     numbers recorded in `DECISIONS.md` "Current state" (catches forgotten doc
-     updates).
+
+(Check 5, the prose-regex comparison against `DECISIONS.md` "Current state",
+is gone: that list is now a generated block, kept current by
+`scripts/render_decisions.py --check`.)
 
 The set/element invariants (operation #18, design principle #7; see the ADR
 "ONGA terms denote sets; SO terms denote elements"). ONGA terms denote SETS of
@@ -54,7 +55,6 @@ runs the projector, which needs ruamel.yaml. No LinkML needed.
 import csv
 import glob
 import os
-import re
 import subprocess
 import sys
 
@@ -85,7 +85,6 @@ MAPPING_SLOTS = ("exact_mappings", "close_mappings", "broad_mappings")
 ADR = 'the ADR "ONGA terms denote sets; SO terms denote elements"'
 
 SCOPE_TSV = os.path.join(ROOT, "mappings", "scope_delegations.tsv")
-DECISIONS = os.path.join(ROOT, "DECISIONS.md")
 
 failures = []
 
@@ -160,37 +159,6 @@ def so_rows():
     if not os.path.exists(SO_TSV):
         return None
     return _rows(SO_TSV)
-
-
-def check_counts(dt, ft, rows):
-    """Check 5: DECISIONS.md 'Current state' vs. the live enums and mapping set."""
-    text = open(DECISIONS).read()
-    m_dt = re.search(r"\*\*DataType:\*\*\s*(\d+)\s*terms", text)
-    m_ft = re.search(r"\*\*FeatureType:\*\*\s*(\d+)\s*terms", text)
-    if m_dt and int(m_dt.group(1)) != len(dt):
-        fail(f"[counts] DECISIONS says DataType={m_dt.group(1)} but enum has {len(dt)}")
-    if m_ft and int(m_ft.group(1)) != len(ft):
-        fail(f"[counts] DECISIONS says FeatureType={m_ft.group(1)} but enum has {len(ft)}")
-    if rows is None:
-        return
-    live = {
-        "SO element-type rows": sum(1 for r in rows
-                                    if r["predicate_id"] == HAS_ELEMENT_TYPE
-                                    and r["object_id"] != NO_TERM_FOUND),
-        "SO relatedMatch rows": sum(1 for r in rows
-                                    if r["predicate_id"] == "skos:relatedMatch"),
-        "SO set-to-set rows": sum(1 for r in rows
-                                  if r["predicate_id"] in BANNED_SKOS
-                                  and r["object_id"] in SET_DENOTING_SO),
-    }
-    for label, n in live.items():
-        m = re.search(r"\*\*" + re.escape(label) + r":\*\*\s*(\d+)", text)
-        if m is None:
-            fail(f"[counts] DECISIONS 'Current state' has no '{label}' entry "
-                 f"(live value {n})")
-        elif int(m.group(1)) != n:
-            fail(f"[counts] DECISIONS says {label}={m.group(1)} but "
-                 f"so.sssom.tsv has {n}")
 
 
 def enum_values():
@@ -351,7 +319,6 @@ def main():
     check_schemas_parse()
     n_facet = check_facet_roundtrip(dt, ft)
     n_scope = check_scope(dt, ft)
-    check_counts(dt, ft, rows)
     values = enum_values()
     n_ids = check_term_ids(values)
     check_no_so_in_skos_slots(values)

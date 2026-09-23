@@ -6,13 +6,17 @@ usage, subset, module), keyed by SID, with its authored payload and a sha256
 hash of it, plus a `schema_fingerprint` over all `sid:hash` lines and the
 per-kind `counts`. The counts are asserted against a separate parse of `src/`.
 
+subject_aliases.json maps every old SID to its new one, from the applied
+rename records in curation/decisions.yaml (`applied.renamed`), so status, log
+and subject pages can follow a subject across renames.
+
 term_crosswalk.json maps every label a term ever had (live, former, retired)
 and every legacy reference form (the old gen-owl IRI
 `https://databio.org/onga/<Enum>#<percent-encoded label>` and the old
 `onga:<underscored label>` CURIE) to its term id. It is a lookup table for our
 own tools, not a compatibility layer.
 
-Both files are generated and tracked; never hand-edit them.
+All three files are generated and tracked; never hand-edit them.
 
 Usage:
     python scripts/curation_subjects.py           # write both files
@@ -23,14 +27,27 @@ import json
 import sys
 from pathlib import Path
 
+
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from workbench import subjects  # noqa: E402
+from workbench.store import plain_records  # noqa: E402
 
 CURATION = subjects.ROOT / "curation"
 SUBJECTS = CURATION / "subjects.json"
 CROSSWALK = CURATION / "term_crosswalk.json"
+ALIASES = CURATION / "subject_aliases.json"
+DECISIONS = CURATION / "decisions.yaml"
 GENERATED_BY = "scripts/curation_subjects.py (make subjects); do not edit"
+
+
+def aliases():
+    """{old SID: new SID} from applied rename_* records, in id order."""
+    out = {}
+    for d in plain_records(DECISIONS):
+        if d.get("status") == "applied" and str(d.get("verdict", "")).startswith("rename"):
+            out.update((d.get("applied") or {}).get("renamed") or {})
+    return dict(sorted(out.items()))
 
 
 def render():
@@ -49,7 +66,7 @@ def render():
            "subjects": records}
     xw = {"_generated_by": GENERATED_BY, **crosswalk}
     dump = lambda d: json.dumps(d, indent=1, ensure_ascii=False, default=str) + "\n"  # noqa: E731
-    return {SUBJECTS: dump(doc), CROSSWALK: dump(xw)}, counts
+    return {SUBJECTS: dump(doc), CROSSWALK: dump(xw), ALIASES: dump(aliases())}, counts
 
 
 def main():

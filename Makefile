@@ -2,12 +2,12 @@ SCHEMA_DIR = src
 SCHEMA_NAME = onga
 MAIN_SCHEMA = $(SCHEMA_DIR)/$(SCHEMA_NAME).yaml
 
-.PHONY: subjects subjects-check all gen-owl gen-owl-core gen-owl-so gen-jsonld gen-python gen-docs gen-registry validate test test-examples test-registry clean embeddings-build embeddings-compare apply mappings validate-mappings fmt fmt-check regen lint-schema usage status
+.PHONY: subjects subjects-check all gen-owl gen-owl-core gen-owl-so gen-jsonld gen-python gen-docs gen-registry validate test test-examples test-registry clean embeddings-build embeddings-compare apply apply-dry pending decisions mappings validate-mappings fmt fmt-check regen lint-schema usage status
 
 all: gen-owl gen-jsonld gen-registry
 
 # Enforced lossless round-trip invariant: every facet-map row resolves to a live
-# enum base, no compound term survives, counts match DECISIONS, every value
+# enum base, no compound term survives, every value
 # carries its ONGA_NNNNNNN id (curation/term_ids.tsv), src/ is the projection of
 # mappings/*.sssom.tsv. Plus the SSSOM validation, instance validation of the
 # worked examples against the record classes, and the YAML formatting fixed point.
@@ -16,6 +16,7 @@ test: fmt-check validate-mappings subjects-check test-examples
 	python scripts/usage_rollup.py --check
 	python scripts/schema_lint.py --check
 	python scripts/curation_status.py --check
+	python scripts/render_decisions.py --check
 
 # Every src/*.yaml must be a fixed point of the shared YAML writer
 # (scripts/workbench/yamlio.py), so a programmatic edit diffs only its own change.
@@ -75,7 +76,7 @@ subjects-check:
 
 # Every generator whose output is tracked. This recipe is the inventory.
 # subjects runs after mappings: a term's payload includes its SSSOM rows.
-regen: mappings subjects gen-registry usage lint-schema status
+regen: mappings subjects gen-registry usage lint-schema status decisions pending
 
 # ENCODE file/dataset counts rolled up onto live content terms through the
 # facet decomposition (curation/usage.json). Runs before lint-schema, which reads it.
@@ -132,8 +133,26 @@ embeddings-build:
 embeddings-compare:
 	cd embeddings && python scripts/run_comparison.py
 
+# Apply every pending decision in curation/decisions.yaml to the schema, all or
+# nothing (scripts/apply_decisions.py: preflight, stage, write, regen, test;
+# any failure restores every file), then refresh the Pending page's data.
 apply:
-	python scripts/apply_changeset.py $(CHANGESET)
+	python scripts/apply_decisions.py
+	$(MAKE) pending
+
+# Print the diff `make apply` would make; write nothing.
+apply-dry:
+	python scripts/apply_decisions.py --dry-run
+
+# The staged diff and per-decision effects of the pending records, for the
+# site's Pending page (curation/pending.json).
+pending:
+	python scripts/apply_decisions.py --dry-run --emit curation/pending.json >/dev/null || true
+
+# The generated blocks of DECISIONS.md (current-state, atomic-by-principle,
+# cleanup-decisions); everything outside the markers is hand-written.
+decisions:
+	python scripts/render_decisions.py
 
 clean:
 	rm -f project/owl/*.ttl project/owl/*-so-element-types.owl.ttl project/*.jsonld project/*.py
