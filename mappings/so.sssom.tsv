@@ -4,6 +4,7 @@
 #   SO: http://purl.obolibrary.org/obo/SO_
 #   skos: http://www.w3.org/2004/02/skos/core#
 #   semapv: https://w3id.org/semapv/vocab/
+#   sssom: https://w3id.org/sssom/
 # mapping_set_id: https://databio.org/onga/mappings/so
 # mapping_set_description: ONGA subjects denote SETS of genomic elements; SO objects denote INDIVIDUAL element types, so the relation is membership, not equivalence. Membership rows use onga:has_element_type with an element_type_fit grade; skos:relatedMatch marks rows whose members are NOT instances; skos:exactMatch/closeMatch/broadMatch are banned against SO except for the two whitelisted SO classes that are themselves set-denoting.
 # creator_id: https://orcid.org/0000-0001-5884-4247
@@ -49,7 +50,7 @@
 #   SO:0001506 variant_genome -- "A collection of sequences (often chromosomes)
 #     of an individual."
 # Both SO classes are THEMSELVES set-denoting, so the level shift does not apply
-# and a plain SKOS match is correct. scripts/build_so_sssom.py fails the build if
+# and a plain SKOS match is correct. scripts/validate_mappings.py fails the build if
 # any other SO id is given a SKOS *Match predicate.
 #
 # COLUMNS
@@ -66,10 +67,16 @@
 #                                    proposals/upstream_requests.yaml
 #                      Empty on skos:* rows, where fit does not apply.
 #
-# Terms reviewed and found to have NO SO element type at all (signal values,
-# matrices, models, edges) carry `element_type_fit: not_applicable` as an
-# annotation on the permissible value in src/file_content.yaml and appear in no
-# row here, since SSSOM requires an object.
+# Terms reviewed and found to have NO SO element type at all (edges, reports,
+# cell labels, structural models) carry an onga:has_element_type row whose
+# object is sssom:NoTermFound, with element_type_fit not_applicable and the
+# reason in `comment`. This distinguishes CURATED-NONE from NOT-YET-CURATED
+# (no row at all).
+#
+# This file is hand-curated and is the source of truth.
+# scripts/validate_mappings.py checks it; scripts/project_mappings.py projects
+# it onto the element_type / element_type_fit annotations and the *_mappings
+# slots in src/file_content.yaml.
 subject_id	predicate_id	object_id	mapping_justification	subject_label	object_label	subject_category	object_category	element_type_fit	comment
 onga:open_chromatin_regions	onga:has_element_type	SO:0001747	semapv:ManualMappingCuration	open chromatin regions	open_chromatin_region	genomic element set	sequence feature type	exact	Direct match
 onga:footprints	onga:has_element_type	SO:0000235	semapv:ManualMappingCuration	footprints	TF_binding_site	genomic element set	sequence feature type	approximate	Nuclease footprint marks an inferred TF binding site; SO has no footprint term
@@ -155,3 +162,11 @@ onga:paternal_haplotype_mapping	skos:relatedMatch	SO:0001024	semapv:ManualMappin
 onga:mapping	skos:relatedMatch	SO:0001024	semapv:ManualMappingCuration	mapping	haplotype	genomic element set	sequence feature type		Rows are haplotype assignments, not haplotypes
 onga:nuclease_cleavage_frequency	skos:relatedMatch	SO:0000684	semapv:ManualMappingCuration	nuclease cleavage frequency	nuclease_sensitive_site	genomic element set	sequence feature type		Group C: rows are per-base numbers, not nuclease-sensitive sites; fails the DataType admissibility rule
 onga:sequence_adapters	skos:relatedMatch	SO:0000150	semapv:ManualMappingCuration	sequence adapters	read	genomic element set	sequence feature type		Group D: adapters are not reads and SO has no adapter term (see SO-REQ-010)
+onga:element_gene_links	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	element gene links		genomic element set	sequence feature type	not_applicable	Rows are PAIRS (edges) between an element and a gene, not features; see TrackGeometry.has_edges
+onga:links	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	links		genomic element set	sequence feature type	not_applicable	Rows are PAIRS (edges), not features; see TrackGeometry.has_edges
+onga:element_gene_interactions_p_value	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	element gene interactions p-value		genomic element set	sequence feature type	not_applicable	Rows are statistics about edges, not features
+onga:element_gene_interactions_signal	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	element gene interactions signal		genomic element set	sequence feature type	not_applicable	Rows are statistics about edges, not features
+onga:sequence_motifs_report	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	sequence motifs report		genomic element set	sequence feature type	not_applicable	Rows are report entries, not located features
+onga:3D_structure	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	3D structure		genomic element set	sequence feature type	not_applicable	Rows are structural model coordinates, not sequence features
+onga:cell_type_annotations	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	cell type annotations		genomic element set	sequence feature type	not_applicable	Rows are cell labels; cell type is delegated to CL (SO-REJ-001)
+onga:cell_type_data	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	cell type data		genomic element set	sequence feature type	not_applicable	Rows are per-cell values; cell type is delegated to CL (SO-REJ-001)

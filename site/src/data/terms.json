@@ -503,8 +503,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_3002",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Annotation track",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -528,8 +528,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_3002",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Annotation track",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -657,8 +657,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_3002",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Annotation track",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -682,8 +682,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_3002",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Annotation track",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -786,8 +786,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_3002",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Annotation track",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": {
       "fit": "broad",
@@ -857,8 +857,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_3002",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Annotation track",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -1452,8 +1452,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_3917",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Count matrix",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -1721,8 +1721,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0928",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Gene expression profile",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -1746,8 +1746,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0928",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Gene expression profile",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -1771,8 +1771,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0928",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Gene expression profile",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -1796,8 +1796,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0928",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Gene expression profile",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -1846,8 +1846,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0928",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Gene expression profile",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -1946,8 +1946,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0928",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Gene expression profile",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -1999,8 +1999,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0928",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Gene expression profile",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -2024,8 +2024,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0928",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Gene expression profile",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -2049,8 +2049,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0928",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Gene expression profile",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -2371,8 +2371,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0918",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "DNA variation",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -2396,8 +2396,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0918",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "DNA variation",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -2446,8 +2446,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_2977",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Nucleic acid sequence",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": {
       "fit": "broad",
@@ -2678,8 +2678,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_1353",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Sequence motif",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -3614,8 +3614,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_3917",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Count matrix",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": null,
@@ -4897,8 +4897,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0918",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "DNA variation",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": {
       "fit": "broad",
@@ -5035,8 +5035,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0918",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "DNA variation",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": {
       "fit": "approximate",
@@ -5081,8 +5081,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0918",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "DNA variation",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": {
       "fit": "approximate",
@@ -5127,8 +5127,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0918",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "DNA variation",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": {
       "fit": "broad",
@@ -5219,8 +5219,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0918",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "DNA variation",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": null,
     "elementTypeFit": "not_applicable",
@@ -6049,8 +6049,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0918",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "DNA variation",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": {
       "fit": "exact",
@@ -6095,8 +6095,8 @@
     "edamMapping": {
       "predicate": "exactMatch",
       "edamId": "edam:data_0918",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "DNA variation",
+      "comment": "carried from src/ during the SSSOM flip; unreviewed"
     },
     "elementType": {
       "fit": "approximate",

@@ -18,8 +18,6 @@ description: >-
 
   The same DataType can represent different FeatureTypes depending on the experiment.
 
-  Both vocabularies are **set-denoting**: a DataType or FeatureType term names a file or track whose rows are instances of some element type, not the element itself. Where every row instantiates one Sequence Ontology class, that class is recorded as the term's `element_type` annotation. ONGA is a user of SO, never a substitute for it.
-
   Both vocabularies are **set-denoting**: a DataType or FeatureType term names a file or track whose rows are instances of
   some element type, not the element itself. Where every row instantiates one Sequence Ontology class, that class is recorded
   as the term's `element_type` annotation. ONGA is a user of SO, never a substitute for it.
@@ -123,8 +121,12 @@ subsets:
 # value's IRI, so an SO CURIE there hijacks the SO class and a repeated EDAM
 # CURIE collapses distinct terms into one OWL node. Cross-references belong in
 # exact_mappings / close_mappings / broad_mappings (EDAM, set-to-set) or in
-# related_mappings (SO, non-membership). Machine-generated companion file:
-# mappings/so.sssom.tsv, written by scripts/build_so_sssom.py.
+# related_mappings (SO, non-membership).
+#
+# GENERATED, do not hand-edit: on DataType and FeatureType values, the
+# *_mappings slots and the element_type / element_type_fit annotations are
+# projected from mappings/*.sssom.tsv (the source of truth) by
+# scripts/project_mappings.py (`make mappings`).
 
 enums:
 

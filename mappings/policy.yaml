@@ -1,0 +1,40 @@
+# Mapping policy for mappings/*.sssom.tsv: the set/element rule as data.
+#
+# ONGA DataType / FeatureType terms denote SETS of genomic elements; Sequence
+# Ontology classes denote INDIVIDUAL element types. ONGA never asserts identity,
+# equivalence or hierarchy against an element-level SO class. See the ADR "ONGA
+# terms denote sets; SO terms denote elements" and DECISIONS.md design
+# principle #7.
+#
+# Read by scripts/validate_mappings.py, scripts/project_mappings.py and
+# scripts/check_roundtrip.py (checks 6-10).
+
+# SKOS predicates that assert identity or hierarchy. Banned against SO, except
+# for the SO classes in set_denoting_so.
+banned_skos:
+  - skos:exactMatch
+  - skos:closeMatch
+  - skos:broadMatch
+  - skos:narrowMatch
+
+# SO classes that are THEMSELVES set-denoting, so a SKOS match is correct.
+# Verified against so.obo: both definitions begin "A collection of sequences".
+set_denoting_so:
+  - SO:0001505
+  - SO:0001506
+
+# element_type_fit grades (a curation grade, not a relation).
+#   exact           the SO class is the tight fit
+#   approximate     SO's nearest available class; imperfect
+#   broad           all members are instances but the SO class is broader:
+#                   an SO gap, and the feed into proposals/upstream_requests.yaml
+#   not_applicable  reviewed and found to have no SO element type
+fits:
+  - exact
+  - approximate
+  - broad
+  - not_applicable
+
+# Constant category columns on so.sssom.tsv rows.
+subject_category: genomic element set
+object_category: sequence feature type

@@ -92,6 +92,9 @@ function readSoMappings() {
   const bySlug = {};
   for (const r of readSssom(join(mappingsDir, 'so.sssom.tsv'))) {
     if (!r.subject_id || !r.object_id) continue;
+    // Curated "no SO element type": carried by element_type_fit: not_applicable
+    // on the term, not an SO class to list or link.
+    if (r.object_id === 'sssom:NoTermFound') continue;
     const slug = slugify(r.subject_label || r.subject_id.replace('onga:', ''));
     const predicate = r.predicate_id || '';
     (bySlug[slug] = bySlug[slug] || []).push({

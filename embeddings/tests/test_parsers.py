@@ -121,7 +121,7 @@ class TestOntologyLoader:
 
     @pytest.mark.skipif(not SO_OBO_PATH.exists(), reason="so.obo not downloaded")
     def test_parse_obo_returns_raw_stanzas(self):
-        """parse_obo keeps the raw dict shape that build_so_sssom.py consumes."""
+        """parse_obo keeps the raw per-stanza dict shape (id, name, ...)."""
         raw = parse_obo(SO_OBO_PATH)
         by_id = {t["id"]: t for t in raw}
         assert by_id["SO:0000165"]["name"] == "enhancer"

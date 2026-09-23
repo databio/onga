@@ -32,20 +32,26 @@ asserts identity, equivalence or hierarchy against an SO class:
      `broad_mappings` in `src/file_content.yaml`.
   8. `mappings/so.sssom.tsv` uses no `skos:exactMatch` / `closeMatch` /
      `broadMatch`, except against the whitelisted SO classes that are themselves
-     set-denoting.
+     set-denoting (`mappings/policy.yaml`).
   9. Every `element_type` annotation CURIE resolves to a live, non-obsolete SO
      id in `embeddings/data/ontologies/so.obo`, and every `element_type_fit`
      value is one of the four allowed strings.
- 10. `mappings/so.sssom.tsv` and the `annotations:` blocks agree in both
-     directions (the two-sources-of-truth guard).
+ 10. `src/file_content.yaml` is exactly the projection of `mappings/*.sssom.tsv`
+     (`scripts/project_mappings.py --check`): the SSSOM files are the source of
+     truth, and the mapping slots and `annotations:` blocks are generated.
+
+Checks 6-9 read the policy (banned predicates, set-denoting SO whitelist, fit
+grades) from `mappings/policy.yaml`.
 
 Exit code 0 = all invariants hold; non-zero = at least one failed (details
-printed). Wire into CI / `make test`. Pure-stdlib + pyyaml; no LinkML needed.
+printed). Wire into CI / `make test`. Checks 1-9 are stdlib + pyyaml; check 10
+runs the projector, which needs ruamel.yaml. No LinkML needed.
 """
 import csv
 import glob
 import os
 import re
+import subprocess
 import sys
 
 import yaml
@@ -54,13 +60,14 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
-# The curated SO tables are the single source of truth for the whitelist, the
-# allowed fit grades, and the expected annotations. build_so_sssom only needs
-# pyyaml plus the stdlib-only OBO reader, so `make test` stays dependency-light.
-from build_so_sssom import (  # noqa: E402
-    FITS, SET_DENOTING_SO, BANNED_SKOS, HAS_ELEMENT_TYPE,
-    element_type_annotations,
+from workbench.mappings import (  # noqa: E402
+    HAS_ELEMENT_TYPE, NO_TERM_FOUND, load_policy,
 )
+
+_POLICY = load_policy()
+FITS = _POLICY["fits"]
+SET_DENOTING_SO = _POLICY["set_denoting_so"]
+BANNED_SKOS = _POLICY["banned_skos"]
 SRC = os.path.join(ROOT, "src", "file_content.yaml")
 ONGA = os.path.join(ROOT, "src", "onga.yaml")
 FACET_TSV = os.path.join(ROOT, "mappings", "facet_decomposition.tsv")
@@ -160,7 +167,8 @@ def check_counts(dt, ft, rows):
         return
     live = {
         "SO element-type rows": sum(1 for r in rows
-                                    if r["predicate_id"] == HAS_ELEMENT_TYPE),
+                                    if r["predicate_id"] == HAS_ELEMENT_TYPE
+                                    and r["object_id"] != NO_TERM_FOUND),
         "SO relatedMatch rows": sum(1 for r in rows
                                     if r["predicate_id"] == "skos:relatedMatch"),
         "SO set-to-set rows": sum(1 for r in rows
@@ -301,55 +309,16 @@ def check_annotations(pools):
                          f"is not a live, non-obsolete SO id")
 
 
-def check_sssom_agrees(pools, rows):
-    """Check 10: so.sssom.tsv and the annotations: blocks say the same thing."""
-    if rows is None:
-        fail("[agree] mappings/so.sssom.tsv is missing; run "
-             "`python scripts/build_so_sssom.py`")
-        return
-    # From the TSV: subject -> the SO ids asserted with has_element_type.
-    from_tsv = {}
-    for r in rows:
-        if r["predicate_id"] != HAS_ELEMENT_TYPE:
-            continue
-        label = r["subject_label"]
-        enum_name = next((e for e, pool in pools.items() if label in pool), None)
-        if enum_name is None:
-            fail(f"[agree] so.sssom.tsv subject '{label}' is in neither enum")
-            continue
-        from_tsv.setdefault((enum_name, label), []).append(r["object_id"])
-    # From the schema: the element_type annotations.
-    from_yaml = {}
-    for enum_name, pool in pools.items():
-        for term, pv in pool.items():
-            ann = (pv or {}).get("annotations") if isinstance(pv, dict) else None
-            if ann and ann.get("element_type"):
-                from_yaml[(enum_name, term)] = str(ann["element_type"]).split("|")
-    for key in sorted(set(from_tsv) | set(from_yaml)):
-        tsv, yml = from_tsv.get(key), from_yaml.get(key)
-        if tsv is None:
-            fail(f"[agree] {key[0]} '{key[1]}' has an element_type annotation "
-                 f"{yml} but no {HAS_ELEMENT_TYPE} row in so.sssom.tsv")
-        elif yml is None:
-            fail(f"[agree] {key[0]} '{key[1]}' has {HAS_ELEMENT_TYPE} rows {tsv} "
-                 f"in so.sssom.tsv but no element_type annotation")
-        elif sorted(tsv) != sorted(yml):
-            fail(f"[agree] {key[0]} '{key[1]}' element_type mismatch: "
-                 f"so.sssom.tsv {sorted(tsv)} vs annotation {sorted(yml)}")
-    # And the fit grades / not_applicable declarations implied by the curated tables.
-    expected = element_type_annotations()
-    for key, want in expected.items():
-        pv = pools.get(key[0], {}).get(key[1])
-        got = (pv or {}).get("annotations") if isinstance(pv, dict) else None
-        if not got:
-            fail(f"[agree] {key[0]} '{key[1]}' is curated in build_so_sssom.py but "
-                 f"has no annotations: block. Run "
-                 f"`python scripts/apply_element_type.py`.")
-            continue
-        if got.get("element_type_fit") != want["element_type_fit"]:
-            fail(f"[agree] {key[0]} '{key[1]}' element_type_fit is "
-                 f"{got.get('element_type_fit')!r}, curated value is "
-                 f"{want['element_type_fit']!r}")
+def check_projection():
+    """Check 10: src/file_content.yaml is exactly the projection of the SSSOM files."""
+    proc = subprocess.run(
+        [sys.executable, os.path.join(HERE, "project_mappings.py"), "--check"],
+        capture_output=True, text=True)
+    if proc.returncode != 0:
+        out = (proc.stdout + proc.stderr).strip()
+        fail("[agree] src/file_content.yaml does not match the projection of "
+             "mappings/*.sssom.tsv (`python scripts/project_mappings.py --check`):\n"
+             + out)
 
 
 def main():
@@ -366,13 +335,14 @@ def main():
     check_no_so_in_skos_slots(pools)
     check_so_predicates(rows)
     check_annotations(pools)
-    check_sssom_agrees(pools, rows)
+    check_projection()
     if failures:
         print(f"ROUND-TRIP CHECK FAILED ({len(failures)} issue(s)):")
         for f in failures:
             print("  -", f)
         sys.exit(1)
-    n_et = sum(1 for r in (rows or []) if r["predicate_id"] == HAS_ELEMENT_TYPE)
+    n_et = sum(1 for r in (rows or []) if r["predicate_id"] == HAS_ELEMENT_TYPE
+               and r["object_id"] != NO_TERM_FOUND)
     n_rel = sum(1 for r in (rows or []) if r["predicate_id"] == "skos:relatedMatch")
     n_s2s = sum(1 for r in (rows or []) if r["predicate_id"] in BANNED_SKOS)
     print(

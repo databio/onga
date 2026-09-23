@@ -96,8 +96,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "divergent_peaks",
@@ -106,8 +106,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "idr_ranked_peaks",
@@ -146,8 +146,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "proximal_peaks",
@@ -156,8 +156,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "pseudoreplicated_idr_thresholded_peaks",
@@ -196,8 +196,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "representative_idr_thresholded_peaks",
@@ -216,8 +216,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "contact_matrix",
@@ -236,8 +236,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_3917",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Count matrix",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "sparse_gene_count_matrix",
@@ -316,8 +316,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "genic_features_quantifications",
@@ -326,8 +326,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "genic_regions_quantifications",
@@ -336,8 +336,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "merged_transcription_segment_quantifications",
@@ -346,8 +346,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "microrna_quantifications",
@@ -366,8 +366,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "novel_peptides",
@@ -406,8 +406,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "transcript_quantifications",
@@ -426,8 +426,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "transcription_segment_quantifications",
@@ -436,8 +436,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "uv_enriched_segment_quantifications",
@@ -446,8 +446,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_0928",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Gene expression profile",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "motif_model",
@@ -466,8 +466,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "DNA variation",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "variant_functional_prediction",
@@ -476,8 +476,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "DNA variation",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "chromosome_sizes",
@@ -496,8 +496,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_2977",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Nucleic acid sequence",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "genome_index",
@@ -546,8 +546,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_1353",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Sequence motif",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "transcriptome_index",
@@ -576,8 +576,8 @@
     "vocabType": "data",
     "predicate": "exactMatch",
     "edamId": "edam:data_3917",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Count matrix",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "methylation_state_at_chg",
@@ -686,8 +686,8 @@
     "vocabType": "feature",
     "predicate": "exactMatch",
     "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "DNA variation",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "dsqtls",
@@ -716,8 +716,8 @@
     "vocabType": "feature",
     "predicate": "exactMatch",
     "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "DNA variation",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "paternal_variant_calls",
@@ -726,8 +726,8 @@
     "vocabType": "feature",
     "predicate": "exactMatch",
     "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "DNA variation",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "reference_variants",
@@ -736,8 +736,8 @@
     "vocabType": "feature",
     "predicate": "exactMatch",
     "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "DNA variation",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "variant_calls",
@@ -756,8 +756,8 @@
     "vocabType": "feature",
     "predicate": "exactMatch",
     "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "DNA variation",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "pwms",
@@ -856,8 +856,8 @@
     "vocabType": "feature",
     "predicate": "exactMatch",
     "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "DNA variation",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   },
   {
     "termId": "indels",
@@ -866,7 +866,7 @@
     "vocabType": "feature",
     "predicate": "exactMatch",
     "edamId": "edam:data_0918",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "DNA variation",
+    "comment": "carried from src/ during the SSSOM flip; unreviewed"
   }
 ]

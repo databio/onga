@@ -2,15 +2,24 @@ SCHEMA_DIR = src
 SCHEMA_NAME = onga
 MAIN_SCHEMA = $(SCHEMA_DIR)/$(SCHEMA_NAME).yaml
 
-.PHONY: all gen-owl gen-owl-core gen-owl-so gen-jsonld gen-python gen-docs gen-registry validate test test-examples test-registry clean embeddings-build embeddings-compare apply mappings
+.PHONY: all gen-owl gen-owl-core gen-owl-so gen-jsonld gen-python gen-docs gen-registry validate test test-examples test-registry clean embeddings-build embeddings-compare apply mappings validate-mappings fmt fmt-check regen
 
 all: gen-owl gen-jsonld gen-registry
 
 # Enforced lossless round-trip invariant: every facet-map row resolves to a live
-# enum base, no compound term survives, counts match DECISIONS. Stdlib + pyyaml.
-# Plus instance validation of the worked examples against the record classes.
-test: test-examples
+# enum base, no compound term survives, counts match DECISIONS, src/ is the
+# projection of mappings/*.sssom.tsv. Plus instance validation of the worked
+# examples against the record classes, and the YAML formatting fixed point.
+test: fmt-check test-examples
 	python scripts/check_roundtrip.py
+
+# Every src/*.yaml must be a fixed point of the shared YAML writer
+# (scripts/workbench/yamlio.py), so a programmatic edit diffs only its own change.
+fmt:
+	python scripts/fmt_schema.py
+
+fmt-check:
+	python scripts/fmt_schema.py --check
 
 # Instance validation: a full TopLevel deposit (ENCFF323LCS), a bare
 # Layer-3-only GenomicAnnotationFile, and an expected-failure counterexample
@@ -39,11 +48,19 @@ gen-owl-so:
 	mkdir -p project/owl
 	python scripts/gen_so_axioms.py > project/owl/$(SCHEMA_NAME)-so-element-types.owl.ttl
 
-# Regenerate the curated SO mapping set and re-apply the element_type
-# annotations it implies to src/file_content.yaml.
+# mappings/*.sssom.tsv are hand-curated and the source of truth for term-level
+# mappings. Project them onto the DataType/FeatureType *_mappings slots and
+# element_type annotations in src/file_content.yaml (generated; never hand-edit).
 mappings:
-	python scripts/build_so_sssom.py
-	python scripts/apply_element_type.py
+	python scripts/project_mappings.py
+
+# Validate the SSSOM files: live subjects, live SO ids, the set/element
+# predicate policy in mappings/policy.yaml, no duplicate rows.
+validate-mappings:
+	python scripts/validate_mappings.py
+
+# Every generator whose output is tracked. This recipe is the inventory.
+regen: mappings gen-registry
 
 gen-jsonld:
 	mkdir -p project

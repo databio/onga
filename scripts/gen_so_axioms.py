@@ -12,12 +12,14 @@ which is an honest, importable statement. The generator NEVER emits a triple
 whose subject is an SO IRI -- asserted below. That is the invariant the ADR
 "ONGA terms denote sets; SO terms denote elements" exists to protect.
 
-Reads mappings/so.sssom.tsv (written by scripts/build_so_sssom.py) BY HEADER
-NAME. Subject IRIs are rebuilt exactly the way `gen-owl` builds permissible-value
-IRIs -- https://databio.org/onga/{EnumName}#{percent-encoded value text} -- so
-the axioms merge cleanly with project/owl/onga.owl.ttl. The enum name is
-re-derived by looking the subject_label up in src/file_content.yaml (the two
-enums share no term names; the lookup errors out if that ever changes).
+Reads mappings/so.sssom.tsv (hand-curated; the source of truth) BY HEADER
+NAME. Rows whose object is sssom:NoTermFound (reviewed, no SO element type)
+assert nothing about SO and are skipped. Subject IRIs are rebuilt exactly the
+way `gen-owl` builds permissible-value IRIs --
+https://databio.org/onga/{EnumName}#{percent-encoded value text} -- so the
+axioms merge cleanly with project/owl/onga.owl.ttl. The enum name is re-derived
+by looking the subject_label up in src/file_content.yaml (the two enums share no
+term names; the lookup errors out if that ever changes).
 
 Usage:
     python scripts/gen_so_axioms.py > project/owl/onga-so-element-types.owl.ttl
@@ -38,6 +40,7 @@ ONGA_BASE = "https://databio.org/onga/"
 SO_BASE = "http://purl.obolibrary.org/obo/SO_"
 
 HAS_ELEMENT_TYPE = "onga:has_element_type"
+NO_TERM_FOUND = "sssom:NoTermFound"
 
 PREAMBLE = """@prefix onga: <https://databio.org/onga/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -100,6 +103,8 @@ def main():
         subj = pv_iri(enum_of[label], label)
         pred = r["predicate_id"]
         obj = r["object_id"]
+        if obj == NO_TERM_FOUND:
+            continue
         if pred == HAS_ELEMENT_TYPE:
             if subj not in members:
                 members[subj] = {"label": label, "so": [], "fit": r.get("element_type_fit", "")}
