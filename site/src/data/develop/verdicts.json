@@ -1,0 +1,603 @@
+{
+  "version": 1,
+  "verdicts": {
+    "term": {
+      "keep": {
+        "label": "Keep as is",
+        "terminal": true,
+        "writes": "none"
+      },
+      "keep_atomic": {
+        "label": "Keep atomic (not a compound)",
+        "terminal": true,
+        "writes": "none"
+      },
+      "edit_description": {
+        "label": "Edit description",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "description": "str"
+          }
+        }
+      },
+      "rename": {
+        "label": "Rename (id unchanged)",
+        "terminal": true,
+        "writes": "src+refs",
+        "operation": {
+          "required": {
+            "label": "str"
+          }
+        }
+      },
+      "set_subsets": {
+        "label": "Set subsets",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "subsets": "sids:subset"
+          }
+        }
+      },
+      "move_to_enum": {
+        "label": "Move to another enum",
+        "terminal": true,
+        "writes": "src+refs",
+        "operation": {
+          "required": {
+            "enum": "sid:enum"
+          }
+        }
+      },
+      "merge": {
+        "label": "Merge into another term",
+        "terminal": true,
+        "writes": "src+refs",
+        "operation": {
+          "required": {
+            "into": "sid:term",
+            "mappings": "choice:move|drop"
+          }
+        }
+      },
+      "delete": {
+        "label": "Delete",
+        "terminal": true,
+        "writes": "src+refs"
+      },
+      "facet": {
+        "label": "Decompose into base + facets",
+        "terminal": true,
+        "writes": "src+refs",
+        "operation": {
+          "required": {
+            "base": "sid:term",
+            "facets": "map"
+          }
+        }
+      },
+      "adopt_mapping": {
+        "label": "Adopt mapping",
+        "terminal": true,
+        "writes": "sssom",
+        "operation": {
+          "required": {
+            "predicate": "str",
+            "object": "str"
+          },
+          "optional": {
+            "object_label": "str",
+            "element_type_fit": "str",
+            "comment": "str"
+          }
+        }
+      },
+      "reject_mapping": {
+        "label": "Reject mapping",
+        "terminal": true,
+        "writes": "sssom",
+        "operation": {
+          "required": {
+            "predicate": "str",
+            "object": "str"
+          },
+          "optional": {
+            "object_label": "str",
+            "comment": "str"
+          }
+        }
+      },
+      "add_see_also": {
+        "label": "Add see-also",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "target": "sid:term"
+          }
+        }
+      },
+      "remove_see_also": {
+        "label": "Remove see-also",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "target": "sid:term"
+          }
+        }
+      },
+      "promote_tier": {
+        "label": "Promote curation tier",
+        "terminal": true,
+        "writes": "src"
+      },
+      "mint_base": {
+        "label": "Minted as a base term (historical)",
+        "terminal": true,
+        "writes": "none",
+        "seed_only": true,
+        "operation": {
+          "optional": {
+            "from_labels": "str_list",
+            "note": "str"
+          }
+        }
+      },
+      "defer": {
+        "label": "Defer",
+        "terminal": false,
+        "writes": "none"
+      }
+    },
+    "enum": {
+      "keep": {
+        "label": "Keep as is",
+        "terminal": true,
+        "writes": "none"
+      },
+      "edit_description": {
+        "label": "Edit description",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "description": "str"
+          }
+        }
+      },
+      "add_term": {
+        "label": "Add a term",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "label": "str"
+          },
+          "optional": {
+            "description": "str",
+            "subsets": "sids:subset"
+          }
+        }
+      },
+      "rename_enum": {
+        "label": "Rename enum",
+        "terminal": true,
+        "writes": "src+refs",
+        "operation": {
+          "required": {
+            "name": "str"
+          }
+        }
+      },
+      "move_enum": {
+        "label": "Move to another module",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "module": "sid:module"
+          }
+        }
+      },
+      "delete_enum": {
+        "label": "Delete enum",
+        "terminal": true,
+        "writes": "src"
+      },
+      "defer": {
+        "label": "Defer",
+        "terminal": false,
+        "writes": "none"
+      }
+    },
+    "class": {
+      "keep": {
+        "label": "Keep as is",
+        "terminal": true,
+        "writes": "none"
+      },
+      "edit_description": {
+        "label": "Edit description",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "description": "str"
+          }
+        }
+      },
+      "rename_class": {
+        "label": "Rename class",
+        "terminal": true,
+        "writes": "src+refs",
+        "operation": {
+          "required": {
+            "name": "str"
+          }
+        }
+      },
+      "add_slot": {
+        "label": "Add a slot",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "optional": {
+            "slot": "sid:slot",
+            "new_slot": "map"
+          },
+          "one_of": [
+            [
+              "slot"
+            ],
+            [
+              "new_slot"
+            ]
+          ]
+        }
+      },
+      "drop_slot": {
+        "label": "Drop a slot",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "slot": "sid:slot"
+          },
+          "optional": {
+            "delete_def": "bool"
+          }
+        }
+      },
+      "move_slot": {
+        "label": "Move a slot to another class",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "slot": "sid:slot",
+            "to": "sid:class"
+          }
+        }
+      },
+      "set_slot_usage": {
+        "label": "Set a class-level slot override",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "slot": "sid:slot",
+            "usage": "map"
+          }
+        }
+      },
+      "add_rule": {
+        "label": "Add a rule",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "rule": "map"
+          }
+        }
+      },
+      "edit_rule": {
+        "label": "Edit a rule",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "rule_sha1": "str",
+            "rule": "map"
+          }
+        }
+      },
+      "drop_rule": {
+        "label": "Drop a rule",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "rule_sha1": "str"
+          }
+        }
+      },
+      "set_is_a": {
+        "label": "Set parent class",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "is_a": "sid:class?"
+          }
+        }
+      },
+      "set_lineage": {
+        "label": "Set lineage (source, conforms_to, see_also)",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "optional": {
+            "source": "str?",
+            "conforms_to": "str_list",
+            "see_also": "str_list"
+          },
+          "one_of": [
+            [
+              "source",
+              "conforms_to",
+              "see_also"
+            ]
+          ]
+        }
+      },
+      "adopt_mapping": {
+        "label": "Adopt mapping",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "predicate": "choice:exact_mappings|close_mappings|broad_mappings|narrow_mappings|related_mappings",
+            "object": "str"
+          }
+        }
+      },
+      "reject_mapping": {
+        "label": "Reject mapping",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "predicate": "choice:exact_mappings|close_mappings|broad_mappings|narrow_mappings|related_mappings",
+            "object": "str"
+          }
+        }
+      },
+      "delete_class": {
+        "label": "Delete class",
+        "terminal": true,
+        "writes": "src"
+      },
+      "defer": {
+        "label": "Defer",
+        "terminal": false,
+        "writes": "none"
+      }
+    },
+    "slot": {
+      "keep": {
+        "label": "Keep as is",
+        "terminal": true,
+        "writes": "none"
+      },
+      "edit_description": {
+        "label": "Edit description",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "description": "str"
+          }
+        }
+      },
+      "rename_slot": {
+        "label": "Rename slot",
+        "terminal": true,
+        "writes": "src+refs",
+        "operation": {
+          "required": {
+            "name": "str"
+          }
+        }
+      },
+      "retype_slot": {
+        "label": "Change range",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "optional": {
+            "range": "str?",
+            "inlined": "bool",
+            "any_of": "list"
+          },
+          "one_of": [
+            [
+              "range",
+              "any_of"
+            ]
+          ]
+        }
+      },
+      "set_cardinality": {
+        "label": "Set required / recommended / multivalued",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "optional": {
+            "required": "bool",
+            "recommended": "bool",
+            "multivalued": "bool"
+          },
+          "one_of": [
+            [
+              "required",
+              "recommended",
+              "multivalued"
+            ]
+          ]
+        }
+      },
+      "set_examples": {
+        "label": "Set examples",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "examples": "list"
+          }
+        }
+      },
+      "adopt_mapping": {
+        "label": "Adopt mapping",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "predicate": "choice:exact_mappings|close_mappings|broad_mappings|narrow_mappings|related_mappings",
+            "object": "str"
+          }
+        }
+      },
+      "reject_mapping": {
+        "label": "Reject mapping",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "predicate": "choice:exact_mappings|close_mappings|broad_mappings|narrow_mappings|related_mappings",
+            "object": "str"
+          }
+        }
+      },
+      "delete_slot": {
+        "label": "Delete slot",
+        "terminal": true,
+        "writes": "src+refs"
+      },
+      "defer": {
+        "label": "Defer",
+        "terminal": false,
+        "writes": "none"
+      }
+    },
+    "usage": {
+      "keep": {
+        "label": "Keep as is",
+        "terminal": true,
+        "writes": "none"
+      },
+      "edit_usage": {
+        "label": "Edit override",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "usage": "map"
+          }
+        }
+      },
+      "drop_usage": {
+        "label": "Drop override",
+        "terminal": true,
+        "writes": "src"
+      },
+      "defer": {
+        "label": "Defer",
+        "terminal": false,
+        "writes": "none"
+      }
+    },
+    "subset": {
+      "keep": {
+        "label": "Keep as is",
+        "terminal": true,
+        "writes": "none"
+      },
+      "edit_description": {
+        "label": "Edit description",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "description": "str"
+          }
+        }
+      },
+      "rename_subset": {
+        "label": "Rename subset",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "name": "str"
+          }
+        }
+      },
+      "merge_subset": {
+        "label": "Merge into another subset",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "into": "sid:subset"
+          }
+        }
+      },
+      "delete_subset": {
+        "label": "Delete subset",
+        "terminal": true,
+        "writes": "src"
+      },
+      "defer": {
+        "label": "Defer",
+        "terminal": false,
+        "writes": "none"
+      }
+    },
+    "module": {
+      "keep": {
+        "label": "Keep as is",
+        "terminal": true,
+        "writes": "none"
+      },
+      "edit_description": {
+        "label": "Edit description",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "description": "str"
+          }
+        }
+      },
+      "set_layer": {
+        "label": "Set layer",
+        "terminal": true,
+        "writes": "src",
+        "operation": {
+          "required": {
+            "layer": "int"
+          }
+        }
+      },
+      "defer": {
+        "label": "Defer",
+        "terminal": false,
+        "writes": "none"
+      }
+    }
+  }
+}

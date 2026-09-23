@@ -1,0 +1,49 @@
+---
+// Workbench mode banner. Renders the static (read-only) message; a client
+// script probes the local curation daemon and, when it answers, switches to
+// live mode showing the branch and the pending-decision count.
+import summary from '../data/develop/summary.json';
+
+const pending = (summary as any).pendingDecisions ?? 0;
+---
+
+<div
+  class="mode-banner mb-6 rounded-lg border px-4 py-3 text-sm border-gray-200 bg-gray-50 text-gray-700"
+  data-mode="static"
+>
+  <span class="mode-static">
+    Read-only. Run <code class="font-mono bg-white px-1 rounded border border-gray-200">make curate</code> in the onga repo to make decisions.
+    <span class="text-gray-500">({pending} pending decision{pending === 1 ? '' : 's'} in this build.)</span>
+  </span>
+  <span class="mode-live hidden">
+    <span class="font-semibold">Live.</span>
+    Curation daemon on branch <code class="mode-branch font-mono bg-white px-1 rounded border border-emerald-200"></code>;
+    <span class="mode-pending"></span> pending decision(s).
+    <span class="mode-dirty hidden text-amber-700">Working tree has uncommitted changes.</span>
+  </span>
+</div>
+
+<script>
+  import { probe, getDecisions, DECISION_EVENT } from '../lib/curation';
+
+  async function refresh(banner: HTMLElement) {
+    const store = await getDecisions().catch(() => null);
+    const n = store ? store.decisions.filter((d) => d.status === 'pending').length : '?';
+    banner.querySelector('.mode-pending')!.textContent = String(n);
+  }
+
+  probe().then((health) => {
+    if (!health) return;
+    document.querySelectorAll<HTMLElement>('.mode-banner').forEach((banner) => {
+      banner.dataset.mode = 'live';
+      banner.classList.remove('border-gray-200', 'bg-gray-50', 'text-gray-700');
+      banner.classList.add('border-emerald-200', 'bg-emerald-50', 'text-emerald-900');
+      banner.querySelector('.mode-static')!.classList.add('hidden');
+      banner.querySelector('.mode-live')!.classList.remove('hidden');
+      banner.querySelector('.mode-branch')!.textContent = health.git_branch;
+      if (health.working_tree_dirty) banner.querySelector('.mode-dirty')!.classList.remove('hidden');
+      refresh(banner);
+      document.addEventListener(DECISION_EVENT, () => refresh(banner));
+    });
+  });
+</script>

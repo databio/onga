@@ -1,8 +1,85 @@
 {
+  "percentSettled": 26.8,
+  "totalSubjects": 549,
+  "states": {
+    "unreviewed": 163,
+    "open": 233,
+    "deferred": 6,
+    "settled": 0,
+    "applied": 147,
+    "stale": 0
+  },
+  "layers": {
+    "0": {
+      "percentSettled": 0,
+      "total": 1,
+      "states": {
+        "unreviewed": 1,
+        "open": 0,
+        "deferred": 0,
+        "settled": 0,
+        "applied": 0,
+        "stale": 0
+      }
+    },
+    "1": {
+      "percentSettled": 20.8,
+      "total": 313,
+      "states": {
+        "unreviewed": 75,
+        "open": 167,
+        "deferred": 6,
+        "settled": 0,
+        "applied": 65,
+        "stale": 0
+      }
+    },
+    "2": {
+      "percentSettled": 12.2,
+      "total": 49,
+      "states": {
+        "unreviewed": 24,
+        "open": 19,
+        "deferred": 0,
+        "settled": 0,
+        "applied": 6,
+        "stale": 0
+      }
+    },
+    "3": {
+      "percentSettled": 44.6,
+      "total": 74,
+      "states": {
+        "unreviewed": 26,
+        "open": 15,
+        "deferred": 0,
+        "settled": 0,
+        "applied": 33,
+        "stale": 0
+      }
+    },
+    "4": {
+      "percentSettled": 38.4,
+      "total": 112,
+      "states": {
+        "unreviewed": 37,
+        "open": 32,
+        "deferred": 0,
+        "settled": 0,
+        "applied": 43,
+        "stale": 0
+      }
+    }
+  },
+  "pendingDecisions": 0,
+  "appliedDecisions": 158,
+  "lintIssues": 314,
+  "staleFindings": 0,
+  "findingsStale": false,
+  "queued": 396,
   "mergeCandidates": 42,
   "gapTerms": 102,
   "mappingSuggestions": 135,
-  "qualityIssues": 0,
   "soProposals": 10,
   "soRejections": 23,
   "zeroUsageTerms": 63,

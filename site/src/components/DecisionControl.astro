@@ -1,0 +1,296 @@
+---
+// The one decision control, reused on every workbench page.
+//
+// Server side it renders the subject's latest decision (provenance line), a
+// stale strip, and a disabled verdict select + rationale: that is the whole
+// control on the published (static) site. In the browser it probes the local
+// curation daemon (lib/curation.ts); when live, it enables the form, builds the
+// operation fields from the chosen verdict's field schema (curation/verdicts.yaml),
+// and saves through the daemon. Rationale is required before Save.
+//
+// Props
+//   sid                 subject id the decision is recorded on
+//   kind                subject kind (default: from the subject index)
+//   findingId           finding the decision answers; sent as evidence
+//   suggestedVerdict    verdict pre-selected (ignored if not valid for the kind)
+//   suggestedOperation  operation fields pre-filled for that verdict
+import { subject, decisionsFor, verdictsFor } from '../lib/develop';
+
+interface Props {
+  sid: string;
+  kind?: string;
+  findingId?: string;
+  suggestedVerdict?: string;
+  suggestedOperation?: Record<string, unknown>;
+}
+
+const { sid, findingId, suggestedVerdict, suggestedOperation } = Astro.props;
+const row = subject(sid);
+const kind = Astro.props.kind ?? row?.kind ?? '';
+const options = verdictsFor(kind);
+const suggested = options.some(([v]) => v === suggestedVerdict) ? suggestedVerdict : undefined;
+const latest = decisionsFor(sid).filter((d) => d.status !== 'withdrawn').at(-1);
+const stale = row?.state === 'stale';
+---
+
+<div
+  class="decision-control rounded border border-gray-200 bg-white p-3 text-sm space-y-2"
+  data-sid={sid}
+  data-kind={kind}
+  data-hash={row?.hash ?? ''}
+  data-finding={findingId ?? ''}
+  data-suggested-verdict={suggested ?? ''}
+  data-suggested-op={suggestedOperation ? JSON.stringify(suggestedOperation) : ''}
+  data-latest={latest?.id ?? ''}
+>
+  <div class="dc-latest text-xs text-gray-500">
+    {latest ? (
+      <span>
+        <span class="font-mono">{latest.id}</span> · {latest.verdict} · {latest.status} · {latest.decided_by} · {latest.decided_on}
+        {latest.rationale && <span class="block text-gray-600 italic truncate" title={latest.rationale}>{latest.rationale}</span>}
+      </span>
+    ) : (
+      <span>No decision yet.</span>
+    )}
+  </div>
+
+  {stale && (
+    <div class="dc-stale rounded bg-red-50 border border-red-200 text-red-800 text-xs px-2 py-1">
+      Stale: this subject changed after {latest?.id ?? 'its last decision'} was recorded. Review it again.
+    </div>
+  )}
+
+  <div class="flex flex-wrap gap-2 items-start">
+    <select class="dc-verdict px-2 py-1 border border-gray-300 rounded text-sm disabled:bg-gray-50 disabled:text-gray-400" disabled aria-label="Verdict">
+      <option value="">Choose a verdict…</option>
+      {options.map(([v, meta]) => (
+        <option value={v} selected={v === suggested}>{meta.label}</option>
+      ))}
+    </select>
+    <div class="dc-op flex flex-wrap gap-2 grow"></div>
+  </div>
+
+  <textarea
+    class="dc-rationale w-full px-2 py-1 border border-gray-300 rounded text-sm disabled:bg-gray-50 disabled:text-gray-400"
+    rows="2"
+    placeholder="Rationale (required): why?"
+    disabled
+  ></textarea>
+
+  <div class="flex items-center gap-2">
+    <button type="button" class="dc-save px-3 py-1 rounded bg-blue-600 text-white text-sm disabled:bg-gray-200 disabled:text-gray-400" disabled>Save</button>
+    <button type="button" class="dc-withdraw hidden px-3 py-1 rounded border border-gray-300 text-gray-700 text-sm">Withdraw</button>
+    <span class="dc-msg text-xs text-gray-500">Read-only (no curation daemon).</span>
+  </div>
+</div>
+
+<script>
+  import verdictsDoc from '../data/develop/verdicts.json';
+  import {
+    probe, getDecisions, saveDecision, withdrawDecision, CurationError, CURATION_API, DECISION_EVENT,
+    type Decision,
+  } from '../lib/curation';
+
+  type Schema = { required?: Record<string, string>; optional?: Record<string, string>; one_of?: string[][] };
+  const VERDICTS = (verdictsDoc as any).verdicts as Record<string, Record<string, { label: string; terminal: boolean; operation?: Schema }>>;
+
+  // ---- subject lookups for SID pickers (live mode only; fetched once) ----
+  let subjectsP: Promise<Record<string, any>> | null = null;
+  function subjects(): Promise<Record<string, any>> {
+    subjectsP ||= fetch(`${CURATION_API}/api/subjects`).then((r) => r.json()).then((d) => d.subjects);
+    return subjectsP;
+  }
+  async function datalist(kind: string): Promise<string> {
+    const id = `dc-sids-${kind || 'all'}`;
+    if (document.getElementById(id)) return id;
+    const list = document.createElement('datalist');
+    list.id = id;
+    document.body.appendChild(list);
+    for (const s of Object.values(await subjects())) {
+      if (s.retired || (kind && s.kind !== kind)) continue;
+      const o = document.createElement('option');
+      o.value = s.sid;
+      o.label = s.label || s.name;
+      list.appendChild(o);
+    }
+    return id;
+  }
+
+  // ---- operation fields from a verdict's field schema ----
+  const INPUT = 'px-2 py-1 border border-gray-300 rounded text-sm';
+
+  function fieldFor(name: string, type: string, required: boolean, value: unknown): HTMLElement {
+    const t = type.replace(/\?$/, '');
+    const wrap = document.createElement('label');
+    wrap.className = 'flex flex-col text-xs text-gray-600';
+    wrap.textContent = required ? `${name} *` : name;
+    let el: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+    if (t.startsWith('choice:') || t === 'bool') {
+      el = document.createElement('select');
+      const choices = t === 'bool' ? ['true', 'false'] : t.slice(7).split('|');
+      for (const c of ['', ...choices]) el.add(new Option(c || '—', c));
+    } else if (t === 'map' || t === 'list' || t === 'str_list') {
+      el = document.createElement('textarea');
+      el.rows = 2;
+      el.placeholder = t === 'str_list' ? 'one per line' : 'JSON';
+    } else {
+      el = document.createElement('input');
+      el.type = t === 'int' ? 'number' : 'text';
+      if (t.startsWith('sid')) {
+        const k = t.includes(':') ? t.split(':')[1] : '';
+        el.placeholder = t.startsWith('sids:') ? `${k} SIDs, comma-separated` : `${k || 'subject'} SID`;
+        datalist(k).then((id) => el.setAttribute('list', id));
+      }
+    }
+    el.className = INPUT;
+    el.dataset.field = name;
+    el.dataset.type = t;
+    if (value !== undefined && value !== null) {
+      el.value = t === 'map' || t === 'list' ? JSON.stringify(value)
+        : t === 'str_list' ? (value as string[]).join('\n')
+        : t.startsWith('sids:') ? (value as string[]).join(', ')
+        : String(value);
+    }
+    wrap.appendChild(el);
+    return wrap;
+  }
+
+  function readField(el: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement): unknown {
+    const v = el.value.trim();
+    if (v === '') return undefined;
+    const t = el.dataset.type!;
+    if (t === 'bool') return v === 'true';
+    if (t === 'int') return parseInt(v, 10);
+    if (t === 'map' || t === 'list') return JSON.parse(v);
+    if (t === 'str_list') return v.split('\n').map((s) => s.trim()).filter(Boolean);
+    if (t.startsWith('sids:')) return v.split(/[,\s]+/).filter(Boolean);
+    return v;
+  }
+
+  // ---- one control ----
+  function setup(root: HTMLElement) {
+    const $ = <T extends Element>(sel: string) => root.querySelector(sel) as T;
+    const select = $<HTMLSelectElement>('.dc-verdict');
+    const opBox = $<HTMLDivElement>('.dc-op');
+    const rationale = $<HTMLTextAreaElement>('.dc-rationale');
+    const save = $<HTMLButtonElement>('.dc-save');
+    const withdraw = $<HTMLButtonElement>('.dc-withdraw');
+    const msg = $<HTMLSpanElement>('.dc-msg');
+    const latestBox = $<HTMLDivElement>('.dc-latest');
+    const { sid, kind, hash, finding } = root.dataset as Record<string, string>;
+    const suggestedOp = root.dataset.suggestedOp ? JSON.parse(root.dataset.suggestedOp) : {};
+    let latest: Decision | undefined;
+
+    const schemaOf = (v: string) => VERDICTS[kind]?.[v]?.operation;
+    const gate = () => { save.disabled = !select.value || !rationale.value.trim(); };
+
+    function renderOp() {
+      opBox.replaceChildren();
+      const schema = schemaOf(select.value);
+      if (!schema) return;
+      const prefill = select.value === root.dataset.suggestedVerdict ? suggestedOp : {};
+      for (const [f, t] of Object.entries(schema.required || {})) opBox.appendChild(fieldFor(f, t, true, prefill[f]));
+      for (const [f, t] of Object.entries(schema.optional || {})) opBox.appendChild(fieldFor(f, t, false, prefill[f]));
+      if (schema.one_of) {
+        const note = document.createElement('span');
+        note.className = 'text-xs text-gray-500 self-end';
+        note.textContent = `exactly one of: ${schema.one_of.map((g) => g.join('+')).join(' | ')}`;
+        opBox.appendChild(note);
+      }
+    }
+
+    function showLatest(d: Decision | undefined) {
+      latest = d;
+      root.dataset.latest = d?.id ?? '';
+      latestBox.textContent = d
+        ? `${d.id} · ${d.verdict} · ${d.status} · ${d.decided_by} · ${d.decided_on}${d.rationale ? ` — ${d.rationale}` : ''}`
+        : 'No decision yet.';
+      withdraw.classList.toggle('hidden', d?.status !== 'pending');
+    }
+
+    async function refreshLatest() {
+      const store = await getDecisions();
+      showLatest(store.decisions
+        .filter((d) => d.status !== 'withdrawn' && (d.subject === sid || d.also_affects?.includes(sid)))
+        .at(-1));
+    }
+
+    async function onSave() {
+      const verdict = select.value;
+      const schema = schemaOf(verdict);
+      const fields: Record<string, unknown> = {};
+      try {
+        opBox.querySelectorAll<HTMLInputElement>('[data-field]').forEach((el) => {
+          const v = readField(el);
+          if (v !== undefined) fields[el.dataset.field!] = v;
+        });
+      } catch (e) {
+        msg.textContent = `Bad field value: ${(e as Error).message}`;
+        return;
+      }
+      const sidTypes = { ...(schema?.required || {}), ...(schema?.optional || {}) };
+      const also = new Set<string>();
+      for (const [f, t] of Object.entries(sidTypes)) {
+        if (!t.startsWith('sid') || fields[f] === undefined) continue;
+        for (const s of ([] as string[]).concat(fields[f] as string | string[])) if (s !== sid) also.add(s);
+      }
+      const all = await subjects();
+      const hashes: Record<string, string> = { [sid]: hash };
+      for (const s of also) if (all[s]) hashes[s] = all[s].hash;
+      save.disabled = true;
+      msg.textContent = 'Saving…';
+      try {
+        const d = await saveDecision({
+          subject: sid,
+          verdict,
+          operation: schema && Object.keys(fields).length ? { op: verdict, ...fields } : null,
+          rationale: rationale.value.trim(),
+          also_affects: [...also],
+          evidence: finding ? [{ kind: 'finding', id: finding }] : [],
+          subject_hashes: hashes,
+          supersedes: latest?.id ?? null,
+        });
+        showLatest(d);
+        rationale.value = '';
+        msg.textContent = `Saved ${d.id}.`;
+      } catch (e) {
+        msg.textContent = e instanceof CurationError && e.status === 409
+          ? `Conflict: ${e.message}. Reload the page.`
+          : `Not saved: ${(e as Error).message}`;
+      } finally {
+        gate();
+      }
+    }
+
+    async function onWithdraw() {
+      if (!latest) return;
+      try {
+        const d = await withdrawDecision(latest.id);
+        msg.textContent = `Withdrew ${d.id}.`;
+        await refreshLatest();
+      } catch (e) {
+        msg.textContent = `Not withdrawn: ${(e as Error).message}`;
+      }
+    }
+
+    select.disabled = false;
+    rationale.disabled = false;
+    msg.textContent = '';
+    renderOp();
+    gate();
+    select.addEventListener('change', () => { renderOp(); gate(); });
+    rationale.addEventListener('input', gate);
+    save.addEventListener('click', onSave);
+    withdraw.addEventListener('click', onWithdraw);
+    document.addEventListener(DECISION_EVENT, (ev) => {
+      const d = (ev as CustomEvent<Decision>).detail;
+      if (d.subject === sid || d.also_affects?.includes(sid)) refreshLatest();
+    });
+    refreshLatest().catch(() => {});
+  }
+
+  probe().then((health) => {
+    if (!health) return;
+    document.querySelectorAll<HTMLElement>('.decision-control').forEach(setup);
+  });
+</script>

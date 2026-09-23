@@ -1,0 +1,52 @@
+---
+// State badge + open lint count for one subject (SID), from the generated
+// subject index. Build-time only; no client code. With `link`, the chip links
+// to the subject's workbench page.
+//
+// Tailwind v4 scans source for class names, so every class string below is a
+// full literal; never build one by concatenation.
+import { url } from '../lib/url';
+import { subject } from '../lib/develop';
+
+interface Props {
+  sid: string;
+  link?: boolean;
+  showLint?: boolean;
+}
+
+const { sid, link = false, showLint = true } = Astro.props;
+const row = subject(sid);
+
+const STATE_CLASS: Record<string, string> = {
+  unreviewed: 'bg-gray-100 text-gray-700 border-gray-200',
+  open: 'bg-amber-50 text-amber-800 border-amber-200',
+  deferred: 'bg-sky-50 text-sky-800 border-sky-200',
+  settled: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+  applied: 'bg-emerald-100 text-emerald-900 border-emerald-300',
+  stale: 'bg-red-50 text-red-800 border-red-200',
+  unknown: 'bg-gray-50 text-gray-400 border-gray-200',
+};
+const state = row ? row.state : 'unknown';
+const title = row
+  ? `${sid}: ${state}${row.lint ? `, ${row.lint} open lint finding${row.lint === 1 ? '' : 's'}` : ''}`
+  : `${sid}: not in the subject registry`;
+const Tag = link && row ? 'a' : 'span';
+---
+
+<Tag
+  href={link && row ? url(row.href) : undefined}
+  class:list={[
+    'state-chip inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full border no-underline whitespace-nowrap',
+    STATE_CLASS[state] || STATE_CLASS.unknown,
+  ]}
+  title={title}
+  data-sid={sid}
+  data-state={state}
+>
+  {state}
+  {showLint && row && row.lint > 0 && (
+    <span class="inline-flex items-center justify-center min-w-4 px-1 rounded-full bg-amber-200 text-amber-900 text-[10px] leading-4">
+      {row.lint}
+    </span>
+  )}
+</Tag>

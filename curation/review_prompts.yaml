@@ -1,0 +1,90 @@
+# review_prompts.yaml
+#
+# Review prompts: the questions a curator should ask of a subject before
+# deciding on it. Policy text lives here, never in the site's .astro files
+# (data-first ADR). site/scripts/build-data.js matches every prompt against
+# every subject and emits site/src/data/develop/review_prompts.json plus a
+# `prompts` list of prompt ids on each subject in subject-index.json.
+#
+# Structure
+# ---------
+#   prompts:  list of prompt entries, shown in this order
+#
+# Entry fields
+# ------------
+#   id                  stable id (kebab-case); the site keys on it
+#   title               short heading
+#   text                the question, as plain text
+#   source              where the policy comes from (a DECISIONS.md principle
+#                       or operation), shown as a citation
+#   when                match conditions; every key given must match:
+#                         kind    list of subject kinds
+#                         layer   list of layers (from the subject's module)
+#                         signal  list of curation/status.json signal names;
+#                                 the subject matches when any is non-zero
+#   decide_on           (optional) `owner_class`: the verdict is recorded on
+#                       the slot's owner class, not the slot itself (e.g.
+#                       move_slot is a class verdict). Default: the subject.
+#   suggested_verdict   (optional) verdict the control pre-selects; it must be
+#                       a verdict of the kind decided on
+#   suggested_operation (optional) operation fields pre-filled with it; the
+#                       string `$subject` is replaced by the subject's SID
+
+version: 1
+
+prompts:
+  - id: what-vs-done
+    title: What the data is, or what was done to it?
+    text: >-
+      Principle #4, content vs. provenance: a descriptor belongs in
+      TrackInterpretation if it answers what the data is, and in
+      TrackProvenance if it answers what was done to it (read selection, QC
+      filtering, normalization, derivation). Does this slot sit on the right
+      side? If not, move it.
+    source: "DECISIONS.md design principle #4"
+    when:
+      kind: [slot]
+      layer: [2]
+    decide_on: owner_class
+    suggested_verdict: move_slot
+    suggested_operation: {slot: $subject}
+
+  - id: layer-discipline
+    title: Layer discipline
+    text: >-
+      Principle #8, layer dependency discipline: imports and inlined class
+      ranges point only downward or sideways (Investigation -> Record ->
+      Descriptor -> Vocabulary). A lower layer refers up only by CURIE value,
+      never by class range. Does this element belong to this layer, and does
+      every range it uses respect that direction?
+    source: "DECISIONS.md design principle #8"
+    when:
+      kind: [class, slot]
+      layer: [3, 4]
+
+  - id: required-slot-policy
+    title: Required-slot policy
+    text: >-
+      Heavy `required:` makes a schema unadoptable (the BEDbase adoption
+      finding). `required: true` survives only on identifier slots and on
+      slots without which the instance is meaningless; everything else is
+      `recommended: true`, or plain optional for administrative fields.
+      Conditional rules are kept, because conditional requirement is targeted
+      and cheap. Does this slot meet that bar?
+    source: "DECISIONS.md FGA merge, required-slot policy"
+    when:
+      kind: [slot]
+      signal: [required]
+    suggested_verdict: set_cardinality
+
+  - id: ported-lineage
+    title: Confirm lineage and external alignment
+    text: >-
+      This class was ported from the FGA-WG schema and has not been reviewed
+      since the merge. Confirm its lineage (is_a, source) and its alignment to
+      the external standard it came from (conforms_to, mappings).
+    source: "DECISIONS.md FGA merge"
+    when:
+      kind: [class]
+      signal: [port]
+    suggested_verdict: keep
