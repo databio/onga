@@ -88,9 +88,10 @@ export function findingsFor(sid: string): Finding[] {
   return findingsBySubject[sid] || [];
 }
 
-/** Every decision naming the SID as subject or also_affects, oldest first. */
+/** Every decision naming the SID as subject or also_affects, or that created it, oldest first. */
 export function decisionsFor(sid: string): any[] {
-  return decisions.filter((d) => d.subject === sid || (d.also_affects || []).includes(sid));
+  return decisions.filter((d) => d.subject === sid || (d.also_affects || []).includes(sid)
+    || (d.applied?.created || []).includes(sid));
 }
 
 /** Review prompts that apply to the SID, with `$subject` filled into suggested operations. */

@@ -281,8 +281,19 @@ def build():
     for d in decs:
         if d.get("status") == "withdrawn":
             continue
-        for sid in [d["subject"], *(d.get("also_affects") or [])]:
-            by_subject[resolve(sid, aliases)].append(d)
+        # A subject an applied decision created (add_term, a rename target)
+        # is settled by that decision too.
+        created = (d.get("applied") or {}).get("created") or []
+        linked = {resolve(sid, aliases) for sid in [d["subject"], *(d.get("also_affects") or []), *created]}
+        for sid in linked:
+            by_subject[sid].append(d)
+    # Newest post-apply hash per subject across every applied record, including
+    # subjects a run changed as a side effect (see workbench.apply._stamp).
+    hash_after = {}
+    for d in decs:
+        if d.get("status") == "applied":
+            for k, v in ((d.get("applied") or {}).get("subject_hashes_after") or {}).items():
+                hash_after[resolve(k, aliases)] = v
     cited = defaultdict(set)   # finding id -> subjects covered by a citing terminal decision
 
     def is_terminal(d, sid):
@@ -316,12 +327,12 @@ def build():
         stale = False
         if last_t is not None:
             if last_t.get("status") == "applied":
-                recorded = ((last_t.get("applied") or {}).get("subject_hashes_after") or {})
+                h = hash_after.get(sid)
             else:
                 recorded = last_t.get("subject_hashes") or {}
-            h = recorded.get(sid)
-            if h is None:  # recorded under an alias
-                h = next((v for k, v in recorded.items() if resolve(k, aliases) == sid), None)
+                h = recorded.get(sid)
+                if h is None:  # recorded under an alias
+                    h = next((v for k, v in recorded.items() if resolve(k, aliases) == sid), None)
             stale = h is not None and h != s["hash"]
         sssom_objects = {r.get("object") for r in s["payload"].get("sssom") or []} \
             if s["kind"] == "term" else set()

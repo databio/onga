@@ -211,7 +211,8 @@ const stale = row?.state === 'stale';
     async function refreshLatest() {
       const store = await getDecisions();
       showLatest(store.decisions
-        .filter((d) => d.status !== 'withdrawn' && (d.subject === sid || d.also_affects?.includes(sid)))
+        .filter((d) => d.status !== 'withdrawn'
+          && (d.subject === sid || d.also_affects?.includes(sid) || d.applied?.created?.includes(sid)))
         .at(-1));
     }
 

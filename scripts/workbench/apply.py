@@ -121,14 +121,14 @@ def select(doc, verdicts, subjects, want=None):
     return recs, errors
 
 
-def validate(recs, subjects, verdicts):
+def validate(recs, subjects, verdicts, doc=None):
     errors = {}
     for r in recs:
         rec = dict(r)
         if isinstance(rec.get("decided_on"), str):
             rec["decided_on"] = datetime.date.fromisoformat(rec["decided_on"])
         try:
-            store.validate(rec, subjects, verdicts, check_hashes=False)
+            store.validate(rec, subjects, verdicts, doc=doc, check_hashes=False)
         except store.StoreError as e:
             errors[r["id"]] = e.errors
             continue
@@ -180,7 +180,7 @@ def plan(want=None, root=ROOT):
         return Result(False, errors={"run": [f"subject registry: {e}"]}), None
     doc = store.load()
     recs, errors = select(doc, verdicts, subjects, want)
-    errors.update(validate([r for r in recs if r["id"] not in errors], subjects, verdicts))
+    errors.update(validate([r for r in recs if r["id"] not in errors], subjects, verdicts, doc))
     if errors:
         return Result(False, errors=errors), None
     try:
@@ -234,17 +234,26 @@ def _run(cmd, root, log):
         raise ApplyError(f"`{' '.join(map(str, cmd))}` failed:\n" + "\n".join(tail))
 
 
-def _stamp(result, root):
-    """Mark every applied record, with post-apply hashes from the new registry."""
+def _stamp(result, root, before):
+    """Mark every applied record, with post-apply hashes from the new registry.
+
+    Subjects the run changed as a side effect (the member terms of a renamed
+    subset, say) are stamped on the run's last record, so they do not read as
+    hand-edited (`stale`) afterwards."""
     after = json.loads((root / "curation" / "subjects.json").read_text())["subjects"]
     doc = store.load()
     today = datetime.date.today()
     by_id = {r["id"]: r for r in doc.data["decisions"]}
-    for r in result.records:
+    touched = set()
+    for i, r in enumerate(result.records):
         eff = result.effects[r["id"]]
         affected = [r["subject"], *(r.get("also_affects") or []), *eff.created]
         affected = [eff.renamed.get(s, s) for s in affected]
         hashes = {s: after[s]["hash"] for s in dict.fromkeys(affected) if s in after}
+        touched.update(affected)
+        if i == len(result.records) - 1:
+            hashes.update({s: a["hash"] for s, a in after.items() if s not in touched
+                           and s in before and before[s]["hash"] != a["hash"]})
         rec = by_id[r["id"]]
         rec["status"] = "applied"
         rec["applied"] = store._to_yaml({
@@ -268,7 +277,7 @@ def run(want=None, dry_run=False, root=ROOT):
                 _write(root / path, text)
             _run([PY, "scripts/project_mappings.py"], root, result.log)
             _run([PY, "scripts/curation_subjects.py"], root, result.log)
-            _stamp(result, root)
+            _stamp(result, root, ctx.subjects.by_sid)
             _run(["make", "regen"], root, result.log)
             _run(["make", "test"], root, result.log)
         except (ApplyError, OSError, registry.RegistryError) as e:
