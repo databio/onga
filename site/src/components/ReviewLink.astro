@@ -1,0 +1,18 @@
+---
+// Header affordance for a browse page: the subject's state chip plus a link to
+// its workbench page. Read-only; deciding happens in the workbench.
+import { url } from '../lib/url';
+import { subject } from '../lib/develop';
+import StateChip from './StateChip.astro';
+
+interface Props { sid?: string }
+const { sid } = Astro.props;
+const row = sid ? subject(sid) : undefined;
+---
+
+{row && (
+  <span class="review-link inline-flex items-center gap-2 text-sm">
+    <StateChip sid={row.sid} link />
+    <a href={url(row.href)} class="text-blue-600 underline hover:text-blue-800">Review in workbench</a>
+  </span>
+)}

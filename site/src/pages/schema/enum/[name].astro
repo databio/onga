@@ -2,6 +2,9 @@
 import { url } from '../../../lib/url';
 import Layout from '../../../layouts/Layout.astro';
 import enums from '../../../data/schema/enums.json';
+import StateChip from '../../../components/StateChip.astro';
+import ReviewLink from '../../../components/ReviewLink.astro';
+import { enumValue } from '../../../lib/browse';
 
 // Generic enum detail page for the structural enums (ValueType,
 // AccessProtocol, BiospecimenClassification, ...). The hand-curated Layer-1
@@ -27,6 +30,7 @@ const linkify = (v: string) => (String(v).startsWith('http') ? v : null);
     <div class="flex items-center gap-3 flex-wrap">
       <h1 class="text-3xl font-bold font-mono text-gray-900">{en.name}</h1>
       <span class="text-xs px-2 py-1 rounded font-medium bg-indigo-100 text-indigo-800">enum · {en.values.length} values</span>
+      <ReviewLink sid={`enum:${en.name}`} />
     </div>
     <p class="text-gray-600 mt-3 max-w-3xl">{en.description}</p>
     {en.source && (
@@ -45,16 +49,24 @@ const linkify = (v: string) => (String(v).startsWith('http') ? v : null);
         <thead>
           <tr class="text-left text-xs text-gray-500 uppercase tracking-wide border-b border-gray-200">
             <th class="px-4 py-3">Value</th>
+            <th class="px-4 py-3">Id</th>
             <th class="px-4 py-3">Description</th>
           </tr>
         </thead>
         <tbody>
-          {en.values.map((v: any) => (
-            <tr class="border-b border-gray-100 align-top">
-              <td class="px-4 py-3 font-mono whitespace-nowrap">{v.name}</td>
-              <td class="px-4 py-3 text-gray-600">{v.description}</td>
-            </tr>
-          ))}
+          {en.values.map((v: any) => {
+            const t = enumValue(en.name, v.name);
+            return (
+              <tr class="border-b border-gray-100 align-top">
+                <td class="px-4 py-3 font-mono whitespace-nowrap">{v.name}</td>
+                <td class="px-4 py-3 font-mono text-xs text-gray-500 whitespace-nowrap">
+                  {t ? t.name : '—'}
+                  {t && <div class="mt-1"><StateChip sid={t.sid} link /></div>}
+                </td>
+                <td class="px-4 py-3 text-gray-600">{v.description}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

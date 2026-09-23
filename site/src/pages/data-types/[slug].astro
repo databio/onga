@@ -1,6 +1,8 @@
 ---
 import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
+import ReviewLink from '../../components/ReviewLink.astro';
+import { termSid } from '../../lib/browse';
 import dataTypes from '../../data/data-types.json';
 import featureTypes from '../../data/feature-types.json';
 import dataTypesByCategory from '../../data/data-types-by-category.json';
@@ -48,7 +50,10 @@ function edamUrl(edamId: string): string {
         <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">{term.category}</span>
       </div>
       <h1 class="text-3xl font-bold text-gray-900 mb-2">{term.name}</h1>
-      <code class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded" title="Permanent ONGA term id">{term.ongaId}</code>
+      <div class="flex items-center gap-3 flex-wrap">
+        <code class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded" title="Permanent ONGA term id">{term.ongaId}</code>
+        <ReviewLink sid={termSid(term.ongaId)} />
+      </div>
     </header>
 
     <div class="p-6 space-y-6">

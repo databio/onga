@@ -2,6 +2,10 @@
 import { url } from '../../../lib/url';
 import Layout from '../../../layouts/Layout.astro';
 import classes from '../../../data/schema/classes.json';
+import StateChip from '../../../components/StateChip.astro';
+import ReviewLink from '../../../components/ReviewLink.astro';
+import ReviewPrompts from '../../../components/ReviewPrompts.astro';
+import { slotSid } from '../../../lib/browse';
 
 // Generic class detail page: slot table, is_a up-link, referenced_by
 // back-links, and a provenance box for the lineage / external-standard
@@ -41,9 +45,12 @@ const linkify = (v: string) => (String(v).startsWith('http') ? v : null);
           is_a <a href={url(cls.isAHref)} class="font-mono text-blue-600 underline hover:text-blue-800">{cls.isA}</a>
         </span>
       )}
+      <ReviewLink sid={`class:${cls.name}`} />
     </div>
     <p class="text-gray-600 mt-3 max-w-3xl">{cls.description}</p>
   </div>
+
+  <ReviewPrompts sid={`class:${cls.name}`} />
 
   {hasProvenance && (
     <section class="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-8 text-sm">
@@ -97,6 +104,7 @@ const linkify = (v: string) => (String(v).startsWith('http') ? v : null);
             <th class="px-4 py-3">Range</th>
             <th class="px-4 py-3">Card.</th>
             <th class="px-4 py-3">Description</th>
+            <th class="px-4 py-3">Review</th>
           </tr>
         </thead>
         <tbody>
@@ -118,6 +126,7 @@ const linkify = (v: string) => (String(v).startsWith('http') ? v : null);
               </td>
               <td class="px-4 py-3 text-gray-500 whitespace-nowrap">{slot.multivalued ? 'many' : 'one'}</td>
               <td class="px-4 py-3 text-gray-600">{slot.description}</td>
+              <td class="px-4 py-3"><StateChip sid={slotSid(slot.name)} link /></td>
             </tr>
           ))}
         </tbody>

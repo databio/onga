@@ -1,5 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import StateChip from '../../components/StateChip.astro';
+import ReviewLink from '../../components/ReviewLink.astro';
+import { pageSid, slotSid, enumValue } from '../../lib/browse';
 import geometry from '../../data/track-geometry.json';
 import geometryByGroup from '../../data/track-geometry-by-group.json';
 
@@ -15,6 +18,7 @@ const groups = Object.keys(geometryByGroup).sort(
 <Layout title="Track Geometry" description="Structural properties of a genomic track — the shape of its features">
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Track Geometry</h1>
+    <div class="mb-2"><ReviewLink sid={pageSid('/track-geometry')} /></div>
     <p class="text-amber-600 font-medium">{properties.length} properties</p>
     <p class="text-gray-600 mt-2">
       Geometric or structural properties of the sequence features in a genomic
@@ -54,7 +58,7 @@ const groups = Object.keys(geometryByGroup).sort(
             >
               <div class="flex items-start justify-between">
                 <div>
-                  <h3 class="font-medium text-gray-900 font-mono text-sm">{prop.name}</h3>
+                  <div class="flex items-center gap-2 flex-wrap"><h3 class="font-medium text-gray-900 font-mono text-sm">{prop.name}</h3><StateChip sid={slotSid(prop.name)} link /></div>
                   <p class="text-sm text-gray-500 mt-1">{prop.description}</p>
                   {prop.rule && (
                     <p class="text-xs text-amber-700 mt-2">⚑ {prop.rule}</p>
@@ -92,7 +96,7 @@ const groups = Object.keys(geometryByGroup).sort(
     <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
       {valueTypes.map((vt: any) => (
         <div class="p-4">
-          <h3 class="font-medium text-gray-900 font-mono text-sm">{vt.name}</h3>
+          <div class="flex items-center gap-2 flex-wrap"><h3 class="font-medium text-gray-900 font-mono text-sm">{vt.name}</h3>{enumValue('ValueType', vt.name) && <StateChip sid={enumValue('ValueType', vt.name)!.sid} link />}</div>
           <p class="text-sm text-gray-500 mt-1">{vt.description}</p>
         </div>
       ))}

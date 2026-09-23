@@ -1,6 +1,9 @@
 ---
 import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
+import StateChip from '../../components/StateChip.astro';
+import ReviewLink from '../../components/ReviewLink.astro';
+import { pageSid, termSid } from '../../lib/browse';
 import terms from '../../data/normalization.json';
 ---
 
@@ -8,6 +11,7 @@ import terms from '../../data/normalization.json';
   <div class="mb-8">
     <p class="text-[11px] uppercase tracking-wide text-indigo-400 font-semibold">Facet vocabulary</p>
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Normalization</h1>
+    <div class="mb-2"><ReviewLink sid={pageSid('/normalization')} /></div>
     <p class="text-indigo-600 font-medium">{terms.length} terms</p>
     <p class="text-gray-600 mt-2">
       Controlled vocabulary distinguishing the scaling normalization applied to a
@@ -36,7 +40,7 @@ import terms from '../../data/normalization.json';
       <div class="block p-4">
         <div class="flex items-start justify-between">
           <div>
-            <h3 class="font-medium text-gray-900 font-mono text-sm">{term.name}</h3>
+            <div class="flex items-center gap-2 flex-wrap"><h3 class="font-medium text-gray-900 font-mono text-sm">{term.name}</h3><code class="text-xs text-gray-400">{term.ongaId}</code><StateChip sid={termSid(term.ongaId)} link /></div>
             <p class="text-sm text-gray-500 mt-1">{term.description}</p>
           </div>
           {term.edamMapping && (
