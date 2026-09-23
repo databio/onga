@@ -288,3 +288,38 @@ def test_embedding_only_search_still_works(candidate_embeddings_dir):
     assert len(results) == 2
     assert results[0][0].match_term == "contig"
     assert isinstance(results[0][0], SimilarityResult)
+
+
+def test_searcher_keeps_model_name_and_provenance(tmp_path):
+    from onga_embeddings.embedding_model import save_embeddings
+
+    emb = np.eye(2, dtype=np.float32)
+    save_embeddings(
+        tmp_path / "onga.npz", emb,
+        [{"name": "a", "term_id": "ONGA_0000001"}, {"name": "b", "term_id": "ONGA_0000002"}],
+        "test-model", provenance={"schema_fingerprint": "sha256:fp"},
+    )
+    save_embeddings(
+        tmp_path / "so.npz", emb, [{"id": "SO:1", "name": "x"}, {"id": "SO:2", "name": "y"}],
+        "test-model", provenance={"source_file": "so.obo", "source_sha256": "sha256:src"},
+    )
+    searcher = SimilaritySearcher(tmp_path)
+    searcher.load_ontology_embeddings("so")
+    assert searcher.model_name == "test-model"
+    assert searcher.schema_fingerprint == "sha256:fp"
+    assert searcher.ontology_model_name("so") == "test-model"
+    assert searcher.ontology_provenance("so") == {
+        "name": "so", "source_file": "so.obo", "sha256": "sha256:src", "term_count": 2,
+    }
+
+
+def test_results_carry_term_ids(mock_embeddings_dir):
+    searcher = SimilaritySearcher(mock_embeddings_dir)
+    for i, meta in enumerate(searcher.onga_metadata, 1):
+        meta["term_id"] = f"ONGA_000000{i}"
+        meta["sid"] = f"term:ONGA_000000{i}"
+    results = searcher.find_all_similar_terms(threshold=0.0)
+    assert [r.sid for r in results] == ["term:ONGA_0000001", "term:ONGA_0000002", "term:ONGA_0000003"]
+    (pair,) = searcher.find_internal_similarity(threshold=0.9)
+    assert (pair.term1_id, pair.term2_id) == ("ONGA_0000001", "ONGA_0000003")
+    assert pair.machine_recommendation() == "merge"

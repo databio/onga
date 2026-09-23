@@ -11,9 +11,9 @@ def main():
     internal_raw = json.loads((REPORTS_DIR / "internal_similarity.json").read_text())
     gaps_raw = json.loads((REPORTS_DIR / "gap_analysis.json").read_text())
     
-    mapping = mapping_raw.get("terms", mapping_raw)
-    internal = internal_raw.get("pairs", internal_raw)
-    gaps = gaps_raw.get("terms", gaps_raw)
+    mapping = mapping_raw["terms"]
+    internal = internal_raw["pairs"]
+    gaps = [t for group in gaps_raw["by_subset"].values() for t in group["terms"]]
     
     well_mapped = len([t for t in mapping if t.get("max_similarity", 0) >= 0.7])
     
@@ -128,19 +128,19 @@ def main():
             document.getElementById('panel-internal').innerHTML = '<div class="space-y-2">' + sorted.map(p => {{
                 const col = p.similarity >= 0.9 ? 'red' : 'yellow';
                 return `<div class="card bg-white rounded shadow p-3 flex items-center" data-name="${{p.term1.toLowerCase()}} ${{p.term2.toLowerCase()}}" data-cat="" data-sim="${{p.similarity}}">
-                    <div class="flex-1"><span class="font-medium">${{p.term1}}</span> <span class="text-xs px-1 rounded ${{p.category1==='DataType'?'bg-blue-100':'bg-green-100'}}">${{p.category1}}</span></div>
+                    <div class="flex-1"><span class="font-medium">${{p.term1}}</span> <span class="text-xs px-1 rounded ${{p.term1_category==='DataType'?'bg-blue-100':'bg-green-100'}}">${{p.term1_category}}</span></div>
                     <div class="text-lg font-bold text-${{col}}-600 px-4">${{p.similarity.toFixed(2)}}</div>
-                    <div class="flex-1 text-right"><span class="font-medium">${{p.term2}}</span> <span class="text-xs px-1 rounded ${{p.category2==='DataType'?'bg-blue-100':'bg-green-100'}}">${{p.category2}}</span></div>
+                    <div class="flex-1 text-right"><span class="font-medium">${{p.term2}}</span> <span class="text-xs px-1 rounded ${{p.term2_category==='DataType'?'bg-blue-100':'bg-green-100'}}">${{p.term2_category}}</span></div>
                 </div>`;
             }}).join('') + '</div>';
         }}
 
         function renderG() {{
             const byCat = {{}};
-            G.forEach(t => {{ byCat[t.onga_category] = byCat[t.onga_category] || []; byCat[t.onga_category].push(t); }});
+            G.forEach(t => {{ byCat[t.category] = byCat[t.category] || []; byCat[t.category].push(t); }});
             document.getElementById('panel-gaps').innerHTML = Object.entries(byCat).map(([cat, terms]) => `
                 <div class="mb-4"><h3 class="font-semibold mb-2">${{cat}} (${{terms.length}})</h3>
-                <div class="grid grid-cols-3 gap-2">${{terms.map(t => `<div class="card bg-white rounded shadow p-2 text-sm" data-name="${{t.onga_term.toLowerCase()}}" data-cat="${{t.onga_category}}" data-sim="0">
+                <div class="grid grid-cols-3 gap-2">${{terms.map(t => `<div class="card bg-white rounded shadow p-2 text-sm" data-name="${{t.onga_term.toLowerCase()}}" data-cat="${{t.category}}" data-sim="0">
                     <div class="font-medium">${{t.onga_term}}</div><div class="text-xs text-gray-400">best: ${{(t.max_similarity||0).toFixed(2)}}</div>
                 </div>`).join('')}}</div></div>
             `).join('');

@@ -86,10 +86,10 @@ for candidate in searcher.find_candidates_for_term("so", "candidate enhancers"):
 # 1. Download ontologies
 python scripts/download_ontologies.py --all
 
-# 2. Build embeddings (skips already-built files)
+# 2. Build embeddings (skips files that still match their source)
 python scripts/build_embeddings.py
 
-# 3. Run comparison (embedding-only reports)
+# 3. Run comparison (embedding-only reports; reads ../curation/subjects.json)
 python scripts/run_comparison.py
 
 # 4. Blended lexical + embedding candidate TSV for curation
@@ -99,6 +99,18 @@ python scripts/run_comparison.py --ontology edam --candidates
 # 5. Generate HTML viewer
 python scripts/generate_viewer.py
 ```
+
+`onga.npz` records the `schema_fingerprint` of `curation/subjects.json`, and each
+ontology `.npz` the sha256 of its source file; step 2 rebuilds any that no
+longer match, and step 3 refuses stale ONGA embeddings.
+
+Every report opens with a `provenance` block (`generated_at`,
+`generator_version`, `model_name`, `schema_fingerprint`, `subject_count`,
+per-ontology `{name, source_file, sha256, term_count}`, `params`). Every finding
+has a stable `id` and a `subjects` list of term subject ids (`term:ONGA_…`).
+Ids hash term ids, never labels, so they survive renames: `map:` sha1(term id |
+ontology | object id) per mapping suggestion, `sim:` sha1(sorted term ids) per
+similar pair, `gap:` sha1(term id) per gap term.
 
 The candidate TSV lands at `outputs/reports/<ontology>_candidates.tsv` and feeds
 manual curation into `mappings/<ontology>.sssom.tsv`.
@@ -115,6 +127,7 @@ onga-embeddings/
     embedding_model.py    # sentence-transformers wrapper (lazy import)
     similarity_search.py  # Embedding search + blended candidate search
     report_generator.py   # JSON/Markdown reports
+    provenance.py         # Report provenance, finding ids, subject lookup
   data/
     ontologies/           # Downloaded OWL/OBO files
     embeddings/           # Cached embeddings (.npz)

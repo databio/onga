@@ -2,6 +2,8 @@
 
 from pathlib import Path
 
+import re
+
 import pytest
 
 from onga_embeddings.onga_parser import ONGATerm, parse_onga
@@ -9,6 +11,7 @@ from onga_embeddings.ontology_loader import OntologyTerm, load_ontology, parse_o
 
 
 # Path to ONGA vocabulary (adjust if needed)
+TERM_ID = re.compile(r"^ONGA_\d{7}$")
 ONGA_PATH = Path(__file__).resolve().parents[2] / "src" / "file_content.yaml"
 
 
@@ -41,26 +44,22 @@ class TestONGAParser:
         assert "signal_track" in subsets
 
     @pytest.mark.skipif(not ONGA_PATH.exists(), reason="ONGA file not found")
-    def test_parse_onga_extracts_meanings(self):
-        """parse_onga should extract `meaning:` values from any ontology.
-
-        `meaning:` is ontology-neutral -- it names the one identifier that IS
-        the term. Cross-references to other ontologies live in the typed
-        exact/close/broad/related mapping slots instead, so asserting a raw
-        count of EDAM meanings would drift every time curation moves one.
-        """
+    def test_parse_onga_reads_term_ids(self):
+        """Every term's ``meaning: onga:ONGA_NNNNNNN`` becomes a unique term_id."""
         terms = parse_onga(ONGA_PATH)
-        with_meaning = [t for t in terms if t.meaning is not None]
+        ids = [t.term_id for t in terms]
+        assert all(i and TERM_ID.match(i) for i in ids), ids
+        assert len(set(ids)) == len(ids)
 
-        assert with_meaning, "no term carries a meaning"
-        # A meaning is always a CURIE, never a bare label.
-        for term in with_meaning:
-            assert ":" in term.meaning, f"{term.name}: {term.meaning!r} is not a CURIE"
-
-        # Meanings are drawn from more than one ontology.
-        prefixes = {t.meaning.split(":", 1)[0] for t in with_meaning}
-        assert "edam" in prefixes
-        assert "SO" in prefixes
+    def test_parse_onga_rejects_external_meaning(self, tmp_path):
+        """A non-ONGA ``meaning:`` is an error, not a mapping."""
+        path = tmp_path / "vocab.yaml"
+        path.write_text(
+            "enums:\n  DataType:\n    permissible_values:\n"
+            "      peaks:\n        meaning: edam:data_3002\n"
+        )
+        with pytest.raises(ValueError, match="not an ONGA term id"):
+            parse_onga(path)
 
     def test_onga_term_embedding_text(self):
         """ONGATerm.embedding_text should combine name and description."""
@@ -81,9 +80,10 @@ class TestONGAParser:
             description="Test description",
             category="DataType",
             subset="peak_set",
-            meaning="edam:data_3002",
+            term_id="ONGA_0000001",
         )
         d = term.to_dict()
+        assert d["term_id"] == "ONGA_0000001"
         assert d["name"] == "peaks"
         assert d["ontology"] == "ONGA"
         assert d["category"] == "DataType"

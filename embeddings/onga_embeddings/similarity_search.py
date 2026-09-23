@@ -48,6 +48,8 @@ class TermSimilarityResults:
     definition: str
     existing_mapping: Optional[str]
     matches_by_ontology: dict[str, list[SimilarityResult]] = field(default_factory=dict)
+    term_id: str = ""
+    sid: str = ""
 
     def best_match_per_ontology(self) -> dict[str, SimilarityResult]:
         """Return the best match for each ontology."""
@@ -195,6 +197,10 @@ def blend_candidates(
     return candidates
 
 
+#: Values of :meth:`InternalSimilarityPair.machine_recommendation`.
+MACHINE_RECOMMENDATIONS = ("merge", "hierarchy", "review_cross_category", "consolidate")
+
+
 @dataclass
 class InternalSimilarityPair:
     """A pair of ONGA terms that are similar to each other."""
@@ -206,6 +212,20 @@ class InternalSimilarityPair:
     term2_subset: str
     similarity: float
     crosses_categories: bool
+    term1_id: str = ""
+    term1_sid: str = ""
+    term2_id: str = ""
+    term2_sid: str = ""
+
+    def machine_recommendation(self) -> str:
+        """Machine-readable recommendation, one of :data:`MACHINE_RECOMMENDATIONS`."""
+        if self.crosses_categories:
+            return "review_cross_category"
+        if self.similarity > 0.95:
+            return "merge"
+        if self.similarity > 0.85:
+            return "hierarchy"
+        return "consolidate"
 
     def recommendation(self) -> str:
         """Generate a recommendation based on the similarity."""
@@ -218,6 +238,11 @@ class InternalSimilarityPair:
         return "Review for potential consolidation"
 
 
+def _npz_str(data, key: str) -> Optional[str]:
+    """A scalar string stored in an ``.npz``, or None when absent."""
+    return str(data[key]) if key in data.files else None
+
+
 class SimilaritySearcher:
     """Search engine for finding similar terms using pre-computed embeddings."""
 
@@ -225,8 +250,12 @@ class SimilaritySearcher:
         self.embedding_dir = Path(embedding_dir)
         self._onga_embeddings: Optional[np.ndarray] = None
         self._onga_metadata: Optional[list[dict]] = None
+        self._onga_model_name: Optional[str] = None
+        self._onga_schema_fingerprint: Optional[str] = None
         self._ontology_embeddings: dict[str, np.ndarray] = {}
         self._ontology_metadata: dict[str, list[dict]] = {}
+        self._ontology_model_names: dict[str, str] = {}
+        self._ontology_sources: dict[str, dict] = {}
         self._ontology_terms: dict[str, list[OntologyTerm]] = {}
         self._lexical_indexes: dict[str, LexicalIndex] = {}
 
@@ -238,6 +267,8 @@ class SimilaritySearcher:
         data = np.load(path, allow_pickle=True)
         self._onga_embeddings = data["embeddings"]
         self._onga_metadata = data["metadata"].tolist()
+        self._onga_model_name = _npz_str(data, "model_name")
+        self._onga_schema_fingerprint = _npz_str(data, "schema_fingerprint")
 
     def load_ontology_embeddings(self, ontology_name: str) -> None:
         """Load embeddings for a specific ontology."""
@@ -247,6 +278,11 @@ class SimilaritySearcher:
         data = np.load(path, allow_pickle=True)
         self._ontology_embeddings[ontology_name] = data["embeddings"]
         self._ontology_metadata[ontology_name] = data["metadata"].tolist()
+        self._ontology_model_names[ontology_name] = _npz_str(data, "model_name")
+        self._ontology_sources[ontology_name] = {
+            "source_file": _npz_str(data, "source_file"),
+            "sha256": _npz_str(data, "source_sha256"),
+        }
 
     def load_all_ontologies(self) -> list[str]:
         """Load all available ontology embeddings. Returns list of loaded names."""
@@ -269,6 +305,32 @@ class SimilaritySearcher:
         if self._onga_metadata is None:
             self.load_onga_embeddings()
         return self._onga_metadata
+
+    @property
+    def model_name(self) -> Optional[str]:
+        """Model that embedded the ONGA terms, as stored in ``onga.npz``."""
+        if self._onga_embeddings is None:
+            self.load_onga_embeddings()
+        return self._onga_model_name
+
+    @property
+    def schema_fingerprint(self) -> Optional[str]:
+        """``subjects.json`` fingerprint the ONGA embeddings were built from."""
+        if self._onga_embeddings is None:
+            self.load_onga_embeddings()
+        return self._onga_schema_fingerprint
+
+    def ontology_model_name(self, ontology_name: str) -> Optional[str]:
+        """Model that embedded a loaded ontology."""
+        return self._ontology_model_names[ontology_name]
+
+    def ontology_provenance(self, ontology_name: str) -> dict:
+        """``{name, source_file, sha256, term_count}`` for a loaded ontology."""
+        return {
+            "name": ontology_name,
+            **self._ontology_sources[ontology_name],
+            "term_count": len(self._ontology_metadata[ontology_name]),
+        }
 
     def find_similar_terms(
         self,
@@ -342,7 +404,9 @@ class SimilaritySearcher:
                 subset=meta.get("subset", ""),
                 definition=meta.get("definition", ""),
                 existing_mapping=meta.get("meaning"),
-                matches_by_ontology={}
+                matches_by_ontology={},
+                term_id=meta.get("term_id", ""),
+                sid=meta.get("sid", ""),
             ))
 
         # Search against each ontology
@@ -387,7 +451,11 @@ class SimilaritySearcher:
                         similarity=sim,
                         crosses_categories=(
                             meta_i.get("category") != meta_j.get("category")
-                        )
+                        ),
+                        term1_id=meta_i.get("term_id", ""),
+                        term1_sid=meta_i.get("sid", ""),
+                        term2_id=meta_j.get("term_id", ""),
+                        term2_sid=meta_j.get("sid", ""),
                     ))
 
         # Sort by similarity descending

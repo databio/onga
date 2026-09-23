@@ -1,457 +1,827 @@
 {
-  "generated_at": "2026-06-05T20:58:47.164787",
-  "total_pairs": 41,
+  "provenance": {
+    "generated_at": "2026-09-23T09:46:04",
+    "generator_version": "onga-embeddings/0.1.0",
+    "model_name": "NeuML/pubmedbert-base-embeddings",
+    "schema_fingerprint": "e38085a5f024c1fa78a37aafb48ce256d33e2e1aaacf26421251159b08599bfb",
+    "subject_count": 237,
+    "ontologies": [
+      {
+        "name": "so",
+        "source_file": "so.obo",
+        "sha256": "sha256:22a8f3ec2b49125dbb6cee8456f0bca86dd8c98f433165ffa4b554da4f155204",
+        "term_count": 2409
+      }
+    ],
+    "params": {
+      "threshold": 0.5,
+      "internal_threshold": 0.8,
+      "gap_threshold": 0.5,
+      "top_k": 5,
+      "ontologies": [
+        "so"
+      ]
+    }
+  },
+  "total_pairs": 42,
   "cross_category_pairs": 3,
   "pairs": [
     {
+      "id": "sim:5a089f72d10d",
+      "subjects": [
+        "term:ONGA_0000042",
+        "term:ONGA_0000043"
+      ],
       "term1": "hotspots1 reference",
+      "term1_id": "ONGA_0000042",
       "term1_category": "DataType",
       "term1_subset": "chromatin_accessibility",
       "term2": "hotspots2 reference",
+      "term2_id": "ONGA_0000043",
       "term2_category": "DataType",
       "term2_subset": "chromatin_accessibility",
       "similarity": 0.9513,
       "crosses_categories": false,
+      "machine_recommendation": "merge",
       "recommendation": "Consider merging"
     },
     {
+      "id": "sim:677a03eff3e8",
+      "subjects": [
+        "term:ONGA_0000227",
+        "term:ONGA_0000228"
+      ],
       "term1": "maternal haplotype mapping",
+      "term1_id": "ONGA_0000227",
       "term1_category": "FeatureType",
       "term1_subset": "haplotype",
       "term2": "paternal haplotype mapping",
+      "term2_id": "ONGA_0000228",
       "term2_category": "FeatureType",
       "term2_subset": "haplotype",
       "similarity": 0.9415,
       "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
       "recommendation": "Consider hierarchy relationship"
     },
     {
+      "id": "sim:38bc351b28e8",
+      "subjects": [
+        "term:ONGA_0000023",
+        "term:ONGA_0000029"
+      ],
       "term1": "distal peaks",
+      "term1_id": "ONGA_0000023",
       "term1_category": "DataType",
       "term1_subset": "peak_set",
       "term2": "proximal peaks",
+      "term2_id": "ONGA_0000029",
       "term2_category": "DataType",
       "term2_subset": "peak_set",
       "similarity": 0.9362,
       "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
       "recommendation": "Consider hierarchy relationship"
     },
     {
+      "id": "sim:7deaec4a9047",
+      "subjects": [
+        "term:ONGA_0000144",
+        "term:ONGA_0000145"
+      ],
       "term1": "negative control regions",
+      "term1_id": "ONGA_0000144",
       "term1_category": "DataType",
       "term1_subset": "technical",
       "term2": "positive control regions",
+      "term2_id": "ONGA_0000145",
       "term2_category": "DataType",
       "term2_subset": "technical",
       "similarity": 0.9174,
       "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
       "recommendation": "Consider hierarchy relationship"
     },
     {
+      "id": "sim:fa344de72ff6",
+      "subjects": [
+        "term:ONGA_0000061",
+        "term:ONGA_0000063"
+      ],
       "term1": "sparse gene count matrix",
+      "term1_id": "ONGA_0000061",
       "term1_category": "DataType",
       "term1_subset": "count_matrix",
       "term2": "sparse transcript count matrix",
+      "term2_id": "ONGA_0000063",
       "term2_category": "DataType",
       "term2_subset": "count_matrix",
       "similarity": 0.9171,
       "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
       "recommendation": "Consider hierarchy relationship"
     },
     {
+      "id": "sim:8165e80f44eb",
+      "subjects": [
+        "term:ONGA_0000135",
+        "term:ONGA_0000136"
+      ],
       "term1": "idat green channel",
+      "term1_id": "ONGA_0000135",
       "term1_category": "DataType",
       "term1_subset": "technical",
       "term2": "idat red channel",
+      "term2_id": "ONGA_0000136",
       "term2_category": "DataType",
       "term2_subset": "technical",
       "similarity": 0.9048,
       "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
       "recommendation": "Consider hierarchy relationship"
     },
     {
-      "term1": "haplotype-specific nuclease cleavage corrected frequency",
-      "term1_category": "DataType",
-      "term1_subset": "chromatin_accessibility",
-      "term2": "haplotype-specific nuclease cleavage frequency",
-      "term2_category": "DataType",
-      "term2_subset": "chromatin_accessibility",
-      "similarity": 0.8998,
-      "crosses_categories": false,
-      "recommendation": "Consider hierarchy relationship"
-    },
-    {
+      "id": "sim:d1e60a64d388",
+      "subjects": [
+        "term:ONGA_0000219",
+        "term:ONGA_0000220"
+      ],
       "term1": "transposable element TF ancestral origin percent by motif",
+      "term1_id": "ONGA_0000219",
       "term1_category": "FeatureType",
       "term1_subset": "annotation",
       "term2": "transposable element TF ancestral origin percent by subfamily",
+      "term2_id": "ONGA_0000220",
       "term2_category": "FeatureType",
       "term2_subset": "annotation",
       "similarity": 0.882,
       "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
       "recommendation": "Consider hierarchy relationship"
     },
     {
+      "id": "sim:7c567131d682",
+      "subjects": [
+        "term:ONGA_0000200",
+        "term:ONGA_0000201"
+      ],
       "term1": "maternal variant calls",
+      "term1_id": "ONGA_0000200",
       "term1_category": "FeatureType",
       "term1_subset": "variant",
       "term2": "paternal variant calls",
+      "term2_id": "ONGA_0000201",
       "term2_category": "FeatureType",
       "term2_subset": "variant",
       "similarity": 0.879,
       "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
       "recommendation": "Consider hierarchy relationship"
     },
     {
+      "id": "sim:1b7050d6a14d",
+      "subjects": [
+        "term:ONGA_0000066",
+        "term:ONGA_0000067"
+      ],
       "term1": "differential expression quantifications",
+      "term1_id": "ONGA_0000066",
       "term1_category": "DataType",
       "term1_subset": "quantification",
       "term2": "differential splicing quantifications",
+      "term2_id": "ONGA_0000067",
       "term2_category": "DataType",
       "term2_subset": "quantification",
       "similarity": 0.8752,
       "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
       "recommendation": "Consider hierarchy relationship"
     },
     {
+      "id": "sim:ec0c0ce62dc4",
+      "subjects": [
+        "term:ONGA_0000095",
+        "term:ONGA_0000097"
+      ],
       "term1": "selected regions for count sequence contribution scores",
+      "term1_id": "ONGA_0000095",
       "term1_category": "DataType",
       "term1_subset": "deep_learning",
       "term2": "selected regions for predicted signal and sequence contribution scores",
+      "term2_id": "ONGA_0000097",
       "term2_category": "DataType",
       "term2_subset": "deep_learning",
       "similarity": 0.8727,
       "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
       "recommendation": "Consider hierarchy relationship"
     },
     {
+      "id": "sim:f195c4514add",
+      "subjects": [
+        "term:ONGA_0000227",
+        "term:ONGA_0000237"
+      ],
+      "term1": "maternal haplotype mapping",
+      "term1_id": "ONGA_0000227",
+      "term1_category": "FeatureType",
+      "term1_subset": "haplotype",
+      "term2": "mapping",
+      "term2_id": "ONGA_0000237",
+      "term2_category": "FeatureType",
+      "term2_subset": "haplotype",
+      "similarity": 0.8723,
+      "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
+      "recommendation": "Consider hierarchy relationship"
+    },
+    {
+      "id": "sim:a2281557ca74",
+      "subjects": [
+        "term:ONGA_0000059",
+        "term:ONGA_0000063"
+      ],
       "term1": "sparse gRNA count matrix",
+      "term1_id": "ONGA_0000059",
       "term1_category": "DataType",
       "term1_subset": "crispr_screen",
       "term2": "sparse transcript count matrix",
+      "term2_id": "ONGA_0000063",
       "term2_category": "DataType",
       "term2_subset": "count_matrix",
       "similarity": 0.8635,
       "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
       "recommendation": "Consider hierarchy relationship"
     },
     {
+      "id": "sim:2933e49c74f3",
+      "subjects": [
+        "term:ONGA_0000097",
+        "term:ONGA_0000099"
+      ],
       "term1": "selected regions for predicted signal and sequence contribution scores",
+      "term1_id": "ONGA_0000097",
       "term1_category": "DataType",
       "term1_subset": "deep_learning",
       "term2": "selected regions for profile sequence contribution scores",
+      "term2_id": "ONGA_0000099",
       "term2_category": "DataType",
       "term2_subset": "deep_learning",
       "similarity": 0.8594,
       "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
       "recommendation": "Consider hierarchy relationship"
     },
     {
+      "id": "sim:757f65b07ede",
+      "subjects": [
+        "term:ONGA_0000074",
+        "term:ONGA_0000083"
+      ],
       "term1": "merged transcription segment quantifications",
+      "term1_id": "ONGA_0000074",
       "term1_category": "DataType",
       "term1_subset": "quantification",
       "term2": "transcription segment quantifications",
+      "term2_id": "ONGA_0000083",
       "term2_category": "DataType",
       "term2_subset": "quantification",
       "similarity": 0.8592,
       "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
       "recommendation": "Consider hierarchy relationship"
     },
     {
+      "id": "sim:b83a70568d3d",
+      "subjects": [
+        "term:ONGA_0000173",
+        "term:ONGA_0000174"
+      ],
       "term1": "methylation state at CHG",
+      "term1_id": "ONGA_0000173",
       "term1_category": "FeatureType",
       "term1_subset": "dna_methylation",
       "term2": "methylation state at CHH",
+      "term2_id": "ONGA_0000174",
       "term2_category": "FeatureType",
       "term2_subset": "dna_methylation",
       "similarity": 0.8527,
       "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
       "recommendation": "Consider hierarchy relationship"
     },
     {
+      "id": "sim:50db93fe7590",
+      "subjects": [
+        "term:ONGA_0000228",
+        "term:ONGA_0000237"
+      ],
+      "term1": "paternal haplotype mapping",
+      "term1_id": "ONGA_0000228",
+      "term1_category": "FeatureType",
+      "term1_subset": "haplotype",
+      "term2": "mapping",
+      "term2_id": "ONGA_0000237",
+      "term2_category": "FeatureType",
+      "term2_subset": "haplotype",
+      "similarity": 0.8501,
+      "crosses_categories": false,
+      "machine_recommendation": "hierarchy",
+      "recommendation": "Consider hierarchy relationship"
+    },
+    {
+      "id": "sim:c6a463d3d213",
+      "subjects": [
+        "term:ONGA_0000096",
+        "term:ONGA_0000098"
+      ],
       "term1": "selected regions for predicted bias profile",
+      "term1_id": "ONGA_0000096",
       "term1_category": "DataType",
       "term1_subset": "deep_learning",
       "term2": "selected regions for predicted signal profile",
+      "term2_id": "ONGA_0000098",
       "term2_category": "DataType",
       "term2_subset": "deep_learning",
       "similarity": 0.8491,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:05dca4d5e629",
+      "subjects": [
+        "term:ONGA_0000095",
+        "term:ONGA_0000099"
+      ],
       "term1": "selected regions for count sequence contribution scores",
+      "term1_id": "ONGA_0000095",
       "term1_category": "DataType",
       "term1_subset": "deep_learning",
       "term2": "selected regions for profile sequence contribution scores",
+      "term2_id": "ONGA_0000099",
       "term2_category": "DataType",
       "term2_subset": "deep_learning",
       "similarity": 0.8457,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:4667e9f155e0",
+      "subjects": [
+        "term:ONGA_0000094",
+        "term:ONGA_0000096"
+      ],
       "term1": "selected regions for bias-corrected predicted signal profile",
+      "term1_id": "ONGA_0000094",
       "term1_category": "DataType",
       "term1_subset": "deep_learning",
       "term2": "selected regions for predicted bias profile",
+      "term2_id": "ONGA_0000096",
       "term2_category": "DataType",
       "term2_subset": "deep_learning",
       "similarity": 0.8418,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:e20ec343b472",
+      "subjects": [
+        "term:ONGA_0000107",
+        "term:ONGA_0000182"
+      ],
       "term1": "elements reference",
+      "term1_id": "ONGA_0000107",
       "term1_category": "DataType",
       "term1_subset": "reference",
       "term2": "enhancers reference",
+      "term2_id": "ONGA_0000182",
       "term2_category": "FeatureType",
       "term2_subset": "regulatory_element",
       "similarity": 0.8409,
       "crosses_categories": true,
+      "machine_recommendation": "review_cross_category",
       "recommendation": "Review: similar terms in different categories"
     },
     {
+      "id": "sim:90440906542f",
+      "subjects": [
+        "term:ONGA_0000202",
+        "term:ONGA_0000205"
+      ],
       "term1": "reference variants",
+      "term1_id": "ONGA_0000202",
       "term1_category": "FeatureType",
       "term1_subset": "variant",
       "term2": "variant reference",
+      "term2_id": "ONGA_0000205",
       "term2_category": "FeatureType",
       "term2_subset": "variant",
       "similarity": 0.8399,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:6f3a6ca06b95",
+      "subjects": [
+        "term:ONGA_0000116",
+        "term:ONGA_0000213"
+      ],
       "term1": "repeats reference",
+      "term1_id": "ONGA_0000116",
       "term1_category": "DataType",
       "term1_subset": "reference",
       "term2": "repeat elements annotation",
+      "term2_id": "ONGA_0000213",
       "term2_category": "FeatureType",
       "term2_subset": "annotation",
       "similarity": 0.8382,
       "crosses_categories": true,
+      "machine_recommendation": "review_cross_category",
       "recommendation": "Review: similar terms in different categories"
     },
     {
+      "id": "sim:145513e03266",
+      "subjects": [
+        "term:ONGA_0000033",
+        "term:ONGA_0000037"
+      ],
       "term1": "representative DNase hypersensitivity sites",
+      "term1_id": "ONGA_0000033",
       "term1_category": "DataType",
       "term1_subset": "peak_set",
       "term2": "consensus DNase hypersensitivity sites",
+      "term2_id": "ONGA_0000037",
       "term2_category": "DataType",
       "term2_subset": "chromatin_accessibility",
       "similarity": 0.8353,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:9bc6cda72381",
+      "subjects": [
+        "term:ONGA_0000010",
+        "term:ONGA_0000152"
+      ],
       "term1": "spike-in alignments",
+      "term1_id": "ONGA_0000010",
       "term1_category": "DataType",
       "term1_subset": "alignment",
       "term2": "spike-ins",
+      "term2_id": "ONGA_0000152",
       "term2_category": "DataType",
       "term2_subset": "technical",
       "similarity": 0.8353,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:02b62fb4e955",
+      "subjects": [
+        "term:ONGA_0000189",
+        "term:ONGA_0000190"
+      ],
       "term1": "element gene interactions p-value",
+      "term1_id": "ONGA_0000189",
       "term1_category": "FeatureType",
       "term1_subset": "element_gene_linkage",
       "term2": "element gene interactions signal",
+      "term2_id": "ONGA_0000190",
       "term2_category": "FeatureType",
       "term2_subset": "element_gene_linkage",
       "similarity": 0.8323,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:d310636bcd54",
+      "subjects": [
+        "term:ONGA_0000097",
+        "term:ONGA_0000098"
+      ],
       "term1": "selected regions for predicted signal and sequence contribution scores",
+      "term1_id": "ONGA_0000097",
       "term1_category": "DataType",
       "term1_subset": "deep_learning",
       "term2": "selected regions for predicted signal profile",
+      "term2_id": "ONGA_0000098",
       "term2_category": "DataType",
       "term2_subset": "deep_learning",
       "similarity": 0.8288,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:59e2480c67fe",
+      "subjects": [
+        "term:ONGA_0000059",
+        "term:ONGA_0000061"
+      ],
       "term1": "sparse gRNA count matrix",
+      "term1_id": "ONGA_0000059",
       "term1_category": "DataType",
       "term1_subset": "crispr_screen",
       "term2": "sparse gene count matrix",
+      "term2_id": "ONGA_0000061",
       "term2_category": "DataType",
       "term2_subset": "count_matrix",
       "similarity": 0.828,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:2e1e1de1bb97",
+      "subjects": [
+        "term:ONGA_0000094",
+        "term:ONGA_0000098"
+      ],
       "term1": "selected regions for bias-corrected predicted signal profile",
+      "term1_id": "ONGA_0000094",
       "term1_category": "DataType",
       "term1_subset": "deep_learning",
       "term2": "selected regions for predicted signal profile",
+      "term2_id": "ONGA_0000098",
       "term2_category": "DataType",
       "term2_subset": "deep_learning",
       "similarity": 0.826,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:508cef73f1ef",
+      "subjects": [
+        "term:ONGA_0000119",
+        "term:ONGA_0000120"
+      ],
       "term1": "transcriptome index",
+      "term1_id": "ONGA_0000119",
       "term1_category": "DataType",
       "term1_subset": "reference",
       "term2": "transcriptome reference",
+      "term2_id": "ONGA_0000120",
       "term2_category": "DataType",
       "term2_subset": "reference",
       "similarity": 0.8223,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:279c02680ac6",
+      "subjects": [
+        "term:ONGA_0000021",
+        "term:ONGA_0000035"
+      ],
       "term1": "bidirectional peaks",
+      "term1_id": "ONGA_0000021",
       "term1_category": "DataType",
       "term1_subset": "peak_set",
       "term2": "unidirectional peaks",
+      "term2_id": "ONGA_0000035",
       "term2_category": "DataType",
       "term2_subset": "peak_set",
       "similarity": 0.8222,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:4c8d2cb1829d",
+      "subjects": [
+        "term:ONGA_0000069",
+        "term:ONGA_0000070"
+      ],
       "term1": "exon quantifications",
+      "term1_id": "ONGA_0000069",
       "term1_category": "DataType",
       "term1_subset": "quantification",
       "term2": "gene quantifications",
+      "term2_id": "ONGA_0000070",
       "term2_category": "DataType",
       "term2_subset": "quantification",
       "similarity": 0.8198,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:c7d8c2616e79",
+      "subjects": [
+        "term:ONGA_0000073",
+        "term:ONGA_0000082"
+      ],
       "term1": "genic regions quantifications",
+      "term1_id": "ONGA_0000073",
       "term1_category": "DataType",
       "term1_subset": "quantification",
       "term2": "transcribed region quantifications",
+      "term2_id": "ONGA_0000082",
       "term2_category": "DataType",
       "term2_subset": "quantification",
       "similarity": 0.8187,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:beceab66aa88",
+      "subjects": [
+        "term:ONGA_0000038",
+        "term:ONGA_0000164"
+      ],
       "term1": "DHS peaks",
+      "term1_id": "ONGA_0000038",
       "term1_category": "DataType",
       "term1_subset": "chromatin_accessibility",
       "term2": "open chromatin regions",
+      "term2_id": "ONGA_0000164",
       "term2_category": "FeatureType",
       "term2_subset": "chromatin_accessibility",
       "similarity": 0.815,
       "crosses_categories": true,
+      "machine_recommendation": "review_cross_category",
       "recommendation": "Review: similar terms in different categories"
     },
     {
+      "id": "sim:e2a239f2b1e9",
+      "subjects": [
+        "term:ONGA_0000078",
+        "term:ONGA_0000079"
+      ],
       "term1": "peptide quantifications",
+      "term1_id": "ONGA_0000078",
       "term1_category": "DataType",
       "term1_subset": "quantification",
       "term2": "protein expression quantifications",
+      "term2_id": "ONGA_0000079",
       "term2_category": "DataType",
       "term2_subset": "quantification",
       "similarity": 0.8111,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:9577d7e27a1f",
+      "subjects": [
+        "term:ONGA_0000026",
+        "term:ONGA_0000034"
+      ],
       "term1": "optimal IDR thresholded peaks",
+      "term1_id": "ONGA_0000026",
       "term1_category": "DataType",
       "term1_subset": "peak_set",
       "term2": "representative IDR thresholded peaks",
+      "term2_id": "ONGA_0000034",
       "term2_category": "DataType",
       "term2_subset": "peak_set",
       "similarity": 0.8105,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:f2bf48361dbb",
+      "subjects": [
+        "term:ONGA_0000182",
+        "term:ONGA_0000185"
+      ],
       "term1": "enhancers reference",
+      "term1_id": "ONGA_0000182",
       "term1_category": "FeatureType",
       "term1_subset": "regulatory_element",
       "term2": "promoters reference",
+      "term2_id": "ONGA_0000185",
       "term2_category": "FeatureType",
       "term2_subset": "regulatory_element",
       "similarity": 0.8103,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:f28973556a8e",
+      "subjects": [
+        "term:ONGA_0000107",
+        "term:ONGA_0000116"
+      ],
       "term1": "elements reference",
+      "term1_id": "ONGA_0000107",
       "term1_category": "DataType",
       "term1_subset": "reference",
       "term2": "repeats reference",
+      "term2_id": "ONGA_0000116",
       "term2_category": "DataType",
       "term2_subset": "reference",
       "similarity": 0.8082,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:9d746927a11b",
+      "subjects": [
+        "term:ONGA_0000174",
+        "term:ONGA_0000175"
+      ],
       "term1": "methylation state at CHH",
+      "term1_id": "ONGA_0000174",
       "term1_category": "FeatureType",
       "term1_subset": "dna_methylation",
       "term2": "methylation state at CpG",
+      "term2_id": "ONGA_0000175",
       "term2_category": "FeatureType",
       "term2_subset": "dna_methylation",
       "similarity": 0.8071,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:095f1c435d87",
+      "subjects": [
+        "term:ONGA_0000070",
+        "term:ONGA_0000081"
+      ],
       "term1": "gene quantifications",
+      "term1_id": "ONGA_0000070",
       "term1_category": "DataType",
       "term1_subset": "quantification",
       "term2": "transcript quantifications",
+      "term2_id": "ONGA_0000081",
       "term2_category": "DataType",
       "term2_subset": "quantification",
       "similarity": 0.8042,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:78b94ea556be",
+      "subjects": [
+        "term:ONGA_0000061",
+        "term:ONGA_0000062"
+      ],
       "term1": "sparse gene count matrix",
+      "term1_id": "ONGA_0000061",
       "term1_category": "DataType",
       "term1_subset": "count_matrix",
       "term2": "sparse peak count matrix",
+      "term2_id": "ONGA_0000062",
       "term2_category": "DataType",
       "term2_subset": "count_matrix",
       "similarity": 0.8038,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:d0c165c37e3a",
+      "subjects": [
+        "term:ONGA_0000207",
+        "term:ONGA_0000208"
+      ],
       "term1": "sequence motifs",
+      "term1_id": "ONGA_0000207",
       "term1_category": "FeatureType",
       "term1_subset": "sequence_motif",
       "term2": "sequence motifs instances",
+      "term2_id": "ONGA_0000208",
       "term2_category": "FeatureType",
       "term2_subset": "sequence_motif",
       "similarity": 0.803,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     },
     {
+      "id": "sim:8e6c069c00a8",
+      "subjects": [
+        "term:ONGA_0000178",
+        "term:ONGA_0000184"
+      ],
       "term1": "candidate enhancers",
+      "term1_id": "ONGA_0000178",
       "term1_category": "FeatureType",
       "term1_subset": "regulatory_element",
       "term2": "predicted enhancers",
+      "term2_id": "ONGA_0000184",
       "term2_category": "FeatureType",
       "term2_subset": "regulatory_element",
       "similarity": 0.801,
       "crosses_categories": false,
+      "machine_recommendation": "consolidate",
       "recommendation": "Review for potential consolidation"
     }
   ]

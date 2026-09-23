@@ -1,11 +1,19 @@
-"""Generate comparison reports from similarity search results."""
+"""Generate comparison reports from similarity search results.
+
+Each report opens with the shared ``provenance`` block (see
+:mod:`onga_embeddings.provenance`). Each finding carries a content-derived
+``id`` and a ``subjects`` list of term SIDs:
+
+* mapping suggestion: ``map:`` + sha1(term id | ontology | object id)
+* internal-similarity pair: ``sim:`` + sha1(the two term ids, sorted)
+* gap: ``gap:`` + sha1(term id)
+"""
 
 import json
-from dataclasses import asdict
-from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
+from .provenance import gap_id, mapping_id, similarity_id
 from .similarity_search import (
     InternalSimilarityPair,
     SimilarityResult,
@@ -16,9 +24,10 @@ from .similarity_search import (
 class ReportGenerator:
     """Generate reports from similarity search results."""
 
-    def __init__(self, output_dir: Path):
+    def __init__(self, output_dir: Path, provenance: dict):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
+        self.provenance = provenance
 
     def generate_mapping_report(
         self,
@@ -38,14 +47,17 @@ class ReportGenerator:
 
         # Build structured data
         report_data = {
-            "generated_at": datetime.now().isoformat(),
+            "provenance": self.provenance,
             "total_terms": len(results),
             "terms_with_matches": sum(1 for r in results if r.best_overall_match()),
             "terms": []
         }
 
         for term_result in results:
+            sid = _require_sid(term_result.sid, term_result.term_name)
             term_entry = {
+                "subject": sid,
+                "onga_term_id": term_result.term_id,
                 "onga_term": term_result.term_name,
                 "onga_category": term_result.category,
                 "onga_subset": term_result.subset,
@@ -64,6 +76,8 @@ class ReportGenerator:
                         match.match_id
                     )
                     term_entry["suggested_mappings"].append({
+                        "id": mapping_id(term_result.term_id, onto_name, match.match_id),
+                        "subjects": [sid],
                         "ontology": onto_name,
                         "term_id": match.match_id,
                         "term_name": match.match_term,
@@ -117,7 +131,7 @@ class ReportGenerator:
         lines = [
             "# ONGA Ontology Mapping Report",
             "",
-            f"Generated: {data['generated_at']}",
+            f"Generated: {data['provenance']['generated_at']}",
             "",
             f"- **Total ONGA terms**: {data['total_terms']}",
             f"- **Terms with matches**: {data['terms_with_matches']}",
@@ -185,19 +199,27 @@ class ReportGenerator:
 
         # Build structured data
         report_data = {
-            "generated_at": datetime.now().isoformat(),
+            "provenance": self.provenance,
             "total_pairs": len(pairs),
             "cross_category_pairs": sum(1 for p in pairs if p.crosses_categories),
             "pairs": [
                 {
+                    "id": similarity_id(p.term1_id, p.term2_id),
+                    "subjects": sorted([
+                        _require_sid(p.term1_sid, p.term1_name),
+                        _require_sid(p.term2_sid, p.term2_name),
+                    ]),
                     "term1": p.term1_name,
+                    "term1_id": p.term1_id,
                     "term1_category": p.term1_category,
                     "term1_subset": p.term1_subset,
                     "term2": p.term2_name,
+                    "term2_id": p.term2_id,
                     "term2_category": p.term2_category,
                     "term2_subset": p.term2_subset,
                     "similarity": round(p.similarity, 4),
                     "crosses_categories": p.crosses_categories,
+                    "machine_recommendation": p.machine_recommendation(),
                     "recommendation": p.recommendation()
                 }
                 for p in pairs
@@ -224,7 +246,7 @@ class ReportGenerator:
         lines = [
             "# ONGA Internal Similarity Report",
             "",
-            f"Generated: {data['generated_at']}",
+            f"Generated: {data['provenance']['generated_at']}",
             "",
             "This report identifies ONGA terms that are semantically similar to each other,",
             "which may indicate opportunities for merging, hierarchical relationships, or",
@@ -298,7 +320,7 @@ class ReportGenerator:
 
         # Build structured data
         report_data = {
-            "generated_at": datetime.now().isoformat(),
+            "provenance": self.provenance,
             "total_onga_terms": len(all_terms),
             "gap_terms_count": len(gap_terms),
             "gap_percentage": round(len(gap_terms) / len(all_terms) * 100, 1) if all_terms else 0,
@@ -313,7 +335,10 @@ class ReportGenerator:
                 "avg_similarity": round(sum(max_sims) / len(max_sims), 4) if max_sims else 0,
                 "terms": [
                     {
-                        "name": t.term_name,
+                        "id": gap_id(t.term_id),
+                        "subjects": [_require_sid(t.sid, t.term_name)],
+                        "onga_term": t.term_name,
+                        "onga_term_id": t.term_id,
                         "category": t.category,
                         "definition": t.definition,
                         "max_similarity": round(t.max_similarity(), 4),
@@ -350,7 +375,7 @@ class ReportGenerator:
         lines = [
             "# ONGA Gap Analysis Report",
             "",
-            f"Generated: {data['generated_at']}",
+            f"Generated: {data['provenance']['generated_at']}",
             "",
             "This report identifies ONGA terms that have no strong matches in any of the",
             "target ontologies. These represent concepts that may be:",
@@ -374,7 +399,7 @@ class ReportGenerator:
             ])
 
             for term in subset_data["terms"]:
-                lines.append(f"- **{term['name']}** (max sim: {term['max_similarity']:.2f})")
+                lines.append(f"- **{term['onga_term']}** (max sim: {term['max_similarity']:.2f})")
                 if term["definition"]:
                     lines.append(f"  - Definition: {term['definition'][:100]}...")
                 if term["best_match"]:
@@ -405,3 +430,10 @@ class ReportGenerator:
             "internal_similarity": self.generate_internal_similarity_report(internal_pairs),
             "gap_analysis": self.generate_gap_analysis_report(gap_terms, similarity_results)
         }
+
+
+def _require_sid(sid: str, term_name: str) -> str:
+    """A finding must name its subject; an unresolved term is a hard error."""
+    if not sid:
+        raise ValueError(f"ONGA term {term_name!r} has no subject id; resolve it first")
+    return sid

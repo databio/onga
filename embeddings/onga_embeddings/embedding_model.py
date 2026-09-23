@@ -94,6 +94,7 @@ def save_embeddings(
     embeddings: np.ndarray,
     metadata: Metadata,
     model_name: str,
+    provenance: dict[str, str] | None = None,
 ) -> None:
     """Save embeddings and metadata to .npz file.
 
@@ -102,12 +103,16 @@ def save_embeddings(
         embeddings: Embedding array of shape (n_terms, embedding_dim).
         metadata: List of dicts with term information.
         model_name: Model identifier for provenance tracking.
+        provenance: Extra scalar strings to store, e.g. ``schema_fingerprint``
+            for ONGA or ``source_file`` / ``source_sha256`` for an ontology.
     """
+    extra = {key: np.array(value) for key, value in (provenance or {}).items()}
     np.savez_compressed(
         path,
         embeddings=embeddings,
         metadata=np.array(metadata, dtype=object),
         model_name=np.array(model_name),
+        **extra,
     )
 
 

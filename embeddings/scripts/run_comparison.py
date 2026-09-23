@@ -3,13 +3,16 @@
 
 Two modes:
 
-* default - embedding-only mapping / internal-similarity / gap reports.
+* default - embedding-only mapping / internal-similarity / gap reports. Every
+  report carries a ``provenance`` block, and every finding a stable ``id`` and
+  the term subject ids (SIDs) it is about, resolved through
+  ``curation/term_crosswalk.json`` next to ``--subjects``.
 * ``--candidates`` - a blended lexical + embedding candidate TSV for one
   ontology, for manual curation into ``mappings/<ontology>.sssom.tsv``.
 
 Usage:
     python scripts/run_comparison.py
-    python scripts/run_comparison.py --onga-path /path/to/file_content.yaml
+    python scripts/run_comparison.py --subjects ../curation/subjects.json
     python scripts/run_comparison.py --threshold 0.6 --internal-threshold 0.85
     python scripts/run_comparison.py --ontology so --candidates
     python scripts/run_comparison.py --ontology edam --candidates --top-k 10
@@ -23,6 +26,11 @@ from pathlib import Path
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from onga_embeddings.provenance import (
+    DEFAULT_SUBJECTS,
+    SubjectRegistry,
+    build_provenance,
+)
 from onga_embeddings.similarity_search import SimilaritySearcher
 from onga_embeddings.report_generator import ReportGenerator
 
@@ -49,7 +57,8 @@ DEF_TRUNCATE = 300
 PROJECT_ROOT = Path(__file__).parent.parent
 DEFAULT_EMBEDDING_DIR = PROJECT_ROOT / "data" / "embeddings"
 DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "outputs" / "reports"
-DEFAULT_ONGA_PATH = Path(__file__).resolve().parents[1] / ".." / "src" / "file_content.yaml"
+#: The crosswalk is generated next to subjects.json.
+CROSSWALK_NAME = "term_crosswalk.json"
 
 
 def parse_args() -> argparse.Namespace:
@@ -57,10 +66,11 @@ def parse_args() -> argparse.Namespace:
         description="Run ONGA ontology comparison and generate reports"
     )
     parser.add_argument(
-        "--onga-path",
+        "--subjects",
         type=Path,
-        default=DEFAULT_ONGA_PATH,
-        help=f"Path to ONGA file_content.yaml (default: {DEFAULT_ONGA_PATH})"
+        default=DEFAULT_SUBJECTS,
+        help=f"Subject registry; {CROSSWALK_NAME} is read from the same directory "
+             f"(default: {DEFAULT_SUBJECTS})"
     )
     parser.add_argument(
         "--embedding-dir",
@@ -187,6 +197,51 @@ def run_candidates(args: argparse.Namespace) -> None:
     print(f"  ONGA terms with any head-noun {args.ontology} match:       {n_head}")
 
 
+def attach_subjects(searcher: SimilaritySearcher, registry: SubjectRegistry) -> None:
+    """Resolve each embedded ONGA label to its term id and SID, in place.
+
+    Exits when the embeddings were built from a different schema, or when any
+    label does not resolve to a live term.
+    """
+    if searcher.schema_fingerprint != registry.schema_fingerprint:
+        print("ERROR: ONGA embeddings are stale.")
+        print(f"  onga.npz schema_fingerprint:     {searcher.schema_fingerprint}")
+        print(f"  subjects.json schema_fingerprint: {registry.schema_fingerprint}")
+        print("Run 'make embeddings-build' first.")
+        sys.exit(1)
+    unresolved = []
+    for meta in searcher.onga_metadata:
+        try:
+            record = registry.resolve(meta["name"], meta["category"])
+        except KeyError as err:
+            unresolved.append(str(err))
+            continue
+        meta["term_id"] = record["term_id"]
+        meta["sid"] = record["sid"]
+    if unresolved:
+        print(f"ERROR: {len(unresolved)} ONGA labels do not resolve to a live term:")
+        for msg in unresolved:
+            print(f"  {msg}")
+        sys.exit(1)
+
+
+def ontology_provenance(searcher: SimilaritySearcher, loaded: list[str]) -> list[dict]:
+    """Per-ontology provenance; exits on a model mismatch or missing source hash."""
+    entries = []
+    for onto in loaded:
+        entry = searcher.ontology_provenance(onto)
+        if not entry["sha256"]:
+            print(f"ERROR: {onto}.npz records no source file hash.")
+            print(f"Run 'python scripts/build_embeddings.py --ontology {onto}' first.")
+            sys.exit(1)
+        model = searcher.ontology_model_name(onto)
+        if model != searcher.model_name:
+            print(f"ERROR: {onto}.npz was embedded with {model}, onga.npz with {searcher.model_name}.")
+            sys.exit(1)
+        entries.append(entry)
+    return entries
+
+
 def run_comparison(args: argparse.Namespace) -> None:
     """Run the full comparison pipeline."""
 
@@ -216,6 +271,8 @@ def run_comparison(args: argparse.Namespace) -> None:
     print("Loading embeddings...")
     searcher = SimilaritySearcher(args.embedding_dir)
     searcher.load_onga_embeddings()
+    registry = SubjectRegistry(args.subjects, args.subjects.parent / CROSSWALK_NAME)
+    attach_subjects(searcher, registry)
 
     if args.ontologies:
         for onto in args.ontologies:
@@ -224,10 +281,10 @@ def run_comparison(args: argparse.Namespace) -> None:
     else:
         loaded = searcher.load_all_ontologies()
 
+    ontologies = ontology_provenance(searcher, loaded)
     print(f"  Loaded ONGA: {len(searcher.onga_metadata)} terms")
-    for onto in loaded:
-        count = len(searcher._ontology_metadata[onto])
-        print(f"  Loaded {onto}: {count} terms")
+    for entry in ontologies:
+        print(f"  Loaded {entry['name']}: {entry['term_count']} terms")
     print()
 
     # Run similarity search against all ontologies
@@ -255,7 +312,20 @@ def run_comparison(args: argparse.Namespace) -> None:
 
     # Generate reports
     print("Generating reports...")
-    generator = ReportGenerator(args.output_dir)
+    provenance = build_provenance(
+        model_name=searcher.model_name,
+        schema_fingerprint=registry.schema_fingerprint,
+        subject_count=len(searcher.onga_metadata),
+        ontologies=ontologies,
+        params={
+            "threshold": args.threshold,
+            "internal_threshold": args.internal_threshold,
+            "gap_threshold": args.gap_threshold,
+            "top_k": args.top_k,
+            "ontologies": sorted(loaded),
+        },
+    )
+    generator = ReportGenerator(args.output_dir, provenance)
 
     mapping_paths = generator.generate_mapping_report(similarity_results, args.format)
     print(f"  Mapping report: {list(mapping_paths.values())}")

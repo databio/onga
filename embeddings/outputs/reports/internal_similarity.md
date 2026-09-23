@@ -1,12 +1,12 @@
 # ONGA Internal Similarity Report
 
-Generated: 2026-06-05T20:58:47.164787
+Generated: 2026-09-23T09:46:04
 
 This report identifies ONGA terms that are semantically similar to each other,
 which may indicate opportunities for merging, hierarchical relationships, or
 terminology consolidation.
 
-- **Total similar pairs**: 41
+- **Total similar pairs**: 42
 - **Cross-category pairs**: 3
 
 ## Potentially Redundant Terms
@@ -19,15 +19,16 @@ terminology consolidation.
 | negative control regions | positive control regions | 0.92 | DataType/DataType | Consider hierarchy relationship |
 | sparse gene count matrix | sparse transcript count matrix | 0.92 | DataType/DataType | Consider hierarchy relationship |
 | idat green channel | idat red channel | 0.90 | DataType/DataType | Consider hierarchy relationship |
-| haplotype-specific nuclease cleavage corrected frequency | haplotype-specific nuclease cleavage frequency | 0.90 | DataType/DataType | Consider hierarchy relationship |
 | transposable element TF ancestral origin percent by motif | transposable element TF ancestral origin percent by subfamily | 0.88 | FeatureType/FeatureType | Consider hierarchy relationship |
 | maternal variant calls | paternal variant calls | 0.88 | FeatureType/FeatureType | Consider hierarchy relationship |
 | differential expression quantifications | differential splicing quantifications | 0.88 | DataType/DataType | Consider hierarchy relationship |
 | selected regions for count sequence contribution scores | selected regions for predicted signal and sequence contribution scores | 0.87 | DataType/DataType | Consider hierarchy relationship |
+| maternal haplotype mapping | mapping | 0.87 | FeatureType/FeatureType | Consider hierarchy relationship |
 | sparse gRNA count matrix | sparse transcript count matrix | 0.86 | DataType/DataType | Consider hierarchy relationship |
 | selected regions for predicted signal and sequence contribution scores | selected regions for profile sequence contribution scores | 0.86 | DataType/DataType | Consider hierarchy relationship |
 | merged transcription segment quantifications | transcription segment quantifications | 0.86 | DataType/DataType | Consider hierarchy relationship |
 | methylation state at CHG | methylation state at CHH | 0.85 | FeatureType/FeatureType | Consider hierarchy relationship |
+| paternal haplotype mapping | mapping | 0.85 | FeatureType/FeatureType | Consider hierarchy relationship |
 | selected regions for predicted bias profile | selected regions for predicted signal profile | 0.85 | DataType/DataType | Review for potential consolidation |
 | selected regions for count sequence contribution scores | selected regions for profile sequence contribution scores | 0.85 | DataType/DataType | Review for potential consolidation |
 | selected regions for bias-corrected predicted signal profile | selected regions for predicted bias profile | 0.84 | DataType/DataType | Review for potential consolidation |
