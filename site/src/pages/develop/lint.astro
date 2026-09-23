@@ -1,0 +1,170 @@
+---
+import { url } from '../../lib/url';
+import Layout from '../../layouts/Layout.astro';
+import ModeBanner from '../../components/ModeBanner.astro';
+import StateChip from '../../components/StateChip.astro';
+import DecisionControl from '../../components/DecisionControl.astro';
+import data from '../../data/develop/lint.json';
+import { subject } from '../../lib/develop';
+import { findingDecided, subjectsDecided } from '../../lib/findings';
+
+interface LintFinding {
+  id: string;
+  rule: string;
+  severity: 'error' | 'warn' | 'info';
+  message: string;
+  subjects: string[];
+  suggested_verdict?: string;
+}
+
+const lint = data as { findings: LintFinding[]; stale?: boolean; _generated_by?: string };
+const findings = lint.findings || [];
+const SEVERITY_ORDER = { error: 0, warn: 1, info: 2 } as Record<string, number>;
+const byRule = new Map<string, LintFinding[]>();
+for (const f of findings) {
+  if (!byRule.has(f.rule)) byRule.set(f.rule, []);
+  byRule.get(f.rule)!.push(f);
+}
+const rules = [...byRule.entries()].sort(([ra, a], [rb, b]) =>
+  (SEVERITY_ORDER[a[0].severity] - SEVERITY_ORDER[b[0].severity]) || ra.localeCompare(rb));
+const kinds = [...new Set(findings.flatMap((f) => f.subjects.map((s) => subject(s)?.kind).filter(Boolean)))].sort() as string[];
+const sevCount = (s: string) => findings.filter((f) => f.severity === s).length;
+
+// Full literal class strings (Tailwind v4 scans source).
+const SEVERITY_CLASS: Record<string, string> = {
+  error: 'bg-red-100 text-red-800',
+  warn: 'bg-amber-100 text-amber-800',
+  info: 'bg-sky-100 text-sky-800',
+};
+const href = (sid: string) => url(subject(sid)?.href ?? '/develop');
+const name = (sid: string) => { const r = subject(sid); return r ? (r.label || r.name) : sid; };
+---
+
+<Layout title="Lint" side="develop" description="Schema lint findings, grouped by rule">
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">Lint</h1>
+  <p class="text-gray-600 mb-6">
+    {findings.length} findings from <code>{lint._generated_by ?? 'scripts/schema_lint.py'}</code> across {rules.length} rules:
+    {sevCount('error')} errors, {sevCount('warn')} warnings, {sevCount('info')} info.
+    Each decision is recorded on the finding's first subject.
+  </p>
+
+  {lint.stale && (
+    <div class="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+      These findings are stale: the schema changed after lint last ran. Run <code>make regen</code> to refresh them.
+    </div>
+  )}
+
+  <ModeBanner />
+
+  <div class="flex flex-wrap gap-4 mb-6">
+    <select id="rule-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
+      <option value="">All rules ({findings.length})</option>
+      {rules.map(([rule, fs]) => <option value={rule}>{rule} ({fs.length})</option>)}
+    </select>
+    <select id="severity-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
+      <option value="">All severities</option>
+      <option value="error">error</option>
+      <option value="warn">warn</option>
+      <option value="info">info</option>
+    </select>
+    <select id="kind-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
+      <option value="">All kinds</option>
+      {kinds.map((k) => <option value={k}>{k}</option>)}
+    </select>
+    <input type="search" id="search" placeholder="Search findings..." class="px-3 py-2 border border-gray-300 rounded text-sm" />
+    <label class="flex items-center gap-2 text-sm text-gray-600">
+      <input type="checkbox" id="hide-decided" />
+      Hide decided
+    </label>
+  </div>
+
+  <div class="space-y-8">
+    {rules.map(([rule, fs]) => (
+      <section class="rule-section" data-rule={rule}>
+        <h2 class="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+          <span class="font-mono">{rule}</span>
+          <span class:list={['text-xs px-2 py-0.5 rounded font-normal', SEVERITY_CLASS[fs[0].severity]]}>{fs[0].severity}</span>
+          <span class="text-sm font-normal text-gray-500">({fs.length})</span>
+        </h2>
+        <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
+          {fs.map((f) => {
+            const sid = f.subjects[0];
+            const decided = findingDecided(f.id) || subjectsDecided([sid]);
+            return (
+              <div class="lint-row p-4 hover:bg-gray-50 flex flex-wrap gap-4 items-start justify-between"
+                   id={f.id}
+                   data-finding={f.id}
+                   data-rule={f.rule}
+                   data-severity={f.severity}
+                   data-kinds={f.subjects.map((s) => subject(s)?.kind ?? '').join(' ')}
+                   data-search={[f.id, f.message, ...f.subjects, ...f.subjects.map(name)].join(' ').toLowerCase()}
+                   data-decided={decided ? '1' : ''}>
+                <div class="flex-1 min-w-[16rem]">
+                  <div class="flex items-center flex-wrap gap-2">
+                    <span class:list={['text-xs px-2 py-0.5 rounded', SEVERITY_CLASS[f.severity]]}>{f.severity}</span>
+                    <span class="text-xs font-mono text-gray-500">{f.rule}</span>
+                    <span class="text-xs font-mono text-gray-400">{f.id}</span>
+                  </div>
+                  <p class="text-sm text-gray-800 mt-1">{f.message}</p>
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    {f.subjects.map((s) => (
+                      <span class="inline-flex items-center gap-1 text-xs">
+                        <a href={href(s)} class="text-blue-700 hover:underline font-mono">{s}</a>
+                        <StateChip sid={s} />
+                      </span>
+                    ))}
+                  </div>
+                  {f.suggested_verdict && (
+                    <div class="text-xs text-gray-500 mt-1">Suggested: <span class="font-mono">{f.suggested_verdict}</span></div>
+                  )}
+                </div>
+                <div class="w-full md:w-[26rem] shrink-0">
+                  <DecisionControl sid={sid} findingId={f.id} suggestedVerdict={f.suggested_verdict} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    ))}
+  </div>
+
+  {findings.length === 0 && (
+    <div class="bg-white rounded-lg p-8 shadow-sm text-center text-gray-500">
+      No lint findings. Run <code>make regen</code> to refresh them.
+    </div>
+  )}
+
+  <script>
+    const ruleFilter = document.getElementById('rule-filter') as HTMLSelectElement;
+    const sevFilter = document.getElementById('severity-filter') as HTMLSelectElement;
+    const kindFilter = document.getElementById('kind-filter') as HTMLSelectElement;
+    const searchInput = document.getElementById('search') as HTMLInputElement;
+    const hideDecided = document.getElementById('hide-decided') as HTMLInputElement;
+    const sections = document.querySelectorAll<HTMLElement>('.rule-section');
+
+    function applyFilters() {
+      const rule = ruleFilter.value;
+      const sev = sevFilter.value;
+      const kind = kindFilter.value;
+      const query = searchInput.value.toLowerCase().trim();
+      sections.forEach((sec) => {
+        let visible = 0;
+        sec.querySelectorAll<HTMLElement>('.lint-row').forEach((row) => {
+          let show = true;
+          if (rule && row.dataset.rule !== rule) show = false;
+          if (sev && row.dataset.severity !== sev) show = false;
+          if (kind && !row.dataset.kinds!.split(' ').includes(kind)) show = false;
+          if (query && !row.dataset.search!.includes(query)) show = false;
+          if (hideDecided.checked && row.dataset.decided) show = false;
+          row.classList.toggle('hidden', !show);
+          if (show) visible++;
+        });
+        sec.classList.toggle('hidden', visible === 0);
+      });
+    }
+
+    [ruleFilter, sevFilter, kindFilter, hideDecided].forEach((el) => el.addEventListener('change', applyFilters));
+    searchInput.addEventListener('input', applyFilters);
+  </script>
+</Layout>

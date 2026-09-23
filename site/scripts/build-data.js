@@ -1458,13 +1458,6 @@ function build() {
     JSON.stringify(upstream, null, 2)
   );
 
-  // quality-issues.astro (deleted in Phase 12b) still imports this; remove
-  // this stub together with that page.
-  const qualityIssuesPath = join(developDir, 'quality-issues.json');
-  if (!existsSync(qualityIssuesPath)) {
-    writeFileSync(qualityIssuesPath, JSON.stringify({ issues: [] }, null, 2));
-  }
-
   // ENCODE usage frequency (from encode-term-use-frequency/seed_term_frequency.tsv)
   let frequency = { generated: false, totalFiles: 0, zeroUsage: 0, terms: [] };
   if (existsSync(frequencyTsv)) {

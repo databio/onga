@@ -1,6 +1,7 @@
 ---
 import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
+import ModeBanner from '../../components/ModeBanner.astro';
 import data from '../../data/develop/upstream-requests.json';
 
 const report = data as any;
@@ -19,11 +20,8 @@ const kindLabel: Record<string, string> = {
   new_term: 'new term',
   modification: 'modification',
 };
-const confidenceBadge: Record<string, string> = {
-  high: 'bg-green-100 text-green-800',
-  medium: 'bg-yellow-100 text-yellow-800',
-  low: 'bg-gray-200 text-gray-600',
-};
+// Review status of a request (proposals/upstream_requests.yaml `status:`).
+const STATUSES = ['proposed', 'filed', 'accepted', 'declined', 'withdrawn'];
 const dispositionBadge: Record<string, string> = {
   delegate: 'bg-purple-100 text-purple-800',
   out_of_scope: 'bg-rose-100 text-rose-800',
@@ -61,6 +59,8 @@ const rejectSearchBlob = (r: any) =>
     <code>proposals/upstream_requests.yaml</code>.
   </p>
 
+  <ModeBanner />
+
   <div class="flex flex-wrap gap-4 mb-6">
     <select id="kind-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
       <option value="">All ({requests.length + rejections.length})</option>
@@ -71,7 +71,7 @@ const rejectSearchBlob = (r: any) =>
     <input type="search" id="search" placeholder="Search proposals..." class="px-3 py-2 border border-gray-300 rounded text-sm" />
     <label class="flex items-center gap-2 text-sm text-gray-600">
       <input type="checkbox" id="hide-decided" />
-      Hide decided
+      Hide filed and closed
     </label>
   </div>
 
@@ -94,6 +94,7 @@ const rejectSearchBlob = (r: any) =>
           ]}
           data-kind={r.kind}
           data-req-id={r.id}
+          data-status={r.status}
           data-search={searchBlob(r)}
         >
           <div class="flex items-start justify-between gap-4">
@@ -103,10 +104,6 @@ const rejectSearchBlob = (r: any) =>
                 <span class:list={['text-xs px-2 py-0.5 rounded', kindBadge[r.kind] || 'bg-gray-100 text-gray-700']}>
                   {kindLabel[r.kind] || r.kind}
                 </span>
-                <span class:list={['text-xs px-2 py-0.5 rounded', confidenceBadge[r.confidence] || 'bg-gray-100 text-gray-600']}>
-                  {r.confidence} confidence
-                </span>
-                <span class="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600">{r.status}</span>
                 <span class="text-xs text-gray-400 font-mono">{r.id}</span>
               </div>
 
@@ -134,15 +131,19 @@ const rejectSearchBlob = (r: any) =>
               )}
             </div>
 
-            <select
-              class="proposal-decision text-xs border border-gray-300 rounded px-2 py-1 shrink-0"
-              data-req-id={r.id}
-            >
-              <option value="">-- review --</option>
-              <option value="ready">Ready to file</option>
-              <option value="filed">Filed upstream</option>
-              <option value="hold">On hold</option>
-            </select>
+<div class="shrink-0 text-right">
+              <label class="text-xs text-gray-500 mr-1" for={`status-${r.id}`}>Status</label>
+              <select
+                id={`status-${r.id}`}
+                class="proposal-status text-xs border border-gray-300 rounded px-2 py-1 disabled:bg-gray-50 disabled:text-gray-500"
+                data-req-id={r.id}
+                data-status={r.status}
+                disabled
+              >
+                {STATUSES.map((st) => <option value={st} selected={st === r.status}>{st}</option>)}
+              </select>
+              <div class="proposal-msg text-xs text-gray-400 mt-1"></div>
+            </div>
           </div>
 
           {r.definition && (
@@ -318,64 +319,65 @@ const rejectSearchBlob = (r: any) =>
   )}
 
   <script>
-    // Review state is local to this page. It tracks whether a request has been
-    // filed upstream, which is NOT a change to the ONGA schema, so it is
-    // deliberately not wired into the changeset export.
-    const STORAGE_KEY = 'onga-upstream-decisions';
+    // Review status is the request's `status:` in proposals/upstream_requests.yaml.
+    // Filing upstream is not a change to the ONGA schema, so it is not a decision
+    // record: in live mode the select PATCHes the YAML through the curation daemon;
+    // on the static site it is read-only.
+    import { probe, patchProposal } from '../../lib/curation';
 
-    function loadDecisions() {
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
-      catch { return {}; }
-    }
-
-    function saveDecisions(d) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
-    }
-
-    const decisions = loadDecisions();
-    document.querySelectorAll('.proposal-decision').forEach(sel => {
-      const id = sel.dataset.reqId;
-      if (decisions[id]) sel.value = decisions[id];
-      sel.addEventListener('change', () => {
-        const d = loadDecisions();
-        if (sel.value) d[id] = sel.value;
-        else delete d[id];
-        saveDecisions(d);
-        applyFilters();
-      });
-    });
-
-    const kindFilter = document.getElementById('kind-filter');
-    const searchInput = document.getElementById('search');
-    const hideDecided = document.getElementById('hide-decided');
-    const cards = document.querySelectorAll('.proposal-card');
-    const sections = document.querySelectorAll('.proposal-section');
+    const kindFilter = document.getElementById('kind-filter') as HTMLSelectElement;
+    const searchInput = document.getElementById('search') as HTMLInputElement;
+    const hideDecided = document.getElementById('hide-decided') as HTMLInputElement;
+    const cards = document.querySelectorAll<HTMLElement>('.proposal-card');
+    const sections = document.querySelectorAll<HTMLElement>('.proposal-section');
 
     function applyFilters() {
       const kind = kindFilter.value;
       const query = searchInput.value.toLowerCase().trim();
-      const hideDone = hideDecided.checked;
-      const d = loadDecisions();
-
-      cards.forEach(card => {
+      cards.forEach((card) => {
         let show = true;
         if (kind && card.dataset.kind !== kind) show = false;
-        if (query && !card.dataset.search.includes(query)) show = false;
-        // Rejections carry no review select, so "hide decided" never hides them.
-        if (hideDone && card.dataset.kind !== 'rejected' && d[card.dataset.reqId]) show = false;
+        if (query && !card.dataset.search!.includes(query)) show = false;
+        // Rejections carry no review status, so this never hides them.
+        if (hideDecided.checked && card.dataset.kind !== 'rejected' && card.dataset.status !== 'proposed') show = false;
         card.classList.toggle('hidden', !show);
       });
-
       // Collapse a section once every card in it is filtered out.
-      sections.forEach(sec => {
+      sections.forEach((sec) => {
         const visible = sec.querySelectorAll('.proposal-card:not(.hidden)').length;
         sec.classList.toggle('hidden', visible === 0);
       });
     }
 
-    kindFilter?.addEventListener('change', applyFilters);
-    searchInput?.addEventListener('input', applyFilters);
-    hideDecided?.addEventListener('change', applyFilters);
+    kindFilter.addEventListener('change', applyFilters);
+    searchInput.addEventListener('input', applyFilters);
+    hideDecided.addEventListener('change', applyFilters);
     applyFilters();
+
+    probe().then((health) => {
+      if (!health) return;
+      document.querySelectorAll<HTMLSelectElement>('.proposal-status').forEach((sel) => {
+        const msg = sel.parentElement!.querySelector('.proposal-msg') as HTMLElement;
+        const card = sel.closest<HTMLElement>('.proposal-card')!;
+        sel.disabled = false;
+        sel.addEventListener('change', async () => {
+          const want = sel.value as Parameters<typeof patchProposal>[1];
+          sel.disabled = true;
+          msg.textContent = 'Saving…';
+          try {
+            const out = await patchProposal(sel.dataset.reqId!, want);
+            sel.dataset.status = out.status;
+            card.dataset.status = out.status;
+            msg.textContent = `Saved: ${out.status}`;
+            applyFilters();
+          } catch (e) {
+            sel.value = sel.dataset.status!;
+            msg.textContent = `Not saved: ${(e as Error).message}`;
+          } finally {
+            sel.disabled = false;
+          }
+        });
+      });
+    });
   </script>
 </Layout>

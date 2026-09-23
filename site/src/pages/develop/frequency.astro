@@ -1,11 +1,23 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { url } from '../../lib/url';
+import StateChip from '../../components/StateChip.astro';
 import data from '../../data/develop/frequency.json';
+import usageDoc from '../../data/develop/usage.json';
+import { subjectIndex } from '../../lib/develop';
 
 const freq = data as any;
 const terms = (freq.terms || []) as Array<{ term: string; inEncode: boolean; fileCount: number; datasetCount: number }>;
 const maxFile = terms.reduce((m, t) => Math.max(m, t.fileCount), 1);
 const maxDataset = terms.reduce((m, t) => Math.max(m, t.datasetCount), 1);
+
+// Live ONGA terms, from curation/usage.json (scripts/usage_rollup.py).
+const usage = usageDoc as Record<string, any>;
+const liveUsage = Object.values(subjectIndex)
+  .filter((r) => r.kind === 'term' && !r.retired)
+  .map((r) => ({ row: r, u: usage[r.sid] || { encode_files: 0, encode_datasets: 0, contributing_seed_terms: [] } }))
+  .sort((a, b) => b.u.encode_files - a.u.encode_files || a.row.label.localeCompare(b.row.label));
+const liveZero = liveUsage.filter((x) => x.u.encode_files === 0).length;
 ---
 
 <Layout title="ENCODE Usage Frequency" side="develop" description="How often each seed term is used across ENCODE files">
@@ -81,6 +93,66 @@ const maxDataset = terms.reduce((m, t) => Math.max(m, t.datasetCount), 1);
       No frequency data. Run <code>python encode-term-use-frequency/fetch_frequencies.py</code>, then rebuild.
     </div>
   )}
+
+  <section class="mt-12" id="live-terms">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Live ONGA terms</h2>
+    <p class="text-gray-600 mb-4">
+      ENCODE usage rolled up onto the {liveUsage.length} live ONGA terms, through the seed terms each one absorbed.
+      <span class="text-red-600 font-medium">{liveZero}</span> have no ENCODE files.
+      Source: <code>curation/usage.json</code>.
+    </p>
+    <div class="flex flex-wrap items-center gap-4 mb-3">
+      <input id="live-q" type="search" placeholder="Filter live terms…" autocomplete="off"
+        class="px-3 py-2 border border-gray-300 rounded text-sm min-w-[220px]" />
+      <label class="flex items-center gap-2 text-sm text-gray-600">
+        <input type="checkbox" id="live-zero" /> zero-usage only
+      </label>
+    </div>
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-50 text-left">
+          <tr>
+            <th class="px-4 py-2 font-medium text-gray-700">Term</th>
+            <th class="px-4 py-2 font-medium text-gray-700">Enum</th>
+            <th class="px-4 py-2 font-medium text-gray-700 text-right">Files</th>
+            <th class="px-4 py-2 font-medium text-gray-700 text-right">Datasets</th>
+            <th class="px-4 py-2 font-medium text-gray-700">Seed terms</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {liveUsage.map(({ row, u }) => (
+            <tr class="live-row hover:bg-gray-50"
+                data-name={`${row.label} ${(u.contributing_seed_terms || []).join(' ')}`.toLowerCase()}
+                data-zero={u.encode_files === 0 ? '1' : ''}>
+              <td class="px-4 py-2">
+                <a href={url(row.href)} class:list={['hover:underline', u.encode_files === 0 ? 'text-red-600' : 'text-blue-700']}>{row.label}</a>
+                <span class="ml-2"><StateChip sid={row.sid} showLint={false} /></span>
+              </td>
+              <td class="px-4 py-2 text-xs text-gray-500">{row.container?.replace(/^enum:/, '')}</td>
+              <td class="px-4 py-2 text-right tabular-nums">{u.encode_files.toLocaleString()}</td>
+              <td class="px-4 py-2 text-right tabular-nums">{u.encode_datasets.toLocaleString()}</td>
+              <td class="px-4 py-2 text-xs text-gray-500">{(u.contributing_seed_terms || []).join(', ')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <script>
+    const liveQ = document.getElementById('live-q') as HTMLInputElement;
+    const liveZero = document.getElementById('live-zero') as HTMLInputElement;
+    const liveRows = document.querySelectorAll<HTMLElement>('.live-row');
+    function filterLive() {
+      const q = liveQ.value.trim().toLowerCase();
+      liveRows.forEach((r) => {
+        const show = (!q || r.dataset.name!.includes(q)) && (!liveZero.checked || !!r.dataset.zero);
+        r.classList.toggle('hidden', !show);
+      });
+    }
+    liveQ.addEventListener('input', filterLive);
+    liveZero.addEventListener('change', filterLive);
+  </script>
 
   <script define:vars={{ terms, maxFile, maxDataset }}>
     const chart = document.getElementById('chart');
