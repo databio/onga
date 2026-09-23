@@ -49,7 +49,14 @@
     "files": {
       "description": "Information about particular genome annotation (and other relevant) files.",
       "items": {
-        "$ref": "#/$defs/File"
+        "anyOf": [
+          {
+            "$ref": "#/$defs/File"
+          },
+          {
+            "$ref": "#/$defs/GenomicAnnotationFile"
+          }
+        ]
       },
       "type": [
         "array",

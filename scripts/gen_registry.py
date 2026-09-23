@@ -76,7 +76,7 @@ def read_version():
 def gen_json_schema():
     """Full JSON Schema for the merged schema, classes as $defs."""
     result = subprocess.run(
-        ["gen-json-schema", MAIN_SCHEMA],
+        ["gen-json-schema", "--include-range-class-descendants", MAIN_SCHEMA],
         capture_output=True, text=True, check=True,
     )
     return json.loads(result.stdout)
