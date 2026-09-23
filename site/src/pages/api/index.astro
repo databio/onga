@@ -1,0 +1,135 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { url } from '../../lib/url';
+import Layout from '../../layouts/Layout.astro';
+
+// Human-readable guide to the static GA4GH Schema Registry API that
+// scripts/gen_registry.py writes to site/public/api/. This page builds to
+// api/index.html, so the bare base URL (/onga/api/) explains itself instead of
+// 404ing. Only link files that really exist: GitHub Pages serves index.html,
+// not index.json, for a bare directory path, so every link names its file.
+const API = path.resolve(process.cwd(), 'public/api');
+const readJson = (p: string) => JSON.parse(fs.readFileSync(path.join(API, p), 'utf-8'));
+const exists = (p: string) => fs.existsSync(path.join(API, p));
+
+const service = readJson('service-info/index.json');
+const schemaRow = readJson('schemas/databio/index.json').results[0];
+const version: string = schemaRow.latest_released_version;
+const components = readJson('schemas/databio/onga/versions/latest/components/index.json').results as any[];
+
+const BASE = 'https://dev.databio.org/onga/api';
+const V = 'schemas/databio/onga/versions';
+const endpoints = [
+  { route: '/service-info', file: 'service-info/index.json', what: 'GA4GH Service Info: registry name, type, and version.' },
+  { route: '/namespaces', file: 'namespaces/index.json', what: 'The namespaces this registry serves (just databio).' },
+  { route: '/schemas/databio', file: 'schemas/databio/index.json', what: 'Schemas in the databio namespace (just onga), with the latest version.' },
+  { route: `/${V}`, file: `${V}/index.json`, what: 'Every published version of the onga schema and its status.' },
+  { route: `/${V}/latest`, file: `${V}/latest/index.json`, what: 'The full JSON Schema for the latest version (all classes under $defs).' },
+  { route: `/${V}/${version}`, file: `${V}/${version}/index.json`, what: `The full JSON Schema pinned to version ${version}.` },
+  { route: `/${V}/latest/components`, file: `${V}/latest/components/index.json`, what: 'List of components (one per class or enum).' },
+  { route: `/${V}/latest/components/{Name}`, file: `${V}/latest/components/Sample.json`, what: 'One class or enum as a standalone JSON Schema (example: Sample).' },
+].filter((e) => exists(e.file));
+---
+
+<Layout title="API" description="ONGA as a GA4GH Schema Registry API">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Schema Registry API</h1>
+    <p class="text-gray-600 max-w-3xl">
+      The ONGA schema is also published as JSON Schema through a read-only
+      <a href="https://github.com/ga4gh/schema-registry" class="text-blue-600 underline hover:text-blue-800">GA4GH Schema Registry</a>
+      API. Use it to fetch the schema from code, for example to validate
+      metadata records. The API is a set of static JSON files, so it needs no
+      server and no key.
+    </p>
+  </div>
+
+  <section class="mb-10">
+    <h2 class="text-2xl font-bold text-gray-900 mb-3">Base URL</h2>
+    <pre class="bg-white rounded-lg p-4 shadow-sm text-sm overflow-x-auto"><code>{BASE}</code></pre>
+    <dl class="grid sm:grid-cols-3 gap-4 text-sm mt-4">
+      <div class="bg-white rounded-lg p-4 shadow-sm">
+        <dt class="text-gray-500">Service</dt>
+        <dd class="font-medium">{service.name}</dd>
+      </div>
+      <div class="bg-white rounded-lg p-4 shadow-sm">
+        <dt class="text-gray-500">Namespace / schema</dt>
+        <dd class="font-mono">{schemaRow.namespace} / {schemaRow.schema_name}</dd>
+      </div>
+      <div class="bg-white rounded-lg p-4 shadow-sm">
+        <dt class="text-gray-500">Latest version</dt>
+        <dd class="font-mono">{version} <span class="text-gray-400 font-sans">({schemaRow.maturity_level})</span></dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="mb-10">
+    <h2 class="text-2xl font-bold text-gray-900 mb-1">Endpoints</h2>
+    <p class="text-gray-500 text-sm mb-4 max-w-3xl">
+      Because the files are served statically, each route is a file. Add
+      <code class="bg-gray-100 px-1 rounded">/index.json</code> to a route
+      (or <code class="bg-gray-100 px-1 rounded">.json</code> for a single
+      component) to fetch it. Each link below opens the real file.
+    </p>
+    <div class="bg-white rounded-lg shadow-sm overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-50 text-left text-gray-500">
+          <tr>
+            <th class="px-4 py-2 font-medium">Route</th>
+            <th class="px-4 py-2 font-medium">What it returns</th>
+          </tr>
+        </thead>
+        <tbody>
+          {endpoints.map((e) => (
+            <tr class="border-t border-gray-100 align-top">
+              <td class="px-4 py-2">
+                <a href={url(`/api/${e.file}`)} class="font-mono text-blue-600 hover:text-blue-800 underline break-all">{e.route}</a>
+              </td>
+              <td class="px-4 py-2 text-gray-600">{e.what}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mb-10">
+    <h2 class="text-2xl font-bold text-gray-900 mb-3">Example</h2>
+    <pre class="bg-white rounded-lg p-4 shadow-sm text-sm overflow-x-auto"><code>{`# Full JSON Schema, latest version
+curl ${BASE}/${V}/latest/index.json
+
+# Just the Sample class
+curl ${BASE}/${V}/latest/components/Sample.json`}</code></pre>
+  </section>
+
+  <section class="mb-10">
+    <h2 class="text-2xl font-bold text-gray-900 mb-1">Components</h2>
+    <p class="text-gray-500 text-sm mb-4 max-w-3xl">
+      All {components.length} components in the latest version. Each links to
+      its JSON Schema file. For a readable view of the classes, see the
+      <a href={url('/schema')} class="text-blue-600 underline hover:text-blue-800">schema browser</a>.
+    </p>
+    <div class="flex flex-wrap gap-2 text-sm">
+      {components.map((c) => (
+        <a href={url(`/api/${V}/latest/components/${c.component_name}.json`)} class="font-mono bg-white rounded px-2 py-1 shadow-sm text-blue-600 hover:text-blue-800 hover:shadow-md">{c.component_name}</a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-gray-50 rounded-lg p-6">
+    <h3 class="font-semibold text-gray-900 mb-3">How it is built</h3>
+    <p class="text-gray-600 text-sm">
+      <code class="bg-gray-100 px-1 rounded">scripts/gen_registry.py</code>
+      (run with <code class="bg-gray-100 px-1 rounded">make gen-registry</code>)
+      converts the LinkML source in <code class="bg-gray-100 px-1 rounded">src/</code> to JSON Schema with
+      LinkML's <code class="bg-gray-100 px-1 rounded">gen-json-schema</code>, splits it into one
+      component per class, and writes the registry files to
+      <code class="bg-gray-100 px-1 rounded">site/public/api/</code>. The site build ships them as-is.
+      The version comes from <code class="bg-gray-100 px-1 rounded">version:</code> in
+      <code class="bg-gray-100 px-1 rounded">src/onga.yaml</code>; <code class="bg-gray-100 px-1 rounded">latest</code>
+      always mirrors the current version. Query-parameter filtering from the full GA4GH spec is not
+      available on static hosting. Source:
+      <a href="https://github.com/databio/onga" class="text-blue-600 underline hover:text-blue-800">github.com/databio/onga</a>.
+    </p>
+  </section>
+</Layout>

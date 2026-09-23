@@ -17,6 +17,10 @@ import vocabulary from '../data/vocabulary.json';
         {vocabulary.stats.schemaCount} descriptor schemas, {vocabulary.stats.recordClassCount} record classes,
         and {vocabulary.stats.investigationClassCount} investigation classes
       </p>
+      <div class="mt-6 flex flex-wrap gap-3 justify-center text-sm">
+        <a href={url("/schema")} class="px-4 py-2 rounded-md bg-blue-600 text-white font-medium hover:bg-blue-700">Browse all classes</a>
+        <a href={url("/api")} class="px-4 py-2 rounded-md bg-white border border-gray-300 text-gray-700 font-medium hover:bg-gray-50">Schema Registry API</a>
+      </div>
     </section>
 
     <!-- Vocabularies -->
@@ -310,6 +314,8 @@ import vocabulary from '../data/vocabulary.json';
       <a href={url("/track-provenance")} class="text-amber-600 hover:text-amber-800 underline">Track Provenance</a>
       <a href={url("/track-geometry")} class="text-amber-600 hover:text-amber-800 underline">Track Geometry</a>
       <a href={url("/reference-genome")} class="text-amber-600 hover:text-amber-800 underline">Reference Genome</a>
+      <a href={url("/schema")} class="text-gray-600 hover:text-gray-800 underline">All Classes</a>
+      <a href={url("/api")} class="text-gray-600 hover:text-gray-800 underline">API</a>
       <a href={url("/scope")} class="text-rose-600 hover:text-rose-800 underline">Scope Boundary</a>
       <a href={url("/mappings")} class="text-gray-600 hover:text-gray-800 underline">EDAM Mappings</a>
       <a href={url("/about")} class="text-gray-600 hover:text-gray-800 underline">About ONGA</a>

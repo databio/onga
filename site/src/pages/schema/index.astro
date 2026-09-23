@@ -31,6 +31,21 @@ const LAYERS = [
   },
 ];
 const byLayer = (n: number) => classes.filter((c: any) => c.layer === n);
+
+// Layer-1 content vocabularies have hand-curated pages outside /schema.
+const VOCABS = [
+  { href: '/data-types', label: 'DataType' },
+  { href: '/feature-types', label: 'FeatureType' },
+  { href: '/formats', label: 'Format' },
+  { href: '/strand-orientation', label: 'StrandOrientation' },
+  { href: '/read-multiplicity', label: 'ReadMultiplicity' },
+  { href: '/filter-status', label: 'FilterStatus' },
+  { href: '/normalization', label: 'Normalization' },
+  { href: '/thresholding', label: 'Thresholding' },
+  { href: '/derivation', label: 'Derivation' },
+  { href: '/reference-build-sex', label: 'ReferenceBuildSex' },
+  { href: '/haplotype-resolution', label: 'HaplotypeResolution' },
+];
 ---
 
 <Layout title="Schema Browser" description="All ONGA schema classes, grouped by layer">
@@ -42,9 +57,45 @@ const byLayer = (n: number) => classes.filter((c: any) => c.layer === n);
       <a href={url('/')} class="text-blue-600 underline hover:text-blue-800">vocabularies</a>
       keep their hand-curated pages; classes are generated pages. Imports and
       inlined ranges point only downward (Layer 4 → 3 → 2 → 1); a lower layer
-      refers up only by CURIE value.
+      refers up only by CURIE value. The same schema is available as JSON
+      Schema from the <a href={url('/api')} class="text-blue-600 underline hover:text-blue-800">API</a>.
     </p>
   </div>
+
+  <!-- Compact index: every class and enum on one screen. -->
+  <nav class="bg-white rounded-lg shadow-sm p-5 mb-10 text-sm space-y-3" aria-label="All classes">
+    <div>
+      <a href="#vocabularies" class="font-semibold text-blue-700 hover:underline">Layer 1 — Vocabularies</a>
+      <div class="flex flex-wrap gap-x-3 gap-y-1 mt-1">
+        {VOCABS.map((v) => <a href={url(v.href)} class="font-mono text-blue-600 hover:text-blue-800 hover:underline">{v.label}</a>)}
+        {enums.map((en: any) => <a href={url(`/schema/enum/${en.name}`)} class="font-mono text-indigo-600 hover:text-indigo-800 hover:underline">{en.name}</a>)}
+      </div>
+    </div>
+    {LAYERS.map((L) => (
+      <div>
+        <a href={`#${L.anchor}`} class:list={['font-semibold hover:underline', L.color.text]}>{L.title}</a>
+        <div class="flex flex-wrap gap-x-3 gap-y-1 mt-1">
+          {byLayer(L.layer).map((cls: any) => (
+            <a href={url(cls.href)} class="font-mono text-gray-700 hover:text-gray-900 hover:underline">{cls.name}</a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </nav>
+
+  <section id="vocabularies" class="mb-10">
+    <h2 class="text-2xl font-bold text-gray-900 mb-1">Layer 1 — Vocabularies</h2>
+    <p class="text-gray-500 text-sm mb-4 max-w-3xl">
+      Closed value sets that the descriptor slots draw on. The core
+      vocabularies and facets have hand-curated pages; the small structural
+      enums are listed <a href="#enums" class="text-blue-600 underline hover:text-blue-800">below</a>.
+    </p>
+    <div class="flex flex-wrap gap-2 text-sm">
+      {VOCABS.map((v) => (
+        <a href={url(v.href)} class="font-mono bg-white rounded px-3 py-1.5 shadow-sm border-l-4 border-blue-500 text-gray-900 hover:shadow-md">{v.label}</a>
+      ))}
+    </div>
+  </section>
 
   {LAYERS.map((L) => (
     <section id={L.anchor} class="mb-10">

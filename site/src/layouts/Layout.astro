@@ -149,6 +149,8 @@ const isActive = (p: string) => currentPath.startsWith(url(p));
                   );
                 })}
                 <span class="text-gray-300">|</span>
+                <a href={url("/schema")} class:list={['hover:text-gray-900', currentPath.startsWith(url('/schema')) ? 'text-gray-900 font-medium' : 'text-gray-600']}>All classes</a>
+                <a href={url("/api")} class:list={['hover:text-gray-900', currentPath.startsWith(url('/api')) ? 'text-gray-900 font-medium' : 'text-gray-600']}>API</a>
                 <a href={url("/scope")} class:list={['hover:text-rose-800', currentPath.startsWith(url('/scope')) ? 'text-rose-700 font-medium' : 'text-rose-600']}>Scope</a>
                 <a href={url("/mappings")} class:list={['hover:text-gray-900', currentPath.startsWith(url('/mappings')) ? 'text-gray-900 font-medium' : 'text-gray-600']}>Mappings</a>
                 <a href={url("/about")} class:list={['hover:text-gray-900', currentPath.startsWith(url('/about')) ? 'text-gray-900 font-medium' : 'text-gray-600']}>About</a>
