@@ -298,6 +298,9 @@ def check_operation(verdict, entry, op, subjects):
     for field, spec in {**required, **optional}.items():
         if field in op:
             _check_type(field, op[field], spec, subjects, errors, sids)
+    if verdict == "adopt_mapping" and op.get("predicate") == "onga:has_element_type" \
+            and "element_type_fit" not in op:
+        errors.append("operation.element_type_fit is required for onga:has_element_type")
     if one_of:
         present = [g for g in one_of if any(f in op for f in g)]
         if len(present) != 1:

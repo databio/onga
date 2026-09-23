@@ -111,7 +111,7 @@ verdicts:
       writes: sssom
       operation:
         required: {predicate: str, object: str}
-        optional: {object_label: str, element_type_fit: str, comment: str}
+        optional: {object_label: str, element_type_fit: 'choice:exact|broad|approximate|not_applicable', comment: str}
     reject_mapping:
       label: Reject mapping
       terminal: true
