@@ -1,6 +1,7 @@
 [
   {
     "id": "all_reads",
+    "ongaId": "ONGA_0000257",
     "name": "all reads",
     "slug": "all_reads",
     "description": "Signal/counts computed from all mapped reads.",
@@ -17,6 +18,7 @@
   },
   {
     "id": "unique_reads",
+    "ongaId": "ONGA_0000258",
     "name": "unique reads",
     "slug": "unique_reads",
     "description": "Signal/counts computed from uniquely-mapping reads only.",

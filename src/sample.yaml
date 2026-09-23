@@ -88,14 +88,23 @@ enums:
     source: https://www.encodeproject.org/profiles/biosample_type
     permissible_values:
       "cell line":
+        meaning: onga:ONGA_0000284
       "in vitro differentiated cells":
+        meaning: onga:ONGA_0000285
       "primary cell":
+        meaning: onga:ONGA_0000286
       "cell-free sample":
+        meaning: onga:ONGA_0000287
       "cloning host":
+        meaning: onga:ONGA_0000288
       "tissue":
+        meaning: onga:ONGA_0000289
       "whole organisms":
+        meaning: onga:ONGA_0000290
       "organoid":
+        meaning: onga:ONGA_0000291
       "technical sample":
+        meaning: onga:ONGA_0000292
 
 slots:
   sample_external_id:

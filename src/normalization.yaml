@@ -47,9 +47,12 @@ enums:
     permissible_values:
       raw:
         description: 'Unprocessed signal before any normalization.'
+        meaning: onga:ONGA_0000261
       depth_normalized:
         description: >-
           Normalized by sequencing depth / library size — the generic
           "normalized" case.
+        meaning: onga:ONGA_0000262
       percentage_normalized:
         description: 'Expressed as a percentage of total signal.'
+        meaning: onga:ONGA_0000263

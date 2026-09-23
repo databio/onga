@@ -43,9 +43,13 @@ enums:
         description: >-
           Reference assembly derived from a male individual (includes X and Y
           chromosomes).
-        meaning: PATO:0000384
+        meaning: onga:ONGA_0000269
+        exact_mappings:
+          - PATO:0000384
       female:
         description: >-
           Reference assembly derived from a female individual (X chromosomes
           only).
-        meaning: PATO:0000383
+        meaning: onga:ONGA_0000270
+        exact_mappings:
+          - PATO:0000383

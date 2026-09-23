@@ -67,11 +67,18 @@ function readSssom(path) {
   });
 }
 
+// SSSOM subject_id is the term's permanent id, onga:ONGA_NNNNNNN (the `meaning:`
+// of the permissible value), so every mapping is keyed by that id.
+function ongaIdOf(curie) {
+  const m = /^onga:(ONGA_\d{7})$/.exec(String(curie || ''));
+  return m ? m[1] : null;
+}
+
 function readMappings() {
   const mappings = {};
   for (const r of readSssom(join(mappingsDir, 'edam.sssom.tsv'))) {
     if (!r.subject_id || !r.object_id) continue;
-    mappings[r.subject_id.replace('onga:', '')] = {
+    mappings[ongaIdOf(r.subject_id)] = {
       predicate: (r.predicate_id || '').replace('skos:', '') || 'relatedMatch',
       edamId: r.object_id,
       edamLabel: r.object_label || '',
@@ -87,17 +94,17 @@ function readMappings() {
 // means the members are NOT instances; skos:exactMatch/closeMatch appear only for
 // the two whitelisted SO classes that are themselves set-denoting. See the ADR
 // "ONGA terms denote sets; SO terms denote elements".
-// A term may have SEVERAL rows (a mixed set), so this is keyed slug -> array.
+// A term may have SEVERAL rows (a mixed set), so this is keyed ONGA id -> array.
 function readSoMappings() {
-  const bySlug = {};
+  const byId = {};
   for (const r of readSssom(join(mappingsDir, 'so.sssom.tsv'))) {
     if (!r.subject_id || !r.object_id) continue;
     // Curated "no SO element type": carried by element_type_fit: not_applicable
     // on the term, not an SO class to list or link.
     if (r.object_id === 'sssom:NoTermFound') continue;
-    const slug = slugify(r.subject_label || r.subject_id.replace('onga:', ''));
+    const id = ongaIdOf(r.subject_id);
     const predicate = r.predicate_id || '';
-    (bySlug[slug] = bySlug[slug] || []).push({
+    (byId[id] = byId[id] || []).push({
       predicate,
       // 'has_element_type' | 'exactMatch' | 'closeMatch' | 'relatedMatch'
       predicateShort: predicate.replace('skos:', '').replace('onga:', ''),
@@ -109,15 +116,30 @@ function readSoMappings() {
       comment: r.comment || ''
     });
   }
-  return bySlug;
+  return byId;
 }
 
 function soUrl(soId) {
   return `http://purl.obolibrary.org/obo/${String(soId).replace(':', '_')}`;
 }
 
-function curieToName(ref) {
-  return String(ref).replace(/^onga:/, '').replace(/_/g, ' ');
+// ONGA id -> live label, over every enum in src/. see_also on a permissible
+// value holds onga:ONGA_NNNNNNN CURIEs; this turns them back into names.
+function termLabelsById() {
+  const labels = {};
+  for (const en of Object.values(loadAllModules().enums)) {
+    for (const [name, data] of Object.entries(en.permissible_values || {})) {
+      const id = ongaIdOf((data || {}).meaning);
+      if (id) labels[id] = name;
+    }
+  }
+  return labels;
+}
+
+function seeAlsoName(ref, labels) {
+  const id = ongaIdOf(ref);
+  if (!id || !labels[id]) throw new Error(`see_also ${ref} is not a live ONGA term id`);
+  return labels[id];
 }
 
 function slugify(name) {
@@ -127,12 +149,9 @@ function slugify(name) {
     .replace(/^_|_$/g, '');
 }
 
-// EDAM cross-references declared in the schema itself. `meaning:` is BANNED on
-// the content enums (it makes the value's IRI *be* the CURIE, which hijacks SO
-// classes and collapses duplicate EDAM CURIEs into one OWL node -- see the ADR
-// "ONGA terms denote sets; SO terms denote elements"), so DataType/FeatureType
-// badges come from edam.sssom.tsv. The small facet/format vocabularies still
-// declare their single EDAM CURIE inline, so read those slots here.
+// EDAM cross-references on the value's *_mappings slots (projected from
+// mappings/*.sssom.tsv). `meaning:` is the value's own ONGA id, never a
+// cross-reference.
 function schemaEdamMapping(data) {
   const slots = [
     ['exactMatch', data.exact_mappings],
@@ -143,9 +162,6 @@ function schemaEdamMapping(data) {
   for (const [predicate, values] of slots) {
     const hit = (values || []).find(v => String(v).startsWith('edam:'));
     if (hit) return { predicate, edamId: hit, edamLabel: '', comment: 'From LinkML schema' };
-  }
-  if (String(data.meaning || '').startsWith('edam:')) {
-    return { predicate: 'exactMatch', edamId: data.meaning, edamLabel: '', comment: 'From LinkML schema' };
   }
   return null;
 }
@@ -179,13 +195,10 @@ function schemaCrossRef(data) {
     const hit = (values || [])[0];
     if (hit) return { predicate, id: String(hit), url: curieUrl(hit) };
   }
-  if (data.meaning) {
-    return { predicate: 'exactMatch', id: String(data.meaning), url: curieUrl(data.meaning) };
-  }
   return null;
 }
 
-function processEnum(enumData, vocabType, edamMappings, soMappings = {}) {
+function processEnum(enumData, vocabType, edamMappings, soMappings = {}, labelsById = {}) {
   const terms = [];
   const termsByCategory = {};
 
@@ -194,9 +207,11 @@ function processEnum(enumData, vocabType, edamMappings, soMappings = {}) {
   for (const [name, data] of Object.entries(enumData.permissible_values)) {
     const slug = slugify(name);
     const category = data.in_subset?.[0] || 'uncategorized';
+    // The permanent id (ONGA_NNNNNNN), carried as `meaning: onga:ONGA_NNNNNNN`.
+    const ongaId = ongaIdOf(data.meaning);
+    if (!ongaId) throw new Error(`${name}: no meaning: onga:ONGA_NNNNNNN id`);
 
-    const edamMapping =
-      edamMappings[slug] || edamMappings[name.replace(/ /g, '_')] || schemaEdamMapping(data);
+    const edamMapping = edamMappings[ongaId] || schemaEdamMapping(data);
 
     // The set/element layer: which SO class(es) the rows of this term instantiate.
     // `element_type` is a pipe-joined STRING of SO CURIEs (a YAML list stringifies
@@ -206,7 +221,7 @@ function processEnum(enumData, vocabType, edamMappings, soMappings = {}) {
     const ann = data.annotations || {};
     const elementTypes = String(ann.element_type || '')
       .split('|').map(s => s.trim()).filter(Boolean);
-    const rows = soMappings[slug] || [];
+    const rows = soMappings[ongaId] || [];
     const labelOf = id => (rows.find(r => r.soId === id) || {}).soLabel || '';
     const elementType = elementTypes.length
       ? {
@@ -220,6 +235,7 @@ function processEnum(enumData, vocabType, edamMappings, soMappings = {}) {
 
     const term = {
       id: slug,
+      ongaId,
       name,
       slug,
       description: data.description || '',
@@ -232,11 +248,11 @@ function processEnum(enumData, vocabType, edamMappings, soMappings = {}) {
       elementTypeFit,
       soMapping,
       externalMapping,
-      // see_also holds onga: CURIEs (schema-valid URIorCURIE); keywords holds
-      // free-text related concepts that are not ONGA terms. The site shows both
-      // as plain names, so resolve the CURIEs back and concatenate.
+      // see_also holds onga:ONGA_NNNNNNN term ids; keywords holds free-text
+      // related concepts that are not ONGA terms. The site shows both as plain
+      // names, so resolve the ids to live labels and concatenate.
       seeAlso: [
-        ...(data.see_also || []).map(curieToName),
+        ...(data.see_also || []).map(ref => seeAlsoName(ref, labelsById)),
         ...(data.keywords || [])
       ],
       encodeSource: true
@@ -886,6 +902,7 @@ function build() {
   const referenceGenome = readYaml('reference_genome.yaml');
   const edamMappings = readMappings();
   const soMappings = readSoMappings();
+  const labelsById = termLabelsById();
   const delegations = readDelegations();
   const upstream = readUpstreamRequests();
   const schemaBrowser = buildSchemaBrowser();
@@ -895,19 +912,19 @@ function build() {
   const featureTypeEnum = fileContent?.enums?.FeatureType;
   const formatEnum = formatSchema?.enums?.Format;
 
-  const dataTypes = processEnum(dataTypeEnum, 'data', edamMappings, soMappings);
-  const featureTypes = processEnum(featureTypeEnum, 'feature', edamMappings, soMappings);
-  const formats = processEnum(formatEnum, 'format', edamMappings);
+  const dataTypes = processEnum(dataTypeEnum, 'data', edamMappings, soMappings, labelsById);
+  const featureTypes = processEnum(featureTypeEnum, 'feature', edamMappings, soMappings, labelsById);
+  const formats = processEnum(formatEnum, 'format', edamMappings, {}, labelsById);
   // Facet vocabularies (small, tied to interpretation): StrandOrientation,
   // ReadMultiplicity, FilterStatus.
-  const strandOrientations = processEnum(strandSchema?.enums?.StrandOrientation, 'strand', edamMappings);
-  const readMultiplicities = processEnum(readMultiplicitySchema?.enums?.ReadMultiplicity, 'read_multiplicity', edamMappings);
-  const filterStatuses = processEnum(filterStatusSchema?.enums?.FilterStatus, 'filter_status', edamMappings);
-  const normalizations = processEnum(normalizationSchema?.enums?.Normalization, 'normalization', edamMappings);
-  const thresholdings = processEnum(thresholdingSchema?.enums?.Thresholding, 'thresholding', edamMappings);
-  const derivations = processEnum(derivationSchema?.enums?.Derivation, 'derivation', edamMappings);
-  const referenceBuildSexes = processEnum(referenceBuildSexSchema?.enums?.ReferenceBuildSex, 'reference_build_sex', edamMappings);
-  const haplotypeResolutions = processEnum(haplotypeResolutionSchema?.enums?.HaplotypeResolution, 'haplotype_resolution', edamMappings);
+  const strandOrientations = processEnum(strandSchema?.enums?.StrandOrientation, 'strand', edamMappings, {}, labelsById);
+  const readMultiplicities = processEnum(readMultiplicitySchema?.enums?.ReadMultiplicity, 'read_multiplicity', edamMappings, {}, labelsById);
+  const filterStatuses = processEnum(filterStatusSchema?.enums?.FilterStatus, 'filter_status', edamMappings, {}, labelsById);
+  const normalizations = processEnum(normalizationSchema?.enums?.Normalization, 'normalization', edamMappings, {}, labelsById);
+  const thresholdings = processEnum(thresholdingSchema?.enums?.Thresholding, 'thresholding', edamMappings, {}, labelsById);
+  const derivations = processEnum(derivationSchema?.enums?.Derivation, 'derivation', edamMappings, {}, labelsById);
+  const referenceBuildSexes = processEnum(referenceBuildSexSchema?.enums?.ReferenceBuildSex, 'reference_build_sex', edamMappings, {}, labelsById);
+  const haplotypeResolutions = processEnum(haplotypeResolutionSchema?.enums?.HaplotypeResolution, 'haplotype_resolution', edamMappings, {}, labelsById);
   const geometry = processGeometry(trackGeometry);
   // TrackFormat is a schema; its file_format slot links to the Format vocabulary.
   const format = processFormat(trackFormat, {

@@ -12,7 +12,6 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 MAPPINGS = ROOT / "mappings"
 POLICY = MAPPINGS / "policy.yaml"
-CONTENT = ROOT / "src" / "file_content.yaml"
 SO_OBO = ROOT / "embeddings" / "data" / "ontologies" / "so.obo"
 
 CONTENT_ENUMS = ("DataType", "FeatureType")
@@ -51,10 +50,37 @@ def load_policy():
     return {
         "banned_skos": set(p["banned_skos"]),
         "set_denoting_so": set(p["set_denoting_so"]),
+        "sequence_attribute_so": set(p["sequence_attribute_so"]),
         "fits": set(p["fits"]),
         "subject_category": p["subject_category"],
         "object_category": p["object_category"],
     }
+
+
+def skos_licensed_so(policy):
+    """SO classes a banned SKOS predicate may target: set-denoting classes and
+    sequence attributes (neither is an element type)."""
+    return policy["set_denoting_so"] | policy["sequence_attribute_so"]
+
+
+class SubjectError(Exception):
+    pass
+
+
+def subject_term(row, terms):
+    """The live term an SSSOM row is about, by `subject_id` (onga:ONGA_NNNNNNN).
+
+    `terms` is {id: workbench.ids.Term}. Raises SubjectError if the id is not a
+    live term or `subject_label` disagrees with the live label."""
+    sid = row.get("subject_id", "")
+    tid = sid[len("onga:"):] if sid.startswith("onga:") else None
+    term = terms.get(tid)
+    if term is None:
+        raise SubjectError(f"subject_id {sid!r} is not a live ONGA term id")
+    if row.get("subject_label", "") != term.label:
+        raise SubjectError(f"subject_id {sid} is {term.enum} {term.label!r}, but "
+                           f"subject_label says {row.get('subject_label')!r}")
+    return term
 
 
 def is_negated(row):

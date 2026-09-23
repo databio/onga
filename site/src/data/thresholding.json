@@ -1,6 +1,7 @@
 [
   {
     "id": "idr",
+    "ongaId": "ONGA_0000264",
     "name": "idr",
     "slug": "idr",
     "description": "Retained by an Irreproducible Discovery Rate (IDR) threshold (reproducible signal across replicates).",
@@ -17,6 +18,7 @@
   },
   {
     "id": "mapping_quality",
+    "ongaId": "ONGA_0000265",
     "name": "mapping_quality",
     "slug": "mapping_quality",
     "description": "Retained by a minimum mapping-quality threshold (high-confidence read mappings only).",
@@ -33,6 +35,7 @@
   },
   {
     "id": "significance",
+    "ongaId": "ONGA_0000266",
     "name": "significance",
     "slug": "significance",
     "description": "Retained by a generic statistical-significance threshold (e.g. p-value / FDR) where the method is unspecified.",

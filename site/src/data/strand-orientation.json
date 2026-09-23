@@ -1,6 +1,7 @@
 [
   {
     "id": "plus",
+    "ongaId": "ONGA_0000250",
     "name": "plus",
     "slug": "plus",
     "description": "Features on the forward/plus (+) strand.",
@@ -21,6 +22,7 @@
   },
   {
     "id": "minus",
+    "ongaId": "ONGA_0000251",
     "name": "minus",
     "slug": "minus",
     "description": "Features on the reverse/minus (−) strand.",
@@ -41,6 +43,7 @@
   },
   {
     "id": "unstranded",
+    "ongaId": "ONGA_0000252",
     "name": "unstranded",
     "slug": "unstranded",
     "description": "No strand distinction / not applicable. This is the default when the strand slot is absent.",
@@ -57,6 +60,7 @@
   },
   {
     "id": "bidirectional",
+    "ongaId": "ONGA_0000253",
     "name": "bidirectional",
     "slug": "bidirectional",
     "description": "Features spanning or representing both strands.",

@@ -2,6 +2,7 @@
   "uncategorized": [
     {
       "id": "bed",
+      "ongaId": "ONGA_0000238",
       "name": "BED",
       "slug": "bed",
       "description": "Browser Extensible Data: tab-delimited intervals with 3 required and up to 9 optional standard columns.",
@@ -11,8 +12,8 @@
       "edamMapping": {
         "predicate": "exactMatch",
         "edamId": "edam:format_3003",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
+        "edamLabel": "BED",
+        "comment": "moved from meaning: when ONGA ids were minted"
       },
       "elementType": null,
       "elementTypeFit": null,
@@ -27,6 +28,7 @@
     },
     {
       "id": "bigbed",
+      "ongaId": "ONGA_0000239",
       "name": "bigBed",
       "slug": "bigbed",
       "description": "Indexed binary form of BED for efficient random access over large datasets.",
@@ -36,8 +38,8 @@
       "edamMapping": {
         "predicate": "exactMatch",
         "edamId": "edam:format_3004",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
+        "edamLabel": "bigBed",
+        "comment": "moved from meaning: when ONGA ids were minted"
       },
       "elementType": null,
       "elementTypeFit": null,
@@ -52,6 +54,7 @@
     },
     {
       "id": "bigwig",
+      "ongaId": "ONGA_0000240",
       "name": "bigWig",
       "slug": "bigwig",
       "description": "Indexed binary form of WIG for dense continuous signal across the genome.",
@@ -61,8 +64,8 @@
       "edamMapping": {
         "predicate": "exactMatch",
         "edamId": "edam:format_3006",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
+        "edamLabel": "bigWig",
+        "comment": "moved from meaning: when ONGA ids were minted"
       },
       "elementType": null,
       "elementTypeFit": null,
@@ -77,6 +80,7 @@
     },
     {
       "id": "wig",
+      "ongaId": "ONGA_0000241",
       "name": "WIG",
       "slug": "wig",
       "description": "Wiggle: continuous-valued signal data across genomic coordinates.",
@@ -86,8 +90,8 @@
       "edamMapping": {
         "predicate": "exactMatch",
         "edamId": "edam:format_3005",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
+        "edamLabel": "WIG",
+        "comment": "moved from meaning: when ONGA ids were minted"
       },
       "elementType": null,
       "elementTypeFit": null,
@@ -102,6 +106,7 @@
     },
     {
       "id": "bedgraph",
+      "ongaId": "ONGA_0000242",
       "name": "bedGraph",
       "slug": "bedgraph",
       "description": "BED-like format carrying a continuous value per interval (4-column signal).",
@@ -111,8 +116,8 @@
       "edamMapping": {
         "predicate": "exactMatch",
         "edamId": "edam:format_3583",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
+        "edamLabel": "bedgraph",
+        "comment": "moved from meaning: when ONGA ids were minted"
       },
       "elementType": null,
       "elementTypeFit": null,
@@ -127,6 +132,7 @@
     },
     {
       "id": "narrowpeak",
+      "ongaId": "ONGA_0000243",
       "name": "narrowPeak",
       "slug": "narrowpeak",
       "description": "ENCODE BED6+4 format for called peaks with a single narrow point of enrichment.",
@@ -143,6 +149,7 @@
     },
     {
       "id": "broadpeak",
+      "ongaId": "ONGA_0000244",
       "name": "broadPeak",
       "slug": "broadpeak",
       "description": "ENCODE BED6+3 format for called peaks spanning broad regions of enrichment.",
@@ -159,6 +166,7 @@
     },
     {
       "id": "gappedpeak",
+      "ongaId": "ONGA_0000245",
       "name": "gappedPeak",
       "slug": "gappedpeak",
       "description": "ENCODE BED12+3 format for called peaks with internal gapped (block) structure.",
@@ -175,6 +183,7 @@
     },
     {
       "id": "gff3",
+      "ongaId": "ONGA_0000246",
       "name": "GFF3",
       "slug": "gff3",
       "description": "Generic Feature Format version 3: hierarchical, attribute-rich feature annotations.",
@@ -184,8 +193,8 @@
       "edamMapping": {
         "predicate": "exactMatch",
         "edamId": "edam:format_1939",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
+        "edamLabel": "GFF3",
+        "comment": "moved from meaning: when ONGA ids were minted"
       },
       "elementType": null,
       "elementTypeFit": null,
@@ -200,6 +209,7 @@
     },
     {
       "id": "gtf",
+      "ongaId": "ONGA_0000247",
       "name": "GTF",
       "slug": "gtf",
       "description": "Gene Transfer Format: a GFF2-derived format for gene model annotations.",
@@ -209,8 +219,8 @@
       "edamMapping": {
         "predicate": "exactMatch",
         "edamId": "edam:format_2306",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
+        "edamLabel": "GTF",
+        "comment": "moved from meaning: when ONGA ids were minted"
       },
       "elementType": null,
       "elementTypeFit": null,
@@ -225,6 +235,7 @@
     },
     {
       "id": "vcf",
+      "ongaId": "ONGA_0000248",
       "name": "VCF",
       "slug": "vcf",
       "description": "Variant Call Format: sequence variants relative to a reference.",
@@ -234,8 +245,8 @@
       "edamMapping": {
         "predicate": "exactMatch",
         "edamId": "edam:format_3016",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
+        "edamLabel": "VCF",
+        "comment": "moved from meaning: when ONGA ids were minted"
       },
       "elementType": null,
       "elementTypeFit": null,
@@ -250,6 +261,7 @@
     },
     {
       "id": "bam",
+      "ongaId": "ONGA_0000249",
       "name": "BAM",
       "slug": "bam",
       "description": "Binary Alignment Map: compressed binary form of SAM aligned reads.",
@@ -259,8 +271,8 @@
       "edamMapping": {
         "predicate": "exactMatch",
         "edamId": "edam:format_2572",
-        "edamLabel": "",
-        "comment": "From LinkML schema"
+        "edamLabel": "BAM",
+        "comment": "moved from meaning: when ONGA ids were minted"
       },
       "elementType": null,
       "elementTypeFit": null,

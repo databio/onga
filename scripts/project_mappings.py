@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""Project mappings/*.sssom.tsv onto the DataType / FeatureType values in src/file_content.yaml.
+"""Project mappings/*.sssom.tsv onto the permissible values in src/*.yaml.
 
 The SSSOM files are the source of truth for term-level mappings (data-first
-ADR). The LinkML mapping slots and the set/element annotations on each
-DataType / FeatureType permissible value are generated from them here and are
-never hand-edited:
+ADR). The LinkML mapping slots and the set/element annotations on every enum
+permissible value are generated from them here and are never hand-edited:
 
-  skos:* rows (EDAM, and SO skos:relatedMatch)
+  skos:* rows (EDAM, PATO, SO skos:relatedMatch, and SO sequence attributes)
       -> exact_ / close_ / broad_ / narrow_ / related_mappings
   onga:has_element_type rows (SO)
       -> annotations.element_type (pipe-joined SO CURIEs) + element_type_fit
@@ -15,20 +14,21 @@ never hand-edited:
   SO skos:relatedMatch rows on a subject with no has_element_type row
       -> element_type_fit: not_applicable
 
-Not projected: a SKOS exact/close/broad/narrow row against SO. Policy allows
-those only for the set-denoting SO classes (mappings/policy.yaml), and SO CURIEs
-are banned from the LinkML exact/close/broad slots (check_roundtrip.py check 7),
-so those rows live in SSSOM and in the generated OWL only.
+Not projected: a SKOS exact/close/broad/narrow row against a set-denoting SO
+class (mappings/policy.yaml). SO CURIEs are banned from the LinkML
+exact/close/broad slots except for sequence attributes (check_roundtrip.py
+check 7), so those rows live in SSSOM and in the generated OWL only.
 
 Rows with `predicate_modifier: Not` are negations: they never project, and they
 are the only thing that licenses removing an existing mapping from the YAML. A
 YAML mapping or element_type annotation with no supporting TSV row is an ERROR,
 never a silent deletion.
 
-Subjects resolve by `subject_label` against the live enums.
+Subjects resolve by `subject_id` (onga:ONGA_NNNNNNN, the value's `meaning:`);
+a `subject_label` that disagrees with the live label is an error.
 
 Usage:
-    python scripts/project_mappings.py           # rewrite src/file_content.yaml
+    python scripts/project_mappings.py           # rewrite src/*.yaml
     python scripts/project_mappings.py --check   # write nothing; exit 1 if it would change
 """
 import argparse
@@ -41,10 +41,10 @@ sys.path.insert(0, str(HERE))
 
 from ruamel.yaml.comments import CommentedMap, CommentedSeq  # noqa: E402
 
-from workbench import yamlio  # noqa: E402
+from workbench import ids, yamlio  # noqa: E402
 from workbench.mappings import (  # noqa: E402
-    CONTENT, CONTENT_ENUMS, HAS_ELEMENT_TYPE, NO_TERM_FOUND, RELATED_MATCH,
-    ROOT, SKOS_SLOT, all_rows, is_negated, load_policy,
+    HAS_ELEMENT_TYPE, NO_TERM_FOUND, RELATED_MATCH, ROOT, SKOS_SLOT, SubjectError,
+    all_rows, is_negated, load_policy, subject_term,
 )
 
 ANNOTATION_KEYS = ("element_type", "element_type_fit")
@@ -55,17 +55,36 @@ class ProjectionError(Exception):
     pass
 
 
-def desired_state(pools, policy):
-    """{(enum, term): {"slots": {slot: [curie]}, "negated": {(slot, curie)},
+def load_pools():
+    """({module: Doc}, {term id: (module, enum, label)}) for every module with enums."""
+    docs, where = {}, {}
+    for mod in ids.enum_modules():
+        path = ids.SRC / f"{mod}.yaml"
+        doc = yamlio.load(path)
+        enums = doc.data.get("enums") or {}
+        if not enums:
+            continue
+        docs[mod] = doc
+        for enum_name, enum_def in enums.items():
+            for label, pv in enum_def["permissible_values"].items():
+                meaning = str((pv or {}).get("meaning") or "")
+                if not ids.MEANING_RE.match(meaning):
+                    raise ProjectionError(f"{mod}.yaml {enum_name} {label!r} has no "
+                                          f"`meaning: onga:ONGA_NNNNNNN` id")
+                tid = meaning.split(":", 1)[1]
+                if tid in where:
+                    raise ProjectionError(f"id {tid} is on both {where[tid]} and "
+                                          f"{(mod, enum_name, label)}")
+                where[tid] = (mod, enum_name, label)
+    return docs, where
+
+
+def desired_state(where, policy):
+    """{term id: {"slots": {slot: [curie]}, "negated": {(slot, curie)},
     "element_type": [SO ids] | None, "fit": str | None, "reason": str}}"""
     errs = []
-    enum_of = {}
-    for enum_name in CONTENT_ENUMS:
-        for term in pools[enum_name]:
-            if term in enum_of:
-                errs.append(f"term {term!r} is in both DataType and FeatureType; "
-                            f"subjects cannot resolve by label")
-            enum_of[term] = enum_name
+    terms = {tid: ids.Term(tid, m, e, lbl) for tid, (m, e, lbl) in where.items()}
+    licensed = policy["set_denoting_so"]
 
     state = {}
 
@@ -74,12 +93,12 @@ def desired_state(pools, policy):
                                       "fit": None, "none": None, "related_so": False})
 
     for fname, r in all_rows():
-        label = r.get("subject_label", "")
-        if label not in enum_of:
-            errs.append(f"{fname}: subject_label {label!r} is not a live "
-                        f"DataType/FeatureType value")
+        try:
+            term = subject_term(r, terms)
+        except SubjectError as e:
+            errs.append(f"{fname}: {e}")
             continue
-        key = (enum_of[label], label)
+        key, label = term.id, term.label
         pred, obj = r["predicate_id"], r["object_id"]
         s = rec(key)
         if pred == HAS_ELEMENT_TYPE:
@@ -87,7 +106,7 @@ def desired_state(pools, policy):
                 continue
             fit = r.get("element_type_fit", "")
             if s["fit"] is not None and s["fit"] != fit:
-                errs.append(f"{fname}: {key[0]} {label!r} has conflicting "
+                errs.append(f"{fname}: {term.enum} {label!r} has conflicting "
                             f"element_type_fit {s['fit']!r} vs {fit!r}")
             s["fit"] = fit
             if obj == NO_TERM_FOUND:
@@ -96,7 +115,7 @@ def desired_state(pools, policy):
                 s["so"].append(obj)
         elif pred in SKOS_SLOT:
             slot = SKOS_SLOT[pred]
-            if obj.startswith("SO:") and pred in policy["banned_skos"]:
+            if obj in licensed and pred in policy["banned_skos"]:
                 continue  # set-to-set SO rows: SSSOM + OWL only (see docstring)
             if is_negated(r):
                 s["negated"].add((slot, obj))
@@ -111,11 +130,12 @@ def desired_state(pools, policy):
                         f"no projection")
 
     for key, s in state.items():
+        name = f"{terms[key].enum} {terms[key].label!r}"
         if s["none"] is not None and s["so"]:
-            errs.append(f"{key[0]} {key[1]!r} has both sssom:NoTermFound and SO "
+            errs.append(f"{name} has both sssom:NoTermFound and SO "
                         f"element types {s['so']}")
         if s["related_so"] and (s["so"] or s["none"] is not None):
-            errs.append(f"{key[0]} {key[1]!r} is both a membership row and an SO "
+            errs.append(f"{name} is both a membership row and an SO "
                         f"skos:relatedMatch row")
         if s["so"] or s["none"] is not None:
             s["element_type"] = "|".join(s["so"]) or None
@@ -132,79 +152,70 @@ def _curies(value):
     return [str(v) for v in (value or [])]
 
 
-def project(pools, state):
-    """Apply `state` to the ruamel pools in place. Returns the number of values changed."""
-    errs, changed = [], 0
+def project(docs, where, state):
+    """Apply `state` to the ruamel docs in place."""
+    errs = []
     empty = {"slots": {}, "negated": set(), "element_type": None, "fit": None, "none": None}
-    for enum_name in CONTENT_ENUMS:
-        for term, pv in pools[enum_name].items():
-            want = state.get((enum_name, term), empty)
-            if pv is None:
-                if not want["slots"] and want["fit"] is None:
-                    continue
-                pv = pools[enum_name][term] = CommentedMap()
-            touched = False
+    for tid, (mod, enum_name, term) in where.items():
+        pv = docs[mod].data["enums"][enum_name]["permissible_values"][term]
+        want = state.get(tid, empty)
 
-            # 1. The SKOS mapping slots.
-            for slot in sorted(set(SKOS_SLOT.values())):
-                have = _curies(pv.get(slot))
-                target = want["slots"].get(slot, [])
-                orphan = [c for c in have if c not in target
-                          and (slot, c) not in want["negated"]]
-                if orphan:
-                    errs.append(f"{enum_name} {term!r} has {slot} {orphan} with no "
-                                f"row in mappings/*.sssom.tsv. Add a row (or a "
-                                f"predicate_modifier Not row to remove it).")
-                    continue
-                if set(have) == set(target):
-                    continue
-                touched = True
-                if target:
-                    seq = CommentedSeq(target)
-                    if slot in pv:
-                        pv[slot] = seq
-                    else:
-                        # House order: description, annotations, *_mappings, in_subset, ...
-                        keys = list(pv.keys())
-                        pos = next((i for i, k in enumerate(keys) if k in TRAILING_KEYS),
-                                   len(keys))
-                        pv.insert(pos, slot, seq)
+        # 1. The SKOS mapping slots.
+        for slot in sorted(set(SKOS_SLOT.values())):
+            have = _curies(pv.get(slot))
+            target = want["slots"].get(slot, [])
+            orphan = [c for c in have if c not in target
+                      and (slot, c) not in want["negated"]]
+            if orphan:
+                errs.append(f"{enum_name} {term!r} has {slot} {orphan} with no "
+                            f"row in mappings/*.sssom.tsv. Add a row (or a "
+                            f"predicate_modifier Not row to remove it).")
+                continue
+            if set(have) == set(target):
+                continue
+            if target:
+                seq = CommentedSeq(target)
+                if slot in pv:
+                    pv[slot] = seq
                 else:
-                    del pv[slot]
+                    # House order: description, meaning, annotations, *_mappings, in_subset, ...
+                    keys = list(pv.keys())
+                    pos = next((i for i, k in enumerate(keys) if k in TRAILING_KEYS),
+                               len(keys))
+                    pv.insert(pos, slot, seq)
+            else:
+                del pv[slot]
 
-            # 2. The set/element annotations.
-            ann = pv.get("annotations")
-            have_et = str(ann["element_type"]) if ann and "element_type" in ann else None
-            have_fit = ann.get("element_type_fit") if ann else None
-            want_et, want_fit = want["element_type"], want["fit"]
-            if want_fit is None and (have_et or have_fit):
-                errs.append(f"{enum_name} {term!r} has element_type annotations "
-                            f"({have_et!r}, {have_fit!r}) with no row in "
-                            f"mappings/so.sssom.tsv")
-                continue
-            same_et = (set((have_et or "").split("|")) == set((want_et or "").split("|")))
-            if same_et and have_fit == want_fit:
-                if touched:
-                    changed += 1
-                continue
-            touched = True
-            if ann is None:
-                ann = CommentedMap()
-                keys = list(pv.keys())
-                pos = keys.index("description") + 1 if "description" in keys else 0
-                pv.insert(pos, "annotations", ann)
-            for k in ANNOTATION_KEYS:
-                if k in ann:
-                    del ann[k]
-            if want_et:
-                ann.insert(0, "element_type", want_et)
-            ann.insert(1 if want_et else 0, "element_type_fit", want_fit)
-            if want["none"]:
-                ann.yaml_add_eol_comment(want["none"], "element_type_fit")
-            changed += 1
+        # 2. The set/element annotations.
+        ann = pv.get("annotations")
+        have_et = str(ann["element_type"]) if ann and "element_type" in ann else None
+        have_fit = ann.get("element_type_fit") if ann else None
+        want_et, want_fit = want["element_type"], want["fit"]
+        if want_fit is None and (have_et or have_fit):
+            errs.append(f"{enum_name} {term!r} has element_type annotations "
+                        f"({have_et!r}, {have_fit!r}) with no row in "
+                        f"mappings/so.sssom.tsv")
+            continue
+        same_et = (set((have_et or "").split("|")) == set((want_et or "").split("|")))
+        if same_et and have_fit == want_fit:
+            continue
+        if ann is None:
+            ann = CommentedMap()
+            keys = list(pv.keys())
+            # House order: description, meaning, annotations, *_mappings, ...
+            pos = max((keys.index(k) + 1 for k in ("description", "meaning") if k in keys),
+                      default=0)
+            pv.insert(pos, "annotations", ann)
+        for k in ANNOTATION_KEYS:
+            if k in ann:
+                del ann[k]
+        if want_et:
+            ann.insert(0, "element_type", want_et)
+        ann.insert(1 if want_et else 0, "element_type_fit", want_fit)
+        if want["none"]:
+            ann.yaml_add_eol_comment(want["none"], "element_type_fit")
     if errs:
         raise ProjectionError("\n".join(errs))
-    return changed
 
 
 def main():
@@ -213,31 +224,39 @@ def main():
                     help="write nothing; exit non-zero if the projection would change src/")
     args = ap.parse_args()
 
-    doc = yamlio.load(CONTENT)
-    pools = {e: doc.data["enums"][e]["permissible_values"] for e in CONTENT_ENUMS}
-    before = CONTENT.read_text()
     try:
-        state = desired_state(pools, load_policy())
-        n = project(pools, state)
+        docs, where = load_pools()
+        state = desired_state(where, load_policy())
+        project(docs, where, state)
     except ProjectionError as e:
         print(f"PROJECTION FAILED:\n  " + str(e).replace("\n", "\n  "))
         sys.exit(1)
-    after = yamlio.dumps(doc)
-    rel = CONTENT.relative_to(ROOT)
 
-    if args.check:
-        if after != before:
+    stale = []
+    for mod, doc in docs.items():
+        path = ids.SRC / f"{mod}.yaml"
+        before, after = path.read_text(), yamlio.dumps(doc)
+        if after == before:
+            continue
+        rel = path.relative_to(ROOT)
+        stale.append(str(rel))
+        if args.check:
             sys.stdout.writelines(difflib.unified_diff(
                 before.splitlines(True), after.splitlines(True),
                 f"a/{rel}", f"b/{rel}", n=1))
-            print(f"project-mappings check FAILED: {n} value(s) in {rel} disagree "
-                  f"with mappings/*.sssom.tsv; run `make mappings`")
+        else:
+            yamlio.dump(doc, path)
+
+    if args.check:
+        if stale:
+            print(f"project-mappings check FAILED: {', '.join(stale)} disagree with "
+                  f"mappings/*.sssom.tsv; run `make mappings`")
             sys.exit(1)
-        print(f"project-mappings OK: {rel} agrees with mappings/*.sssom.tsv")
+        print(f"project-mappings OK: src/ agrees with mappings/*.sssom.tsv "
+              f"({len(where)} values in {len(docs)} modules)")
         return
-    if after != before:
-        yamlio.dump(doc, CONTENT)
-    print(f"projected mappings/*.sssom.tsv onto {rel}: {n} value(s) changed")
+    print(f"projected mappings/*.sssom.tsv onto src/: "
+          f"{', '.join(stale) or 'no changes'}")
 
 
 if __name__ == "__main__":

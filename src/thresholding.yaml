@@ -44,11 +44,14 @@ enums:
         description: >-
           Retained by an Irreproducible Discovery Rate (IDR) threshold
           (reproducible signal across replicates).
+        meaning: onga:ONGA_0000264
       mapping_quality:
         description: >-
           Retained by a minimum mapping-quality threshold (high-confidence read
           mappings only).
+        meaning: onga:ONGA_0000265
       significance:
         description: >-
           Retained by a generic statistical-significance threshold (e.g.
           p-value / FDR) where the method is unspecified.
+        meaning: onga:ONGA_0000266

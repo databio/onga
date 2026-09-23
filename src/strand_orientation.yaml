@@ -38,13 +38,17 @@ enums:
     permissible_values:
       plus:
         description: 'Features on the forward/plus (+) strand.'
+        meaning: onga:ONGA_0000250
         exact_mappings:
           - SO:0001030
       minus:
         description: 'Features on the reverse/minus (−) strand.'
+        meaning: onga:ONGA_0000251
         exact_mappings:
           - SO:0001031
       unstranded:
         description: 'No strand distinction / not applicable. This is the default when the strand slot is absent.'
+        meaning: onga:ONGA_0000252
       bidirectional:
         description: 'Features spanning or representing both strands.'
+        meaning: onga:ONGA_0000253

@@ -2,12 +2,15 @@
 """Validate mappings/*.sssom.tsv, the source of truth for term-level mappings.
 
 Checks every row of every SSSOM file (by header name):
-  - the subject_label is a live DataType or FeatureType value;
+  - the subject_id is a live ONGA term id (onga:ONGA_NNNNNNN, a value's
+    `meaning:`) and subject_label is that value's live label;
+  - onga:has_element_type rows are about DataType / FeatureType terms only;
   - an SO object exists and is non-obsolete in embeddings/data/ontologies/so.obo,
     and its object_label is the SO name;
   - the set/element predicate policy in mappings/policy.yaml holds: against SO
-    only onga:has_element_type, skos:relatedMatch, or a SKOS match to a
-    set-denoting SO class; sssom:NoTermFound only on onga:has_element_type;
+    only onga:has_element_type, skos:relatedMatch, a SKOS match to a
+    set-denoting SO class, or a SKOS match from a facet value to an SO sequence
+    attribute; sssom:NoTermFound only on onga:has_element_type;
   - element_type_fit is set (and in range) exactly on onga:has_element_type rows,
     is not_applicable exactly on NoTermFound rows, and is consistent per subject;
   - a subject is never both a membership row and an SO skos:relatedMatch row;
@@ -19,13 +22,12 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-import yaml
-
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from workbench import ids  # noqa: E402
 from workbench.mappings import (  # noqa: E402
-    CONTENT, CONTENT_ENUMS, HAS_ELEMENT_TYPE, NO_TERM_FOUND, RELATED_MATCH,
-    SKOS_SLOT, all_rows, is_negated, live_so_terms, load_policy,
+    CONTENT_ENUMS, HAS_ELEMENT_TYPE, NO_TERM_FOUND, RELATED_MATCH, SKOS_SLOT,
+    SubjectError, all_rows, live_so_terms, load_policy, skos_licensed_so, subject_term,
 )
 
 ADR = 'the ADR "ONGA terms denote sets; SO terms denote elements"'
@@ -33,8 +35,8 @@ ADR = 'the ADR "ONGA terms denote sets; SO terms denote elements"'
 
 def main():
     policy = load_policy()
-    enums = yaml.safe_load(open(CONTENT))["enums"]
-    live = {t for e in CONTENT_ENUMS for t in enums[e]["permissible_values"]}
+    licensed = skos_licensed_so(policy)
+    terms = {t.id: t for t in ids.schema_terms() if t.id}
     so = live_so_terms()
     errs = []
     if so is None:
@@ -47,17 +49,23 @@ def main():
     rows = all_rows()
     for fname, r in rows:
         label = r.get("subject_label", "")
+        sid = r.get("subject_id", "")
         pred, obj = r.get("predicate_id", ""), r.get("object_id", "")
         fit = r.get("element_type_fit", "") or ""
-        where = f"{fname}: {label!r} {pred} {obj}"
-        if not r.get("subject_id"):
-            errs.append(f"{where}: empty subject_id")
-        if label not in live:
-            errs.append(f"{where}: subject is not a live DataType/FeatureType value")
+        where = f"{fname}: {sid} {label!r} {pred} {obj}"
+        try:
+            term = subject_term(r, terms)
+        except SubjectError as e:
+            errs.append(f"{where}: {e}")
+            term = None
+        content = term is not None and term.enum in CONTENT_ENUMS
+        if pred == HAS_ELEMENT_TYPE and term is not None and not content:
+            errs.append(f"{where}: {HAS_ELEMENT_TYPE} is only for DataType / "
+                        f"FeatureType terms, not {term.enum}")
         mod = (r.get("predicate_modifier") or "").strip()
         if mod not in ("", "Not"):
             errs.append(f"{where}: predicate_modifier must be empty or 'Not', got {mod!r}")
-        triple = (label, pred, obj, mod)
+        triple = (sid, pred, obj, mod)
         if triple in seen:
             errs.append(f"{where}: duplicate row")
         seen.add(triple)
@@ -76,35 +84,41 @@ def main():
             elif r.get("object_label", "") != so[obj]:
                 errs.append(f"{where}: object_label {r.get('object_label')!r} is not "
                             f"the SO name {so[obj]!r}")
-            if pred in policy["banned_skos"] and obj not in policy["set_denoting_so"]:
+            attribute = obj in policy["sequence_attribute_so"]
+            if pred in policy["banned_skos"] and obj not in licensed:
                 errs.append(
                     f"{where}: BANNED PREDICATE. ONGA terms denote SETS and SO classes "
                     f"denote ELEMENTS, so exact/close/broad/narrowMatch are licensed only "
                     f"against the set-denoting SO classes "
-                    f"{sorted(policy['set_denoting_so'])}. Use {HAS_ELEMENT_TYPE} with an "
-                    f"element_type_fit grade, or {RELATED_MATCH}. See {ADR}.")
+                    f"{sorted(policy['set_denoting_so'])} and the SO sequence attributes "
+                    f"{sorted(policy['sequence_attribute_so'])}. Use {HAS_ELEMENT_TYPE} "
+                    f"with an element_type_fit grade, or {RELATED_MATCH}. See {ADR}.")
+            if attribute and content:
+                errs.append(f"{where}: SO sequence attributes are for facet values, "
+                            f"not DataType / FeatureType terms (a set). See {ADR}.")
             if pred == HAS_ELEMENT_TYPE and fit not in policy["fits"] - {"not_applicable"}:
                 errs.append(f"{where}: element_type_fit {fit!r} must be one of "
                             f"{sorted(policy['fits'] - {'not_applicable'})}")
             for col in ("subject_category", "object_category"):
-                if r.get(col, "") != policy[col]:
-                    errs.append(f"{where}: {col} {r.get(col)!r} is not {policy[col]!r}")
+                want = "" if attribute else policy[col]
+                if r.get(col, "") != want:
+                    errs.append(f"{where}: {col} {r.get(col)!r} is not {want!r}")
         elif pred == HAS_ELEMENT_TYPE:
             errs.append(f"{where}: {HAS_ELEMENT_TYPE} needs an SO object or {NO_TERM_FOUND}")
 
         if pred != HAS_ELEMENT_TYPE and fit:
             errs.append(f"{where}: element_type_fit is only for {HAS_ELEMENT_TYPE} rows")
         if pred == HAS_ELEMENT_TYPE and not mod:
-            membership.add(label)
-            fits[label].add(fit)
+            membership.add(sid)
+            fits[sid].add(fit)
         if pred == RELATED_MATCH and obj.startswith("SO:") and not mod:
-            related.add(label)
+            related.add(sid)
 
-    for label, fs in sorted(fits.items()):
+    for sid, fs in sorted(fits.items()):
         if len(fs) > 1:
-            errs.append(f"{label!r}: conflicting element_type_fit values {sorted(fs)}")
-    for label in sorted(membership & related):
-        errs.append(f"{label!r}: both an element-type row and an SO {RELATED_MATCH} row")
+            errs.append(f"{sid}: conflicting element_type_fit values {sorted(fs)}")
+    for sid in sorted(membership & related):
+        errs.append(f"{sid}: both an element-type row and an SO {RELATED_MATCH} row")
 
     if errs:
         print(f"MAPPING VALIDATION FAILED ({len(errs)} issue(s)):")
@@ -116,7 +130,7 @@ def main():
         by_file[fname] += 1
     summary = ", ".join(f"{f} {n}" for f, n in sorted(by_file.items()))
     print(f"Mappings OK: {len(rows)} rows ({summary}), "
-          f"{len({r['subject_label'] for _, r in rows})} subjects")
+          f"{len({r['subject_id'] for _, r in rows})} subjects")
 
 
 if __name__ == "__main__":

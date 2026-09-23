@@ -97,15 +97,20 @@ enums:
     permissible_values:
       integer:
         description: 'Integer numeric values.'
+        meaning: onga:ONGA_0000271
       decimal:
         description: 'Decimal numeric values.'
+        meaning: onga:ONGA_0000272
       boolean:
         description: 'Boolean values (true/false).'
+        meaning: onga:ONGA_0000273
       string:
         description: 'Text string values.'
+        meaning: onga:ONGA_0000274
       multiple:
         description: 'Multiple types of values are associated (e.g. both integer and string).'
 
+        meaning: onga:ONGA_0000275
 slots:
   has_gaps:
     description: 'Whether there are gaps between the sequence features (there exists at least one gap between two features on the same sequence).'

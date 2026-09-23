@@ -5,7 +5,7 @@ description: >-
   Controlled vocabulary of common file formats for genomic annotation tracks.
   `Format` is a Layer-1 ONGA vocabulary (a closed value set): each permissible
   value names a track file format, referencing the EDAM ontology
-  (Sequence-annotation-track formats) via `meaning` where a corresponding term
+  (Sequence-annotation-track formats) via `exact_mappings` where a corresponding term
   exists. It is referenced by the `file_format` slot of the `TrackFormat`
   descriptor schema.
 
@@ -30,38 +30,59 @@ enums:
   Format:
     description: >-
       Common file formats for genomic annotation tracks. Where an EDAM term
-      exists for the format, it is referenced via `meaning`.
+      exists for the format, it is referenced via `exact_mappings`.
     permissible_values:
       BED:
         description: 'Browser Extensible Data: tab-delimited intervals with 3 required and up to 9 optional standard columns.'
-        meaning: edam:format_3003
+        meaning: onga:ONGA_0000238
+        exact_mappings:
+          - edam:format_3003
       bigBed:
         description: 'Indexed binary form of BED for efficient random access over large datasets.'
-        meaning: edam:format_3004
+        meaning: onga:ONGA_0000239
+        exact_mappings:
+          - edam:format_3004
       bigWig:
         description: 'Indexed binary form of WIG for dense continuous signal across the genome.'
-        meaning: edam:format_3006
+        meaning: onga:ONGA_0000240
+        exact_mappings:
+          - edam:format_3006
       WIG:
         description: 'Wiggle: continuous-valued signal data across genomic coordinates.'
-        meaning: edam:format_3005
+        meaning: onga:ONGA_0000241
+        exact_mappings:
+          - edam:format_3005
       bedGraph:
         description: 'BED-like format carrying a continuous value per interval (4-column signal).'
-        meaning: edam:format_3583
+        meaning: onga:ONGA_0000242
+        exact_mappings:
+          - edam:format_3583
       narrowPeak:
         description: 'ENCODE BED6+4 format for called peaks with a single narrow point of enrichment.'
+        meaning: onga:ONGA_0000243
       broadPeak:
         description: 'ENCODE BED6+3 format for called peaks spanning broad regions of enrichment.'
+        meaning: onga:ONGA_0000244
       gappedPeak:
         description: 'ENCODE BED12+3 format for called peaks with internal gapped (block) structure.'
+        meaning: onga:ONGA_0000245
       GFF3:
         description: 'Generic Feature Format version 3: hierarchical, attribute-rich feature annotations.'
-        meaning: edam:format_1939
+        meaning: onga:ONGA_0000246
+        exact_mappings:
+          - edam:format_1939
       GTF:
         description: 'Gene Transfer Format: a GFF2-derived format for gene model annotations.'
-        meaning: edam:format_2306
+        meaning: onga:ONGA_0000247
+        exact_mappings:
+          - edam:format_2306
       VCF:
         description: 'Variant Call Format: sequence variants relative to a reference.'
-        meaning: edam:format_3016
+        meaning: onga:ONGA_0000248
+        exact_mappings:
+          - edam:format_3016
       BAM:
         description: 'Binary Alignment Map: compressed binary form of SAM aligned reads.'
-        meaning: edam:format_2572
+        meaning: onga:ONGA_0000249
+        exact_mappings:
+          - edam:format_2572

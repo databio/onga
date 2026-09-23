@@ -7,10 +7,11 @@ MAIN_SCHEMA = $(SCHEMA_DIR)/$(SCHEMA_NAME).yaml
 all: gen-owl gen-jsonld gen-registry
 
 # Enforced lossless round-trip invariant: every facet-map row resolves to a live
-# enum base, no compound term survives, counts match DECISIONS, src/ is the
-# projection of mappings/*.sssom.tsv. Plus instance validation of the worked
-# examples against the record classes, and the YAML formatting fixed point.
-test: fmt-check test-examples
+# enum base, no compound term survives, counts match DECISIONS, every value
+# carries its ONGA_NNNNNNN id (curation/term_ids.tsv), src/ is the projection of
+# mappings/*.sssom.tsv. Plus the SSSOM validation, instance validation of the
+# worked examples against the record classes, and the YAML formatting fixed point.
+test: fmt-check validate-mappings test-examples
 	python scripts/check_roundtrip.py
 
 # Every src/*.yaml must be a fixed point of the shared YAML writer
@@ -49,12 +50,12 @@ gen-owl-so:
 	python scripts/gen_so_axioms.py > project/owl/$(SCHEMA_NAME)-so-element-types.owl.ttl
 
 # mappings/*.sssom.tsv are hand-curated and the source of truth for term-level
-# mappings. Project them onto the DataType/FeatureType *_mappings slots and
-# element_type annotations in src/file_content.yaml (generated; never hand-edit).
+# mappings. Project them onto the permissible values' *_mappings slots and
+# element_type annotations in src/*.yaml (generated; never hand-edit).
 mappings:
 	python scripts/project_mappings.py
 
-# Validate the SSSOM files: live subjects, live SO ids, the set/element
+# Validate the SSSOM files: live subject ids, live SO ids, the set/element
 # predicate policy in mappings/policy.yaml, no duplicate rows.
 validate-mappings:
 	python scripts/validate_mappings.py

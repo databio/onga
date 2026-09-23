@@ -14,29 +14,25 @@ whose subject is an SO IRI -- asserted below. That is the invariant the ADR
 
 Reads mappings/so.sssom.tsv (hand-curated; the source of truth) BY HEADER
 NAME. Rows whose object is sssom:NoTermFound (reviewed, no SO element type)
-assert nothing about SO and are skipped. Subject IRIs are rebuilt exactly the
-way `gen-owl` builds permissible-value IRIs --
-https://databio.org/onga/{EnumName}#{percent-encoded value text} -- so the
-axioms merge cleanly with project/owl/onga.owl.ttl. The enum name is re-derived
-by looking the subject_label up in src/file_content.yaml (the two enums share no
-term names; the lookup errors out if that ever changes).
+assert nothing about SO and are skipped. The subject IRI is the expansion of
+`subject_id` (onga:ONGA_NNNNNNN -> https://databio.org/onga/ONGA_NNNNNNN), which
+is the IRI gen-owl mints from the permissible value's `meaning:`, so the axioms
+merge cleanly with project/owl/onga.owl.ttl.
 
 Usage:
     python scripts/gen_so_axioms.py > project/owl/onga-so-element-types.owl.ttl
 """
 
-import csv
 import sys
 from pathlib import Path
-from urllib.parse import quote
 
-import yaml
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-ROOT = Path(__file__).resolve().parents[1]
-SSSOM = ROOT / "mappings" / "so.sssom.tsv"
-SCHEMA = ROOT / "src" / "file_content.yaml"
+from workbench.ids import MEANING_RE, ONGA_BASE  # noqa: E402
+from workbench.mappings import MAPPINGS, read_sssom  # noqa: E402
 
-ONGA_BASE = "https://databio.org/onga/"
+SSSOM = MAPPINGS / "so.sssom.tsv"
+
 SO_BASE = "http://purl.obolibrary.org/obo/SO_"
 
 HAS_ELEMENT_TYPE = "onga:has_element_type"
@@ -67,29 +63,15 @@ def so_iri(curie):
     return "<" + SO_BASE + curie.split(":", 1)[1] + ">"
 
 
-def pv_iri(enum_name, term):
-    """The IRI gen-owl mints for a permissible value: base/{Enum}#{quoted text}."""
-    return f"<{ONGA_BASE}{enum_name}#{quote(term)}>"
-
-
-def rows():
-    with open(SSSOM) as fh:
-        return list(csv.DictReader(
-            (line for line in fh if not line.startswith("#")), delimiter="\t"))
+def subject_iri(subject_id):
+    """The expansion of an onga:ONGA_NNNNNNN subject_id."""
+    if not MEANING_RE.match(subject_id):
+        sys.exit(f"ERROR: subject_id {subject_id!r} is not an onga:ONGA_NNNNNNN term id")
+    return "<" + ONGA_BASE + subject_id.split(":", 1)[1] + ">"
 
 
 def main():
-    schema = yaml.safe_load(open(SCHEMA))["enums"]
-    enum_of = {}
-    for enum_name in ("DataType", "FeatureType"):
-        for term in schema[enum_name]["permissible_values"]:
-            if term in enum_of:
-                sys.exit(f"ERROR: term {term!r} is in both enums; the subject IRI "
-                         f"cannot be derived from the label alone. Add an "
-                         f"onga_enum column to {SSSOM.name}.")
-            enum_of[term] = enum_name
-
-    data = rows()
+    data = read_sssom(SSSOM)
     if not data:
         sys.exit(f"ERROR: no rows in {SSSOM}")
 
@@ -98,9 +80,7 @@ def main():
     members, others, order = {}, [], []
     for r in data:
         label = r["subject_label"]
-        if label not in enum_of:
-            sys.exit(f"ERROR: subject_label {label!r} is in neither enum")
-        subj = pv_iri(enum_of[label], label)
+        subj = subject_iri(r["subject_id"])
         pred = r["predicate_id"]
         obj = r["object_id"]
         if obj == NO_TERM_FOUND:
@@ -136,7 +116,8 @@ def main():
     if others:
         out.append("\n# --- Plain SKOS triples. skos:relatedMatch = the members are NOT\n"
                    "# --- instances. skos:exactMatch / closeMatch appear only for the two\n"
-                   "# --- whitelisted SO classes that are themselves set-denoting.\n")
+                   "# --- whitelisted SO classes that are themselves set-denoting, and\n"
+                   "# --- for the two SO strand attributes (facet values, not sets).\n")
     for subj, label, pred, obj in others:
         out.append(f"# {label}\n{subj} {pred} {so_iri(obj)} .\n")
 

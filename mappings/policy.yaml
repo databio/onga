@@ -10,7 +10,7 @@
 # scripts/check_roundtrip.py (checks 6-10).
 
 # SKOS predicates that assert identity or hierarchy. Banned against SO, except
-# for the SO classes in set_denoting_so.
+# for the SO classes in set_denoting_so and sequence_attribute_so.
 banned_skos:
   - skos:exactMatch
   - skos:closeMatch
@@ -22,6 +22,16 @@ banned_skos:
 set_denoting_so:
   - SO:0001505
   - SO:0001506
+
+# SO sequence ATTRIBUTES (not element types). The set/element rule is about
+# which SO class a term's members instantiate; an attribute is not such a class,
+# so a facet value that names the same attribute may match it exactly. Used only
+# by the StrandOrientation values plus / minus. Verified against so.obo: both
+# are under sequence_attribute ("Forward/Reverse is an attribute of the feature").
+#   SO:0001030 forward    SO:0001031 reverse
+sequence_attribute_so:
+  - SO:0001030
+  - SO:0001031
 
 # element_type_fit grades (a curation grade, not a relation).
 #   exact           the SO class is the tight fit
@@ -35,6 +45,7 @@ fits:
   - broad
   - not_applicable
 
-# Constant category columns on so.sssom.tsv rows.
+# Constant category columns on so.sssom.tsv rows (blank on sequence_attribute_so
+# rows, whose subject is a facet value, not a set).
 subject_category: genomic element set
 object_category: sequence feature type

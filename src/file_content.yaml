@@ -121,7 +121,8 @@ subsets:
 # value's IRI, so an SO CURIE there hijacks the SO class and a repeated EDAM
 # CURIE collapses distinct terms into one OWL node. Cross-references belong in
 # exact_mappings / close_mappings / broad_mappings (EDAM, set-to-set) or in
-# related_mappings (SO, non-membership).
+# related_mappings (SO, non-membership). `meaning:` carries only the value's own
+# permanent id, onga:ONGA_NNNNNNN (ledger: curation/term_ids.tsv).
 #
 # GENERATED, do not hand-edit: on DataType and FeatureType values, the
 # *_mappings slots and the element_type / element_type_fit annotations are
@@ -137,6 +138,7 @@ enums:
       alignments:
         description: Sequencing reads mapped to positions in a reference genome, typically in BAM/CRAM format with 
           mapping quality scores and alignment coordinates.
+        meaning: onga:ONGA_0000001
         exact_mappings:
         - edam:data_0863
         in_subset:
@@ -146,6 +148,7 @@ enums:
       alignments with modifications:
         description: Aligned reads preserving base modification information (e.g., methylation from bisulfite-seq or 
           direct detection) encoded in BAM auxiliary fields.
+        meaning: onga:ONGA_0000002
         broad_mappings:
         - edam:data_0863
         in_subset:
@@ -153,16 +156,19 @@ enums:
       diploid personal genome alignments:
         description: Reads aligned to a diploid personal genome reference including both parental haplotypes, enabling 
           allele-specific analysis.
+        meaning: onga:ONGA_0000003
         broad_mappings:
         - edam:data_0863
         in_subset:
         - alignment
       gene alignments:
         description: Reads or sequences aligned at the gene level.
+        meaning: onga:ONGA_0000004
         in_subset:
         - alignment
       preprocessed alignments:
         description: 'Alignments after preprocessing: duplicate marking, base quality score recalibration, or indel realignment.'
+        meaning: onga:ONGA_0000005
         broad_mappings:
         - edam:data_0863
         in_subset:
@@ -170,6 +176,7 @@ enums:
       reads:
         description: Raw or minimally processed sequencing reads in FASTQ format, including quality scores and read 
           identifiers.
+        meaning: onga:ONGA_0000006
         annotations:
           element_type: SO:0000150
           element_type_fit: exact
@@ -180,14 +187,17 @@ enums:
       redacted alignments:
         description: Alignments with sensitive genomic positions masked or removed for privacy protection in 
           controlled-access data sharing.
+        meaning: onga:ONGA_0000007
         in_subset:
         - alignment
       redacted transcriptome alignments:
         description: Transcriptome-level alignments with sensitive positions redacted.
+        meaning: onga:ONGA_0000008
         in_subset:
         - alignment
       rejected reads:
         description: Reads that failed quality control filters and were excluded from downstream analysis.
+        meaning: onga:ONGA_0000009
         annotations:
           element_type: SO:0000150
           element_type_fit: broad
@@ -196,10 +206,12 @@ enums:
       spike-in alignments:
         description: Reads aligned to exogenous spike-in control sequences (e.g., ERCC) for normalization and quality 
           assessment.
+        meaning: onga:ONGA_0000010
         in_subset:
         - alignment
       transcriptome alignments:
         description: Reads aligned to a transcriptome reference (cDNA sequences) rather than the genome.
+        meaning: onga:ONGA_0000011
         broad_mappings:
         - edam:data_0863
         in_subset:
@@ -209,24 +221,29 @@ enums:
         - splicing
       base overlap signal:
         description: Signal computed from base-level read overlap counts at each genomic position.
+        meaning: onga:ONGA_0000012
         in_subset:
         - signal_track
       bias-corrected predicted signal profile:
         description: Model-predicted signal after correction for sequence-composition bias.
+        meaning: onga:ONGA_0000013
         in_subset:
         - signal_track
       control normalized signal:
         description: Signal normalized against a matched control experiment to remove background and technical 
           artifacts.
+        meaning: onga:ONGA_0000014
         in_subset:
         - signal_track
       enrichment:
         description: Quantitative enrichment score over background, measuring signal above expected noise level.
+        meaning: onga:ONGA_0000015
         in_subset:
         - signal_track
       fold change over control:
         description: Signal expressed as the ratio of experimental signal to input/control, highlighting enrichment over
           background.
+        meaning: onga:ONGA_0000016
         in_subset:
         - signal_track
         keywords:
@@ -235,6 +252,7 @@ enums:
       signal:
         description: Quantitative signal track showing per-base or per-bin values across the genome, typically in bigWig
           format.
+        meaning: onga:ONGA_0000017
         in_subset:
         - signal_track
         keywords:
@@ -243,22 +261,26 @@ enums:
         - TF binding
       signal p-value:
         description: Statistical significance track showing -log10(p-value) of enrichment at each position.
+        meaning: onga:ONGA_0000018
         broad_mappings:
         - edam:data_0951
         in_subset:
         - signal_track
       summed densities signal:
         description: Signal computed as the sum of per-base read densities across the region.
+        meaning: onga:ONGA_0000019
         in_subset:
         - signal_track
       wavelet-smoothed signal:
         description: Signal smoothed using wavelet transform to reduce noise while preserving peak structure.
+        meaning: onga:ONGA_0000020
         in_subset:
         - signal_track
 
       # ─── peak_set ─────────────────────────────────────────────────────────
       bidirectional peaks:
         description: Peaks from bidirectional transcription signal, characteristic of active enhancers and promoters.
+        meaning: onga:ONGA_0000021
         broad_mappings:
         - edam:data_3002
         in_subset:
@@ -268,45 +290,51 @@ enums:
         - promoters
       conservative IDR thresholded peaks:
         description: Peaks using a conservative (stricter) IDR cutoff, yielding high-confidence but smaller peak set.
+        meaning: onga:ONGA_0000022
         broad_mappings:
         - edam:data_3002
         in_subset:
         - peak_set
         see_also:
-        - onga:open_chromatin_regions
+        - onga:ONGA_0000164
         keywords:
         - TF binding sites
       distal peaks:
         description: Peaks located distal (>2-3kb) from transcription start sites, often representing enhancers.
+        meaning: onga:ONGA_0000023
         in_subset:
         - peak_set
         exact_mappings:
         - edam:data_3002
       divergent peaks:
         description: Peaks from divergent transcription where initiation occurs in both directions from a central point.
+        meaning: onga:ONGA_0000024
         in_subset:
         - peak_set
         exact_mappings:
         - edam:data_3002
       IDR ranked peaks:
         description: Peaks ranked by IDR score, with lower IDR indicating higher reproducibility across replicates.
+        meaning: onga:ONGA_0000025
         broad_mappings:
         - edam:data_3002
         in_subset:
         - peak_set
       optimal IDR thresholded peaks:
         description: Peaks using the optimal IDR cutoff balancing sensitivity and reproducibility.
+        meaning: onga:ONGA_0000026
         broad_mappings:
         - edam:data_3002
         in_subset:
         - peak_set
         see_also:
-        - onga:open_chromatin_regions
+        - onga:ONGA_0000164
         keywords:
         - TF binding sites
       peaks:
         description: Discrete genomic regions of statistically significant enrichment from peak calling. The fundamental
           unit of ChIP-seq and ATAC-seq analysis.
+        meaning: onga:ONGA_0000027
         annotations:
           element_type: SO:0000703
           element_type_fit: approximate
@@ -315,48 +343,54 @@ enums:
         in_subset:
         - peak_set
         see_also:
-        - onga:open_chromatin_regions
+        - onga:ONGA_0000164
         keywords:
         - TF binding sites
         - histone modifications
         - enhancers
       peaks and background as input for IDR:
         description: Combined peak and background signal data formatted as input for IDR analysis.
+        meaning: onga:ONGA_0000028
         in_subset:
         - peak_set
         exact_mappings:
         - edam:data_3002
       proximal peaks:
         description: Peaks located proximal (<2-3kb) to transcription start sites, often representing promoters.
+        meaning: onga:ONGA_0000029
         in_subset:
         - peak_set
         exact_mappings:
         - edam:data_3002
       pseudoreplicated IDR thresholded peaks:
         description: IDR-thresholded peaks from pseudoreplicates (subsampled reads) when true replicates unavailable.
+        meaning: onga:ONGA_0000030
         broad_mappings:
         - edam:data_3002
         in_subset:
         - peak_set
       pseudoreplicated peaks:
         description: Peak calls from pseudoreplicates created by subsampling reads from a single experiment.
+        meaning: onga:ONGA_0000031
         broad_mappings:
         - edam:data_3002
         in_subset:
         - peak_set
       replicated peaks:
         description: Peaks reproducibly called across biological or technical replicates.
+        meaning: onga:ONGA_0000032
         broad_mappings:
         - edam:data_3002
         in_subset:
         - peak_set
         see_also:
-        - onga:open_chromatin_regions
+        - onga:ONGA_0000164
         keywords:
         - TF binding sites
         - histone modifications
       representative DNase hypersensitivity sites:
         description: A curated representative set of DNase hypersensitivity sites for reference.
+        meaning: onga:ONGA_0000033
         annotations:
           element_type: SO:0000685
           element_type_fit: broad
@@ -366,24 +400,28 @@ enums:
         - edam:data_3002
       representative IDR thresholded peaks:
         description: A representative set of IDR-thresholded peaks selected for downstream analysis.
+        meaning: onga:ONGA_0000034
         broad_mappings:
         - edam:data_3002
         in_subset:
         - peak_set
       unidirectional peaks:
         description: Peaks from unidirectional transcription signal, typically associated with gene bodies.
+        meaning: onga:ONGA_0000035
         in_subset:
         - peak_set
         exact_mappings:
         - edam:data_3002
       valleys:
         description: Local minima in signal tracks used in footprint detection or nucleosome positioning analysis.
+        meaning: onga:ONGA_0000036
         in_subset:
         - peak_set
 
       # ─── chromatin_accessibility ──────────────────────────────────────────
       consensus DNase hypersensitivity sites:
         description: DNase I hypersensitivity sites consistently identified across multiple samples or cell types.
+        meaning: onga:ONGA_0000037
         annotations:
           element_type: SO:0000685
           element_type_fit: broad
@@ -391,16 +429,18 @@ enums:
         - chromatin_accessibility
       DHS peaks:
         description: Peak calls from DNase I hypersensitivity sequencing (DNase-seq), indicating open chromatin regions.
+        meaning: onga:ONGA_0000038
         annotations:
           element_type: SO:0000685
           element_type_fit: exact
         in_subset:
         - chromatin_accessibility
         see_also:
-        - onga:open_chromatin_regions
-        - onga:footprints
+        - onga:ONGA_0000164
+        - onga:ONGA_0000163
       DHS regions reference:
         description: Reference set of DNase I hypersensitivity regions.
+        meaning: onga:ONGA_0000039
         annotations:
           element_type: SO:0000685
           element_type_fit: broad
@@ -408,27 +448,32 @@ enums:
         - chromatin_accessibility
       FDR cut rate:
         description: False discovery rate-controlled cut rate signal from DNase-seq analysis.
+        meaning: onga:ONGA_0000040
         in_subset:
         - chromatin_accessibility
       hotspots:
         description: Broad regions of elevated DNase cleavage activity representing domains of chromatin accessibility.
+        meaning: onga:ONGA_0000041
         annotations:
           element_type: SO:0002331
           element_type_fit: approximate
         in_subset:
         - chromatin_accessibility
         see_also:
-        - onga:open_chromatin_regions
+        - onga:ONGA_0000164
       hotspots1 reference:
         description: Reference hotspot calls at lenient threshold (hotspot1 algorithm).
+        meaning: onga:ONGA_0000042
         in_subset:
         - chromatin_accessibility
       hotspots2 reference:
         description: Reference hotspot calls at stringent threshold (hotspot2 algorithm).
+        meaning: onga:ONGA_0000043
         in_subset:
         - chromatin_accessibility
       nuclease cleavage frequency:
         description: Per-base frequency of DNase I or Tn5 transposase cleavage across the genome.
+        meaning: onga:ONGA_0000044
         annotations:
           element_type_fit: not_applicable
         related_mappings:
@@ -438,6 +483,7 @@ enums:
       contact matrix:
         description: Genome-wide matrix of chromatin interaction frequencies from Hi-C or similar chromosome 
           conformation capture experiments.
+        meaning: onga:ONGA_0000045
         broad_mappings:
         - edam:topic_3940
         in_subset:
@@ -448,28 +494,34 @@ enums:
         - compartments
       pairs:
         description: Raw read pair data from Hi-C or proximity ligation before matrix construction.
+        meaning: onga:ONGA_0000046
         in_subset:
         - contact_matrix
       variants contact matrix:
         description: Contact matrix incorporating variant information.
+        meaning: onga:ONGA_0000047
         in_subset:
         - contact_matrix
 
       # ─── dna_methylation ──────────────────────────────────────────────────
       enhancer prediction model:
         description: Model predicting enhancer activity from sequence or chromatin features.
+        meaning: onga:ONGA_0000048
         in_subset:
         - regulatory_element
       regulatory elements prediction model:
         description: Computational model for predicting regulatory element activity and location.
+        meaning: onga:ONGA_0000049
         in_subset:
         - regulatory_element
       element barcode mapping:
         description: Mapping of element barcodes used in CRISPR screen experiments.
+        meaning: onga:ONGA_0000050
         in_subset:
         - crispr_screen
       gRNAs:
         description: Guide RNA sequences used in CRISPR screens.
+        meaning: onga:ONGA_0000051
         annotations:
           element_type: SO:0001998
           element_type_fit: exact
@@ -477,14 +529,17 @@ enums:
         - crispr_screen
       guide locations:
         description: Genomic locations targeted by guide RNAs.
+        meaning: onga:ONGA_0000052
         in_subset:
         - crispr_screen
       guide quantifications:
         description: Abundance quantifications of guide RNAs from screen data.
+        meaning: onga:ONGA_0000053
         in_subset:
         - crispr_screen
       non-targeting gRNAs:
         description: Guide RNAs designed as non-targeting negative controls.
+        meaning: onga:ONGA_0000054
         annotations:
           element_type: SO:0001998
           element_type_fit: broad
@@ -492,10 +547,12 @@ enums:
         - crispr_screen
       perturbation signal:
         description: Phenotypic signal associated with CRISPR perturbations.
+        meaning: onga:ONGA_0000055
         in_subset:
         - crispr_screen
       ranked gRNAs:
         description: Guide RNAs ranked by screen performance or activity.
+        meaning: onga:ONGA_0000056
         annotations:
           element_type: SO:0001998
           element_type_fit: broad
@@ -503,10 +560,12 @@ enums:
         - crispr_screen
       reporter code counts:
         description: Count data from reporter codes in CRISPR screen readouts.
+        meaning: onga:ONGA_0000057
         in_subset:
         - crispr_screen
       safe-targeting gRNAs:
         description: Guide RNAs targeting genomic safe-harbor loci as controls.
+        meaning: onga:ONGA_0000058
         annotations:
           element_type: SO:0001998
           element_type_fit: broad
@@ -514,6 +573,7 @@ enums:
         - crispr_screen
       sparse gRNA count matrix:
         description: Sparse count matrix of guide RNA abundances across cells.
+        meaning: onga:ONGA_0000059
         in_subset:
         - crispr_screen
 
@@ -522,54 +582,64 @@ enums:
         - edam:data_3917
       fold over change matrix:
         description: Matrix of fold-change values relative to control across features.
+        meaning: onga:ONGA_0000060
         in_subset:
         - count_matrix
       sparse gene count matrix:
         description: Sparse matrix of gene-level read counts across cells or samples, standard for single-cell RNA-seq.
+        meaning: onga:ONGA_0000061
         exact_mappings:
         - edam:data_3917
         in_subset:
         - count_matrix
       sparse peak count matrix:
         description: Sparse matrix of peak accessibility counts across cells, used in single-cell ATAC-seq.
+        meaning: onga:ONGA_0000062
         broad_mappings:
         - edam:data_3917
         in_subset:
         - count_matrix
       sparse transcript count matrix:
         description: Sparse matrix of transcript-level counts across cells or samples.
+        meaning: onga:ONGA_0000063
         broad_mappings:
         - edam:data_3917
         in_subset:
         - count_matrix
       TF peaks matrix:
         description: Matrix of transcription factor peak counts across samples.
+        meaning: onga:ONGA_0000064
         in_subset:
         - count_matrix
       z scores matrix:
         description: Matrix of z-score normalized values across features and samples.
+        meaning: onga:ONGA_0000065
         in_subset:
         - count_matrix
 
       # ─── quantification ───────────────────────────────────────────────────
       differential expression quantifications:
         description: Statistical results from differential expression analysis comparing conditions.
+        meaning: onga:ONGA_0000066
         broad_mappings:
         - edam:data_0928
         in_subset:
         - quantification
       differential splicing quantifications:
         description: Statistical results from differential splicing analysis comparing conditions.
+        meaning: onga:ONGA_0000067
         broad_mappings:
         - edam:data_0928
         in_subset:
         - quantification
       element quantifications:
         description: Quantification values for regulatory elements.
+        meaning: onga:ONGA_0000068
         in_subset:
         - quantification
       exon quantifications:
         description: Read counts or expression values quantified at individual exons.
+        meaning: onga:ONGA_0000069
         broad_mappings:
         - edam:data_0928
         in_subset:
@@ -579,6 +649,7 @@ enums:
         - splicing
       gene quantifications:
         description: Expression quantifications at gene level as read counts, TPM, or FPKM values.
+        meaning: onga:ONGA_0000070
         close_mappings:
         - edam:data_0928
         in_subset:
@@ -587,66 +658,77 @@ enums:
         - gene expression
       gene stabilities:
         description: Measurements of mRNA or gene expression stability over time.
+        meaning: onga:ONGA_0000071
         in_subset:
         - quantification
         exact_mappings:
         - edam:data_0928
       genic features quantifications:
         description: Quantifications across various genic features (exons, introns, UTRs).
+        meaning: onga:ONGA_0000072
         in_subset:
         - quantification
         exact_mappings:
         - edam:data_0928
       genic regions quantifications:
         description: Read count quantifications over defined genic regions.
+        meaning: onga:ONGA_0000073
         in_subset:
         - quantification
         exact_mappings:
         - edam:data_0928
       merged transcription segment quantifications:
         description: Quantifications from merged transcription segments.
+        meaning: onga:ONGA_0000074
         in_subset:
         - quantification
         exact_mappings:
         - edam:data_0928
       microRNA quantifications:
         description: Expression quantifications of microRNAs (miRNAs).
+        meaning: onga:ONGA_0000075
         broad_mappings:
         - edam:data_0928
         in_subset:
         - quantification
       mRNA stabilities:
         description: Measurements of mRNA half-life or decay rates.
+        meaning: onga:ONGA_0000076
         in_subset:
         - quantification
         exact_mappings:
         - edam:data_0928
       novel peptides:
         description: Peptides identified that are absent from reference databases.
+        meaning: onga:ONGA_0000077
         broad_mappings:
         - edam:data_0945
         in_subset:
         - quantification
       peptide quantifications:
         description: Abundance measurements of peptides from mass spectrometry proteomics.
+        meaning: onga:ONGA_0000078
         close_mappings:
         - edam:data_0945
         in_subset:
         - quantification
       protein expression quantifications:
         description: Abundance measurements of proteins from proteomics data.
+        meaning: onga:ONGA_0000079
         broad_mappings:
         - edam:data_2603
         in_subset:
         - quantification
       scaled RNA stability:
         description: RNA stability measurements scaled across samples.
+        meaning: onga:ONGA_0000080
         in_subset:
         - quantification
         exact_mappings:
         - edam:data_0928
       transcript quantifications:
         description: Expression quantifications at transcript isoform level.
+        meaning: onga:ONGA_0000081
         broad_mappings:
         - edam:data_0928
         in_subset:
@@ -656,18 +738,21 @@ enums:
         - splicing
       transcribed region quantifications:
         description: Quantifications over transcribed genomic regions.
+        meaning: onga:ONGA_0000082
         in_subset:
         - quantification
         exact_mappings:
         - edam:data_0928
       transcription segment quantifications:
         description: Quantifications over discrete transcription segments.
+        meaning: onga:ONGA_0000083
         in_subset:
         - quantification
         exact_mappings:
         - edam:data_0928
       UV enriched segment quantifications:
         description: Quantifications from UV-crosslinking enriched RNA segments.
+        meaning: onga:ONGA_0000084
         in_subset:
         - quantification
 
@@ -676,101 +761,123 @@ enums:
         - edam:data_0928
       bias models:
         description: Trained models capturing sequencing bias patterns based on sequence composition.
+        meaning: onga:ONGA_0000085
         in_subset:
         - deep_learning
       counts sequence contribution scores:
         description: Per-nucleotide importance scores explaining sequence contribution to predicted counts (e.g., 
           DeepLIFT, integrated gradients).
+        meaning: onga:ONGA_0000086
         in_subset:
         - deep_learning
       DNN-MPRA contribution scores:
         description: Nucleotide contribution scores from a deep neural network trained on MPRA data.
+        meaning: onga:ONGA_0000087
         in_subset:
         - deep_learning
       DNN-MPRA predicted signal:
         description: Regulatory activity signal predicted by a DNN trained on MPRA data.
+        meaning: onga:ONGA_0000088
         in_subset:
         - deep_learning
       model performance metrics:
         description: Evaluation metrics (AUC, correlation, etc.) assessing predictive model performance.
+        meaning: onga:ONGA_0000089
         in_subset:
         - deep_learning
       models:
         description: Trained computational or machine learning models saved for prediction or interpretation.
+        meaning: onga:ONGA_0000090
         in_subset:
         - deep_learning
       motif model:
         description: Sequence motif model (e.g., convolutional filter weights) from deep learning or motif discovery.
+        meaning: onga:ONGA_0000091
         close_mappings:
         - edam:data_0859
         in_subset:
         - deep_learning
       profile sequence contribution scores:
         description: Per-nucleotide importance scores explaining sequence contribution to predicted signal profiles.
+        meaning: onga:ONGA_0000092
         in_subset:
         - deep_learning
       promoter prediction model:
         description: Computational model trained to predict promoter activity from sequence.
+        meaning: onga:ONGA_0000093
         in_subset:
         - deep_learning
       selected regions for bias-corrected predicted signal profile:
         description: Genomic regions selected for bias-corrected signal profile interpretation.
+        meaning: onga:ONGA_0000094
         in_subset:
         - deep_learning
       selected regions for count sequence contribution scores:
         description: Genomic regions selected for count contribution score analysis.
+        meaning: onga:ONGA_0000095
         in_subset:
         - deep_learning
       selected regions for predicted bias profile:
         description: Genomic regions selected for predicted bias profile interpretation.
+        meaning: onga:ONGA_0000096
         in_subset:
         - deep_learning
       selected regions for predicted signal and sequence contribution scores:
         description: Genomic regions selected for combined signal and contribution score analysis.
+        meaning: onga:ONGA_0000097
         in_subset:
         - deep_learning
       selected regions for predicted signal profile:
         description: Genomic regions selected for predicted signal profile interpretation.
+        meaning: onga:ONGA_0000098
         in_subset:
         - deep_learning
       selected regions for profile sequence contribution scores:
         description: Genomic regions selected for profile contribution score analysis.
+        meaning: onga:ONGA_0000099
         in_subset:
         - deep_learning
       TF binding prediction model:
         description: Deep learning model predicting transcription factor binding from DNA sequence.
+        meaning: onga:ONGA_0000100
         in_subset:
         - deep_learning
       training and test regions:
         description: Genomic regions designated for model training and held-out evaluation.
+        meaning: onga:ONGA_0000101
         in_subset:
         - deep_learning
       training set:
         description: Data used to train a computational or machine learning model.
+        meaning: onga:ONGA_0000102
         in_subset:
         - deep_learning
 
       # ─── replication_timing ───────────────────────────────────────────────
       fine-mapped variants:
         description: Variants identified as likely causal through statistical fine-mapping within associated loci.
+        meaning: onga:ONGA_0000103
         in_subset:
         - variant
         exact_mappings:
         - edam:data_0918
       variant functional prediction:
         description: Computational predictions of variant functional impact.
+        meaning: onga:ONGA_0000104
         in_subset:
         - variant
         exact_mappings:
         - edam:data_0918
       chromosome sizes:
         description: File listing chromosome/contig names and lengths, required by many genomics tools.
+        meaning: onga:ONGA_0000105
         broad_mappings:
         - edam:data_0919
         in_subset:
         - reference
       chromosomes reference:
         description: Reference sequences for individual chromosomes.
+        meaning: onga:ONGA_0000106
         annotations:
           element_type: SO:0000340
           element_type_fit: broad
@@ -780,22 +887,26 @@ enums:
         - edam:data_2977
       elements reference:
         description: Reference set of annotated genomic elements.
+        meaning: onga:ONGA_0000107
         in_subset:
         - reference
       genome index:
         description: Precomputed index enabling rapid sequence alignment to a reference genome.
+        meaning: onga:ONGA_0000108
         exact_mappings:
         - edam:data_3210
         in_subset:
         - reference
       genome reference:
         description: Reference genome sequence assembly used for alignment and annotation.
+        meaning: onga:ONGA_0000109
         broad_mappings:
         - edam:data_2977
         in_subset:
         - reference
       miRNA reference:
         description: Reference sequences and annotations for microRNAs.
+        meaning: onga:ONGA_0000110
         annotations:
           element_type: SO:0000276
           element_type_fit: broad
@@ -803,12 +914,14 @@ enums:
         - reference
       mitochondrial genome index:
         description: Alignment index for the mitochondrial genome.
+        meaning: onga:ONGA_0000111
         broad_mappings:
         - edam:data_3210
         in_subset:
         - reference
       mitochondrial genome reference:
         description: Reference sequence for the mitochondrial genome.
+        meaning: onga:ONGA_0000112
         annotations:
           element_type: SO:0000737
           element_type_fit: approximate
@@ -818,20 +931,24 @@ enums:
         - reference
       motif clusters reference:
         description: Reference set of clustered sequence motifs.
+        meaning: onga:ONGA_0000113
         in_subset:
         - reference
         exact_mappings:
         - edam:data_1353
       phastcons score reference:
         description: Reference phastCons conservation scores across the genome.
+        meaning: onga:ONGA_0000114
         in_subset:
         - reference
       reference:
         description: Generic reference data file.
+        meaning: onga:ONGA_0000115
         in_subset:
         - reference
       repeats reference:
         description: Reference annotations of repetitive elements.
+        meaning: onga:ONGA_0000116
         annotations:
           element_type: SO:0000657
           element_type_fit: broad
@@ -839,6 +956,7 @@ enums:
         - reference
       rRNA reference:
         description: Reference sequences for ribosomal RNA.
+        meaning: onga:ONGA_0000117
         annotations:
           element_type: SO:0000252
           element_type_fit: broad
@@ -846,6 +964,7 @@ enums:
         - reference
       snRNA reference:
         description: Reference sequences for small nuclear RNA.
+        meaning: onga:ONGA_0000118
         annotations:
           element_type: SO:0000274
           element_type_fit: broad
@@ -853,18 +972,21 @@ enums:
         - reference
       transcriptome index:
         description: Index for rapid alignment to transcriptome reference sequences.
+        meaning: onga:ONGA_0000119
         broad_mappings:
         - edam:data_3210
         in_subset:
         - reference
       transcriptome reference:
         description: Reference transcript sequences for a species, used for RNA-seq alignment.
+        meaning: onga:ONGA_0000120
         broad_mappings:
         - edam:data_2977
         in_subset:
         - reference
       tRNA reference:
         description: Reference sequences for transfer RNA.
+        meaning: onga:ONGA_0000121
         annotations:
           element_type: SO:0000253
           element_type_fit: broad
@@ -874,72 +996,89 @@ enums:
       # ─── sequence_motif ───────────────────────────────────────────────────
       HMM predicted chromatin state:
         description: Chromatin state annotations (e.g., ChromHMM) predicted by hidden Markov model from histone marks.
+        meaning: onga:ONGA_0000122
         in_subset:
         - annotation
       read annotations:
         description: Per-read annotations of alignment features or classifications.
+        meaning: onga:ONGA_0000123
         in_subset:
         - annotation
       semi-automated genome annotation:
         description: Genome annotation produced by a combination of automated and manual methods.
+        meaning: onga:ONGA_0000124
         in_subset:
         - annotation
       sequence alignability:
         description: Track indicating mappability of sequences to the reference genome.
+        meaning: onga:ONGA_0000125
         in_subset:
         - annotation
       sequence uniqueness:
         description: Track indicating uniqueness of k-mer sequences across the genome.
+        meaning: onga:ONGA_0000126
         in_subset:
         - annotation
       archr project:
         description: ArchR software project file with processed single-cell ATAC-seq data and analyses.
+        meaning: onga:ONGA_0000127
         in_subset:
         - single_cell
       cell coordinates:
         description: Low-dimensional coordinates (UMAP, t-SNE, PCA) for single-cell visualization.
+        meaning: onga:ONGA_0000128
         in_subset:
         - single_cell
       cell topic participation:
         description: Cell-level participation scores in latent topics from topic modeling.
+        meaning: onga:ONGA_0000129
         in_subset:
         - single_cell
       clusters:
         description: Cell cluster assignments from unsupervised clustering of single-cell data.
+        meaning: onga:ONGA_0000130
         in_subset:
         - single_cell
 
       # ─── structure ────────────────────────────────────────────────────────
       capture targets:
         description: Genomic regions targeted for enrichment in capture-based sequencing (exome, panels).
+        meaning: onga:ONGA_0000131
         in_subset:
         - technical
       exclusion list regions:
         description: Genomic blacklist regions excluded due to mapping artifacts or technical issues.
+        meaning: onga:ONGA_0000132
         in_subset:
         - technical
       filtered regions:
         description: Genomic regions removed from analysis after filtering.
+        meaning: onga:ONGA_0000133
         in_subset:
         - technical
       fragments:
         description: DNA or RNA fragment data prior to alignment.
+        meaning: onga:ONGA_0000134
         in_subset:
         - technical
       idat green channel:
         description: Green channel intensity data from Illumina IDAT microarray files.
+        meaning: onga:ONGA_0000135
         in_subset:
         - technical
       idat red channel:
         description: Red channel intensity data from Illumina IDAT microarray files.
+        meaning: onga:ONGA_0000136
         in_subset:
         - technical
       inclusion list:
         description: Allowlist of genomic regions or barcodes included in analysis.
+        meaning: onga:ONGA_0000137
         in_subset:
         - technical
       index reads:
         description: Index read sequences for sample demultiplexing.
+        meaning: onga:ONGA_0000138
         annotations:
           element_type: SO:0002023
           element_type_fit: approximate
@@ -947,34 +1086,42 @@ enums:
         - technical
       intensity values:
         description: Raw intensity measurements from microarray or imaging experiments.
+        meaning: onga:ONGA_0000139
         in_subset:
         - technical
       kmer weights:
         description: Frequency or weight values for k-mer sequences.
+        meaning: onga:ONGA_0000140
         in_subset:
         - technical
       library fraction:
         description: Proportion of sequencing library represented by a sample or subset.
+        meaning: onga:ONGA_0000141
         in_subset:
         - technical
       mitochondrial exclusion list regions:
         description: Mitochondrial regions excluded from nuclear genome analysis.
+        meaning: onga:ONGA_0000142
         in_subset:
         - technical
       nanopore signal:
         description: Raw ionic current signal from nanopore sequencing.
+        meaning: onga:ONGA_0000143
         in_subset:
         - technical
       negative control regions:
         description: Genomic regions used as negative controls in experiments.
+        meaning: onga:ONGA_0000144
         in_subset:
         - technical
       positive control regions:
         description: Genomic regions used as positive controls in experiments.
+        meaning: onga:ONGA_0000145
         in_subset:
         - technical
       primer sequence:
         description: Oligonucleotide primer sequences used in PCR or sequencing.
+        meaning: onga:ONGA_0000146
         annotations:
           element_type: SO:0000112
           element_type_fit: exact
@@ -982,6 +1129,7 @@ enums:
         - technical
       R2C2 subreads:
         description: Rolling circle amplification sub-reads from R2C2 long-read sequencing.
+        meaning: onga:ONGA_0000147
         annotations:
           element_type: SO:0000150
           element_type_fit: broad
@@ -989,14 +1137,17 @@ enums:
         - technical
       raw data:
         description: Unprocessed experimental data in original format before computational processing.
+        meaning: onga:ONGA_0000148
         in_subset:
         - technical
       raw imaging signal:
         description: Unprocessed signal from imaging-based experiments.
+        meaning: onga:ONGA_0000149
         in_subset:
         - technical
       sequence adapters:
         description: Adapter sequences ligated to library fragments for sequencing platform compatibility.
+        meaning: onga:ONGA_0000150
         annotations:
           element_type_fit: not_applicable
         related_mappings:
@@ -1005,6 +1156,7 @@ enums:
         - technical
       sequence barcodes:
         description: Short DNA sequences labeling samples (multiplexing) or individual cells (single-cell).
+        meaning: onga:ONGA_0000151
         annotations:
           element_type: SO:0002023
           element_type_fit: approximate
@@ -1012,10 +1164,12 @@ enums:
         - technical
       spike-ins:
         description: Exogenous sequences of known concentration added for normalization (e.g., ERCC RNA spike-ins).
+        meaning: onga:ONGA_0000152
         in_subset:
         - technical
       subreads:
         description: Sub-read data from long-read sequencing platforms (PacBio).
+        meaning: onga:ONGA_0000153
         annotations:
           element_type: SO:0000150
           element_type_fit: broad
@@ -1023,40 +1177,49 @@ enums:
         - technical
       validation:
         description: Data generated for experimental validation purposes.
+        meaning: onga:ONGA_0000154
         in_subset:
         - technical
       end position signal:
         description: Signal of read end positions.
+        meaning: onga:ONGA_0000155
         in_subset:
         - signal_track
       modified peptide quantification:
         description: Quantification of post-translationally modified peptides.
+        meaning: onga:ONGA_0000156
         in_subset:
         - quantification
       sparse splice junction count matrix:
         description: Sparse count matrix of splice junctions.
+        meaning: onga:ONGA_0000157
         in_subset:
         - count_matrix
         exact_mappings:
         - edam:data_3917
       signals matrix:
         description: Matrix of signal values across features and samples.
+        meaning: onga:ONGA_0000158
         in_subset:
         - count_matrix
       signal profile:
         description: Signal profile across genomic positions.
+        meaning: onga:ONGA_0000159
         in_subset:
         - signal_track
       bias profile:
         description: Sequencing bias profile across genomic positions.
+        meaning: onga:ONGA_0000160
         in_subset:
         - signal_track
       control profile:
         description: Control signal profile.
+        meaning: onga:ONGA_0000161
         in_subset:
         - signal_track
       nuclease cleavage corrected frequency:
         description: Bias-corrected per-base nuclease cleavage frequency.
+        meaning: onga:ONGA_0000162
         in_subset:
         - chromatin_accessibility
   FeatureType:
@@ -1066,16 +1229,18 @@ enums:
       footprints:
         description: Short protected regions within open chromatin indicating transcription factor occupancy, identified
           as local signal minima within peaks.
+        meaning: onga:ONGA_0000163
         annotations:
           element_type: SO:0000235
           element_type_fit: approximate
         in_subset:
         - chromatin_accessibility
         see_also:
-        - onga:DHS_peaks
-        - onga:nuclease_cleavage_frequency
+        - onga:ONGA_0000038
+        - onga:ONGA_0000044
       open chromatin regions:
         description: Genomic regions of accessible chromatin from ATAC-seq, DNase-seq, or similar assays.
+        meaning: onga:ONGA_0000164
         annotations:
           element_type: SO:0001747
           element_type_fit: exact
@@ -1084,46 +1249,52 @@ enums:
 
       # ─── contact_matrix ───────────────────────────────────────────────────
         see_also:
-        - onga:peaks
-        - onga:DHS_peaks
-        - onga:hotspots
+        - onga:ONGA_0000027
+        - onga:ONGA_0000038
+        - onga:ONGA_0000041
       chromatin stripes:
         description: Elongated features in contact matrices extending from loop anchors, indicating active loop 
           extrusion.
+        meaning: onga:ONGA_0000165
         in_subset:
         - contact_matrix
       contact domains:
         description: Topologically associating domains (TADs) from contact matrix analysis, representing 
           self-interacting chromatin regions.
+        meaning: onga:ONGA_0000166
         annotations:
           element_type: SO:0002304
           element_type_fit: exact
         in_subset:
         - contact_matrix
         see_also:
-        - onga:contact_matrix
+        - onga:ONGA_0000045
       genome compartments:
         description: Large-scale A (active) and B (inactive) chromatin compartments from PCA of Hi-C contact matrices.
+        meaning: onga:ONGA_0000167
         in_subset:
         - contact_matrix
         see_also:
-        - onga:contact_matrix
+        - onga:ONGA_0000045
       genome subcompartments:
         description: Fine-grained chromatin compartments (A1, A2, B1, B2, B3, B4) within major A/B compartments.
+        meaning: onga:ONGA_0000168
         in_subset:
         - contact_matrix
       loops:
         description: Chromatin loop interactions (point-to-point contacts) from contact matrices, often connecting 
           enhancers to promoters.
+        meaning: onga:ONGA_0000169
         annotations:
           element_type: SO:0002307
           element_type_fit: exact
         in_subset:
         - contact_matrix
         see_also:
-        - onga:contact_matrix
+        - onga:ONGA_0000045
       nested contact domains:
         description: Hierarchically nested topological domains showing multi-scale chromatin organization.
+        meaning: onga:ONGA_0000170
         annotations:
           element_type: SO:0002304
           element_type_fit: broad
@@ -1131,10 +1302,12 @@ enums:
         - contact_matrix
       CpG sites coverage:
         description: Sequencing read coverage at CpG positions, indicating measurement confidence.
+        meaning: onga:ONGA_0000171
         in_subset:
         - dna_methylation
       methylated reads:
         description: Reads containing DNA methylation marks from bisulfite or direct detection methods.
+        meaning: onga:ONGA_0000172
         annotations:
           element_type_fit: not_applicable
         related_mappings:
@@ -1143,6 +1316,7 @@ enums:
         - dna_methylation
       methylation state at CHG:
         description: DNA methylation status at CHG sequence context (H = A, C, or T), common in plant genomes.
+        meaning: onga:ONGA_0000173
         annotations:
           element_type: SO:0000114
           element_type_fit: broad
@@ -1152,6 +1326,7 @@ enums:
         - dna_methylation
       methylation state at CHH:
         description: DNA methylation status at CHH sequence context, representing asymmetric non-CpG methylation.
+        meaning: onga:ONGA_0000174
         annotations:
           element_type: SO:0000114
           element_type_fit: broad
@@ -1162,6 +1337,7 @@ enums:
       methylation state at CpG:
         description: DNA methylation status (methylated/unmethylated fraction) at CpG dinucleotides, the primary context
           for mammalian methylation.
+        meaning: onga:ONGA_0000175
         annotations:
           element_type: SO:0000114
           element_type_fit: broad
@@ -1170,9 +1346,10 @@ enums:
         in_subset:
         - dna_methylation
         see_also:
-        - onga:methylated_reads
+        - onga:ONGA_0000172
       smoothed methylation state at CpG:
         description: CpG methylation values smoothed across neighboring sites to reduce noise.
+        meaning: onga:ONGA_0000176
         annotations:
           element_type: SO:0000114
           element_type_fit: broad
@@ -1183,6 +1360,7 @@ enums:
       candidate Cis-Regulatory Elements:
         description: Computationally predicted cis-regulatory elements (CREs) including enhancers, promoters, and 
           insulators from chromatin accessibility and histone data.
+        meaning: onga:ONGA_0000177
         annotations:
           element_type: SO:0001055
           element_type_fit: broad
@@ -1193,6 +1371,7 @@ enums:
       candidate enhancers:
         description: Computationally predicted enhancer elements based on chromatin signatures (H3K4me1, H3K27ac, 
           accessibility).
+        meaning: onga:ONGA_0000178
         annotations:
           element_type: SO:0000165
           element_type_fit: broad
@@ -1202,6 +1381,7 @@ enums:
         - regulatory_element
       candidate promoters:
         description: Computationally predicted promoter elements based on chromatin signatures and TSS proximity.
+        meaning: onga:ONGA_0000179
         annotations:
           element_type: SO:0000167
           element_type_fit: broad
@@ -1211,6 +1391,7 @@ enums:
         - regulatory_element
       curated binding sites:
         description: Manually curated and validated transcription factor binding sites.
+        meaning: onga:ONGA_0000180
         annotations:
           element_type: SO:0000235
           element_type_fit: broad
@@ -1220,10 +1401,12 @@ enums:
         - regulatory_element
       enhancer validation:
         description: Experimental validation data for predicted enhancers.
+        meaning: onga:ONGA_0000181
         in_subset:
         - regulatory_element
       enhancers reference:
         description: Reference set of annotated enhancer elements.
+        meaning: onga:ONGA_0000182
         annotations:
           element_type: SO:0000165
           element_type_fit: broad
@@ -1231,6 +1414,7 @@ enums:
         - regulatory_element
       polyA sites:
         description: Polyadenylation signal sites where pre-mRNA is cleaved and polyadenylated.
+        meaning: onga:ONGA_0000183
         annotations:
           element_type: SO:0000553
           element_type_fit: exact
@@ -1238,6 +1422,7 @@ enums:
         - regulatory_element
       predicted enhancers:
         description: Computationally predicted enhancer elements.
+        meaning: onga:ONGA_0000184
         annotations:
           element_type: SO:0000165
           element_type_fit: broad
@@ -1245,6 +1430,7 @@ enums:
         - regulatory_element
       promoters reference:
         description: Reference set of annotated promoter elements.
+        meaning: onga:ONGA_0000185
         annotations:
           element_type: SO:0000167
           element_type_fit: broad
@@ -1252,6 +1438,7 @@ enums:
         - regulatory_element
       regulatory elements:
         description: 'General annotation of regulatory elements: enhancers, promoters, silencers, and insulators.'
+        meaning: onga:ONGA_0000186
         annotations:
           element_type: SO:0000165|SO:0000167|SO:0000625|SO:0000627
           element_type_fit: exact
@@ -1261,6 +1448,7 @@ enums:
         - regulatory_element
       transcription start sites:
         description: Experimentally determined transcription start sites (TSS) from CAGE, PRO-seq, or similar assays.
+        meaning: onga:ONGA_0000187
         annotations:
           element_type: SO:0000315
           element_type_fit: exact
@@ -1269,10 +1457,11 @@ enums:
         in_subset:
         - regulatory_element
         see_also:
-        - onga:peaks
-        - onga:bidirectional_peaks
+        - onga:ONGA_0000027
+        - onga:ONGA_0000021
       TSS reference:
         description: Reference set of transcription start sites.
+        meaning: onga:ONGA_0000188
         annotations:
           element_type: SO:0000315
           element_type_fit: broad
@@ -1282,18 +1471,21 @@ enums:
       # ─── element_gene_linkage ─────────────────────────────────────────────
       element gene interactions p-value:
         description: Statistical significance of element-gene interaction associations.
+        meaning: onga:ONGA_0000189
         annotations:
           element_type_fit: not_applicable  # Rows are statistics about edges, not features
         in_subset:
         - element_gene_linkage
       element gene interactions signal:
         description: Signal strength of element-gene interaction associations.
+        meaning: onga:ONGA_0000190
         annotations:
           element_type_fit: not_applicable  # Rows are statistics about edges, not features
         in_subset:
         - element_gene_linkage
       element gene links:
         description: Associations linking regulatory elements (commonly enhancers) to their putative target genes.
+        meaning: onga:ONGA_0000191
         annotations:
           element_type_fit: not_applicable  # Rows are PAIRS (edges) between an element and a gene, not features; see TrackGeometry.has_edges
         in_subset:
@@ -1302,22 +1494,26 @@ enums:
         - enhancer-gene links
       topic gene weights:
         description: Gene weights derived from topic modeling of regulatory data.
+        meaning: onga:ONGA_0000192
         in_subset:
         - element_gene_linkage
 
       # ─── crispr_screen ────────────────────────────────────────────────────
       relative replication signal:
         description: Replication timing signal expressed relative to a reference.
+        meaning: onga:ONGA_0000193
         in_subset:
         - replication_timing
       replication timing profile:
         description: Genome-wide profile of DNA replication timing.
+        meaning: onga:ONGA_0000194
         in_subset:
         - replication_timing
 
       # ─── variant ──────────────────────────────────────────────────────────
       allele-specific variants:
         description: Variants showing allele-specific behavior in expression or chromatin accessibility.
+        meaning: onga:ONGA_0000195
         annotations:
           element_type: SO:0001060
           element_type_fit: broad
@@ -1327,6 +1523,7 @@ enums:
         - variant
       copy number variation:
         description: Genomic regions with altered copy numbers (deletions, duplications) relative to reference.
+        meaning: onga:ONGA_0000196
         annotations:
           element_type: SO:0001019
           element_type_fit: exact
@@ -1334,6 +1531,7 @@ enums:
         - variant
       curated SNVs:
         description: Manually curated and validated single nucleotide variants.
+        meaning: onga:ONGA_0000197
         annotations:
           element_type: SO:0001483
           element_type_fit: broad
@@ -1343,6 +1541,7 @@ enums:
         - edam:data_0918
       dsQTLs:
         description: 'DNase I sensitivity quantitative trait loci: variants associated with chromatin accessibility.'
+        meaning: onga:ONGA_0000198
         annotations:
           element_type: SO:0000771
           element_type_fit: broad
@@ -1352,6 +1551,7 @@ enums:
         - variant
       eQTLs:
         description: 'Expression quantitative trait loci: variants statistically associated with gene expression levels.'
+        meaning: onga:ONGA_0000199
         annotations:
           element_type: SO:0000771
           element_type_fit: broad
@@ -1361,6 +1561,7 @@ enums:
         - variant
       maternal variant calls:
         description: Variants called specifically from the maternal haplotype.
+        meaning: onga:ONGA_0000200
         annotations:
           element_type: SO:0001775
           element_type_fit: approximate
@@ -1370,6 +1571,7 @@ enums:
         - edam:data_0918
       paternal variant calls:
         description: Variants called specifically from the paternal haplotype.
+        meaning: onga:ONGA_0000201
         annotations:
           element_type: SO:0001776
           element_type_fit: approximate
@@ -1379,6 +1581,7 @@ enums:
         - edam:data_0918
       reference variants:
         description: Variants relative to a reference genome.
+        meaning: onga:ONGA_0000202
         annotations:
           element_type: SO:0001060
           element_type_fit: broad
@@ -1388,6 +1591,7 @@ enums:
         - edam:data_0918
       variant calls:
         description: Called genomic variants (SNPs, indels, structural variants) in VCF format.
+        meaning: onga:ONGA_0000203
         annotations:
           element_type: SO:0001060
           element_type_fit: approximate
@@ -1397,6 +1601,7 @@ enums:
         - variant
       variant effect quantifications:
         description: Quantitative measurements of variant functional effects.
+        meaning: onga:ONGA_0000204
         annotations:
           element_type_fit: not_applicable
         related_mappings:
@@ -1407,6 +1612,7 @@ enums:
         - edam:data_0918
       variant reference:
         description: Reference database or set of known genomic variants.
+        meaning: onga:ONGA_0000205
         annotations:
           element_type: SO:0001060
           element_type_fit: broad
@@ -1417,6 +1623,7 @@ enums:
       PWMs:
         description: Position weight matrices representing sequence motif models, encoding nucleotide preferences at 
           each position.
+        meaning: onga:ONGA_0000206
         annotations:
           element_type_fit: not_applicable
         exact_mappings:
@@ -1427,6 +1634,7 @@ enums:
         - sequence_motif
       sequence motifs:
         description: Sequence patterns enriched in genomic regions of interest.
+        meaning: onga:ONGA_0000207
         annotations:
           element_type: SO:0001683
           element_type_fit: exact
@@ -1436,6 +1644,7 @@ enums:
         - sequence_motif
       sequence motifs instances:
         description: Genomic locations where specific sequence motifs occur.
+        meaning: onga:ONGA_0000208
         annotations:
           element_type: SO:0000714
           element_type_fit: approximate
@@ -1445,6 +1654,7 @@ enums:
         - sequence_motif
       sequence motifs report:
         description: Summary report of motif discovery or enrichment analysis.
+        meaning: onga:ONGA_0000209
         annotations:
           element_type_fit: not_applicable  # Rows are report entries, not located features
         close_mappings:
@@ -1455,6 +1665,7 @@ enums:
       # ─── annotation ───────────────────────────────────────────────────────
       functional conservation mapping:
         description: Mapping of functionally conserved regions across species.
+        meaning: onga:ONGA_0000210
         annotations:
           element_type: SO:0000330
           element_type_fit: approximate
@@ -1462,10 +1673,12 @@ enums:
         - annotation
       functional conservation quantifications:
         description: Quantification of functional conservation scores.
+        meaning: onga:ONGA_0000211
         in_subset:
         - annotation
       miRNA annotations:
         description: Annotation tracks for microRNA genes and precursors.
+        meaning: onga:ONGA_0000212
         annotations:
           element_type: SO:0000276
           element_type_fit: broad
@@ -1473,6 +1686,7 @@ enums:
         - annotation
       repeat elements annotation:
         description: Annotation of repetitive element locations and classes.
+        meaning: onga:ONGA_0000213
         annotations:
           element_type: SO:0000657
           element_type_fit: broad
@@ -1480,6 +1694,7 @@ enums:
         - annotation
       restriction enzyme site locations:
         description: Genomic positions of restriction enzyme recognition sites.
+        meaning: onga:ONGA_0000214
         annotations:
           element_type: SO:0001687
           element_type_fit: approximate
@@ -1489,6 +1704,7 @@ enums:
         - annotation
       RNA-binding protein associated mRNAs:
         description: mRNAs co-immunoprecipitated with RNA-binding proteins.
+        meaning: onga:ONGA_0000215
         annotations:
           element_type: SO:0000279
           element_type_fit: approximate
@@ -1496,6 +1712,7 @@ enums:
         - annotation
       splice junctions:
         description: Splice site junctions identified from RNA-seq alignments.
+        meaning: onga:ONGA_0000216
         annotations:
           element_type: SO:0001421
           element_type_fit: exact
@@ -1504,9 +1721,10 @@ enums:
         in_subset:
         - annotation
         see_also:
-        - onga:transcriptome_alignments
+        - onga:ONGA_0000011
       transcribed fragments:
         description: Genomic regions identified as transcribed from RNA-seq data.
+        meaning: onga:ONGA_0000217
         annotations:
           element_type: SO:0001418
           element_type_fit: exact
@@ -1514,34 +1732,40 @@ enums:
         - annotation
       transcriptome annotations:
         description: Comprehensive gene and transcript annotations for a genome.
+        meaning: onga:ONGA_0000218
         in_subset:
         - annotation
       transposable element TF ancestral origin percent by motif:
         description: Percentage of TF motif instances with transposable element ancestral origin.
+        meaning: onga:ONGA_0000219
         in_subset:
         - annotation
       transposable element TF ancestral origin percent by subfamily:
         description: Percentage of TF binding sites by TE subfamily ancestral origin.
+        meaning: onga:ONGA_0000220
         in_subset:
         - annotation
 
       # ─── single_cell ──────────────────────────────────────────────────────
       cell type annotations:
         description: Cell type labels assigned to individual cells based on marker genes or reference mapping.
+        meaning: onga:ONGA_0000221
         annotations:
           element_type_fit: not_applicable  # Rows are cell labels; cell type is delegated to CL (SO-REJ-001)
         in_subset:
         - single_cell
         see_also:
-        - onga:clusters
+        - onga:ONGA_0000130
       cell type data:
         description: Data associated with cell type identity in single-cell experiments.
+        meaning: onga:ONGA_0000222
         annotations:
           element_type_fit: not_applicable  # Rows are per-cell values; cell type is delegated to CL (SO-REJ-001)
         in_subset:
         - single_cell
       3D structure:
         description: Three-dimensional structural model of a genomic region or chromatin domain.
+        meaning: onga:ONGA_0000223
         annotations:
           element_type_fit: not_applicable  # Rows are structural model coordinates, not sequence features
         close_mappings:
@@ -1550,6 +1774,7 @@ enums:
         - structure
       contigs:
         description: Assembled sequence contigs from genome assembly.
+        meaning: onga:ONGA_0000224
         annotations:
           element_type: SO:0000149
           element_type_fit: exact
@@ -1559,18 +1784,21 @@ enums:
         - structure
       personalized genome assembly:
         description: Genome assembly incorporating an individual's sequence variation.
+        meaning: onga:ONGA_0000225
         broad_mappings:
         - edam:data_0925
         in_subset:
         - structure
       predicted 3D structural ensembles:
         description: Computationally predicted ensembles of 3D genomic structures.
+        meaning: onga:ONGA_0000226
         in_subset:
         - structure
 
       # ─── haplotype ────────────────────────────────────────────────────────
       maternal haplotype mapping:
         description: Sequence reads or contigs assigned to the maternal haplotype.
+        meaning: onga:ONGA_0000227
         annotations:
           element_type_fit: not_applicable
         related_mappings:
@@ -1579,6 +1807,7 @@ enums:
         - haplotype
       paternal haplotype mapping:
         description: Sequence reads or contigs assigned to the paternal haplotype.
+        meaning: onga:ONGA_0000228
         annotations:
           element_type_fit: not_applicable
         related_mappings:
@@ -1587,6 +1816,7 @@ enums:
         - haplotype
       Nm methylation state:
         description: 2′-O-methylation (Nm) modification.
+        meaning: onga:ONGA_0000229
         annotations:
           element_type: SO:0000250
           element_type_fit: broad
@@ -1594,6 +1824,7 @@ enums:
         - rna_modification
       SNPs:
         description: Single nucleotide polymorphisms.
+        meaning: onga:ONGA_0000230
         annotations:
           element_type: SO:0000694
           element_type_fit: exact
@@ -1603,6 +1834,7 @@ enums:
         - variant
       indels:
         description: Insertion/deletion variants.
+        meaning: onga:ONGA_0000231
         annotations:
           element_type: SO:1000032
           element_type_fit: approximate
@@ -1612,6 +1844,7 @@ enums:
         - edam:data_0918
       inosine methylation state:
         description: Inosine (A-to-I editing) modification.
+        meaning: onga:ONGA_0000232
         annotations:
           element_type: SO:0001274
           element_type_fit: approximate
@@ -1619,6 +1852,7 @@ enums:
         - rna_modification
       m5C methylation state:
         description: 5-methylcytosine (m5C) RNA modification.
+        meaning: onga:ONGA_0000233
         annotations:
           element_type: SO:0001282
           element_type_fit: approximate
@@ -1627,6 +1861,7 @@ enums:
       m6A methylation state:
         description: N6-methyladenosine (m6A) modification on transcripts. m6A is the most abundant internal mRNA 
           modification.
+        meaning: onga:ONGA_0000234
         annotations:
           element_type: SO:0001297
           element_type_fit: exact
@@ -1634,6 +1869,7 @@ enums:
         - rna_modification
       pseudouridine methylation state:
         description: Pseudouridine (Ψ) modification. Pseudouridine is the most abundant RNA modification.
+        meaning: onga:ONGA_0000235
         annotations:
           element_type: SO:0001229
           element_type_fit: approximate
@@ -1641,12 +1877,14 @@ enums:
         - rna_modification
       links:
         description: Generic regulatory links associating genomic elements with target features.
+        meaning: onga:ONGA_0000236
         annotations:
           element_type_fit: not_applicable  # Rows are PAIRS (edges), not features; see TrackGeometry.has_edges
         in_subset:
         - element_gene_linkage
       mapping:
         description: Sequence reads or contigs assigned to a haplotype.
+        meaning: onga:ONGA_0000237
         annotations:
           element_type_fit: not_applicable
         related_mappings:

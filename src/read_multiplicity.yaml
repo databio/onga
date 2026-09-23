@@ -35,5 +35,7 @@ enums:
     permissible_values:
       all reads:
         description: 'Signal/counts computed from all mapped reads.'
+        meaning: onga:ONGA_0000257
       unique reads:
         description: 'Signal/counts computed from uniquely-mapping reads only.'
+        meaning: onga:ONGA_0000258

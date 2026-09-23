@@ -673,6 +673,50 @@ for file content types. We took these verbatim as the initial term set.
     the FGA-WG repo argue for shrink-and-reference; this merge went the other
     way (full classes with lineage annotations). Consider reframing them as
     "annotate lineage instead of restructuring," or withdrawing them.
+20. **Minted opaque term ids.** Every permissible value in every enum (292:
+    DataType 162, FeatureType 75, Format 12, the eight facet vocabularies 21,
+    ValueType 5, AccessProtocol 8, BiospecimenClassification 9) now carries a
+    permanent id, `ONGA_0000001` … `ONGA_0000292`, written on the value as
+    `meaning: onga:ONGA_NNNNNNN`. The generated OWL / JSON-LD IRI is therefore
+    `https://databio.org/onga/ONGA_NNNNNNN`; the old label-based IRIs
+    (`https://databio.org/onga/FeatureType#open%20chromatin%20regions`) are
+    gone, with no alias or redirect. Ids were assigned in `src/onga.yaml`
+    import order, then enum order, then value order.
+    **Id form:** the lowercase `onga:` prefix with an `ONGA_` local part.
+    LinkML matches prefixes without regard to case, so a separate `ONGA:` prefix
+    collides with `onga:` and silently mints the wrong IRI
+    (`https://databio.org/onga/0000001`).
+    **Labels may now change.** The label (the permissible-value key) is what
+    instance data validates against and what ENCODE round-trips through, so
+    `mappings/facet_decomposition.tsv`, `mappings/scope_delegations.tsv`,
+    `proposals/upstream_requests.yaml` and `examples/*.yaml` keep labels. The
+    id never changes and is never reused.
+    **Ledger:** `curation/term_ids.tsv` has one row per id ever minted
+    (`id, status, enum, label, replaced_by, former_labels, decision`). It is
+    the allocation authority (next id = max + 1) and the only home of retired
+    ids and former labels; `scripts/workbench/ids.py` reads and writes it.
+    **Cross-references out of `meaning:`.** The 9 `edam:format_*` CURIEs on
+    Format and the 2 `PATO:*` CURIEs on ReferenceBuildSex moved to SSSOM
+    `skos:exactMatch` rows (`mappings/edam.sssom.tsv`; new
+    `mappings/pato.sssom.tsv`), projected back to `exact_mappings`. The 2 SO
+    strand CURIEs on StrandOrientation `plus` / `minus` (`SO:0001030` forward,
+    `SO:0001031` reverse), which had no SSSOM row, became `so.sssom.tsv` rows
+    too. They are SO sequence *attributes*, not element types, so the
+    set/element rule does not apply; `mappings/policy.yaml`
+    `sequence_attribute_so` licenses exactly these two. `scripts/project_mappings.py`
+    now projects every enum in `src/`, not just DataType / FeatureType.
+    **References by id.** Every SSSOM `subject_id` is now the term's
+    `onga:ONGA_NNNNNNN` (`subject_label` stays and must agree with the live
+    label); before, it was `onga:<underscored label>`, which expanded to an IRI
+    no generated file declared. The 20 `see_also` entries on 15 permissible values
+    likewise point at the target's id, so every `rdfs:seeAlso` in the OWL now
+    lands on a declared class. `scripts/gen_so_axioms.py` uses the expansion of
+    `subject_id` as the subject IRI instead of rebuilding one from the label.
+    **Checks:** `scripts/check_roundtrip.py` check 6 now asserts every value
+    has a unique `onga:ONGA_NNNNNNN` meaning matching the ledger's live rows,
+    and that every SSSOM `subject_id` and value `see_also` is a live id; the
+    `MEANING_WHITELIST` is deleted. Check 7 now covers every enum in `src/`.
+    `make test` now also runs `make validate-mappings`.
 
 ## Design principles
 
@@ -776,7 +820,9 @@ Rules established in design discussion that govern the faceting operations above
    and SO describe the same biology at different granularities, and the
    connection between them is membership.
 
-   Practical corollary: **never use `meaning:` for a cross-reference.**
+   Practical corollary: **never use `meaning:` for a cross-reference.** Since
+   operation #20, `meaning:` holds only the value's own id,
+   `onga:ONGA_NNNNNNN`.
    `meaning:` sets the permissible value's IRI, so an SO CURIE there hijacks the
    SO class and a repeated EDAM CURIE collapses distinct ONGA terms into a single
    OWL node. Cross-references belong in
@@ -829,10 +875,13 @@ the compound `bias-corrected predicted signal profile`, held for a future
 - **Categories:** 22 subsets
 - **Total:** 237 terms, 87 EDAM-mapped, 87 element-type-annotated (71 with an SO
   class, 16 `not_applicable`)
-- **`meaning:` keys in the content enums:** 0 (banned — principle #7)
+- **Term ids:** 292, `ONGA_0000001` … `ONGA_0000292`, one per permissible value
+  in every enum, as `meaning: onga:ONGA_NNNNNNN` (operation #20; ledger
+  `curation/term_ids.tsv`). No `meaning:` holds an external CURIE (principle #7).
 - **SO element-type rows:** 74 (`onga:has_element_type`, in `mappings/so.sssom.tsv`)
 - **SO relatedMatch rows:** 8 (members are *not* instances)
 - **SO set-to-set rows:** 2 (whitelisted: `SO:0001505`, `SO:0001506`)
+- **SO sequence-attribute rows:** 2 (StrandOrientation `plus` / `minus`)
 - **Descriptor schemas:** 5 — TrackFormat, TrackInterpretation, TrackProvenance,
   TrackGeometry, ReferenceGenome (Layer 2)
 - **Record classes (Layer 3):** GenomicAnnotationFile, File, Checksum,
@@ -869,10 +918,6 @@ the Develop dashboard)_
   #18, which moved cross-references only and changed no term's enum. A future
   operation should decide whether they belong in FeatureType. **This is a
   deferred decision, not an oversight** — do not treat it as one.
-- **`meaning:` in the non-content vocabularies (open).** `src/format.yaml` (9
-  `edam:format_*`) and `src/reference_build_sex.yaml` (2 `PATO:*`) still use
-  `meaning:`. These are facet values, not set-denoting content terms, and each
-  CURIE is used exactly once, so neither the level-shift objection nor the
-  collapse bug applies. They are left alone; the SO ones in
-  `src/strand_orientation.yaml` were moved to `exact_mappings` in operation #18
-  because those *did* hijack live SO classes in the generated OWL.
+- **`meaning:` in the non-content vocabularies (resolved by operation #20).**
+  The 9 `edam:format_*` and 2 `PATO:*` CURIEs moved to SSSOM rows, and every
+  value's `meaning:` is now its own ONGA id.

@@ -616,8 +616,8 @@
     "vocabType": "feature",
     "predicate": "broadMatch",
     "edamId": "edam:data_3002",
-    "edamLabel": "",
-    "comment": "From LinkML schema"
+    "edamLabel": "Annotation track",
+    "comment": "EDAM lacks CRE data type"
   },
   {
     "termId": "candidate_enhancers",

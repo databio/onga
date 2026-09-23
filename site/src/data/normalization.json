@@ -1,6 +1,7 @@
 [
   {
     "id": "raw",
+    "ongaId": "ONGA_0000261",
     "name": "raw",
     "slug": "raw",
     "description": "Unprocessed signal before any normalization.",
@@ -17,6 +18,7 @@
   },
   {
     "id": "depth_normalized",
+    "ongaId": "ONGA_0000262",
     "name": "depth_normalized",
     "slug": "depth_normalized",
     "description": "Normalized by sequencing depth / library size — the generic \"normalized\" case.",
@@ -33,6 +35,7 @@
   },
   {
     "id": "percentage_normalized",
+    "ongaId": "ONGA_0000263",
     "name": "percentage_normalized",
     "slug": "percentage_normalized",
     "description": "Expressed as a percentage of total signal.",

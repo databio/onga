@@ -6,7 +6,7 @@
 #   semapv: https://w3id.org/semapv/vocab/
 #   sssom: https://w3id.org/sssom/
 # mapping_set_id: https://databio.org/onga/mappings/so
-# mapping_set_description: ONGA subjects denote SETS of genomic elements; SO objects denote INDIVIDUAL element types, so the relation is membership, not equivalence. Membership rows use onga:has_element_type with an element_type_fit grade; skos:relatedMatch marks rows whose members are NOT instances; skos:exactMatch/closeMatch/broadMatch are banned against SO except for the two whitelisted SO classes that are themselves set-denoting.
+# mapping_set_description: ONGA subjects denote SETS of genomic elements; SO objects denote INDIVIDUAL element types, so the relation is membership, not equivalence. Membership rows use onga:has_element_type with an element_type_fit grade; skos:relatedMatch marks rows whose members are NOT instances; skos:exactMatch/closeMatch/broadMatch are banned against SO except for the two whitelisted SO classes that are themselves set-denoting, and the two SO strand attributes matched by the StrandOrientation facet values.
 # creator_id: https://orcid.org/0000-0001-5884-4247
 # license: https://creativecommons.org/licenses/by/4.0/
 # mapping_date: 2026-08-31
@@ -50,7 +50,15 @@
 #   SO:0001506 variant_genome -- "A collection of sequences (often chromosomes)
 #     of an individual."
 # Both SO classes are THEMSELVES set-denoting, so the level shift does not apply
-# and a plain SKOS match is correct. scripts/validate_mappings.py fails the build if
+# and a plain SKOS match is correct.
+#
+# SEQUENCE ATTRIBUTES
+# -------------------
+#   SO:0001030 forward / SO:0001031 reverse are SO sequence ATTRIBUTES, not
+#   element types. The StrandOrientation facet values plus / minus name the same
+#   attribute, so they match exactly (mappings/policy.yaml sequence_attribute_so).
+#   These rows leave the category columns blank: the subject is a facet value,
+#   not a set. scripts/validate_mappings.py fails the build if
 # any other SO id is given a SKOS *Match predicate.
 #
 # COLUMNS
@@ -76,97 +84,103 @@
 # This file is hand-curated and is the source of truth.
 # scripts/validate_mappings.py checks it; scripts/project_mappings.py projects
 # it onto the element_type / element_type_fit annotations and the *_mappings
-# slots in src/file_content.yaml.
+# slots in src/*.yaml.
+#
+# subject_id is the term's permanent id (onga:ONGA_NNNNNNN, the `meaning:` of
+# the permissible value, ledger curation/term_ids.tsv); subject_label is the
+# live label and must agree with it.
 subject_id	predicate_id	object_id	mapping_justification	subject_label	object_label	subject_category	object_category	element_type_fit	comment
-onga:open_chromatin_regions	onga:has_element_type	SO:0001747	semapv:ManualMappingCuration	open chromatin regions	open_chromatin_region	genomic element set	sequence feature type	exact	Direct match
-onga:footprints	onga:has_element_type	SO:0000235	semapv:ManualMappingCuration	footprints	TF_binding_site	genomic element set	sequence feature type	approximate	Nuclease footprint marks an inferred TF binding site; SO has no footprint term
-onga:contact_domains	onga:has_element_type	SO:0002304	semapv:ManualMappingCuration	contact domains	topologically_associated_domain	genomic element set	sequence feature type	exact	ONGA definition is TADs verbatim
-onga:nested_contact_domains	onga:has_element_type	SO:0002304	semapv:ManualMappingCuration	nested contact domains	topologically_associated_domain	genomic element set	sequence feature type	broad	Hierarchical nesting is not modeled in SO
-onga:loops	onga:has_element_type	SO:0002307	semapv:ManualMappingCuration	loops	DNA_loop	genomic element set	sequence feature type	exact	Chromatin loop. NOTE: SO:0002254 'loop' is an RNA stem-loop, a lexical false friend
-onga:methylation_state_at_CpG	onga:has_element_type	SO:0000114	semapv:ManualMappingCuration	methylation state at CpG	methylated_cytosine	genomic element set	sequence feature type	broad	SO has no sequence-context-specific methylation terms
-onga:methylation_state_at_CHG	onga:has_element_type	SO:0000114	semapv:ManualMappingCuration	methylation state at CHG	methylated_cytosine	genomic element set	sequence feature type	broad	SO has no CHG-context term
-onga:methylation_state_at_CHH	onga:has_element_type	SO:0000114	semapv:ManualMappingCuration	methylation state at CHH	methylated_cytosine	genomic element set	sequence feature type	broad	SO has no CHH-context term
-onga:smoothed_methylation_state_at_CpG	onga:has_element_type	SO:0000114	semapv:ManualMappingCuration	smoothed methylation state at CpG	methylated_cytosine	genomic element set	sequence feature type	broad	Smoothing is provenance; content is CpG methylation
-onga:candidate_Cis_Regulatory_Elements	onga:has_element_type	SO:0001055	semapv:ManualMappingCuration	candidate Cis-Regulatory Elements	transcriptional_cis_regulatory_region	genomic element set	sequence feature type	broad	cCREs mix enhancers/promoters/insulators; SO:0001055 is the correct common ancestor and 'candidate' is an ONGA derivation facet
-onga:candidate_enhancers	onga:has_element_type	SO:0000165	semapv:ManualMappingCuration	candidate enhancers	enhancer	genomic element set	sequence feature type	broad	'candidate' is a derivation facet, not a distinct SO class
-onga:predicted_enhancers	onga:has_element_type	SO:0000165	semapv:ManualMappingCuration	predicted enhancers	enhancer	genomic element set	sequence feature type	broad	'predicted' is a derivation facet
-onga:enhancers_reference	onga:has_element_type	SO:0000165	semapv:ManualMappingCuration	enhancers reference	enhancer	genomic element set	sequence feature type	broad	Reference set of enhancers
-onga:candidate_promoters	onga:has_element_type	SO:0000167	semapv:ManualMappingCuration	candidate promoters	promoter	genomic element set	sequence feature type	broad	'candidate' is a derivation facet
-onga:promoters_reference	onga:has_element_type	SO:0000167	semapv:ManualMappingCuration	promoters reference	promoter	genomic element set	sequence feature type	broad	Reference set of promoters
-onga:regulatory_elements	onga:has_element_type	SO:0000165	semapv:ManualMappingCuration	regulatory elements	enhancer	genomic element set	sequence feature type	exact	Mixed set; the ONGA definition enumerates enhancers, promoters, silencers, insulators
-onga:regulatory_elements	onga:has_element_type	SO:0000167	semapv:ManualMappingCuration	regulatory elements	promoter	genomic element set	sequence feature type	exact	Mixed set; see the enhancer row
-onga:regulatory_elements	onga:has_element_type	SO:0000625	semapv:ManualMappingCuration	regulatory elements	silencer	genomic element set	sequence feature type	exact	Mixed set; see the enhancer row
-onga:regulatory_elements	onga:has_element_type	SO:0000627	semapv:ManualMappingCuration	regulatory elements	insulator	genomic element set	sequence feature type	exact	Mixed set; see the enhancer row
-onga:curated_binding_sites	onga:has_element_type	SO:0000235	semapv:ManualMappingCuration	curated binding sites	TF_binding_site	genomic element set	sequence feature type	broad	Curation is provenance; content is a TF binding site
-onga:polyA_sites	onga:has_element_type	SO:0000553	semapv:ManualMappingCuration	polyA sites	polyA_site	genomic element set	sequence feature type	exact	Direct match
-onga:transcription_start_sites	onga:has_element_type	SO:0000315	semapv:ManualMappingCuration	transcription start sites	TSS	genomic element set	sequence feature type	exact	Direct match
-onga:TSS_reference	onga:has_element_type	SO:0000315	semapv:ManualMappingCuration	TSS reference	TSS	genomic element set	sequence feature type	broad	Reference set of TSSs
-onga:copy_number_variation	onga:has_element_type	SO:0001019	semapv:ManualMappingCuration	copy number variation	copy_number_variation	genomic element set	sequence feature type	exact	Direct match
-onga:SNPs	onga:has_element_type	SO:0000694	semapv:ManualMappingCuration	SNPs	SNP	genomic element set	sequence feature type	exact	Direct match
-onga:curated_SNVs	onga:has_element_type	SO:0001483	semapv:ManualMappingCuration	curated SNVs	SNV	genomic element set	sequence feature type	broad	Curation is provenance; content is an SNV
-onga:indels	onga:has_element_type	SO:1000032	semapv:ManualMappingCuration	indels	delins	genomic element set	sequence feature type	approximate	SO 'delins' carries the 'indel' synonym; SO:0002217 unspecified_indel is a narrower sibling
-onga:variant_calls	onga:has_element_type	SO:0001060	semapv:ManualMappingCuration	variant calls	sequence_variant	genomic element set	sequence feature type	approximate	Generic called variants
-onga:reference_variants	onga:has_element_type	SO:0001060	semapv:ManualMappingCuration	reference variants	sequence_variant	genomic element set	sequence feature type	broad	Known-variant reference set
-onga:variant_reference	onga:has_element_type	SO:0001060	semapv:ManualMappingCuration	variant reference	sequence_variant	genomic element set	sequence feature type	broad	Known-variant reference database
-onga:allele_specific_variants	onga:has_element_type	SO:0001060	semapv:ManualMappingCuration	allele-specific variants	sequence_variant	genomic element set	sequence feature type	broad	Allele-specificity is an interpretation facet, not an SO class
-onga:maternal_variant_calls	onga:has_element_type	SO:0001775	semapv:ManualMappingCuration	maternal variant calls	maternal_variant	genomic element set	sequence feature type	approximate	Direct match on parental origin
-onga:paternal_variant_calls	onga:has_element_type	SO:0001776	semapv:ManualMappingCuration	paternal variant calls	paternal_variant	genomic element set	sequence feature type	approximate	Direct match on parental origin
-onga:eQTLs	onga:has_element_type	SO:0000771	semapv:ManualMappingCuration	eQTLs	QTL	genomic element set	sequence feature type	broad	SO has no expression-specific QTL subtype
-onga:dsQTLs	onga:has_element_type	SO:0000771	semapv:ManualMappingCuration	dsQTLs	QTL	genomic element set	sequence feature type	broad	SO has no accessibility-specific QTL subtype
-onga:sequence_motifs	onga:has_element_type	SO:0001683	semapv:ManualMappingCuration	sequence motifs	sequence_motif	genomic element set	sequence feature type	exact	Direct match
-onga:sequence_motifs_instances	onga:has_element_type	SO:0000714	semapv:ManualMappingCuration	sequence motifs instances	nucleotide_motif	genomic element set	sequence feature type	approximate	Located motif occurrences in nucleotide sequence
-onga:splice_junctions	onga:has_element_type	SO:0001421	semapv:ManualMappingCuration	splice junctions	splice_junction	genomic element set	sequence feature type	exact	Direct match
-onga:transcribed_fragments	onga:has_element_type	SO:0001418	semapv:ManualMappingCuration	transcribed fragments	transcribed_fragment	genomic element set	sequence feature type	exact	Direct match
-onga:repeat_elements_annotation	onga:has_element_type	SO:0000657	semapv:ManualMappingCuration	repeat elements annotation	repeat_region	genomic element set	sequence feature type	broad	Annotation of repeat regions
-onga:miRNA_annotations	onga:has_element_type	SO:0000276	semapv:ManualMappingCuration	miRNA annotations	miRNA	genomic element set	sequence feature type	broad	Annotation of miRNA genes and precursors
-onga:restriction_enzyme_site_locations	onga:has_element_type	SO:0001687	semapv:ManualMappingCuration	restriction enzyme site locations	restriction_enzyme_recognition_site	genomic element set	sequence feature type	approximate	Locations of recognition sites
-onga:RNA_binding_protein_associated_mRNAs	onga:has_element_type	SO:0000279	semapv:ManualMappingCuration	RNA-binding protein associated mRNAs	transcript_bound_by_protein	genomic element set	sequence feature type	approximate	Transcripts bound by protein
-onga:functional_conservation_mapping	onga:has_element_type	SO:0000330	semapv:ManualMappingCuration	functional conservation mapping	conserved_region	genomic element set	sequence feature type	approximate	Conserved regions across species
-onga:contigs	onga:has_element_type	SO:0000149	semapv:ManualMappingCuration	contigs	contig	genomic element set	sequence feature type	exact	Direct match
-onga:m6A_methylation_state	onga:has_element_type	SO:0001297	semapv:ManualMappingCuration	m6A methylation state	N6_methyladenosine	genomic element set	sequence feature type	exact	Direct match
-onga:m5C_methylation_state	onga:has_element_type	SO:0001282	semapv:ManualMappingCuration	m5C methylation state	five_methylcytidine	genomic element set	sequence feature type	approximate	RNA 5-methylcytidine (not the DNA term SO:0001918)
-onga:inosine_methylation_state	onga:has_element_type	SO:0001274	semapv:ManualMappingCuration	inosine methylation state	modified_inosine	genomic element set	sequence feature type	approximate	A-to-I editing product
-onga:pseudouridine_methylation_state	onga:has_element_type	SO:0001229	semapv:ManualMappingCuration	pseudouridine methylation state	pseudouridine	genomic element set	sequence feature type	approximate	Direct match on the modified base
-onga:Nm_methylation_state	onga:has_element_type	SO:0000250	semapv:ManualMappingCuration	Nm methylation state	modified_RNA_base_feature	genomic element set	sequence feature type	broad	SO has only base-specific 2'-O-methyl terms, no generic Nm
-onga:reads	onga:has_element_type	SO:0000150	semapv:ManualMappingCuration	reads	read	genomic element set	sequence feature type	exact	Direct match
-onga:rejected_reads	onga:has_element_type	SO:0000150	semapv:ManualMappingCuration	rejected reads	read	genomic element set	sequence feature type	broad	Rejection is a QC facet
-onga:subreads	onga:has_element_type	SO:0000150	semapv:ManualMappingCuration	subreads	read	genomic element set	sequence feature type	broad	Long-read subread; SO has no subread term
-onga:R2C2_subreads	onga:has_element_type	SO:0000150	semapv:ManualMappingCuration	R2C2 subreads	read	genomic element set	sequence feature type	broad	Rolling-circle subread; SO has no subread term
-onga:index_reads	onga:has_element_type	SO:0002023	semapv:ManualMappingCuration	index reads	multiplexing_sequence_identifier	genomic element set	sequence feature type	approximate	Demultiplexing index sequence
-onga:sequence_barcodes	onga:has_element_type	SO:0002023	semapv:ManualMappingCuration	sequence barcodes	multiplexing_sequence_identifier	genomic element set	sequence feature type	approximate	Sample or cell multiplexing tag
-onga:primer_sequence	onga:has_element_type	SO:0000112	semapv:ManualMappingCuration	primer sequence	primer	genomic element set	sequence feature type	exact	Direct match
-onga:gRNAs	onga:has_element_type	SO:0001998	semapv:ManualMappingCuration	gRNAs	sgRNA	genomic element set	sequence feature type	exact	CRISPR single-guide RNA (SO:0000602 guide_RNA is the RNA-editing sense)
-onga:non_targeting_gRNAs	onga:has_element_type	SO:0001998	semapv:ManualMappingCuration	non-targeting gRNAs	sgRNA	genomic element set	sequence feature type	broad	Control guides; targeting status is not an SO axis
-onga:safe_targeting_gRNAs	onga:has_element_type	SO:0001998	semapv:ManualMappingCuration	safe-targeting gRNAs	sgRNA	genomic element set	sequence feature type	broad	Control guides
-onga:ranked_gRNAs	onga:has_element_type	SO:0001998	semapv:ManualMappingCuration	ranked gRNAs	sgRNA	genomic element set	sequence feature type	broad	Ranking is provenance
-onga:chromosomes_reference	onga:has_element_type	SO:0000340	semapv:ManualMappingCuration	chromosomes reference	chromosome	genomic element set	sequence feature type	broad	Per-chromosome reference sequences
-onga:mitochondrial_genome_reference	onga:has_element_type	SO:0000737	semapv:ManualMappingCuration	mitochondrial genome reference	mitochondrial_sequence	genomic element set	sequence feature type	approximate	Mitochondrial reference sequence
-onga:repeats_reference	onga:has_element_type	SO:0000657	semapv:ManualMappingCuration	repeats reference	repeat_region	genomic element set	sequence feature type	broad	Reference repeat annotation
-onga:rRNA_reference	onga:has_element_type	SO:0000252	semapv:ManualMappingCuration	rRNA reference	rRNA	genomic element set	sequence feature type	broad	Reference rRNA sequences
-onga:tRNA_reference	onga:has_element_type	SO:0000253	semapv:ManualMappingCuration	tRNA reference	tRNA	genomic element set	sequence feature type	broad	Reference tRNA sequences
-onga:snRNA_reference	onga:has_element_type	SO:0000274	semapv:ManualMappingCuration	snRNA reference	snRNA	genomic element set	sequence feature type	broad	Reference snRNA sequences
-onga:miRNA_reference	onga:has_element_type	SO:0000276	semapv:ManualMappingCuration	miRNA reference	miRNA	genomic element set	sequence feature type	broad	Reference miRNA sequences and annotations
-onga:peaks	onga:has_element_type	SO:0000703	semapv:ManualMappingCuration	peaks	experimental_result_region	genomic element set	sequence feature type	approximate	Re-graded from relatedMatch: peak rows ARE experimental result regions; the earlier objection was that SO:0001697 ChIP_seq_region is assay-bound, a different point
-onga:DHS_peaks	onga:has_element_type	SO:0000685	semapv:ManualMappingCuration	DHS peaks	DNaseI_hypersensitive_site	genomic element set	sequence feature type	exact	Direct match
-onga:consensus_DNase_hypersensitivity_sites	onga:has_element_type	SO:0000685	semapv:ManualMappingCuration	consensus DNase hypersensitivity sites	DNaseI_hypersensitive_site	genomic element set	sequence feature type	broad	Consensus across samples is provenance
-onga:representative_DNase_hypersensitivity_sites	onga:has_element_type	SO:0000685	semapv:ManualMappingCuration	representative DNase hypersensitivity sites	DNaseI_hypersensitive_site	genomic element set	sequence feature type	broad	Curated representative set
-onga:DHS_regions_reference	onga:has_element_type	SO:0000685	semapv:ManualMappingCuration	DHS regions reference	DNaseI_hypersensitive_site	genomic element set	sequence feature type	broad	Reference set of DHSs
-onga:hotspots	onga:has_element_type	SO:0002331	semapv:ManualMappingCuration	hotspots	accessible_DNA_region	genomic element set	sequence feature type	approximate	Broad accessible-chromatin domains
-onga:genome_reference	skos:exactMatch	SO:0001505	semapv:ManualMappingCuration	genome reference	reference_genome	genomic element set	sequence feature type		Set-to-set exception: SO:0001505 is itself defined as 'A collection of sequences (often chromosomes) taken as the standard for a given organism and genome assembly'
-onga:personalized_genome_assembly	skos:closeMatch	SO:0001506	semapv:ManualMappingCuration	personalized genome assembly	variant_genome	genomic element set	sequence feature type		Set-to-set exception: SO:0001506 is itself defined as 'A collection of sequences (often chromosomes) of an individual'
-onga:methylated_reads	skos:relatedMatch	SO:0000306	semapv:ManualMappingCuration	methylated reads	methylated_DNA_base_feature	genomic element set	sequence feature type		Rows are reads CARRYING the base modification, not the base feature itself
-onga:variant_effect_quantifications	skos:relatedMatch	SO:0001536	semapv:ManualMappingCuration	variant effect quantifications	functional_effect_variant	genomic element set	sequence feature type		Rows are numbers about variants, not variants
-onga:PWMs	skos:relatedMatch	SO:0001683	semapv:ManualMappingCuration	PWMs	sequence_motif	genomic element set	sequence feature type		A PWM is a MODEL of a motif; SO has no matrix/model term
-onga:maternal_haplotype_mapping	skos:relatedMatch	SO:0001024	semapv:ManualMappingCuration	maternal haplotype mapping	haplotype	genomic element set	sequence feature type		Rows are haplotype assignments, not haplotypes
-onga:paternal_haplotype_mapping	skos:relatedMatch	SO:0001024	semapv:ManualMappingCuration	paternal haplotype mapping	haplotype	genomic element set	sequence feature type		Rows are haplotype assignments, not haplotypes
-onga:mapping	skos:relatedMatch	SO:0001024	semapv:ManualMappingCuration	mapping	haplotype	genomic element set	sequence feature type		Rows are haplotype assignments, not haplotypes
-onga:nuclease_cleavage_frequency	skos:relatedMatch	SO:0000684	semapv:ManualMappingCuration	nuclease cleavage frequency	nuclease_sensitive_site	genomic element set	sequence feature type		Group C: rows are per-base numbers, not nuclease-sensitive sites; fails the DataType admissibility rule
-onga:sequence_adapters	skos:relatedMatch	SO:0000150	semapv:ManualMappingCuration	sequence adapters	read	genomic element set	sequence feature type		Group D: adapters are not reads and SO has no adapter term (see SO-REQ-010)
-onga:element_gene_links	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	element gene links		genomic element set	sequence feature type	not_applicable	Rows are PAIRS (edges) between an element and a gene, not features; see TrackGeometry.has_edges
-onga:links	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	links		genomic element set	sequence feature type	not_applicable	Rows are PAIRS (edges), not features; see TrackGeometry.has_edges
-onga:element_gene_interactions_p_value	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	element gene interactions p-value		genomic element set	sequence feature type	not_applicable	Rows are statistics about edges, not features
-onga:element_gene_interactions_signal	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	element gene interactions signal		genomic element set	sequence feature type	not_applicable	Rows are statistics about edges, not features
-onga:sequence_motifs_report	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	sequence motifs report		genomic element set	sequence feature type	not_applicable	Rows are report entries, not located features
-onga:3D_structure	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	3D structure		genomic element set	sequence feature type	not_applicable	Rows are structural model coordinates, not sequence features
-onga:cell_type_annotations	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	cell type annotations		genomic element set	sequence feature type	not_applicable	Rows are cell labels; cell type is delegated to CL (SO-REJ-001)
-onga:cell_type_data	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	cell type data		genomic element set	sequence feature type	not_applicable	Rows are per-cell values; cell type is delegated to CL (SO-REJ-001)
+onga:ONGA_0000164	onga:has_element_type	SO:0001747	semapv:ManualMappingCuration	open chromatin regions	open_chromatin_region	genomic element set	sequence feature type	exact	Direct match
+onga:ONGA_0000163	onga:has_element_type	SO:0000235	semapv:ManualMappingCuration	footprints	TF_binding_site	genomic element set	sequence feature type	approximate	Nuclease footprint marks an inferred TF binding site; SO has no footprint term
+onga:ONGA_0000166	onga:has_element_type	SO:0002304	semapv:ManualMappingCuration	contact domains	topologically_associated_domain	genomic element set	sequence feature type	exact	ONGA definition is TADs verbatim
+onga:ONGA_0000170	onga:has_element_type	SO:0002304	semapv:ManualMappingCuration	nested contact domains	topologically_associated_domain	genomic element set	sequence feature type	broad	Hierarchical nesting is not modeled in SO
+onga:ONGA_0000169	onga:has_element_type	SO:0002307	semapv:ManualMappingCuration	loops	DNA_loop	genomic element set	sequence feature type	exact	Chromatin loop. NOTE: SO:0002254 'loop' is an RNA stem-loop, a lexical false friend
+onga:ONGA_0000175	onga:has_element_type	SO:0000114	semapv:ManualMappingCuration	methylation state at CpG	methylated_cytosine	genomic element set	sequence feature type	broad	SO has no sequence-context-specific methylation terms
+onga:ONGA_0000173	onga:has_element_type	SO:0000114	semapv:ManualMappingCuration	methylation state at CHG	methylated_cytosine	genomic element set	sequence feature type	broad	SO has no CHG-context term
+onga:ONGA_0000174	onga:has_element_type	SO:0000114	semapv:ManualMappingCuration	methylation state at CHH	methylated_cytosine	genomic element set	sequence feature type	broad	SO has no CHH-context term
+onga:ONGA_0000176	onga:has_element_type	SO:0000114	semapv:ManualMappingCuration	smoothed methylation state at CpG	methylated_cytosine	genomic element set	sequence feature type	broad	Smoothing is provenance; content is CpG methylation
+onga:ONGA_0000177	onga:has_element_type	SO:0001055	semapv:ManualMappingCuration	candidate Cis-Regulatory Elements	transcriptional_cis_regulatory_region	genomic element set	sequence feature type	broad	cCREs mix enhancers/promoters/insulators; SO:0001055 is the correct common ancestor and 'candidate' is an ONGA derivation facet
+onga:ONGA_0000178	onga:has_element_type	SO:0000165	semapv:ManualMappingCuration	candidate enhancers	enhancer	genomic element set	sequence feature type	broad	'candidate' is a derivation facet, not a distinct SO class
+onga:ONGA_0000184	onga:has_element_type	SO:0000165	semapv:ManualMappingCuration	predicted enhancers	enhancer	genomic element set	sequence feature type	broad	'predicted' is a derivation facet
+onga:ONGA_0000182	onga:has_element_type	SO:0000165	semapv:ManualMappingCuration	enhancers reference	enhancer	genomic element set	sequence feature type	broad	Reference set of enhancers
+onga:ONGA_0000179	onga:has_element_type	SO:0000167	semapv:ManualMappingCuration	candidate promoters	promoter	genomic element set	sequence feature type	broad	'candidate' is a derivation facet
+onga:ONGA_0000185	onga:has_element_type	SO:0000167	semapv:ManualMappingCuration	promoters reference	promoter	genomic element set	sequence feature type	broad	Reference set of promoters
+onga:ONGA_0000186	onga:has_element_type	SO:0000165	semapv:ManualMappingCuration	regulatory elements	enhancer	genomic element set	sequence feature type	exact	Mixed set; the ONGA definition enumerates enhancers, promoters, silencers, insulators
+onga:ONGA_0000186	onga:has_element_type	SO:0000167	semapv:ManualMappingCuration	regulatory elements	promoter	genomic element set	sequence feature type	exact	Mixed set; see the enhancer row
+onga:ONGA_0000186	onga:has_element_type	SO:0000625	semapv:ManualMappingCuration	regulatory elements	silencer	genomic element set	sequence feature type	exact	Mixed set; see the enhancer row
+onga:ONGA_0000186	onga:has_element_type	SO:0000627	semapv:ManualMappingCuration	regulatory elements	insulator	genomic element set	sequence feature type	exact	Mixed set; see the enhancer row
+onga:ONGA_0000180	onga:has_element_type	SO:0000235	semapv:ManualMappingCuration	curated binding sites	TF_binding_site	genomic element set	sequence feature type	broad	Curation is provenance; content is a TF binding site
+onga:ONGA_0000183	onga:has_element_type	SO:0000553	semapv:ManualMappingCuration	polyA sites	polyA_site	genomic element set	sequence feature type	exact	Direct match
+onga:ONGA_0000187	onga:has_element_type	SO:0000315	semapv:ManualMappingCuration	transcription start sites	TSS	genomic element set	sequence feature type	exact	Direct match
+onga:ONGA_0000188	onga:has_element_type	SO:0000315	semapv:ManualMappingCuration	TSS reference	TSS	genomic element set	sequence feature type	broad	Reference set of TSSs
+onga:ONGA_0000196	onga:has_element_type	SO:0001019	semapv:ManualMappingCuration	copy number variation	copy_number_variation	genomic element set	sequence feature type	exact	Direct match
+onga:ONGA_0000230	onga:has_element_type	SO:0000694	semapv:ManualMappingCuration	SNPs	SNP	genomic element set	sequence feature type	exact	Direct match
+onga:ONGA_0000197	onga:has_element_type	SO:0001483	semapv:ManualMappingCuration	curated SNVs	SNV	genomic element set	sequence feature type	broad	Curation is provenance; content is an SNV
+onga:ONGA_0000231	onga:has_element_type	SO:1000032	semapv:ManualMappingCuration	indels	delins	genomic element set	sequence feature type	approximate	SO 'delins' carries the 'indel' synonym; SO:0002217 unspecified_indel is a narrower sibling
+onga:ONGA_0000203	onga:has_element_type	SO:0001060	semapv:ManualMappingCuration	variant calls	sequence_variant	genomic element set	sequence feature type	approximate	Generic called variants
+onga:ONGA_0000202	onga:has_element_type	SO:0001060	semapv:ManualMappingCuration	reference variants	sequence_variant	genomic element set	sequence feature type	broad	Known-variant reference set
+onga:ONGA_0000205	onga:has_element_type	SO:0001060	semapv:ManualMappingCuration	variant reference	sequence_variant	genomic element set	sequence feature type	broad	Known-variant reference database
+onga:ONGA_0000195	onga:has_element_type	SO:0001060	semapv:ManualMappingCuration	allele-specific variants	sequence_variant	genomic element set	sequence feature type	broad	Allele-specificity is an interpretation facet, not an SO class
+onga:ONGA_0000200	onga:has_element_type	SO:0001775	semapv:ManualMappingCuration	maternal variant calls	maternal_variant	genomic element set	sequence feature type	approximate	Direct match on parental origin
+onga:ONGA_0000201	onga:has_element_type	SO:0001776	semapv:ManualMappingCuration	paternal variant calls	paternal_variant	genomic element set	sequence feature type	approximate	Direct match on parental origin
+onga:ONGA_0000199	onga:has_element_type	SO:0000771	semapv:ManualMappingCuration	eQTLs	QTL	genomic element set	sequence feature type	broad	SO has no expression-specific QTL subtype
+onga:ONGA_0000198	onga:has_element_type	SO:0000771	semapv:ManualMappingCuration	dsQTLs	QTL	genomic element set	sequence feature type	broad	SO has no accessibility-specific QTL subtype
+onga:ONGA_0000207	onga:has_element_type	SO:0001683	semapv:ManualMappingCuration	sequence motifs	sequence_motif	genomic element set	sequence feature type	exact	Direct match
+onga:ONGA_0000208	onga:has_element_type	SO:0000714	semapv:ManualMappingCuration	sequence motifs instances	nucleotide_motif	genomic element set	sequence feature type	approximate	Located motif occurrences in nucleotide sequence
+onga:ONGA_0000216	onga:has_element_type	SO:0001421	semapv:ManualMappingCuration	splice junctions	splice_junction	genomic element set	sequence feature type	exact	Direct match
+onga:ONGA_0000217	onga:has_element_type	SO:0001418	semapv:ManualMappingCuration	transcribed fragments	transcribed_fragment	genomic element set	sequence feature type	exact	Direct match
+onga:ONGA_0000213	onga:has_element_type	SO:0000657	semapv:ManualMappingCuration	repeat elements annotation	repeat_region	genomic element set	sequence feature type	broad	Annotation of repeat regions
+onga:ONGA_0000212	onga:has_element_type	SO:0000276	semapv:ManualMappingCuration	miRNA annotations	miRNA	genomic element set	sequence feature type	broad	Annotation of miRNA genes and precursors
+onga:ONGA_0000214	onga:has_element_type	SO:0001687	semapv:ManualMappingCuration	restriction enzyme site locations	restriction_enzyme_recognition_site	genomic element set	sequence feature type	approximate	Locations of recognition sites
+onga:ONGA_0000215	onga:has_element_type	SO:0000279	semapv:ManualMappingCuration	RNA-binding protein associated mRNAs	transcript_bound_by_protein	genomic element set	sequence feature type	approximate	Transcripts bound by protein
+onga:ONGA_0000210	onga:has_element_type	SO:0000330	semapv:ManualMappingCuration	functional conservation mapping	conserved_region	genomic element set	sequence feature type	approximate	Conserved regions across species
+onga:ONGA_0000224	onga:has_element_type	SO:0000149	semapv:ManualMappingCuration	contigs	contig	genomic element set	sequence feature type	exact	Direct match
+onga:ONGA_0000234	onga:has_element_type	SO:0001297	semapv:ManualMappingCuration	m6A methylation state	N6_methyladenosine	genomic element set	sequence feature type	exact	Direct match
+onga:ONGA_0000233	onga:has_element_type	SO:0001282	semapv:ManualMappingCuration	m5C methylation state	five_methylcytidine	genomic element set	sequence feature type	approximate	RNA 5-methylcytidine (not the DNA term SO:0001918)
+onga:ONGA_0000232	onga:has_element_type	SO:0001274	semapv:ManualMappingCuration	inosine methylation state	modified_inosine	genomic element set	sequence feature type	approximate	A-to-I editing product
+onga:ONGA_0000235	onga:has_element_type	SO:0001229	semapv:ManualMappingCuration	pseudouridine methylation state	pseudouridine	genomic element set	sequence feature type	approximate	Direct match on the modified base
+onga:ONGA_0000229	onga:has_element_type	SO:0000250	semapv:ManualMappingCuration	Nm methylation state	modified_RNA_base_feature	genomic element set	sequence feature type	broad	SO has only base-specific 2'-O-methyl terms, no generic Nm
+onga:ONGA_0000006	onga:has_element_type	SO:0000150	semapv:ManualMappingCuration	reads	read	genomic element set	sequence feature type	exact	Direct match
+onga:ONGA_0000009	onga:has_element_type	SO:0000150	semapv:ManualMappingCuration	rejected reads	read	genomic element set	sequence feature type	broad	Rejection is a QC facet
+onga:ONGA_0000153	onga:has_element_type	SO:0000150	semapv:ManualMappingCuration	subreads	read	genomic element set	sequence feature type	broad	Long-read subread; SO has no subread term
+onga:ONGA_0000147	onga:has_element_type	SO:0000150	semapv:ManualMappingCuration	R2C2 subreads	read	genomic element set	sequence feature type	broad	Rolling-circle subread; SO has no subread term
+onga:ONGA_0000138	onga:has_element_type	SO:0002023	semapv:ManualMappingCuration	index reads	multiplexing_sequence_identifier	genomic element set	sequence feature type	approximate	Demultiplexing index sequence
+onga:ONGA_0000151	onga:has_element_type	SO:0002023	semapv:ManualMappingCuration	sequence barcodes	multiplexing_sequence_identifier	genomic element set	sequence feature type	approximate	Sample or cell multiplexing tag
+onga:ONGA_0000146	onga:has_element_type	SO:0000112	semapv:ManualMappingCuration	primer sequence	primer	genomic element set	sequence feature type	exact	Direct match
+onga:ONGA_0000051	onga:has_element_type	SO:0001998	semapv:ManualMappingCuration	gRNAs	sgRNA	genomic element set	sequence feature type	exact	CRISPR single-guide RNA (SO:0000602 guide_RNA is the RNA-editing sense)
+onga:ONGA_0000054	onga:has_element_type	SO:0001998	semapv:ManualMappingCuration	non-targeting gRNAs	sgRNA	genomic element set	sequence feature type	broad	Control guides; targeting status is not an SO axis
+onga:ONGA_0000058	onga:has_element_type	SO:0001998	semapv:ManualMappingCuration	safe-targeting gRNAs	sgRNA	genomic element set	sequence feature type	broad	Control guides
+onga:ONGA_0000056	onga:has_element_type	SO:0001998	semapv:ManualMappingCuration	ranked gRNAs	sgRNA	genomic element set	sequence feature type	broad	Ranking is provenance
+onga:ONGA_0000106	onga:has_element_type	SO:0000340	semapv:ManualMappingCuration	chromosomes reference	chromosome	genomic element set	sequence feature type	broad	Per-chromosome reference sequences
+onga:ONGA_0000112	onga:has_element_type	SO:0000737	semapv:ManualMappingCuration	mitochondrial genome reference	mitochondrial_sequence	genomic element set	sequence feature type	approximate	Mitochondrial reference sequence
+onga:ONGA_0000116	onga:has_element_type	SO:0000657	semapv:ManualMappingCuration	repeats reference	repeat_region	genomic element set	sequence feature type	broad	Reference repeat annotation
+onga:ONGA_0000117	onga:has_element_type	SO:0000252	semapv:ManualMappingCuration	rRNA reference	rRNA	genomic element set	sequence feature type	broad	Reference rRNA sequences
+onga:ONGA_0000121	onga:has_element_type	SO:0000253	semapv:ManualMappingCuration	tRNA reference	tRNA	genomic element set	sequence feature type	broad	Reference tRNA sequences
+onga:ONGA_0000118	onga:has_element_type	SO:0000274	semapv:ManualMappingCuration	snRNA reference	snRNA	genomic element set	sequence feature type	broad	Reference snRNA sequences
+onga:ONGA_0000110	onga:has_element_type	SO:0000276	semapv:ManualMappingCuration	miRNA reference	miRNA	genomic element set	sequence feature type	broad	Reference miRNA sequences and annotations
+onga:ONGA_0000027	onga:has_element_type	SO:0000703	semapv:ManualMappingCuration	peaks	experimental_result_region	genomic element set	sequence feature type	approximate	Re-graded from relatedMatch: peak rows ARE experimental result regions; the earlier objection was that SO:0001697 ChIP_seq_region is assay-bound, a different point
+onga:ONGA_0000038	onga:has_element_type	SO:0000685	semapv:ManualMappingCuration	DHS peaks	DNaseI_hypersensitive_site	genomic element set	sequence feature type	exact	Direct match
+onga:ONGA_0000037	onga:has_element_type	SO:0000685	semapv:ManualMappingCuration	consensus DNase hypersensitivity sites	DNaseI_hypersensitive_site	genomic element set	sequence feature type	broad	Consensus across samples is provenance
+onga:ONGA_0000033	onga:has_element_type	SO:0000685	semapv:ManualMappingCuration	representative DNase hypersensitivity sites	DNaseI_hypersensitive_site	genomic element set	sequence feature type	broad	Curated representative set
+onga:ONGA_0000039	onga:has_element_type	SO:0000685	semapv:ManualMappingCuration	DHS regions reference	DNaseI_hypersensitive_site	genomic element set	sequence feature type	broad	Reference set of DHSs
+onga:ONGA_0000041	onga:has_element_type	SO:0002331	semapv:ManualMappingCuration	hotspots	accessible_DNA_region	genomic element set	sequence feature type	approximate	Broad accessible-chromatin domains
+onga:ONGA_0000109	skos:exactMatch	SO:0001505	semapv:ManualMappingCuration	genome reference	reference_genome	genomic element set	sequence feature type		Set-to-set exception: SO:0001505 is itself defined as 'A collection of sequences (often chromosomes) taken as the standard for a given organism and genome assembly'
+onga:ONGA_0000225	skos:closeMatch	SO:0001506	semapv:ManualMappingCuration	personalized genome assembly	variant_genome	genomic element set	sequence feature type		Set-to-set exception: SO:0001506 is itself defined as 'A collection of sequences (often chromosomes) of an individual'
+onga:ONGA_0000172	skos:relatedMatch	SO:0000306	semapv:ManualMappingCuration	methylated reads	methylated_DNA_base_feature	genomic element set	sequence feature type		Rows are reads CARRYING the base modification, not the base feature itself
+onga:ONGA_0000204	skos:relatedMatch	SO:0001536	semapv:ManualMappingCuration	variant effect quantifications	functional_effect_variant	genomic element set	sequence feature type		Rows are numbers about variants, not variants
+onga:ONGA_0000206	skos:relatedMatch	SO:0001683	semapv:ManualMappingCuration	PWMs	sequence_motif	genomic element set	sequence feature type		A PWM is a MODEL of a motif; SO has no matrix/model term
+onga:ONGA_0000227	skos:relatedMatch	SO:0001024	semapv:ManualMappingCuration	maternal haplotype mapping	haplotype	genomic element set	sequence feature type		Rows are haplotype assignments, not haplotypes
+onga:ONGA_0000228	skos:relatedMatch	SO:0001024	semapv:ManualMappingCuration	paternal haplotype mapping	haplotype	genomic element set	sequence feature type		Rows are haplotype assignments, not haplotypes
+onga:ONGA_0000237	skos:relatedMatch	SO:0001024	semapv:ManualMappingCuration	mapping	haplotype	genomic element set	sequence feature type		Rows are haplotype assignments, not haplotypes
+onga:ONGA_0000044	skos:relatedMatch	SO:0000684	semapv:ManualMappingCuration	nuclease cleavage frequency	nuclease_sensitive_site	genomic element set	sequence feature type		Group C: rows are per-base numbers, not nuclease-sensitive sites; fails the DataType admissibility rule
+onga:ONGA_0000150	skos:relatedMatch	SO:0000150	semapv:ManualMappingCuration	sequence adapters	read	genomic element set	sequence feature type		Group D: adapters are not reads and SO has no adapter term (see SO-REQ-010)
+onga:ONGA_0000191	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	element gene links		genomic element set	sequence feature type	not_applicable	Rows are PAIRS (edges) between an element and a gene, not features; see TrackGeometry.has_edges
+onga:ONGA_0000236	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	links		genomic element set	sequence feature type	not_applicable	Rows are PAIRS (edges), not features; see TrackGeometry.has_edges
+onga:ONGA_0000189	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	element gene interactions p-value		genomic element set	sequence feature type	not_applicable	Rows are statistics about edges, not features
+onga:ONGA_0000190	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	element gene interactions signal		genomic element set	sequence feature type	not_applicable	Rows are statistics about edges, not features
+onga:ONGA_0000209	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	sequence motifs report		genomic element set	sequence feature type	not_applicable	Rows are report entries, not located features
+onga:ONGA_0000223	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	3D structure		genomic element set	sequence feature type	not_applicable	Rows are structural model coordinates, not sequence features
+onga:ONGA_0000221	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	cell type annotations		genomic element set	sequence feature type	not_applicable	Rows are cell labels; cell type is delegated to CL (SO-REJ-001)
+onga:ONGA_0000222	onga:has_element_type	sssom:NoTermFound	semapv:ManualMappingCuration	cell type data		genomic element set	sequence feature type	not_applicable	Rows are per-cell values; cell type is delegated to CL (SO-REJ-001)
+onga:ONGA_0000250	skos:exactMatch	SO:0001030	semapv:ManualMappingCuration	plus	forward				Strand attribute, not an element type: moved from src/strand_orientation.yaml exact_mappings when ONGA ids were minted
+onga:ONGA_0000251	skos:exactMatch	SO:0001031	semapv:ManualMappingCuration	minus	reverse				Strand attribute, not an element type: moved from src/strand_orientation.yaml exact_mappings when ONGA ids were minted

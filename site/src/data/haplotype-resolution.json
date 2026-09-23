@@ -1,6 +1,7 @@
 [
   {
     "id": "allele_specific",
+    "ongaId": "ONGA_0000254",
     "name": "allele_specific",
     "slug": "allele_specific",
     "description": "Content resolved to individual alleles, partitioning signal or interactions between the two alleles using phased variants (e.g. an allele-specific contact matrix).",
@@ -17,6 +18,7 @@
   },
   {
     "id": "haplotype_specific",
+    "ongaId": "ONGA_0000255",
     "name": "haplotype_specific",
     "slug": "haplotype_specific",
     "description": "Content computed separately for a specific parental haplotype, i.e. partitioned by haplotype (e.g. haplotype-specific alignments or contact matrix).",
@@ -33,6 +35,7 @@
   },
   {
     "id": "phased",
+    "ongaId": "ONGA_0000256",
     "name": "phased",
     "slug": "phased",
     "description": "Content with haplotype phase resolved (which alleles co-occur on the same chromosome) without necessarily being split per-haplotype (e.g. phased variant calls, phased mapping).",

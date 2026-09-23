@@ -40,5 +40,7 @@ enums:
         description: >-
           Data retained after quality-control filtering (e.g. minimum mapping
           quality, blacklist/exclusion-list removal, deduplication).
+        meaning: onga:ONGA_0000259
       unfiltered:
         description: 'Raw data before quality-control filtering.'
+        meaning: onga:ONGA_0000260

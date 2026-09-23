@@ -1,6 +1,7 @@
 [
   {
     "id": "male",
+    "ongaId": "ONGA_0000269",
     "name": "male",
     "slug": "male",
     "description": "Reference assembly derived from a male individual (includes X and Y chromosomes).",
@@ -21,6 +22,7 @@
   },
   {
     "id": "female",
+    "ongaId": "ONGA_0000270",
     "name": "female",
     "slug": "female",
     "description": "Reference assembly derived from a female individual (X chromosomes only).",

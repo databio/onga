@@ -1,6 +1,7 @@
 [
   {
     "id": "footprints",
+    "ongaId": "ONGA_0000163",
     "name": "footprints",
     "slug": "footprints",
     "description": "Short protected regions within open chromatin indicating transcription factor occupancy, identified as local signal minima within peaks.",
@@ -41,6 +42,7 @@
   },
   {
     "id": "open_chromatin_regions",
+    "ongaId": "ONGA_0000164",
     "name": "open chromatin regions",
     "slug": "open_chromatin_regions",
     "description": "Genomic regions of accessible chromatin from ATAC-seq, DNase-seq, or similar assays.",
@@ -82,6 +84,7 @@
   },
   {
     "id": "chromatin_stripes",
+    "ongaId": "ONGA_0000165",
     "name": "chromatin stripes",
     "slug": "chromatin_stripes",
     "description": "Elongated features in contact matrices extending from loop anchors, indicating active loop extrusion.",
@@ -98,6 +101,7 @@
   },
   {
     "id": "contact_domains",
+    "ongaId": "ONGA_0000166",
     "name": "contact domains",
     "slug": "contact_domains",
     "description": "Topologically associating domains (TADs) from contact matrix analysis, representing self-interacting chromatin regions.",
@@ -137,6 +141,7 @@
   },
   {
     "id": "genome_compartments",
+    "ongaId": "ONGA_0000167",
     "name": "genome compartments",
     "slug": "genome_compartments",
     "description": "Large-scale A (active) and B (inactive) chromatin compartments from PCA of Hi-C contact matrices.",
@@ -155,6 +160,7 @@
   },
   {
     "id": "genome_subcompartments",
+    "ongaId": "ONGA_0000168",
     "name": "genome subcompartments",
     "slug": "genome_subcompartments",
     "description": "Fine-grained chromatin compartments (A1, A2, B1, B2, B3, B4) within major A/B compartments.",
@@ -171,6 +177,7 @@
   },
   {
     "id": "loops",
+    "ongaId": "ONGA_0000169",
     "name": "loops",
     "slug": "loops",
     "description": "Chromatin loop interactions (point-to-point contacts) from contact matrices, often connecting enhancers to promoters.",
@@ -210,6 +217,7 @@
   },
   {
     "id": "nested_contact_domains",
+    "ongaId": "ONGA_0000170",
     "name": "nested contact domains",
     "slug": "nested_contact_domains",
     "description": "Hierarchically nested topological domains showing multi-scale chromatin organization.",
@@ -247,6 +255,7 @@
   },
   {
     "id": "cpg_sites_coverage",
+    "ongaId": "ONGA_0000171",
     "name": "CpG sites coverage",
     "slug": "cpg_sites_coverage",
     "description": "Sequencing read coverage at CpG positions, indicating measurement confidence.",
@@ -263,6 +272,7 @@
   },
   {
     "id": "methylated_reads",
+    "ongaId": "ONGA_0000172",
     "name": "methylated reads",
     "slug": "methylated_reads",
     "description": "Reads containing DNA methylation marks from bisulfite or direct detection methods.",
@@ -295,6 +305,7 @@
   },
   {
     "id": "methylation_state_at_chg",
+    "ongaId": "ONGA_0000173",
     "name": "methylation state at CHG",
     "slug": "methylation_state_at_chg",
     "description": "DNA methylation status at CHG sequence context (H = A, C, or T), common in plant genomes.",
@@ -341,6 +352,7 @@
   },
   {
     "id": "methylation_state_at_chh",
+    "ongaId": "ONGA_0000174",
     "name": "methylation state at CHH",
     "slug": "methylation_state_at_chh",
     "description": "DNA methylation status at CHH sequence context, representing asymmetric non-CpG methylation.",
@@ -387,6 +399,7 @@
   },
   {
     "id": "methylation_state_at_cpg",
+    "ongaId": "ONGA_0000175",
     "name": "methylation state at CpG",
     "slug": "methylation_state_at_cpg",
     "description": "DNA methylation status (methylated/unmethylated fraction) at CpG dinucleotides, the primary context for mammalian methylation.",
@@ -435,6 +448,7 @@
   },
   {
     "id": "smoothed_methylation_state_at_cpg",
+    "ongaId": "ONGA_0000176",
     "name": "smoothed methylation state at CpG",
     "slug": "smoothed_methylation_state_at_cpg",
     "description": "CpG methylation values smoothed across neighboring sites to reduce noise.",
@@ -472,6 +486,7 @@
   },
   {
     "id": "candidate_cis_regulatory_elements",
+    "ongaId": "ONGA_0000177",
     "name": "candidate Cis-Regulatory Elements",
     "slug": "candidate_cis_regulatory_elements",
     "description": "Computationally predicted cis-regulatory elements (CREs) including enhancers, promoters, and insulators from chromatin accessibility and histone data.",
@@ -481,8 +496,8 @@
     "edamMapping": {
       "predicate": "broadMatch",
       "edamId": "edam:data_3002",
-      "edamLabel": "",
-      "comment": "From LinkML schema"
+      "edamLabel": "Annotation track",
+      "comment": "EDAM lacks CRE data type"
     },
     "elementType": {
       "fit": "broad",
@@ -518,6 +533,7 @@
   },
   {
     "id": "candidate_enhancers",
+    "ongaId": "ONGA_0000178",
     "name": "candidate enhancers",
     "slug": "candidate_enhancers",
     "description": "Computationally predicted enhancer elements based on chromatin signatures (H3K4me1, H3K27ac, accessibility).",
@@ -564,6 +580,7 @@
   },
   {
     "id": "candidate_promoters",
+    "ongaId": "ONGA_0000179",
     "name": "candidate promoters",
     "slug": "candidate_promoters",
     "description": "Computationally predicted promoter elements based on chromatin signatures and TSS proximity.",
@@ -610,6 +627,7 @@
   },
   {
     "id": "curated_binding_sites",
+    "ongaId": "ONGA_0000180",
     "name": "curated binding sites",
     "slug": "curated_binding_sites",
     "description": "Manually curated and validated transcription factor binding sites.",
@@ -656,6 +674,7 @@
   },
   {
     "id": "enhancer_validation",
+    "ongaId": "ONGA_0000181",
     "name": "enhancer validation",
     "slug": "enhancer_validation",
     "description": "Experimental validation data for predicted enhancers.",
@@ -672,6 +691,7 @@
   },
   {
     "id": "enhancers_reference",
+    "ongaId": "ONGA_0000182",
     "name": "enhancers reference",
     "slug": "enhancers_reference",
     "description": "Reference set of annotated enhancer elements.",
@@ -709,6 +729,7 @@
   },
   {
     "id": "polya_sites",
+    "ongaId": "ONGA_0000183",
     "name": "polyA sites",
     "slug": "polya_sites",
     "description": "Polyadenylation signal sites where pre-mRNA is cleaved and polyadenylated.",
@@ -746,6 +767,7 @@
   },
   {
     "id": "predicted_enhancers",
+    "ongaId": "ONGA_0000184",
     "name": "predicted enhancers",
     "slug": "predicted_enhancers",
     "description": "Computationally predicted enhancer elements.",
@@ -783,6 +805,7 @@
   },
   {
     "id": "promoters_reference",
+    "ongaId": "ONGA_0000185",
     "name": "promoters reference",
     "slug": "promoters_reference",
     "description": "Reference set of annotated promoter elements.",
@@ -820,6 +843,7 @@
   },
   {
     "id": "regulatory_elements",
+    "ongaId": "ONGA_0000186",
     "name": "regulatory elements",
     "slug": "regulatory_elements",
     "description": "General annotation of regulatory elements: enhancers, promoters, silencers, and insulators.",
@@ -914,6 +938,7 @@
   },
   {
     "id": "transcription_start_sites",
+    "ongaId": "ONGA_0000187",
     "name": "transcription start sites",
     "slug": "transcription_start_sites",
     "description": "Experimentally determined transcription start sites (TSS) from CAGE, PRO-seq, or similar assays.",
@@ -963,6 +988,7 @@
   },
   {
     "id": "tss_reference",
+    "ongaId": "ONGA_0000188",
     "name": "TSS reference",
     "slug": "tss_reference",
     "description": "Reference set of transcription start sites.",
@@ -1000,6 +1026,7 @@
   },
   {
     "id": "element_gene_interactions_p_value",
+    "ongaId": "ONGA_0000189",
     "name": "element gene interactions p-value",
     "slug": "element_gene_interactions_p_value",
     "description": "Statistical significance of element-gene interaction associations.",
@@ -1016,6 +1043,7 @@
   },
   {
     "id": "element_gene_interactions_signal",
+    "ongaId": "ONGA_0000190",
     "name": "element gene interactions signal",
     "slug": "element_gene_interactions_signal",
     "description": "Signal strength of element-gene interaction associations.",
@@ -1032,6 +1060,7 @@
   },
   {
     "id": "element_gene_links",
+    "ongaId": "ONGA_0000191",
     "name": "element gene links",
     "slug": "element_gene_links",
     "description": "Associations linking regulatory elements (commonly enhancers) to their putative target genes.",
@@ -1048,6 +1077,7 @@
   },
   {
     "id": "topic_gene_weights",
+    "ongaId": "ONGA_0000192",
     "name": "topic gene weights",
     "slug": "topic_gene_weights",
     "description": "Gene weights derived from topic modeling of regulatory data.",
@@ -1064,6 +1094,7 @@
   },
   {
     "id": "relative_replication_signal",
+    "ongaId": "ONGA_0000193",
     "name": "relative replication signal",
     "slug": "relative_replication_signal",
     "description": "Replication timing signal expressed relative to a reference.",
@@ -1080,6 +1111,7 @@
   },
   {
     "id": "replication_timing_profile",
+    "ongaId": "ONGA_0000194",
     "name": "replication timing profile",
     "slug": "replication_timing_profile",
     "description": "Genome-wide profile of DNA replication timing.",
@@ -1096,6 +1128,7 @@
   },
   {
     "id": "allele_specific_variants",
+    "ongaId": "ONGA_0000195",
     "name": "allele-specific variants",
     "slug": "allele_specific_variants",
     "description": "Variants showing allele-specific behavior in expression or chromatin accessibility.",
@@ -1142,6 +1175,7 @@
   },
   {
     "id": "copy_number_variation",
+    "ongaId": "ONGA_0000196",
     "name": "copy number variation",
     "slug": "copy_number_variation",
     "description": "Genomic regions with altered copy numbers (deletions, duplications) relative to reference.",
@@ -1179,6 +1213,7 @@
   },
   {
     "id": "curated_snvs",
+    "ongaId": "ONGA_0000197",
     "name": "curated SNVs",
     "slug": "curated_snvs",
     "description": "Manually curated and validated single nucleotide variants.",
@@ -1225,6 +1260,7 @@
   },
   {
     "id": "dsqtls",
+    "ongaId": "ONGA_0000198",
     "name": "dsQTLs",
     "slug": "dsqtls",
     "description": "DNase I sensitivity quantitative trait loci: variants associated with chromatin accessibility.",
@@ -1271,6 +1307,7 @@
   },
   {
     "id": "eqtls",
+    "ongaId": "ONGA_0000199",
     "name": "eQTLs",
     "slug": "eqtls",
     "description": "Expression quantitative trait loci: variants statistically associated with gene expression levels.",
@@ -1317,6 +1354,7 @@
   },
   {
     "id": "maternal_variant_calls",
+    "ongaId": "ONGA_0000200",
     "name": "maternal variant calls",
     "slug": "maternal_variant_calls",
     "description": "Variants called specifically from the maternal haplotype.",
@@ -1363,6 +1401,7 @@
   },
   {
     "id": "paternal_variant_calls",
+    "ongaId": "ONGA_0000201",
     "name": "paternal variant calls",
     "slug": "paternal_variant_calls",
     "description": "Variants called specifically from the paternal haplotype.",
@@ -1409,6 +1448,7 @@
   },
   {
     "id": "reference_variants",
+    "ongaId": "ONGA_0000202",
     "name": "reference variants",
     "slug": "reference_variants",
     "description": "Variants relative to a reference genome.",
@@ -1455,6 +1495,7 @@
   },
   {
     "id": "variant_calls",
+    "ongaId": "ONGA_0000203",
     "name": "variant calls",
     "slug": "variant_calls",
     "description": "Called genomic variants (SNPs, indels, structural variants) in VCF format.",
@@ -1501,6 +1542,7 @@
   },
   {
     "id": "variant_effect_quantifications",
+    "ongaId": "ONGA_0000204",
     "name": "variant effect quantifications",
     "slug": "variant_effect_quantifications",
     "description": "Quantitative measurements of variant functional effects.",
@@ -1538,6 +1580,7 @@
   },
   {
     "id": "variant_reference",
+    "ongaId": "ONGA_0000205",
     "name": "variant reference",
     "slug": "variant_reference",
     "description": "Reference database or set of known genomic variants.",
@@ -1575,6 +1618,7 @@
   },
   {
     "id": "pwms",
+    "ongaId": "ONGA_0000206",
     "name": "PWMs",
     "slug": "pwms",
     "description": "Position weight matrices representing sequence motif models, encoding nucleotide preferences at each position.",
@@ -1612,6 +1656,7 @@
   },
   {
     "id": "sequence_motifs",
+    "ongaId": "ONGA_0000207",
     "name": "sequence motifs",
     "slug": "sequence_motifs",
     "description": "Sequence patterns enriched in genomic regions of interest.",
@@ -1658,6 +1703,7 @@
   },
   {
     "id": "sequence_motifs_instances",
+    "ongaId": "ONGA_0000208",
     "name": "sequence motifs instances",
     "slug": "sequence_motifs_instances",
     "description": "Genomic locations where specific sequence motifs occur.",
@@ -1704,6 +1750,7 @@
   },
   {
     "id": "sequence_motifs_report",
+    "ongaId": "ONGA_0000209",
     "name": "sequence motifs report",
     "slug": "sequence_motifs_report",
     "description": "Summary report of motif discovery or enrichment analysis.",
@@ -1729,6 +1776,7 @@
   },
   {
     "id": "functional_conservation_mapping",
+    "ongaId": "ONGA_0000210",
     "name": "functional conservation mapping",
     "slug": "functional_conservation_mapping",
     "description": "Mapping of functionally conserved regions across species.",
@@ -1766,6 +1814,7 @@
   },
   {
     "id": "functional_conservation_quantifications",
+    "ongaId": "ONGA_0000211",
     "name": "functional conservation quantifications",
     "slug": "functional_conservation_quantifications",
     "description": "Quantification of functional conservation scores.",
@@ -1782,6 +1831,7 @@
   },
   {
     "id": "mirna_annotations",
+    "ongaId": "ONGA_0000212",
     "name": "miRNA annotations",
     "slug": "mirna_annotations",
     "description": "Annotation tracks for microRNA genes and precursors.",
@@ -1819,6 +1869,7 @@
   },
   {
     "id": "repeat_elements_annotation",
+    "ongaId": "ONGA_0000213",
     "name": "repeat elements annotation",
     "slug": "repeat_elements_annotation",
     "description": "Annotation of repetitive element locations and classes.",
@@ -1856,6 +1907,7 @@
   },
   {
     "id": "restriction_enzyme_site_locations",
+    "ongaId": "ONGA_0000214",
     "name": "restriction enzyme site locations",
     "slug": "restriction_enzyme_site_locations",
     "description": "Genomic positions of restriction enzyme recognition sites.",
@@ -1902,6 +1954,7 @@
   },
   {
     "id": "rna_binding_protein_associated_mrnas",
+    "ongaId": "ONGA_0000215",
     "name": "RNA-binding protein associated mRNAs",
     "slug": "rna_binding_protein_associated_mrnas",
     "description": "mRNAs co-immunoprecipitated with RNA-binding proteins.",
@@ -1939,6 +1992,7 @@
   },
   {
     "id": "splice_junctions",
+    "ongaId": "ONGA_0000216",
     "name": "splice junctions",
     "slug": "splice_junctions",
     "description": "Splice site junctions identified from RNA-seq alignments.",
@@ -1987,6 +2041,7 @@
   },
   {
     "id": "transcribed_fragments",
+    "ongaId": "ONGA_0000217",
     "name": "transcribed fragments",
     "slug": "transcribed_fragments",
     "description": "Genomic regions identified as transcribed from RNA-seq data.",
@@ -2024,6 +2079,7 @@
   },
   {
     "id": "transcriptome_annotations",
+    "ongaId": "ONGA_0000218",
     "name": "transcriptome annotations",
     "slug": "transcriptome_annotations",
     "description": "Comprehensive gene and transcript annotations for a genome.",
@@ -2040,6 +2096,7 @@
   },
   {
     "id": "transposable_element_tf_ancestral_origin_percent_by_motif",
+    "ongaId": "ONGA_0000219",
     "name": "transposable element TF ancestral origin percent by motif",
     "slug": "transposable_element_tf_ancestral_origin_percent_by_motif",
     "description": "Percentage of TF motif instances with transposable element ancestral origin.",
@@ -2056,6 +2113,7 @@
   },
   {
     "id": "transposable_element_tf_ancestral_origin_percent_by_subfamily",
+    "ongaId": "ONGA_0000220",
     "name": "transposable element TF ancestral origin percent by subfamily",
     "slug": "transposable_element_tf_ancestral_origin_percent_by_subfamily",
     "description": "Percentage of TF binding sites by TE subfamily ancestral origin.",
@@ -2072,6 +2130,7 @@
   },
   {
     "id": "cell_type_annotations",
+    "ongaId": "ONGA_0000221",
     "name": "cell type annotations",
     "slug": "cell_type_annotations",
     "description": "Cell type labels assigned to individual cells based on marker genes or reference mapping.",
@@ -2090,6 +2149,7 @@
   },
   {
     "id": "cell_type_data",
+    "ongaId": "ONGA_0000222",
     "name": "cell type data",
     "slug": "cell_type_data",
     "description": "Data associated with cell type identity in single-cell experiments.",
@@ -2106,6 +2166,7 @@
   },
   {
     "id": "3d_structure",
+    "ongaId": "ONGA_0000223",
     "name": "3D structure",
     "slug": "3d_structure",
     "description": "Three-dimensional structural model of a genomic region or chromatin domain.",
@@ -2131,6 +2192,7 @@
   },
   {
     "id": "contigs",
+    "ongaId": "ONGA_0000224",
     "name": "contigs",
     "slug": "contigs",
     "description": "Assembled sequence contigs from genome assembly.",
@@ -2177,6 +2239,7 @@
   },
   {
     "id": "personalized_genome_assembly",
+    "ongaId": "ONGA_0000225",
     "name": "personalized genome assembly",
     "slug": "personalized_genome_assembly",
     "description": "Genome assembly incorporating an individual's sequence variation.",
@@ -2214,6 +2277,7 @@
   },
   {
     "id": "predicted_3d_structural_ensembles",
+    "ongaId": "ONGA_0000226",
     "name": "predicted 3D structural ensembles",
     "slug": "predicted_3d_structural_ensembles",
     "description": "Computationally predicted ensembles of 3D genomic structures.",
@@ -2230,6 +2294,7 @@
   },
   {
     "id": "maternal_haplotype_mapping",
+    "ongaId": "ONGA_0000227",
     "name": "maternal haplotype mapping",
     "slug": "maternal_haplotype_mapping",
     "description": "Sequence reads or contigs assigned to the maternal haplotype.",
@@ -2262,6 +2327,7 @@
   },
   {
     "id": "paternal_haplotype_mapping",
+    "ongaId": "ONGA_0000228",
     "name": "paternal haplotype mapping",
     "slug": "paternal_haplotype_mapping",
     "description": "Sequence reads or contigs assigned to the paternal haplotype.",
@@ -2294,6 +2360,7 @@
   },
   {
     "id": "nm_methylation_state",
+    "ongaId": "ONGA_0000229",
     "name": "Nm methylation state",
     "slug": "nm_methylation_state",
     "description": "2′-O-methylation (Nm) modification.",
@@ -2331,6 +2398,7 @@
   },
   {
     "id": "snps",
+    "ongaId": "ONGA_0000230",
     "name": "SNPs",
     "slug": "snps",
     "description": "Single nucleotide polymorphisms.",
@@ -2377,6 +2445,7 @@
   },
   {
     "id": "indels",
+    "ongaId": "ONGA_0000231",
     "name": "indels",
     "slug": "indels",
     "description": "Insertion/deletion variants.",
@@ -2423,6 +2492,7 @@
   },
   {
     "id": "inosine_methylation_state",
+    "ongaId": "ONGA_0000232",
     "name": "inosine methylation state",
     "slug": "inosine_methylation_state",
     "description": "Inosine (A-to-I editing) modification.",
@@ -2460,6 +2530,7 @@
   },
   {
     "id": "m5c_methylation_state",
+    "ongaId": "ONGA_0000233",
     "name": "m5C methylation state",
     "slug": "m5c_methylation_state",
     "description": "5-methylcytosine (m5C) RNA modification.",
@@ -2497,6 +2568,7 @@
   },
   {
     "id": "m6a_methylation_state",
+    "ongaId": "ONGA_0000234",
     "name": "m6A methylation state",
     "slug": "m6a_methylation_state",
     "description": "N6-methyladenosine (m6A) modification on transcripts. m6A is the most abundant internal mRNA modification.",
@@ -2534,6 +2606,7 @@
   },
   {
     "id": "pseudouridine_methylation_state",
+    "ongaId": "ONGA_0000235",
     "name": "pseudouridine methylation state",
     "slug": "pseudouridine_methylation_state",
     "description": "Pseudouridine (Ψ) modification. Pseudouridine is the most abundant RNA modification.",
@@ -2571,6 +2644,7 @@
   },
   {
     "id": "links",
+    "ongaId": "ONGA_0000236",
     "name": "links",
     "slug": "links",
     "description": "Generic regulatory links associating genomic elements with target features.",
@@ -2587,6 +2661,7 @@
   },
   {
     "id": "mapping",
+    "ongaId": "ONGA_0000237",
     "name": "mapping",
     "slug": "mapping",
     "description": "Sequence reads or contigs assigned to a haplotype.",
