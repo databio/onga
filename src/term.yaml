@@ -6,6 +6,9 @@ description: >-
   its human-readable label). Ported from the FGA-WG schema
   (https://w3id.org/fga-wg/schema/term).
 
+annotations:
+  onga_layer: 3
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

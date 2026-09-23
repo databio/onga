@@ -15,6 +15,9 @@ description: >-
   distinguishes a format (e.g. narrowPeak) from a column standard (e.g. BED6+3);
   this vocabulary captures the format axis.
 
+annotations:
+  onga_layer: 1
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

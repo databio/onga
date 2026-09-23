@@ -18,6 +18,9 @@ description: >-
   GenomeAssembly class name disappears; two classes for one concept was a
   collision, and ReferenceGenome was already the Layer-2 descriptor).
 
+annotations:
+  onga_layer: 2
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

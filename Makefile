@@ -2,7 +2,7 @@ SCHEMA_DIR = src
 SCHEMA_NAME = onga
 MAIN_SCHEMA = $(SCHEMA_DIR)/$(SCHEMA_NAME).yaml
 
-.PHONY: all gen-owl gen-owl-core gen-owl-so gen-jsonld gen-python gen-docs gen-registry validate test test-examples test-registry clean embeddings-build embeddings-compare apply mappings validate-mappings fmt fmt-check regen
+.PHONY: subjects subjects-check all gen-owl gen-owl-core gen-owl-so gen-jsonld gen-python gen-docs gen-registry validate test test-examples test-registry clean embeddings-build embeddings-compare apply mappings validate-mappings fmt fmt-check regen
 
 all: gen-owl gen-jsonld gen-registry
 
@@ -11,7 +11,7 @@ all: gen-owl gen-jsonld gen-registry
 # carries its ONGA_NNNNNNN id (curation/term_ids.tsv), src/ is the projection of
 # mappings/*.sssom.tsv. Plus the SSSOM validation, instance validation of the
 # worked examples against the record classes, and the YAML formatting fixed point.
-test: fmt-check validate-mappings test-examples
+test: fmt-check validate-mappings subjects-check test-examples
 	python scripts/check_roundtrip.py
 
 # Every src/*.yaml must be a fixed point of the shared YAML writer
@@ -60,8 +60,19 @@ mappings:
 validate-mappings:
 	python scripts/validate_mappings.py
 
+# The subject registry: curation/subjects.json (every reviewable term, enum,
+# class, slot, usage, subset and module, with a hash of its authored payload)
+# and curation/term_crosswalk.json (every label and legacy reference form ->
+# term id). Generated and tracked; never hand-edit.
+subjects:
+	python scripts/curation_subjects.py
+
+subjects-check:
+	python scripts/curation_subjects.py --check
+
 # Every generator whose output is tracked. This recipe is the inventory.
-regen: mappings gen-registry
+# subjects runs after mappings: a term's payload includes its SSSOM rows.
+regen: mappings subjects gen-registry
 
 gen-jsonld:
 	mkdir -p project

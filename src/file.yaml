@@ -12,6 +12,9 @@ description: >-
   cross-mapped to `TrackFormat.file_format`; required-slot demotions follow the
   ONGA required-slot policy.
 
+annotations:
+  onga_layer: 3
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

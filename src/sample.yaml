@@ -11,6 +11,9 @@ description: >-
   anticipated organism_part landing slot recorded in
   `mappings/scope_delegations.tsv`.
 
+annotations:
+  onga_layer: 4
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

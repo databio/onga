@@ -20,6 +20,9 @@ description: >-
   to PATO (FAIRtracks has no sex field, so it cannot be imported from the
   FGA-WG).
 
+annotations:
+  onga_layer: 1
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

@@ -9,6 +9,9 @@ description: >-
   tree_root: both standalone GenomicAnnotationFile records and TopLevel
   deposits must validate.
 
+annotations:
+  onga_layer: 4
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

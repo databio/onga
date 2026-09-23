@@ -8,6 +8,9 @@ description: >-
   follows the PROV-O Qualification Pattern; that lineage is recorded as
   machine-readable annotation on the class, not by restructuring.
 
+annotations:
+  onga_layer: 3
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

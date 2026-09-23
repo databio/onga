@@ -6,6 +6,9 @@ description: >-
   annotation files. Ported from the FGA-WG schema
   (https://w3id.org/fga-wg/schema/deposit).
 
+annotations:
+  onga_layer: 4
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

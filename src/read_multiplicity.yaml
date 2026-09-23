@@ -16,6 +16,9 @@ description: >-
   Aligned with FGA-WG issue #2 (data interpretation): the mapping-multiplicity
   axis is one of the orthogonal facets a compound interpretation term collapses.
 
+annotations:
+  onga_layer: 1
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

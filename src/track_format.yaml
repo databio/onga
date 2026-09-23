@@ -16,6 +16,9 @@ description: >-
   this schema captures that split via `file_format` plus the conditional
   `bed_core_columns` / `bed_extra_columns` slots.
 
+annotations:
+  onga_layer: 2
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

@@ -29,6 +29,9 @@ description: >-
   is one of the orthogonal facets a compound interpretation term collapses, here
   homed on the provenance schema as a processing/derivation operation.
 
+annotations:
+  onga_layer: 1
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

@@ -5,6 +5,9 @@ description: >-
   A checksum of a data file, copied from the GA4GH DRS Checksum model. Ported
   from the FGA-WG schema (https://w3id.org/fga-wg/schema/checksum).
 
+annotations:
+  onga_layer: 3
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

@@ -12,6 +12,9 @@ description: >-
   describe processing provenance, not content: `output_type` names a result
   KIND (a noun), while these name OPERATIONS applied.
 
+annotations:
+  onga_layer: 2
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

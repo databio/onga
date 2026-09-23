@@ -22,6 +22,9 @@ description: >-
   some element type, not the element itself. Where every row instantiates one Sequence Ontology class, that class is recorded
   as the term's `element_type` annotation. ONGA is a user of SO, never a substitute for it.
 
+annotations:
+  onga_layer: 1
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

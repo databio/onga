@@ -6,6 +6,9 @@ description: >-
   GA4GH DRS AccessURL model. Ported from the FGA-WG schema
   (https://w3id.org/fga-wg/schema/access-url).
 
+annotations:
+  onga_layer: 3
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

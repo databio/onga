@@ -665,19 +665,9 @@ function readUpstreamRequests() {
 // per-class/per-enum JSON the dynamic /schema Astro routes render generically.
 // ---------------------------------------------------------------------------
 
-// module -> layer. Layer 1 vocabularies keep hand-curated pages; classes in
+// Layer names. A module's layer comes from its `annotations.onga_layer` (see
+// loadAllModules). Layer 1 vocabularies keep hand-curated pages; classes in
 // Layers 2-4 (and the structural enums) get generic pages.
-const MODULE_LAYERS = {
-  file_content: 1, format: 1, strand_orientation: 1, haplotype_resolution: 1,
-  read_multiplicity: 1, filter_status: 1, normalization: 1, thresholding: 1,
-  derivation: 1, reference_build_sex: 1,
-  track_format: 2, track_interpretation: 2, track_provenance: 2,
-  track_geometry: 2, reference_genome: 2,
-  term: 3, util: 3, checksum: 3, access_url: 3, access_method: 3,
-  input_source: 3, quality_assessment: 3, file: 3, genomic_annotation_file: 3,
-  experiment: 4, analysis: 4, study: 4, sample: 4, donor: 4, contact: 4,
-  deposit: 4, document: 4, file_collection: 4, top_level: 4,
-};
 const LAYER_NAMES = { 1: 'Vocabulary', 2: 'Descriptor', 3: 'Record', 4: 'Investigation' };
 
 // Enums with hand-curated browse pages (Layer-1 vocabularies). Slot ranges
@@ -706,16 +696,22 @@ const CLASS_HREF_OVERRIDES = {
   ReferenceGenome: '/reference-genome',
 };
 
+// Each module's layer is data: the schema-level `annotations: {onga_layer: N}`
+// in src/<module>.yaml (0 for the root onga.yaml).
 function loadAllModules() {
   const classes = {};
   const slots = {};
   const enums = {};
+  const moduleLayers = {};
   const fs = readdirSync(schemaDir);
   for (const fname of fs.sort()) {
     if (!fname.endsWith('.yaml') || fname === 'linkml_lint_config.yaml') continue;
     const data = parse(readFileSync(join(schemaDir, fname), 'utf-8'));
     if (!data) continue;
     const module = fname.replace(/\.yaml$/, '');
+    const layer = data.annotations?.onga_layer;
+    if (!Number.isInteger(layer)) throw new Error(`${fname}: no integer annotations.onga_layer`);
+    moduleLayers[module] = layer;
     for (const [name, def] of Object.entries(data.classes || {})) {
       classes[name] = { ...(def || {}), _module: module };
     }
@@ -726,7 +722,7 @@ function loadAllModules() {
       enums[name] = { ...(def || {}), _module: module };
     }
   }
-  return { classes, slots, enums };
+  return { classes, slots, enums, moduleLayers };
 }
 
 function resolveClassSlots(clsName, classes, slots, fromParent = null) {
@@ -782,13 +778,13 @@ function ruleList(cls) {
 }
 
 function buildSchemaBrowser() {
-  const { classes, slots, enums } = loadAllModules();
+  const { classes, slots, enums, moduleLayers } = loadAllModules();
   const classNames = new Set(Object.keys(classes));
   const enumNames = new Set(Object.keys(enums));
 
   const classRecords = [];
   for (const [name, cls] of Object.entries(classes)) {
-    const layer = MODULE_LAYERS[cls._module] ?? 3;
+    const layer = moduleLayers[cls._module];
     if (layer < 2) continue; // Layer-1 files hold no classes, but be safe.
     const resolved = resolveClassSlots(name, classes, slots);
     const references = new Set();

@@ -13,6 +13,9 @@ description: >-
   via `track_interpretation.feature_type`, whose terms carry `element_type` SO
   annotations.
 
+annotations:
+  onga_layer: 3
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

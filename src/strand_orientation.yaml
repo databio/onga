@@ -19,6 +19,9 @@ description: >-
   term in the generated OWL. See the ADR "ONGA terms denote sets; SO terms
   denote elements".
 
+annotations:
+  onga_layer: 1
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

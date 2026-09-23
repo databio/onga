@@ -28,6 +28,8 @@ description: >-
   Where every member of an ONGA set is an instance of one SO class, ONGA records
   that with `onga:has_element_type`. ONGA is a user of SO, not a competitor to
   it.
+annotations:
+  onga_layer: 0
 license: https://creativecommons.org/licenses/by/4.0/
 version: 0.1.0
 created_by: https://orcid.org/0000-0001-5884-4247

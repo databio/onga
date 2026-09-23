@@ -8,6 +8,9 @@ description: >-
   SAMPLE's donor, which must never be confused with
   `ReferenceGenome.build_sex` (the sex of the reference assembly build).
 
+annotations:
+  onga_layer: 4
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

@@ -10,6 +10,9 @@ description: >-
   the slot's range is the enum, not the class (adopting the fga-qg
   add-external-standard-annotations branch's bug fix).
 
+annotations:
+  onga_layer: 3
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

@@ -1046,7 +1046,7 @@
       "type": "string"
     },
     "Format": {
-      "description": "Common file formats for genomic annotation tracks. Where an EDAM term exists for the format, it is referenced via `meaning`.",
+      "description": "Common file formats for genomic annotation tracks. Where an EDAM term exists for the format, it is referenced via `exact_mappings`.",
       "enum": [
         "BED",
         "bigBed",

@@ -27,6 +27,9 @@ description: >-
   Following the facet convention for axes lacking a clean ontology term for the
   resolution sense, the permissible values carry NO `meaning:` CURIEs.
 
+annotations:
+  onga_layer: 1
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/

@@ -17,6 +17,9 @@ description: >-
   letter away from the ONGA content vocabulary `DataType` — a different thing
   entirely).
 
+annotations:
+  onga_layer: 2
+
 prefixes:
   linkml: https://w3id.org/linkml/
   onga: https://databio.org/onga/
