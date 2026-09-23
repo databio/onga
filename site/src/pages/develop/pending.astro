@@ -1,0 +1,144 @@
+---
+// Pending decisions, grouped by verdict, with the diff a dry-run apply
+// produces (curation/pending.json, from `make pending`). Live mode adds
+// Dry-run and Apply buttons that stream from the local daemon.
+import { url } from '../../lib/url';
+import Layout from '../../layouts/Layout.astro';
+import ModeBanner from '../../components/ModeBanner.astro';
+import StateChip from '../../components/StateChip.astro';
+import pendingDoc from '../../data/develop/pending.json';
+import { decisions, subjectIndex } from '../../lib/develop';
+
+const pending = pendingDoc as any;
+const records = decisions.filter((d) => d.status === 'pending');
+const effects = Object.fromEntries((pending.decisions || []).map((e: any) => [e.id, e]));
+const groups: Record<string, any[]> = {};
+for (const d of records) (groups[d.verdict] ||= []).push(d);
+const errors = Object.entries(pending.errors || {}) as [string, any][];
+const files = (pending.files || []) as { path: string; diff: string }[];
+const nameFor = (s: string) => {
+  const r = subjectIndex[s];
+  return r ? (r.kind === 'term' ? r.label : r.name) : s;
+};
+const lineClass = (l: string) =>
+  l.startsWith('+++') || l.startsWith('---') ? 'text-gray-500'
+  : l.startsWith('+') ? 'bg-emerald-50 text-emerald-900'
+  : l.startsWith('-') ? 'bg-red-50 text-red-900'
+  : l.startsWith('@@') ? 'text-indigo-600'
+  : 'text-gray-700';
+---
+
+<Layout title="Pending" side="develop" description="Pending curation decisions and their diff">
+  <ModeBanner />
+  <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900">Pending decisions</h1>
+      <p class="text-gray-600 mt-1 text-sm">
+        {records.length} pending decision{records.length === 1 ? '' : 's'} in this build. Applying runs all of them
+        together, all or nothing.
+      </p>
+    </div>
+    <div class="pending-static text-sm text-gray-600">
+      Apply from the onga repo: <code class="font-mono bg-white px-1 rounded border border-gray-200">make apply-dry</code>, then
+      <code class="font-mono bg-white px-1 rounded border border-gray-200">make apply</code>
+    </div>
+    <div class="pending-live hidden flex gap-2">
+      <button type="button" data-dry="1" class="apply-btn px-3 py-1.5 rounded border border-gray-300 bg-white text-sm hover:bg-gray-50">Dry run</button>
+      <button type="button" data-dry="0" class="apply-btn px-3 py-1.5 rounded bg-emerald-600 text-white text-sm hover:bg-emerald-700">Apply all</button>
+    </div>
+  </div>
+
+  <pre id="apply-log" class="hidden mb-6 max-h-96 overflow-auto rounded-lg bg-gray-900 text-gray-100 text-xs p-4"></pre>
+
+  {errors.length > 0 && (
+    <div class="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">
+      <div class="font-semibold mb-1">The dry run failed. Nothing can be applied until these are fixed:</div>
+      <ul class="list-disc ml-5">
+        {errors.map(([id, reasons]) => (
+          <li><span class="font-mono">{id}</span>: {Array.isArray(reasons) ? reasons.join('; ') : String(reasons)}</li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  {records.length === 0 ? (
+    <div class="bg-white rounded-lg p-8 shadow-sm text-center text-gray-500">
+      No pending decisions. Make some from the <a href={url('/develop/queue')} class="text-blue-600 hover:underline">Queue</a>.
+    </div>
+  ) : (
+    <div class="space-y-6">
+      {Object.entries(groups).sort((a, b) => a[0].localeCompare(b[0])).map(([verdict, list]) => (
+        <section class="bg-white rounded-lg p-6 shadow-sm">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">{verdict} <span class="text-sm text-gray-400">{list.length}</span></h2>
+          <ul class="space-y-3 text-sm">
+            {list.map((d) => {
+              const e = effects[d.id];
+              const href = subjectIndex[d.subject]?.href;
+              return (
+                <li class="border-l-2 border-amber-300 pl-3">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="font-mono font-semibold">{d.id}</span>
+                    {href ? <a href={url(href)} class="text-blue-600 hover:underline">{nameFor(d.subject)}</a> : <span>{d.subject}</span>}
+                    <span class="font-mono text-xs text-gray-400">{d.subject}</span>
+                    <StateChip sid={d.subject} />
+                    <span class="text-xs text-gray-500">{d.decided_by} · {d.decided_on}</span>
+                  </div>
+                  {d.operation && <code class="block text-xs text-gray-600 mt-1 break-words">{JSON.stringify(d.operation)}</code>}
+                  <p class="text-gray-700 mt-1">{d.rationale}</p>
+                  {e && (e.created?.length || e.retired?.length || Object.keys(e.renamed || {}).length) ? (
+                    <div class="text-xs text-gray-500 mt-1">
+                      {e.created?.length > 0 && <span>creates <span class="font-mono">{e.created.join(', ')}</span>. </span>}
+                      {e.retired?.length > 0 && <span>retires <span class="font-mono">{e.retired.join(', ')}</span>. </span>}
+                      {Object.keys(e.renamed || {}).length > 0 && <span>renames <span class="font-mono">{Object.entries(e.renamed).map(([a, b]) => `${a} → ${b}`).join(', ')}</span>.</span>}
+                    </div>
+                  ) : null}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))}
+    </div>
+  )}
+
+  {files.length > 0 && (
+    <section class="mt-8 space-y-4">
+      <h2 class="text-lg font-semibold text-gray-900">Diff <span class="text-sm text-gray-400">{files.length} file{files.length === 1 ? '' : 's'}</span></h2>
+      {files.map((f) => (
+        <details class="bg-white rounded-lg shadow-sm" open={files.length <= 5}>
+          <summary class="px-4 py-2 font-mono text-sm cursor-pointer">{f.path}</summary>
+          <pre class="text-xs overflow-x-auto px-4 pb-4">{f.diff.split('\n').map((l) => <div class={lineClass(l)}>{l || ' '}</div>)}</pre>
+        </details>
+      ))}
+    </section>
+  )}
+</Layout>
+
+<script>
+  import { probe, apply, CurationError } from '../../lib/curation';
+
+  probe().then((health) => {
+    if (!health) return;
+    document.querySelector('.pending-static')?.classList.add('hidden');
+    document.querySelector('.pending-live')?.classList.remove('hidden');
+    const log = document.getElementById('apply-log')!;
+    document.querySelectorAll<HTMLButtonElement>('.apply-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const dryRun = btn.dataset.dry === '1';
+        if (!dryRun && !confirm('Apply every pending decision to the working tree?')) return;
+        document.querySelectorAll<HTMLButtonElement>('.apply-btn').forEach((b) => (b.disabled = true));
+        log.classList.remove('hidden');
+        log.textContent = '';
+        try {
+          const code = await apply({ dryRun, onLine: (l) => { log.textContent += l + '\n'; log.scrollTop = log.scrollHeight; } });
+          log.textContent += `\n[exit ${code}]` + (code === 0 && !dryRun ? ' Applied. Run make regen, rebuild, and commit.' : '');
+        } catch (e) {
+          const msg = e instanceof CurationError ? `${e.status}: ${e.message}` : String(e);
+          log.textContent += `\n[error] ${msg}`;
+        } finally {
+          document.querySelectorAll<HTMLButtonElement>('.apply-btn').forEach((b) => (b.disabled = false));
+        }
+      });
+    });
+  });
+</script>

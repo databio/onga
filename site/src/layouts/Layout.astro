@@ -157,14 +157,57 @@ const isActive = (p: string) => currentPath.startsWith(url(p));
               </>
             ) : (
               <>
-                <a href={url("/develop")} class:list={['hover:text-gray-900', currentPath === url('/develop') || currentPath === url('/develop/') ? 'text-gray-900 font-medium' : 'text-gray-600']}>Overview</a>
-                <a href={url("/develop/merge-candidates")} class:list={['hover:text-gray-900', currentPath.startsWith(url('/develop/merge-candidates')) ? 'text-gray-900 font-medium' : 'text-gray-600']}>Merge Candidates</a>
-                <a href={url("/develop/gaps")} class:list={['hover:text-gray-900', currentPath.startsWith(url('/develop/gaps')) ? 'text-gray-900 font-medium' : 'text-gray-600']}>Gaps</a>
-                <a href={url("/develop/mapping-suggestions")} class:list={['hover:text-gray-900', currentPath.startsWith(url('/develop/mapping-suggestions')) ? 'text-gray-900 font-medium' : 'text-gray-600']}>Mapping Suggestions</a>
-                <a href={url("/develop/quality-issues")} class:list={['hover:text-gray-900', currentPath.startsWith(url('/develop/quality-issues')) ? 'text-gray-900 font-medium' : 'text-gray-600']}>Quality Issues</a>
-                <a href={url("/develop/so-proposals")} class:list={['hover:text-gray-900', currentPath.startsWith(url('/develop/so-proposals')) ? 'text-gray-900 font-medium' : 'text-gray-600']}>SO Proposals</a>
-                <a href={url("/develop/frequency")} class:list={['hover:text-gray-900', currentPath.startsWith(url('/develop/frequency')) ? 'text-gray-900 font-medium' : 'text-gray-600']}>Usage Frequency</a>
-                <a href={url("/develop/changeset")} class:list={['hover:text-gray-900', currentPath.startsWith(url('/develop/changeset')) ? 'text-gray-900 font-medium' : 'text-gray-600']}>Changeset</a>
+                {(() => {
+                  const devLink = (href: string, label: string, exact = false) => {
+                    const active = exact
+                      ? currentPath === url(href) || currentPath === url(href) + '/'
+                      : currentPath.startsWith(url(href));
+                    return <a href={url(href)} class:list={['hover:text-gray-900', active ? 'text-gray-900 font-medium' : 'text-gray-600']}>{label}</a>;
+                  };
+                  const findingItems = [
+                    { href: '/develop/merge-candidates', label: 'Merge candidates' },
+                    { href: '/develop/gaps', label: 'Gaps' },
+                    { href: '/develop/mapping-suggestions', label: 'Mapping suggestions' },
+                    { href: '/develop/lint', label: 'Lint' },
+                  ];
+                  const findingsActive = findingItems.some((i) => currentPath.startsWith(url(i.href)));
+                  return (
+                    <>
+                      {devLink('/develop', 'Overview', true)}
+                      {devLink('/develop/queue', 'Queue')}
+                      <div class="relative group">
+                        <button
+                          type="button"
+                          class:list={['flex items-center gap-1 hover:text-gray-900', findingsActive ? 'text-gray-900 font-medium' : 'text-gray-600']}
+                        >
+                          Findings
+                          <svg class="w-3 h-3 text-gray-400 transition-transform group-hover:rotate-180" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 4.5L6 7.5L9 4.5" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </button>
+                        <div class="absolute right-0 top-full pt-2 hidden group-hover:block z-50">
+                          <div class="bg-white border border-gray-200 rounded-lg shadow-lg py-1 min-w-[12rem]">
+                            {findingItems.map((item) => (
+                              <a
+                                href={url(item.href)}
+                                class:list={[
+                                  'block px-4 py-2 whitespace-nowrap hover:bg-gray-50 hover:text-gray-900',
+                                  currentPath.startsWith(url(item.href)) ? 'text-gray-900 font-medium' : 'text-gray-600',
+                                ]}
+                              >
+                                {item.label}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                      {devLink('/develop/so-proposals', 'Proposals')}
+                      {devLink('/develop/frequency', 'Usage')}
+                      {devLink('/develop/pending', 'Pending')}
+                      {devLink('/develop/log', 'Log')}
+                    </>
+                  );
+                })()}
               </>
             )}
           </div>

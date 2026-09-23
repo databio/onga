@@ -1,61 +1,258 @@
 ---
+// Workbench overview: how much of the schema is settled, by layer and by
+// container, plus open findings by source. Everything is read from the
+// generated data in src/data/develop/ (no daemon needed to render).
 import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
+import ModeBanner from '../../components/ModeBanner.astro';
 import summary from '../../data/develop/summary.json';
+import status from '../../data/develop/status.json';
+import classes from '../../data/schema/classes.json';
+import { subjectIndex, findingsById, type SubjectRow } from '../../lib/develop';
+
+const STATES = ['applied', 'settled', 'deferred', 'open', 'stale', 'unreviewed'] as const;
+const BAR_CLASS: Record<string, string> = {
+  applied: 'bg-emerald-500',
+  settled: 'bg-emerald-300',
+  deferred: 'bg-sky-300',
+  open: 'bg-amber-400',
+  stale: 'bg-red-500',
+  unreviewed: 'bg-gray-200',
+};
+
+type Counts = Record<string, number> & { total: number };
+const empty = (): Counts => ({ applied: 0, settled: 0, deferred: 0, open: 0, stale: 0, unreviewed: 0, total: 0 });
+const pct = (c: Counts) => (c.total ? Math.round((1000 * (c.applied + c.settled)) / c.total) / 10 : 0);
+
+// Layer names come from the schema data; fall back to "Layer N".
+const layerNames: Record<number, string> = {};
+for (const c of classes as any[]) if (c.layerName) layerNames[c.layer] = c.layerName;
+layerNames[1] ??= 'Vocabulary';
+
+// Group every live subject into one container row:
+//   term, enum        -> the enum
+//   class, owned slot -> the class
+//   usage             -> its container
+//   shared slot       -> "Shared slots"
+//   subset            -> "Subsets"
+//   module            -> "Modules"
+interface Group { key: string; label: string; href: string | null; layer: number; counts: Counts; }
+const groups = new Map<string, Group>();
+function add(key: string, label: string, href: string | null, layer: number, row: SubjectRow) {
+  let g = groups.get(key);
+  if (!g) groups.set(key, (g = { key, label, href, layer, counts: empty() }));
+  g.counts[row.state] = (g.counts[row.state] || 0) + 1;
+  g.counts.total += 1;
+}
+const rows = Object.values(subjectIndex).filter((r) => !r.retired);
+for (const r of rows) {
+  const layer = r.layer ?? 0;
+  if (r.kind === 'term' && r.container) {
+    const e = subjectIndex[r.container];
+    add(r.container, e?.name ?? r.container, e?.href ?? null, e?.layer ?? layer, r);
+  } else if (r.kind === 'enum') {
+    add(r.sid, r.name, r.href, layer, r);
+  } else if (r.kind === 'class') {
+    add(r.sid, r.name, r.href, layer, r);
+  } else if (r.kind === 'slot' && r.owner_class) {
+    const c = subjectIndex[`class:${r.owner_class}`];
+    add(`class:${r.owner_class}`, r.owner_class, c?.href ?? null, c?.layer ?? layer, r);
+  } else if (r.kind === 'slot') {
+    add(`shared-slots:${layer}`, 'Shared slots', null, layer, r);
+  } else if (r.kind === 'usage' && r.container) {
+    const c = subjectIndex[r.container];
+    add(r.container, c?.name ?? r.container, c?.href ?? null, c?.layer ?? layer, r);
+  } else if (r.kind === 'subset') {
+    add(`subsets:${layer}`, 'Subsets', null, layer, r);
+  } else if (r.kind === 'module') {
+    add(`modules:${layer}`, 'Modules', null, layer, r);
+  } else {
+    add(`other:${layer}`, 'Other', null, layer, r);
+  }
+}
+const KIND_ORDER = (key: string) =>
+  key.startsWith('enum:') ? 0 : key.startsWith('class:') ? 1 : key.startsWith('shared') ? 2 : key.startsWith('subsets') ? 3 : key.startsWith('modules') ? 4 : 5;
+const KIND_TAG = (key: string) =>
+  key.startsWith('enum:') ? 'enum + terms' : key.startsWith('class:') ? 'class + slots' : '';
+const layers = [...new Set([...groups.values()].map((g) => g.layer))].sort((a, b) => a - b);
+const byLayer = layers.map((layer) => {
+  const gs = [...groups.values()]
+    .filter((g) => g.layer === layer)
+    .sort((a, b) => KIND_ORDER(a.key) - KIND_ORDER(b.key) || a.label.localeCompare(b.label));
+  const counts = empty();
+  for (const g of gs) for (const k of [...STATES, 'total'] as const) counts[k] += g.counts[k] || 0;
+  return { layer, name: layerNames[layer] ?? `Layer ${layer}`, groups: gs, counts };
+});
+
+// Open findings by source and rule (only findings on live subjects).
+const openIds = new Set<string>();
+for (const s of Object.values((status as any).subjects) as any[]) {
+  if (!s.retired) for (const id of s.open_findings || []) openIds.add(id);
+}
+const bySource: Record<string, Record<string, number>> = {};
+for (const id of openIds) {
+  const f = findingsById[id];
+  if (!f) continue;
+  (bySource[f.source] ||= {})[f.rule] = (bySource[f.source][f.rule] || 0) + 1;
+}
+const SOURCE_LABEL: Record<string, string> = { schema_lint: 'Schema lint', embeddings: 'Embeddings analysis' };
+const RULE_PAGE: Record<string, string> = {
+  'similar-terms': '/develop/merge-candidates',
+  'coverage-gap': '/develop/gaps',
+  'mapping-suggestion': '/develop/mapping-suggestions',
+};
+const staleSources = ((status as any).sources as any[]).filter((s) => s.stale);
+const s = summary as any;
+const overall = empty();
+for (const k of STATES) overall[k] = s.states[k] || 0;
+overall.total = s.totalSubjects;
 ---
 
-<Layout title="Develop" side="develop" description="ONGA curation and QA dashboard">
-  <div class="space-y-12">
-    <section class="text-center py-8">
-      <h1 class="text-3xl font-bold text-gray-900 mb-4">Develop</h1>
-      <p class="text-gray-600 max-w-2xl mx-auto">
-        Curation dashboard for developing the ONGA vocabulary. Review embeddings analysis,
-        make cleanup decisions, then export a changeset to apply back to the schema.
-      </p>
+<Layout title="Develop" side="develop" description="ONGA curation workbench overview">
+  <div class="space-y-10">
+    <ModeBanner />
+
+    <section class="bg-white rounded-lg p-8 shadow-sm">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Curation workbench</h1>
+          <p class="text-gray-600 mt-2 max-w-2xl">
+            Every reviewable element of the schema is a subject. A subject is settled once a decision with a rationale
+            covers it and nothing has changed since.
+          </p>
+        </div>
+        <div class="text-right">
+          <div class="text-5xl font-bold text-emerald-600">{s.percentSettled}%</div>
+          <div class="text-sm text-gray-500">settled of {s.totalSubjects} subjects</div>
+        </div>
+      </div>
+      <div class="mt-6 flex h-3 rounded-full overflow-hidden bg-gray-100" title="All subjects by state">
+        {STATES.map((st) => overall[st] > 0 && (
+          <div class={BAR_CLASS[st]} style={`width:${(100 * overall[st]) / overall.total}%`} title={`${st}: ${overall[st]}`}></div>
+        ))}
+      </div>
+      <div class="mt-3 flex flex-wrap gap-4 text-xs text-gray-600">
+        {STATES.map((st) => (
+          <span class="inline-flex items-center gap-1">
+            <span class:list={['inline-block w-3 h-3 rounded-sm', BAR_CLASS[st]]}></span>
+            {st} <span class="text-gray-400">{overall[st]}</span>
+          </span>
+        ))}
+      </div>
+      <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+        <a href={url('/develop/queue')} class="block rounded border border-gray-200 p-3 hover:bg-gray-50">
+          <div class="text-2xl font-bold text-gray-900">{s.queued}</div>
+          <div class="text-gray-500">in the queue</div>
+        </a>
+        <a href={url('/develop/pending')} class="block rounded border border-gray-200 p-3 hover:bg-gray-50">
+          <div class="text-2xl font-bold text-gray-900">{s.pendingDecisions}</div>
+          <div class="text-gray-500">pending decisions</div>
+        </a>
+        <a href={url('/develop/log')} class="block rounded border border-gray-200 p-3 hover:bg-gray-50">
+          <div class="text-2xl font-bold text-gray-900">{s.appliedDecisions}</div>
+          <div class="text-gray-500">applied decisions</div>
+        </a>
+        <a href={url('/develop/lint')} class="block rounded border border-gray-200 p-3 hover:bg-gray-50">
+          <div class="text-2xl font-bold text-gray-900">{s.lintIssues}</div>
+          <div class="text-gray-500">open lint findings</div>
+        </a>
+      </div>
     </section>
 
-    <section class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <a href={url("/develop/merge-candidates")} class="block bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4 border-orange-500">
-        <div class="text-3xl font-bold text-orange-600">{summary.mergeCandidates}</div>
-        <div class="text-sm text-gray-500 mt-1">Merge Candidates</div>
-        <p class="text-xs text-gray-400 mt-2">Highly similar term pairs that may be duplicates</p>
-      </a>
-      <a href={url("/develop/gaps")} class="block bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4 border-red-500">
-        <div class="text-3xl font-bold text-red-600">{summary.gapTerms}</div>
-        <div class="text-sm text-gray-500 mt-1">Gap Terms</div>
-        <p class="text-xs text-gray-400 mt-2">Terms with no close match in external ontologies</p>
-      </a>
-      <a href={url("/develop/mapping-suggestions")} class="block bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4 border-blue-500">
-        <div class="text-3xl font-bold text-blue-600">{summary.mappingSuggestions}</div>
-        <div class="text-sm text-gray-500 mt-1">Mapping Suggestions</div>
-        <p class="text-xs text-gray-400 mt-2">Terms with suggested EDAM/OBI/GO mappings</p>
-      </a>
-      <a href={url("/develop/quality-issues")} class="block bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4 border-yellow-500">
-        <div class="text-3xl font-bold text-yellow-600">{summary.qualityIssues}</div>
-        <div class="text-sm text-gray-500 mt-1">Quality Issues</div>
-        <p class="text-xs text-gray-400 mt-2">Structural and categorization problems</p>
-      </a>
-      <a href={url("/develop/so-proposals")} class="block bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4 border-purple-500">
-        <div class="text-3xl font-bold text-purple-600">{summary.soProposals}</div>
-        <div class="text-sm text-gray-500 mt-1">SO Proposals</div>
-        <p class="text-xs text-gray-400 mt-2">Terms to request from SO, plus {summary.soRejections} terms deliberately not sent</p>
-      </a>
+    {(s.findingsStale || staleSources.length > 0 || s.staleFindings > 0) && (
+      <div class="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+        <span class="font-semibold">Findings are stale.</span>
+        The schema changed after these reports were generated
+        {staleSources.length > 0 && <>(<span class="font-mono">{staleSources.map((x) => x.path).join(', ')}</span>)</>}
+        {s.staleFindings > 0 && <>; {s.staleFindings} finding(s) name subjects that no longer exist and were dropped</>}.
+        Regenerate them before trusting their counts.
+      </div>
+    )}
+
+    <section class="bg-white rounded-lg p-6 shadow-sm">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Progress by layer</h2>
+      <div class="space-y-8">
+        {byLayer.map((L) => (
+          <div>
+            <div class="flex items-baseline justify-between border-b border-gray-200 pb-1 mb-2">
+              <h3 class="font-semibold text-gray-800">Layer {L.layer}: {L.name}</h3>
+              <span class="text-sm text-gray-500">{pct(L.counts)}% settled · {L.counts.total} subjects</span>
+            </div>
+            <table class="w-full text-sm">
+              <tbody>
+                {L.groups.map((g) => (
+                  <tr class="border-b border-gray-50">
+                    <td class="py-1 pr-4 w-64 whitespace-nowrap">
+                      {g.href ? <a href={url(g.href)} class="text-blue-600 hover:underline">{g.label}</a> : <span class="text-gray-700">{g.label}</span>}
+                      <span class="text-xs text-gray-400 ml-1">{KIND_TAG(g.key)}</span>
+                    </td>
+                    <td class="py-1 pr-4">
+                      <div class="flex h-2.5 rounded-full overflow-hidden bg-gray-100">
+                        {STATES.map((st) => (g.counts[st] || 0) > 0 && (
+                          <div class={BAR_CLASS[st]} style={`width:${(100 * g.counts[st]) / g.counts.total}%`} title={`${st}: ${g.counts[st]}`}></div>
+                        ))}
+                      </div>
+                    </td>
+                    <td class="py-1 pr-2 text-right text-gray-600 whitespace-nowrap w-24">{pct(g.counts)}%</td>
+                    <td class="py-1 text-right text-gray-400 whitespace-nowrap w-12">{g.counts.total}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-white rounded-lg p-6 shadow-sm">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Open findings by source</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {Object.entries(bySource).map(([source, rules]) => (
+          <div>
+            <h3 class="font-medium text-gray-800 mb-2">
+              {SOURCE_LABEL[source] ?? source}
+              <span class="text-sm text-gray-400 ml-1">{Object.values(rules).reduce((a, b) => a + b, 0)}</span>
+            </h3>
+            <ul class="text-sm space-y-1">
+              {Object.entries(rules).sort((a, b) => b[1] - a[1]).map(([rule, n]) => (
+                <li class="flex justify-between gap-4">
+                  <a
+                    href={url(RULE_PAGE[rule] ?? (source === 'schema_lint' ? `/develop/lint#${rule}` : '/develop/queue'))}
+                    class="font-mono text-blue-600 hover:underline"
+                  >{rule}</a>
+                  <span class="text-gray-500">{n}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
     </section>
 
     <section class="bg-white rounded-lg p-8 shadow-sm">
-      <h2 class="text-xl font-semibold text-gray-900 mb-4">Curate &rarr; Export &rarr; Apply</h2>
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Decide &rarr; Apply &rarr; Commit</h2>
       <div class="grid md:grid-cols-3 gap-6 text-sm text-gray-600">
         <div>
-          <div class="text-lg font-bold text-gray-400 mb-2">1. Curate</div>
-          <p>Review each tool's findings and make per-item decisions (merge, keep, delete, adopt mapping). Decisions are stored in your browser's localStorage.</p>
+          <div class="text-lg font-bold text-gray-400 mb-2">1. Decide</div>
+          <p>
+            Run <code>make curate</code> and open the site on localhost. Work through the
+            <a href={url('/develop/queue')} class="text-blue-600 hover:underline">Queue</a> or any subject page. Each
+            decision needs a rationale and is written to <code>curation/decisions.yaml</code> as a pending record.
+          </p>
         </div>
         <div>
-          <div class="text-lg font-bold text-gray-400 mb-2">2. Export</div>
-          <p>Visit the <a href={url("/develop/changeset")} class="text-blue-600 hover:underline">Changeset</a> page to review all decisions and download a <code>changeset.json</code> file.</p>
+          <div class="text-lg font-bold text-gray-400 mb-2">2. Apply</div>
+          <p>
+            Review the diffs on <a href={url('/develop/pending')} class="text-blue-600 hover:underline">Pending</a>, then
+            apply (or run <code>make apply</code>). All pending decisions are applied to the schema together, or none are.
+          </p>
         </div>
         <div>
-          <div class="text-lg font-bold text-gray-400 mb-2">3. Apply</div>
-          <p>Record decisions in <code>curation/decisions.yaml</code>, then run <code>make apply</code>: it applies every pending decision to the schema, all or nothing, and regenerates the derived files.</p>
+          <div class="text-lg font-bold text-gray-400 mb-2">3. Commit</div>
+          <p>
+            Run <code>make regen</code> and commit the schema, <code>curation/</code> and site data together. Git is the
+            history; the <a href={url('/develop/log')} class="text-blue-600 hover:underline">Log</a> shows every decision.
+          </p>
         </div>
       </div>
     </section>

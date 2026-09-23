@@ -1,0 +1,142 @@
+---
+// Every decision in curation/decisions.yaml, newest first. Subjects are
+// resolved through curation/subject_aliases.json, so a decision on a renamed
+// or retired SID links to where that subject lives now.
+import { url } from '../../lib/url';
+import Layout from '../../layouts/Layout.astro';
+import ModeBanner from '../../components/ModeBanner.astro';
+import subjectsDoc from '../../data/develop/subjects.json';
+import aliasDoc from '../../../../curation/subject_aliases.json';
+import { decisions, subjectIndex } from '../../lib/develop';
+
+const allSubjects = (subjectsDoc as any).subjects as Record<string, any>;
+const aliases = Object.fromEntries(Object.entries(aliasDoc as Record<string, string>).filter(([k]) => !k.startsWith('_')));
+function resolve(s: string): string {
+  const seen = new Set<string>();
+  while (aliases[s] && !seen.has(s)) { seen.add(s); s = aliases[s]; }
+  return s;
+}
+const kindOf = (sid: string) => allSubjects[sid]?.kind ?? sid.slice(0, sid.indexOf(':'));
+
+const rows = [...decisions].sort((a, b) => b.id.localeCompare(a.id)).map((d) => {
+  const now = resolve(d.subject);
+  const rec = allSubjects[now];
+  const idx = subjectIndex[now];
+  return {
+    d,
+    now: now !== d.subject ? now : null,
+    href: idx?.href ?? (rec ? `/develop/subject/${rec.slug}` : null),
+    name: rec ? (rec.kind === 'term' ? rec.label : rec.name) : d.subject,
+    kind: rec?.kind ?? kindOf(d.subject),
+    layer: rec?.layer ?? null,
+  };
+});
+const uniq = <T,>(xs: T[]) => [...new Set(xs)].filter((x) => x !== null && x !== undefined && x !== '') as T[];
+const kinds = uniq(rows.map((r) => r.kind)).sort();
+const layers = uniq(rows.map((r) => r.layer)).sort((a: any, b: any) => a - b);
+const verdictList = uniq(rows.map((r) => r.d.verdict)).sort();
+const origins = uniq(rows.map((r) => r.d.origin?.kind)).sort();
+const statuses = uniq(rows.map((r) => r.d.status)).sort();
+const STATUS_CLASS: Record<string, string> = {
+  pending: 'bg-amber-50 text-amber-800 border-amber-200',
+  applied: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+  withdrawn: 'bg-gray-50 text-gray-500 border-gray-200',
+};
+---
+
+<Layout title="Log" side="develop" description="Every ONGA curation decision, newest first">
+  <ModeBanner />
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold text-gray-900">Decision log</h1>
+    <p class="text-gray-600 mt-1 text-sm">
+      Every decision in <code>curation/decisions.yaml</code>, newest first. <span id="l-count" class="text-gray-500"></span>
+    </p>
+  </div>
+
+  <form id="l-filters" class="flex flex-wrap gap-3 items-end mb-6 text-sm bg-white rounded-lg p-4 shadow-sm">
+    {[['kind', 'Kind', kinds], ['layer', 'Layer', layers], ['verdict', 'Verdict', verdictList], ['origin', 'Origin', origins], ['status', 'Status', statuses]].map(([name, label, opts]) => (
+      <label class="flex flex-col gap-1">
+        <span class="text-xs text-gray-500">{label}</span>
+        <select name={name as string} class="px-2 py-1 border border-gray-300 rounded">
+          <option value="">All</option>
+          {(opts as any[]).map((o) => <option value={String(o)}>{String(o)}</option>)}
+        </select>
+      </label>
+    ))}
+    <label class="flex flex-col gap-1 grow">
+      <span class="text-xs text-gray-500">Search</span>
+      <input name="q" type="search" placeholder="subject, id, rationale…" class="px-2 py-1 border border-gray-300 rounded" />
+    </label>
+  </form>
+
+  <div class="bg-white rounded-lg shadow-sm overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead class="bg-gray-50 text-xs text-gray-500 text-left">
+        <tr>
+          <th class="px-3 py-2">Id</th>
+          <th class="px-3 py-2">Subject</th>
+          <th class="px-3 py-2">Verdict</th>
+          <th class="px-3 py-2">Status</th>
+          <th class="px-3 py-2">Who / when</th>
+          <th class="px-3 py-2">Rationale</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr
+            class="l-row border-t border-gray-100 align-top"
+            data-kind={r.kind}
+            data-layer={r.layer === null ? '' : String(r.layer)}
+            data-verdict={r.d.verdict}
+            data-origin={r.d.origin?.kind ?? ''}
+            data-status={r.d.status}
+            data-text={`${r.d.id} ${r.d.subject} ${r.now ?? ''} ${r.name} ${r.d.rationale ?? ''}`.toLowerCase()}
+          >
+            <td class="px-3 py-2 font-mono whitespace-nowrap">{r.d.id}</td>
+            <td class="px-3 py-2">
+              {r.href ? <a href={url(r.href)} class="text-blue-600 hover:underline">{r.name}</a> : <span>{r.name}</span>}
+              <div class="font-mono text-xs text-gray-400">{r.d.subject}</div>
+              {r.now && <div class="text-xs text-gray-500">now <span class="font-mono">{r.now}</span></div>}
+              {(r.d.also_affects || []).length > 0 && (
+                <div class="text-xs text-gray-500">also <span class="font-mono">{r.d.also_affects.join(', ')}</span></div>
+              )}
+            </td>
+            <td class="px-3 py-2">
+              <span class="px-1.5 py-0.5 rounded bg-gray-100 text-xs whitespace-nowrap">{r.d.verdict}</span>
+              {r.d.operation && <code class="block text-[11px] text-gray-500 mt-1 break-all max-w-56">{JSON.stringify(r.d.operation)}</code>}
+            </td>
+            <td class="px-3 py-2">
+              <span class:list={['px-1.5 py-0.5 rounded border text-xs', STATUS_CLASS[r.d.status] || STATUS_CLASS.withdrawn]}>{r.d.status}</span>
+            </td>
+            <td class="px-3 py-2 text-xs text-gray-500 whitespace-nowrap">
+              {r.d.decided_by}<br />{r.d.decided_on}<br />{r.d.origin?.kind}
+            </td>
+            <td class="px-3 py-2 text-gray-700">{r.d.rationale}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</Layout>
+
+<script>
+  const form = document.getElementById('l-filters') as HTMLFormElement;
+  const rows = [...document.querySelectorAll<HTMLElement>('.l-row')];
+  const count = document.getElementById('l-count')!;
+  const keys = ['kind', 'layer', 'verdict', 'origin', 'status'] as const;
+  function apply() {
+    const fd = new FormData(form);
+    const q = String(fd.get('q') || '').trim().toLowerCase();
+    let shown = 0;
+    for (const r of rows) {
+      const ok = keys.every((k) => { const v = String(fd.get(k) || ''); return !v || r.dataset[k] === v; })
+        && (!q || (r.dataset.text || '').includes(q));
+      r.classList.toggle('hidden', !ok);
+      if (ok) shown++;
+    }
+    count.textContent = `Showing ${shown} of ${rows.length}.`;
+  }
+  form.addEventListener('input', apply);
+  form.addEventListener('submit', (e) => e.preventDefault());
+  apply();
+</script>

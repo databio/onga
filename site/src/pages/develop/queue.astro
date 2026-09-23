@@ -1,0 +1,187 @@
+---
+// Review queue: subjects that are open, stale or unreviewed, highest score
+// first (order and scores from curation/status.json via queue.json). Filters
+// are client-side; the default hides score 0.
+import { url } from '../../lib/url';
+import Layout from '../../layouts/Layout.astro';
+import ModeBanner from '../../components/ModeBanner.astro';
+import StateChip from '../../components/StateChip.astro';
+import DecisionControl from '../../components/DecisionControl.astro';
+import queue from '../../data/develop/queue.json';
+import { subjectIndex } from '../../lib/develop';
+
+const rows = queue as any[];
+const kinds = [...new Set(rows.map((r) => r.kind))].sort();
+const layers = [...new Set(rows.map((r) => r.layer))].sort((a, b) => a - b);
+const containers = [...new Set(rows.map((r) => r.container).filter(Boolean))].sort();
+const states = [...new Set(rows.map((r) => r.state))].sort();
+
+const SIGNAL_LABEL: Record<string, string> = {
+  adoption: 'adoption path',
+  required: 'required',
+  port: 'unreviewed port',
+  upstream: 'upstream',
+  stale: 'stale',
+  machine: 'machine definition',
+};
+const SEV_CLASS: Record<string, string> = {
+  error: 'bg-red-50 text-red-800 border-red-200',
+  warn: 'bg-amber-50 text-amber-800 border-amber-200',
+  info: 'bg-gray-50 text-gray-600 border-gray-200',
+};
+const title = (r: any) => (r.kind === 'term' ? r.label : r.name);
+---
+
+<Layout title="Queue" side="develop" description="ONGA curation queue, highest-impact subjects first">
+  <ModeBanner />
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold text-gray-900">Queue</h1>
+    <p class="text-gray-600 mt-1 text-sm">
+      Subjects that are open, stale or not yet reviewed, ranked by score (weights in <code>curation/policy.yaml</code>).
+      <span id="q-count" class="text-gray-500"></span>
+    </p>
+  </div>
+
+  <form id="q-filters" class="flex flex-wrap gap-3 items-end mb-6 text-sm bg-white rounded-lg p-4 shadow-sm">
+    <label class="flex flex-col gap-1">
+      <span class="text-xs text-gray-500">Kind</span>
+      <select name="kind" class="px-2 py-1 border border-gray-300 rounded">
+        <option value="">All</option>
+        {kinds.map((k) => <option value={k}>{k}</option>)}
+      </select>
+    </label>
+    <label class="flex flex-col gap-1">
+      <span class="text-xs text-gray-500">Layer</span>
+      <select name="layer" class="px-2 py-1 border border-gray-300 rounded">
+        <option value="">All</option>
+        {layers.map((l) => <option value={String(l)}>{l}</option>)}
+      </select>
+    </label>
+    <label class="flex flex-col gap-1">
+      <span class="text-xs text-gray-500">Container</span>
+      <select name="container" class="px-2 py-1 border border-gray-300 rounded max-w-56">
+        <option value="">All</option>
+        {containers.map((c) => <option value={c}>{c}</option>)}
+      </select>
+    </label>
+    <label class="flex flex-col gap-1">
+      <span class="text-xs text-gray-500">State</span>
+      <select name="state" class="px-2 py-1 border border-gray-300 rounded">
+        <option value="">All</option>
+        {states.map((s) => <option value={s}>{s}</option>)}
+      </select>
+    </label>
+    <label class="flex flex-col gap-1">
+      <span class="text-xs text-gray-500">Min score</span>
+      <input name="min" type="number" step="0.5" min="0" value="0" class="w-24 px-2 py-1 border border-gray-300 rounded" />
+    </label>
+    <label class="flex items-center gap-1 pb-1">
+      <input name="positive" type="checkbox" checked />
+      <span class="text-xs text-gray-600">score &gt; 0</span>
+    </label>
+  </form>
+
+  <ol class="space-y-3" id="q-list">
+    {rows.map((r, i) => (
+      <li
+        class="q-row bg-white rounded-lg shadow-sm p-4"
+        data-kind={r.kind}
+        data-layer={String(r.layer)}
+        data-container={r.container ?? ''}
+        data-state={r.state}
+        data-score={String(r.score)}
+      >
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div class="min-w-0">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs text-gray-400 w-8">#{i + 1}</span>
+              <a href={url(r.href)} class="font-semibold text-blue-700 hover:underline">{title(r)}</a>
+              <span class="font-mono text-xs text-gray-500">{r.sid}</span>
+              <StateChip sid={r.sid} />
+            </div>
+            <div class="mt-1 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+              <span>{r.kind}</span>
+              <span>· layer {r.layer}</span>
+              {r.container && (
+                <span>· {subjectIndex[r.container]
+                  ? <a href={url(subjectIndex[r.container].href)} class="hover:underline">{r.container}</a>
+                  : r.container}</span>
+              )}
+              {r.signals && Object.entries(SIGNAL_LABEL).map(([k, label]) => r.signals[k] > 0 && (
+                <span class="px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-100">{label}</span>
+              ))}
+              {r.signals && r.signals.impact > 0 && (
+                <span class="px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-100">impact {r.signals.impact.toFixed(2)}</span>
+              )}
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-lg font-bold text-gray-900">{r.score.toFixed(2)}</div>
+            <div class="text-xs text-gray-400">score</div>
+          </div>
+        </div>
+
+        {r.findings && r.findings.length > 0 && (
+          <div class="mt-2 flex flex-wrap gap-1">
+            {r.findings.map((f: any) => (
+              <span
+                class:list={['text-xs px-1.5 py-0.5 rounded border', SEV_CLASS[f.severity] || SEV_CLASS.info]}
+                title={f.message}
+              >
+                <span class="font-mono">{f.rule}</span>
+              </span>
+            ))}
+          </div>
+        )}
+
+        <details class="mt-3">
+          <summary class="text-sm text-gray-600 cursor-pointer select-none">Decide</summary>
+          <div class="mt-2">
+            <DecisionControl
+              sid={r.sid}
+              kind={r.kind}
+              findingId={r.findings?.find((f: any) => f.suggested_verdict)?.id}
+              suggestedVerdict={r.findings?.find((f: any) => f.suggested_verdict)?.suggested_verdict}
+            />
+          </div>
+        </details>
+      </li>
+    ))}
+  </ol>
+  <p id="q-empty" class="hidden text-gray-500 text-sm">No subjects match these filters.</p>
+</Layout>
+
+<script>
+  const form = document.getElementById('q-filters') as HTMLFormElement;
+  const rows = [...document.querySelectorAll<HTMLElement>('.q-row')];
+  const count = document.getElementById('q-count')!;
+  const empty = document.getElementById('q-empty')!;
+
+  function apply() {
+    const fd = new FormData(form);
+    const kind = String(fd.get('kind') || '');
+    const layer = String(fd.get('layer') || '');
+    const container = String(fd.get('container') || '');
+    const state = String(fd.get('state') || '');
+    const min = Number(fd.get('min') || 0);
+    const positive = fd.get('positive') !== null;
+    let shown = 0;
+    for (const r of rows) {
+      const score = Number(r.dataset.score);
+      const ok =
+        (!kind || r.dataset.kind === kind) &&
+        (!layer || r.dataset.layer === layer) &&
+        (!container || r.dataset.container === container) &&
+        (!state || r.dataset.state === state) &&
+        score >= min &&
+        (!positive || score > 0);
+      r.classList.toggle('hidden', !ok);
+      if (ok) shown++;
+    }
+    count.textContent = `Showing ${shown} of ${rows.length}.`;
+    empty.classList.toggle('hidden', shown > 0);
+  }
+  form.addEventListener('input', apply);
+  form.addEventListener('submit', (e) => e.preventDefault());
+  apply();
+</script>

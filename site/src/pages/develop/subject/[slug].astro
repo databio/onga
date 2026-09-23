@@ -1,0 +1,412 @@
+---
+// One page per subject (every SID in curation/subjects.json, retired ones
+// included). Shows exactly what the subject's hash covers (the payload), the
+// kind-specific joins, findings, review prompts, decision history and the
+// decision control. Static-rendered; the control goes live under `make curate`.
+import { url } from '../../../lib/url';
+import Layout from '../../../layouts/Layout.astro';
+import ModeBanner from '../../../components/ModeBanner.astro';
+import StateChip from '../../../components/StateChip.astro';
+import DecisionControl from '../../../components/DecisionControl.astro';
+import subjectsDoc from '../../../data/develop/subjects.json';
+import usage from '../../../data/develop/usage.json';
+import upstream from '../../../data/develop/upstream-requests.json';
+import classes from '../../../data/schema/classes.json';
+import aliasDoc from '../../../../../curation/subject_aliases.json';
+import { subjectIndex, findingsFor, decisionsFor, promptsFor, decisions } from '../../../lib/develop';
+
+export function getStaticPaths() {
+  const all = Object.values((subjectsDoc as any).subjects) as any[];
+  return all.map((s) => ({ params: { slug: s.slug }, props: { sid: s.sid } }));
+}
+
+const { sid } = Astro.props as { sid: string };
+const allSubjects = (subjectsDoc as any).subjects as Record<string, any>;
+const rec = allSubjects[sid];
+const row = subjectIndex[sid];
+const payload = rec.payload || {};
+
+// Aliases: old SID -> new SID (from applied renames). Follow forward for a
+// retired subject; collect every old SID that resolves here for history.
+const aliases = Object.fromEntries(Object.entries(aliasDoc as Record<string, string>).filter(([k]) => !k.startsWith('_')));
+function resolve(s: string): string {
+  const seen = new Set<string>();
+  while (aliases[s] && !seen.has(s)) { seen.add(s); s = aliases[s]; }
+  return s;
+}
+const forward = aliases[sid] ? resolve(sid) : null;
+const formerSids = Object.keys(aliases).filter((k) => k !== sid && resolve(k) === sid);
+
+const linkFor = (s: string) => subjectIndex[s]?.href ?? (allSubjects[s] ? `/develop/subject/${allSubjects[s].slug}` : null);
+const nameFor = (s: string) => {
+  const r = subjectIndex[s] ?? allSubjects[s];
+  return r ? (r.kind === 'term' ? `${r.label} (${r.name})` : r.name) : s;
+};
+
+const title = rec.kind === 'term' ? rec.label : rec.name;
+const findings = findingsFor(sid);
+const prompts = promptsFor(sid);
+const seen = new Set<string>();
+const history = [sid, ...formerSids]
+  .flatMap((s) => decisionsFor(s))
+  .filter((d) => (seen.has(d.id) ? false : (seen.add(d.id), true)))
+  .sort((a, b) => b.id.localeCompare(a.id));
+const suggested = findings.find((f) => f.suggested_verdict);
+
+// Kind-specific data.
+const use = (usage as any)[sid] as { encode_files: number; encode_datasets: number; contributing_seed_terms: string[] } | undefined;
+const facetDecisions = rec.kind === 'term'
+  ? decisions.filter((d) => d.verdict === 'facet' && (d.subject === sid || JSON.stringify(d.operation || {}).includes(`"${sid}"`)))
+  : [];
+const classInfo = rec.kind === 'class' ? (classes as any[]).find((c) => c.name === rec.name) : null;
+const moduleMembers = rec.kind === 'module'
+  ? Object.values(allSubjects).filter((s: any) => s.kind !== 'module' && s.module === rec.name && !s.retired)
+  : [];
+const members: string[] = rec.members || [];
+
+// Upstream (SO etc.) requests and rejections that cite this term.
+const browse = row?.browse ?? null;
+const citing = rec.kind === 'term'
+  ? [...((upstream as any).requests || []), ...((upstream as any).rejections || [])].filter((r: any) => {
+      const blob = JSON.stringify(r);
+      return (browse && blob.includes(`"${browse}"`)) || blob.includes(`"${rec.label}"`) || blob.includes(`"${rec.term_id}"`);
+    })
+  : [];
+
+const SEV_CLASS: Record<string, string> = {
+  error: 'bg-red-50 text-red-800 border-red-200',
+  warn: 'bg-amber-50 text-amber-800 border-amber-200',
+  info: 'bg-gray-50 text-gray-600 border-gray-200',
+};
+const STATUS_CLASS: Record<string, string> = {
+  pending: 'bg-amber-50 text-amber-800 border-amber-200',
+  applied: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+  withdrawn: 'bg-gray-50 text-gray-500 border-gray-200',
+};
+const isScalar = (v: unknown) => v === null || ['string', 'number', 'boolean'].includes(typeof v);
+const isScalarList = (v: unknown) => Array.isArray(v) && v.every(isScalar);
+---
+
+<Layout title={`${title} · subject`} side="develop" description={`Curation workbench subject ${sid}`}>
+  <ModeBanner />
+
+  <nav class="text-sm text-gray-500 mb-4">
+    <a href={url('/develop')} class="hover:underline">Develop</a> ›
+    <a href={url('/develop/queue')} class="hover:underline">Queue</a> ›
+    <span class="font-mono">{sid}</span>
+  </nav>
+
+  <header class="bg-white rounded-lg p-6 shadow-sm mb-6">
+    <div class="flex flex-wrap items-start justify-between gap-4">
+      <div class="min-w-0">
+        <div class="text-xs uppercase tracking-wide text-gray-400">{rec.kind}</div>
+        <h1 class="text-2xl font-bold text-gray-900 break-words">{title}</h1>
+        <div class="font-mono text-sm text-gray-500 mt-1">{sid}</div>
+      </div>
+      <div class="flex flex-col items-end gap-2">
+        <StateChip sid={sid} />
+        {row && <div class="text-sm text-gray-500">score <span class="font-semibold text-gray-800">{row.score.toFixed(2)}</span></div>}
+      </div>
+    </div>
+    <dl class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-2 text-sm">
+      <div><dt class="text-xs text-gray-400">Layer</dt><dd class="text-gray-800">{rec.layer ?? '—'}</dd></div>
+      <div>
+        <dt class="text-xs text-gray-400">Container</dt>
+        <dd class="text-gray-800">
+          {rec.container ? (linkFor(rec.container)
+            ? <a href={url(linkFor(rec.container)!)} class="text-blue-600 hover:underline font-mono">{rec.container}</a>
+            : <span class="font-mono">{rec.container}</span>) : '—'}
+        </dd>
+      </div>
+      <div><dt class="text-xs text-gray-400">Source file</dt><dd class="font-mono text-gray-800">{rec.file ?? '—'}</dd></div>
+      <div>
+        <dt class="text-xs text-gray-400">Browse</dt>
+        <dd>{browse ? <a href={url(browse)} class="text-blue-600 hover:underline">{browse}</a> : <span class="text-gray-400">no browse page</span>}</dd>
+      </div>
+    </dl>
+    {rec.retired && (
+      <div class="mt-4 rounded border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-700">
+        Retired subject. Kept so its history still resolves.
+        {forward && linkFor(forward) && <> Now <a href={url(linkFor(forward)!)} class="text-blue-600 hover:underline font-mono">{forward}</a>.</>}
+      </div>
+    )}
+    {formerSids.length > 0 && (
+      <div class="mt-3 text-xs text-gray-500">Formerly: <span class="font-mono">{formerSids.join(', ')}</span></div>
+    )}
+  </header>
+
+  <div class="grid lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-2 space-y-6">
+      <section class="bg-white rounded-lg p-6 shadow-sm">
+        <h2 class="text-lg font-semibold text-gray-900">Payload</h2>
+        <p class="text-xs text-gray-500 mb-3">
+          Exactly what the subject hash covers. Hash <span class="font-mono">{rec.hash.slice(0, 16)}…</span>
+        </p>
+        <dl class="divide-y divide-gray-100 text-sm">
+          {Object.entries(payload).map(([k, v]) => (
+            <div class="py-2 grid grid-cols-4 gap-4">
+              <dt class="font-mono text-gray-500 break-words">{k}</dt>
+              <dd class="col-span-3 text-gray-800 break-words">
+                {isScalar(v) ? (
+                  <span class="whitespace-pre-wrap">{String(v)}</span>
+                ) : isScalarList(v) ? (
+                  (v as unknown[]).length === 0
+                    ? <span class="text-gray-400">[]</span>
+                    : <ul class="flex flex-wrap gap-1">{(v as unknown[]).map((x) => <li class="px-1.5 py-0.5 rounded bg-gray-100 font-mono text-xs">{String(x)}</li>)}</ul>
+                ) : (
+                  <pre class="text-xs bg-gray-50 rounded p-2 overflow-x-auto">{JSON.stringify(v, null, 2)}</pre>
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      {rec.kind === 'term' && (
+        <section class="bg-white rounded-lg p-6 shadow-sm space-y-4">
+          <h2 class="text-lg font-semibold text-gray-900">Mappings, facets and usage</h2>
+          <div>
+            <h3 class="text-sm font-medium text-gray-700 mb-2">SSSOM rows</h3>
+            {(payload.sssom || []).length === 0 ? <p class="text-sm text-gray-400">None.</p> : (
+              <table class="w-full text-sm">
+                <thead class="text-xs text-gray-500 text-left">
+                  <tr><th class="py-1 pr-2">predicate</th><th class="py-1 pr-2">object</th><th class="py-1 pr-2">modifier</th><th class="py-1 pr-2">justification</th><th class="py-1">comment</th></tr>
+                </thead>
+                <tbody>
+                  {(payload.sssom as any[]).map((m) => (
+                    <tr class="border-t border-gray-100 align-top">
+                      <td class="py-1 pr-2 font-mono text-xs">{m.predicate}</td>
+                      <td class="py-1 pr-2 font-mono text-xs">{m.object}</td>
+                      <td class="py-1 pr-2 text-xs">{m.modifier || ''}</td>
+                      <td class="py-1 pr-2 font-mono text-xs">{m.justification}</td>
+                      <td class="py-1 text-xs text-gray-600">{m.comment}{m.fit ? ` (fit: ${m.fit})` : ''}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-gray-700 mb-2">Facet decisions</h3>
+            {facetDecisions.length === 0 ? <p class="text-sm text-gray-400">None.</p> : (
+              <ul class="text-sm space-y-1">
+                {facetDecisions.map((d) => (
+                  <li><span class="font-mono">{d.id}</span> · {d.status} · <code class="text-xs">{JSON.stringify(d.operation)}</code></li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-gray-700 mb-2">Usage</h3>
+            {use ? (
+              <div class="text-sm text-gray-700">
+                <span class="font-semibold">{use.encode_files.toLocaleString()}</span> ENCODE files in
+                <span class="font-semibold">{use.encode_datasets.toLocaleString()}</span> datasets.
+                {use.contributing_seed_terms?.length > 0 && (
+                  <div class="mt-1 text-xs text-gray-500">
+                    Contributing seed terms:
+                    {use.contributing_seed_terms.map((t) => <span class="ml-1 px-1.5 py-0.5 rounded bg-gray-100">{t}</span>)}
+                  </div>
+                )}
+              </div>
+            ) : <p class="text-sm text-gray-400">No usage data.</p>}
+          </div>
+        </section>
+      )}
+
+      {rec.kind === 'slot' && (
+        <section class="bg-white rounded-lg p-6 shadow-sm">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">Where this slot is used</h2>
+          <dl class="text-sm space-y-2">
+            <div>
+              <dt class="text-xs text-gray-400">Owner class</dt>
+              <dd>{rec.owner_class
+                ? <a href={url(linkFor(`class:${rec.owner_class}`) ?? '#')} class="text-blue-600 hover:underline">{rec.owner_class}</a>
+                : <span class="text-gray-500">shared (listed by more than one class)</span>}</dd>
+            </div>
+            {[['Listed by', rec.used_by], ['Inherited by', rec.inherited_by]].map(([label, list]) => (
+              <div>
+                <dt class="text-xs text-gray-400">{label}</dt>
+                <dd class="flex flex-wrap gap-2">
+                  {(list as string[] || []).length === 0 ? <span class="text-gray-400">none</span> :
+                    (list as string[]).map((c) => <a href={url(linkFor(`class:${c}`) ?? '#')} class="text-blue-600 hover:underline">{c}</a>)}
+                </dd>
+              </div>
+            ))}
+            <div><dt class="text-xs text-gray-400">Defined in module</dt><dd class="font-mono">{rec.defined_in ?? rec.module}</dd></div>
+          </dl>
+        </section>
+      )}
+
+      {rec.kind === 'class' && (
+        <section class="bg-white rounded-lg p-6 shadow-sm">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">Effective slots</h2>
+          {classInfo && classInfo.slots.length > 0 ? (
+            <table class="w-full text-sm">
+              <thead class="text-xs text-gray-500 text-left">
+                <tr><th class="py-1 pr-2">slot</th><th class="py-1 pr-2">range</th><th class="py-1 pr-2">card.</th><th class="py-1 pr-2">from</th><th class="py-1">state</th></tr>
+              </thead>
+              <tbody>
+                {classInfo.slots.map((sl: any) => {
+                  const ssid = `slot:${sl.name}`;
+                  const href = linkFor(ssid);
+                  return (
+                    <tr class="border-t border-gray-100">
+                      <td class="py-1 pr-2 font-mono">{href ? <a href={url(href)} class="text-blue-600 hover:underline">{sl.name}</a> : sl.name}</td>
+                      <td class="py-1 pr-2 font-mono text-xs">{sl.range}</td>
+                      <td class="py-1 pr-2 text-xs">{sl.required ? 'required' : sl.recommended ? 'recommended' : 'optional'}{sl.multivalued ? ', many' : ''}</td>
+                      <td class="py-1 pr-2 text-xs text-gray-500">{sl.inheritedFrom ? `inherited from ${sl.inheritedFrom}` : 'own'}</td>
+                      <td class="py-1">{subjectIndex[ssid] && <StateChip sid={ssid} link />}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          ) : <p class="text-sm text-gray-400">No slots.</p>}
+          <dl class="mt-4 text-sm grid md:grid-cols-2 gap-3">
+            {[['Subclasses', (rec.inherited_by || []).map((c: string) => `class:${c}`)], ['Referenced by', rec.referenced_by || []]].map(([label, list]) => (
+              <div>
+                <dt class="text-xs text-gray-400">{label}</dt>
+                <dd class="flex flex-wrap gap-2">
+                  {(list as string[]).length === 0 ? <span class="text-gray-400">none</span> :
+                    (list as string[]).map((s) => linkFor(s)
+                      ? <a href={url(linkFor(s)!)} class="text-blue-600 hover:underline font-mono text-xs">{s}</a>
+                      : <span class="font-mono text-xs">{s}</span>)}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )}
+
+      {(rec.kind === 'enum' || rec.kind === 'subset') && (
+        <section class="bg-white rounded-lg p-6 shadow-sm">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">Members <span class="text-sm text-gray-400">{members.length}</span></h2>
+          <ul class="grid md:grid-cols-2 gap-1 text-sm">
+            {members.map((m) => (
+              <li class="flex items-center justify-between gap-2">
+                {linkFor(m) ? <a href={url(linkFor(m)!)} class="text-blue-600 hover:underline truncate">{nameFor(m)}</a> : <span>{nameFor(m)}</span>}
+                <StateChip sid={m} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {rec.kind === 'module' && (
+        <section class="bg-white rounded-lg p-6 shadow-sm">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">Defined here <span class="text-sm text-gray-400">{moduleMembers.length}</span></h2>
+          <ul class="grid md:grid-cols-2 gap-1 text-sm">
+            {moduleMembers.map((m: any) => (
+              <li class="flex items-center justify-between gap-2">
+                <a href={url(linkFor(m.sid) ?? '#')} class="text-blue-600 hover:underline truncate">
+                  <span class="text-xs text-gray-400">{m.kind}</span> {m.kind === 'term' ? m.label : m.name}
+                </a>
+                <StateChip sid={m.sid} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section class="bg-white rounded-lg p-6 shadow-sm">
+        <h2 class="text-lg font-semibold text-gray-900 mb-3">Findings <span class="text-sm text-gray-400">{findings.length}</span></h2>
+        {findings.length === 0 ? <p class="text-sm text-gray-400">No current findings.</p> : (
+          <ul class="space-y-2 text-sm">
+            {findings.map((f) => (
+              <li class="flex flex-wrap items-start gap-2">
+                <span class:list={['text-xs px-1.5 py-0.5 rounded border font-mono', SEV_CLASS[f.severity] || SEV_CLASS.info]}>{f.rule}</span>
+                <span class="text-gray-700 flex-1 min-w-0">{f.message}</span>
+                <span class="font-mono text-xs text-gray-400">{f.id}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      {citing.length > 0 && (
+        <section class="bg-white rounded-lg p-6 shadow-sm">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">Upstream requests citing this term</h2>
+          <ul class="space-y-2 text-sm">
+            {citing.map((r: any) => (
+              <li>
+                <a href={url('/develop/so-proposals')} class="font-mono text-blue-600 hover:underline">{r.id}</a>
+                <span class="text-gray-500"> · {r.status}</span>
+                {r.label && <span class="text-gray-800"> · {r.label}</span>}
+                {r.disposition && <span class="text-gray-800"> · {r.disposition}</span>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section class="bg-white rounded-lg p-6 shadow-sm">
+        <h2 class="text-lg font-semibold text-gray-900 mb-3">Decision history <span class="text-sm text-gray-400">{history.length}</span></h2>
+        {history.length === 0 ? <p class="text-sm text-gray-400">No decisions yet.</p> : (
+          <ol class="space-y-3 text-sm">
+            {history.map((d) => (
+              <li class="border-l-2 border-gray-200 pl-3">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="font-mono font-semibold">{d.id}</span>
+                  <span class="px-1.5 py-0.5 rounded bg-gray-100 text-xs">{d.verdict}</span>
+                  <span class:list={['px-1.5 py-0.5 rounded border text-xs', STATUS_CLASS[d.status] || STATUS_CLASS.withdrawn]}>{d.status}</span>
+                  <span class="text-xs text-gray-500">{d.decided_by} · {d.decided_on} · {d.origin?.kind}</span>
+                  {d.subject !== sid && <span class="text-xs text-gray-500">on <span class="font-mono">{d.subject}</span></span>}
+                </div>
+                {d.operation && <code class="block text-xs text-gray-600 mt-1 break-words">{JSON.stringify(d.operation)}</code>}
+                <p class="text-gray-700 mt-1">{d.rationale}</p>
+              </li>
+            ))}
+          </ol>
+        )}
+      </section>
+    </div>
+
+    <aside class="space-y-6">
+      <section class="bg-white rounded-lg p-4 shadow-sm">
+        <h2 class="text-sm font-semibold text-gray-900 mb-2">Decide</h2>
+        {rec.retired ? (
+          <p class="text-sm text-gray-500">Retired subjects take no new decisions.</p>
+        ) : (
+          <DecisionControl
+            sid={sid}
+            kind={rec.kind}
+            findingId={suggested?.id}
+            suggestedVerdict={suggested?.suggested_verdict}
+          />
+        )}
+      </section>
+
+      {prompts.length > 0 && (
+        <section class="bg-white rounded-lg p-4 shadow-sm space-y-4">
+          <h2 class="text-sm font-semibold text-gray-900">Review prompts</h2>
+          {prompts.map((p) => {
+            const onOwner = p.decide_on === 'owner_class' && rec.owner_class;
+            const target = onOwner ? `class:${rec.owner_class}` : sid;
+            return (
+              <div class="rounded border border-indigo-100 bg-indigo-50/50 p-3 text-sm">
+                <div class="font-medium text-indigo-900">{p.title}</div>
+                <p class="text-gray-700 mt-1">{p.text}</p>
+                <div class="text-xs text-gray-500 mt-1">{p.source}</div>
+                {p.suggested_verdict && !rec.retired && (
+                  <div class="mt-2">
+                    {onOwner && (
+                      <div class="text-xs text-gray-600 mb-1">
+                        Decided on the owner class, <a href={url(linkFor(target) ?? '#')} class="text-blue-600 hover:underline font-mono">{target}</a>:
+                      </div>
+                    )}
+                    <DecisionControl
+                      sid={target}
+                      suggestedVerdict={p.suggested_verdict}
+                      suggestedOperation={p.suggested_operation}
+                    />
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </section>
+      )}
+    </aside>
+  </div>
+</Layout>
