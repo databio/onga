@@ -1,0 +1,97 @@
+# policy.yaml
+#
+# Curation policy as data: every tunable number the workbench uses lives here,
+# not in code. Read by scripts/schema_lint.py (lint:) and
+# scripts/curation_status.py (queue:).
+#
+# lint:
+#   terse_description_chars  a description shorter than this is `terse-description`
+#   oversized_subset         a subset with more members than this is `oversized-subset`
+#   high_usage_files         a term with at least this many rolled-up ENCODE files
+#                            and no positive SSSOM row is `unmapped-high-usage`
+#   todo_markers             case-insensitive regexes for `todo-marker`, matched
+#                            against descriptions and attached YAML comments
+#   facet_enums              the eight facet vocabularies; their values feed
+#                            `residual-compound` and `orphan-facet-value`
+#   facet_words              words that name a facet axis without being a facet
+#                            value; a content term label containing one (or any
+#                            live facet value label) is `residual-compound`
+#   rules                    per rule: severity (error | warn | info) and the
+#                            suggested_verdict offered with the finding (a verdict
+#                            from curation/verdicts.yaml, legal for the kind)
+#
+# queue:
+#   weights of the Phase 7 queue score (see scripts/curation_status.py).
+
+lint:
+  terse_description_chars: 40
+  oversized_subset: 25
+  high_usage_files: 100
+  todo_markers:
+    - '\bTODO\b'
+    - '\bplaceholder\b'
+    - '\bfor now\b'
+    - '\bplanned\b.*\bdeferred\b'
+  facet_enums:
+    - StrandOrientation
+    - ReadMultiplicity
+    - FilterStatus
+    - Normalization
+    - Thresholding
+    - Derivation
+    - ReferenceBuildSex
+    - HaplotypeResolution
+  facet_words:
+    - strand
+    - stranded
+    - unique
+    - multimapping
+    - normalized
+    - normalised
+    - filtered
+    - unfiltered
+    - thresholded
+    - predicted
+    - observed
+    - pseudoreplicated
+    - replicated
+    - conservative
+    - optimal
+    - haplotype
+    - maternal
+    - paternal
+    - male
+    - female
+  rules:
+    required-policy: {severity: warn, suggested_verdict: set_cardinality}
+    mapping-target-is-doc-link: {severity: warn, suggested_verdict: reject_mapping}
+    todo-marker: {severity: warn, suggested_verdict: edit_description}
+    enum-value-no-description: {severity: warn, suggested_verdict: edit_description}
+    unreviewed-mapping: {severity: warn, suggested_verdict: adopt_mapping}
+    layer-violation: {severity: error, suggested_verdict: retype_slot}
+    unused-slot: {severity: warn, suggested_verdict: delete_slot}
+    unused-enum: {severity: warn, suggested_verdict: delete_enum}
+    shared-slot: {severity: info, suggested_verdict: keep}
+    slot-no-examples: {severity: info, suggested_verdict: set_examples}
+    inline-enum: {severity: info, suggested_verdict: move_enum}
+    class-no-alignment: {severity: info, suggested_verdict: adopt_mapping}
+    residual-compound: {severity: warn, suggested_verdict: facet}
+    no-mapping-at-all: {severity: info, suggested_verdict: adopt_mapping}
+    terse-description: {severity: warn, suggested_verdict: edit_description}
+    duplicate-description: {severity: warn, suggested_verdict: edit_description}
+    singleton-subset: {severity: info, suggested_verdict: merge_subset}
+    oversized-subset: {severity: info, suggested_verdict: keep}
+    orphan-facet-value: {severity: warn, suggested_verdict: delete}
+    zero-usage-term: {severity: info, suggested_verdict: keep}
+    unmapped-high-usage: {severity: warn, suggested_verdict: adopt_mapping}
+    duplicate-paragraph: {severity: info, suggested_verdict: edit_description}
+
+queue:
+  findings: 2.0
+  impact: 4.0
+  adoption: 1.5
+  required: 1.0
+  port: 1.5
+  upstream: 2.0
+  stale: 3.0
+  machine: 1.0

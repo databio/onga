@@ -1,0 +1,3420 @@
+{
+  "_generated_by": "scripts/schema_lint.py",
+  "schema_fingerprint": "e38085a5f024c1fa78a37aafb48ce256d33e2e1aaacf26421251159b08599bfb",
+  "counts": {
+    "class-no-alignment": 11,
+    "duplicate-description": 0,
+    "duplicate-paragraph": 0,
+    "enum-value-no-description": 9,
+    "inline-enum": 3,
+    "layer-violation": 0,
+    "mapping-target-is-doc-link": 1,
+    "no-mapping-at-all": 96,
+    "orphan-facet-value": 2,
+    "oversized-subset": 0,
+    "required-policy": 20,
+    "residual-compound": 26,
+    "shared-slot": 1,
+    "singleton-subset": 0,
+    "slot-no-examples": 29,
+    "terse-description": 21,
+    "todo-marker": 7,
+    "unmapped-high-usage": 38,
+    "unreviewed-mapping": 28,
+    "unused-enum": 0,
+    "unused-slot": 0,
+    "zero-usage-term": 47
+  },
+  "findings": [
+    {
+      "id": "lint:class-no-alignment:09cfea9bb2",
+      "rule": "class-no-alignment",
+      "severity": "info",
+      "message": "ported class Term has no conforms_to and no mappings",
+      "subjects": [
+        "class:Term"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:class-no-alignment:23161754a4",
+      "rule": "class-no-alignment",
+      "severity": "info",
+      "message": "ported class OntologyVersions has no conforms_to and no mappings",
+      "subjects": [
+        "class:OntologyVersions"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:class-no-alignment:69d7cd0769",
+      "rule": "class-no-alignment",
+      "severity": "info",
+      "message": "ported class QualityAssessment has no conforms_to and no mappings",
+      "subjects": [
+        "class:QualityAssessment"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:class-no-alignment:6a41745885",
+      "rule": "class-no-alignment",
+      "severity": "info",
+      "message": "ported class TrackGeometry has no conforms_to and no mappings",
+      "subjects": [
+        "class:TrackGeometry"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:class-no-alignment:721e18b79e",
+      "rule": "class-no-alignment",
+      "severity": "info",
+      "message": "ported class Any has no conforms_to and no mappings",
+      "subjects": [
+        "class:Any"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:class-no-alignment:7e6ef9744c",
+      "rule": "class-no-alignment",
+      "severity": "info",
+      "message": "ported class Experiment has no conforms_to and no mappings",
+      "subjects": [
+        "class:Experiment"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:class-no-alignment:c3c640611c",
+      "rule": "class-no-alignment",
+      "severity": "info",
+      "message": "ported class TopLevel has no conforms_to and no mappings",
+      "subjects": [
+        "class:TopLevel"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:class-no-alignment:e2b78b75c9",
+      "rule": "class-no-alignment",
+      "severity": "info",
+      "message": "ported class Deposit has no conforms_to and no mappings",
+      "subjects": [
+        "class:Deposit"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:class-no-alignment:ed35743208",
+      "rule": "class-no-alignment",
+      "severity": "info",
+      "message": "ported class Sample has no conforms_to and no mappings",
+      "subjects": [
+        "class:Sample"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:class-no-alignment:f4e5ddcac2",
+      "rule": "class-no-alignment",
+      "severity": "info",
+      "message": "ported class AssessmentValue has no conforms_to and no mappings",
+      "subjects": [
+        "class:AssessmentValue"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:class-no-alignment:fc1b266e58",
+      "rule": "class-no-alignment",
+      "severity": "info",
+      "message": "ported class GenomicAnnotationFile has no conforms_to and no mappings",
+      "subjects": [
+        "class:GenomicAnnotationFile"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:enum-value-no-description:0a84b715ca",
+      "rule": "enum-value-no-description",
+      "severity": "warn",
+      "message": "BiospecimenClassification value 'whole organisms' has no description",
+      "subjects": [
+        "term:ONGA_0000290"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:enum-value-no-description:0b091c0724",
+      "rule": "enum-value-no-description",
+      "severity": "warn",
+      "message": "BiospecimenClassification value 'in vitro differentiated cells' has no description",
+      "subjects": [
+        "term:ONGA_0000285"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:enum-value-no-description:1f498e68b7",
+      "rule": "enum-value-no-description",
+      "severity": "warn",
+      "message": "BiospecimenClassification value 'primary cell' has no description",
+      "subjects": [
+        "term:ONGA_0000286"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:enum-value-no-description:22bff04eb1",
+      "rule": "enum-value-no-description",
+      "severity": "warn",
+      "message": "BiospecimenClassification value 'technical sample' has no description",
+      "subjects": [
+        "term:ONGA_0000292"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:enum-value-no-description:241ecc636a",
+      "rule": "enum-value-no-description",
+      "severity": "warn",
+      "message": "BiospecimenClassification value 'cloning host' has no description",
+      "subjects": [
+        "term:ONGA_0000288"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:enum-value-no-description:2a724dd112",
+      "rule": "enum-value-no-description",
+      "severity": "warn",
+      "message": "BiospecimenClassification value 'tissue' has no description",
+      "subjects": [
+        "term:ONGA_0000289"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:enum-value-no-description:6e3e054c76",
+      "rule": "enum-value-no-description",
+      "severity": "warn",
+      "message": "BiospecimenClassification value 'cell-free sample' has no description",
+      "subjects": [
+        "term:ONGA_0000287"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:enum-value-no-description:7256bf490f",
+      "rule": "enum-value-no-description",
+      "severity": "warn",
+      "message": "BiospecimenClassification value 'cell line' has no description",
+      "subjects": [
+        "term:ONGA_0000284"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:enum-value-no-description:a362b7e507",
+      "rule": "enum-value-no-description",
+      "severity": "warn",
+      "message": "BiospecimenClassification value 'organoid' has no description",
+      "subjects": [
+        "term:ONGA_0000291"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:inline-enum:aab935be95",
+      "rule": "inline-enum",
+      "severity": "info",
+      "message": "enum BiospecimenClassification is defined inside class module sample",
+      "subjects": [
+        "enum:BiospecimenClassification"
+      ],
+      "suggested_verdict": "move_enum"
+    },
+    {
+      "id": "lint:inline-enum:bd701bffe0",
+      "rule": "inline-enum",
+      "severity": "info",
+      "message": "enum ValueType is defined inside class module track_geometry",
+      "subjects": [
+        "enum:ValueType"
+      ],
+      "suggested_verdict": "move_enum"
+    },
+    {
+      "id": "lint:inline-enum:d8e13df2f6",
+      "rule": "inline-enum",
+      "severity": "info",
+      "message": "enum AccessProtocol is defined inside class module access_method",
+      "subjects": [
+        "enum:AccessProtocol"
+      ],
+      "suggested_verdict": "move_enum"
+    },
+    {
+      "id": "lint:mapping-target-is-doc-link:d71d9c1c58",
+      "rule": "mapping-target-is-doc-link",
+      "severity": "warn",
+      "message": "class Donor close_mappings value phenopackets_info:individual.html is a documentation page, not a term",
+      "subjects": [
+        "class:Donor"
+      ],
+      "suggested_verdict": "reject_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:071e8bb9ca",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'exclusion list regions' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000132"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:0e1b0eccb2",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'validation' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000154"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:129fe66d1a",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'hotspots1 reference' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000042"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:13d98cbbc6",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'signal' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000017"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:151f93fac1",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'variants contact matrix' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000047"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:153d3535ff",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'profile sequence contribution scores' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000092"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:1a6ba4f140",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'DNN-MPRA contribution scores' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000087"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:1c6407483f",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'signals matrix' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000158"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:1e1e51221a",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'positive control regions' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000145"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:1fcedf1433",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'relative replication signal' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000193"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:1ff362be45",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'training and test regions' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000101"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:20245097dd",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'guide locations' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000052"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:2194a3808c",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'guide quantifications' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000053"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:26f6ee726b",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'models' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000090"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:27654dc096",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'idat green channel' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000135"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:285f3b360d",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'nuclease cleavage corrected frequency' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000162"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:2905da53c1",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'selected regions for bias-corrected predicted signal profile' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000094"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:2a90111b2a",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'predicted 3D structural ensembles' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000226"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:2aa037a6e3",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'bias profile' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000160"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:2db8682abf",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'enhancer prediction model' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000048"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:3782726681",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'CpG sites coverage' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000171"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:3ab09b6dec",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'archr project' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000127"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:3b2ffbf3db",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'inclusion list' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000137"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:3b64b7a317",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'element barcode mapping' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000050"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:3d4476b46a",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'base overlap signal' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000012"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:40abd08529",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'bias-corrected predicted signal profile' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000013"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:416c67b45d",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'hotspots2 reference' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000043"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:43cd7a2093",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'transcriptome annotations' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000218"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:482227d2cf",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'mitochondrial exclusion list regions' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000142"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:49158a843b",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'phastcons score reference' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000114"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:4a2bea05fc",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'TF peaks matrix' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000064"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:4d9c16b4c7",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'kmer weights' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000140"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:4e4af94b7a",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'control profile' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000161"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:51ae78403f",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'selected regions for count sequence contribution scores' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000095"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:53c3fd9254",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'signal profile' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000159"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:54a28ff655",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'read annotations' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000123"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:58e0825582",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'idat red channel' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000136"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:59590e64d6",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'replication timing profile' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000194"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:5ad4724e46",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'element quantifications' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000068"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:5cc470a6fc",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'cell coordinates' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000128"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:5d13c173a8",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'functional conservation quantifications' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000211"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:5d88352a3f",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'valleys' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000036"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:5f42cf14dc",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'selected regions for predicted signal and sequence contribution scores' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000097"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:61292ecc18",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'filtered regions' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000133"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:6489526887",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'TF binding prediction model' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000100"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:66f021e1f9",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'wavelet-smoothed signal' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000020"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:6a2b6b7608",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'reference' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000115"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:6b233b83e7",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'control normalized signal' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000014"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:6d76da4773",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'selected regions for predicted signal profile' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000098"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:6e1669f7d0",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'genome compartments' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000167"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:6e62c36399",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'bias models' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000085"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:6ff46cc4b3",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'FDR cut rate' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000040"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:710a73f861",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'summed densities signal' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000019"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:798f941167",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'selected regions for predicted bias profile' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000096"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:7b48238764",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'promoter prediction model' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000093"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:81e466328e",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'genome subcompartments' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000168"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:8288f9ec76",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'model performance metrics' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000089"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:89bcccb9e6",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'nanopore signal' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000143"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:8f7069d81e",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'z scores matrix' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000065"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:921b57bd54",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'sequence alignability' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000125"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:95ade30d8c",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'modified peptide quantification' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000156"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:99ba3b0a05",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'raw data' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000148"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:9a1e3be195",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'fold over change matrix' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000060"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:9b3d1ede02",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'selected regions for profile sequence contribution scores' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000099"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:a21fa7001e",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'raw imaging signal' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000149"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:a31a5c37c3",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'pairs' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000046"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:a439ed8bc9",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'transposable element TF ancestral origin percent by motif' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000219"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:a657ac5323",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'spike-ins' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000152"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:a901b5ccb4",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'topic gene weights' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000192"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:a90811cd5f",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'transposable element TF ancestral origin percent by subfamily' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000220"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:ab33bc5745",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'enhancer validation' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000181"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:af80a4b3d5",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'reporter code counts' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000057"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:b068e2ae2b",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'chromatin stripes' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000165"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:b13f263031",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'fold change over control' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000016"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:b85cd9d208",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'clusters' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000130"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:bdc9025447",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'DNN-MPRA predicted signal' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000088"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:c03f24a053",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'redacted transcriptome alignments' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000008"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:c7a1ef0efc",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'sequence uniqueness' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000126"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:cb22813b4f",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'capture targets' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000131"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:ce8a3db5eb",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'end position signal' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000155"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:cf9c3c462c",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'perturbation signal' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000055"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:cfbce6094f",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'HMM predicted chromatin state' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000122"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:cfc975d675",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'spike-in alignments' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000010"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:d06c1628e4",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'counts sequence contribution scores' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000086"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:d3fef530d4",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'intensity values' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000139"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:d57af36a5c",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'enrichment' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000015"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:d645830693",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'training set' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000102"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:da0130484c",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'negative control regions' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000144"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:da0a764560",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'regulatory elements prediction model' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000049"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:e81e8f80d7",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'elements reference' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000107"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:ed3bbe4bf4",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'library fraction' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000141"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:f3bfcb7744",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'fragments' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000134"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:f97fc6d206",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'redacted alignments' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000007"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:fd186d754a",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'cell topic participation' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000129"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:fe3483297c",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'gene alignments' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000004"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:no-mapping-at-all:ff8c42a347",
+      "rule": "no-mapping-at-all",
+      "severity": "info",
+      "message": "'semi-automated genome annotation' has no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000124"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:orphan-facet-value:3421419977",
+      "rule": "orphan-facet-value",
+      "severity": "warn",
+      "message": "StrandOrientation value 'bidirectional' appears in no facet decomposition row and no slot example",
+      "subjects": [
+        "term:ONGA_0000253"
+      ],
+      "suggested_verdict": "delete"
+    },
+    {
+      "id": "lint:orphan-facet-value:9af2e0e849",
+      "rule": "orphan-facet-value",
+      "severity": "warn",
+      "message": "StrandOrientation value 'unstranded' appears in no facet decomposition row and no slot example",
+      "subjects": [
+        "term:ONGA_0000252"
+      ],
+      "suggested_verdict": "delete"
+    },
+    {
+      "id": "lint:required-policy:24724dd615",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot id is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:id"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:2f8fec7608",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot has_gaps is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:has_gaps"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:4e4d76a3c5",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot elements_overlapping is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:elements_overlapping"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:5228bcb74a",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot reference_genome is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:reference_genome"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:57941d7ba6",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot ontology_url is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:ontology_url"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:7de718df40",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot value is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:value"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:8d15ac9c19",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot has_names is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:has_names"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:8d51234535",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot has_edges is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:has_edges"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:a54b740006",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot has_lengths is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:has_lengths"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:a58045b74a",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot has_strands is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:has_strands"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:a8b27e7419",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot elements_circular is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:elements_circular"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:aa33953984",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot has_values is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:has_values"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:ac2cc2f1a6",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot key is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:key"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:c60e3fdceb",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot namespace is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:namespace"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:cb577c4fb2",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot checksum_type is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:checksum_type"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:d2badcae41",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot file_format is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:file_format"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:dcc3c3f935",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot document is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:document"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:dd104aff1d",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot url is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:url"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:dd8f156d3f",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot qualified_relation is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:qualified_relation"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:required-policy:e77a815872",
+      "rule": "required-policy",
+      "severity": "warn",
+      "message": "slot versioned_ontology_url is required but is not an identifier; every required slot is a cost to adopters",
+      "subjects": [
+        "slot:versioned_ontology_url"
+      ],
+      "suggested_verdict": "set_cardinality"
+    },
+    {
+      "id": "lint:residual-compound:023a3bc6e1",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'representative IDR thresholded peaks' contains facet word(s) idr, thresholded and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000034"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:09fcaffa44",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'peaks and background as input for IDR' contains facet word(s) idr and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000028"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:168284b781",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'pseudoreplicated IDR thresholded peaks' contains facet word(s) idr, pseudoreplicated, thresholded and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000030"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:2905da53c1",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'selected regions for bias-corrected predicted signal profile' contains facet word(s) predicted and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000094"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:2a90111b2a",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'predicted 3D structural ensembles' contains facet word(s) predicted and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000226"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:33f020a99d",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'replicated peaks' contains facet word(s) replicated and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000032"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:34dc44cbe2",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'bidirectional peaks' contains facet word(s) bidirectional and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000021"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:40abd08529",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'bias-corrected predicted signal profile' contains facet word(s) predicted and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000013"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:4d5ea34365",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'predicted enhancers' contains facet word(s) predicted and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000184"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:5f42cf14dc",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'selected regions for predicted signal and sequence contribution scores' contains facet word(s) predicted and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000097"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:61292ecc18",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'filtered regions' contains facet word(s) filtered and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000133"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:659c8517e5",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'conservative IDR thresholded peaks' contains facet word(s) conservative, idr, thresholded and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000022"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:6b233b83e7",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'control normalized signal' contains facet word(s) normalized and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000014"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:6d76da4773",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'selected regions for predicted signal profile' contains facet word(s) predicted and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000098"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:6ec6016c10",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'maternal variant calls' contains facet word(s) maternal and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000200"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:798f941167",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'selected regions for predicted bias profile' contains facet word(s) predicted and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000096"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:82a0521f2b",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'IDR ranked peaks' contains facet word(s) idr and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000025"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:8f9a8d3cce",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'pseudoreplicated peaks' contains facet word(s) pseudoreplicated and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000031"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:956ff09773",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'maternal haplotype mapping' contains facet word(s) haplotype, maternal and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000227"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:99ba3b0a05",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'raw data' contains facet word(s) raw and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000148"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:a21fa7001e",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'raw imaging signal' contains facet word(s) raw and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000149"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:b5626d3dc9",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'optimal IDR thresholded peaks' contains facet word(s) idr, optimal, thresholded and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000026"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:bdc9025447",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'DNN-MPRA predicted signal' contains facet word(s) predicted and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000088"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:cfbce6094f",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'HMM predicted chromatin state' contains facet word(s) predicted and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000122"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:cfd3045b78",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'paternal haplotype mapping' contains facet word(s) haplotype, paternal and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000228"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:residual-compound:e26df46f58",
+      "rule": "residual-compound",
+      "severity": "warn",
+      "message": "'paternal variant calls' contains facet word(s) paternal and has no keep_atomic decision",
+      "subjects": [
+        "term:ONGA_0000201"
+      ],
+      "suggested_verdict": "facet"
+    },
+    {
+      "id": "lint:shared-slot:a377bc4a6d",
+      "rule": "shared-slot",
+      "severity": "info",
+      "message": "slot contact is listed by FileCollection, Study; confirm the meaning is shared",
+      "subjects": [
+        "slot:contact"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:slot-no-examples:0ebd17ba79",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot edge_weight_type has no examples",
+      "subjects": [
+        "slot:edge_weight_type"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:155e8a8f87",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot track_provenance has no examples",
+      "subjects": [
+        "slot:track_provenance"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:1c7b6759a9",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot sample_collection_location has no examples",
+      "subjects": [
+        "slot:sample_collection_location"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:2ffdc722f6",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot inputsource_ref has no examples",
+      "subjects": [
+        "slot:inputsource_ref"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:36d3cb859c",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot database_accessions has no examples",
+      "subjects": [
+        "slot:database_accessions"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:389c460054",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot filecollection_external_id has no examples",
+      "subjects": [
+        "slot:filecollection_external_id"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:3babaa4264",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot analyses has no examples",
+      "subjects": [
+        "slot:analyses"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:4d7a916ba4",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot donors has no examples",
+      "subjects": [
+        "slot:donors"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:5228bcb74a",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot reference_genome has no examples",
+      "subjects": [
+        "slot:reference_genome"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:5de6f5a159",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot track_geometry has no examples",
+      "subjects": [
+        "slot:track_geometry"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:70410002eb",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot edges_are_directed has no examples",
+      "subjects": [
+        "slot:edges_are_directed"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:8fea71e3df",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot experiments has no examples",
+      "subjects": [
+        "slot:experiments"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:9752cb643d",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot edges_have_weights has no examples",
+      "subjects": [
+        "slot:edges_have_weights"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:a6ef5a06d7",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot project_name has no examples",
+      "subjects": [
+        "slot:project_name"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:bd321dff8f",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot file_collections has no examples",
+      "subjects": [
+        "slot:file_collections"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:bf8022fef1",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot study_abstract has no examples",
+      "subjects": [
+        "slot:study_abstract"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:c7f7b9e34e",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot region has no examples",
+      "subjects": [
+        "slot:region"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:caf7a1d31b",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot files has no examples",
+      "subjects": [
+        "slot:files"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:d13d453660",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot edges_denote_parents has no examples",
+      "subjects": [
+        "slot:edges_denote_parents"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:d19db35d4e",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot sequencing_protocol has no examples",
+      "subjects": [
+        "slot:sequencing_protocol"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:dcc3c3f935",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot document has no examples",
+      "subjects": [
+        "slot:document"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:dd683019c9",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot track_format has no examples",
+      "subjects": [
+        "slot:track_format"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:e00b779c0c",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot samples has no examples",
+      "subjects": [
+        "slot:samples"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:e81bdb3893",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot genomic_annotation_digest has no examples",
+      "subjects": [
+        "slot:genomic_annotation_digest"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:e861788ed6",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot version has no examples",
+      "subjects": [
+        "slot:version"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:ef9c1c787e",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot cell_type has no examples",
+      "subjects": [
+        "slot:cell_type"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:f7a793a4a4",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot sample_collection_date has no examples",
+      "subjects": [
+        "slot:sample_collection_date"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:fb298d0bd7",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot headers has no examples",
+      "subjects": [
+        "slot:headers"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:slot-no-examples:feb73a38b5",
+      "rule": "slot-no-examples",
+      "severity": "info",
+      "message": "slot track_interpretation has no examples",
+      "subjects": [
+        "slot:track_interpretation"
+      ],
+      "suggested_verdict": "set_examples"
+    },
+    {
+      "id": "lint:terse-description:0ae980e07e",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000121 description is 37 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000121"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:145e4f16b5",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000231 description is 28 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000231"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:1479c1e87a",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000271 description is 23 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000271"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:33bac558e8",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "slot study_title description is 19 chars (< 40)",
+      "subjects": [
+        "slot:study_title"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:380022d043",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000117 description is 38 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000117"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:4276a656ee",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "slot analysis_type description is 33 chars (< 40)",
+      "subjects": [
+        "slot:analysis_type"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:4a901ad5b1",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000230 description is 32 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000230"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:4e4af94b7a",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000161 description is 23 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000161"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:4e4b8de83b",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000274 description is 19 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000274"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:4f46322220",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000278 description is 23 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000278"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:60bdf995f7",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000272 description is 23 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000272"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:6a2b6b7608",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000115 description is 28 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000115"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:ac2cc2f1a6",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "slot key description is 33 chars (< 40)",
+      "subjects": [
+        "slot:key"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:bf8022fef1",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "slot study_abstract description is 22 chars (< 40)",
+      "subjects": [
+        "slot:study_abstract"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:c1abfb6342",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000232 description is 38 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000232"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:c447f1289c",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "slot name description is 35 chars (< 40)",
+      "subjects": [
+        "slot:name"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:ce8a3db5eb",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000155 description is 29 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000155"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:d5a02302c0",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000273 description is 28 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000273"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:e1fab941ae",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "slot file_size description is 34 chars (< 40)",
+      "subjects": [
+        "slot:file_size"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:e833a7c2d7",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "term ONGA_0000229 description is 35 chars (< 40)",
+      "subjects": [
+        "term:ONGA_0000229"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:terse-description:f7a793a4a4",
+      "rule": "terse-description",
+      "severity": "warn",
+      "message": "slot sample_collection_date description is 26 chars (< 40)",
+      "subjects": [
+        "slot:sample_collection_date"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:todo-marker:1c7b6759a9",
+      "rule": "todo-marker",
+      "severity": "warn",
+      "message": "sample.yaml:184 comment '# TODO: change to a more specific type for geographical locations'",
+      "subjects": [
+        "slot:sample_collection_location"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:todo-marker:5f228724d0",
+      "rule": "todo-marker",
+      "severity": "warn",
+      "message": "experiment.yaml:127 comment '# TODO: Implement conditional requirement for \"antibody_target\"'",
+      "subjects": [
+        "slot:antibody_target"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:todo-marker:69d7cd0769",
+      "rule": "todo-marker",
+      "severity": "warn",
+      "message": "class QualityAssessment description carries a TODO/placeholder marker",
+      "subjects": [
+        "class:QualityAssessment"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:todo-marker:7f180d4ba3",
+      "rule": "todo-marker",
+      "severity": "warn",
+      "message": "sample.yaml:199 comment '# TODO: ISO 8601 duration format not supported in linkml'",
+      "subjects": [
+        "slot:donor_age"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:todo-marker:8ee33290db",
+      "rule": "todo-marker",
+      "severity": "warn",
+      "message": "checksum.yaml:36 comment '# TODO: Add vocabulary for checksum types'",
+      "subjects": [
+        "slot:checksum"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:todo-marker:92a7e2c453",
+      "rule": "todo-marker",
+      "severity": "warn",
+      "message": "track_provenance.yaml:53 comment '# Planned future provenance slots (deferred — do not add yet):'",
+      "subjects": [
+        "class:TrackProvenance"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:todo-marker:e81bdb3893",
+      "rule": "todo-marker",
+      "severity": "warn",
+      "message": "slot genomic_annotation_digest description carries a TODO/placeholder marker",
+      "subjects": [
+        "slot:genomic_annotation_digest"
+      ],
+      "suggested_verdict": "edit_description"
+    },
+    {
+      "id": "lint:unmapped-high-usage:13d98cbbc6",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'signal' has 114175 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000017"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:153d3535ff",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'profile sequence contribution scores' has 4676 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000092"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:1ff362be45",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'training and test regions' has 2379 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000101"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:2194a3808c",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'guide quantifications' has 2246 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000053"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:26f6ee726b",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'models' has 2382 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000090"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:27654dc096",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'idat green channel' has 279 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000135"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:285f3b360d",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'nuclease cleavage corrected frequency' has 154 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000162"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:2db8682abf",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'enhancer prediction model' has 2306 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000048"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:3782726681",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'CpG sites coverage' has 528 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000171"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:3d4476b46a",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'base overlap signal' has 194 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000012"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:43cd7a2093",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'transcriptome annotations' has 341 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000218"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:4d9c16b4c7",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'kmer weights' has 7491 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000140"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:4e4af94b7a",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'control profile' has 2098 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000161"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:53c3fd9254",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'signal profile' has 20980 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000159"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:58e0825582",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'idat red channel' has 275 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000136"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:5ad4724e46",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'element quantifications' has 936 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000068"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:5f42cf14dc",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'selected regions for predicted signal and sequence contribution scores' has 4670 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000097"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:6489526887",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'TF binding prediction model' has 2879 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000100"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:66f021e1f9",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'wavelet-smoothed signal' has 142 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000020"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:6b233b83e7",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'control normalized signal' has 6021 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000014"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:6e1669f7d0",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'genome compartments' has 1305 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000167"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:6ff46cc4b3",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'FDR cut rate' has 8556 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000040"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:7b48238764",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'promoter prediction model' has 2306 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000093"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:81e466328e",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'genome subcompartments' has 1037 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000168"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:8288f9ec76",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'model performance metrics' has 2323 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000089"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:a31a5c37c3",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'pairs' has 285 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000046"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:af80a4b3d5",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'reporter code counts' has 227 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000057"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:b068e2ae2b",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'chromatin stripes' has 258 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000165"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:b13f263031",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'fold change over control' has 51017 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000016"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:cf9c3c462c",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'perturbation signal' has 110 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000055"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:d06c1628e4",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'counts sequence contribution scores' has 4676 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000086"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:d3fef530d4",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'intensity values' has 127 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000139"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:d57af36a5c",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'enrichment' has 696 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000015"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:e81e8f80d7",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'elements reference' has 9964 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000107"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:ed3bbe4bf4",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'library fraction' has 301 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000141"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:f3bfcb7744",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'fragments' has 402 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000134"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:f97fc6d206",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'redacted alignments' has 4377 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000007"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unmapped-high-usage:ff8c42a347",
+      "rule": "unmapped-high-usage",
+      "severity": "warn",
+      "message": "'semi-automated genome annotation' has 5508 ENCODE files and no SSSOM mapping",
+      "subjects": [
+        "term:ONGA_0000124"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:09fcaffa44",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'peaks and background as input for IDR' skos:exactMatch edam:data_3002 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000028"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:1054966091",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'genic regions quantifications' skos:exactMatch edam:data_0928 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000073"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:145e4f16b5",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'indels' skos:exactMatch edam:data_0918 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000231"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:152018710c",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'scaled RNA stability' skos:exactMatch edam:data_0928 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000080"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:1660267a81",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'transcription segment quantifications' skos:exactMatch edam:data_0928 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000083"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:2e908624bb",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'divergent peaks' skos:exactMatch edam:data_3002 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000024"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:3be47ad74c",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'curated SNVs' skos:exactMatch edam:data_0918 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000197"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:41184b3d83",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'proximal peaks' skos:exactMatch edam:data_3002 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000029"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:432f5594a0",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'chromosomes reference' skos:exactMatch edam:data_2977 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000106"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:4a901ad5b1",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'SNPs' skos:exactMatch edam:data_0918 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000230"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:58fb8b450f",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'merged transcription segment quantifications' skos:exactMatch edam:data_0928 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000074"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:5bfe3cbe43",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'mRNA stabilities' skos:exactMatch edam:data_0928 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000076"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:5c19ba0c79",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'reference variants' skos:exactMatch edam:data_0918 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000202"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:6ec6016c10",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'maternal variant calls' skos:exactMatch edam:data_0918 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000200"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:6ed91b9af9",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'distal peaks' skos:exactMatch edam:data_3002 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000023"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:8ce7580b06",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'motif clusters reference' skos:exactMatch edam:data_1353 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000113"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:99f35bb230",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'sparse splice junction count matrix' skos:exactMatch edam:data_3917 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000157"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:c24dc0247d",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'unidirectional peaks' skos:exactMatch edam:data_3002 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000035"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:c68eed178a",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'transcribed region quantifications' skos:exactMatch edam:data_0928 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000082"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:c964d05829",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'variant functional prediction' skos:exactMatch edam:data_0918 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000104"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:d5d5d404fa",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'sparse gRNA count matrix' skos:exactMatch edam:data_3917 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000059"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:d647ff7a9c",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'representative DNase hypersensitivity sites' skos:exactMatch edam:data_3002 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000033"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:e035adbfd2",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'UV enriched segment quantifications' skos:exactMatch edam:data_0928 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000084"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:e26df46f58",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'paternal variant calls' skos:exactMatch edam:data_0918 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000201"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:e2dfc01bbc",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'variant effect quantifications' skos:exactMatch edam:data_0918 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000204"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:e5d522e2e2",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'fine-mapped variants' skos:exactMatch edam:data_0918 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000103"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:e8d99f83e3",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'genic features quantifications' skos:exactMatch edam:data_0928 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000072"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:unreviewed-mapping:faae708cd6",
+      "rule": "unreviewed-mapping",
+      "severity": "warn",
+      "message": "'gene stabilities' skos:exactMatch edam:data_0928 has no mapping justification",
+      "subjects": [
+        "term:ONGA_0000071"
+      ],
+      "suggested_verdict": "adopt_mapping"
+    },
+    {
+      "id": "lint:zero-usage-term:023a3bc6e1",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'representative IDR thresholded peaks' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000034"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:077d3677ac",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'protein expression quantifications' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000079"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:0ae980e07e",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'tRNA reference' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000121"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:0f65938b6f",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'miRNA annotations' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000212"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:1054966091",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'genic regions quantifications' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000073"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:152018710c",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'scaled RNA stability' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000080"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:1a6ba4f140",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'DNN-MPRA contribution scores' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000087"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:1e1e51221a",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'positive control regions' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000145"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:2905da53c1",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'selected regions for bias-corrected predicted signal profile' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000094"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:2aa037a6e3",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'bias profile' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000160"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:4724844e7e",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'motif model' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000091"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:482227d2cf",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'mitochondrial exclusion list regions' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000142"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:49158a843b",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'phastcons score reference' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000114"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:51ae78403f",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'selected regions for count sequence contribution scores' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000095"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:5203740d6b",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'repeats reference' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000116"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:57e536c070",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'diploid personal genome alignments' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000003"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:5bfe3cbe43",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'mRNA stabilities' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000076"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:6a2b6b7608",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'reference' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000115"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:6d76da4773",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'selected regions for predicted signal profile' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000098"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:6ec6016c10",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'maternal variant calls' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000200"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:798f941167",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'selected regions for predicted bias profile' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000096"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:8ce7580b06",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'motif clusters reference' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000113"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:956ff09773",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'maternal haplotype mapping' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000227"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:95a80f92ce",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'consensus DNase hypersensitivity sites' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000037"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:99ba3b0a05",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'raw data' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000148"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:9b3d1ede02",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'selected regions for profile sequence contribution scores' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000099"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:a25aa3cf46",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'mapping' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000237"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:a439ed8bc9",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'transposable element TF ancestral origin percent by motif' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000219"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:a901b5ccb4",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'topic gene weights' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000192"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:a90811cd5f",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'transposable element TF ancestral origin percent by subfamily' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000220"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:a913b82bb7",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'variant reference' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000205"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:bdc9025447",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'DNN-MPRA predicted signal' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000088"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:bddb824c75",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'novel peptides' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000077"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:c193970f83",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'miRNA reference' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000110"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:c964d05829",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'variant functional prediction' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000104"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:cb22813b4f",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'capture targets' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000131"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:cc05d9a6c9",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'3D structure' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000223"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:cfd3045b78",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'paternal haplotype mapping' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000228"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:d645830693",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'training set' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000102"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:da0130484c",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'negative control regions' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000144"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:da0a764560",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'regulatory elements prediction model' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000049"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:e11c588bde",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'element gene interactions p-value' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000189"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:e26df46f58",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'paternal variant calls' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000201"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:ea05e819fe",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'repeat elements annotation' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000213"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:faae708cd6",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'gene stabilities' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000071"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:fd186d754a",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'cell topic participation' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000129"
+      ],
+      "suggested_verdict": "keep"
+    },
+    {
+      "id": "lint:zero-usage-term:fd89da19e9",
+      "rule": "zero-usage-term",
+      "severity": "info",
+      "message": "'snRNA reference' has no ENCODE files",
+      "subjects": [
+        "term:ONGA_0000118"
+      ],
+      "suggested_verdict": "keep"
+    }
+  ]
+}

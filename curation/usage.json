@@ -1,0 +1,1759 @@
+{
+  "_generated_by": "scripts/usage_rollup.py",
+  "term:ONGA_0000001": {
+    "encode_files": 140215,
+    "encode_datasets": 36484,
+    "contributing_seed_terms": [
+      "alignments",
+      "haplotype-specific alignments",
+      "unfiltered alignments"
+    ]
+  },
+  "term:ONGA_0000002": {
+    "encode_files": 25,
+    "encode_datasets": 5,
+    "contributing_seed_terms": [
+      "alignments with modifications"
+    ]
+  },
+  "term:ONGA_0000003": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "diploid personal genome alignments"
+    ]
+  },
+  "term:ONGA_0000004": {
+    "encode_files": 36,
+    "encode_datasets": 8,
+    "contributing_seed_terms": [
+      "gene alignments"
+    ]
+  },
+  "term:ONGA_0000005": {
+    "encode_files": 194,
+    "encode_datasets": 97,
+    "contributing_seed_terms": [
+      "preprocessed alignments"
+    ]
+  },
+  "term:ONGA_0000006": {
+    "encode_files": 162788,
+    "encode_datasets": 27367,
+    "contributing_seed_terms": [
+      "filtered reads",
+      "reads"
+    ]
+  },
+  "term:ONGA_0000007": {
+    "encode_files": 4377,
+    "encode_datasets": 1601,
+    "contributing_seed_terms": [
+      "redacted alignments",
+      "redacted unfiltered alignments"
+    ]
+  },
+  "term:ONGA_0000008": {
+    "encode_files": 41,
+    "encode_datasets": 41,
+    "contributing_seed_terms": [
+      "redacted transcriptome alignments"
+    ]
+  },
+  "term:ONGA_0000009": {
+    "encode_files": 431,
+    "encode_datasets": 1,
+    "contributing_seed_terms": [
+      "rejected reads"
+    ]
+  },
+  "term:ONGA_0000010": {
+    "encode_files": 94,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "spike-in alignments"
+    ]
+  },
+  "term:ONGA_0000011": {
+    "encode_files": 12161,
+    "encode_datasets": 2879,
+    "contributing_seed_terms": [
+      "transcriptome alignments"
+    ]
+  },
+  "term:ONGA_0000012": {
+    "encode_files": 194,
+    "encode_datasets": 186,
+    "contributing_seed_terms": [
+      "base overlap signal"
+    ]
+  },
+  "term:ONGA_0000013": {
+    "encode_files": 18,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "bias-corrected predicted signal profile",
+      "normalized bias-corrected predicted signal profile"
+    ]
+  },
+  "term:ONGA_0000014": {
+    "encode_files": 6021,
+    "encode_datasets": 1009,
+    "contributing_seed_terms": [
+      "control normalized signal"
+    ]
+  },
+  "term:ONGA_0000015": {
+    "encode_files": 696,
+    "encode_datasets": 170,
+    "contributing_seed_terms": [
+      "enrichment"
+    ]
+  },
+  "term:ONGA_0000016": {
+    "encode_files": 51017,
+    "encode_datasets": 9380,
+    "contributing_seed_terms": [
+      "fold change over control"
+    ]
+  },
+  "term:ONGA_0000017": {
+    "encode_files": 114175,
+    "encode_datasets": 27728,
+    "contributing_seed_terms": [
+      "minus strand signal",
+      "minus strand signal of all reads",
+      "minus strand signal of unique reads",
+      "normalized signal of all reads",
+      "percentage normalized signal",
+      "plus strand signal",
+      "plus strand signal of all reads",
+      "plus strand signal of unique reads",
+      "raw minus strand signal",
+      "raw normalized signal",
+      "raw plus strand signal",
+      "raw signal",
+      "read-depth normalized signal",
+      "signal",
+      "signal of all reads",
+      "signal of unique reads"
+    ]
+  },
+  "term:ONGA_0000018": {
+    "encode_files": 99650,
+    "encode_datasets": 9380,
+    "contributing_seed_terms": [
+      "signal p-value"
+    ]
+  },
+  "term:ONGA_0000019": {
+    "encode_files": 16,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "summed densities signal"
+    ]
+  },
+  "term:ONGA_0000020": {
+    "encode_files": 142,
+    "encode_datasets": 63,
+    "contributing_seed_terms": [
+      "wavelet-smoothed signal"
+    ]
+  },
+  "term:ONGA_0000021": {
+    "encode_files": 255,
+    "encode_datasets": 231,
+    "contributing_seed_terms": [
+      "bidirectional peaks"
+    ]
+  },
+  "term:ONGA_0000022": {
+    "encode_files": 15209,
+    "encode_datasets": 3769,
+    "contributing_seed_terms": [
+      "conservative IDR thresholded peaks"
+    ]
+  },
+  "term:ONGA_0000023": {
+    "encode_files": 8,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "distal peaks"
+    ]
+  },
+  "term:ONGA_0000024": {
+    "encode_files": 216,
+    "encode_datasets": 216,
+    "contributing_seed_terms": [
+      "divergent peaks"
+    ]
+  },
+  "term:ONGA_0000025": {
+    "encode_files": 18491,
+    "encode_datasets": 4528,
+    "contributing_seed_terms": [
+      "IDR ranked peaks"
+    ]
+  },
+  "term:ONGA_0000026": {
+    "encode_files": 15005,
+    "encode_datasets": 3063,
+    "contributing_seed_terms": [
+      "optimal IDR thresholded peaks"
+    ]
+  },
+  "term:ONGA_0000027": {
+    "encode_files": 117401,
+    "encode_datasets": 13361,
+    "contributing_seed_terms": [
+      "IDR thresholded peaks",
+      "filtered peaks",
+      "peaks"
+    ]
+  },
+  "term:ONGA_0000028": {
+    "encode_files": 35272,
+    "encode_datasets": 2990,
+    "contributing_seed_terms": [
+      "peaks and background as input for IDR"
+    ]
+  },
+  "term:ONGA_0000029": {
+    "encode_files": 8,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "proximal peaks"
+    ]
+  },
+  "term:ONGA_0000030": {
+    "encode_files": 1402,
+    "encode_datasets": 305,
+    "contributing_seed_terms": [
+      "pseudoreplicated IDR thresholded peaks"
+    ]
+  },
+  "term:ONGA_0000031": {
+    "encode_files": 30774,
+    "encode_datasets": 5368,
+    "contributing_seed_terms": [
+      "pseudoreplicated peaks"
+    ]
+  },
+  "term:ONGA_0000032": {
+    "encode_files": 13336,
+    "encode_datasets": 2483,
+    "contributing_seed_terms": [
+      "replicated peaks"
+    ]
+  },
+  "term:ONGA_0000033": {
+    "encode_files": 12,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "representative DNase hypersensitivity sites"
+    ]
+  },
+  "term:ONGA_0000034": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "representative IDR thresholded peaks"
+    ]
+  },
+  "term:ONGA_0000035": {
+    "encode_files": 243,
+    "encode_datasets": 225,
+    "contributing_seed_terms": [
+      "unidirectional peaks"
+    ]
+  },
+  "term:ONGA_0000036": {
+    "encode_files": 32,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "valleys"
+    ]
+  },
+  "term:ONGA_0000037": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "consensus DNase hypersensitivity sites"
+    ]
+  },
+  "term:ONGA_0000038": {
+    "encode_files": 198,
+    "encode_datasets": 93,
+    "contributing_seed_terms": [
+      "DHS peaks"
+    ]
+  },
+  "term:ONGA_0000039": {
+    "encode_files": 1,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "DHS regions reference"
+    ]
+  },
+  "term:ONGA_0000040": {
+    "encode_files": 8556,
+    "encode_datasets": 1897,
+    "contributing_seed_terms": [
+      "FDR cut rate"
+    ]
+  },
+  "term:ONGA_0000041": {
+    "encode_files": 17728,
+    "encode_datasets": 3706,
+    "contributing_seed_terms": [
+      "hotspots"
+    ]
+  },
+  "term:ONGA_0000042": {
+    "encode_files": 12,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "hotspots1 reference"
+    ]
+  },
+  "term:ONGA_0000043": {
+    "encode_files": 12,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "hotspots2 reference"
+    ]
+  },
+  "term:ONGA_0000044": {
+    "encode_files": 1723,
+    "encode_datasets": 526,
+    "contributing_seed_terms": [
+      "haplotype-specific nuclease cleavage frequency",
+      "nuclease cleavage frequency"
+    ]
+  },
+  "term:ONGA_0000045": {
+    "encode_files": 4347,
+    "encode_datasets": 1190,
+    "contributing_seed_terms": [
+      "allele-specific contact matrix",
+      "contact matrix",
+      "haplotype-specific contact matrix",
+      "mapping quality thresholded contact matrix"
+    ]
+  },
+  "term:ONGA_0000046": {
+    "encode_files": 285,
+    "encode_datasets": 273,
+    "contributing_seed_terms": [
+      "pairs"
+    ]
+  },
+  "term:ONGA_0000047": {
+    "encode_files": 43,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "variants contact matrix"
+    ]
+  },
+  "term:ONGA_0000048": {
+    "encode_files": 2306,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "enhancer prediction model"
+    ]
+  },
+  "term:ONGA_0000049": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "regulatory elements prediction model"
+    ]
+  },
+  "term:ONGA_0000050": {
+    "encode_files": 42,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "element barcode mapping"
+    ]
+  },
+  "term:ONGA_0000051": {
+    "encode_files": 11,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "gRNAs"
+    ]
+  },
+  "term:ONGA_0000052": {
+    "encode_files": 45,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "guide locations"
+    ]
+  },
+  "term:ONGA_0000053": {
+    "encode_files": 2246,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "guide quantifications"
+    ]
+  },
+  "term:ONGA_0000054": {
+    "encode_files": 1,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "non-targeting gRNAs"
+    ]
+  },
+  "term:ONGA_0000055": {
+    "encode_files": 110,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "perturbation signal"
+    ]
+  },
+  "term:ONGA_0000056": {
+    "encode_files": 7,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "ranked gRNAs"
+    ]
+  },
+  "term:ONGA_0000057": {
+    "encode_files": 227,
+    "encode_datasets": 115,
+    "contributing_seed_terms": [
+      "reporter code counts"
+    ]
+  },
+  "term:ONGA_0000058": {
+    "encode_files": 6,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "safe-targeting gRNAs"
+    ]
+  },
+  "term:ONGA_0000059": {
+    "encode_files": 1,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "sparse gRNA count matrix"
+    ]
+  },
+  "term:ONGA_0000060": {
+    "encode_files": 68,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "fold over change matrix"
+    ]
+  },
+  "term:ONGA_0000061": {
+    "encode_files": 4054,
+    "encode_datasets": 1215,
+    "contributing_seed_terms": [
+      "sparse gene count matrix",
+      "sparse gene count matrix of all reads",
+      "sparse gene count matrix of unique reads",
+      "unfiltered sparse gene count matrix of all reads",
+      "unfiltered sparse gene count matrix of unique reads"
+    ]
+  },
+  "term:ONGA_0000062": {
+    "encode_files": 8,
+    "encode_datasets": 3,
+    "contributing_seed_terms": [
+      "sparse peak count matrix"
+    ]
+  },
+  "term:ONGA_0000063": {
+    "encode_files": 5,
+    "encode_datasets": 3,
+    "contributing_seed_terms": [
+      "sparse transcript count matrix"
+    ]
+  },
+  "term:ONGA_0000064": {
+    "encode_files": 3,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "TF peaks matrix"
+    ]
+  },
+  "term:ONGA_0000065": {
+    "encode_files": 16,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "z scores matrix"
+    ]
+  },
+  "term:ONGA_0000066": {
+    "encode_files": 2360,
+    "encode_datasets": 472,
+    "contributing_seed_terms": [
+      "differential expression quantifications"
+    ]
+  },
+  "term:ONGA_0000067": {
+    "encode_files": 1416,
+    "encode_datasets": 472,
+    "contributing_seed_terms": [
+      "differential splicing quantifications"
+    ]
+  },
+  "term:ONGA_0000068": {
+    "encode_files": 936,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "element quantifications"
+    ]
+  },
+  "term:ONGA_0000069": {
+    "encode_files": 901,
+    "encode_datasets": 323,
+    "contributing_seed_terms": [
+      "exon quantifications"
+    ]
+  },
+  "term:ONGA_0000070": {
+    "encode_files": 19170,
+    "encode_datasets": 3893,
+    "contributing_seed_terms": [
+      "gene quantifications"
+    ]
+  },
+  "term:ONGA_0000071": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "gene stabilities"
+    ]
+  },
+  "term:ONGA_0000072": {
+    "encode_files": 162,
+    "encode_datasets": 81,
+    "contributing_seed_terms": [
+      "genic features quantifications"
+    ]
+  },
+  "term:ONGA_0000073": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "genic regions quantifications"
+    ]
+  },
+  "term:ONGA_0000074": {
+    "encode_files": 582,
+    "encode_datasets": 97,
+    "contributing_seed_terms": [
+      "merged transcription segment quantifications"
+    ]
+  },
+  "term:ONGA_0000075": {
+    "encode_files": 1269,
+    "encode_datasets": 461,
+    "contributing_seed_terms": [
+      "microRNA quantifications"
+    ]
+  },
+  "term:ONGA_0000076": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "mRNA stabilities"
+    ]
+  },
+  "term:ONGA_0000077": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "novel peptides"
+    ]
+  },
+  "term:ONGA_0000078": {
+    "encode_files": 56,
+    "encode_datasets": 28,
+    "contributing_seed_terms": [
+      "filtered peptide quantification",
+      "peptide quantifications",
+      "unfiltered peptide quantification"
+    ]
+  },
+  "term:ONGA_0000079": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "protein expression quantifications"
+    ]
+  },
+  "term:ONGA_0000080": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "scaled RNA stability"
+    ]
+  },
+  "term:ONGA_0000081": {
+    "encode_files": 18201,
+    "encode_datasets": 3383,
+    "contributing_seed_terms": [
+      "transcript quantifications"
+    ]
+  },
+  "term:ONGA_0000082": {
+    "encode_files": 98,
+    "encode_datasets": 49,
+    "contributing_seed_terms": [
+      "transcribed region quantifications"
+    ]
+  },
+  "term:ONGA_0000083": {
+    "encode_files": 582,
+    "encode_datasets": 97,
+    "contributing_seed_terms": [
+      "transcription segment quantifications"
+    ]
+  },
+  "term:ONGA_0000084": {
+    "encode_files": 96,
+    "encode_datasets": 16,
+    "contributing_seed_terms": [
+      "UV enriched segment quantifications"
+    ]
+  },
+  "term:ONGA_0000085": {
+    "encode_files": 9,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "bias models"
+    ]
+  },
+  "term:ONGA_0000086": {
+    "encode_files": 4676,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "counts sequence contribution scores"
+    ]
+  },
+  "term:ONGA_0000087": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "DNN-MPRA contribution scores"
+    ]
+  },
+  "term:ONGA_0000088": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "DNN-MPRA predicted signal"
+    ]
+  },
+  "term:ONGA_0000089": {
+    "encode_files": 2323,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "model performance metrics"
+    ]
+  },
+  "term:ONGA_0000090": {
+    "encode_files": 2382,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "models"
+    ]
+  },
+  "term:ONGA_0000091": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "motif model"
+    ]
+  },
+  "term:ONGA_0000092": {
+    "encode_files": 4676,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "profile sequence contribution scores"
+    ]
+  },
+  "term:ONGA_0000093": {
+    "encode_files": 2306,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "promoter prediction model"
+    ]
+  },
+  "term:ONGA_0000094": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "selected regions for bias-corrected predicted signal profile"
+    ]
+  },
+  "term:ONGA_0000095": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "selected regions for count sequence contribution scores"
+    ]
+  },
+  "term:ONGA_0000096": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "selected regions for predicted bias profile"
+    ]
+  },
+  "term:ONGA_0000097": {
+    "encode_files": 4670,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "selected regions for predicted signal and sequence contribution scores"
+    ]
+  },
+  "term:ONGA_0000098": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "selected regions for predicted signal profile",
+      "selected regions for predicted signal profile (minus strand)",
+      "selected regions for predicted signal profile (plus strand)"
+    ]
+  },
+  "term:ONGA_0000099": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "selected regions for profile sequence contribution scores"
+    ]
+  },
+  "term:ONGA_0000100": {
+    "encode_files": 2879,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "TF binding prediction model"
+    ]
+  },
+  "term:ONGA_0000101": {
+    "encode_files": 2379,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "training and test regions"
+    ]
+  },
+  "term:ONGA_0000102": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "training set"
+    ]
+  },
+  "term:ONGA_0000103": {
+    "encode_files": 119,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "fine-mapped variants"
+    ]
+  },
+  "term:ONGA_0000104": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "variant functional prediction"
+    ]
+  },
+  "term:ONGA_0000105": {
+    "encode_files": 16,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "chromosome sizes"
+    ]
+  },
+  "term:ONGA_0000106": {
+    "encode_files": 2,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "chromosomes reference"
+    ]
+  },
+  "term:ONGA_0000107": {
+    "encode_files": 9964,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "elements reference"
+    ]
+  },
+  "term:ONGA_0000108": {
+    "encode_files": 83,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "female genome index",
+      "genome index",
+      "male genome index"
+    ]
+  },
+  "term:ONGA_0000109": {
+    "encode_files": 64,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "female genome reference",
+      "genome reference",
+      "male genome reference"
+    ]
+  },
+  "term:ONGA_0000110": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "miRNA reference"
+    ]
+  },
+  "term:ONGA_0000111": {
+    "encode_files": 4,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "mitochondrial genome index"
+    ]
+  },
+  "term:ONGA_0000112": {
+    "encode_files": 2,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "mitochondrial genome reference"
+    ]
+  },
+  "term:ONGA_0000113": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "motif clusters reference"
+    ]
+  },
+  "term:ONGA_0000114": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "phastcons score reference"
+    ]
+  },
+  "term:ONGA_0000115": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "reference"
+    ]
+  },
+  "term:ONGA_0000116": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "repeats reference"
+    ]
+  },
+  "term:ONGA_0000117": {
+    "encode_files": 3,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "rRNA reference"
+    ]
+  },
+  "term:ONGA_0000118": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "snRNA reference"
+    ]
+  },
+  "term:ONGA_0000119": {
+    "encode_files": 3,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "transcriptome index"
+    ]
+  },
+  "term:ONGA_0000120": {
+    "encode_files": 11,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "transcriptome reference"
+    ]
+  },
+  "term:ONGA_0000121": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "tRNA reference"
+    ]
+  },
+  "term:ONGA_0000122": {
+    "encode_files": 56,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "HMM predicted chromatin state"
+    ]
+  },
+  "term:ONGA_0000123": {
+    "encode_files": 7,
+    "encode_datasets": 3,
+    "contributing_seed_terms": [
+      "read annotations"
+    ]
+  },
+  "term:ONGA_0000124": {
+    "encode_files": 5508,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "semi-automated genome annotation"
+    ]
+  },
+  "term:ONGA_0000125": {
+    "encode_files": 20,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "sequence alignability"
+    ]
+  },
+  "term:ONGA_0000126": {
+    "encode_files": 2,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "sequence uniqueness"
+    ]
+  },
+  "term:ONGA_0000127": {
+    "encode_files": 18,
+    "encode_datasets": 8,
+    "contributing_seed_terms": [
+      "archr project"
+    ]
+  },
+  "term:ONGA_0000128": {
+    "encode_files": 5,
+    "encode_datasets": 5,
+    "contributing_seed_terms": [
+      "cell coordinates"
+    ]
+  },
+  "term:ONGA_0000129": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "cell topic participation"
+    ]
+  },
+  "term:ONGA_0000130": {
+    "encode_files": 68,
+    "encode_datasets": 30,
+    "contributing_seed_terms": [
+      "clusters"
+    ]
+  },
+  "term:ONGA_0000131": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "capture targets"
+    ]
+  },
+  "term:ONGA_0000132": {
+    "encode_files": 22,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "exclusion list regions"
+    ]
+  },
+  "term:ONGA_0000133": {
+    "encode_files": 20,
+    "encode_datasets": 10,
+    "contributing_seed_terms": [
+      "filtered regions"
+    ]
+  },
+  "term:ONGA_0000134": {
+    "encode_files": 402,
+    "encode_datasets": 367,
+    "contributing_seed_terms": [
+      "fragments"
+    ]
+  },
+  "term:ONGA_0000135": {
+    "encode_files": 279,
+    "encode_datasets": 274,
+    "contributing_seed_terms": [
+      "idat green channel"
+    ]
+  },
+  "term:ONGA_0000136": {
+    "encode_files": 275,
+    "encode_datasets": 270,
+    "contributing_seed_terms": [
+      "idat red channel"
+    ]
+  },
+  "term:ONGA_0000137": {
+    "encode_files": 3,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "inclusion list"
+    ]
+  },
+  "term:ONGA_0000138": {
+    "encode_files": 2870,
+    "encode_datasets": 510,
+    "contributing_seed_terms": [
+      "index reads"
+    ]
+  },
+  "term:ONGA_0000139": {
+    "encode_files": 127,
+    "encode_datasets": 67,
+    "contributing_seed_terms": [
+      "intensity values"
+    ]
+  },
+  "term:ONGA_0000140": {
+    "encode_files": 7491,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "kmer weights"
+    ]
+  },
+  "term:ONGA_0000141": {
+    "encode_files": 301,
+    "encode_datasets": 78,
+    "contributing_seed_terms": [
+      "library fraction"
+    ]
+  },
+  "term:ONGA_0000142": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "mitochondrial exclusion list regions"
+    ]
+  },
+  "term:ONGA_0000143": {
+    "encode_files": 63,
+    "encode_datasets": 24,
+    "contributing_seed_terms": [
+      "nanopore signal"
+    ]
+  },
+  "term:ONGA_0000144": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "negative control regions"
+    ]
+  },
+  "term:ONGA_0000145": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "positive control regions"
+    ]
+  },
+  "term:ONGA_0000146": {
+    "encode_files": 2,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "primer sequence"
+    ]
+  },
+  "term:ONGA_0000147": {
+    "encode_files": 30,
+    "encode_datasets": 10,
+    "contributing_seed_terms": [
+      "R2C2 subreads"
+    ]
+  },
+  "term:ONGA_0000148": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "raw data"
+    ]
+  },
+  "term:ONGA_0000149": {
+    "encode_files": 5,
+    "encode_datasets": 5,
+    "contributing_seed_terms": [
+      "raw imaging signal"
+    ]
+  },
+  "term:ONGA_0000150": {
+    "encode_files": 8,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "sequence adapters"
+    ]
+  },
+  "term:ONGA_0000151": {
+    "encode_files": 46,
+    "encode_datasets": 12,
+    "contributing_seed_terms": [
+      "sequence barcodes"
+    ]
+  },
+  "term:ONGA_0000152": {
+    "encode_files": 9,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "spike-ins"
+    ]
+  },
+  "term:ONGA_0000153": {
+    "encode_files": 204,
+    "encode_datasets": 104,
+    "contributing_seed_terms": [
+      "subreads"
+    ]
+  },
+  "term:ONGA_0000154": {
+    "encode_files": 35,
+    "encode_datasets": 35,
+    "contributing_seed_terms": [
+      "validation"
+    ]
+  },
+  "term:ONGA_0000155": {
+    "encode_files": 20,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "minus strand end position signal",
+      "minus strand normalized end position signal",
+      "plus strand end position signal",
+      "plus strand normalized end position signal"
+    ]
+  },
+  "term:ONGA_0000156": {
+    "encode_files": 24,
+    "encode_datasets": 12,
+    "contributing_seed_terms": [
+      "filtered modified peptide quantification",
+      "unfiltered modified peptide quantification"
+    ]
+  },
+  "term:ONGA_0000157": {
+    "encode_files": 1618,
+    "encode_datasets": 409,
+    "contributing_seed_terms": [
+      "unfiltered sparse splice junction count matrix of unique reads"
+    ]
+  },
+  "term:ONGA_0000158": {
+    "encode_files": 4,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "depth normalized signals matrix"
+    ]
+  },
+  "term:ONGA_0000159": {
+    "encode_files": 20980,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "normalized observed signal profile",
+      "normalized observed signal profile (minus strand)",
+      "normalized observed signal profile (plus strand)",
+      "normalized predicted signal profile",
+      "normalized predicted signal profile (minus strand)",
+      "normalized predicted signal profile (plus strand)",
+      "observed signal profile",
+      "observed signal profile (minus strand)",
+      "observed signal profile (plus strand)",
+      "predicted signal profile",
+      "predicted signal profile (minus strand)",
+      "predicted signal profile (plus strand)"
+    ]
+  },
+  "term:ONGA_0000160": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "normalized predicted bias profile",
+      "observed bias profile",
+      "predicted bias profile"
+    ]
+  },
+  "term:ONGA_0000161": {
+    "encode_files": 2098,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "observed control profile (minus strand)",
+      "observed control profile (plus strand)"
+    ]
+  },
+  "term:ONGA_0000162": {
+    "encode_files": 154,
+    "encode_datasets": 96,
+    "contributing_seed_terms": [
+      "haplotype-specific nuclease cleavage corrected frequency"
+    ]
+  },
+  "term:ONGA_0000163": {
+    "encode_files": 548648,
+    "encode_datasets": 2035,
+    "contributing_seed_terms": [
+      "footprints"
+    ]
+  },
+  "term:ONGA_0000164": {
+    "encode_files": 20,
+    "encode_datasets": 10,
+    "contributing_seed_terms": [
+      "open chromatin regions"
+    ]
+  },
+  "term:ONGA_0000165": {
+    "encode_files": 258,
+    "encode_datasets": 258,
+    "contributing_seed_terms": [
+      "chromatin stripes"
+    ]
+  },
+  "term:ONGA_0000166": {
+    "encode_files": 739,
+    "encode_datasets": 275,
+    "contributing_seed_terms": [
+      "contact domains"
+    ]
+  },
+  "term:ONGA_0000167": {
+    "encode_files": 1305,
+    "encode_datasets": 273,
+    "contributing_seed_terms": [
+      "genome compartments"
+    ]
+  },
+  "term:ONGA_0000168": {
+    "encode_files": 1037,
+    "encode_datasets": 271,
+    "contributing_seed_terms": [
+      "genome subcompartments"
+    ]
+  },
+  "term:ONGA_0000169": {
+    "encode_files": 1436,
+    "encode_datasets": 456,
+    "contributing_seed_terms": [
+      "loops"
+    ]
+  },
+  "term:ONGA_0000170": {
+    "encode_files": 24,
+    "encode_datasets": 11,
+    "contributing_seed_terms": [
+      "nested contact domains"
+    ]
+  },
+  "term:ONGA_0000171": {
+    "encode_files": 528,
+    "encode_datasets": 211,
+    "contributing_seed_terms": [
+      "CpG sites coverage"
+    ]
+  },
+  "term:ONGA_0000172": {
+    "encode_files": 7,
+    "encode_datasets": 5,
+    "contributing_seed_terms": [
+      "methylated reads"
+    ]
+  },
+  "term:ONGA_0000173": {
+    "encode_files": 1612,
+    "encode_datasets": 212,
+    "contributing_seed_terms": [
+      "methylation state at CHG"
+    ]
+  },
+  "term:ONGA_0000174": {
+    "encode_files": 1612,
+    "encode_datasets": 212,
+    "contributing_seed_terms": [
+      "methylation state at CHH"
+    ]
+  },
+  "term:ONGA_0000175": {
+    "encode_files": 3201,
+    "encode_datasets": 833,
+    "contributing_seed_terms": [
+      "methylation state at CpG",
+      "minus strand methylation state at CpG",
+      "plus strand methylation state at CpG"
+    ]
+  },
+  "term:ONGA_0000176": {
+    "encode_files": 40,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "smoothed methylation state at CpG"
+    ]
+  },
+  "term:ONGA_0000177": {
+    "encode_files": 12452,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "candidate Cis-Regulatory Elements"
+    ]
+  },
+  "term:ONGA_0000178": {
+    "encode_files": 891,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "candidate enhancers"
+    ]
+  },
+  "term:ONGA_0000179": {
+    "encode_files": 570,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "candidate promoters"
+    ]
+  },
+  "term:ONGA_0000180": {
+    "encode_files": 36,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "curated binding sites"
+    ]
+  },
+  "term:ONGA_0000181": {
+    "encode_files": 21,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "enhancer validation"
+    ]
+  },
+  "term:ONGA_0000182": {
+    "encode_files": 2,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "enhancers reference"
+    ]
+  },
+  "term:ONGA_0000183": {
+    "encode_files": 38,
+    "encode_datasets": 7,
+    "contributing_seed_terms": [
+      "polyA sites"
+    ]
+  },
+  "term:ONGA_0000184": {
+    "encode_files": 7,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "predicted enhancers"
+    ]
+  },
+  "term:ONGA_0000185": {
+    "encode_files": 2,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "promoters reference"
+    ]
+  },
+  "term:ONGA_0000186": {
+    "encode_files": 7,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "regulatory elements"
+    ]
+  },
+  "term:ONGA_0000187": {
+    "encode_files": 2897,
+    "encode_datasets": 337,
+    "contributing_seed_terms": [
+      "minus strand transcription start sites",
+      "plus strand transcription start sites",
+      "predicted transcription start sites",
+      "transcription start sites"
+    ]
+  },
+  "term:ONGA_0000188": {
+    "encode_files": 161,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "TSS reference"
+    ]
+  },
+  "term:ONGA_0000189": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "element gene interactions p-value"
+    ]
+  },
+  "term:ONGA_0000190": {
+    "encode_files": 20,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "element gene interactions signal"
+    ]
+  },
+  "term:ONGA_0000191": {
+    "encode_files": 10600,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "element gene links",
+      "enhancer-gene links",
+      "thresholded element gene links"
+    ]
+  },
+  "term:ONGA_0000192": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "topic gene weights"
+    ]
+  },
+  "term:ONGA_0000193": {
+    "encode_files": 7,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "relative replication signal"
+    ]
+  },
+  "term:ONGA_0000194": {
+    "encode_files": 70,
+    "encode_datasets": 36,
+    "contributing_seed_terms": [
+      "replication timing profile"
+    ]
+  },
+  "term:ONGA_0000195": {
+    "encode_files": 43,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "allele-specific variants"
+    ]
+  },
+  "term:ONGA_0000196": {
+    "encode_files": 179,
+    "encode_datasets": 64,
+    "contributing_seed_terms": [
+      "copy number variation"
+    ]
+  },
+  "term:ONGA_0000197": {
+    "encode_files": 3,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "curated SNVs"
+    ]
+  },
+  "term:ONGA_0000198": {
+    "encode_files": 27,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "dsQTLs"
+    ]
+  },
+  "term:ONGA_0000199": {
+    "encode_files": 65,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "eQTLs"
+    ]
+  },
+  "term:ONGA_0000200": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "maternal variant calls"
+    ]
+  },
+  "term:ONGA_0000201": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "paternal variant calls"
+    ]
+  },
+  "term:ONGA_0000202": {
+    "encode_files": 3,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "reference variants"
+    ]
+  },
+  "term:ONGA_0000203": {
+    "encode_files": 132,
+    "encode_datasets": 39,
+    "contributing_seed_terms": [
+      "phased variant calls",
+      "variant calls"
+    ]
+  },
+  "term:ONGA_0000204": {
+    "encode_files": 54,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "variant effect quantifications"
+    ]
+  },
+  "term:ONGA_0000205": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "variant reference"
+    ]
+  },
+  "term:ONGA_0000206": {
+    "encode_files": 2578,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "PWMs"
+    ]
+  },
+  "term:ONGA_0000207": {
+    "encode_files": 2338,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "sequence motifs"
+    ]
+  },
+  "term:ONGA_0000208": {
+    "encode_files": 4383,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "sequence motifs instances"
+    ]
+  },
+  "term:ONGA_0000209": {
+    "encode_files": 2329,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "sequence motifs report"
+    ]
+  },
+  "term:ONGA_0000210": {
+    "encode_files": 5,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "functional conservation mapping"
+    ]
+  },
+  "term:ONGA_0000211": {
+    "encode_files": 48,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "functional conservation quantifications"
+    ]
+  },
+  "term:ONGA_0000212": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "miRNA annotations"
+    ]
+  },
+  "term:ONGA_0000213": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "repeat elements annotation"
+    ]
+  },
+  "term:ONGA_0000214": {
+    "encode_files": 4,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "restriction enzyme site locations"
+    ]
+  },
+  "term:ONGA_0000215": {
+    "encode_files": 92,
+    "encode_datasets": 34,
+    "contributing_seed_terms": [
+      "RNA-binding protein associated mRNAs"
+    ]
+  },
+  "term:ONGA_0000216": {
+    "encode_files": 369,
+    "encode_datasets": 150,
+    "contributing_seed_terms": [
+      "splice junctions"
+    ]
+  },
+  "term:ONGA_0000217": {
+    "encode_files": 114,
+    "encode_datasets": 48,
+    "contributing_seed_terms": [
+      "filtered transcribed fragments",
+      "transcribed fragments"
+    ]
+  },
+  "term:ONGA_0000218": {
+    "encode_files": 341,
+    "encode_datasets": 177,
+    "contributing_seed_terms": [
+      "transcriptome annotations"
+    ]
+  },
+  "term:ONGA_0000219": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "transposable element TF ancestral origin percent by motif"
+    ]
+  },
+  "term:ONGA_0000220": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "transposable element TF ancestral origin percent by subfamily"
+    ]
+  },
+  "term:ONGA_0000221": {
+    "encode_files": 1,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "cell type annotations"
+    ]
+  },
+  "term:ONGA_0000222": {
+    "encode_files": 114,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "cell type data"
+    ]
+  },
+  "term:ONGA_0000223": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "3D structure"
+    ]
+  },
+  "term:ONGA_0000224": {
+    "encode_files": 422,
+    "encode_datasets": 211,
+    "contributing_seed_terms": [
+      "contigs"
+    ]
+  },
+  "term:ONGA_0000225": {
+    "encode_files": 6,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "personalized genome assembly"
+    ]
+  },
+  "term:ONGA_0000226": {
+    "encode_files": 56,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "predicted 3D structural ensembles"
+    ]
+  },
+  "term:ONGA_0000227": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "maternal haplotype mapping"
+    ]
+  },
+  "term:ONGA_0000228": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "paternal haplotype mapping"
+    ]
+  },
+  "term:ONGA_0000229": {
+    "encode_files": 22,
+    "encode_datasets": 10,
+    "contributing_seed_terms": [
+      "minus strand Nm methylation state",
+      "plus strand Nm methylation state"
+    ]
+  },
+  "term:ONGA_0000230": {
+    "encode_files": 5,
+    "encode_datasets": 5,
+    "contributing_seed_terms": [
+      "filtered SNPs"
+    ]
+  },
+  "term:ONGA_0000231": {
+    "encode_files": 6,
+    "encode_datasets": 5,
+    "contributing_seed_terms": [
+      "filtered indels"
+    ]
+  },
+  "term:ONGA_0000232": {
+    "encode_files": 28,
+    "encode_datasets": 10,
+    "contributing_seed_terms": [
+      "minus strand inosine methylation state",
+      "plus strand inosine methylation state"
+    ]
+  },
+  "term:ONGA_0000233": {
+    "encode_files": 28,
+    "encode_datasets": 10,
+    "contributing_seed_terms": [
+      "minus strand m5C methylation state",
+      "plus strand m5C methylation state"
+    ]
+  },
+  "term:ONGA_0000234": {
+    "encode_files": 28,
+    "encode_datasets": 10,
+    "contributing_seed_terms": [
+      "minus strand m6A methylation state",
+      "plus strand m6A methylation state"
+    ]
+  },
+  "term:ONGA_0000235": {
+    "encode_files": 28,
+    "encode_datasets": 10,
+    "contributing_seed_terms": [
+      "minus strand pseudouridine methylation state",
+      "plus strand pseudouridine methylation state"
+    ]
+  },
+  "term:ONGA_0000236": {
+    "encode_files": 10592,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "thresholded links"
+    ]
+  },
+  "term:ONGA_0000237": {
+    "encode_files": 0,
+    "encode_datasets": 0,
+    "contributing_seed_terms": [
+      "phased mapping"
+    ]
+  },
+  "delegated": {
+    "predicted forebrain enhancers": {
+      "content_base": "term:ONGA_0000184",
+      "delegated_axis": "organism_part",
+      "delegated_value": "forebrain",
+      "external_curie": "UBERON:0001890",
+      "encode_files": 93,
+      "encode_datasets": 0
+    },
+    "predicted heart enhancers": {
+      "content_base": "term:ONGA_0000184",
+      "delegated_axis": "organism_part",
+      "delegated_value": "heart",
+      "external_curie": "UBERON:0000948",
+      "encode_files": 97,
+      "encode_datasets": 0
+    },
+    "predicted whole brain enhancers": {
+      "content_base": "term:ONGA_0000184",
+      "delegated_axis": "organism_part",
+      "delegated_value": "brain",
+      "external_curie": "UBERON:0000955",
+      "encode_files": 5,
+      "encode_datasets": 0
+    }
+  },
+  "unresolved": []
+}
