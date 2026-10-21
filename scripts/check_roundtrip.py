@@ -57,15 +57,17 @@ import glob
 import os
 import subprocess
 import sys
+from pathlib import Path
 
 import yaml
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-sys.path.insert(0, HERE)
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "curation" / "plugin"))
 
-from workbench import ids  # noqa: E402
-from workbench.mappings import (  # noqa: E402
+import onga_mappings  # noqa: E402
+from onga_mappings import MEANING_RE  # noqa: E402
+from onga_mappings import (  # noqa: E402
     HAS_ELEMENT_TYPE, NO_TERM_FOUND, SubjectError, all_rows, load_policy,
     skos_licensed_so, subject_term,
 )
@@ -183,7 +185,7 @@ def check_term_ids(values):
     seen = {}
     for base, enum_name, term, pv in values:
         meaning = str(pv.get("meaning") or "")
-        if not ids.MEANING_RE.match(meaning):
+        if not MEANING_RE.match(meaning):
             fail(f"[term-id] {base} {enum_name} '{term}' has meaning: {meaning or None!r}; "
                  f"every permissible value must carry its permanent id as "
                  f"`meaning: onga:ONGA_NNNNNNN` (see curation/term_ids.tsv). An "
@@ -195,7 +197,7 @@ def check_term_ids(values):
         if tid in seen:
             fail(f"[term-id] {tid} is on both {seen[tid]} and {enum_name} '{term}'")
         seen[tid] = f"{enum_name} '{term}'"
-    ledger = ids.live_ids()
+    ledger = onga_mappings.term_ids().live_ids()
     for tid in sorted(set(seen) - ledger):
         fail(f"[term-id] {tid} ({seen[tid]}) is not a live row in curation/term_ids.tsv")
     for tid in sorted(ledger - set(seen)):
@@ -206,7 +208,7 @@ def check_term_ids(values):
             if ref.startswith("onga:") and ref.split(":", 1)[1] not in seen:
                 fail(f"[term-id] {enum_name} '{term}' see_also {ref} is not a live "
                      f"term id (write the target's onga:ONGA_NNNNNNN)")
-    terms = {t.id: t for t in ids.schema_terms() if t.id}
+    terms = {t.id: t for t in onga_mappings.term_ids().schema_terms() if t.id}
     for fname, r in all_rows():
         try:
             subject_term(r, terms)

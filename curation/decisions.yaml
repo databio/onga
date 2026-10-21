@@ -5,9 +5,9 @@
 # review layer; this file is the single machine-readable home of "what was
 # decided and why".
 #
-# Written only through scripts/workbench/store.py (by the local curation daemon,
-# scripts/curation_server.py, and the apply engine). Hand edits are allowed; the
-# daemon's optimistic concurrency check (file mtime) notices them.
+# Written only through curation-workbench's decision store (by the local
+# curation daemon, `cwb serve`, and the apply engine, `cwb apply`). Hand edits
+# are allowed; the daemon's optimistic concurrency check (file mtime) notices them.
 #
 # Structure
 # ---------

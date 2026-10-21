@@ -4,3 +4,4 @@ embeddings/onga_embeddings.egg-info/
 __pycache__/
 project/
 .curate.pid
+.venv/

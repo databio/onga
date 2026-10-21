@@ -27,9 +27,10 @@ import sys
 from pathlib import Path
 
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from workbench.mappings import HAS_ELEMENT_TYPE, NO_TERM_FOUND, load_policy, read_sssom  # noqa: E402
-from workbench.store import load_verdicts, plain_records  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "curation" / "plugin"))
+from onga_mappings import HAS_ELEMENT_TYPE, NO_TERM_FOUND, load_policy, read_sssom  # noqa: E402
+
+from curation_workbench.store import YamlStore, load_verdicts  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 DOC = ROOT / "DECISIONS.md"
@@ -55,7 +56,7 @@ def block_re(name):
 def load():
     reg = json.loads((CURATION / "subjects.json").read_text())["subjects"]
     aliases = json.loads((CURATION / "subject_aliases.json").read_text())
-    decs = plain_records(CURATION / "decisions.yaml")
+    decs = YamlStore(CURATION / "decisions.yaml").records()
     return reg, aliases, decs
 
 
@@ -170,7 +171,7 @@ def atomic(reg, aliases, decs):
 
 
 def cleanup(reg, aliases, decs):
-    verdicts = load_verdicts()
+    verdicts = load_verdicts(CURATION / "verdicts.yaml")
     kind_of = {sid: s["kind"] for sid, s in reg.items()}
     applied = []
     for d in decs:

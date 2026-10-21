@@ -25,10 +25,10 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "curation" / "plugin"))
 
-from workbench import ids  # noqa: E402
-from workbench.mappings import (  # noqa: E402
+import onga_mappings  # noqa: E402
+from onga_mappings import (  # noqa: E402
     CONTENT_ENUMS, HAS_ELEMENT_TYPE, NO_TERM_FOUND, RELATED_MATCH, SKOS_SLOT,
     SubjectError, all_rows, live_so_terms, load_policy, skos_licensed_so, subject_term,
 )
@@ -39,7 +39,7 @@ ADR = 'the ADR "ONGA terms denote sets; SO terms denote elements"'
 def main():
     policy = load_policy()
     licensed = skos_licensed_so(policy)
-    terms = {t.id: t for t in ids.schema_terms() if t.id}
+    terms = {t.id: t for t in onga_mappings.term_ids().schema_terms() if t.id}
     so = live_so_terms()
     errs = []
     if so is None:

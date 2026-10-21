@@ -1,18 +1,32 @@
-"""Readers shared by the mapping scripts: SSSOM rows, the mapping policy, the SO ontology.
+"""ONGA's mapping policy and term-id helpers, shared by the plugin and scripts/.
 
 The SSSOM files in mappings/*.sssom.tsv are the source of truth for term-level
-mappings. Everything here reads columns BY HEADER NAME, never by position.
-Stdlib + pyyaml only, so `scripts/check_roundtrip.py` can use it too.
+mappings; columns are read BY HEADER NAME, never by position. Term ids
+(`onga:ONGA_NNNNNNN`) come from curation_workbench's TermIds over ONGA's
+workbench.yaml (`term_ids()`).
+
+This module lives in the plugin folder because onga_plugin imports it: every
+file the plugin runs must be in curation/plugin/. It imports only the standard
+library, `yaml` and `curation_workbench`, and reads only files inside the repo.
+Functions that read files take an optional `root` (default: this checkout), so
+the plugin can honor `cwb --root`. Scripts import it with
+`sys.path.insert(0, <repo>/curation/plugin)`.
 """
-import csv
+import re
 from pathlib import Path
 
 import yaml
+
+from curation_workbench.schema import is_negated, read_sssom  # noqa: F401  (re-exported)
 
 ROOT = Path(__file__).resolve().parents[2]
 MAPPINGS = ROOT / "mappings"
 POLICY = MAPPINGS / "policy.yaml"
 SO_OBO = ROOT / "embeddings" / "data" / "ontologies" / "so.obo"
+
+ONGA_BASE = "https://databio.org/onga/"
+ID_RE = re.compile(r"^ONGA_\d{7}$")
+MEANING_RE = re.compile(r"^onga:ONGA_\d{7}$")
 
 CONTENT_ENUMS = ("DataType", "FeatureType")
 HAS_ELEMENT_TYPE = "onga:has_element_type"
@@ -29,24 +43,26 @@ SKOS_SLOT = {
 }
 
 
-def sssom_files():
-    return sorted(MAPPINGS.glob("*.sssom.tsv"))
+def term_ids(root=None):
+    """curation_workbench TermIds for ONGA (schema terms, the id ledger)."""
+    from curation_workbench.config import Config
+    from curation_workbench.termids import TermIds
+    root = Path(root) if root else ROOT
+    return TermIds(Config.load(ROOT / "workbench.yaml", root=root))
 
 
-def read_sssom(path):
-    """Data rows of one SSSOM TSV as dicts keyed by header name (comments skipped)."""
-    with open(path) as fh:
-        return list(csv.DictReader(
-            (line for line in fh if not line.startswith("#")), delimiter="\t"))
+def sssom_files(root=None):
+    return sorted(((Path(root) if root else ROOT) / "mappings").glob("*.sssom.tsv"))
 
 
-def all_rows():
+def all_rows(root=None):
     """[(file name, row)] over every mappings/*.sssom.tsv, in file then row order."""
-    return [(p.name, r) for p in sssom_files() for r in read_sssom(p)]
+    return [(p.name, r) for p in sssom_files(root) for r in read_sssom(p)]
 
 
-def load_policy():
-    p = yaml.safe_load(open(POLICY))
+def load_policy(root=None):
+    path = (Path(root) / "mappings" / "policy.yaml") if root else POLICY
+    p = yaml.safe_load(open(path))
     return {
         "banned_skos": set(p["banned_skos"]),
         "set_denoting_so": set(p["set_denoting_so"]),
@@ -70,8 +86,8 @@ class SubjectError(Exception):
 def subject_term(row, terms):
     """The live term an SSSOM row is about, by `subject_id` (onga:ONGA_NNNNNNN).
 
-    `terms` is {id: workbench.ids.Term}. Raises SubjectError if the id is not a
-    live term or `subject_label` disagrees with the live label."""
+    `terms` is {id: curation_workbench.termids.Term}. Raises SubjectError if the
+    id is not a live term or `subject_label` disagrees with the live label."""
     sid = row.get("subject_id", "")
     tid = sid[len("onga:"):] if sid.startswith("onga:") else None
     term = terms.get(tid)
@@ -83,13 +99,11 @@ def subject_term(row, terms):
     return term
 
 
-def is_negated(row):
-    return (row.get("predicate_modifier") or "").strip() == "Not"
-
-
-def live_so_terms():
-    """{id: name} for every non-obsolete SO term in so.obo (stdlib stanza scan)."""
-    if not SO_OBO.exists():
+def live_so_terms(root=None):
+    """{id: name} for every non-obsolete SO term in so.obo (stdlib stanza scan),
+    or None when so.obo is absent (it is gitignored, so never in a hosted checkout)."""
+    path = (Path(root) / "embeddings" / "data" / "ontologies" / "so.obo") if root else SO_OBO
+    if not path.exists():
         return None
     out, cur, name, obsolete, in_term = {}, None, "", False, False
 
@@ -97,7 +111,7 @@ def live_so_terms():
         if in_term and cur and not obsolete:
             out[cur] = name
 
-    with open(SO_OBO) as fh:
+    with open(path) as fh:
         for line in fh:
             line = line.rstrip("\n")
             if line.startswith("["):

@@ -5,9 +5,8 @@
 // decision control. Static-rendered; the control goes live under `make curate`.
 import { url } from '../../../lib/url';
 import Layout from '../../../layouts/Layout.astro';
-import ModeBanner from '../../../components/ModeBanner.astro';
 import StateChip from '../../../components/StateChip.astro';
-import DecisionControl from '../../../components/DecisionControl.astro';
+import DecisionStatus from '../../../components/DecisionStatus.astro';
 import subjectsDoc from '../../../data/develop/subjects.json';
 import usage from '../../../data/develop/usage.json';
 import upstream from '../../../data/develop/upstream-requests.json';
@@ -88,11 +87,8 @@ const isScalarList = (v: unknown) => Array.isArray(v) && v.every(isScalar);
 ---
 
 <Layout title={`${title} · subject`} side="develop" description={`Curation workbench subject ${sid}`}>
-  <ModeBanner />
-
   <nav class="text-sm text-gray-500 mb-4">
     <a href={url('/develop')} class="hover:underline">Develop</a> ›
-    <a href={url('/develop/queue')} class="hover:underline">Queue</a> ›
     <span class="font-mono">{sid}</span>
   </nav>
 
@@ -364,16 +360,11 @@ const isScalarList = (v: unknown) => Array.isArray(v) && v.every(isScalar);
 
     <aside class="space-y-6">
       <section class="bg-white rounded-lg p-4 shadow-sm">
-        <h2 class="text-sm font-semibold text-gray-900 mb-2">Decide</h2>
+        <h2 class="text-sm font-semibold text-gray-900 mb-2">Decision</h2>
         {rec.retired ? (
           <p class="text-sm text-gray-500">Retired subjects take no new decisions.</p>
         ) : (
-          <DecisionControl
-            sid={sid}
-            kind={rec.kind}
-            findingId={suggested?.id}
-            suggestedVerdict={suggested?.suggested_verdict}
-          />
+          <DecisionStatus sid={sid} />
         )}
       </section>
 
@@ -395,11 +386,7 @@ const isScalarList = (v: unknown) => Array.isArray(v) && v.every(isScalar);
                         Decided on the owner class, <a href={url(linkFor(target) ?? '#')} class="text-blue-600 hover:underline font-mono">{target}</a>:
                       </div>
                     )}
-                    <DecisionControl
-                      sid={target}
-                      suggestedVerdict={p.suggested_verdict}
-                      suggestedOperation={p.suggested_operation}
-                    />
+                    <div class="text-xs text-gray-500">Suggested: <span class="font-mono">{p.suggested_verdict}</span></div>
                   </div>
                 )}
               </div>

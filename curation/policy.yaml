@@ -1,8 +1,7 @@
 # policy.yaml
 #
 # Curation policy as data: every tunable number the workbench uses lives here,
-# not in code. Read by scripts/schema_lint.py (lint:) and
-# scripts/curation_status.py (queue:).
+# not in code. Read by `cwb lint` (lint:) and `cwb status` (queue:).
 #
 # lint:
 #   terse_description_chars  a description shorter than this is `terse-description`
@@ -21,7 +20,7 @@
 #                            from curation/verdicts.yaml, legal for the kind)
 #
 # queue:
-#   weights of the queue score (scripts/curation_status.py):
+#   weights of the queue score (`cwb status`):
 #     score = findings * min(10, sum of open-finding severity points)
 #           + impact * impact(0..1) + adoption * adoption_path + required * required
 #           + port * unreviewed_port + upstream * upstream + stale * stale

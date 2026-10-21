@@ -1,5 +1,5 @@
 {
- "_generated_by": "scripts/curation_status.py (make status); do not edit",
+ "_generated_by": "cwb status; do not edit",
  "schema_fingerprint": "e38085a5f024c1fa78a37aafb48ce256d33e2e1aaacf26421251159b08599bfb",
  "weights": {
   "findings": 0.5,

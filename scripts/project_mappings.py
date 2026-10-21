@@ -36,16 +36,20 @@ import difflib
 import sys
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "curation" / "plugin"))
 
 from ruamel.yaml.comments import CommentedMap, CommentedSeq  # noqa: E402
 
-from workbench import ids, yamlio  # noqa: E402
-from workbench.mappings import (  # noqa: E402
-    HAS_ELEMENT_TYPE, NO_TERM_FOUND, RELATED_MATCH, ROOT, SKOS_SLOT, SubjectError,
+import onga_mappings  # noqa: E402
+from curation_workbench import yamlio  # noqa: E402
+from curation_workbench.termids import Term  # noqa: E402
+from onga_mappings import (  # noqa: E402
+    HAS_ELEMENT_TYPE, MEANING_RE, NO_TERM_FOUND, RELATED_MATCH, ROOT, SKOS_SLOT, SubjectError,
     all_rows, is_negated, load_policy, subject_term,
 )
+
+ids = onga_mappings.term_ids()
+SRC = ids.cfg.schema_dir
 
 ANNOTATION_KEYS = ("element_type", "element_type_fit")
 TRAILING_KEYS = ("in_subset", "keywords", "see_also")
@@ -59,7 +63,7 @@ def load_pools():
     """({module: Doc}, {term id: (module, enum, label)}) for every module with enums."""
     docs, where = {}, {}
     for mod in ids.enum_modules():
-        path = ids.SRC / f"{mod}.yaml"
+        path = SRC / f"{mod}.yaml"
         doc = yamlio.load(path)
         enums = doc.data.get("enums") or {}
         if not enums:
@@ -68,7 +72,7 @@ def load_pools():
         for enum_name, enum_def in enums.items():
             for label, pv in enum_def["permissible_values"].items():
                 meaning = str((pv or {}).get("meaning") or "")
-                if not ids.MEANING_RE.match(meaning):
+                if not MEANING_RE.match(meaning):
                     raise ProjectionError(f"{mod}.yaml {enum_name} {label!r} has no "
                                           f"`meaning: onga:ONGA_NNNNNNN` id")
                 tid = meaning.split(":", 1)[1]
@@ -83,7 +87,7 @@ def desired_state(where, policy):
     """{term id: {"slots": {slot: [curie]}, "negated": {(slot, curie)},
     "element_type": [SO ids] | None, "fit": str | None, "reason": str}}"""
     errs = []
-    terms = {tid: ids.Term(tid, m, e, lbl) for tid, (m, e, lbl) in where.items()}
+    terms = {tid: Term(tid, m, e, lbl) for tid, (m, e, lbl) in where.items()}
     licensed = policy["set_denoting_so"]
 
     state = {}
@@ -234,7 +238,7 @@ def main():
 
     stale = []
     for mod, doc in docs.items():
-        path = ids.SRC / f"{mod}.yaml"
+        path = SRC / f"{mod}.yaml"
         before, after = path.read_text(), yamlio.dumps(doc)
         if after == before:
             continue

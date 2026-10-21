@@ -1,0 +1,19 @@
+# ONGA's development environment (`uv sync`; the Makefile runs everything
+# through `uv run`). Not a package. The curation tooling is the private
+# databio/curation-workbench, used as a path dependency: it needs read access
+# to that repo and a checkout at ../curation-workbench.
+[project]
+name = "onga-dev"
+version = "0"
+requires-python = ">=3.10"
+dependencies = ["linkml~=1.10.0", "pyyaml>=6", "ruamel.yaml>=0.18"]
+
+[dependency-groups]
+curation = ["curation-workbench"]
+
+[tool.uv]
+package = false
+default-groups = ["curation"]
+
+[tool.uv.sources]
+curation-workbench = { path = "../curation-workbench", editable = true }

@@ -1,0 +1,30 @@
+---
+// A subject's latest decision (provenance line) and a stale strip, read-only.
+// Decisions are made in the review UI (`make curate`, or curate.databio.org).
+import { subject, decisionsFor } from '../lib/develop';
+
+interface Props {
+  sid: string;
+}
+
+const { sid } = Astro.props;
+const row = subject(sid);
+const latest = decisionsFor(sid).filter((d) => d.status !== 'withdrawn').at(-1);
+const stale = row?.state === 'stale';
+---
+
+<div class="rounded border border-gray-200 bg-white p-3 text-xs text-gray-500 space-y-2">
+  {latest ? (
+    <span>
+      <span class="font-mono">{latest.id}</span> · {latest.verdict} · {latest.status} · {latest.decided_by} · {latest.decided_on}
+      {latest.rationale && <span class="block text-gray-600 italic truncate" title={latest.rationale}>{latest.rationale}</span>}
+    </span>
+  ) : (
+    <span>No decision yet.</span>
+  )}
+  {stale && (
+    <div class="rounded bg-red-50 border border-red-200 text-red-800 px-2 py-1">
+      Stale: this subject changed after {latest?.id ?? 'its last decision'} was recorded. Review it again.
+    </div>
+  )}
+</div>

@@ -883,7 +883,7 @@ function buildSchemaBrowser() {
 // the published site renders them with no daemon and no Python in CI.
 //
 // Emitted:
-//   subjects.json, status.json, usage.json, pending.json   copies of curation/
+//   subjects.json, status.json, usage.json   copies of curation/
 //   verdicts.json, decisions.json, review_prompts.json     curation/*.yaml as JSON
 //   lint.json          curation/findings/schema_lint.json (+ `stale`)
 //   findings.json      {byId: {id: finding}}: lint + embeddings findings on live
@@ -891,7 +891,8 @@ function buildSchemaBrowser() {
 //                      message, suggested_verdict?, object?}
 //   subject-index.json {sid: compact row}: the one lookup pages and controls
 //                      use (label, slug, href, browse, state, lint, prompts...)
-//   queue.json         status queue joined with names, findings, latest decision
+// Reviewing and deciding happen in the curation-workbench review UI
+// (`make curate`), which reads curation/ directly.
 // ---------------------------------------------------------------------------
 
 const EMBEDDING_REPORTS = ['internal_similarity.json', 'gap_analysis.json', 'mapping_report.json'];
@@ -972,7 +973,7 @@ function promptMatches(prompt, subject, signals) {
   return true;
 }
 
-// Embeddings findings, normalized exactly as scripts/curation_status.py does
+// Embeddings findings, normalized exactly as `cwb status` does
 // (same ids, rules, messages), and the reports filtered to live subjects.
 function joinEmbeddings(known, resolve, severityOf) {
   const reports = {};
@@ -1076,7 +1077,6 @@ function buildDevelop() {
   const resolve = aliasResolver(aliases);
   const lint = readCurationJson('findings/schema_lint.json');
   const usage = readCurationJson('usage.json');
-  const pending = readCurationJson('pending.json');
   const verdicts = readCurationYaml('verdicts.yaml');
   if (!verdicts?.verdicts) throw new Error('curation/verdicts.yaml has no `verdicts` map');
   const decisions = readDecisions();
@@ -1088,17 +1088,11 @@ function buildDevelop() {
   const emb = joinEmbeddings({ subjects, fingerprint: registry.schema_fingerprint }, resolve,
     policy.status.finding_severity);
 
-  // One finding index: lint (skipped when stale, as curation_status does) + embeddings.
+  // One finding index: lint (skipped when stale, as `cwb status` does) + embeddings.
   const lintStale = lint.schema_fingerprint !== registry.schema_fingerprint;
   const byId = {};
   for (const f of lintStale ? [] : lint.findings) byId[f.id] = { ...f, source: 'schema_lint' };
   for (const f of emb.findings) byId[f.id] = f;
-
-  const decisionById = Object.fromEntries(decisions.decisions.map(d => [d.id, d]));
-  const brief = (d) => d ? {
-    id: d.id, verdict: d.verdict, status: d.status, decided_by: d.decided_by,
-    decided_on: d.decided_on, rationale: d.rationale,
-  } : null;
 
   const index = {};
   for (const [sid, s] of Object.entries(subjects)) {
@@ -1126,32 +1120,15 @@ function buildDevelop() {
     };
   }
 
-  const queue = status.queue.map((sid) => {
-    const st = status.subjects[sid];
-    return {
-      ...index[sid],
-      signals: st.signals,
-      findings: (st.open_findings || []).filter(id => byId[id]).map((id) => {
-        const f = byId[id];
-        return { id, rule: f.rule, severity: f.severity, message: f.message,
-          suggested_verdict: f.suggested_verdict || null };
-      }),
-      decisions: st.decisions,
-      latest: brief(decisionById[st.latest]),
-    };
-  });
-
   write('subjects.json', registry);
   write('status.json', status);
   write('usage.json', usage);
-  write('pending.json', pending);
   write('verdicts.json', verdicts);
   write('decisions.json', decisions);
   write('review_prompts.json', prompts);
   write('lint.json', { ...lint, stale: lintStale });
   write('findings.json', { byId });
   write('subject-index.json', index);
-  write('queue.json', queue);
 
   const STATES = ['unreviewed', 'open', 'deferred', 'settled', 'applied', 'stale'];
   const rollup = (r) => ({
@@ -1170,7 +1147,7 @@ function buildDevelop() {
     lintIssues: lintStale ? 0 : lint.findings.length,
     staleFindings: emb.dropped,
     findingsStale: emb.stale || lintStale,
-    queued: queue.length,
+    queued: status.queue.length,
   };
   return { counts, reports: emb.reports };
 }
@@ -1446,10 +1423,6 @@ function build() {
   writeFileSync(
     join(developDir, 'gaps.json'),
     JSON.stringify(gapAnalysis || { total_onga_terms: 0, gap_terms_count: 0, by_subset: {} }, null, 2)
-  );
-  writeFileSync(
-    join(developDir, 'mapping-suggestions.json'),
-    JSON.stringify(mappingReport || { total_terms: 0, terms_with_matches: 0, terms: [] }, null, 2)
   );
 
   // Upstream ontology requests (proposals/upstream_requests.yaml)

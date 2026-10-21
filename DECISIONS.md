@@ -694,7 +694,7 @@ for file content types. We took these verbatim as the initial term set.
     **Ledger:** `curation/term_ids.tsv` has one row per id ever minted
     (`id, status, enum, label, replaced_by, former_labels, decision`). It is
     the allocation authority (next id = max + 1) and the only home of retired
-    ids and former labels; `scripts/workbench/ids.py` reads and writes it.
+    ids and former labels; curation-workbench (`cwb`) reads and writes it.
     **Cross-references out of `meaning:`.** The 9 `edam:format_*` CURIEs on
     Format and the 2 `PATO:*` CURIEs on ReferenceBuildSex moved to SSSOM
     `skos:exactMatch` rows (`mappings/edam.sssom.tsv`; new

@@ -1,10 +1,10 @@
 # verdicts.yaml
 #
 # The verdict vocabulary: every decision a curator can record, per subject kind.
-# Declared once here and read by the curation daemon (scripts/curation_server.py),
-# the decision store (scripts/workbench/store.py), the apply engine
-# (scripts/apply_decisions.py), the schema linter's `suggested_verdict`, and the
-# site. None of them hard-codes a verdict list.
+# Declared once here and read by curation-workbench: the curation daemon
+# (`cwb serve`), the decision store, the apply engine (`cwb apply`), the schema
+# linter's `suggested_verdict` (`cwb lint`), and the review UI. None of them
+# hard-codes a verdict list.
 #
 # Structure
 # ---------
@@ -48,7 +48,8 @@
 #   choice:a|b  one of the listed strings
 #   A trailing `?` allows null (e.g. `sid:class?`).
 #
-# Operation semantics are defined by the handlers in scripts/workbench/handlers/.
+# Operation semantics are defined by curation-workbench's apply handlers
+# (curation_workbench/handlers/) and the ONGA-only ones in curation/plugin/.
 # New subjects are created by verdicts on their container: `enum add_term` mints
 # the next term id, `class add_slot` with `new_slot` creates a global slot,
 # `class set_slot_usage` creates a `usage:<Class>/<slot>` subject.
@@ -252,13 +253,13 @@ verdicts:
       terminal: true
       writes: src
       operation:
-        required: {is_a: sid:class?}
+        required: {is_a: "sid:class?"}
     set_lineage:
       label: Set lineage (source, conforms_to, see_also)
       terminal: true
       writes: src
       operation:
-        optional: {source: str?, conforms_to: str_list, see_also: str_list}
+        optional: {source: "str?", conforms_to: str_list, see_also: str_list}
         one_of: [[source, conforms_to, see_also]]
     adopt_mapping:
       label: Adopt mapping
@@ -303,7 +304,7 @@ verdicts:
       terminal: true
       writes: src
       operation:
-        optional: {range: str?, inlined: bool, any_of: list}
+        optional: {range: "str?", inlined: bool, any_of: list}
         one_of: [[range, any_of]]
     set_cardinality:
       label: Set required / recommended / multivalued

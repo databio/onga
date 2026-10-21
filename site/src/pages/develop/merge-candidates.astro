@@ -1,9 +1,8 @@
 ---
 import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
-import ModeBanner from '../../components/ModeBanner.astro';
 import StateChip from '../../components/StateChip.astro';
-import DecisionControl from '../../components/DecisionControl.astro';
+import DecisionStatus from '../../components/DecisionStatus.astro';
 import data from '../../data/develop/merge-candidates.json';
 import { subject } from '../../lib/develop';
 import { findingDecided, subjectsDecided } from '../../lib/findings';
@@ -20,7 +19,6 @@ const href = (sid: string) => url(subject(sid)?.href ?? '/develop');
     A decision is recorded on the first term; merging suggests folding it into the second.
   </p>
 
-  <ModeBanner />
 
   <div class="flex flex-wrap gap-4 mb-6">
     <select id="subset-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
@@ -88,12 +86,7 @@ const href = (sid: string) => url(subject(sid)?.href ?? '/develop');
                 {p.term1_subset === p.term2_subset ? p.term1_subset?.replace(/_/g, ' ') : `${p.term1_subset} / ${p.term2_subset}`}
               </td>
               <td class="px-4 py-3">
-                <DecisionControl
-                  sid={a}
-                  findingId={p.id}
-                  suggestedVerdict="merge"
-                  suggestedOperation={{ into: b, mappings: 'move' }}
-                />
+                <DecisionStatus sid={a} />
               </td>
             </tr>
           );

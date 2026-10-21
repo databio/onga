@@ -1,5 +1,5 @@
 {
- "_generated_by": "scripts/curation_subjects.py (make subjects); do not edit",
+ "_generated_by": "cwb subjects; do not edit",
  "labels": {
   "3D structure": "ONGA_0000223",
   "BAM": "ONGA_0000249",

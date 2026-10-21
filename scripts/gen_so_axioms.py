@@ -26,10 +26,9 @@ Usage:
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "curation" / "plugin"))
 
-from workbench.ids import MEANING_RE, ONGA_BASE  # noqa: E402
-from workbench.mappings import MAPPINGS, read_sssom  # noqa: E402
+from onga_mappings import MAPPINGS, MEANING_RE, ONGA_BASE, read_sssom  # noqa: E402
 
 SSSOM = MAPPINGS / "so.sssom.tsv"
 

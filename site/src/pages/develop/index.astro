@@ -4,7 +4,6 @@
 // generated data in src/data/develop/ (no daemon needed to render).
 import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
-import ModeBanner from '../../components/ModeBanner.astro';
 import summary from '../../data/develop/summary.json';
 import status from '../../data/develop/status.json';
 import classes from '../../data/schema/classes.json';
@@ -99,7 +98,6 @@ const SOURCE_LABEL: Record<string, string> = { schema_lint: 'Schema lint', embed
 const RULE_PAGE: Record<string, string> = {
   'similar-terms': '/develop/merge-candidates',
   'coverage-gap': '/develop/gaps',
-  'mapping-suggestion': '/develop/queue/vocabulary/links',
 };
 const staleSources = ((status as any).sources as any[]).filter((s) => s.stale);
 const s = summary as any;
@@ -110,7 +108,11 @@ overall.total = s.totalSubjects;
 
 <Layout title="Develop" side="develop" description="ONGA curation workbench overview">
   <div class="space-y-10">
-    <ModeBanner />
+    <div class="rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700">
+      Read-only. To review and decide, run <code class="font-mono bg-white px-1 rounded border border-gray-200">make curate</code>
+      in the onga repo and open <a href="http://127.0.0.1:8781/" class="text-blue-600 hover:underline">http://127.0.0.1:8781/</a>,
+      or use the hosted workbench at <a href="https://curate.databio.org" class="text-blue-600 hover:underline">curate.databio.org</a>.
+    </div>
 
     <section class="bg-white rounded-lg p-8 shadow-sm">
       <div class="flex flex-wrap items-end justify-between gap-6">
@@ -140,18 +142,18 @@ overall.total = s.totalSubjects;
         ))}
       </div>
       <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-        <a href={url('/develop/queue')} class="block rounded border border-gray-200 p-3 hover:bg-gray-50">
+        <div class="rounded border border-gray-200 p-3">
           <div class="text-2xl font-bold text-gray-900">{s.queued}</div>
           <div class="text-gray-500">in the queue</div>
-        </a>
-        <a href={url('/develop/pending')} class="block rounded border border-gray-200 p-3 hover:bg-gray-50">
+        </div>
+        <div class="rounded border border-gray-200 p-3">
           <div class="text-2xl font-bold text-gray-900">{s.pendingDecisions}</div>
           <div class="text-gray-500">pending decisions</div>
-        </a>
-        <a href={url('/develop/log')} class="block rounded border border-gray-200 p-3 hover:bg-gray-50">
+        </div>
+        <div class="rounded border border-gray-200 p-3">
           <div class="text-2xl font-bold text-gray-900">{s.appliedDecisions}</div>
           <div class="text-gray-500">applied decisions</div>
-        </a>
+        </div>
         <a href={url('/develop/lint')} class="block rounded border border-gray-200 p-3 hover:bg-gray-50">
           <div class="text-2xl font-bold text-gray-900">{s.lintIssues}</div>
           <div class="text-gray-500">open lint findings</div>
@@ -216,10 +218,12 @@ overall.total = s.totalSubjects;
             <ul class="text-sm space-y-1">
               {Object.entries(rules).sort((a, b) => b[1] - a[1]).map(([rule, n]) => (
                 <li class="flex justify-between gap-4">
-                  <a
-                    href={url(RULE_PAGE[rule] ?? (source === 'schema_lint' ? `/develop/lint#${rule}` : '/develop/queue'))}
-                    class="font-mono text-blue-600 hover:underline"
-                  >{rule}</a>
+                  {(RULE_PAGE[rule] || source === 'schema_lint') ? (
+                    <a
+                      href={url(RULE_PAGE[rule] ?? `/develop/lint#${rule}`)}
+                      class="font-mono text-blue-600 hover:underline"
+                    >{rule}</a>
+                  ) : <span class="font-mono text-gray-700">{rule}</span>}
                   <span class="text-gray-500">{n}</span>
                 </li>
               ))}
@@ -235,23 +239,24 @@ overall.total = s.totalSubjects;
         <div>
           <div class="text-lg font-bold text-gray-400 mb-2">1. Decide</div>
           <p>
-            Run <code>make curate</code> and open the site on localhost. Work through the
-            <a href={url('/develop/queue')} class="text-blue-600 hover:underline">Queue</a> or any subject page. Each
-            decision needs a rationale and is written to <code>curation/decisions.yaml</code> as a pending record.
+            Run <code>make curate</code> and open the review UI at
+            <a href="http://127.0.0.1:8781/" class="text-blue-600 hover:underline">127.0.0.1:8781</a>. Work through the
+            review queue or any subject. Each decision needs a rationale and is written to
+            <code>curation/decisions.yaml</code> as a pending record.
           </p>
         </div>
         <div>
           <div class="text-lg font-bold text-gray-400 mb-2">2. Apply</div>
           <p>
-            Review the diffs on <a href={url('/develop/pending')} class="text-blue-600 hover:underline">Pending</a>, then
-            apply (or run <code>make apply</code>). All pending decisions are applied to the schema together, or none are.
+            Review the diffs on the review UI's Apply page, then apply there (or run <code>make apply</code>). All
+            pending decisions are applied to the schema together, or none are.
           </p>
         </div>
         <div>
           <div class="text-lg font-bold text-gray-400 mb-2">3. Commit</div>
           <p>
             Run <code>make regen</code> and commit the schema, <code>curation/</code> and site data together. Git is the
-            history; the <a href={url('/develop/log')} class="text-blue-600 hover:underline">Log</a> shows every decision.
+            history; the review UI's History page shows every decision.
           </p>
         </div>
       </div>

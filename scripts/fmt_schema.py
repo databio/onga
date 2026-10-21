@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Normalize every src/*.yaml to the shared writer's output (scripts/workbench/yamlio.py).
+"""Normalize every src/*.yaml to the shared writer's output (curation_workbench.yamlio).
 
 Each file must be a fixed point of yamlio load + dump, so any later
 programmatic edit yields a diff containing only its own change.
@@ -13,10 +13,9 @@ import difflib
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+from curation_workbench import yamlio
 
-from workbench import yamlio  # noqa: E402
+ROOT = Path(__file__).resolve().parents[1]
 
 SKIP = {"linkml_lint_config.yaml"}
 

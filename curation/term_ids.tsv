@@ -2,7 +2,7 @@
 #
 # The allocation authority for ONGA_NNNNNNN term ids (next id = max + 1) and the
 # only home of retired ids and former labels. Read and written through
-# scripts/workbench/ids.py.
+# curation-workbench (curation_workbench.termids).
 #
 # Columns:
 #   id             ONGA_NNNNNNN. On the permissible value as `meaning: onga:<id>`.

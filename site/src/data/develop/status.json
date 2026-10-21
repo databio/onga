@@ -1,5 +1,5 @@
 {
-  "_generated_by": "scripts/curation_status.py (make status); do not edit",
+  "_generated_by": "cwb status; do not edit",
   "schema_fingerprint": "e38085a5f024c1fa78a37aafb48ce256d33e2e1aaacf26421251159b08599bfb",
   "weights": {
     "findings": 0.5,
@@ -8901,22 +8901,23 @@
       "retired": false,
       "state": "open",
       "open_findings": [
-        "lint:class-no-alignment:69d7cd0769",
-        "lint:todo-marker:69d7cd0769"
+        "lint:class-no-alignment:69d7cd0769"
       ],
-      "decisions": [],
-      "latest": null,
+      "decisions": [
+        "DEC-0160"
+      ],
+      "latest": "DEC-0160",
       "signals": {
-        "findings": 3,
+        "findings": 1,
         "impact": 0.5,
         "adoption": 1,
         "required": 0,
-        "port": 1,
+        "port": 0,
         "upstream": 0,
         "stale": 0,
         "machine": 0
       },
-      "score": 6
+      "score": 2
     },
     "class:ReferenceGenome": {
       "kind": "class",
@@ -11213,22 +11214,23 @@
       "retired": false,
       "state": "open",
       "open_findings": [
-        "lint:slot-no-examples:e81bdb3893",
-        "lint:todo-marker:e81bdb3893"
+        "lint:slot-no-examples:e81bdb3893"
       ],
-      "decisions": [],
-      "latest": null,
+      "decisions": [
+        "DEC-0159"
+      ],
+      "latest": "DEC-0159",
       "signals": {
-        "findings": 3,
+        "findings": 1,
         "impact": 0.6309,
         "adoption": 1,
         "required": 0,
-        "port": 1,
+        "port": 0,
         "upstream": 0,
         "stale": 0,
         "machine": 0
       },
-      "score": 6.2618
+      "score": 2.2618
     },
     "slot:haplotype_resolution": {
       "kind": "slot",
@@ -13300,7 +13302,6 @@
     "term:ONGA_0000107",
     "slot:elements_circular",
     "slot:elements_overlapping",
-    "slot:genomic_annotation_digest",
     "slot:has_edges",
     "slot:has_gaps",
     "slot:has_lengths",
@@ -13310,7 +13311,6 @@
     "term:ONGA_0000061",
     "term:ONGA_0000202",
     "term:ONGA_0000209",
-    "class:QualityAssessment",
     "class:Term",
     "term:ONGA_0000116",
     "term:ONGA_0000219",
@@ -13556,9 +13556,11 @@
     "term:ONGA_0000091",
     "term:ONGA_0000110",
     "term:ONGA_0000210",
+    "slot:genomic_annotation_digest",
     "class:TrackProvenance",
     "term:ONGA_0000047",
     "term:ONGA_0000050",
+    "class:QualityAssessment",
     "module:file_content",
     "subset:technical",
     "term:ONGA_0000114",

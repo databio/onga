@@ -1,9 +1,8 @@
 ---
 import { url } from '../../lib/url';
 import Layout from '../../layouts/Layout.astro';
-import ModeBanner from '../../components/ModeBanner.astro';
 import StateChip from '../../components/StateChip.astro';
-import DecisionControl from '../../components/DecisionControl.astro';
+import DecisionStatus from '../../components/DecisionStatus.astro';
 import data from '../../data/develop/lint.json';
 import { subject } from '../../lib/develop';
 import { findingDecided, subjectsDecided } from '../../lib/findings';
@@ -54,7 +53,6 @@ const name = (sid: string) => { const r = subject(sid); return r ? (r.label || r
     </div>
   )}
 
-  <ModeBanner />
 
   <div class="flex flex-wrap gap-4 mb-6">
     <select id="rule-filter" class="px-3 py-2 border border-gray-300 rounded text-sm">
@@ -119,7 +117,7 @@ const name = (sid: string) => { const r = subject(sid); return r ? (r.label || r
                   )}
                 </div>
                 <div class="w-full md:w-[26rem] shrink-0">
-                  <DecisionControl sid={sid} findingId={f.id} suggestedVerdict={f.suggested_verdict} />
+                  <DecisionStatus sid={sid} />
                 </div>
               </div>
             );
