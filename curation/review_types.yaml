@@ -43,8 +43,24 @@ reasons:
     else: "Has a TODO note: {message}"
   similar-terms:
     pattern: 'similarity (?P<score>[\d.]+)'
-    text: Reads almost the same as "{other}" (similarity {score}).
+    text: Reads almost the same as "{other}" ({score:.0%} similar).
     else: Reads almost the same as "{other}".
+  residual-compound:
+    pattern: 'contains facet word\(s\) (?P<words>.+?) and has no'
+    text: 'Contains the facet word "{words}": it might be two ideas glued together.'
+    else: It might be two ideas glued together.
+  inline-enum:
+    pattern: 'defined inside class module (?P<module>\S+)'
+    text: Defined inside the class module "{module}" rather than in a vocabulary module.
+    else: Defined inside a class module rather than in a vocabulary module.
+  shared-slot:
+    pattern: 'listed by (?P<classes>[^;]+)'
+    text: "Used by more than one class: {classes}."
+    else: Used by more than one class.
+  mapping-target-is-doc-link:
+    pattern: 'value (?P<target>\S+) is a documentation page'
+    text: Points to a web page ({target}), not to a term.
+    else: Points to a web page, not to a term.
   zero-usage-term: {text: No ENCODE file uses this term.}
   orphan-facet-value: {text: Nothing else refers to this value.}
   required-policy: {text: "Marked required, but it is not an identifier. Every required field is extra work for adopters."}
@@ -62,9 +78,9 @@ answers:
         field: element_type_fit
         rationale: "{label} {phrase} the kind of feature in this set."
         options:
-          - {label: Exact fit, value: exact, phrase: is exactly}
-          - {label: Close enough, value: approximate, phrase: is the nearest SO match for}
-          - {label: SO term too broad, value: broad, phrase: is broader than}
+          - {label: "Accept: exact fit", value: exact, phrase: is exactly}
+          - {label: "Accept: close enough", value: approximate, phrase: is the nearest SO match for}
+          - {label: "Accept: SO term is broader", value: broad, phrase: is broader than}
 
 more_links:
   - {label: Merge candidates, url: "https://dev.databio.org/onga/develop/merge-candidates"}
@@ -82,14 +98,14 @@ tracks:
       - id: links
         title: Links to other ontologies
         question: Does this term match a term in another ontology (EDAM, SO, PATO, ...)?
-        answers: Accept a suggested link · Reject it · No match exists
+        answers: Accept (exact fit / close enough / broader) · Reject · Confirm link · Remove link · No match exists
         help: Links let other tools understand ONGA terms. A matcher suggested candidates; some links were added earlier and never checked.
         rules: [mapping-suggestion, no-mapping-at-all, unmapped-high-usage, unreviewed-mapping, coverage-gap]
         answers_kind: links
       - id: duplicates
         title: Near-duplicates
         question: Is this the same thing as another term, or two ideas glued together?
-        answers: Merge · Different things · Keep as one term
+        answers: Merge into … · Different things · Keep as one term
         help: Pairs of terms that read almost the same, and compound terms that might split into parts.
         rules: [similar-terms, residual-compound, inline-enum]
         answers_kind: duplicates
@@ -103,15 +119,15 @@ tracks:
       - id: definitions
         title: Definitions
         question: Is this definition clear and complete?
-        answers: Definition is fine · Rewrite it
-        help: Term definitions that are missing, very short, or carry a TODO note.
+        answers: Save new definition · Definition is fine
+        help: Term definitions that are missing, very short, or carry a TODO note. Edit the text in the box, or say it is fine.
         rules: [terse-description, enum-value-no-description, todo-marker]
         answers_kind: definitions
       - id: signoff
         title: Sign-off
         question: Nothing was flagged. Is this right as it is?
-        answers: Looks right · Needs work
-        help: Terms, subsets and enums with no known problems that nobody has looked at yet. Most need only a quick read.
+        answers: Looks right
+        help: Terms, subsets and enums with no known problems that nobody has looked at yet. Most need only a quick read; anything else goes through the item's own page.
         rules: []
         fallback: true
         answers_kind: signoff
@@ -124,36 +140,36 @@ tracks:
       - id: fields
         title: Required and examples
         question: Should this field be required, and does it show what a value looks like?
-        answers: Required / recommended / optional · Add examples
+        answers: Required · Recommended · Optional · Save examples · Leave it as it is
         help: Every required field is a cost to everyone adopting the schema, and fields without examples are hard to fill in.
         rules: [required-policy, slot-no-examples]
         answers_kind: fields
       - id: definitions
         title: Descriptions
         question: Is this description clear and complete?
-        answers: Description is fine · Rewrite it
-        help: Field and class descriptions that are very short or carry a TODO note.
+        answers: Save new description · Description is fine
+        help: Field and class descriptions that are very short or carry a TODO note. Edit the text in the box, or say it is fine.
         rules: [terse-description, todo-marker]
         answers_kind: definitions
       - id: links
         title: Outside standards
         question: Does this class line up with an outside standard (DCAT, PROV-O, Phenopackets, ...)?
-        answers: Remove a bad link · No match exists · add one on its page
-        help: Ported classes that point to no outside standard, or point to a web page instead of a term.
+        answers: Remove link · No match exists
+        help: Ported classes that point to no outside standard, or point to a web page instead of a term. To add a link, open the class's own page.
         rules: [class-no-alignment, mapping-target-is-doc-link]
         answers_kind: links
       - id: structure
         title: Shared fields
         question: Does this field mean the same thing in every class that uses it?
-        answers: Fine as is · fix on its page
-        help: Fields listed by more than one class.
+        answers: Same meaning everywhere
+        help: Fields listed by more than one class. If the meanings differ, fix it from the field's own page.
         rules: [shared-slot]
         answers_kind: structure
       - id: signoff
         title: Sign-off
         question: Nothing was flagged. Is this right as it is?
-        answers: Looks right · Needs work
-        help: Classes, fields and modules with no known problems that nobody has looked at yet. Most need only a quick read.
+        answers: Looks right
+        help: Classes, fields and modules with no known problems that nobody has looked at yet. Most need only a quick read; anything else goes through the item's own page.
         rules: []
         fallback: true
         answers_kind: signoff
