@@ -318,8 +318,7 @@ const rejectSearchBlob = (r: any) =>
   <script>
     // Review status is the request's `status:` in proposals/upstream_requests.yaml.
     // Filing upstream is not a change to the ONGA schema, so it is not a decision
-    // record. Read-only here: edit the YAML, or PATCH /api/proposals/<id> on the
-    // curation daemon (`make curate`).
+    // record. Read-only here: edit the YAML.
 
     const kindFilter = document.getElementById('kind-filter') as HTMLSelectElement;
     const searchInput = document.getElementById('search') as HTMLInputElement;

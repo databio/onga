@@ -1,0 +1,104 @@
+# Bring decisions approved on curate.databio.org into this repo as a pull request.
+#
+# Decisions are made on the website (team members vote, curators decide). The
+# website never writes to this repo. This workflow fetches the approved
+# decisions with a read-only curate API key, applies them with
+# curation-workbench (`cwb pull onga`: edit the schema, `make regen`, `make
+# test`) and opens or updates one pull request from the branch
+# curate/approved-decisions. After the pull request is merged, the website
+# sees the new commit and marks those decisions as applied.
+#
+# Setup (once):
+#   - github.com/databio/curation-workbench must be public: this job clones it
+#     over plain https into ../curation-workbench, where pyproject.toml expects it.
+#   - Settings -> Actions -> General -> Workflow permissions: tick "Allow GitHub
+#     Actions to create and approve pull requests".
+#   - A curator makes a read-only key on the website (the project's Approved
+#     page) and saves it here as the repository secret CURATE_API_KEY.
+#
+# A pull request opened with GITHUB_TOKEN starts no other workflow, so the
+# checks this job runs (make test, inside `cwb pull`) are the pull request's
+# checks. Each run rebuilds the branch from master, so the pull request always
+# holds every approved decision not yet merged; edits pushed to that branch by
+# hand are overwritten. The same thing on a laptop: `make curate-pull`.
+
+name: curate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 6 * * *"   # daily, 06:23 UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: curate
+  cancel-in-progress: false
+
+env:
+  BRANCH: curate/approved-decisions
+  CWB_URL: https://curate.databio.org
+  # The Sequence Ontology, for make test's SO id checks (so.obo is gitignored);
+  # the same source embeddings/scripts/download_ontologies.py uses.
+  SO_OBO_URL: https://raw.githubusercontent.com/The-Sequence-Ontology/SO-Ontologies/master/Ontology_Files/so.obo
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get curation-workbench (public repo, plain https)
+        run: git clone --depth 1 https://github.com/databio/curation-workbench ../curation-workbench
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Install
+        run: uv sync --frozen
+
+      - name: Get so.obo
+        run: |
+          mkdir -p embeddings/data/ontologies
+          curl -fsSL --retry 3 -o embeddings/data/ontologies/so.obo "$SO_OBO_URL"
+
+      - name: Pull approved decisions (fetch, apply, make regen, make test)
+        env:
+          CURATE_API_KEY: ${{ secrets.CURATE_API_KEY }}
+        run: |
+          if [ -z "$CURATE_API_KEY" ]; then
+            echo "::error::Add the repository secret CURATE_API_KEY (a read-only key from $CWB_URL)."
+            exit 1
+          fi
+          uv run cwb pull onga --summary "$RUNNER_TEMP/summary.md"
+          cat "$RUNNER_TEMP/summary.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or update the pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          open_pr="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')"
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Nothing new to apply."
+            if [ -n "$open_pr" ]; then
+              gh pr close "$open_pr" --delete-branch \
+                --comment "Closed: none of these decisions is still waiting on the website."
+            fi
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C "$BRANCH"
+          git add -A
+          git commit -q -m "Apply decisions from curate.databio.org"
+          git push --force origin "$BRANCH"
+          if [ -n "$open_pr" ]; then
+            gh pr edit "$open_pr" --body-file "$RUNNER_TEMP/summary.md"
+          else
+            gh pr create --head "$BRANCH" --base "${{ github.event.repository.default_branch }}" \
+              --title "Apply decisions from curate.databio.org" --body-file "$RUNNER_TEMP/summary.md"
+          fi

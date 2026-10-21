@@ -8,7 +8,7 @@ MAIN_SCHEMA = $(SCHEMA_DIR)/$(SCHEMA_NAME).yaml
 PY = uv run python
 CWB = uv run cwb
 
-.PHONY: subjects subjects-check all gen-owl gen-owl-core gen-owl-so gen-jsonld gen-jsonld-context gen-python gen-docs gen-registry validate test test-examples test-registry clean embeddings-build embeddings-compare apply apply-dry pending decisions mappings validate-mappings fmt fmt-check regen lint-schema usage status curate
+.PHONY: subjects subjects-check all gen-owl gen-owl-core gen-owl-so gen-jsonld gen-jsonld-context gen-python gen-docs gen-registry validate test test-examples test-registry clean embeddings-build embeddings-compare apply apply-dry pending decisions mappings validate-mappings fmt fmt-check regen lint-schema usage status curate-pull
 
 all: gen-owl gen-jsonld gen-registry
 
@@ -144,9 +144,10 @@ embeddings-build:
 embeddings-compare:
 	cd embeddings && python scripts/run_comparison.py
 
-# Apply every pending decision in curation/decisions.yaml to the schema, all or
-# nothing (`cwb apply`: preflight, stage, write, regen, test; any failure
-# restores every file), then refresh curation/pending.json.
+# Apply every pending decision already in curation/decisions.yaml to the
+# schema, all or nothing (`cwb apply`: preflight, stage, write, regen, test; any
+# failure restores every file), then refresh curation/pending.json. New
+# decisions come from curate.databio.org through `make curate-pull`.
 apply:
 	$(CWB) apply
 	$(MAKE) pending
@@ -168,9 +169,11 @@ decisions:
 clean:
 	rm -f project/owl/*.ttl project/owl/*-so-element-types.owl.ttl project/*.jsonld project/*.py
 
-# Local curation: the review UI and the loopback-only decision daemon
-# (`cwb serve`, http://127.0.0.1:8781/). It writes curation/decisions.yaml and
-# proposals/upstream_requests.yaml in the working tree; commit with normal git.
-# The hosted, multi-user version is https://curate.databio.org.
-curate:
-	$(CWB) serve
+# Decisions are made at https://curate.databio.org (votes, curators decide).
+# This fetches the approved ones (needs CURATE_API_KEY, a read-only key a
+# curator makes on the site's Approved page), applies them here (edits, `make
+# regen`, `make test`), and leaves the changes for you to commit. The `curate`
+# GitHub Action (.github/workflows/curate.yml) runs the same command and opens
+# a pull request.
+curate-pull:
+	$(CWB) pull onga

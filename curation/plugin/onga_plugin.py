@@ -442,29 +442,6 @@ def onga_handlers():
     return [TermPromoteTier(), TermFacet()]
 
 
-# ---------------------------------------------------------------- daemon
-
-REQUEST_STATUSES = ("proposed", "filed", "accepted", "declined", "withdrawn")
-
-
-def patch_proposal(api, req_id):
-    """PATCH /api/proposals/<id>: set `status:` of an upstream SO request."""
-    from curation_workbench import store, yamlio
-    body = api.json_body()
-    status = body.get("status")
-    if status not in REQUEST_STATUSES:
-        raise store.StoreError(400, [f"status must be one of {list(REQUEST_STATUSES)}"])
-    path = api.workbench.cfg.root / UPSTREAM
-    doc = yamlio.load(path)
-    for reqs in (doc.data.get("requests") or {}).values():
-        for req in reqs:
-            if req.get("id") == req_id:
-                req["status"] = status
-                yamlio.dump(doc, path)
-                return api.send(200, {"id": req_id, "status": status})
-    raise store.StoreError(404, [f"no upstream request {req_id}"])
-
-
 # ---------------------------------------------------------------- review UI hooks
 #
 # Run at snapshot time only (snapshot.review_hooks); results ride in the bundle.
@@ -601,7 +578,6 @@ def review_prompts(wb):
 
 
 def register(wb):
-    wb.routes.append(("PATCH", "/api/proposals/", patch_proposal))
     wb.legacy_forms.append(legacy_forms)
     wb.operation_checks.append(element_type_fit_check)
     wb.record_checks.append(promote_tier_check)

@@ -1,7 +1,8 @@
 # ONGA's development environment (`uv sync`; the Makefile runs everything
-# through `uv run`). Not a package. The curation tooling is the private
-# databio/curation-workbench, used as a path dependency: it needs read access
-# to that repo and a checkout at ../curation-workbench.
+# through `uv run`). Not a package. The curation tooling is
+# databio/curation-workbench, used as a path dependency: it needs a checkout at
+# ../curation-workbench (the `curate` GitHub Action clones it there over https,
+# which works once that repo is public).
 [project]
 name = "onga-dev"
 version = "0"

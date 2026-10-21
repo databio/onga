@@ -1,8 +1,8 @@
 ---
 // One page per subject (every SID in curation/subjects.json, retired ones
 // included). Shows exactly what the subject's hash covers (the payload), the
-// kind-specific joins, findings, review prompts, decision history and the
-// decision control. Static-rendered; the control goes live under `make curate`.
+// kind-specific joins, findings, review prompts and decision history.
+// Static-rendered and read-only; decisions are made at curate.databio.org.
 import { url } from '../../../lib/url';
 import Layout from '../../../layouts/Layout.astro';
 import StateChip from '../../../components/StateChip.astro';

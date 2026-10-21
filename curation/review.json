@@ -34,7 +34,7 @@
   {
    "id": "vocabulary",
    "title": "Vocabulary",
-   "blurb": "The words ONGA uses to say what is in a file (peaks, signal, methylation state...), and the lists they live in.",
+   "blurb": "The words ONGA uses to say what is in a file.",
    "kinds": [
     "term",
     "subset",
@@ -46,8 +46,7 @@
      "id": "links",
      "title": "Links to other ontologies",
      "question": "Does this term match a term in another ontology (EDAM, SO, PATO, ...)?",
-     "answers": "Accept (exact fit / close enough / broader) · Reject · Confirm link · Remove link · No match exists",
-     "help": "Links let other tools understand ONGA terms. A matcher suggested candidates; some links were added earlier and never checked.",
+     "help": "Suggested by a matcher, or added earlier and never checked.",
      "answers_kind": "links",
      "count": 165,
      "items": [
@@ -23208,8 +23207,7 @@
      "id": "duplicates",
      "title": "Near-duplicates",
      "question": "Is this the same thing as another term, or two ideas glued together?",
-     "answers": "Merge into … · Different things · Keep as one term",
-     "help": "Pairs of terms that read almost the same, and compound terms that might split into parts.",
+     "help": "Terms that read almost the same, or might split into parts.",
      "answers_kind": "duplicates",
      "count": 45,
      "items": [
@@ -26260,8 +26258,7 @@
      "id": "keep-or-cut",
      "title": "Keep or cut",
      "question": "Should this term exist at all?",
-     "answers": "Keep · Delete",
-     "help": "Terms no ENCODE file uses, and values nothing else refers to.",
+     "help": "Terms no ENCODE file uses, and values nothing refers to.",
      "answers_kind": "keep-or-cut",
      "count": 31,
      "items": [
@@ -27728,8 +27725,7 @@
      "id": "definitions",
      "title": "Definitions",
      "question": "Is this definition clear and complete?",
-     "answers": "Save new definition · Definition is fine",
-     "help": "Term definitions that are missing, very short, or carry a TODO note. Edit the text in the box, or say it is fine.",
+     "help": "Missing, very short, or marked TODO.",
      "answers_kind": "definitions",
      "count": 17,
      "items": [
@@ -28606,8 +28602,7 @@
      "id": "signoff",
      "title": "Sign-off",
      "question": "Nothing was flagged. Is this right as it is?",
-     "answers": "Looks right",
-     "help": "Terms, subsets and enums with no known problems that nobody has looked at yet. Most need only a quick read; anything else goes through the item's own page.",
+     "help": "No known problems; nobody has looked yet.",
      "answers_kind": "signoff",
      "count": 73,
      "items": [
@@ -30881,7 +30876,7 @@
   {
    "id": "schema",
    "title": "Schema",
-   "blurb": "The data model: record types (classes) like File, Sample and ReferenceGenome, and their fields. Mostly ported from FGA-WG.",
+   "blurb": "The data model: record types (classes) and their fields.",
    "kinds": [
     "class",
     "slot",
@@ -30894,8 +30889,7 @@
      "id": "fields",
      "title": "Required and examples",
      "question": "Should this field be required, and does it show what a value looks like?",
-     "answers": "Required · Recommended · Optional · Save examples · Leave it as it is",
-     "help": "Every required field is a cost to everyone adopting the schema, and fields without examples are hard to fill in.",
+     "help": "Required fields cost every adopter; examples help them fill fields in.",
      "answers_kind": "fields",
      "count": 35,
      "items": [
@@ -33005,8 +32999,7 @@
      "id": "definitions",
      "title": "Descriptions",
      "question": "Is this description clear and complete?",
-     "answers": "Save new description · Description is fine",
-     "help": "Field and class descriptions that are very short or carry a TODO note. Edit the text in the box, or say it is fine.",
+     "help": "Very short, or marked TODO.",
      "answers_kind": "definitions",
      "count": 7,
      "items": [
@@ -33373,8 +33366,7 @@
      "id": "links",
      "title": "Outside standards",
      "question": "Does this class line up with an outside standard (DCAT, PROV-O, Phenopackets, ...)?",
-     "answers": "Remove link · No match exists",
-     "help": "Ported classes that point to no outside standard, or point to a web page instead of a term. To add a link, open the class's own page.",
+     "help": "Ported classes with no outside standard, or a web page instead of a term.",
      "answers_kind": "links",
      "count": 11,
      "items": [
@@ -33791,8 +33783,7 @@
      "id": "structure",
      "title": "Shared fields",
      "question": "Does this field mean the same thing in every class that uses it?",
-     "answers": "Same meaning everywhere",
-     "help": "Fields listed by more than one class. If the meanings differ, fix it from the field's own page.",
+     "help": "Fields listed by more than one class.",
      "answers_kind": "structure",
      "count": 1,
      "items": [
@@ -33837,8 +33828,7 @@
      "id": "signoff",
      "title": "Sign-off",
      "question": "Nothing was flagged. Is this right as it is?",
-     "answers": "Looks right",
-     "help": "Classes, fields and modules with no known problems that nobody has looked at yet. Most need only a quick read; anything else goes through the item's own page.",
+     "help": "No known problems; nobody has looked yet.",
      "answers_kind": "signoff",
      "count": 90,
      "items": [

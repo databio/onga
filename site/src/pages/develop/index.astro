@@ -109,9 +109,8 @@ overall.total = s.totalSubjects;
 <Layout title="Develop" side="develop" description="ONGA curation workbench overview">
   <div class="space-y-10">
     <div class="rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700">
-      Read-only. To review and decide, run <code class="font-mono bg-white px-1 rounded border border-gray-200">make curate</code>
-      in the onga repo and open <a href="http://127.0.0.1:8781/" class="text-blue-600 hover:underline">http://127.0.0.1:8781/</a>,
-      or use the hosted workbench at <a href="https://curate.databio.org" class="text-blue-600 hover:underline">curate.databio.org</a>.
+      Read-only. To review and decide, sign in at
+      <a href="https://curate.databio.org" class="text-blue-600 hover:underline">curate.databio.org</a>.
     </div>
 
     <section class="bg-white rounded-lg p-8 shadow-sm">
@@ -234,29 +233,30 @@ overall.total = s.totalSubjects;
     </section>
 
     <section class="bg-white rounded-lg p-8 shadow-sm">
-      <h2 class="text-xl font-semibold text-gray-900 mb-4">Decide &rarr; Apply &rarr; Commit</h2>
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Vote &rarr; Decide &rarr; Pull request</h2>
       <div class="grid md:grid-cols-3 gap-6 text-sm text-gray-600">
         <div>
-          <div class="text-lg font-bold text-gray-400 mb-2">1. Decide</div>
+          <div class="text-lg font-bold text-gray-400 mb-2">1. Vote</div>
           <p>
-            Run <code>make curate</code> and open the review UI at
-            <a href="http://127.0.0.1:8781/" class="text-blue-600 hover:underline">127.0.0.1:8781</a>. Work through the
-            review queue or any subject. Each decision needs a rationale and is written to
-            <code>curation/decisions.yaml</code> as a pending record.
+            Team members sign in at
+            <a href="https://curate.databio.org" class="text-blue-600 hover:underline">curate.databio.org</a> and
+            answer the review questions. Each answer is a vote.
           </p>
         </div>
         <div>
-          <div class="text-lg font-bold text-gray-400 mb-2">2. Apply</div>
+          <div class="text-lg font-bold text-gray-400 mb-2">2. Decide</div>
           <p>
-            Review the diffs on the review UI's Apply page, then apply there (or run <code>make apply</code>). All
-            pending decisions are applied to the schema together, or none are.
+            Curators read the votes and turn each question into a decision (or close it with no action). The site
+            never edits this repository.
           </p>
         </div>
         <div>
-          <div class="text-lg font-bold text-gray-400 mb-2">3. Commit</div>
+          <div class="text-lg font-bold text-gray-400 mb-2">3. Pull request</div>
           <p>
-            Run <code>make regen</code> and commit the schema, <code>curation/</code> and site data together. Git is the
-            history; the review UI's History page shows every decision.
+            The <code>curate</code> GitHub Action (daily, or run by hand) fetches the approved decisions, applies them,
+            runs <code>make test</code> and opens a pull request. Merge it and each decision is recorded in
+            <code>curation/decisions.yaml</code>. On a laptop, <code>make curate-pull</code> does the same without the
+            pull request.
           </p>
         </div>
       </div>
