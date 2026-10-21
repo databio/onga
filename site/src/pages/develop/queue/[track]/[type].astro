@@ -1,0 +1,115 @@
+---
+// One review type's page within a track (vocabulary or schema): its question,
+// then every queue item of that type with ready-made answers (components/ReviewItem.astro). Sign-off groups items
+// by where they live and offers "approve all" per group.
+import { url } from '../../../../lib/url';
+import Layout from '../../../../layouts/Layout.astro';
+import ModeBanner from '../../../../components/ModeBanner.astro';
+import ReviewItem from '../../../../components/ReviewItem.astro';
+import { TRACKS, itemsFor, type Item } from '../../../../lib/review-types';
+
+export function getStaticPaths() {
+  return TRACKS.flatMap((tr) => tr.types.map((t) => ({ params: { track: tr.id, type: t.id } })));
+}
+
+const track = TRACKS.find((t) => t.id === Astro.params.track)!;
+const def = track.types.find((t) => t.id === Astro.params.type)!;
+const items = itemsFor(track.id, def.id);
+
+// Sign-off: group by container (enum or class), largest groups first.
+const groups: [string, Item[]][] = [];
+if (def.id === 'signoff') {
+  const by: Record<string, Item[]> = {};
+  for (const it of items) (by[it.containerLabel ?? `Other ${it.kind}s`] ||= []).push(it);
+  groups.push(...Object.entries(by).sort((a, b) => b[1].length - a[1].length));
+} else {
+  groups.push(['', items]);
+}
+---
+
+<Layout title={`${track.title}: ${def.title}`} side="develop" description={def.question}>
+  <ModeBanner />
+  <div class="mb-6">
+    <a href={url('/develop/queue')} class="text-sm text-blue-600 hover:underline">← Queue</a>
+    <div class="mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500">{track.title}</div>
+    <h1 class="text-2xl font-bold text-gray-900">{def.title}</h1>
+    <p class="text-lg text-gray-800 mt-2">{def.question}</p>
+    <p class="text-sm text-gray-500 mt-1 max-w-3xl">{def.help}</p>
+    <div class="mt-3 flex flex-wrap items-center gap-4 text-sm">
+      <span id="rv-progress" class="text-gray-600">{items.length} items</span>
+      <label class="flex items-center gap-1 text-gray-600">
+        <input type="checkbox" id="rv-hide-done" checked /> Hide decided
+      </label>
+      <input type="search" id="rv-search" placeholder="Search…" class="px-2 py-1 border border-gray-300 rounded" />
+    </div>
+  </div>
+
+  {groups.map(([name, rows]) => (
+    <section class="rv-group mb-8" data-group={name}>
+      {name && (
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <h2 class="text-lg font-semibold text-gray-900">{name} <span class="text-sm font-normal text-gray-500">({rows.length})</span></h2>
+          <button type="button" class="rv-approve-all hidden px-3 py-1 rounded text-sm border border-blue-300 text-blue-700 hover:bg-blue-50">
+            Approve all in {name}
+          </button>
+        </div>
+      )}
+      <ol class="space-y-3">
+        {rows.map((it) => <ReviewItem item={it} />)}
+      </ol>
+    </section>
+  ))}
+
+  {items.length === 0 && (
+    <div class="bg-white rounded-lg p-8 shadow-sm text-center text-gray-500">Nothing left of this kind.</div>
+  )}
+</Layout>
+
+<script>
+  import { probe } from '../../../../lib/curation';
+
+  const hide = document.getElementById('rv-hide-done') as HTMLInputElement;
+  const search = document.getElementById('rv-search') as HTMLInputElement;
+  const progress = document.getElementById('rv-progress')!;
+  const items = [...document.querySelectorAll<HTMLElement>('.review-item')];
+
+  function refresh() {
+    const q = search.value.toLowerCase().trim();
+    let done = 0;
+    for (const li of items) {
+      const isDone = !!li.dataset.done;
+      if (isDone) done++;
+      const show = (!hide.checked || !isDone) && (!q || li.textContent!.toLowerCase().includes(q));
+      li.classList.toggle('hidden', !show);
+    }
+    document.querySelectorAll<HTMLElement>('.rv-group').forEach((g) => {
+      const visible = g.querySelectorAll('.review-item:not(.hidden)').length;
+      g.classList.toggle('hidden', visible === 0 && items.length > 0);
+    });
+    progress.textContent = `${done} of ${items.length} decided`;
+  }
+  hide.addEventListener('change', refresh);
+  search.addEventListener('input', refresh);
+  document.addEventListener('review:changed', refresh);
+  refresh();
+
+  // "Approve all": saves each undecided row's "Looks right" answer, one at a time.
+  probe().then((health) => {
+    if (!health) return;
+    document.querySelectorAll<HTMLElement>('.rv-group').forEach((g) => {
+      const btn = g.querySelector<HTMLButtonElement>('.rv-approve-all');
+      if (!btn) return;
+      btn.classList.remove('hidden');
+      btn.addEventListener('click', async () => {
+        const rows = [...g.querySelectorAll<HTMLElement>('.review-item')].filter((li) => !li.dataset.done);
+        if (!rows.length || !confirm(`Approve all ${rows.length} undecided items in ${g.dataset.group} as "looks right"?`)) return;
+        btn.disabled = true;
+        for (const li of rows) {
+          const ok = await (li as any).reviewSave?.('keep');
+          if (!ok) break;
+        }
+        btn.disabled = false;
+      });
+    });
+  });
+</script>

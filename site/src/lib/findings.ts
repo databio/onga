@@ -1,5 +1,5 @@
 // Build-time helpers shared by the finding pages under pages/develop/
-// (merge-candidates, gaps, mapping-suggestions, lint). A finding counts as
+// (merge-candidates, gaps, lint) and the review queue. A finding counts as
 // decided when a non-withdrawn decision cites it as evidence; a subject counts
 // as decided when it has a latest decision in the subject index.
 

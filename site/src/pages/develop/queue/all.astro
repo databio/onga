@@ -1,14 +1,14 @@
 ---
-// Review queue: subjects that are open, stale or unreviewed, highest score
-// first (order and scores from curation/status.json via queue.json). Filters
+// Full queue (advanced view): every subject that is open, stale or unreviewed,
+// highest score first (order and scores from curation/status.json via queue.json). Filters
 // are client-side; the default hides score 0.
-import { url } from '../../lib/url';
-import Layout from '../../layouts/Layout.astro';
-import ModeBanner from '../../components/ModeBanner.astro';
-import StateChip from '../../components/StateChip.astro';
-import DecisionControl from '../../components/DecisionControl.astro';
-import queue from '../../data/develop/queue.json';
-import { subjectIndex } from '../../lib/develop';
+import { url } from '../../../lib/url';
+import Layout from '../../../layouts/Layout.astro';
+import ModeBanner from '../../../components/ModeBanner.astro';
+import StateChip from '../../../components/StateChip.astro';
+import DecisionControl from '../../../components/DecisionControl.astro';
+import queue from '../../../data/develop/queue.json';
+import { subjectIndex } from '../../../lib/develop';
 
 const rows = queue as any[];
 const kinds = [...new Set(rows.map((r) => r.kind))].sort();
@@ -32,10 +32,11 @@ const SEV_CLASS: Record<string, string> = {
 const title = (r: any) => (r.kind === 'term' ? r.label : r.name);
 ---
 
-<Layout title="Queue" side="develop" description="ONGA curation queue, highest-impact subjects first">
+<Layout title="Full queue" side="develop" description="Every ONGA queue item, highest-impact first">
   <ModeBanner />
   <div class="mb-6">
-    <h1 class="text-2xl font-bold text-gray-900">Queue</h1>
+    <a href={url('/develop/queue')} class="text-sm text-blue-600 hover:underline">← Queue by type</a>
+    <h1 class="text-2xl font-bold text-gray-900">Full queue</h1>
     <p class="text-gray-600 mt-1 text-sm">
       Subjects that are open, stale or not yet reviewed, ranked by score (weights in <code>curation/policy.yaml</code>).
       <span id="q-count" class="text-gray-500"></span>

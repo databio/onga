@@ -1,0 +1,68 @@
+---
+// Queue home: two tracks (vocabulary, schema; lib/review-types.ts), each with
+// one card per review type showing its question, usual answers and item count.
+// The full ranked list is at /develop/queue/all.
+import { url } from '../../../lib/url';
+import Layout from '../../../layouts/Layout.astro';
+import ModeBanner from '../../../components/ModeBanner.astro';
+import status from '../../../data/develop/status.json';
+import queue from '../../../data/develop/queue.json';
+import { TRACKS, typeCounts } from '../../../lib/review-types';
+
+const overall = (status as any).rollups?.overall ?? {};
+const rows = queue as any[];
+const tracks = TRACKS.map((t) => ({
+  ...t,
+  counts: typeCounts(t.id),
+  total: rows.filter((r) => t.kinds.includes(r.kind)).length,
+}));
+---
+
+<Layout title="Queue" side="develop" description="ONGA curation queue: vocabulary and schema">
+  <ModeBanner />
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold text-gray-900">Queue</h1>
+    <p class="text-gray-600 mt-2 max-w-3xl">
+      Curating means checking each piece of ONGA and recording a decision about it.
+      Most of ONGA was drafted by scripts or copied from ENCODE and FGA, so a person needs to confirm it.
+      There are two separate jobs: reviewing the <strong>vocabulary</strong> and reviewing the <strong>schema</strong>.
+      Pick one kind of work; every item on its page asks the same question.
+    </p>
+    <p class="text-sm text-gray-500 mt-2">
+      {rows.length} items waiting · {overall.percent_settled ?? 0}% of ONGA settled.
+      Decisions are saved as <a href={url('/develop/pending')} class="text-blue-600 hover:underline">pending</a>
+      and change nothing until you apply them.
+    </p>
+  </div>
+
+  {tracks.map((t) => (
+    <section class="mb-10">
+      <div class="mb-3">
+        <h2 class="text-xl font-semibold text-gray-900">{t.title} <span class="text-base font-normal text-gray-500">({t.total} items)</span></h2>
+        <p class="text-sm text-gray-600">{t.blurb}</p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {t.types.map((ty) => (
+          <a
+            href={url(`/develop/queue/${t.id}/${ty.id}`)}
+            class:list={['block rounded-lg bg-white shadow-sm p-5 border border-transparent hover:border-blue-300 hover:shadow',
+              t.counts[ty.id] === 0 && 'opacity-50']}
+          >
+            <div class="flex items-baseline justify-between gap-2">
+              <h3 class="text-lg font-semibold text-gray-900">{ty.title}</h3>
+              <span class="text-2xl font-bold text-gray-900">{t.counts[ty.id]}</span>
+            </div>
+            <p class="mt-2 text-sm text-gray-800">{ty.question}</p>
+            <p class="mt-2 text-xs text-gray-500">{ty.help}</p>
+            <p class="mt-3 text-xs text-blue-700">{ty.answers}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <p class="text-sm text-gray-500">
+    An item can sit under more than one kind of work. Want everything in one ranked list, with filters?
+    <a href={url('/develop/queue/all')} class="text-blue-600 hover:underline">Full queue</a>.
+  </p>
+</Layout>

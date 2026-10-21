@@ -15,14 +15,15 @@ mapping_report}.json`), `curation/usage.json`, `proposals/upstream_requests.yaml
    rollups:  {overall, by_kind, by_layer, by_container}  # counts by state + percent_settled
    queue:    [sid ...]}                          # open | stale | unreviewed, score desc
 
-States: unreviewed (no decision, no open finding), open (an open finding and no
-terminal decision), deferred (newest decision is `defer`), settled (terminal,
+States: unreviewed (no decision, no open finding), open (an open finding, with
+or without earlier decisions), deferred (newest decision is `defer`), settled (terminal,
 not stale), applied (settled and `status: applied`), stale (the newest terminal
 decision's recorded hash differs from the current one: `applied.subject_hashes_after`
 for an applied record, `subject_hashes` for a pending one).
 
 A finding is open for a subject unless a live (non-withdrawn) terminal decision
-covers the subject or cites the finding in its evidence. A `map:` suggestion is
+cites it in its evidence, or a current terminal decision on the subject cites no
+finding at all (a blanket judgment covering every finding). A `map:` suggestion is
 also closed once the term has any SSSOM row (positive or `Not`) for its object.
 Findings files whose `schema_fingerprint` differs from subjects.json count as
 stale and contribute no findings.
@@ -336,9 +337,13 @@ def build():
             stale = h is not None and h != s["hash"]
         sssom_objects = {r.get("object") for r in s["payload"].get("sssom") or []} \
             if s["kind"] == "term" else set()
+        # A decision closes the findings it cites. One that cites none (a
+        # sign-off, or a choice made on the subject page) covers every finding.
+        blanket = last_t is not None and not stale and any(
+            not any(ev.get("id") for ev in d.get("evidence") or []) for d in terms_)
         open_f = []
         for f in findings_of.get(sid, []):
-            if last_t is not None and not stale:
+            if blanket:
                 continue
             if sid in cited.get(f["id"], ()):
                 continue
@@ -349,10 +354,10 @@ def build():
             state = "deferred"
         elif stale:
             state = "stale"
-        elif last_t is not None:
-            state = "applied" if last_t.get("status") == "applied" else "settled"
         elif open_f:
             state = "open"
+        elif last_t is not None:
+            state = "applied" if last_t.get("status") == "applied" else "settled"
         else:
             state = "unreviewed"
         signals = {
