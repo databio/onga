@@ -71,7 +71,7 @@
       }
     }
   },
-  "pendingDecisions": 2,
+  "pendingDecisions": 0,
   "appliedDecisions": 158,
   "lintIssues": 314,
   "staleFindings": 0,

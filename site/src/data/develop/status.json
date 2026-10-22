@@ -8901,23 +8901,22 @@
       "retired": false,
       "state": "open",
       "open_findings": [
-        "lint:class-no-alignment:69d7cd0769"
+        "lint:class-no-alignment:69d7cd0769",
+        "lint:todo-marker:69d7cd0769"
       ],
-      "decisions": [
-        "DEC-0160"
-      ],
-      "latest": "DEC-0160",
+      "decisions": [],
+      "latest": null,
       "signals": {
-        "findings": 1,
+        "findings": 3,
         "impact": 0.5,
         "adoption": 1,
         "required": 0,
-        "port": 0,
+        "port": 1,
         "upstream": 0,
         "stale": 0,
         "machine": 0
       },
-      "score": 2
+      "score": 6
     },
     "class:ReferenceGenome": {
       "kind": "class",
@@ -11214,23 +11213,22 @@
       "retired": false,
       "state": "open",
       "open_findings": [
-        "lint:slot-no-examples:e81bdb3893"
+        "lint:slot-no-examples:e81bdb3893",
+        "lint:todo-marker:e81bdb3893"
       ],
-      "decisions": [
-        "DEC-0159"
-      ],
-      "latest": "DEC-0159",
+      "decisions": [],
+      "latest": null,
       "signals": {
-        "findings": 1,
+        "findings": 3,
         "impact": 0.6309,
         "adoption": 1,
         "required": 0,
-        "port": 0,
+        "port": 1,
         "upstream": 0,
         "stale": 0,
         "machine": 0
       },
-      "score": 2.2618
+      "score": 6.2618
     },
     "slot:haplotype_resolution": {
       "kind": "slot",
@@ -13302,6 +13300,7 @@
     "term:ONGA_0000107",
     "slot:elements_circular",
     "slot:elements_overlapping",
+    "slot:genomic_annotation_digest",
     "slot:has_edges",
     "slot:has_gaps",
     "slot:has_lengths",
@@ -13311,6 +13310,7 @@
     "term:ONGA_0000061",
     "term:ONGA_0000202",
     "term:ONGA_0000209",
+    "class:QualityAssessment",
     "class:Term",
     "term:ONGA_0000116",
     "term:ONGA_0000219",
@@ -13556,11 +13556,9 @@
     "term:ONGA_0000091",
     "term:ONGA_0000110",
     "term:ONGA_0000210",
-    "slot:genomic_annotation_digest",
     "class:TrackProvenance",
     "term:ONGA_0000047",
     "term:ONGA_0000050",
-    "class:QualityAssessment",
     "module:file_content",
     "subset:technical",
     "term:ONGA_0000114",

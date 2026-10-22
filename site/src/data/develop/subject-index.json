@@ -7639,12 +7639,13 @@
     "browse": "/schema/class/QualityAssessment",
     "owner_class": null,
     "state": "open",
-    "score": 2,
-    "findings": 1,
-    "lint": 1,
-    "latest": "DEC-0160",
+    "score": 6,
+    "findings": 2,
+    "lint": 2,
+    "latest": null,
     "prompts": [
-      "layer-discipline"
+      "layer-discipline",
+      "ported-lineage"
     ]
   },
   "class:ReferenceGenome": {
@@ -9934,10 +9935,10 @@
     "browse": "/schema/class/GenomicAnnotationFile",
     "owner_class": "class:GenomicAnnotationFile",
     "state": "open",
-    "score": 2.2618,
-    "findings": 1,
-    "lint": 1,
-    "latest": "DEC-0159",
+    "score": 6.2618,
+    "findings": 2,
+    "lint": 2,
+    "latest": null,
     "prompts": [
       "layer-discipline"
     ]

@@ -1,24 +1,7 @@
 {
  "_generated_by": "cwb apply --dry-run --emit; do not edit",
  "ok": true,
- "decisions": [
-  {
-   "id": "DEC-0159",
-   "subject": "slot:genomic_annotation_digest",
-   "verdict": "keep",
-   "created": [],
-   "retired": [],
-   "renamed": {}
-  },
-  {
-   "id": "DEC-0160",
-   "subject": "class:QualityAssessment",
-   "verdict": "keep",
-   "created": [],
-   "retired": [],
-   "renamed": {}
-  }
- ],
+ "decisions": [],
  "files": [],
  "errors": {}
 }

@@ -3,7 +3,7 @@
  "version": 2,
  "title": "ONGA",
  "schema_fingerprint": "e38085a5f024c1fa78a37aafb48ce256d33e2e1aaacf26421251159b08599bfb",
- "decisions_next_id": "DEC-0161",
+ "decisions_next_id": "DEC-0159",
  "progress": {
   "waiting": 396,
   "percent_settled": 26.8
@@ -32754,6 +32754,59 @@
        "score": 6.2618
       },
       {
+       "sid": "slot:genomic_annotation_digest",
+       "kind": "slot",
+       "slug": "slot-genomic-annotation-digest",
+       "title": "genomic_annotation_digest",
+       "container": "module:genomic_annotation_file",
+       "container_label": "genomic_annotation_file",
+       "browse": "https://dev.databio.org/onga/schema/class/GenomicAnnotationFile",
+       "description": "Content-derived digest for distributed identification of genomic annotation files. (This field is currently a placeholder, as an algorithm for generating such a digest is yet to be specified.).",
+       "reasons": [
+        "Has no examples."
+       ],
+       "findings": [
+        "lint:slot-no-examples:e81bdb3893"
+       ],
+       "choices": [],
+       "actions": [
+        {
+         "label": "Save examples",
+         "verdict": "set_examples",
+         "operation": null,
+         "rationale": "Added examples.",
+         "evidence": "lint:slot-no-examples:e81bdb3893",
+         "also": null,
+         "tone": "primary",
+         "input": "examples",
+         "confirm": null,
+         "group": null,
+         "answer": "6fa8e9e6b979"
+        },
+        {
+         "label": "Leave as is",
+         "verdict": "keep",
+         "operation": null,
+         "rationale": "Field is set up right as it is.",
+         "evidence": "lint:slot-no-examples:e81bdb3893",
+         "also": null,
+         "tone": "neutral",
+         "input": null,
+         "confirm": null,
+         "group": null,
+         "answer": "444da3c008e9"
+        }
+       ],
+       "editor": {
+        "field": "examples",
+        "value": "",
+        "placeholder": "One example value per line"
+       },
+       "group": null,
+       "hash": "b443e25b3176bfbf4d682837695f9c9c9ec7670d63717c53c7290a511e2da1c5",
+       "score": 6.2618
+      },
+      {
        "sid": "slot:has_edges",
        "kind": "slot",
        "slug": "slot-has-edges",
@@ -34714,7 +34767,17 @@
        "group": null,
        "hash": "9d5565ea31d7ef1e3c0aa3f2d35a4e0472c055c592b90fab75efe17bf5f507b1",
        "score": 3.2618
-      },
+      }
+     ]
+    },
+    {
+     "id": "definitions",
+     "title": "Descriptions",
+     "question": "Is this description clear and complete?",
+     "help": "Very short, or marked TODO.",
+     "answers_kind": "definitions",
+     "count": 9,
+     "items": [
       {
        "sid": "slot:genomic_annotation_digest",
        "kind": "slot",
@@ -34725,59 +34788,102 @@
        "browse": "https://dev.databio.org/onga/schema/class/GenomicAnnotationFile",
        "description": "Content-derived digest for distributed identification of genomic annotation files. (This field is currently a placeholder, as an algorithm for generating such a digest is yet to be specified.).",
        "reasons": [
-        "Has no examples."
+        "Has a TODO note: slot genomic_annotation_digest description carries a TODO/placeholder marker"
        ],
        "findings": [
-        "lint:slot-no-examples:e81bdb3893"
+        "lint:todo-marker:e81bdb3893"
        ],
        "choices": [],
        "actions": [
         {
-         "label": "Save examples",
-         "verdict": "set_examples",
+         "label": "Save description",
+         "verdict": "edit_description",
          "operation": null,
-         "rationale": "Added examples.",
-         "evidence": "lint:slot-no-examples:e81bdb3893",
+         "rationale": "Rewrote the description.",
+         "evidence": "lint:todo-marker:e81bdb3893",
          "also": null,
          "tone": "primary",
-         "input": "examples",
+         "input": "description",
          "confirm": null,
          "group": null,
-         "answer": "6fa8e9e6b979"
+         "answer": "339cb117a153"
         },
         {
-         "label": "Leave as is",
+         "label": "Fine as is",
          "verdict": "keep",
          "operation": null,
-         "rationale": "Field is set up right as it is.",
-         "evidence": "lint:slot-no-examples:e81bdb3893",
+         "rationale": "Description is clear as it is.",
+         "evidence": "lint:todo-marker:e81bdb3893",
          "also": null,
          "tone": "neutral",
          "input": null,
          "confirm": null,
          "group": null,
-         "answer": "444da3c008e9"
+         "answer": "a805d3e1de09"
         }
        ],
        "editor": {
-        "field": "examples",
-        "value": "",
-        "placeholder": "One example value per line"
+        "field": "description",
+        "value": "Content-derived digest for distributed identification of genomic annotation files. (This field is currently a placeholder, as an algorithm for generating such a digest is yet to be specified.).",
+        "placeholder": "Write the description"
        },
        "group": null,
        "hash": "b443e25b3176bfbf4d682837695f9c9c9ec7670d63717c53c7290a511e2da1c5",
-       "score": 2.2618
-      }
-     ]
-    },
-    {
-     "id": "definitions",
-     "title": "Descriptions",
-     "question": "Is this description clear and complete?",
-     "help": "Very short, or marked TODO.",
-     "answers_kind": "definitions",
-     "count": 7,
-     "items": [
+       "score": 6.2618
+      },
+      {
+       "sid": "class:QualityAssessment",
+       "kind": "class",
+       "slug": "class-qualityassessment",
+       "title": "QualityAssessment",
+       "container": "module:quality_assessment",
+       "container_label": "quality_assessment",
+       "browse": "https://dev.databio.org/onga/schema/class/QualityAssessment",
+       "description": "Represents the results of a quality assessment that has been carried out on a data file resulting from an experiment or analysis. This is the natural home for repository QC metrics (e.g. BEDbase BedStats numbers). A typed QC vocabulary may later tighten assessment_method; for now it accepts a free string or a Term.",
+       "reasons": [
+        "Has a TODO note: class QualityAssessment description carries a TODO/placeholder marker"
+       ],
+       "findings": [
+        "lint:todo-marker:69d7cd0769"
+       ],
+       "choices": [],
+       "actions": [
+        {
+         "label": "Save description",
+         "verdict": "edit_description",
+         "operation": null,
+         "rationale": "Rewrote the description.",
+         "evidence": "lint:todo-marker:69d7cd0769",
+         "also": null,
+         "tone": "primary",
+         "input": "description",
+         "confirm": null,
+         "group": null,
+         "answer": "0670a0c8500f"
+        },
+        {
+         "label": "Fine as is",
+         "verdict": "keep",
+         "operation": null,
+         "rationale": "Description is clear as it is.",
+         "evidence": "lint:todo-marker:69d7cd0769",
+         "also": null,
+         "tone": "neutral",
+         "input": null,
+         "confirm": null,
+         "group": null,
+         "answer": "8205447ffe27"
+        }
+       ],
+       "editor": {
+        "field": "description",
+        "value": "Represents the results of a quality assessment that has been carried out on a data file resulting from an experiment or analysis. This is the natural home for repository QC metrics (e.g. BEDbase BedStats numbers). A typed QC vocabulary may later tighten assessment_method; for now it accepts a free string or a Term.",
+        "placeholder": "Write the description"
+       },
+       "group": null,
+       "hash": "9eaf3768e89a8e0e62af169633e6029b363e514e81ca5292b60d1a3dee3c677e",
+       "score": 6.0
+      },
       {
        "sid": "slot:checksum",
        "kind": "slot",
@@ -35159,6 +35265,42 @@
      "answers_kind": "links",
      "count": 11,
      "items": [
+      {
+       "sid": "class:QualityAssessment",
+       "kind": "class",
+       "slug": "class-qualityassessment",
+       "title": "QualityAssessment",
+       "container": "module:quality_assessment",
+       "container_label": "quality_assessment",
+       "browse": "https://dev.databio.org/onga/schema/class/QualityAssessment",
+       "description": "Represents the results of a quality assessment that has been carried out on a data file resulting from an experiment or analysis. This is the natural home for repository QC metrics (e.g. BEDbase BedStats numbers). A typed QC vocabulary may later tighten assessment_method; for now it accepts a free string or a Term.",
+       "reasons": [
+        "Does not point to any outside standard."
+       ],
+       "findings": [
+        "lint:class-no-alignment:69d7cd0769"
+       ],
+       "choices": [],
+       "actions": [
+        {
+         "label": "No match",
+         "verdict": "keep",
+         "operation": null,
+         "rationale": "No suitable term in outside ontologies; this stays ONGA-only.",
+         "evidence": "lint:class-no-alignment:69d7cd0769",
+         "also": null,
+         "tone": "neutral",
+         "input": null,
+         "confirm": null,
+         "group": null,
+         "answer": "b7f92e529960"
+        }
+       ],
+       "editor": null,
+       "group": null,
+       "hash": "9eaf3768e89a8e0e62af169633e6029b363e514e81ca5292b60d1a3dee3c677e",
+       "score": 6.0
+      },
       {
        "sid": "class:Term",
        "kind": "class",
@@ -35542,42 +35684,6 @@
        "group": null,
        "hash": "2eb27587959dd3d42703d9f5e1fd13c969c1c70732a8b15cd9b9c68a7e84a95b",
        "score": 3.5
-      },
-      {
-       "sid": "class:QualityAssessment",
-       "kind": "class",
-       "slug": "class-qualityassessment",
-       "title": "QualityAssessment",
-       "container": "module:quality_assessment",
-       "container_label": "quality_assessment",
-       "browse": "https://dev.databio.org/onga/schema/class/QualityAssessment",
-       "description": "Represents the results of a quality assessment that has been carried out on a data file resulting from an experiment or analysis. This is the natural home for repository QC metrics (e.g. BEDbase BedStats numbers). A typed QC vocabulary may later tighten assessment_method; for now it accepts a free string or a Term.",
-       "reasons": [
-        "Does not point to any outside standard."
-       ],
-       "findings": [
-        "lint:class-no-alignment:69d7cd0769"
-       ],
-       "choices": [],
-       "actions": [
-        {
-         "label": "No match",
-         "verdict": "keep",
-         "operation": null,
-         "rationale": "No suitable term in outside ontologies; this stays ONGA-only.",
-         "evidence": "lint:class-no-alignment:69d7cd0769",
-         "also": null,
-         "tone": "neutral",
-         "input": null,
-         "confirm": null,
-         "group": null,
-         "answer": "b7f92e529960"
-        }
-       ],
-       "editor": null,
-       "group": null,
-       "hash": "9eaf3768e89a8e0e62af169633e6029b363e514e81ca5292b60d1a3dee3c677e",
-       "score": 2.0
       }
      ]
     },

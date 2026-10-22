@@ -55,7 +55,7 @@
 # review state (that stays in proposals/upstream_requests.yaml `status:`).
 
 version: 1
-next_id: 161
+next_id: 159
 decisions:
 - id: DEC-0001
   subject: term:ONGA_0000022
@@ -4638,51 +4638,3 @@ decisions:
   origin:
     kind: seed
     ref: DECISIONS.md#cleanup-decisions (Group B re-homing candidates)
-- id: DEC-0159
-  subject: slot:genomic_annotation_digest
-  also_affects: []
-  verdict: keep
-  operation: null
-  rationale: Definition is clear as it is.
-  evidence:
-  - id: lint:todo-marker:e81bdb3893
-    kind: finding
-  decided_by: nsheff
-  decided_on: 2026-10-21
-  subject_hashes:
-    slot:genomic_annotation_digest: b443e25b3176bfbf4d682837695f9c9c9ec7670d63717c53c7290a511e2da1c5
-  schema_fingerprint: e38085a5f024c1fa78a37aafb48ce256d33e2e1aaacf26421251159b08599bfb
-  status: pending
-  applied:
-    on: null
-    subject_hashes_after: null
-    created: []
-    retired: []
-  supersedes: null
-  origin:
-    kind: local
-    ref: null
-- id: DEC-0160
-  subject: class:QualityAssessment
-  also_affects: []
-  verdict: keep
-  operation: null
-  rationale: Definition is clear as it is.
-  evidence:
-  - id: lint:todo-marker:69d7cd0769
-    kind: finding
-  decided_by: nsheff
-  decided_on: 2026-10-21
-  subject_hashes:
-    class:QualityAssessment: 9eaf3768e89a8e0e62af169633e6029b363e514e81ca5292b60d1a3dee3c677e
-  schema_fingerprint: e38085a5f024c1fa78a37aafb48ce256d33e2e1aaacf26421251159b08599bfb
-  status: pending
-  applied:
-    on: null
-    subject_hashes_after: null
-    created: []
-    retired: []
-  supersedes: null
-  origin:
-    kind: local
-    ref: null
