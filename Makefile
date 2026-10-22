@@ -23,6 +23,7 @@ test: fmt-check validate-mappings subjects-check test-examples
 	$(CWB) lint --check
 	$(CWB) status --check
 	$(CWB) review --check
+	$(CWB) snapshot --check
 	$(PY) scripts/render_decisions.py --check
 
 # Every src/*.yaml must be a fixed point of the shared YAML writer
@@ -99,10 +100,12 @@ lint-schema: usage
 # Per-subject state (unreviewed | open | deferred | settled | applied | stale),
 # queue score and rollups (curation/status.json); weights in curation/policy.yaml.
 # Then the queue sorted into review tracks and types (curation/review.json;
-# tracks and types in curation/review_types.yaml).
+# tracks and types in curation/review_types.yaml), and the snapshot bundle
+# curate.databio.org reads (curation/snapshot.json, `snapshot:` in workbench.yaml).
 status: lint-schema
 	$(CWB) status
 	$(CWB) review
+	$(CWB) snapshot
 
 gen-jsonld:
 	mkdir -p project

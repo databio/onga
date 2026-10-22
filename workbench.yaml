@@ -24,6 +24,9 @@ mappings:
     comment: comment
 curation:
   dir: curation
+# The snapshot bundle `cwb regen` / `cwb snapshot` writes and this repo commits.
+# curate.databio.org downloads it from GitHub; the site never runs this repo's code.
+snapshot: curation/snapshot.json
 plugin_dir: curation/plugin
 plugins: [onga_plugin]
 options:
