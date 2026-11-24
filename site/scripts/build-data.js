@@ -312,13 +312,9 @@ function processGeometry(schema) {
     }
   }
 
-  // Classify edge-related vs feature-related for grouping in the UI.
-  const isEdgeProp = (name) => name.startsWith('edge') || name.startsWith('edges');
-
   for (const name of cls.slots || []) {
     const def = slotDefs[name] || {};
     const slug = slugify(name);
-    const group = isEdgeProp(name) ? 'edge properties' : 'feature properties';
 
     properties.push({
       id: slug,
@@ -328,8 +324,6 @@ function processGeometry(schema) {
       range: def.range || schema.default_range || 'string',
       required: def.required === true,
       rule: ruleSummaries[name] || null,
-      group,
-      groupSlug: slugify(group),
     });
   }
 
@@ -1220,13 +1214,6 @@ function build() {
     referenceBuildSex: referenceBuildSexes.terms.length,
   });
 
-  // Group geometry properties for the by-group view.
-  const geometryByGroup = {};
-  for (const prop of geometry.properties) {
-    if (!geometryByGroup[prop.group]) geometryByGroup[prop.group] = [];
-    geometryByGroup[prop.group].push(prop);
-  }
-
   // Combine for backwards compatibility views
   const allTerms = [...dataTypes.terms, ...featureTypes.terms];
 
@@ -1363,7 +1350,6 @@ function build() {
     properties: geometry.properties,
     valueTypes: geometry.valueTypes,
   }, null, 2));
-  writeFileSync(join(dataDir, 'track-geometry-by-group.json'), JSON.stringify(geometryByGroup, null, 2));
 
   // Track format schema (class slots only; file_format links to the Format vocabulary)
   writeFileSync(join(dataDir, 'track-format.json'), JSON.stringify({

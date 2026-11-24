@@ -7,9 +7,7 @@
       "description": "Whether there are gaps between the sequence features (there exists at least one gap between two features on the same sequence).",
       "range": "boolean",
       "required": true,
-      "rule": null,
-      "group": "feature properties",
-      "groupSlug": "feature_properties"
+      "rule": null
     },
     {
       "id": "has_lengths",
@@ -18,9 +16,7 @@
       "description": "Whether the sequence features have lengths (at least one feature spans more than 1 base pair).",
       "range": "boolean",
       "required": true,
-      "rule": null,
-      "group": "feature properties",
-      "groupSlug": "feature_properties"
+      "rule": null
     },
     {
       "id": "has_strands",
@@ -29,9 +25,7 @@
       "description": "Whether the sequence features are stranded (at least one feature has strand information).",
       "range": "boolean",
       "required": true,
-      "rule": null,
-      "group": "feature properties",
-      "groupSlug": "feature_properties"
+      "rule": null
     },
     {
       "id": "has_values",
@@ -40,9 +34,7 @@
       "description": "Whether the sequence features have associated values (at least one feature has an associated value).",
       "range": "boolean",
       "required": true,
-      "rule": null,
-      "group": "feature properties",
-      "groupSlug": "feature_properties"
+      "rule": null
     },
     {
       "id": "has_edges",
@@ -51,9 +43,7 @@
       "description": "Whether the sequence features are linked across positions (at least one edge between features exists).",
       "range": "boolean",
       "required": true,
-      "rule": null,
-      "group": "feature properties",
-      "groupSlug": "feature_properties"
+      "rule": null
     },
     {
       "id": "has_names",
@@ -62,9 +52,7 @@
       "description": "Whether the sequence features are named (at least one feature has a name).",
       "range": "boolean",
       "required": true,
-      "rule": null,
-      "group": "feature properties",
-      "groupSlug": "feature_properties"
+      "rule": null
     },
     {
       "id": "elements_overlapping",
@@ -73,9 +61,7 @@
       "description": "Whether the sequence features are overlapping (at least one base pair is simultaneously covered by two sequence features).",
       "range": "boolean",
       "required": true,
-      "rule": null,
-      "group": "feature properties",
-      "groupSlug": "feature_properties"
+      "rule": null
     },
     {
       "id": "elements_circular",
@@ -84,9 +70,7 @@
       "description": "Whether the sequence features have circular coordinates (at least one feature that cross a sequence border).",
       "range": "boolean",
       "required": true,
-      "rule": null,
-      "group": "feature properties",
-      "groupSlug": "feature_properties"
+      "rule": null
     },
     {
       "id": "lengths_constant",
@@ -95,9 +79,7 @@
       "description": "Whether the sequence lengths are constant (all sequence features have the same length, excluding features at the very end of a sequence).",
       "range": "boolean",
       "required": false,
-      "rule": "Required when has_lengths is true.",
-      "group": "feature properties",
-      "groupSlug": "feature_properties"
+      "rule": "Required when has_lengths is true."
     },
     {
       "id": "value_type",
@@ -106,9 +88,7 @@
       "description": "The type of values associated with the sequence features, if any.",
       "range": "ValueType",
       "required": false,
-      "rule": "Required when has_values is true.",
-      "group": "feature properties",
-      "groupSlug": "feature_properties"
+      "rule": "Required when has_values is true."
     },
     {
       "id": "edges_have_weights",
@@ -117,9 +97,7 @@
       "description": "Whether the edges linking sequence features are weighted (at least one edge between sequence features has an associated weight).",
       "range": "boolean",
       "required": false,
-      "rule": "Required when has_edges is true.",
-      "group": "edge properties",
-      "groupSlug": "edge_properties"
+      "rule": "Required when has_edges is true."
     },
     {
       "id": "edge_weight_type",
@@ -128,9 +106,7 @@
       "description": "The type of values associated with the edges.",
       "range": "ValueType",
       "required": false,
-      "rule": "Required when edges_have_weights is true.",
-      "group": "edge properties",
-      "groupSlug": "edge_properties"
+      "rule": "Required when edges_have_weights is true."
     },
     {
       "id": "edges_are_directed",
@@ -139,9 +115,7 @@
       "description": "Whether the edges linking sequence features are directed (at least one edge between sequence features is defined with a direction).",
       "range": "boolean",
       "required": false,
-      "rule": "Required when has_edges is true.",
-      "group": "edge properties",
-      "groupSlug": "edge_properties"
+      "rule": "Required when has_edges is true."
     },
     {
       "id": "edges_denote_parents",
@@ -150,9 +124,7 @@
       "description": "Whether the edges linking sequence features denote a parent-child relationship (all edges between sequence features denote parent-child relationships such as genes to exons, i.e. where the child is fully covered by the parent).",
       "range": "boolean",
       "required": false,
-      "rule": "Required when has_edges is true.",
-      "group": "edge properties",
-      "groupSlug": "edge_properties"
+      "rule": "Required when has_edges is true."
     }
   ],
   "valueTypes": [
