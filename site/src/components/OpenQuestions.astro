@@ -1,0 +1,24 @@
+---
+// "N open questions" link to curate.databio.org for one subject (SID), or
+// nothing when it has none. The count is the number of review topics that list
+// the SID in curation/review.json (open-questions.json, written by
+// scripts/build-data.js). Build-time only; no client code.
+//
+// Tailwind v4 scans source for class names, so every class string below is a
+// full literal; never build one by concatenation.
+import openQuestions from '../data/open-questions.json';
+
+interface Props { sid?: string }
+const { sid } = Astro.props;
+const count = sid ? (openQuestions as Record<string, number>)[sid] || 0 : 0;
+---
+
+{count > 0 && (
+  <a
+    href={`https://curate.databio.org/p/onga/q?sid=${encodeURIComponent(sid!)}`}
+    title="Answer on curate.databio.org"
+    target="_blank"
+    rel="noreferrer"
+    class="text-xs text-blue-600 underline hover:text-blue-800 whitespace-nowrap"
+  >{count === 1 ? '1 open question' : `${count} open questions`}</a>
+)}

@@ -130,22 +130,27 @@
   "valueTypes": [
     {
       "name": "integer",
+      "ongaId": "ONGA_0000271",
       "description": "Integer numeric values."
     },
     {
       "name": "decimal",
+      "ongaId": "ONGA_0000272",
       "description": "Decimal numeric values."
     },
     {
       "name": "boolean",
+      "ongaId": "ONGA_0000273",
       "description": "Boolean values (true/false)."
     },
     {
       "name": "string",
+      "ongaId": "ONGA_0000274",
       "description": "Text string values."
     },
     {
       "name": "multiple",
+      "ongaId": "ONGA_0000275",
       "description": "Multiple types of values are associated (e.g. both integer and string)."
     }
   ]

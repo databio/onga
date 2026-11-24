@@ -35,11 +35,7 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const schemaDir = join(__dirname, '../../src');
 const dataDir = join(__dirname, '../src/data');
-const developDir = join(dataDir, 'develop');
 const mappingsDir = join(__dirname, '../../mappings');
-const reportsDir = join(__dirname, '../../embeddings/outputs/reports');
-const frequencyTsv = join(__dirname, '../../encode-term-use-frequency/seed_term_frequency.tsv');
-const proposalsDir = join(__dirname, '../../proposals');
 const curationDir = join(__dirname, '../../curation');
 
 function readYaml(filename) {
@@ -287,7 +283,7 @@ function processGeometry(schema) {
   const valueTypeEnum = schema.enums?.ValueType;
   if (valueTypeEnum?.permissible_values) {
     for (const [name, data] of Object.entries(valueTypeEnum.permissible_values)) {
-      valueTypes.push({ name, description: data.description || '' });
+      valueTypes.push({ name, ongaId: ongaIdOf(data.meaning), description: data.description || '' });
     }
   }
 
@@ -546,110 +542,6 @@ function readDelegations() {
   });
 }
 
-// Read the upstream term requests (proposals/upstream_requests.yaml): concepts
-// ONGA owns that an upstream ontology (currently SO) is missing, plus the
-// concepts deliberately NOT sent upstream. This is the mirror image of
-// scope_delegations.tsv — that file ejects axes OUT of ONGA's scope, this one
-// pushes missing terms INTO an upstream ontology. Emitted as
-// develop/upstream-requests.json for the so-proposals develop page.
-//
-// The YAML keys both `requests` and `rejections` by target ontology CURIE
-// prefix so EDAM requests can land alongside SO ones later; we flatten both
-// into arrays here, stamping the ontology onto each row.
-function readUpstreamRequests() {
-  const empty = {
-    ontologies: {},
-    requests: [],
-    rejections: [],
-    stats: { newTerms: 0, modifications: 0, proposedLabels: 0, rejectionGroups: 0, rejectedTerms: 0 },
-  };
-  const path = join(proposalsDir, 'upstream_requests.yaml');
-  if (!existsSync(path)) {
-    console.warn('Warning: proposals/upstream_requests.yaml not found, SO proposals page will be empty');
-    return empty;
-  }
-  const doc = parse(readFileSync(path, 'utf-8'));
-  const ontologies = doc.ontologies || {};
-
-  // Resolve an ONGA term to its browse page, using the same slug rule
-  // processEnum uses so the links line up with the generated term pages.
-  const ongaTerm = (t) => {
-    const slug = slugify(t.term || '');
-    const base = t.category === 'DataType' ? '/data-types' : '/feature-types';
-    return { term: t.term, category: t.category, slug, href: `${base}/${slug}` };
-  };
-
-  const purl = (id) => {
-    if (!id || typeof id !== 'string' || !id.includes(':')) return null;
-    const [prefix, local] = id.split(':');
-    const base = ontologies[prefix]?.purl;
-    return base ? `${base}${local}` : null;
-  };
-
-  const requests = [];
-  for (const [ontology, list] of Object.entries(doc.requests || {})) {
-    for (const r of list || []) {
-      const isMod = r.kind === 'modification';
-      const additional = r.additional_terms || [];
-      requests.push({
-        id: r.id,
-        kind: r.kind,
-        status: r.status || 'proposed',
-        ontology,
-        ontologyName: ontologies[ontology]?.name || ontology,
-        tracker: ontologies[ontology]?.tracker || null,
-        // Display label: the proposed label for a new term, the existing label
-        // for a modification request.
-        label: isMod ? (r.target?.label || '') : (r.proposed_label || ''),
-        definition: r.proposed_definition || '',
-        parent: r.parent
-          ? { ...r.parent, url: purl(r.parent.id) }
-          : null,
-        target: r.target ? { ...r.target, url: purl(r.target.id) } : null,
-        requestedChange: r.requested_change || '',
-        additionalTerms: additional,
-        rationale: r.rationale || '',
-        existingRelatedTerms: (r.existing_related_terms || []).map(t => ({ ...t, url: purl(t.id) })),
-        motivatingTerms: (r.motivating_terms || []).map(ongaTerm),
-        dependsOn: r.depends_on || [],
-        note: r.note || '',
-        // A single request can ask for several labels at once (CpG/CHG/CHH).
-        labelCount: isMod ? 0 : 1 + additional.length,
-      });
-    }
-  }
-
-  const rejections = [];
-  for (const [ontology, list] of Object.entries(doc.rejections || {})) {
-    for (const r of list || []) {
-      const redirect = r.redirect || {};
-      rejections.push({
-        id: r.id,
-        disposition: r.disposition,
-        status: r.status || 'rejected',
-        consideredFor: ontology,
-        consideredForName: ontologies[ontology]?.name || ontology,
-        redirectOntology: redirect.ontology || null,
-        redirectName: redirect.name || redirect.ontology || null,
-        redirectHomepage: ontologies[redirect.ontology]?.homepage || null,
-        reason: r.reason || '',
-        precedent: r.precedent || null,
-        ongaTerms: (r.onga_terms || []).map(ongaTerm),
-      });
-    }
-  }
-
-  const stats = {
-    newTerms: requests.filter(r => r.kind === 'new_term').length,
-    modifications: requests.filter(r => r.kind === 'modification').length,
-    proposedLabels: requests.reduce((s, r) => s + r.labelCount, 0),
-    rejectionGroups: rejections.length,
-    rejectedTerms: rejections.reduce((s, r) => s + r.ongaTerms.length, 0),
-  };
-
-  return { ontologies, requests, rejections, stats };
-}
-
 // ---------------------------------------------------------------------------
 // Generic schema browser (Layers 2-4 + structural enums), approach ported from
 // nsheff's schema-registry-site import_linkml.py: merge all src/*.yaml modules,
@@ -857,6 +749,7 @@ function buildSchemaBrowser() {
       seeAlso: en.see_also || [],
       values: Object.entries(en.permissible_values || {}).map(([v, def]) => ({
         name: v,
+        ongaId: ongaIdOf((def || {}).meaning),
         description: (def || {}).description || '',
       })),
       referencedBy: classRecords
@@ -871,279 +764,22 @@ function buildSchemaBrowser() {
   return { classes: classRecords, enums: enumRecords };
 }
 
-// ---------------------------------------------------------------------------
-// Curation workbench data (site/src/data/develop/). The curation files under
-// curation/ are generated by the Python tooling (make regen) and tracked, so
-// the published site renders them with no daemon and no Python in CI.
-//
-// Emitted:
-//   subjects.json, status.json, usage.json   copies of curation/
-//   verdicts.json, decisions.json, review_prompts.json     curation/*.yaml as JSON
-//   lint.json          curation/findings/schema_lint.json (+ `stale`)
-//   findings.json      {byId: {id: finding}}: lint + embeddings findings on live
-//                      subjects, each {id, source, rule, severity, subjects,
-//                      message, suggested_verdict?, object?}
-//   subject-index.json {sid: compact row}: the one lookup pages and controls
-//                      use (label, slug, href, browse, state, lint, prompts...)
-// Reviewing and deciding happen in the curation-workbench review UI
-// (`make curate`), which reads curation/ directly.
-// ---------------------------------------------------------------------------
-
-const EMBEDDING_REPORTS = ['internal_similarity.json', 'gap_analysis.json', 'mapping_report.json'];
-
-function readCurationJson(rel) {
-  const path = join(curationDir, rel);
-  if (!existsSync(path)) throw new Error(`curation/${rel} is missing; run \`make regen\` in the onga repo`);
-  return JSON.parse(readFileSync(path, 'utf-8'));
-}
-
-function readCurationYaml(rel) {
-  const path = join(curationDir, rel);
-  if (!existsSync(path)) throw new Error(`curation/${rel} is missing`);
-  try {
-    return parse(readFileSync(path, 'utf-8'));
-  } catch (e) {
-    throw new Error(`curation/${rel} is not valid YAML: ${e.message}`);
-  }
-}
-
-// The decision store must be well formed: a malformed store fails the build
-// rather than rendering a silently empty log.
-function readDecisions() {
-  const doc = readCurationYaml('decisions.yaml');
-  const bad = (msg) => { throw new Error(`curation/decisions.yaml is malformed: ${msg}`); };
-  if (!doc || typeof doc !== 'object' || Array.isArray(doc)) bad('top level must be a mapping');
-  if (!Number.isInteger(doc.version)) bad('`version` must be an integer');
-  if (!Number.isInteger(doc.next_id)) bad('`next_id` must be an integer');
-  if (!Array.isArray(doc.decisions)) bad('`decisions` must be a list');
-  const seen = new Set();
-  for (const [i, d] of doc.decisions.entries()) {
-    const where = `decisions[${i}]`;
-    if (!d || typeof d !== 'object') bad(`${where} is not a mapping`);
-    if (typeof d.id !== 'string' || !/^DEC-\d{4,}$/.test(d.id)) bad(`${where}.id must be DEC-NNNN`);
-    if (seen.has(d.id)) bad(`duplicate id ${d.id}`);
-    seen.add(d.id);
-    for (const f of ['subject', 'verdict']) {
-      if (typeof d[f] !== 'string' || !d[f]) bad(`${d.id}.${f} must be a non-empty string`);
-    }
-    if (!['pending', 'applied', 'withdrawn'].includes(d.status)) bad(`${d.id}.status must be pending | applied | withdrawn`);
-  }
-  return { version: doc.version, next_id: doc.next_id, decisions: doc.decisions };
-}
-
-// SID aliases (retired/renamed -> current), followed to the end of the chain.
-function aliasResolver(aliases) {
-  return (sid) => {
-    const seen = new Set();
-    while (aliases[sid] && !seen.has(sid)) { seen.add(sid); sid = aliases[sid]; }
-    return sid;
-  };
-}
-
-// Browse-page path (no base) for a subject, or null when it has none.
-function browsePath(s) {
-  if (s.retired) return null;
-  const classHref = (c) => CLASS_HREF_OVERRIDES[c] || `/schema/class/${c}`;
-  const enumHref = (e) => VOCAB_ENUM_HREFS[e] || `/schema/enum/${e}`;
-  switch (s.kind) {
-    case 'class': return classHref(s.name);
-    case 'enum': return enumHref(s.name);
-    case 'term':
-      if (s.enum === 'DataType') return `/data-types/${slugify(s.label)}`;
-      if (s.enum === 'FeatureType') return `/feature-types/${slugify(s.label)}`;
-      return enumHref(s.enum);
-    case 'slot': return s.owner_class ? classHref(s.owner_class) : null;
-    case 'usage': return classHref(s.name.split('/')[0]);
-    default: return null;
-  }
-}
-
-// Does a review prompt apply to a subject? Every `when` key given must match.
-function promptMatches(prompt, subject, signals) {
-  const w = prompt.when || {};
-  if (w.kind && !w.kind.includes(subject.kind)) return false;
-  if (w.layer && !w.layer.includes(subject.layer)) return false;
-  if (w.signal && !w.signal.some(k => signals?.[k])) return false;
-  return true;
-}
-
-// Embeddings findings, normalized exactly as `cwb status` does
-// (same ids, rules, messages), and the reports filtered to live subjects.
-function joinEmbeddings(known, resolve, severityOf) {
-  const reports = {};
-  const findings = [];
-  let dropped = 0;
-  let stale = false;
-
-  const isLive = (sid) => known.subjects[sid] && !known.subjects[sid].retired;
-  // Keep a finding only if every subject it names is live (after aliases).
-  const live = (sids) => {
-    const out = (sids || []).map(resolve);
-    if (!out.length || !out.every(isLive)) {
-      dropped += 1;
-      return null;
-    }
-    return out;
-  };
-  const add = (f) => findings.push({ ...f, source: 'embeddings', severity: severityOf[f.rule] });
-
-  for (const name of EMBEDDING_REPORTS) {
-    const path = join(reportsDir, name);
-    if (!existsSync(path)) {
-      console.warn(`Warning: report ${name} not found`);
-      reports[name] = null;
-      continue;
-    }
-    const data = JSON.parse(readFileSync(path, 'utf-8'));
-    if (!data.provenance) {
-      // Pre-provenance reports are treated as absent.
-      stale = true;
-      reports[name] = null;
-      continue;
-    }
-    if (data.provenance.schema_fingerprint !== known.fingerprint) stale = true;
-
-    if (name === 'internal_similarity.json') {
-      const pairs = [];
-      for (const p of data.pairs || []) {
-        const subjects = live(p.subjects);
-        if (!subjects) continue;
-        pairs.push({ ...p, subjects });
-        add({ id: p.id, rule: 'similar-terms', subjects,
-          message: `${p.term1} ~ ${p.term2} (similarity ${p.similarity}; ${p.machine_recommendation})` });
+// Open questions per subject (src/data/open-questions.json, {sid: count}): the
+// number of review topics (tracks[].types[]) in curation/review.json that list
+// the SID. Pages link that count to curate.databio.org (OpenQuestions.astro).
+function buildOpenQuestions() {
+  const path = join(curationDir, 'review.json');
+  if (!existsSync(path)) throw new Error('curation/review.json is missing; run `make regen` in the onga repo');
+  const review = JSON.parse(readFileSync(path, 'utf-8'));
+  const counts = {};
+  for (const track of review.tracks || []) {
+    for (const type of track.types || []) {
+      for (const sid of new Set((type.items || []).map(i => i.sid))) {
+        counts[sid] = (counts[sid] || 0) + 1;
       }
-      reports[name] = { ...data, total_pairs: pairs.length, pairs };
-    } else if (name === 'gap_analysis.json') {
-      const bySubset = {};
-      for (const [subset, group] of Object.entries(data.by_subset || {})) {
-        const terms = [];
-        for (const t of group.terms || []) {
-          const subjects = live(t.subjects);
-          if (!subjects) continue;
-          terms.push({ ...t, subjects });
-          add({ id: t.id, rule: 'coverage-gap', subjects,
-            message: `${t.onga_term}: no ontology match (best similarity ${t.max_similarity})` });
-        }
-        if (terms.length) bySubset[subset] = { ...group, count: terms.length, terms };
-      }
-      const count = Object.values(bySubset).reduce((n, g) => n + g.terms.length, 0);
-      reports[name] = { ...data, gap_terms_count: count, by_subset: bySubset };
-    } else {
-      const terms = [];
-      for (const t of data.terms || []) {
-        const subject = resolve(t.subject);
-        if (!isLive(subject)) {
-          dropped += (t.suggested_mappings || []).length;
-          continue;
-        }
-        const suggested = [];
-        for (const m of t.suggested_mappings || []) {
-          const subjects = live(m.subjects);
-          if (!subjects) continue;
-          suggested.push({ ...m, subjects });
-          add({ id: m.id, rule: 'mapping-suggestion', subjects, object: m.term_id,
-            message: `${t.onga_term} -> ${m.term_id} ${m.term_name} (${m.match_type}, ${m.similarity})` });
-        }
-        terms.push({ ...t, subject, suggested_mappings: suggested });
-      }
-      reports[name] = {
-        ...data,
-        total_terms: terms.length,
-        terms_with_matches: terms.filter(t => t.suggested_mappings.length).length,
-        terms,
-      };
     }
   }
-  return { reports, findings, dropped, stale };
-}
-
-function buildDevelop() {
-  mkdirSync(developDir, { recursive: true });
-  const write = (name, data) => writeFileSync(join(developDir, name), JSON.stringify(data, null, 2));
-
-  const registry = readCurationJson('subjects.json');
-  if (!registry.subjects || !registry.schema_fingerprint) {
-    throw new Error('curation/subjects.json has no subjects / schema_fingerprint');
-  }
-  const status = readCurationJson('status.json');
-  const aliasDoc = readCurationJson('subject_aliases.json');
-  const aliases = Object.fromEntries(Object.entries(aliasDoc).filter(([k]) => !k.startsWith('_')));
-  const resolve = aliasResolver(aliases);
-  const lint = readCurationJson('findings/schema_lint.json');
-  const usage = readCurationJson('usage.json');
-  const verdicts = readCurationYaml('verdicts.yaml');
-  if (!verdicts?.verdicts) throw new Error('curation/verdicts.yaml has no `verdicts` map');
-  const decisions = readDecisions();
-  const policy = readCurationYaml('policy.yaml');
-  const prompts = readCurationYaml('review_prompts.yaml');
-  if (!Array.isArray(prompts?.prompts)) throw new Error('curation/review_prompts.yaml has no `prompts` list');
-
-  const subjects = registry.subjects;
-  const emb = joinEmbeddings({ subjects, fingerprint: registry.schema_fingerprint }, resolve,
-    policy.status.finding_severity);
-
-  // One finding index: lint (skipped when stale, as `cwb status` does) + embeddings.
-  const lintStale = lint.schema_fingerprint !== registry.schema_fingerprint;
-  const byId = {};
-  for (const f of lintStale ? [] : lint.findings) byId[f.id] = { ...f, source: 'schema_lint' };
-  for (const f of emb.findings) byId[f.id] = f;
-
-  const index = {};
-  for (const [sid, s] of Object.entries(subjects)) {
-    const st = status.subjects[sid] || {};
-    const open = st.open_findings || [];
-    index[sid] = {
-      sid,
-      kind: s.kind,
-      name: s.name,
-      label: s.label || s.name,
-      slug: s.slug,
-      layer: s.layer,
-      container: s.container,
-      retired: s.retired,
-      hash: s.hash,
-      href: `/develop/subject/${s.slug}`,
-      browse: browsePath(s),
-      owner_class: s.owner_class ? `class:${s.owner_class}` : null,
-      state: st.state || 'unreviewed',
-      score: st.score || 0,
-      findings: open.length,
-      lint: open.filter(id => byId[id]?.source === 'schema_lint').length,
-      latest: st.latest || null,
-      prompts: prompts.prompts.filter(p => promptMatches(p, s, st.signals)).map(p => p.id),
-    };
-  }
-
-  write('subjects.json', registry);
-  write('status.json', status);
-  write('usage.json', usage);
-  write('verdicts.json', verdicts);
-  write('decisions.json', decisions);
-  write('review_prompts.json', prompts);
-  write('lint.json', { ...lint, stale: lintStale });
-  write('findings.json', { byId });
-  write('subject-index.json', index);
-
-  const STATES = ['unreviewed', 'open', 'deferred', 'settled', 'applied', 'stale'];
-  const rollup = (r) => ({
-    percentSettled: r.percent_settled,
-    total: r.total,
-    states: Object.fromEntries(STATES.map(k => [k, r[k]])),
-  });
-  const overall = rollup(status.rollups.overall);
-  const counts = {
-    percentSettled: overall.percentSettled,
-    totalSubjects: overall.total,
-    states: overall.states,
-    layers: Object.fromEntries(Object.entries(status.rollups.by_layer).map(([l, r]) => [l, rollup(r)])),
-    pendingDecisions: decisions.decisions.filter(d => d.status === 'pending').length,
-    appliedDecisions: decisions.decisions.filter(d => d.status === 'applied').length,
-    lintIssues: lintStale ? 0 : lint.findings.length,
-    staleFindings: emb.dropped,
-    findingsStale: emb.stale || lintStale,
-    queued: status.queue.length,
-  };
-  return { counts, reports: emb.reports };
+  return counts;
 }
 
 function build() {
@@ -1169,7 +805,6 @@ function build() {
   const soMappings = readSoMappings();
   const labelsById = termLabelsById();
   const delegations = readDelegations();
-  const upstream = readUpstreamRequests();
   const schemaBrowser = buildSchemaBrowser();
 
   // Process the vocabularies (DataType, FeatureType, Format) — all LinkML enums.
@@ -1393,73 +1028,9 @@ function build() {
   console.log(`Categories: ${categories.length}, Mappings: ${mappings.length}, Scope delegations: ${delegations.length}`);
   console.log(`SO element-type layer: ${soMappingList.length} SSSOM rows, ${elementTypeCoverage} terms with an element type, ${elementTypeNone.length} curated not_applicable`);
 
-  const curationSummary = buildDevelop();
-
-  // Embeddings finding pages read the raw reports, filtered to live subjects
-  // (buildDevelop drops findings on unknown subjects and flags stale reports).
-  const { reports } = curationSummary;
-  const internalSim = reports['internal_similarity.json'];
-  const gapAnalysis = reports['gap_analysis.json'];
-  const mappingReport = reports['mapping_report.json'];
-
-  writeFileSync(
-    join(developDir, 'merge-candidates.json'),
-    JSON.stringify(internalSim || { total_pairs: 0, pairs: [] }, null, 2)
-  );
-  writeFileSync(
-    join(developDir, 'gaps.json'),
-    JSON.stringify(gapAnalysis || { total_onga_terms: 0, gap_terms_count: 0, by_subset: {} }, null, 2)
-  );
-
-  // Upstream ontology requests (proposals/upstream_requests.yaml)
-  writeFileSync(
-    join(developDir, 'upstream-requests.json'),
-    JSON.stringify(upstream, null, 2)
-  );
-
-  // ENCODE usage frequency (from encode-term-use-frequency/seed_term_frequency.tsv)
-  let frequency = { generated: false, totalFiles: 0, zeroUsage: 0, terms: [] };
-  if (existsSync(frequencyTsv)) {
-    const lines = readFileSync(frequencyTsv, 'utf-8').split(/\r?\n/).filter(l => l.trim());
-    const header = lines[0].split('\t').map(h => h.trim());
-    const idx = name => header.indexOf(name);
-    const terms = lines.slice(1).map(line => {
-      const c = line.split('\t').map(v => v.trim());
-      return {
-        term: c[idx('term')],
-        inEncode: (c[idx('in_encode')] || '').toLowerCase() === 'yes',
-        fileCount: parseInt(c[idx('file_count')] || '0', 10),
-        datasetCount: parseInt(c[idx('dataset_count')] || '0', 10),
-      };
-    }).sort((a, b) => b.fileCount - a.fileCount);
-    frequency = {
-      generated: true,
-      totalFiles: terms.reduce((s, t) => s + t.fileCount, 0),
-      zeroUsage: terms.filter(t => t.fileCount === 0).length,
-      terms,
-    };
-  } else {
-    console.warn('Warning: seed_term_frequency.tsv not found, frequency page will be empty');
-  }
-  writeFileSync(join(developDir, 'frequency.json'), JSON.stringify(frequency, null, 2));
-
-  const summary = {
-    ...curationSummary.counts,
-    mergeCandidates: internalSim?.pairs?.length || 0,
-    gapTerms: Object.values(gapAnalysis?.by_subset || {}).reduce((n, g) => n + (g.terms || []).length, 0),
-    mappingSuggestions: (mappingReport?.terms || []).filter(t => (t.suggested_mappings || []).length).length,
-    soProposals: upstream.stats.newTerms + upstream.stats.modifications,
-    soRejections: upstream.stats.rejectedTerms,
-    zeroUsageTerms: frequency.zeroUsage,
-    totalTerms: allTerms.length,
-    soMappings: soMappingList.length,
-    elementTypeCoverage,
-  };
-  writeFileSync(join(developDir, 'summary.json'), JSON.stringify(summary, null, 2));
-
-  console.log(`Develop: ${summary.mergeCandidates} merge candidates, ${summary.gapTerms} gaps, ${summary.mappingSuggestions} mapping suggestions`);
-  console.log(`Curation: ${summary.percentSettled}% settled, ${summary.pendingDecisions} pending / ${summary.appliedDecisions} applied decisions, ${summary.lintIssues} lint findings, ${summary.staleFindings} findings on unknown subjects dropped${summary.findingsStale ? ', embeddings findings STALE' : ''}`);
-  console.log(`Upstream requests: ${upstream.stats.newTerms} new terms (${upstream.stats.proposedLabels} labels), ${upstream.stats.modifications} modifications, ${upstream.stats.rejectionGroups} rejections covering ${upstream.stats.rejectedTerms} ONGA terms`);
+  const openQuestions = buildOpenQuestions();
+  writeFileSync(join(dataDir, 'open-questions.json'), JSON.stringify(openQuestions, null, 2));
+  console.log(`Open questions: ${Object.keys(openQuestions).length} subjects`);
 }
 
 build();

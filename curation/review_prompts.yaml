@@ -2,9 +2,9 @@
 #
 # Review prompts: the questions a curator should ask of a subject before
 # deciding on it. Policy text lives here, never in the site's .astro files
-# (data-first ADR). site/scripts/build-data.js matches every prompt against
-# every subject and emits site/src/data/develop/review_prompts.json plus a
-# `prompts` list of prompt ids on each subject in subject-index.json.
+# (data-first ADR). The ONGA plugin (curation/plugin/onga_plugin.py) matches
+# every prompt against every subject and puts the matches in the snapshot
+# curate.databio.org reads (curation/snapshot.json).
 #
 # Structure
 # ---------

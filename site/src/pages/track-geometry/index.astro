@@ -1,8 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import StateChip from '../../components/StateChip.astro';
-import ReviewLink from '../../components/ReviewLink.astro';
-import { pageSid, slotSid, enumValue } from '../../lib/browse';
+import OpenQuestions from '../../components/OpenQuestions.astro';
+import { slotSid, termSid } from '../../lib/browse';
 import geometry from '../../data/track-geometry.json';
 
 // Properties are listed in the schema's slot order (src/track_geometry.yaml).
@@ -13,7 +12,7 @@ const valueTypes = geometry.valueTypes;
 <Layout title="Track Geometry" description="Structural properties of a genomic track — the shape of its features">
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">Track Geometry</h1>
-    <div class="mb-2"><ReviewLink sid={pageSid('/track-geometry')} /></div>
+    <div class="mb-2"><OpenQuestions sid="class:TrackGeometry" /></div>
     <p class="text-amber-600 font-medium">{properties.length} properties</p>
     <p class="text-gray-600 mt-2">
       Geometric or structural properties of the sequence features in a genomic
@@ -57,7 +56,7 @@ const valueTypes = geometry.valueTypes;
               <td class="px-4 py-3">
                 <div class="flex items-center gap-2 flex-wrap">
                   <span class="font-mono whitespace-nowrap">{prop.name}</span>
-                  <StateChip sid={slotSid(prop.name)} link />
+                  <OpenQuestions sid={slotSid(prop.name)} />
                 </div>
               </td>
               <td class="px-4 py-3 text-gray-600">
@@ -92,20 +91,17 @@ const valueTypes = geometry.valueTypes;
           </tr>
         </thead>
         <tbody>
-          {valueTypes.map((vt: any) => {
-            const t = enumValue('ValueType', vt.name);
-            return (
-              <tr class="border-b border-gray-100 align-top">
-                <td class="px-4 py-3">
-                  <div class="flex items-center gap-2 flex-wrap">
-                    <span class="font-mono whitespace-nowrap">{vt.name}</span>
-                    {t && <StateChip sid={t.sid} link />}
-                  </div>
-                </td>
-                <td class="px-4 py-3 text-gray-600">{vt.description}</td>
-              </tr>
-            );
-          })}
+          {valueTypes.map((vt: any) => (
+            <tr class="border-b border-gray-100 align-top">
+              <td class="px-4 py-3">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="font-mono whitespace-nowrap">{vt.name}</span>
+                  {vt.ongaId && <OpenQuestions sid={termSid(vt.ongaId)} />}
+                </div>
+              </td>
+              <td class="px-4 py-3 text-gray-600">{vt.description}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

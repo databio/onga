@@ -32744,28 +32744,6 @@
     }
    }
   },
-  "more_links": [
-   {
-    "label": "Merge candidates",
-    "url": "https://dev.databio.org/onga/develop/merge-candidates"
-   },
-   {
-    "label": "Gaps",
-    "url": "https://dev.databio.org/onga/develop/gaps"
-   },
-   {
-    "label": "Lint",
-    "url": "https://dev.databio.org/onga/develop/lint"
-   },
-   {
-    "label": "Proposals",
-    "url": "https://dev.databio.org/onga/develop/so-proposals"
-   },
-   {
-    "label": "Usage",
-    "url": "https://dev.databio.org/onga/develop/frequency"
-   }
-  ],
   "tracks": [
    {
     "id": "vocabulary",
@@ -42226,7 +42204,7 @@
     "links": [
      {
       "label": "SO-REQ-007 · proposed · nucleosome",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -42283,7 +42261,7 @@
     "links": [
      {
       "label": "SO-REJ-004 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -43572,7 +43550,7 @@
     "links": [
      {
       "label": "SO-REJ-004 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44125,7 +44103,7 @@
     "links": [
      {
       "label": "SO-REQ-010 · proposed · sequence_adapter",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44396,7 +44374,7 @@
     "links": [
      {
       "label": "SO-REQ-004 · proposed · TF_footprint",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44437,7 +44415,7 @@
     "links": [
      {
       "label": "SO-REQ-001 · proposed · chromatin_stripe",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44478,7 +44456,7 @@
     "links": [
      {
       "label": "SO-REQ-002 · proposed · chromatin_compartment",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44503,7 +44481,7 @@
     "links": [
      {
       "label": "SO-REQ-003 · proposed · chromatin_subcompartment",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44560,7 +44538,7 @@
     "links": [
      {
       "label": "SO-REJ-003 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44601,7 +44579,7 @@
     "links": [
      {
       "label": "SO-REQ-005 · proposed · CpG_site",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44626,7 +44604,7 @@
     "links": [
      {
       "label": "SO-REQ-005 · proposed · CpG_site",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44657,7 +44635,7 @@
     "links": [
      {
       "label": "SO-REQ-005 · proposed · CpG_site",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44762,7 +44740,7 @@
     "links": [
      {
       "label": "SO-REJ-003 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44787,7 +44765,7 @@
     "links": [
      {
       "label": "SO-REJ-004 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44844,7 +44822,7 @@
     "links": [
      {
       "label": "SO-REJ-004 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44910,7 +44888,7 @@
     "links": [
      {
       "label": "SO-REJ-004 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44935,7 +44913,7 @@
     "links": [
      {
       "label": "SO-REJ-003 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44960,7 +44938,7 @@
     "links": [
      {
       "label": "SO-REJ-003 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -44991,7 +44969,7 @@
     "links": [
      {
       "label": "SO-REJ-002 · rejected · delegate",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45016,7 +44994,7 @@
     "links": [
      {
       "label": "SO-REJ-003 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45041,7 +45019,7 @@
     "links": [
      {
       "label": "SO-REQ-008 · proposed · replication_timing_domain",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45066,7 +45044,7 @@
     "links": [
      {
       "label": "SO-REQ-008 · proposed · replication_timing_domain",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45203,7 +45181,7 @@
     "links": [
      {
       "label": "SO-REJ-004 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45263,7 +45241,7 @@
     "links": [
      {
       "label": "SO-REJ-004 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45336,7 +45314,7 @@
     "links": [
      {
       "label": "SO-REJ-003 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45377,7 +45355,7 @@
     "links": [
      {
       "label": "SO-REJ-003 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45501,7 +45479,7 @@
     "links": [
      {
       "label": "SO-REJ-003 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45526,7 +45504,7 @@
     "links": [
      {
       "label": "SO-REJ-003 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45551,7 +45529,7 @@
     "links": [
      {
       "label": "SO-REJ-003 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45576,7 +45554,7 @@
     "links": [
      {
       "label": "SO-REJ-001 · rejected · delegate",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45601,7 +45579,7 @@
     "links": [
      {
       "label": "SO-REJ-001 · rejected · delegate",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45626,7 +45604,7 @@
     "links": [
      {
       "label": "SO-REJ-003 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45683,7 +45661,7 @@
     "links": [
      {
       "label": "SO-REJ-003 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45743,7 +45721,7 @@
     "links": [
      {
       "label": "SO-REQ-006 · proposed · two_prime_O_methylated_nucleotide",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }
@@ -45876,7 +45854,7 @@
     "links": [
      {
       "label": "SO-REJ-003 · rejected · out_of_scope",
-      "href": "https://dev.databio.org/onga/develop/so-proposals"
+      "href": "https://github.com/databio/onga/blob/master/proposals/upstream_requests.yaml"
      }
     ]
    }

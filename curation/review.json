@@ -8,28 +8,6 @@
   "waiting": 396,
   "percent_settled": 26.8
  },
- "more_links": [
-  {
-   "label": "Merge candidates",
-   "url": "https://dev.databio.org/onga/develop/merge-candidates"
-  },
-  {
-   "label": "Gaps",
-   "url": "https://dev.databio.org/onga/develop/gaps"
-  },
-  {
-   "label": "Lint",
-   "url": "https://dev.databio.org/onga/develop/lint"
-  },
-  {
-   "label": "Proposals",
-   "url": "https://dev.databio.org/onga/develop/so-proposals"
-  },
-  {
-   "label": "Usage",
-   "url": "https://dev.databio.org/onga/develop/frequency"
-  }
- ],
  "tracks": [
   {
    "id": "vocabulary",
@@ -123,23 +101,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "48282e73f876"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000306",
-            "object_label": "methylated_DNA_base_feature"
-           },
-           "rationale": "methylated_DNA_base_feature is not a match.",
-           "evidence": "map:60c2e5d28f54",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "679b20f23503"
           }
          ]
         },
@@ -201,23 +162,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "cbbfff6a1b7a"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001701",
-            "object_label": "histone_methylation_site"
-           },
-           "rationale": "histone_methylation_site is not a match.",
-           "evidence": "map:c5db0f5a9514",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "0f02b6939192"
           }
          ]
         }
@@ -320,23 +264,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "fec0ac5914bc"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001486",
-            "object_label": "standard_draft"
-           },
-           "rationale": "standard_draft is not a match.",
-           "evidence": "map:0d3813d868db",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "78e4b0d0c3c0"
           }
          ]
         },
@@ -398,23 +325,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "1849d8d653af"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001489",
-            "object_label": "annotation_directed_improved_draft"
-           },
-           "rationale": "annotation_directed_improved_draft is not a match.",
-           "evidence": "map:11806fbbb3c7",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "03df7db53bb2"
           }
          ]
         },
@@ -476,23 +386,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "0701453c56cb"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001428",
-            "object_label": "expressed_sequence_assembly"
-           },
-           "rationale": "expressed_sequence_assembly is not a match.",
-           "evidence": "map:2d038e7bc22b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "3d78b8c0ffb3"
           }
          ]
         }
@@ -595,23 +488,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "f1620da8c69b"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002308",
-            "object_label": "DNA_loop_anchor"
-           },
-           "rationale": "DNA_loop_anchor is not a match.",
-           "evidence": "map:a1be05e1507b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "749af358bc78"
           }
          ]
         },
@@ -673,23 +549,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "b43a91b20041"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002305",
-            "object_label": "topologically_associated_domain_boundary"
-           },
-           "rationale": "topologically_associated_domain_boundary is not a match.",
-           "evidence": "map:bd883bb30c64",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "8b3e6d8dcca6"
           }
          ]
         },
@@ -751,23 +610,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "e55b8e9c7f3b"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002307",
-            "object_label": "DNA_loop"
-           },
-           "rationale": "DNA_loop is not a match.",
-           "evidence": "map:f20fb198881d",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "3dea6711eb07"
           }
          ]
         }
@@ -866,23 +708,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a2eeaa64e25c"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000685",
-            "object_label": "DNaseI_hypersensitive_site"
-           },
-           "rationale": "DNaseI_hypersensitive_site is not a match.",
-           "evidence": "map:862f11b2254c",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "dcae14993ee7"
           }
          ]
         },
@@ -944,23 +769,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "11f7449571c5"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002331",
-            "object_label": "accessible_DNA_region"
-           },
-           "rationale": "accessible_DNA_region is not a match.",
-           "evidence": "map:ac8a4c90d851",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "aa3bb3d00a03"
           }
          ]
         },
@@ -1022,23 +830,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "919e7db7c7a2"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001697",
-            "object_label": "ChIP_seq_region"
-           },
-           "rationale": "ChIP_seq_region is not a match.",
-           "evidence": "map:f841decfc672",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "86293f5c9247"
           }
          ]
         }
@@ -1136,23 +927,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ffa94bec08d6"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000306",
-            "object_label": "methylated_DNA_base_feature"
-           },
-           "rationale": "methylated_DNA_base_feature is not a match.",
-           "evidence": "map:b563d270282f",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "ef52ee2f84fa"
           }
          ]
         },
@@ -1214,23 +988,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a7790dbf883d"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001963",
-            "object_label": "modified_cytosine"
-           },
-           "rationale": "modified_cytosine is not a match.",
-           "evidence": "map:ecbbdfb216f2",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "f9e7bb5a23de"
           }
          ]
         }
@@ -1409,23 +1166,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "f5e2d7916896"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000307",
-            "object_label": "CpG_island"
-           },
-           "rationale": "CpG_island is not a match.",
-           "evidence": "map:d67a6381320f",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "188ad6b71b59"
           }
          ]
         }
@@ -1527,23 +1267,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "b70f6c638a6b"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001506",
-            "object_label": "variant_genome"
-           },
-           "rationale": "variant_genome is not a match.",
-           "evidence": "map:72c6e3c57d24",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "bdb9577bb3f5"
           }
          ]
         },
@@ -1605,23 +1328,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "d2dfbac36ee5"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001505",
-            "object_label": "reference_genome"
-           },
-           "rationale": "reference_genome is not a match.",
-           "evidence": "map:aa0654d25c3a",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "04083d66e449"
           }
          ]
         }
@@ -1759,23 +1465,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "cd13dbc09d10"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001765",
-            "object_label": "rare_variant"
-           },
-           "rationale": "rare_variant is not a match.",
-           "evidence": "map:11192105494e",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "1f065365c703"
           }
          ]
         },
@@ -1837,23 +1526,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "f60a48c362d2"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001506",
-            "object_label": "variant_genome"
-           },
-           "rationale": "variant_genome is not a match.",
-           "evidence": "map:658af2215f0a",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "eb22c5d840f1"
           }
          ]
         },
@@ -1915,23 +1587,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "70067c5c0e62"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001505",
-            "object_label": "reference_genome"
-           },
-           "rationale": "reference_genome is not a match.",
-           "evidence": "map:eb606d11a496",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "c225d1310e58"
           }
          ]
         },
@@ -2069,23 +1724,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "1606252febbc"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001164",
-            "object_label": "DPE1_motif"
-           },
-           "rationale": "DPE1_motif is not a match.",
-           "evidence": "map:c211cbeb5a3e",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "2557b2564147"
           }
          ]
         },
@@ -2147,23 +1785,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "29bf23c9595c"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001683",
-            "object_label": "sequence_motif"
-           },
-           "rationale": "sequence_motif is not a match.",
-           "evidence": "map:f71e16b75145",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "8c3e2e47fd83"
           }
          ]
         },
@@ -2225,23 +1846,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "86fa27ed1d75"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000714",
-            "object_label": "nucleotide_motif"
-           },
-           "rationale": "nucleotide_motif is not a match.",
-           "evidence": "map:ffb795066b96",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "579d8841fabf"
           }
          ]
         }
@@ -2339,23 +1943,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "f5a33241f4de"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000658",
-            "object_label": "dispersed_repeat"
-           },
-           "rationale": "dispersed_repeat is not a match.",
-           "evidence": "map:80744e16f609",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "33e8977bdadb"
           }
          ]
         },
@@ -2417,23 +2004,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "d0e79cdb0e76"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000840",
-            "object_label": "repeat_component"
-           },
-           "rationale": "repeat_component is not a match.",
-           "evidence": "map:e374ae1f4ce8",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "abcdda33b66f"
           }
          ]
         }
@@ -2535,23 +2105,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a66b33bdbcf2"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000797",
-            "object_label": "natural_transposable_element"
-           },
-           "rationale": "natural_transposable_element is not a match.",
-           "evidence": "map:4a1fd389a98f",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "dc1e19cfb3e6"
           }
          ]
         },
@@ -2613,23 +2166,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "0e4157e0ede9"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000720",
-            "object_label": "foreign_transposable_element"
-           },
-           "rationale": "foreign_transposable_element is not a match.",
-           "evidence": "map:a04613bfbed1",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "d68d82f3d703"
           }
          ]
         },
@@ -2691,23 +2227,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "8affdb7e989d"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000364",
-            "object_label": "transposable_element_flanking_region"
-           },
-           "rationale": "transposable_element_flanking_region is not a match.",
-           "evidence": "map:e62dd4131255",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "a4d5ab9767cd"
           }
          ]
         }
@@ -2805,23 +2324,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "38a46fd3297a"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001541",
-            "object_label": "decreased_transcript_level_variant"
-           },
-           "rationale": "decreased_transcript_level_variant is not a match.",
-           "evidence": "map:c28ca80fe14f",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "b2db84f7012a"
           }
          ]
         },
@@ -2883,23 +2385,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "fd59681b98b3"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002300",
-            "object_label": "unit_of_gene_expression"
-           },
-           "rationale": "unit_of_gene_expression is not a match.",
-           "evidence": "map:ea76d73c37aa",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "3617740c02f7"
           }
          ]
         }
@@ -2998,23 +2483,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "8d342a3a8013"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001505",
-            "object_label": "reference_genome"
-           },
-           "rationale": "reference_genome is not a match.",
-           "evidence": "map:3c6b3061034b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "11bc7a240f95"
           }
          ]
         },
@@ -3076,23 +2544,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "894ba4f5b46b"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001506",
-            "object_label": "variant_genome"
-           },
-           "rationale": "variant_genome is not a match.",
-           "evidence": "map:826b3477ecdc",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "0585c5efd057"
           }
          ]
         },
@@ -3154,23 +2605,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "7d0d44dd6ade"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001767",
-            "object_label": "common_variant"
-           },
-           "rationale": "common_variant is not a match.",
-           "evidence": "map:da11de0bd335",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "78d3f43554ef"
           }
          ]
         }
@@ -3269,23 +2703,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ca349480f5e0"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001541",
-            "object_label": "decreased_transcript_level_variant"
-           },
-           "rationale": "decreased_transcript_level_variant is not a match.",
-           "evidence": "map:3b341239533c",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "6fbe85ef1174"
           }
          ]
         },
@@ -3347,23 +2764,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "7a44505cd801"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001540",
-            "object_label": "level_of_transcript_variant"
-           },
-           "rationale": "level_of_transcript_variant is not a match.",
-           "evidence": "map:3b932ad31e97",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "33fbce850db8"
           }
          ]
         },
@@ -3425,23 +2825,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ce71ad5afc04"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001542",
-            "object_label": "increased_transcript_level_variant"
-           },
-           "rationale": "increased_transcript_level_variant is not a match.",
-           "evidence": "map:688d6a8732b8",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "564f553c0f19"
           }
          ]
         }
@@ -3544,23 +2927,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "1fb72ec9f289"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001249",
-            "object_label": "fragment_assembly"
-           },
-           "rationale": "fragment_assembly is not a match.",
-           "evidence": "map:4f65072e5be3",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "d97a7ff1693f"
           }
          ]
         },
@@ -3622,23 +2988,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "e6b78dcc641d"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000993",
-            "object_label": "consensus"
-           },
-           "rationale": "consensus is not a match.",
-           "evidence": "map:91b52b2fbc7a",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "0c5b7221b18b"
           }
          ]
         },
@@ -3700,23 +3049,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "3516bf423940"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000353",
-            "object_label": "sequence_assembly"
-           },
-           "rationale": "sequence_assembly is not a match.",
-           "evidence": "map:d382c3a8c7cc",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "fe3a75c4eac1"
           }
          ]
         }
@@ -3819,23 +3151,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "2c9ba6c9def9"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001790",
-            "object_label": "paired_end_fragment"
-           },
-           "rationale": "paired_end_fragment is not a match.",
-           "evidence": "map:47c69acf0b1b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "1e538bac1c81"
           }
          ]
         },
@@ -3897,23 +3212,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "9eeb1fd9be12"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001425",
-            "object_label": "ligation_based_read"
-           },
-           "rationale": "ligation_based_read is not a match.",
-           "evidence": "map:519277342091",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "64e2cbe5d325"
           }
          ]
         },
@@ -3975,23 +3273,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a79e0c8efa31"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000007",
-            "object_label": "read_pair"
-           },
-           "rationale": "read_pair is not a match.",
-           "evidence": "map:f312c9704973",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "68b36a3e8eb3"
           }
          ]
         }
@@ -4167,23 +3448,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "07fac8cec7d3"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000167",
-            "object_label": "promoter"
-           },
-           "rationale": "promoter is not a match.",
-           "evidence": "map:0eff6d5f7045",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "9ece38c9f785"
           }
          ]
         },
@@ -4245,23 +3509,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "288ed13ea7f0"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000568",
-            "object_label": "bidirectional_promoter"
-           },
-           "rationale": "bidirectional_promoter is not a match.",
-           "evidence": "map:5ed7b92f377e",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "adb544f537de"
           }
          ]
         }
@@ -4363,23 +3610,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "d8aa2f6a424c"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001952",
-            "object_label": "promoter_flanking_region"
-           },
-           "rationale": "promoter_flanking_region is not a match.",
-           "evidence": "map:3cb9efa8db1d",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "9da887aa7d64"
           }
          ]
         },
@@ -4441,23 +3671,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "2a91c9ce953d"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002301",
-            "object_label": "transcription_unit"
-           },
-           "rationale": "transcription_unit is not a match.",
-           "evidence": "map:73ef5ae67339",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "7f7cf47a98fd"
           }
          ]
         },
@@ -4519,23 +3732,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "580b11600a88"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001670",
-            "object_label": "distal_promoter_element"
-           },
-           "rationale": "distal_promoter_element is not a match.",
-           "evidence": "map:ece7fa8c9e4b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "0e1a95883c1a"
           }
          ]
         },
@@ -4676,23 +3872,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "902f9f62bee8"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001915",
-            "object_label": "transcription_start_cluster"
-           },
-           "rationale": "transcription_start_cluster is not a match.",
-           "evidence": "map:01e27f035de2",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "1847eb7b6c18"
           }
          ]
         },
@@ -4754,23 +3933,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "6f2e4f9e8c80"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001238",
-            "object_label": "major_TSS"
-           },
-           "rationale": "major_TSS is not a match.",
-           "evidence": "map:af41a3f0ec26",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "15e280a3bd05"
           }
          ]
         },
@@ -4832,23 +3994,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a78fae165d5b"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001952",
-            "object_label": "promoter_flanking_region"
-           },
-           "rationale": "promoter_flanking_region is not a match.",
-           "evidence": "map:b0830ff80195",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "f7d3b3a9721f"
           }
          ]
         },
@@ -4986,23 +4131,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "7cdf01ac8d94"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002023",
-            "object_label": "multiplexing_sequence_identifier"
-           },
-           "rationale": "multiplexing_sequence_identifier is not a match.",
-           "evidence": "map:5b1897efa464",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "c7be12ca237e"
           }
          ]
         },
@@ -5064,23 +4192,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "1e14ca544242"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001467",
-            "object_label": "RST"
-           },
-           "rationale": "RST is not a match.",
-           "evidence": "map:c5fce503020f",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "29b007652385"
           }
          ]
         },
@@ -5142,23 +4253,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "46ab3d31ba20"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001425",
-            "object_label": "ligation_based_read"
-           },
-           "rationale": "ligation_based_read is not a match.",
-           "evidence": "map:ec2abeedc4f5",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "394173ced565"
           }
          ]
         }
@@ -5260,23 +4354,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "4fb981635a0e"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001685",
-            "object_label": "score"
-           },
-           "rationale": "score is not a match.",
-           "evidence": "map:508c1d9c4d6b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "0f0b20f917bb"
           }
          ]
         },
@@ -5338,23 +4415,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "80ec5e4872ec"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001004",
-            "object_label": "low_complexity"
-           },
-           "rationale": "low_complexity is not a match.",
-           "evidence": "map:c54522c4cb8b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "35ee4f207853"
           }
          ]
         }
@@ -5453,23 +4513,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ae0b0e04c304"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001683",
-            "object_label": "sequence_motif"
-           },
-           "rationale": "sequence_motif is not a match.",
-           "evidence": "map:176cca78b0ad",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "cec8fa584b41"
           }
          ]
         },
@@ -5531,23 +4574,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "1716caa843a2"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000735",
-            "object_label": "sequence_location"
-           },
-           "rationale": "sequence_location is not a match.",
-           "evidence": "map:1f04209a1e5d",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "a84c6043c48e"
           }
          ]
         },
@@ -5609,23 +4635,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "bd1353023bfa"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000331",
-            "object_label": "STS"
-           },
-           "rationale": "STS is not a match.",
-           "evidence": "map:2f3901316c87",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "364a4acdbfe6"
           }
          ]
         }
@@ -5722,23 +4731,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "7d1bb279b977"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002297",
-            "object_label": "TFRS_collection"
-           },
-           "rationale": "TFRS_collection is not a match.",
-           "evidence": "map:3215125f2a48",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "1fd22d521ca2"
           }
          ]
         }
@@ -5837,23 +4829,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "1790f81e71a0"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002309",
-            "object_label": "core_promoter_element"
-           },
-           "rationale": "core_promoter_element is not a match.",
-           "evidence": "map:885f56fdcbf0",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "1ecb14a6b9e8"
           }
          ]
         },
@@ -5915,23 +4890,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "72c79b849a27"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002312",
-            "object_label": "core_prokaryotic_promoter_element"
-           },
-           "rationale": "core_prokaryotic_promoter_element is not a match.",
-           "evidence": "map:9ebdcc57d5ac",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "a3e04d5f0a3e"
           }
          ]
         },
@@ -5993,23 +4951,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "5b3d59731d26"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002297",
-            "object_label": "TFRS_collection"
-           },
-           "rationale": "TFRS_collection is not a match.",
-           "evidence": "map:f3cdd496fd2f",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "d3469464869c"
           }
          ]
         }
@@ -6185,23 +5126,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "2c47065075aa"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000797",
-            "object_label": "natural_transposable_element"
-           },
-           "rationale": "natural_transposable_element is not a match.",
-           "evidence": "map:66aa8a379420",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "59d60c7e0485"
           }
          ]
         }
@@ -6379,23 +5303,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "869e6c8eabb4"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002301",
-            "object_label": "transcription_unit"
-           },
-           "rationale": "transcription_unit is not a match.",
-           "evidence": "map:060c06d95659",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "2bc8b1831f82"
           }
          ]
         },
@@ -6536,23 +5443,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a002de03d4be"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001241",
-            "object_label": "encodes_alternate_transcription_start_sites"
-           },
-           "rationale": "encodes_alternate_transcription_start_sites is not a match.",
-           "evidence": "map:1e67a7e2ea98",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "ab355529cfbe"
           }
          ]
         },
@@ -6614,23 +5504,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "fde325466f7e"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000568",
-            "object_label": "bidirectional_promoter"
-           },
-           "rationale": "bidirectional_promoter is not a match.",
-           "evidence": "map:5f9412136f0e",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "6b25c8c1b7f9"
           }
          ]
         },
@@ -6692,23 +5565,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "0bb53a8cccd7"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001915",
-            "object_label": "transcription_start_cluster"
-           },
-           "rationale": "transcription_start_cluster is not a match.",
-           "evidence": "map:acd08e8aee69",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "7e616462de41"
           }
          ]
         },
@@ -6849,23 +5705,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "29d01ed4ca0a"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000150",
-            "object_label": "read"
-           },
-           "rationale": "read is not a match.",
-           "evidence": "map:590a831a04c7",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "a583ad5aee28"
           }
          ]
         },
@@ -6927,23 +5766,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ff608830d4d3"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000699",
-            "object_label": "junction"
-           },
-           "rationale": "junction is not a match.",
-           "evidence": "map:a77889c28b7e",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "aa76d279b833"
           }
          ]
         }
@@ -7042,23 +5864,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "b12121fffca7"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000150",
-            "object_label": "read"
-           },
-           "rationale": "read is not a match.",
-           "evidence": "map:13d72e5d8420",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "bc862f4516a0"
           }
          ]
         },
@@ -7120,23 +5925,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "9d6b3ae5fb39"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001486",
-            "object_label": "standard_draft"
-           },
-           "rationale": "standard_draft is not a match.",
-           "evidence": "map:4b0cea6a1450",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "e592112a4ef8"
           }
          ]
         },
@@ -7198,23 +5986,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "74fc873ca009"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001931",
-            "object_label": "consensus_gDNA"
-           },
-           "rationale": "consensus_gDNA is not a match.",
-           "evidence": "map:4cb2c0cf5731",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "a93239dd0eed"
           }
          ]
         }
@@ -7352,23 +6123,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "9fe1198c4c91"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001915",
-            "object_label": "transcription_start_cluster"
-           },
-           "rationale": "transcription_start_cluster is not a match.",
-           "evidence": "map:59895df73a07",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "0c826195b7d2"
           }
          ]
         },
@@ -7430,23 +6184,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "85a365f8667f"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001241",
-            "object_label": "encodes_alternate_transcription_start_sites"
-           },
-           "rationale": "encodes_alternate_transcription_start_sites is not a match.",
-           "evidence": "map:748f0d3e6d90",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "92a042368f88"
           }
          ]
         },
@@ -7508,23 +6245,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a837aef80de3"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001238",
-            "object_label": "major_TSS"
-           },
-           "rationale": "major_TSS is not a match.",
-           "evidence": "map:7c36b2f70e2b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "d8b95630c566"
           }
          ]
         }
@@ -7625,23 +6345,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "944e6df36521"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000235",
-            "object_label": "TF_binding_site"
-           },
-           "rationale": "TF_binding_site is not a match.",
-           "evidence": "map:d7fd0372ef85",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "c48499e0c93e"
           }
          ]
         }
@@ -7817,23 +6520,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "1fd57607a103"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000860",
-            "object_label": "syntenic"
-           },
-           "rationale": "syntenic is not a match.",
-           "evidence": "map:3c7d9cb5a4c6",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "f9f28647fa91"
           }
          ]
         },
@@ -7895,23 +6581,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "d758234653ed"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000994",
-            "object_label": "consensus_region"
-           },
-           "rationale": "consensus_region is not a match.",
-           "evidence": "map:f8ea8df4dfaf",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "7b4effb00e30"
           }
          ]
         }
@@ -8163,23 +6832,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "22a200f289df"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000658",
-            "object_label": "dispersed_repeat"
-           },
-           "rationale": "dispersed_repeat is not a match.",
-           "evidence": "map:1f75210b7864",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "ca2c906d7e79"
           }
          ]
         },
@@ -8241,23 +6893,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "c8aa69d5f821"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000338",
-            "object_label": "MITE"
-           },
-           "rationale": "MITE is not a match.",
-           "evidence": "map:479caf7fd2d0",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "b75cbad28125"
           }
          ]
         },
@@ -8319,23 +6954,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "92e511f6a76c"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000194",
-            "object_label": "LINE_element"
-           },
-           "rationale": "LINE_element is not a match.",
-           "evidence": "map:64755d5bdd4c",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "8bd89ee89031"
           }
          ]
         }
@@ -8470,23 +7088,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "6b26070f393b"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002331",
-            "object_label": "accessible_DNA_region"
-           },
-           "rationale": "accessible_DNA_region is not a match.",
-           "evidence": "map:58e3137f7535",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "14235ffc7449"
           }
          ]
         },
@@ -8548,23 +7149,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "c03004b6c9ac"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000685",
-            "object_label": "DNaseI_hypersensitive_site"
-           },
-           "rationale": "DNaseI_hypersensitive_site is not a match.",
-           "evidence": "map:c3463b8518a7",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "c225d2ee35d6"
           }
          ]
         },
@@ -8626,23 +7210,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "950afd274dd3"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001697",
-            "object_label": "ChIP_seq_region"
-           },
-           "rationale": "ChIP_seq_region is not a match.",
-           "evidence": "map:f052b9ef26e8",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "4204b79b62b0"
           }
          ]
         }
@@ -8777,23 +7344,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "9b4face1f99a"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002190",
-            "object_label": "enhancer_blocking_element"
-           },
-           "rationale": "enhancer_blocking_element is not a match.",
-           "evidence": "map:0c5d936524cf",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "0d18980a17d7"
           }
          ]
         },
@@ -8855,23 +7405,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ebe36955604e"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000627",
-            "object_label": "insulator"
-           },
-           "rationale": "insulator is not a match.",
-           "evidence": "map:2312362cfe10",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "768ead7e4685"
           }
          ]
         },
@@ -8933,23 +7466,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ec175a284f07"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000727",
-            "object_label": "cis_regulatory_module"
-           },
-           "rationale": "cis_regulatory_module is not a match.",
-           "evidence": "map:4fa5043d6f6f",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "7ae0af40327c"
           }
          ]
         }
@@ -9048,23 +7564,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "c715e90b30cc"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000102",
-            "object_label": "expressed_sequence_match"
-           },
-           "rationale": "expressed_sequence_match is not a match.",
-           "evidence": "map:a1749d6f14fb",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "bdd57cc63c84"
           }
          ]
         },
@@ -9126,23 +7625,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ed7a995474c9"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001209",
-            "object_label": "three_prime_EST"
-           },
-           "rationale": "three_prime_EST is not a match.",
-           "evidence": "map:ae7d55eae756",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "702063692728"
           }
          ]
         },
@@ -9204,23 +7686,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "4b1d53922ee3"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001428",
-            "object_label": "expressed_sequence_assembly"
-           },
-           "rationale": "expressed_sequence_assembly is not a match.",
-           "evidence": "map:c2497c9a465b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "68532bf96a55"
           }
          ]
         }
@@ -9319,23 +7784,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "60aee299c354"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001505",
-            "object_label": "reference_genome"
-           },
-           "rationale": "reference_genome is not a match.",
-           "evidence": "map:3f188131cb43",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "8ac2a3c730be"
           }
          ]
         },
@@ -9397,23 +7845,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "4b435d681aba"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001428",
-            "object_label": "expressed_sequence_assembly"
-           },
-           "rationale": "expressed_sequence_assembly is not a match.",
-           "evidence": "map:b6218787ef1e",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "01f8c00480fd"
           }
          ]
         },
@@ -9475,23 +7906,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "53142572a7c2"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000102",
-            "object_label": "expressed_sequence_match"
-           },
-           "rationale": "expressed_sequence_match is not a match.",
-           "evidence": "map:fc249476181c",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "f430be25339e"
           }
          ]
         }
@@ -9631,23 +8045,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "081ed327c8e1"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000274",
-            "object_label": "snRNA"
-           },
-           "rationale": "snRNA is not a match.",
-           "evidence": "map:6d90a853c31f",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "4579636ca8a6"
           }
          ]
         },
@@ -9709,23 +8106,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "3436c00b8574"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000013",
-            "object_label": "scRNA"
-           },
-           "rationale": "scRNA is not a match.",
-           "evidence": "map:d4a5077effff",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "94f27149ee9d"
           }
          ]
         }
@@ -9823,23 +8203,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "c3a9736af513"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001486",
-            "object_label": "standard_draft"
-           },
-           "rationale": "standard_draft is not a match.",
-           "evidence": "map:3844ac739898",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "3b6374b89b9e"
           }
          ]
         },
@@ -9901,23 +8264,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "33327ae702e1"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001424",
-            "object_label": "pyrosequenced_read"
-           },
-           "rationale": "pyrosequenced_read is not a match.",
-           "evidence": "map:aed25285b326",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "ed30fd5b5319"
           }
          ]
         }
@@ -10019,23 +8365,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "e404c29127a6"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001489",
-            "object_label": "annotation_directed_improved_draft"
-           },
-           "rationale": "annotation_directed_improved_draft is not a match.",
-           "evidence": "map:70961d436b07",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "6f56c0135a7c"
           }
          ]
         },
@@ -10097,23 +8426,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "948cbc89fc67"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001488",
-            "object_label": "improved_high_quality_draft"
-           },
-           "rationale": "improved_high_quality_draft is not a match.",
-           "evidence": "map:adc0f3b49dd1",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "fd1e37fabf4b"
           }
          ]
         }
@@ -10287,23 +8599,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "f967181e76ae"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000995",
-            "object_label": "consensus_mRNA"
-           },
-           "rationale": "consensus_mRNA is not a match.",
-           "evidence": "map:3ffd122ffc1d",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "5316faeafe22"
           }
          ]
         },
@@ -10365,23 +8660,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "1d2cc1c4b838"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001428",
-            "object_label": "expressed_sequence_assembly"
-           },
-           "rationale": "expressed_sequence_assembly is not a match.",
-           "evidence": "map:a86b4e56d6e2",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "7f9ed3d92554"
           }
          ]
         },
@@ -10443,23 +8721,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "1bab89ea9fd5"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000102",
-            "object_label": "expressed_sequence_match"
-           },
-           "rationale": "expressed_sequence_match is not a match.",
-           "evidence": "map:b664f1280cf4",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "6a618e6a2db7"
           }
          ]
         }
@@ -10560,23 +8821,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "cfb2947e665a"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002301",
-            "object_label": "transcription_unit"
-           },
-           "rationale": "transcription_unit is not a match.",
-           "evidence": "map:127e8964a712",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "d3fab01c7ac2"
           }
          ]
         },
@@ -10638,23 +8882,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "883ea9453595"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001418",
-            "object_label": "transcribed_fragment"
-           },
-           "rationale": "transcribed_fragment is not a match.",
-           "evidence": "map:77e442b3d0f6",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "cc9c5d9fa260"
           }
          ]
         },
@@ -10869,23 +9096,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "0a470e9d2331"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000550",
-            "object_label": "aneuploid_chromosome"
-           },
-           "rationale": "aneuploid_chromosome is not a match.",
-           "evidence": "map:4523e75fd2de",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "61b2b70dd411"
           }
          ]
         },
@@ -10947,23 +9157,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "e306cad75773"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001505",
-            "object_label": "reference_genome"
-           },
-           "rationale": "reference_genome is not a match.",
-           "evidence": "map:bedd9c5ed9b4",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "c82fe488dc6f"
           }
          ]
         },
@@ -11025,23 +9218,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "7b4156f2b0f5"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000860",
-            "object_label": "syntenic"
-           },
-           "rationale": "syntenic is not a match.",
-           "evidence": "map:e89b522999f4",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "37c8626e3559"
           }
          ]
         },
@@ -11365,23 +9541,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "bcb0ec87784c"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001542",
-            "object_label": "increased_transcript_level_variant"
-           },
-           "rationale": "increased_transcript_level_variant is not a match.",
-           "evidence": "map:478726783729",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "5edf08ceab95"
           }
          ]
         }
@@ -11518,23 +9677,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ab0c4e562889"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001548",
-            "object_label": "increased_transcript_stability_variant"
-           },
-           "rationale": "increased_transcript_stability_variant is not a match.",
-           "evidence": "map:492c3daa7ef0",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "cb87b3c737f8"
           }
          ]
         },
@@ -11596,23 +9738,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "919139b525e1"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001547",
-            "object_label": "decreased_transcript_stability_variant"
-           },
-           "rationale": "decreased_transcript_stability_variant is not a match.",
-           "evidence": "map:548220006ab8",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "3f4248f42f31"
           }
          ]
         },
@@ -11753,23 +9878,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "19db2e67504e"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000737",
-            "object_label": "mitochondrial_sequence"
-           },
-           "rationale": "mitochondrial_sequence is not a match.",
-           "evidence": "map:68fad3aeb803",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "015e3835bad0"
           }
          ]
         },
@@ -11831,23 +9939,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "59fa797ad6b5"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001032",
-            "object_label": "mitochondrial_DNA"
-           },
-           "rationale": "mitochondrial_DNA is not a match.",
-           "evidence": "map:cc2c5eba1b54",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "b1abbef69e90"
           }
          ]
         },
@@ -11909,23 +10000,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "d895038d1e5c"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002293",
-            "object_label": "mitochondrial_control_region"
-           },
-           "rationale": "mitochondrial_control_region is not a match.",
-           "evidence": "map:e58664d34097",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "0dc538965303"
           }
          ]
         }
@@ -12179,23 +10253,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "fc53fc75a15f"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002301",
-            "object_label": "transcription_unit"
-           },
-           "rationale": "transcription_unit is not a match.",
-           "evidence": "map:9af4df404d39",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "c7e18416f60e"
           }
          ]
         },
@@ -12336,23 +10393,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "1d6998b26a17"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000149",
-            "object_label": "contig"
-           },
-           "rationale": "contig is not a match.",
-           "evidence": "map:01f68530cccb",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "7f3340f78ae7"
           }
          ]
         },
@@ -12414,23 +10454,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "eca22716217a"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000353",
-            "object_label": "sequence_assembly"
-           },
-           "rationale": "sequence_assembly is not a match.",
-           "evidence": "map:afbad01600dd",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "76dd9c73d58b"
           }
          ]
         },
@@ -12492,23 +10515,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "9a0e53f662d6"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000735",
-            "object_label": "sequence_location"
-           },
-           "rationale": "sequence_location is not a match.",
-           "evidence": "map:b2654197dff2",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "8a19b7e4f544"
           }
          ]
         }
@@ -12607,23 +10613,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "6f2eaee26660"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000162",
-            "object_label": "splice_site"
-           },
-           "rationale": "splice_site is not a match.",
-           "evidence": "map:c0cec9879198",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "d3238ab037f0"
           }
          ]
         },
@@ -12685,23 +10674,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "be45fc49a1fe"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001474",
-            "object_label": "trans_splice_junction"
-           },
-           "rationale": "trans_splice_junction is not a match.",
-           "evidence": "map:d7d55661ddec",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "88a5b43f4250"
           }
          ]
         },
@@ -12763,23 +10735,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "884c4bba9a18"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001420",
-            "object_label": "trans_splice_site"
-           },
-           "rationale": "trans_splice_site is not a match.",
-           "evidence": "map:fb1cc6828d0e",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "5f23cecb21de"
           }
          ]
         }
@@ -12916,23 +10871,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "b4d82aec3c34"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001424",
-            "object_label": "pyrosequenced_read"
-           },
-           "rationale": "pyrosequenced_read is not a match.",
-           "evidence": "map:139e994802f9",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "ee45efe472bf"
           }
          ]
         },
@@ -12994,23 +10932,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "3d803ed40f70"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001468",
-            "object_label": "three_prime_RST"
-           },
-           "rationale": "three_prime_RST is not a match.",
-           "evidence": "map:2b0528aa6ae6",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "2d1b063961fe"
           }
          ]
         },
@@ -13072,23 +10993,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "56275e8610f6"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001467",
-            "object_label": "RST"
-           },
-           "rationale": "RST is not a match.",
-           "evidence": "map:6c86ea058bb9",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "53d3662df12f"
           }
          ]
         }
@@ -13187,23 +11091,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "14374ccddb8c"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002176",
-            "object_label": "substitution_artifact"
-           },
-           "rationale": "substitution_artifact is not a match.",
-           "evidence": "map:61ff1d81e0fc",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "5f6724bde414"
           }
          ]
         },
@@ -13265,23 +11152,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "e8248f64fa16"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001526",
-            "object_label": "base_call_error_correction"
-           },
-           "rationale": "base_call_error_correction is not a match.",
-           "evidence": "map:a52dd4dfa5bc",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "0d8ecb09758d"
           }
          ]
         },
@@ -13343,23 +11213,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a0670c4afc3a"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002173",
-            "object_label": "indel_artifact"
-           },
-           "rationale": "indel_artifact is not a match.",
-           "evidence": "map:f02e2c078202",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "1950072b89cb"
           }
          ]
         }
@@ -13459,23 +11312,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "6430a2504d2d"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001868",
-            "object_label": "positional_candidate_gene"
-           },
-           "rationale": "positional_candidate_gene is not a match.",
-           "evidence": "map:e70be847cd5e",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "1c922f60435f"
           }
          ]
         },
@@ -13648,23 +11484,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "7a5a5dfff050"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001424",
-            "object_label": "pyrosequenced_read"
-           },
-           "rationale": "pyrosequenced_read is not a match.",
-           "evidence": "map:4d52a00757c6",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "d1d04c574f1d"
           }
          ]
         },
@@ -13726,23 +11545,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "aa69986fee91"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000150",
-            "object_label": "read"
-           },
-           "rationale": "read is not a match.",
-           "evidence": "map:a8c3031d88f6",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "48cd45319b78"
           }
          ]
         }
@@ -13841,23 +11643,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "291592da3af3"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000993",
-            "object_label": "consensus"
-           },
-           "rationale": "consensus is not a match.",
-           "evidence": "map:34d60baee826",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "40270b51cc5c"
           }
          ]
         },
@@ -13919,23 +11704,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ad422441347b"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001505",
-            "object_label": "reference_genome"
-           },
-           "rationale": "reference_genome is not a match.",
-           "evidence": "map:f02b50cdb28f",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "145a74eab2a5"
           }
          ]
         },
@@ -13997,23 +11765,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a0368f801617"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000353",
-            "object_label": "sequence_assembly"
-           },
-           "rationale": "sequence_assembly is not a match.",
-           "evidence": "map:f39bf14748a5",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "5c528a44945b"
           }
          ]
         }
@@ -14150,23 +11901,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "7c37f24c4da1"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000322",
-            "object_label": "nuclease_hypersensitive_site"
-           },
-           "rationale": "nuclease_hypersensitive_site is not a match.",
-           "evidence": "map:af55b03e141e",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "55e6cb14f717"
           }
          ]
         },
@@ -14228,23 +11962,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a1e2a29983da"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000685",
-            "object_label": "DNaseI_hypersensitive_site"
-           },
-           "rationale": "DNaseI_hypersensitive_site is not a match.",
-           "evidence": "map:cb6b32d15b22",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "a84a7e334548"
           }
          ]
         }
@@ -14378,23 +12095,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "423b00711543"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002305",
-            "object_label": "topologically_associated_domain_boundary"
-           },
-           "rationale": "topologically_associated_domain_boundary is not a match.",
-           "evidence": "map:23b163d00673",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "1d673046432b"
           }
          ]
         },
@@ -14456,23 +12156,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "1a9efe3e93a7"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002308",
-            "object_label": "DNA_loop_anchor"
-           },
-           "rationale": "DNA_loop_anchor is not a match.",
-           "evidence": "map:6c63764105e2",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "16a062dd03f7"
           }
          ]
         }
@@ -14610,23 +12293,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "d8bc94adc189"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001469",
-            "object_label": "five_prime_RST"
-           },
-           "rationale": "five_prime_RST is not a match.",
-           "evidence": "map:34fb2cfca5c4",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "8246a608f0d1"
           }
          ]
         },
@@ -14688,23 +12354,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "22c0c50163fe"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001467",
-            "object_label": "RST"
-           },
-           "rationale": "RST is not a match.",
-           "evidence": "map:d1153d99fe3a",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "ee0851f56db7"
           }
          ]
         },
@@ -14766,23 +12415,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a285d3303a97"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001468",
-            "object_label": "three_prime_RST"
-           },
-           "rationale": "three_prime_RST is not a match.",
-           "evidence": "map:f2ae6dbb7a69",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "fbf2cae582d3"
           }
          ]
         }
@@ -15076,23 +12708,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a13ab149f2a4"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000993",
-            "object_label": "consensus"
-           },
-           "rationale": "consensus is not a match.",
-           "evidence": "map:0b4439f80b5c",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "3210bbb1b0b1"
           }
          ]
         },
@@ -15154,23 +12769,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "c52f21afa635"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001458",
-            "object_label": "unigene_cluster"
-           },
-           "rationale": "unigene_cluster is not a match.",
-           "evidence": "map:3c6200c6d8d5",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "ecf7754f97ee"
           }
          ]
         },
@@ -15232,23 +12830,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "105be8711e26"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001261",
-            "object_label": "overlapping_feature_set"
-           },
-           "rationale": "overlapping_feature_set is not a match.",
-           "evidence": "map:9ddf9d8e793d",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "13518896533b"
           }
          ]
         },
@@ -15388,23 +12969,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ea377ec5ddde"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001505",
-            "object_label": "reference_genome"
-           },
-           "rationale": "reference_genome is not a match.",
-           "evidence": "map:a76af8e74790",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "98fd2dcfd651"
           }
          ]
         },
@@ -15466,23 +13030,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "d4c2593b2d77"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:2000061",
-            "object_label": "databank_entry"
-           },
-           "rationale": "databank_entry is not a match.",
-           "evidence": "map:bbd0630943de",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "c5e43fdce21d"
           }
          ]
         }
@@ -15581,23 +13128,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ba061fdcaa61"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002034",
-            "object_label": "miR_encoding_snoRNA_primary_transcript"
-           },
-           "rationale": "miR_encoding_snoRNA_primary_transcript is not a match.",
-           "evidence": "map:47c6aeccad23",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "842bd554871f"
           }
          ]
         },
@@ -15659,23 +13189,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "0642492e40dd"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000571",
-            "object_label": "miRNA_encoding"
-           },
-           "rationale": "miRNA_encoding is not a match.",
-           "evidence": "map:6c324f474e00",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "cae2657e34d4"
           }
          ]
         },
@@ -15737,23 +13250,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "6f801d9ba9fe"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001620",
-            "object_label": "mature_miRNA_variant"
-           },
-           "rationale": "mature_miRNA_variant is not a match.",
-           "evidence": "map:703267d45ef0",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "87de99711121"
           }
          ]
         }
@@ -15851,23 +13347,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "bc5de24e0b7c"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002305",
-            "object_label": "topologically_associated_domain_boundary"
-           },
-           "rationale": "topologically_associated_domain_boundary is not a match.",
-           "evidence": "map:39a03c5283e4",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "4f07dcaa6d3a"
           }
          ]
         },
@@ -15929,23 +13408,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "d0aca34ce342"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001412",
-            "object_label": "topologically_defined_region"
-           },
-           "rationale": "topologically_defined_region is not a match.",
-           "evidence": "map:3eecad85fb79",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "f9a88daa5602"
           }
          ]
         }
@@ -16044,23 +13506,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "904061348872"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001526",
-            "object_label": "base_call_error_correction"
-           },
-           "rationale": "base_call_error_correction is not a match.",
-           "evidence": "map:7ca14cd7eb76",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "04e6c2399553"
           }
          ]
         },
@@ -16122,23 +13567,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "f9f5816a26c1"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000305",
-            "object_label": "modified_DNA_base"
-           },
-           "rationale": "modified_DNA_base is not a match.",
-           "evidence": "map:892780ad2a55",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "9ae7625c3d7f"
           }
          ]
         },
@@ -16200,23 +13628,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "e80c4639db26"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000306",
-            "object_label": "methylated_DNA_base_feature"
-           },
-           "rationale": "methylated_DNA_base_feature is not a match.",
-           "evidence": "map:fc7801620b3b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "afeffc10a56a"
           }
          ]
         }
@@ -16314,23 +13725,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "12a55f4b95e4"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001915",
-            "object_label": "transcription_start_cluster"
-           },
-           "rationale": "transcription_start_cluster is not a match.",
-           "evidence": "map:5cde327b6b73",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "9a53f65755ba"
           }
          ]
         },
@@ -16392,23 +13786,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ad78f25c2884"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001952",
-            "object_label": "promoter_flanking_region"
-           },
-           "rationale": "promoter_flanking_region is not a match.",
-           "evidence": "map:aba80961bbe1",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "1cc51c686380"
           }
          ]
         }
@@ -16507,23 +13884,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "f6a5dda4ce3b"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000148",
-            "object_label": "supercontig"
-           },
-           "rationale": "supercontig is not a match.",
-           "evidence": "map:21c754406808",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "62061ceeaa51"
           }
          ]
         },
@@ -16585,23 +13945,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "e0628eae63da"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001486",
-            "object_label": "standard_draft"
-           },
-           "rationale": "standard_draft is not a match.",
-           "evidence": "map:24111f08a8f3",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "ec4be676c276"
           }
          ]
         },
@@ -16663,23 +14006,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "4643664f61e5"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001505",
-            "object_label": "reference_genome"
-           },
-           "rationale": "reference_genome is not a match.",
-           "evidence": "map:b24bab216ab1",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "12a90c601a4f"
           }
          ]
         }
@@ -16777,23 +14103,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "c105fb22f462"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001249",
-            "object_label": "fragment_assembly"
-           },
-           "rationale": "fragment_assembly is not a match.",
-           "evidence": "map:b6bd1b06c198",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "5fb8fbe5712d"
           }
          ]
         },
@@ -16855,23 +14164,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "50c6f03cec67"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001876",
-            "object_label": "partial_genomic_sequence_assembly"
-           },
-           "rationale": "partial_genomic_sequence_assembly is not a match.",
-           "evidence": "map:e568f1d38e75",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "7af8b3480cfc"
           }
          ]
         }
@@ -16972,23 +14264,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "c6c3b2d9e5a0"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000339",
-            "object_label": "recombination_hotspot"
-           },
-           "rationale": "recombination_hotspot is not a match.",
-           "evidence": "map:56ae5b41797b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "40cb6f3cb14a"
           }
          ]
         },
@@ -17050,23 +14325,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "6e88f9f5990f"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002186",
-            "object_label": "mutational_hotspot"
-           },
-           "rationale": "mutational_hotspot is not a match.",
-           "evidence": "map:a98020355ef5",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "08f61522e2c0"
           }
          ]
         }
@@ -17167,23 +14425,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "64608bba4a9b"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002186",
-            "object_label": "mutational_hotspot"
-           },
-           "rationale": "mutational_hotspot is not a match.",
-           "evidence": "map:9b055b464987",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "1794a96a72f2"
           }
          ]
         },
@@ -17245,23 +14486,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "6d85f36b845c"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000339",
-            "object_label": "recombination_hotspot"
-           },
-           "rationale": "recombination_hotspot is not a match.",
-           "evidence": "map:caec78a041d4",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "9a96be579793"
           }
          ]
         }
@@ -17434,23 +14658,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "aa61e798cab9"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001743",
-            "object_label": "copy_number_loss"
-           },
-           "rationale": "copy_number_loss is not a match.",
-           "evidence": "map:31a193686f08",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "8922ca0bb5fb"
           }
          ]
         },
@@ -17512,23 +14719,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "cfd11d0f2953"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001742",
-            "object_label": "copy_number_gain"
-           },
-           "rationale": "copy_number_gain is not a match.",
-           "evidence": "map:f6b895831436",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "6b6d1d9c3cf0"
           }
          ]
         }
@@ -17663,23 +14853,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "6d9529cef72b"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001032",
-            "object_label": "mitochondrial_DNA"
-           },
-           "rationale": "mitochondrial_DNA is not a match.",
-           "evidence": "map:32006d2459da",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "175ae9c5db36"
           }
          ]
         },
@@ -17741,23 +14914,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "9aaa4649a8ee"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000737",
-            "object_label": "mitochondrial_sequence"
-           },
-           "rationale": "mitochondrial_sequence is not a match.",
-           "evidence": "map:382c6c688bbf",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "06984acd1c35"
           }
          ]
         },
@@ -17819,23 +14975,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "09358d11b661"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002293",
-            "object_label": "mitochondrial_control_region"
-           },
-           "rationale": "mitochondrial_control_region is not a match.",
-           "evidence": "map:b7bfd1a743b0",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "087ea37e1934"
           }
          ]
         }
@@ -17933,23 +15072,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "2b36830cc498"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001483",
-            "object_label": "SNV"
-           },
-           "rationale": "SNV is not a match.",
-           "evidence": "map:d143211c430a",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "e9593aaff821"
           }
          ]
         },
@@ -18011,23 +15133,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "637bb0c5ed4d"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001791",
-            "object_label": "exon_variant"
-           },
-           "rationale": "exon_variant is not a match.",
-           "evidence": "map:e6c28567561b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "61a489b38e8d"
           }
          ]
         }
@@ -18165,23 +15270,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "d380d0e47ebf"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000209",
-            "object_label": "rRNA_primary_transcript"
-           },
-           "rationale": "rRNA_primary_transcript is not a match.",
-           "evidence": "map:1718aea63560",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "252396b64bde"
           }
          ]
         },
@@ -18243,23 +15331,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a5a0247ec3c3"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000255",
-            "object_label": "rRNA_small_subunit_primary_transcript"
-           },
-           "rationale": "rRNA_small_subunit_primary_transcript is not a match.",
-           "evidence": "map:9e3ea793a279",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "3494476b8949"
           }
          ]
         },
@@ -18321,23 +15392,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "d22c76b54001"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000838",
-            "object_label": "rRNA_primary_transcript_region"
-           },
-           "rationale": "rRNA_primary_transcript_region is not a match.",
-           "evidence": "map:b2ef402d55eb",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "a9c57a48eac9"
           }
          ]
         }
@@ -18438,23 +15492,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "0dd7e6781704"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000831",
-            "object_label": "gene_member_region"
-           },
-           "rationale": "gene_member_region is not a match.",
-           "evidence": "map:4aabf1e69ee8",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "19f9b9d8561b"
           }
          ]
         },
@@ -18516,23 +15553,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "d0a20469b612"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001506",
-            "object_label": "variant_genome"
-           },
-           "rationale": "variant_genome is not a match.",
-           "evidence": "map:c60df7f991f0",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "4629e4571549"
           }
          ]
         }
@@ -18669,23 +15689,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "7857300f470e"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000343",
-            "object_label": "match"
-           },
-           "rationale": "match is not a match.",
-           "evidence": "map:1c2e9eb0a164",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "5a9aff2c79eb"
           }
          ]
         },
@@ -18747,23 +15750,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "48ed2b86f42d"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000001",
-            "object_label": "region"
-           },
-           "rationale": "region is not a match.",
-           "evidence": "map:d6374951a2ed",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "5d9c56cc8165"
           }
          ]
         }
@@ -18862,23 +15848,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "6dd939ce2ad0"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000132",
-            "object_label": "reverse_primer"
-           },
-           "rationale": "reverse_primer is not a match.",
-           "evidence": "map:1009a747da2b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "cee76ed437a5"
           }
          ]
         },
@@ -18940,23 +15909,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "6d172fa4b8b1"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000107",
-            "object_label": "sequencing_primer"
-           },
-           "rationale": "sequencing_primer is not a match.",
-           "evidence": "map:425ca6a9511c",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "203044650e41"
           }
          ]
         },
@@ -19018,23 +15970,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "90b1f46b4b27"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000121",
-            "object_label": "forward_primer"
-           },
-           "rationale": "forward_primer is not a match.",
-           "evidence": "map:b35a73e41663",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "8eeb7c2c774a"
           }
          ]
         }
@@ -19170,23 +16105,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "3f7e2c9aabeb"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001486",
-            "object_label": "standard_draft"
-           },
-           "rationale": "standard_draft is not a match.",
-           "evidence": "map:5e0813631f65",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "ba92aa05613c"
           }
          ]
         },
@@ -19248,23 +16166,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "9bfa1322032e"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001876",
-            "object_label": "partial_genomic_sequence_assembly"
-           },
-           "rationale": "partial_genomic_sequence_assembly is not a match.",
-           "evidence": "map:9d87f4e8f21a",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "53d336fdcc78"
           }
          ]
         }
@@ -19400,23 +16301,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "bd67371c3824"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001467",
-            "object_label": "RST"
-           },
-           "rationale": "RST is not a match.",
-           "evidence": "map:3406108591e8",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "7c8765e571d1"
           }
          ]
         },
@@ -19478,23 +16362,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "eb0458f5385c"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000345",
-            "object_label": "EST"
-           },
-           "rationale": "EST is not a match.",
-           "evidence": "map:e1a95853a2d9",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "3fe7c316f152"
           }
          ]
         }
@@ -19632,23 +16499,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "27d106f51ce5"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001998",
-            "object_label": "sgRNA"
-           },
-           "rationale": "sgRNA is not a match.",
-           "evidence": "map:0d1e7b69fb9b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "5bdf0332c4ab"
           }
          ]
         },
@@ -19710,23 +16560,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "fee1a75a9a83"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000930",
-            "object_label": "guide_RNA_region"
-           },
-           "rationale": "guide_RNA_region is not a match.",
-           "evidence": "map:20a400b76164",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "15d80640d05e"
           }
          ]
         },
@@ -19788,23 +16621,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "c716908575f0"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000978",
-            "object_label": "template_region"
-           },
-           "rationale": "template_region is not a match.",
-           "evidence": "map:f07065c329bb",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "c1f6969bf596"
           }
          ]
         }
@@ -19902,23 +16718,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "3a35fa9b7a91"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000551",
-            "object_label": "polyA_signal_sequence"
-           },
-           "rationale": "polyA_signal_sequence is not a match.",
-           "evidence": "map:434b8bed0bd7",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "8dada4b612da"
           }
          ]
         },
@@ -19980,23 +16779,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "0c37d90b26db"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000871",
-            "object_label": "polyadenylated_mRNA"
-           },
-           "rationale": "polyadenylated_mRNA is not a match.",
-           "evidence": "map:9d50b3f8243f",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "fd503e282e54"
           }
          ]
         }
@@ -20098,23 +16880,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "11a706abca7b"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000343",
-            "object_label": "match"
-           },
-           "rationale": "match is not a match.",
-           "evidence": "map:14144284fed3",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "86841fc6d6e0"
           }
          ]
         },
@@ -20176,23 +16941,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "f4aab951f5a5"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000353",
-            "object_label": "sequence_assembly"
-           },
-           "rationale": "sequence_assembly is not a match.",
-           "evidence": "map:4d7b436f103d",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "9bf647d77c85"
           }
          ]
         },
@@ -20254,23 +17002,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "ae817327e7b1"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001428",
-            "object_label": "expressed_sequence_assembly"
-           },
-           "rationale": "expressed_sequence_assembly is not a match.",
-           "evidence": "map:61e4be88e291",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "2935421caaff"
           }
          ]
         }
@@ -20523,23 +17254,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "7f8d9d6478e4"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001536",
-            "object_label": "functional_effect_variant"
-           },
-           "rationale": "functional_effect_variant is not a match.",
-           "evidence": "map:aa834e59b126",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "a6ea7e3728ed"
           }
          ]
         },
@@ -20601,23 +17315,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "60cefe4fb3f4"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002220",
-            "object_label": "function_uncertain_variant"
-           },
-           "rationale": "function_uncertain_variant is not a match.",
-           "evidence": "map:f5643c9444f8",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "70c7f9cdafbd"
           }
          ]
         },
@@ -20754,23 +17451,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "320325ea6cd4"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000210",
-            "object_label": "tRNA_primary_transcript"
-           },
-           "rationale": "tRNA_primary_transcript is not a match.",
-           "evidence": "map:37bdccc2c6a3",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "7e6254c70940"
           }
          ]
         },
@@ -20832,23 +17512,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "de8e5e694bc8"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002129",
-            "object_label": "mt_tRNA"
-           },
-           "rationale": "mt_tRNA is not a match.",
-           "evidence": "map:67c0ab65a28d",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "75acf1f9d6be"
           }
          ]
         }
@@ -21136,23 +17799,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "5aab6c86fbe0"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000895",
-            "object_label": "silenced_by_DNA_methylation"
-           },
-           "rationale": "silenced_by_DNA_methylation is not a match.",
-           "evidence": "map:4438121f3ca6",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "dbc35c30e23f"
           }
          ]
         },
@@ -21214,23 +17860,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "40289a76a1f5"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000114",
-            "object_label": "methylated_cytosine"
-           },
-           "rationale": "methylated_cytosine is not a match.",
-           "evidence": "map:fc7a890a8412",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "c8fd385ae074"
           }
          ]
         }
@@ -21328,23 +17957,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "393ef845e927"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001678",
-            "object_label": "regulatory_promoter_element"
-           },
-           "rationale": "regulatory_promoter_element is not a match.",
-           "evidence": "map:74090abbdf98",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "7a578e979690"
           }
          ]
         },
@@ -21406,23 +18018,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "3a5587a6b6e0"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002190",
-            "object_label": "enhancer_blocking_element"
-           },
-           "rationale": "enhancer_blocking_element is not a match.",
-           "evidence": "map:d1741f04092a",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "c594d2357002"
           }
          ]
         }
@@ -21520,23 +18115,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "48f99993abc0"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001876",
-            "object_label": "partial_genomic_sequence_assembly"
-           },
-           "rationale": "partial_genomic_sequence_assembly is not a match.",
-           "evidence": "map:1d33b2e09112",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "ff8ef2f30501"
           }
          ]
         },
@@ -21598,23 +18176,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "de8156b20f6e"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001249",
-            "object_label": "fragment_assembly"
-           },
-           "rationale": "fragment_assembly is not a match.",
-           "evidence": "map:e610a4c79cb1",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "1aa412498867"
           }
          ]
         }
@@ -21828,23 +18389,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "447d4d6ec385"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001688",
-            "object_label": "restriction_enzyme_cleavage_junction"
-           },
-           "rationale": "restriction_enzyme_cleavage_junction is not a match.",
-           "evidence": "map:a13bad691953",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "b4f7487a9403"
           }
          ]
         },
@@ -21906,23 +18450,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "6d0988bb63d2"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001954",
-            "object_label": "restriction_enzyme_region"
-           },
-           "rationale": "restriction_enzyme_region is not a match.",
-           "evidence": "map:ff1512d27801",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "1e40dbf67592"
           }
          ]
         }
@@ -22212,23 +18739,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "942e7b64b6ac"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002293",
-            "object_label": "mitochondrial_control_region"
-           },
-           "rationale": "mitochondrial_control_region is not a match.",
-           "evidence": "map:d7f420f37ed7",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "0f1c72b954bd"
           }
          ]
         },
@@ -22290,23 +18800,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "3058a2074d19"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001032",
-            "object_label": "mitochondrial_DNA"
-           },
-           "rationale": "mitochondrial_DNA is not a match.",
-           "evidence": "map:e7f4ba5adfe4",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "c939c6bdf786"
           }
          ]
         }
@@ -22403,23 +18896,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "47615aa52dc0"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001774",
-            "object_label": "quantitative_variant"
-           },
-           "rationale": "quantitative_variant is not a match.",
-           "evidence": "map:506702b54dac",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "eb4da2ad4d5b"
           }
          ]
         }
@@ -22519,23 +18995,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "a6368a54c30f"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001774",
-            "object_label": "quantitative_variant"
-           },
-           "rationale": "quantitative_variant is not a match.",
-           "evidence": "map:1f49e0f9074e",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "31c376b6b303"
           }
          ]
         },
@@ -22671,23 +19130,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "0ea6aeb8f50b"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001974",
-            "object_label": "CTCF_binding_site"
-           },
-           "rationale": "CTCF_binding_site is not a match.",
-           "evidence": "map:30998bc027ec",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "c34dfa0efa37"
           }
          ]
         }
@@ -22784,23 +19226,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "b0cc107408ef"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000685",
-            "object_label": "DNaseI_hypersensitive_site"
-           },
-           "rationale": "DNaseI_hypersensitive_site is not a match.",
-           "evidence": "map:b1354db0cd6f",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "97e59c3fb1cf"
           }
          ]
         }
@@ -22899,23 +19324,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "bc6f7fcfa774"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:1001195",
-            "object_label": "encodes_overlapping_peptides"
-           },
-           "rationale": "encodes_overlapping_peptides is not a match.",
-           "evidence": "map:12e488b3a55e",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "2d9a47b53874"
           }
          ]
         },
@@ -22977,23 +19385,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "6b922ed1b11d"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001501",
-            "object_label": "peptide_collection"
-           },
-           "rationale": "peptide_collection is not a match.",
-           "evidence": "map:4220b8f6a7a5",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "f89863f65255"
           }
          ]
         },
@@ -23055,23 +19446,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "b3ef5bececdd"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000419",
-            "object_label": "mature_protein_region"
-           },
-           "rationale": "mature_protein_region is not a match.",
-           "evidence": "map:78d22a16eaf4",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "14591435a1c6"
           }
          ]
         }
@@ -23284,23 +19658,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "bdd99232ed7a"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002032",
-            "object_label": "moR"
-           },
-           "rationale": "moR is not a match.",
-           "evidence": "map:90e2758f9c92",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "7e17d48178d2"
           }
          ]
         },
@@ -23362,23 +19719,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "0a02f68f61a2"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001620",
-            "object_label": "mature_miRNA_variant"
-           },
-           "rationale": "mature_miRNA_variant is not a match.",
-           "evidence": "map:9aafa478c73d",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "b35aaf7f7104"
           }
          ]
         },
@@ -23440,23 +19780,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "6b04258e1561"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002166",
-            "object_label": "ref_miRNA"
-           },
-           "rationale": "ref_miRNA is not a match.",
-           "evidence": "map:e34c85ccc964",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "3d502cb2515d"
           }
          ]
         }
@@ -23704,23 +20027,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "87ae659d7573"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000231",
-            "object_label": "snRNA_primary_transcript"
-           },
-           "rationale": "snRNA_primary_transcript is not a match.",
-           "evidence": "map:1db3dc3d41b6",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "ba6ed2d4b738"
           }
          ]
         },
@@ -23782,23 +20088,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "024bdf752a50"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002338",
-            "object_label": "U7_snRNA"
-           },
-           "rationale": "U7_snRNA is not a match.",
-           "evidence": "map:27871e7a49e5",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "f8fd26c36478"
           }
          ]
         }
@@ -23896,23 +20185,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "cf2783650535"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001264",
-            "object_label": "gRNA_gene"
-           },
-           "rationale": "gRNA_gene is not a match.",
-           "evidence": "map:8c84552dc967",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "09fcde03cc9e"
           }
          ]
         },
@@ -23974,23 +20246,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "30d67935bd82"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000930",
-            "object_label": "guide_RNA_region"
-           },
-           "rationale": "guide_RNA_region is not a match.",
-           "evidence": "map:a109e760e7ef",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "962489b39d6c"
           }
          ]
         }
@@ -24090,23 +20345,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "cc5a0f9baf84"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001489",
-            "object_label": "annotation_directed_improved_draft"
-           },
-           "rationale": "annotation_directed_improved_draft is not a match.",
-           "evidence": "map:a010a0a672fd",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "fc38bd474dba"
           }
          ]
         }
@@ -24203,23 +20441,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "04abab0eb0a5"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0002234",
-            "object_label": "pumilio_response_element"
-           },
-           "rationale": "pumilio_response_element is not a match.",
-           "evidence": "map:b6f047795555",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "6c198592b9ce"
           }
          ]
         }
@@ -24317,23 +20538,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "27134a3aaf00"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001264",
-            "object_label": "gRNA_gene"
-           },
-           "rationale": "gRNA_gene is not a match.",
-           "evidence": "map:0110929ed0c2",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "138d699e177f"
           }
          ]
         },
@@ -24395,23 +20599,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "3d4af49d3873"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000602",
-            "object_label": "guide_RNA"
-           },
-           "rationale": "guide_RNA is not a match.",
-           "evidence": "map:c30d287780da",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "c2477afac61c"
           }
          ]
         }
@@ -24508,23 +20695,6 @@
            "confirm": null,
            "group": "Accept",
            "answer": "4c889ace527b"
-          },
-          {
-           "label": "Reject",
-           "verdict": "reject_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001264",
-            "object_label": "gRNA_gene"
-           },
-           "rationale": "gRNA_gene is not a match.",
-           "evidence": "map:1b0a67e2391b",
-           "also": null,
-           "tone": "danger",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "d38a98ed1e6a"
           }
          ]
         }

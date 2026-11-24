@@ -907,8 +907,8 @@ not change the vocabulary; only the operations logged here do.
 
 ## Cleanup decisions
 
-_(in progress — term cleanup operations will be appended here as we curate via
-the Develop dashboard)_
+_(in progress — term cleanup operations will be appended here as we curate on
+curate.databio.org)_
 
 - **Group B re-homing candidates (open, deferred from operation #18).** Six
   **DataType** terms carry a clean SO element type: `peaks`, `DHS peaks`,

@@ -12,34 +12,42 @@
     "values": [
       {
         "name": "s3",
+        "ongaId": "ONGA_0000276",
         "description": "Amazon S3 and other S3-compatible bucket."
       },
       {
         "name": "gs",
+        "ongaId": "ONGA_0000277",
         "description": "Google Cloud Storage (and compatible) bucket."
       },
       {
         "name": "ftp",
+        "ongaId": "ONGA_0000278",
         "description": "File Transfer Protocol."
       },
       {
         "name": "gsiftp",
+        "ongaId": "ONGA_0000279",
         "description": "GridFTP protocol (an extension of the File Transfer Protocol (FTP) for grid computing)."
       },
       {
         "name": "globus",
+        "ongaId": "ONGA_0000280",
         "description": "Data transfer via the Globus research cyberinfrastructure (https://www.globus.org/.)"
       },
       {
         "name": "htsget",
+        "ongaId": "ONGA_0000281",
         "description": "GA4GH HTSget standard for retrieving subsections of genomic data (https://www.ga4gh.org/product/htsget/)."
       },
       {
         "name": "https",
+        "ongaId": "ONGA_0000282",
         "description": "Hypertext Transfer Protocol Secure, the standard encrypted protocol used on the web."
       },
       {
         "name": "file",
+        "ongaId": "ONGA_0000283",
         "description": "For local files accessible via a file URI (e.g., file://path/to/file)."
       }
     ],
@@ -61,38 +69,47 @@
     "values": [
       {
         "name": "cell line",
+        "ongaId": "ONGA_0000284",
         "description": ""
       },
       {
         "name": "in vitro differentiated cells",
+        "ongaId": "ONGA_0000285",
         "description": ""
       },
       {
         "name": "primary cell",
+        "ongaId": "ONGA_0000286",
         "description": ""
       },
       {
         "name": "cell-free sample",
+        "ongaId": "ONGA_0000287",
         "description": ""
       },
       {
         "name": "cloning host",
+        "ongaId": "ONGA_0000288",
         "description": ""
       },
       {
         "name": "tissue",
+        "ongaId": "ONGA_0000289",
         "description": ""
       },
       {
         "name": "whole organisms",
+        "ongaId": "ONGA_0000290",
         "description": ""
       },
       {
         "name": "organoid",
+        "ongaId": "ONGA_0000291",
         "description": ""
       },
       {
         "name": "technical sample",
+        "ongaId": "ONGA_0000292",
         "description": ""
       }
     ],
@@ -114,22 +131,27 @@
     "values": [
       {
         "name": "integer",
+        "ongaId": "ONGA_0000271",
         "description": "Integer numeric values."
       },
       {
         "name": "decimal",
+        "ongaId": "ONGA_0000272",
         "description": "Decimal numeric values."
       },
       {
         "name": "boolean",
+        "ongaId": "ONGA_0000273",
         "description": "Boolean values (true/false)."
       },
       {
         "name": "string",
+        "ongaId": "ONGA_0000274",
         "description": "Text string values."
       },
       {
         "name": "multiple",
+        "ongaId": "ONGA_0000275",
         "description": "Multiple types of values are associated (e.g. both integer and string)."
       }
     ],

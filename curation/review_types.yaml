@@ -11,8 +11,8 @@
 # the type page's question.
 #
 # Version 2 keys: `title` (display name, also `{project}` in default answer
-# rationales), `reasons` (finding rule -> plain words; see the README),
-# `answers` (per answers_kind settings) and `more_links` (the More menu).
+# rationales), `reasons` (finding rule -> plain words; see the README) and
+# `answers` (per answers_kind settings).
 
 version: 2
 title: ONGA
@@ -82,13 +82,6 @@ answers:
           - {label: Exact fit, value: exact, phrase: is exactly}
           - {label: Close enough, value: approximate, phrase: is the nearest SO match for}
           - {label: SO term is broader, value: broad, phrase: is broader than}
-
-more_links:
-  - {label: Merge candidates, url: "https://dev.databio.org/onga/develop/merge-candidates"}
-  - {label: Gaps, url: "https://dev.databio.org/onga/develop/gaps"}
-  - {label: Lint, url: "https://dev.databio.org/onga/develop/lint"}
-  - {label: Proposals, url: "https://dev.databio.org/onga/develop/so-proposals"}
-  - {label: Usage, url: "https://dev.databio.org/onga/develop/frequency"}
 
 tracks:
   - id: vocabulary

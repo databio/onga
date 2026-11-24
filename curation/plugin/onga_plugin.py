@@ -112,6 +112,7 @@ def encode_usage(wb):
 
 
 UPSTREAM = "proposals/upstream_requests.yaml"
+UPSTREAM_URL = f"https://github.com/databio/onga/blob/master/{UPSTREAM}"
 
 
 def upstream(ctx):
@@ -531,8 +532,7 @@ def subject_panels(wb):
     doc = (yaml.safe_load(upath.read_text()) or {}) if upath.exists() else {}
     entries = [r for key in ("requests", "rejections")
                for lst in (doc.get(key) or {}).values() for r in lst or []]
-    base = wb.option("browse_base")
-    href = f"{base.rstrip('/')}/develop/so-proposals" if base else None
+    href = UPSTREAM_URL
     for sid, s in view["subjects"].items():
         if s["kind"] != "term" or s.get("retired"):
             continue
