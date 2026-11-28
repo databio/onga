@@ -3,7 +3,7 @@
  "version": 2,
  "title": "ONGA",
  "schema_fingerprint": "e38085a5f024c1fa78a37aafb48ce256d33e2e1aaacf26421251159b08599bfb",
- "decisions_next_id": "DEC-0159",
+ "decisions_next_id": "DEC-0160",
  "progress": {
   "waiting": 396,
   "percent_settled": 26.8
@@ -28,164 +28,6 @@
      "answers_kind": "links",
      "count": 165,
      "items": [
-      {
-       "sid": "term:ONGA_0000174",
-       "kind": "term",
-       "slug": "term-onga-0000174",
-       "title": "methylation state at CHH",
-       "container": "enum:FeatureType",
-       "container_label": "FeatureType",
-       "browse": "https://dev.databio.org/onga/feature-types/methylation_state_at_chh",
-       "description": "DNA methylation status at CHH sequence context, representing asymmetric non-CpG methylation.",
-       "reasons": [],
-       "findings": [
-        "map:60c2e5d28f54",
-        "map:c5db0f5a9514"
-       ],
-       "choices": [
-        {
-         "lead": "Suggested",
-         "text": "methylated_DNA_base_feature (SO:0000306)",
-         "detail": "SO · 61% similar · A nucleotide modified by methylation.",
-         "actions": [
-          {
-           "label": "Exact fit",
-           "verdict": "adopt_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000306",
-            "object_label": "methylated_DNA_base_feature",
-            "element_type_fit": "exact"
-           },
-           "rationale": "methylated_DNA_base_feature is exactly the kind of feature in this set.",
-           "evidence": "map:60c2e5d28f54",
-           "also": null,
-           "tone": "primary",
-           "input": null,
-           "confirm": null,
-           "group": "Accept",
-           "answer": "a121660bb314"
-          },
-          {
-           "label": "Close enough",
-           "verdict": "adopt_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000306",
-            "object_label": "methylated_DNA_base_feature",
-            "element_type_fit": "approximate"
-           },
-           "rationale": "methylated_DNA_base_feature is the nearest SO match for the kind of feature in this set.",
-           "evidence": "map:60c2e5d28f54",
-           "also": null,
-           "tone": "neutral",
-           "input": null,
-           "confirm": null,
-           "group": "Accept",
-           "answer": "6c1138ec5b55"
-          },
-          {
-           "label": "SO term is broader",
-           "verdict": "adopt_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0000306",
-            "object_label": "methylated_DNA_base_feature",
-            "element_type_fit": "broad"
-           },
-           "rationale": "methylated_DNA_base_feature is broader than the kind of feature in this set.",
-           "evidence": "map:60c2e5d28f54",
-           "also": null,
-           "tone": "neutral",
-           "input": null,
-           "confirm": null,
-           "group": "Accept",
-           "answer": "48282e73f876"
-          }
-         ]
-        },
-        {
-         "lead": "Suggested",
-         "text": "histone_methylation_site (SO:0001701)",
-         "detail": "SO · 59% similar · A histone modification site where the modification is the methylation of the residue.",
-         "actions": [
-          {
-           "label": "Exact fit",
-           "verdict": "adopt_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001701",
-            "object_label": "histone_methylation_site",
-            "element_type_fit": "exact"
-           },
-           "rationale": "histone_methylation_site is exactly the kind of feature in this set.",
-           "evidence": "map:c5db0f5a9514",
-           "also": null,
-           "tone": "primary",
-           "input": null,
-           "confirm": null,
-           "group": "Accept",
-           "answer": "3cbf25644cd6"
-          },
-          {
-           "label": "Close enough",
-           "verdict": "adopt_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001701",
-            "object_label": "histone_methylation_site",
-            "element_type_fit": "approximate"
-           },
-           "rationale": "histone_methylation_site is the nearest SO match for the kind of feature in this set.",
-           "evidence": "map:c5db0f5a9514",
-           "also": null,
-           "tone": "neutral",
-           "input": null,
-           "confirm": null,
-           "group": "Accept",
-           "answer": "478e5e2bad80"
-          },
-          {
-           "label": "SO term is broader",
-           "verdict": "adopt_mapping",
-           "operation": {
-            "predicate": "onga:has_element_type",
-            "object": "SO:0001701",
-            "object_label": "histone_methylation_site",
-            "element_type_fit": "broad"
-           },
-           "rationale": "histone_methylation_site is broader than the kind of feature in this set.",
-           "evidence": "map:c5db0f5a9514",
-           "also": null,
-           "tone": "neutral",
-           "input": null,
-           "confirm": null,
-           "group": "Accept",
-           "answer": "cbbfff6a1b7a"
-          }
-         ]
-        }
-       ],
-       "actions": [
-        {
-         "label": "No match",
-         "verdict": "keep",
-         "operation": null,
-         "rationale": "No suitable term in outside ontologies; this stays ONGA-only.",
-         "evidence": null,
-         "also": null,
-         "tone": "neutral",
-         "input": null,
-         "confirm": null,
-         "group": null,
-         "answer": "250cfc4e7ee4"
-        }
-       ],
-       "editor": null,
-       "group": null,
-       "hash": "f9042e069b8b00c5d0dfdb8b6ecd9a39e7de9117ef8f96729c00b6adc6d3a114",
-       "score": 7.6178
-      },
       {
        "sid": "term:ONGA_0000218",
        "kind": "term",
@@ -1010,6 +852,164 @@
        "editor": null,
        "group": null,
        "hash": "4df9216b73987409ccfd1c8876fdd2b789b6c54e1e8824f1b2b911a04fc0b7d3",
+       "score": 6.6178
+      },
+      {
+       "sid": "term:ONGA_0000174",
+       "kind": "term",
+       "slug": "term-onga-0000174",
+       "title": "methylation state at CHH",
+       "container": "enum:FeatureType",
+       "container_label": "FeatureType",
+       "browse": "https://dev.databio.org/onga/feature-types/methylation_state_at_chh",
+       "description": "DNA methylation status at CHH sequence context, representing asymmetric non-CpG methylation.",
+       "reasons": [],
+       "findings": [
+        "map:60c2e5d28f54",
+        "map:c5db0f5a9514"
+       ],
+       "choices": [
+        {
+         "lead": "Suggested",
+         "text": "methylated_DNA_base_feature (SO:0000306)",
+         "detail": "SO · 61% similar · A nucleotide modified by methylation.",
+         "actions": [
+          {
+           "label": "Exact fit",
+           "verdict": "adopt_mapping",
+           "operation": {
+            "predicate": "onga:has_element_type",
+            "object": "SO:0000306",
+            "object_label": "methylated_DNA_base_feature",
+            "element_type_fit": "exact"
+           },
+           "rationale": "methylated_DNA_base_feature is exactly the kind of feature in this set.",
+           "evidence": "map:60c2e5d28f54",
+           "also": null,
+           "tone": "primary",
+           "input": null,
+           "confirm": null,
+           "group": "Accept",
+           "answer": "a121660bb314"
+          },
+          {
+           "label": "Close enough",
+           "verdict": "adopt_mapping",
+           "operation": {
+            "predicate": "onga:has_element_type",
+            "object": "SO:0000306",
+            "object_label": "methylated_DNA_base_feature",
+            "element_type_fit": "approximate"
+           },
+           "rationale": "methylated_DNA_base_feature is the nearest SO match for the kind of feature in this set.",
+           "evidence": "map:60c2e5d28f54",
+           "also": null,
+           "tone": "neutral",
+           "input": null,
+           "confirm": null,
+           "group": "Accept",
+           "answer": "6c1138ec5b55"
+          },
+          {
+           "label": "SO term is broader",
+           "verdict": "adopt_mapping",
+           "operation": {
+            "predicate": "onga:has_element_type",
+            "object": "SO:0000306",
+            "object_label": "methylated_DNA_base_feature",
+            "element_type_fit": "broad"
+           },
+           "rationale": "methylated_DNA_base_feature is broader than the kind of feature in this set.",
+           "evidence": "map:60c2e5d28f54",
+           "also": null,
+           "tone": "neutral",
+           "input": null,
+           "confirm": null,
+           "group": "Accept",
+           "answer": "48282e73f876"
+          }
+         ]
+        },
+        {
+         "lead": "Suggested",
+         "text": "histone_methylation_site (SO:0001701)",
+         "detail": "SO · 59% similar · A histone modification site where the modification is the methylation of the residue.",
+         "actions": [
+          {
+           "label": "Exact fit",
+           "verdict": "adopt_mapping",
+           "operation": {
+            "predicate": "onga:has_element_type",
+            "object": "SO:0001701",
+            "object_label": "histone_methylation_site",
+            "element_type_fit": "exact"
+           },
+           "rationale": "histone_methylation_site is exactly the kind of feature in this set.",
+           "evidence": "map:c5db0f5a9514",
+           "also": null,
+           "tone": "primary",
+           "input": null,
+           "confirm": null,
+           "group": "Accept",
+           "answer": "3cbf25644cd6"
+          },
+          {
+           "label": "Close enough",
+           "verdict": "adopt_mapping",
+           "operation": {
+            "predicate": "onga:has_element_type",
+            "object": "SO:0001701",
+            "object_label": "histone_methylation_site",
+            "element_type_fit": "approximate"
+           },
+           "rationale": "histone_methylation_site is the nearest SO match for the kind of feature in this set.",
+           "evidence": "map:c5db0f5a9514",
+           "also": null,
+           "tone": "neutral",
+           "input": null,
+           "confirm": null,
+           "group": "Accept",
+           "answer": "478e5e2bad80"
+          },
+          {
+           "label": "SO term is broader",
+           "verdict": "adopt_mapping",
+           "operation": {
+            "predicate": "onga:has_element_type",
+            "object": "SO:0001701",
+            "object_label": "histone_methylation_site",
+            "element_type_fit": "broad"
+           },
+           "rationale": "histone_methylation_site is broader than the kind of feature in this set.",
+           "evidence": "map:c5db0f5a9514",
+           "also": null,
+           "tone": "neutral",
+           "input": null,
+           "confirm": null,
+           "group": "Accept",
+           "answer": "cbbfff6a1b7a"
+          }
+         ]
+        }
+       ],
+       "actions": [
+        {
+         "label": "No match",
+         "verdict": "keep",
+         "operation": null,
+         "rationale": "No suitable term in outside ontologies; this stays ONGA-only.",
+         "evidence": null,
+         "also": null,
+         "tone": "neutral",
+         "input": null,
+         "confirm": null,
+         "group": null,
+         "answer": "250cfc4e7ee4"
+        }
+       ],
+       "editor": null,
+       "group": null,
+       "hash": "f9042e069b8b00c5d0dfdb8b6ecd9a39e7de9117ef8f96729c00b6adc6d3a114",
        "score": 6.6178
       },
       {
@@ -20730,111 +20730,6 @@
      "count": 45,
      "items": [
       {
-       "sid": "term:ONGA_0000174",
-       "kind": "term",
-       "slug": "term-onga-0000174",
-       "title": "methylation state at CHH",
-       "container": "enum:FeatureType",
-       "container_label": "FeatureType",
-       "browse": "https://dev.databio.org/onga/feature-types/methylation_state_at_chh",
-       "description": "DNA methylation status at CHH sequence context, representing asymmetric non-CpG methylation.",
-       "reasons": [
-        "Reads almost the same as \"methylation state at CpG\" (81% similar).",
-        "Reads almost the same as \"methylation state at CHG\" (85% similar)."
-       ],
-       "findings": [
-        "sim:9d746927a11b",
-        "sim:b83a70568d3d"
-       ],
-       "choices": [
-        {
-         "lead": "Same as",
-         "text": "\"methylation state at CpG\"?",
-         "detail": null,
-         "actions": [
-          {
-           "label": "Merge into \"methylation state at CpG\"",
-           "verdict": "merge",
-           "operation": {
-            "into": "term:ONGA_0000175",
-            "mappings": "move"
-           },
-           "rationale": "Same meaning as \"methylation state at CpG\".",
-           "evidence": "sim:9d746927a11b",
-           "also": [
-            "term:ONGA_0000175"
-           ],
-           "tone": "danger",
-           "input": null,
-           "confirm": "Merge \"methylation state at CHH\" into \"methylation state at CpG\"? \"methylation state at CHH\" is removed from the schema when the decision is applied.",
-           "group": null,
-           "answer": "e5b83de209e3"
-          },
-          {
-           "label": "Keep both",
-           "verdict": "keep",
-           "operation": null,
-           "rationale": "Different from \"methylation state at CpG\".",
-           "evidence": "sim:9d746927a11b",
-           "also": [
-            "term:ONGA_0000175"
-           ],
-           "tone": "neutral",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "b7017c64c526"
-          }
-         ]
-        },
-        {
-         "lead": "Same as",
-         "text": "\"methylation state at CHG\"?",
-         "detail": null,
-         "actions": [
-          {
-           "label": "Merge into \"methylation state at CHG\"",
-           "verdict": "merge",
-           "operation": {
-            "into": "term:ONGA_0000173",
-            "mappings": "move"
-           },
-           "rationale": "Same meaning as \"methylation state at CHG\".",
-           "evidence": "sim:b83a70568d3d",
-           "also": [
-            "term:ONGA_0000173"
-           ],
-           "tone": "danger",
-           "input": null,
-           "confirm": "Merge \"methylation state at CHH\" into \"methylation state at CHG\"? \"methylation state at CHH\" is removed from the schema when the decision is applied.",
-           "group": null,
-           "answer": "2247f151e302"
-          },
-          {
-           "label": "Keep both",
-           "verdict": "keep",
-           "operation": null,
-           "rationale": "Different from \"methylation state at CHG\".",
-           "evidence": "sim:b83a70568d3d",
-           "also": [
-            "term:ONGA_0000173"
-           ],
-           "tone": "neutral",
-           "input": null,
-           "confirm": null,
-           "group": null,
-           "answer": "de5aeb91c48c"
-          }
-         ]
-        }
-       ],
-       "actions": [],
-       "editor": null,
-       "group": null,
-       "hash": "f9042e069b8b00c5d0dfdb8b6ecd9a39e7de9117ef8f96729c00b6adc6d3a114",
-       "score": 7.6178
-      },
-      {
        "sid": "term:ONGA_0000173",
        "kind": "term",
        "slug": "term-onga-0000173",
@@ -20895,6 +20790,69 @@
        "editor": null,
        "group": null,
        "hash": "4df9216b73987409ccfd1c8876fdd2b789b6c54e1e8824f1b2b911a04fc0b7d3",
+       "score": 6.6178
+      },
+      {
+       "sid": "term:ONGA_0000174",
+       "kind": "term",
+       "slug": "term-onga-0000174",
+       "title": "methylation state at CHH",
+       "container": "enum:FeatureType",
+       "container_label": "FeatureType",
+       "browse": "https://dev.databio.org/onga/feature-types/methylation_state_at_chh",
+       "description": "DNA methylation status at CHH sequence context, representing asymmetric non-CpG methylation.",
+       "reasons": [
+        "Reads almost the same as \"methylation state at CHG\" (85% similar)."
+       ],
+       "findings": [
+        "sim:b83a70568d3d"
+       ],
+       "choices": [
+        {
+         "lead": "Same as",
+         "text": "\"methylation state at CHG\"?",
+         "detail": null,
+         "actions": [
+          {
+           "label": "Merge into \"methylation state at CHG\"",
+           "verdict": "merge",
+           "operation": {
+            "into": "term:ONGA_0000173",
+            "mappings": "move"
+           },
+           "rationale": "Same meaning as \"methylation state at CHG\".",
+           "evidence": "sim:b83a70568d3d",
+           "also": [
+            "term:ONGA_0000173"
+           ],
+           "tone": "danger",
+           "input": null,
+           "confirm": "Merge \"methylation state at CHH\" into \"methylation state at CHG\"? \"methylation state at CHH\" is removed from the schema when the decision is applied.",
+           "group": null,
+           "answer": "2247f151e302"
+          },
+          {
+           "label": "Keep both",
+           "verdict": "keep",
+           "operation": null,
+           "rationale": "Different from \"methylation state at CHG\".",
+           "evidence": "sim:b83a70568d3d",
+           "also": [
+            "term:ONGA_0000173"
+           ],
+           "tone": "neutral",
+           "input": null,
+           "confirm": null,
+           "group": null,
+           "answer": "de5aeb91c48c"
+          }
+         ]
+        }
+       ],
+       "actions": [],
+       "editor": null,
+       "group": null,
+       "hash": "f9042e069b8b00c5d0dfdb8b6ecd9a39e7de9117ef8f96729c00b6adc6d3a114",
        "score": 6.6178
       },
       {

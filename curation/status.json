@@ -5824,13 +5824,14 @@
    "open_findings": [
     "map:60c2e5d28f54",
     "map:c5db0f5a9514",
-    "sim:9d746927a11b",
     "sim:b83a70568d3d"
    ],
-   "decisions": [],
-   "latest": null,
+   "decisions": [
+    "DEC-0159"
+   ],
+   "latest": "DEC-0159",
    "signals": {
-    "findings": 6,
+    "findings": 4,
     "impact": 0.5589,
     "adoption": 1,
     "required": 0,
@@ -5839,7 +5840,7 @@
     "stale": 0,
     "machine": 1
    },
-   "score": 7.6178
+   "score": 6.6178
   },
   "term:ONGA_0000175": {
    "kind": "term",
@@ -5849,9 +5850,10 @@
    "state": "applied",
    "open_findings": [],
    "decisions": [
-    "DEC-0143"
+    "DEC-0143",
+    "DEC-0159"
    ],
-   "latest": "DEC-0143",
+   "latest": "DEC-0159",
    "signals": {
     "findings": 0,
     "impact": 0.6108,
@@ -13289,11 +13291,11 @@
   }
  },
  "queue": [
-  "term:ONGA_0000174",
   "term:ONGA_0000218",
   "term:ONGA_0000165",
   "term:ONGA_0000163",
   "term:ONGA_0000173",
+  "term:ONGA_0000174",
   "term:ONGA_0000167",
   "term:ONGA_0000168",
   "term:ONGA_0000171",
