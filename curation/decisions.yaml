@@ -55,7 +55,7 @@
 # review state (that stays in proposals/upstream_requests.yaml `status:`).
 
 version: 1
-next_id: 159
+next_id: 160
 decisions:
 - id: DEC-0001
   subject: term:ONGA_0000022
@@ -4638,3 +4638,32 @@ decisions:
   origin:
     kind: seed
     ref: DECISIONS.md#cleanup-decisions (Group B re-homing candidates)
+- id: DEC-0159
+  subject: term:ONGA_0000174
+  also_affects: [term:ONGA_0000175]
+  verdict: keep
+  operation: null
+  rationale: Different from "methylation state at CpG".
+  evidence:
+  - id: sim:9d746927a11b
+    kind: finding
+  - kind: other
+    detail: 'votes: b7017c64c526 1'
+  decided_by: Nathan C. Sheffield <nsheff@databio.org>
+  decided_on: 2026-11-24
+  subject_hashes:
+    term:ONGA_0000174: f9042e069b8b00c5d0dfdb8b6ecd9a39e7de9117ef8f96729c00b6adc6d3a114
+    term:ONGA_0000175: 75a24294d0fa75874dd9bc52958636d3caf60b6739bd8a6f837c3924f88b110f
+  schema_fingerprint: e38085a5f024c1fa78a37aafb48ce256d33e2e1aaacf26421251159b08599bfb
+  status: applied
+  applied:
+    on: 2026-11-28
+    subject_hashes_after:
+      term:ONGA_0000174: f9042e069b8b00c5d0dfdb8b6ecd9a39e7de9117ef8f96729c00b6adc6d3a114
+      term:ONGA_0000175: 75a24294d0fa75874dd9bc52958636d3caf60b6739bd8a6f837c3924f88b110f
+    created: []
+    retired: []
+  supersedes: null
+  origin:
+    kind: hosted
+    ref: H-0001
